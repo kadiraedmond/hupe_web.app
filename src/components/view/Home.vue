@@ -21,13 +21,13 @@ import Navbar from '@/components/Navbar.vue';
           <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="assets/img/1.png" class="d-block w-100 h-50" alt="...">
+                <img src="assets/img/a.png" class="d-block w-100 h-50" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="assets/img/2.png" class="d-block w-100 h-50" alt="...">
+                <img src="assets/img/b.png" class="d-block w-100 h-50" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="assets/img/3.png" class="d-block w-100 h-50" alt="...">
+                <img src="assets/img/c.png" class="d-block w-100 h-50" alt="...">
               </div>
             </div>
           </div>
