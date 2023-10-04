@@ -1,0 +1,972 @@
+<script setup>
+import Navbar from '@/components/Navbar.vue';
+// import Footer from '@/components/Footer.vue';
+
+
+</script>
+
+<template>
+  <Navbar></Navbar>
+
+
+  
+  <!-- ========== Hero one =========== -->
+  <section id="hero" class="d-flex ">
+    <div class="container-fluid" style="background:#219935">
+      <div class="row g-3 mb-4" style="padding: 93px !important;">
+        <div class="col-lg-6 col-md-6 bg-white border-2" style="background:#219935 !important" >
+          <p class="text-white" style=" margin-top: 25%;">Découvrez notre sélection de véhicules de qualité à des tarifs imbattables. Que ce soit pour un voyage d'affaires ou des vacances en famille, trouvez la voiture parfaite pour votre escapade. Réservez en ligne, choisissez votre destination, et préparez-vous à prendre la route.</p>
+        </div>
+        <div class="col-lg-6 col-md-6 bg-white border-2" id="heros_left_section" style="background:#219935 !important" >
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="assets/img/1.png" class="d-block w-100 h-50" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/2.png" class="d-block w-100 h-50" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/3.png" class="d-block w-100 h-50" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <main id="main">
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <!-- <section id="features" class="features" style="margin-top: -400px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            
+          </div>
+          <div class="col-4 text-end">
+
+          </div>
+        </div>
+
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+            <div class="card h-100">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This card has even longer content than the first to show that equal height action.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This card has even longer content than the first to show that equal height action.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section> -->
+
+
+    <!-- ======= Features Section ======= -->
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h2>Que voulez-vous faire</h2>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+            <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
+              <a v-bind:href="'/location'" class="mt-4">
+                  <img src="assets/img/car.png" class="img-fluid w-25" alt="...">
+              </a>
+              
+              <div class="card-body">
+                <a v-bind:href="'/location'" class="mt-4" id="a">
+                  <h5 class="card-title" style="font-size: 17px;">Louer un véhicule </h5>
+                </a>
+               
+                <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+              <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
+                <a v-bind:href="'/reservation'" class="mt-4 text-black">
+                    <img src="assets/img/bus.png" class="img-fluid w-25" alt="...">
+                </a>
+                
+                <div class="card-body">
+                  <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                    <h5 class="card-title" style="font-size: 17px;">Reserver un ticket de bus</h5>
+                  </a>
+                 
+                  <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
+                </div>
+              </div>
+          </div>
+          <div class="col">
+              <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
+                <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                    <img src="assets/img/engin.png" class="img-fluid w-25" alt="...">
+                </a>
+                
+                <div class="card-body">
+                  <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                    <h5 class="card-title" style="font-size: 17px;">Gros engin</h5>
+                  </a>
+                  
+                  <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
+                </div>
+              </div>
+          </div>
+          <div class="col">
+              <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
+                <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                    <img src="assets/img/engine.png" class="img-fluid w-25" alt="...">
+                </a>
+                
+                <div class="card-body">
+                  <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                    <h5 class="card-title" style="font-size: 17px;">Acheter un engin</h5>
+                  </a>
+                  
+                  <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
+                </div>
+              </div>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h2>En promotions </h2>
+              <p>Ne manquez pas nos offres spéciales du moment ! Découvrez des promotions exclusives pour rendre votre
+                voyage encore plus mémorable.</p>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+              <a v-bind:href="'/detail'">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
+              </a>
+              <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+              <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+              <button class="btn btn-primary" id="badges01"> <strong> 93% </strong> (500 +)</button>
+
+              <div class="card-body">
+                <a v-bind:href="'/detail'" id="a_compagnie">
+                  <div class="row">
+                    
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">Hyundai 2022</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                     <p>Santafé</p>
+                    </div>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+              <a v-bind:href="'/detail'">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
+              </a>
+              <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+              <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+              <button class="btn btn-primary" id="badges01"> <strong> 93% </strong> (500 +)</button>
+
+              <div class="card-body">
+                <a v-bind:href="'/detail'" id="a_compagnie">
+                  <div class="row">
+                    
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">Hyundai 2022</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                     <p>Santafé</p>
+                    </div>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+              <a href="detail_compagnie.html">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
+              </a>
+              <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+              <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+              <button class="btn btn-primary" id="badges01"> <strong> 93% </strong> (500 +)</button>
+
+              <div class="card-body">
+                <a href="detail_compagnie.html" id="a_compagnie">
+                  <div class="row">
+                    
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">Hyundai 2022</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                     <p>Santafé</p>
+                    </div>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+              <a href="detail_compagnie.html">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
+              </a>
+              <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+              <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+              <button class="btn btn-primary" id="badges01"> <strong> 93% </strong> (500 +)</button>
+
+              <div class="card-body">
+                <a href="detail_compagnie.html" id="a_compagnie">
+                  <div class="row">
+                    
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">Hyundai 2022</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                     <p>Santafé</p>
+                    </div>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h2>Compagnies de locations populaires </h2>
+              <p>Explorez les compagnies de location les plus appréciées par les voyageurs du monde entier. Faites
+                confiance à l'expérience et à la qualité.</p>
+
+            </div>
+          </div>
+
+        </div>
+
+
+       
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+              <a v-bind:href="'/detail'">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+              </a>
+
+              <div class="card-body">
+                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <a v-bind:href="'/detail'">
+                        <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                      </a>
+                      
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                    </div>
+                  </div>
+                </router-link>
+
+
+                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                    style="color: #219935;"></i> CI,rue 250</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+              <a v-bind:href="'/detail'">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+              </a>
+                 
+              
+              <div class="card-body">
+                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
+                 
+                  <div class="row">
+                    <div class="col-md-8">
+                      <a v-bind:href="'/detail'">
+                        <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                      </a>
+                     
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                    </div>
+                  </div>
+                </router-link>
+             
+
+
+                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                    style="color: #219935;"></i> CI,rue 250</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+              <a href="detail_compagnie.html">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+              </a>
+
+              <div class="card-body">
+                <a href="detail_compagnie.html" id="a_compagnie">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                    </div>
+                  </div>
+                </a>
+
+
+                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                    style="color: #219935;"></i> CI,rue 250</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+              <a href="detail_compagnie.html">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+              </a>
+
+              <div class="card-body">
+                <a href="detail_compagnie.html" id="a_compagnie">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                    </div>
+                  </div>
+                </a>
+
+
+                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                    style="color: #219935;"></i> CI,rue 250</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h2>Véhicules populaires</h2>
+              <p>Découvrez les véhicules les plus prisés pour votre prochain voyage. Confort, style et fiabilité, nous
+                avons tout ce dont vous avez besoin.</p>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <div class="card h-100" id="card_compagnie">
+              <div class="row" style="margin: 10px;">
+                <div class="col-md-6">
+                  <div class="card mb-3 border-0" style="max-width: 540px;">
+                    <div class="row g-1">
+                      <div class="col-md-4">
+                        <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title" style="font-size: 15px;">Koudi</h5>
+                          <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                            style="color: #219935;"></i> CI,rue 250</p>
+        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 text-end">
+                  <button class="btn btn-primary" style="    background: #219935;
+                  border-color: #219935; margin-top: 15px;">5000 FCFA</button>
+                </div>
+              </div>
+              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
+                <div class="row g-0" style="margin: 10px;">
+                  <div class="col-md-4">
+                    <img src="assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Hyundai 2022</h5>
+                      <p class="card-text"> <strong>Modéle : </strong> Santafé</p>
+                      <p class="card-text"> <strong>Essence : </strong> Automobile</p>
+                      <p class="card-text"> <strong>Immatriculation : </strong> BG 3252</p>
+                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100" id="card_compagnie">
+              <div class="row" style="margin: 10px;">
+                <div class="col-md-6">
+                  <div class="card mb-3 border-0" style="max-width: 540px;">
+                    <div class="row g-1">
+                      <div class="col-md-4">
+                        <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title" style="font-size: 15px;">Koudi</h5>
+                          <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                            style="color: #219935;"></i> CI,rue 250</p>
+        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 text-end">
+                  <button class="btn btn-primary" style="    background: #219935;
+                  border-color: #219935; margin-top: 15px;">5000 FCFA</button>
+                </div>
+              </div>
+              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
+                <div class="row g-0" style="margin: 10px;">
+                  <div class="col-md-4">
+                    <img src="assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Hyundai 2022</h5>
+                      <p class="card-text"> <strong>Modéle : </strong> Santafé</p>
+                      <p class="card-text"> <strong>Essence : </strong> Automobile</p>
+                      <p class="card-text"> <strong>Immatriculation : </strong> BG 3252</p>
+                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h2>Compagnies de transport populaires </h2>
+              <p>Simplifiez votre trajet en choisissant parmi les compagnies de transport les plus populaires. Voyagez
+                en toute tranquillité avec nos partenaires de confiance.</p>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+                <router-link to="/details">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+               </router-link>
+
+              <div class="card-body">
+                <a href="detail_compagnies.html" id="a_compagnie">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                    </div>
+                  </div>
+                </a>
+
+
+                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                    style="color: #219935;"></i> CI,rue 250</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+                <router-link to="/details">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+               </router-link>
+
+              <div class="card-body">
+                <a href="detail_compagnies.html" id="a_compagnie">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                    </div>
+                  </div>
+                </a>
+
+
+                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                    style="color: #219935;"></i> CI,rue 250</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+                <router-link to="/details">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+               </router-link>
+
+              <div class="card-body">
+                <a href="detail_compagnies.html" id="a_compagnie">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                    </div>
+                  </div>
+                </a>
+
+
+                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                    style="color: #219935;"></i> CI,rue 250</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div class="card h-100" id=compagnie_card>
+              <a href="detail_compagnies.html">
+                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+              </a>
+
+              <div class="card-body">
+                <a href="detail_compagnies.html" id="a_compagnie">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                    </div>
+                  </div>
+                </a>
+
+
+                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                    style="color: #219935;"></i> CI,rue 250</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h2>Destinations populaires</h2>
+              <p>Explorez les destinations les plus en vogue du moment. Trouvez l'inspiration pour votre prochain voyage
+                et vivez des expériences inoubliables.</p>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <div class="card h-100" id="card_compagnie">
+              <div class="row" style="margin: 10px;">
+                <div class="col-md-6">
+                  <div class="card mb-3 border-0" style="max-width: 540px;">
+                    <div class="row g-1">
+                      <div class="col-md-4">
+                        <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title" style="font-size: 15px;">Koudi</h5>
+                          <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                            style="color: #219935;"></i> CI,rue 250</p>
+        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 text-end">
+                  <button class="btn btn-primary" style="    background: #219935;
+                  border-color: #219935; margin-top: 15px;">5000 FCFA</button>
+                </div>
+              </div>
+              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
+                <div class="row g-0" style="margin: 10px;">
+                  <div class="col-md-4">
+                    <img src="assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <p class="card-text"> <strong>Trajet : </strong> Cody-Boualem</p>
+                      <p class="card-text"> <strong>Escales : </strong> Cody-Boualem</p>
+                      <p class="card-text"> <strong>Convocation : </strong>13 h 11 min</p>
+                      <p class="card-text"> <strong>Jours du voyages : </strong> Lundi</p>
+                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100" id="card_compagnie">
+              <div class="row" style="margin: 10px;">
+                <div class="col-md-6">
+                  <div class="card mb-3 border-0" style="max-width: 540px;">
+                    <div class="row g-1">
+                      <div class="col-md-4">
+                        <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title" style="font-size: 15px;">Koudi</h5>
+                          <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
+                            style="color: #219935;"></i> CI,rue 250</p>
+        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 text-end">
+                  <button class="btn btn-primary" style="    background: #219935;
+                  border-color: #219935; margin-top: 15px;">5000 FCFA</button>
+                </div>
+              </div>
+              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
+                <div class="row g-0" style="margin: 10px;">
+                  <div class="col-md-4">
+                    <img src="assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <p class="card-text"> <strong>Trajet : </strong> Cody-Boualem</p>
+                      <p class="card-text"> <strong>Escales : </strong> Cody-Boualem</p>
+                      <p class="card-text"> <strong>Convocation : </strong>13 h 11 min</p>
+                      <p class="card-text"> <strong>Jours du voyages : </strong> Lundi</p>
+                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features"  style="margin-top: -30px;">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h2>Actualités</h2>
+              <p>Restez a jour avec les dernières nouvelles du monde du voyage . Les informations les plus récentes sur les destinations, les promotion et plus encore</p>
+            </div>
+          </div>
+          
+        </div>
+ 
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+              <img src="assets/img/blog.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <div class="row" id="blog_row">
+                  <div class="col-md-12">
+                    <h5 class="card-title" id="blog_title">Card title</h5>
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                  </div>
+                   
+                </div>
+                
+                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                  </div>
+                </div>
+              </div>
+               
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+              <img src="assets/img/blog-1.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <div class="row" id="blog_row">
+                  <div class="col-md-12">
+                    <h5 class="card-title" id="blog_title">Card title</h5>
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                  </div>
+                   
+                </div>
+                
+                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                  </div>
+                </div>
+              </div>
+               
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+              <img src="assets/img/blog-2.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <div class="row" id="blog_row">
+                  <div class="col-md-12">
+                    <h5 class="card-title" id="blog_title">Card title</h5>
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                  </div>
+                   
+                </div>
+                
+                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                  </div>
+                </div>
+              </div>
+               
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+              <img src="assets/img/blog-2.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <div class="row" id="blog_row">
+                  <div class="col-md-12">
+                    <h5 class="card-title" id="blog_title">Card title</h5>
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                  </div>
+                   
+                </div>
+                
+                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                  </div>
+                </div>
+              </div>
+               
+            </div>
+          </div>
+        </div>
+       
+
+         
+      </div>
+    </section>
+    <!-- End Features Section -->
+
+     
+    <section id="features" class="features"  style="margin-top: -90px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center mt-5" style="margin-top: 80px !important;">
+            <h1 id="titre_new">Inscrivez vous à notre Newsletter</h1>
+            
+             <p class="mt-4" style="font-weight: 600;">Veuillez renseignez votre adresse mail, pour etre au courant de toutes nos nouveautés</p>
+         
+        <div class="col-md-12 text-center mt-5">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <form class="d-flex" action="" method="POST" enctype="multipart/form-data">
+               
+              <div class="input-group" style="margin-top: -14px;">
+                <input type="text" class="form-control form-control-lg input py-3"
+                    placeholder="Adresse email" name="email" id="input_newsletter">
+                <button class="btn btn-primary" style="background :#219935; border-color:#219935; border-radius: 0px 50px 50px 0px; width: 133px;">
+                    Envoyer
+                </button>
+              
+            </div>
+          </form>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          
+        </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- End #main -->
+
+
+ 
+</template>
+
+<style scoped>
+ 
+</style>
