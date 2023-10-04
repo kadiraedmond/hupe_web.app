@@ -11,7 +11,7 @@ import Footer from '@/components/Footer.vue';
 
 <!-- ======= Portfolio Details Section ======= -->
 <section id="portfolio-details" class="portfolio-details" style="margin-top: 0px;">
-    <img src="assets/img/car2.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
+    <img src="assets/img/cari.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
 </section>
   <!-- End Portfolio Details Section -->
 
