@@ -22,7 +22,7 @@ import Footer from '@/components/Footer.vue';
             <div class="card mb-3 border-0" style="max-width: 540px;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src="public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 160px;" />
+                  <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 160px;" />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
