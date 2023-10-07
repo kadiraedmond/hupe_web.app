@@ -121,7 +121,7 @@ import Navbar from '@/components/Navbar.vue';
         <div class="row">
           <div class="col-12">
             <div class="section-title text-center">
-              <h2>Que voulez-vous faire</h2>
+              <h2>Que voulez-vous faire ?</h2>
 
             </div>
           </div>
@@ -135,9 +135,9 @@ import Navbar from '@/components/Navbar.vue';
                   <img src="assets/img/car.png" class="img-fluid w-25" alt="...">
               </a>
               
-              <div class="card-body">
+              <div class="card-body" style=" background: #219935;">
                 <a v-bind:href="'/location'" class="mt-4" id="a">
-                  <h5 class="card-title" style="font-size: 17px;">Louer un véhicule </h5>
+                  <h5 class="card-title text-white" style="font-size: 17px;">Louer un véhicule </h5>
                 </a>
                
                 <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
@@ -150,9 +150,9 @@ import Navbar from '@/components/Navbar.vue';
                     <img src="assets/img/bus.png" class="img-fluid w-25" alt="...">
                 </a>
                 
-                <div class="card-body">
+                <div class="card-body" style=" background: #219935;">
                   <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                    <h5 class="card-title" style="font-size: 17px;">Reserver un ticket de bus</h5>
+                    <h5 class="card-title text-white" style="font-size: 17px;">Reserver un ticket de bus</h5>
                   </a>
                  
                   <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
@@ -165,9 +165,9 @@ import Navbar from '@/components/Navbar.vue';
                     <img src="assets/img/engin.png" class="img-fluid w-25" alt="...">
                 </a>
                 
-                <div class="card-body">
+                <div class="card-body" style=" background: #219935;">
                   <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                    <h5 class="card-title" style="font-size: 17px;">Gros engin</h5>
+                    <h5 class="card-title text-white" style="font-size: 17px;">Louer un gros engin </h5>
                   </a>
                   
                   <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
@@ -180,9 +180,9 @@ import Navbar from '@/components/Navbar.vue';
                     <img src="assets/img/engine.png" class="img-fluid w-25" alt="...">
                 </a>
                 
-                <div class="card-body">
+                <div class="card-body" style=" background: #219935;">
                   <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                    <h5 class="card-title" style="font-size: 17px;">Acheter un engin</h5>
+                    <h5 class="card-title text-white" style="font-size: 17px;">Acheter un engin</h5>
                   </a>
                   
                   <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
@@ -210,111 +210,71 @@ import Navbar from '@/components/Navbar.vue';
 
 
         
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a v-bind:href="'/detail'">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
-              </a>
-              <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-              <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-              <button class="btn btn-primary" id="badges01"> <strong> 93% </strong> (500 +)</button>
-
-              <div class="card-body">
-                <a v-bind:href="'/detail'" id="a_compagnie">
-                  <div class="row">
-                    
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">Hyundai 2022</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                     <p>Santafé</p>
-                    </div>
-                  </div>
+            <div class="card" style="background:#a6a6a621;">
+               <div class="row" style="padding: 6px;"> 
+                <div class="col-md-12 d-flex"> 
+                    <img src="assets/img/icone/car.png" class="img-fluid" alt="..." style=" width: 25px; height: 25px; margin-top: 6px;" >
+                  <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
+                  
+                </div>
+               </div>
+              <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
+                <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
+                  <img src="assets/img/car3.jpg" class="card-img-top" alt="..." style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
                 </a>
-
-              </div>
+                <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+                <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+                <button class="btn btn-primary" id="badges012">   93%  </button>
+                <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+              </div>              
             </div>
           </div>
           <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a v-bind:href="'/detail'">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
-              </a>
-              <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-              <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-              <button class="btn btn-primary" id="badges01"> <strong> 93% </strong> (500 +)</button>
-
-              <div class="card-body">
-                <a v-bind:href="'/detail'" id="a_compagnie">
-                  <div class="row">
-                    
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">Hyundai 2022</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                     <p>Santafé</p>
-                    </div>
-                  </div>
+            <div class="card" style="background:#a6a6a621;">
+               <div class="row" style="padding: 6px;"> 
+                <div class="col-md-12 d-flex"> 
+                    <img src="assets/img/icone/car.png" class="img-fluid" alt="..." style=" width: 25px; height: 25px; margin-top: 6px;" >
+                  <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
+                  
+                </div>
+               </div>
+              <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
+                <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
+                  <img src="assets/img/car3.jpg" class="card-img-top" alt="..." style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
                 </a>
-
-              </div>
+                <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+                <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+                <button class="btn btn-primary" id="badges012">   93%  </button>
+                <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+              </div>              
             </div>
           </div>
           <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a href="detail_compagnie.html">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
-              </a>
-              <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-              <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-              <button class="btn btn-primary" id="badges01"> <strong> 93% </strong> (500 +)</button>
-
-              <div class="card-body">
-                <a href="detail_compagnie.html" id="a_compagnie">
-                  <div class="row">
-                    
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">Hyundai 2022</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                     <p>Santafé</p>
-                    </div>
-                  </div>
+            <div class="card" style="background:#a6a6a621;">
+               <div class="row" style="padding: 6px;"> 
+                <div class="col-md-12 d-flex"> 
+                    <img src="assets/img/icone/car.png" class="img-fluid" alt="..." style=" width: 25px; height: 25px; margin-top: 6px;" >
+                  <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
+                  
+                </div>
+               </div>
+              <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
+                <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
+                  <img src="assets/img/car3.jpg" class="card-img-top" alt="..." style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
                 </a>
-
-              </div>
+                <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+                <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+                <button class="btn btn-primary" id="badges012">   93%  </button>
+                <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+              </div>              
             </div>
           </div>
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a href="detail_compagnie.html">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
-              </a>
-              <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-              <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-              <button class="btn btn-primary" id="badges01"> <strong> 93% </strong> (500 +)</button>
-
-              <div class="card-body">
-                <a href="detail_compagnie.html" id="a_compagnie">
-                  <div class="row">
-                    
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">Hyundai 2022</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                     <p>Santafé</p>
-                    </div>
-                  </div>
-                </a>
-
-              </div>
-            </div>
-          </div>
+           
         </div>
 
       </div>

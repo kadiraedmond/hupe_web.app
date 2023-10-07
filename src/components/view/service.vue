@@ -49,6 +49,7 @@ import Footer from '@/components/Footer.vue';
               </div>
             </div>
           </div>
+          <div class="col"></div>
           <div class="col">
               <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                 <a href="" class="mt-4">
@@ -61,6 +62,7 @@ import Footer from '@/components/Footer.vue';
                 </div>
               </div>
           </div>
+          <div class="col"></div>
           <div class="col">
               <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                 <a href="" class="mt-4">
@@ -73,6 +75,7 @@ import Footer from '@/components/Footer.vue';
                 </div>
               </div>
           </div>
+          <div class="col"></div>
           <div class="col">
               <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                 <a href="" class="mt-4">
@@ -85,6 +88,7 @@ import Footer from '@/components/Footer.vue';
                 </div>
               </div>
            </div>
+           <div class="col"></div>
         </div>
       </div>
     </section>

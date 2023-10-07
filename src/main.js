@@ -16,6 +16,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // Ajoutez les icônes solid à la bibliothèque
 library.add(fas);
 
+/* import specific icons */
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add(faUserSecret)
+
 // import { createApp } from 'vue'
 // import App from './App.vue'
 
