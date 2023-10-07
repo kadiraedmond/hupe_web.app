@@ -11,7 +11,7 @@ import Footer from '@/components/Footer.vue';
 
 <!-- ======= Portfolio Details Section ======= -->
 <section id="portfolio-details" class="portfolio-details" style="margin-top: 0px;">
-    <img src="assets/img/car2.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
+    <img src="./public/assets/img/car2.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
 </section>
   <!-- End Portfolio Details Section -->
 
@@ -22,7 +22,7 @@ import Footer from '@/components/Footer.vue';
             <div class="card mb-3 border-0" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 160px;"/>
+                    <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 160px;"/>
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -154,7 +154,7 @@ import Footer from '@/components/Footer.vue';
                                   <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                     <div class="row g-1">
                                       <div class="col-md-4">
-                                        <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                                        <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
                                       </div>
                                       <div class="col-md-8">
                                         <div class="card-body">
@@ -197,7 +197,7 @@ import Footer from '@/components/Footer.vue';
                                     </div>
                                   </div>
                                   <div class="col-md-6">
-                                    <img src="assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                                    <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
                                   </div>
                                   <div class="col-md-12">
                                     <hr>
@@ -223,7 +223,7 @@ import Footer from '@/components/Footer.vue';
                                   <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                     <div class="row g-1">
                                       <div class="col-md-4">
-                                        <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                                        <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
                                       </div>
                                       <div class="col-md-8">
                                         <div class="card-body">
@@ -266,7 +266,7 @@ import Footer from '@/components/Footer.vue';
                                     </div>
                                   </div>
                                   <div class="col-md-6">
-                                    <img src="assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                                    <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
                                   </div>
                                   <div class="col-md-12">
                                     <hr>

@@ -14,7 +14,7 @@ import Footer from '@/components/Footer.vue';
   
           <div class="row g-2">
             <div class="col-lg-6">
-                <img src="assets/img/res.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                <img src="./public/assets/img/res.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
             </div>
             <div class="col-lg-6">
                <h1 style="font-size: 54px;">Services hupe</h1>
@@ -40,7 +40,7 @@ import Footer from '@/components/Footer.vue';
           <div class="col">
             <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
               <a href="" class="mt-4">
-                  <img src="assets/img/car.png" class="img-fluid w-25" alt="...">
+                  <img src="./public/assets/img/car.png" class="img-fluid w-25" alt="...">
               </a>
               
               <div class="card-body">
@@ -53,7 +53,7 @@ import Footer from '@/components/Footer.vue';
           <div class="col">
               <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                 <a href="" class="mt-4">
-                    <img src="assets/img/bus.png" class="img-fluid w-25" alt="...">
+                    <img src="./public/assets/img/bus.png" class="img-fluid w-25" alt="...">
                 </a>
                 
                 <div class="card-body">
@@ -66,7 +66,7 @@ import Footer from '@/components/Footer.vue';
           <div class="col">
               <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                 <a href="" class="mt-4">
-                    <img src="assets/img/engin.png" class="img-fluid w-25" alt="...">
+                    <img src="./public/assets/img/engin.png" class="img-fluid w-25" alt="...">
                 </a>
                 
                 <div class="card-body">
@@ -79,7 +79,7 @@ import Footer from '@/components/Footer.vue';
           <div class="col">
               <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                 <a href="" class="mt-4">
-                    <img src="assets/img/engine.png" class="img-fluid w-25" alt="...">
+                    <img src="./public/assets/img/engine.png" class="img-fluid w-25" alt="...">
                 </a>
                 
                 <div class="card-body">

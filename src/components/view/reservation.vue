@@ -14,7 +14,7 @@ import Footer from '@/components/Footer.vue';
   
           <div class="row g-2">
             <div class="col-lg-6">
-                <img src="assets/img/res.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                <img src="./public/assets/img/res.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
             </div>
             <div class="col-lg-6">
                <h1 style="font-size: 54px;">Reserver un tickets de bus</h1>
@@ -36,7 +36,7 @@ import Footer from '@/components/Footer.vue';
 
             <div class="card h-100" id=compagnie_card>
               <a href="detail_compagnie.html">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
               </a>
 
               <div class="card-body">
@@ -60,7 +60,7 @@ import Footer from '@/components/Footer.vue';
           <div class="col">
 
             <div class="card h-100" id=compagnie_card>
-                   <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                   <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
               
               <div class="card-body">
                 <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
@@ -86,7 +86,7 @@ import Footer from '@/components/Footer.vue';
 
             <div class="card h-100" id=compagnie_card>
               <a href="detail_compagnie.html">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
               </a>
 
               <div class="card-body">
@@ -111,7 +111,7 @@ import Footer from '@/components/Footer.vue';
 
             <div class="card h-100" id=compagnie_card>
               <a href="detail_compagnie.html">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
               </a>
 
               <div class="card-body">
@@ -137,7 +137,7 @@ import Footer from '@/components/Footer.vue';
 
             <div class="card h-100" id=compagnie_card>
               <a href="detail_compagnie.html">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
               </a>
 
               <div class="card-body">
@@ -161,7 +161,7 @@ import Footer from '@/components/Footer.vue';
           <div class="col">
 
             <div class="card h-100" id=compagnie_card>
-                   <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                   <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
               
               <div class="card-body">
                 <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
@@ -187,7 +187,7 @@ import Footer from '@/components/Footer.vue';
 
             <div class="card h-100" id=compagnie_card>
               <a href="detail_compagnie.html">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
               </a>
 
               <div class="card-body">
@@ -212,7 +212,7 @@ import Footer from '@/components/Footer.vue';
 
             <div class="card h-100" id=compagnie_card>
               <a href="detail_compagnie.html">
-                <img src="assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
               </a>
 
               <div class="card-body">

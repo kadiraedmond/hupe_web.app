@@ -13,7 +13,7 @@ import Footer from '@/components/Footer.vue';
   
           <div class="row g-2">
             <div class="col-lg-6">
-                <img src="assets/img/lo.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                <img src="./public/assets/img/lo.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
             </div>
             <div class="col-lg-6">
                <h1 style="font-size: 54px;">Louer un véhicules</h1>
@@ -31,7 +31,7 @@ import Footer from '@/components/Footer.vue';
         <div class="row">
 
             <div class="col-md-6">
-                 <img src="assets/img/reserv.jpg" alt="" class="img-fluid w-100 h-100" style="border-radius: 5px; height: 94% !important;   object-fit: cover; margin-top: -13px;" >
+                 <img src="./public/assets/img/reserv.jpg" alt="" class="img-fluid w-100 h-100" style="border-radius: 5px; height: 94% !important;   object-fit: cover; margin-top: -13px;" >
             </div>
            
             <div class="col-md-6">
