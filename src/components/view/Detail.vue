@@ -2529,7 +2529,7 @@ import Footer from '@/components/Footer.vue';
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -5566,7 +5566,7 @@ import Footer from '@/components/Footer.vue';
                               <p style="font-size: 17px;font-weight: 600;">Paiement pour la location de Toyota yaris </p>
                             </div>
                             <div class="col-md-4">
-                              <p><img src="./public/./public/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
+                              <p><img src="./public/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
                             </div>
                           </div>
                           <p>Paiement pour la location de Toyota yaris </p>
