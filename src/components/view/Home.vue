@@ -238,7 +238,7 @@ import Navbar from '@/components/Navbar.vue';
                 <div class="col-md-12 d-flex"> 
                     <img src="./public/assets/img/icone/car.png" class="img-fluid" alt="..." style=" width: 25px; height: 25px; margin-top: 6px;" >
                   <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
+                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="./public/assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
                   
                 </div>
                </div>
@@ -259,7 +259,7 @@ import Navbar from '@/components/Navbar.vue';
                 <div class="col-md-12 d-flex"> 
                     <img src="./public/assets/img/icone/car.png" class="img-fluid" alt="..." style=" width: 25px; height: 25px; margin-top: 6px;" >
                   <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
+                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="./public/assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
                   
                 </div>
                </div>
