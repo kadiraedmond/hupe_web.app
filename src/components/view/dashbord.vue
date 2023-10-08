@@ -231,7 +231,7 @@ import Footer from "@/components/Footer.vue";
                                                     <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                                       <div class="row g-1">
                                                         <div class="col-md-4">
-                                                          <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                                                          <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
                                                         </div>
                                                         <div class="col-md-8">
                                                           <div class="card-body">
@@ -275,7 +275,7 @@ import Footer from "@/components/Footer.vue";
                                                       </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                      <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                                                      <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
                                                     </div>
                                                     <div class="col-md-12">
                                                       <p class="card-text">Départ le  <strong>Jours du voyages : </strong> à <strong>12h 43 min</strong></p>
@@ -304,7 +304,7 @@ import Footer from "@/components/Footer.vue";
                                                     <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                                       <div class="row g-1">
                                                         <div class="col-md-4">
-                                                          <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                                                          <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
                                                         </div>
                                                         <div class="col-md-8">
                                                           <div class="card-body">
@@ -348,7 +348,7 @@ import Footer from "@/components/Footer.vue";
                                                       </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                      <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                                                      <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
                                                     </div>
                                                     <div class="col-md-12">
                                                       <p class="card-text">Départ le  <strong>Jours du voyages : </strong> à <strong>12h 43 min</strong></p>
@@ -377,7 +377,7 @@ import Footer from "@/components/Footer.vue";
                                                     <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                                       <div class="row g-1">
                                                         <div class="col-md-4">
-                                                          <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                                                          <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
                                                         </div>
                                                         <div class="col-md-8">
                                                           <div class="card-body">
@@ -421,7 +421,7 @@ import Footer from "@/components/Footer.vue";
                                                       </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                      <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                                                      <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
                                                     </div>
                                                     <div class="col-md-12">
                                                       <p class="card-text">Départ le  <strong>Jours du voyages : </strong> à <strong>12h 43 min</strong></p>
@@ -450,7 +450,7 @@ import Footer from "@/components/Footer.vue";
                                                     <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                                       <div class="row g-1">
                                                         <div class="col-md-4">
-                                                          <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                                                          <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
                                                         </div>
                                                         <div class="col-md-8">
                                                           <div class="card-body">
@@ -494,7 +494,7 @@ import Footer from "@/components/Footer.vue";
                                                       </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                      <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                                                      <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
                                                     </div>
                                                     <div class="col-md-12">
                                                       <p class="card-text">Départ le  <strong>Jours du voyages : </strong> à <strong>12h 43 min</strong></p>
@@ -524,7 +524,7 @@ import Footer from "@/components/Footer.vue";
                                                     <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                                       <div class="row g-1">
                                                         <div class="col-md-4">
-                                                          <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                                                          <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
                                                         </div>
                                                         <div class="col-md-8">
                                                           <div class="card-body">
@@ -568,7 +568,7 @@ import Footer from "@/components/Footer.vue";
                                                       </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                      <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                                                      <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
                                                     </div>
                                                     <div class="col-md-12">
                                                       <p class="card-text">Départ le  <strong>Jours du voyages : </strong> à <strong>12h 43 min</strong></p>

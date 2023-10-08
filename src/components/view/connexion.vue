@@ -18,7 +18,7 @@ import Footer from '@/components/Footer.vue';
             <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
-                <img src="./public/assets/img/auth.png" class="img-fluid rounded-start w-100" alt="..." style="margin-top: 25px;">
+                <img src="/public/assets/img/auth.png" class="img-fluid rounded-start w-100" alt="..." style="margin-top: 25px;">
                 </div>
                 <div class="col-md-8">
                 <div class="card-body">

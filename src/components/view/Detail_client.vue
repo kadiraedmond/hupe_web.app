@@ -11,7 +11,7 @@ import Footer from '@/components/Footer.vue';
 
 <!-- ======= Portfolio Details Section ======= -->
 <section id="portfolio-details" class="portfolio-details" style="margin-top: 0px;">
-    <img src="./public/assets/img/cari.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
+    <img src="/public/assets/img/cari.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
 </section>
   <!-- End Portfolio Details Section -->
 
@@ -22,7 +22,7 @@ import Footer from '@/components/Footer.vue';
             <div class="card mb-3 border-0" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 160px;"/>
+                    <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 160px;"/>
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -78,7 +78,7 @@ import Footer from '@/components/Footer.vue';
                     <div class="card mb-3" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
-                          <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..." style="height: 100%; object-fit: cover;">
+                          <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..." style="height: 100%; object-fit: cover;">
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
@@ -121,7 +121,7 @@ import Footer from '@/components/Footer.vue';
                     <div class="card mb-3" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
-                          <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..." style="height: 100%; object-fit: cover;">
+                          <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..." style="height: 100%; object-fit: cover;">
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
@@ -169,7 +169,7 @@ import Footer from '@/components/Footer.vue';
 
                   <div class="card h-100" id=compagnie_card>
                     <a href="detail_compagnie.html">
-                      <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
+                      <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
                     </a>
                     <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
                     <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
@@ -195,7 +195,7 @@ import Footer from '@/components/Footer.vue';
 
                   <div class="card h-100" id=compagnie_card>
                     <a href="detail_compagnie.html">
-                      <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
+                      <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
                     </a>
                     <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
                     <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
@@ -221,7 +221,7 @@ import Footer from '@/components/Footer.vue';
 
                   <div class="card h-100" id=compagnie_card>
                     <a href="detail_compagnie.html">
-                      <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
+                      <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
                     </a>
                     <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
                     <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
@@ -247,7 +247,7 @@ import Footer from '@/components/Footer.vue';
 
                   <div class="card h-100" id=compagnie_card>
                     <a href="detail_compagnie.html">
-                      <img src="./public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
+                      <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 10px 10px;">
                     </a>
                     <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
                     <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
@@ -280,7 +280,7 @@ import Footer from '@/components/Footer.vue';
                                   <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                     <div class="row g-1">
                                       <div class="col-md-4">
-                                        <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
                                       </div>
                                       <div class="col-md-8">
                                         <div class="card-body">
@@ -323,7 +323,7 @@ import Footer from '@/components/Footer.vue';
                                     </div>
                                   </div>
                                   <div class="col-md-6">
-                                    <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
                                   </div>
                                   <div class="col-md-12">
                                     <hr>
@@ -349,7 +349,7 @@ import Footer from '@/components/Footer.vue';
                                   <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                     <div class="row g-1">
                                       <div class="col-md-4">
-                                        <img src="./public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
                                       </div>
                                       <div class="col-md-8">
                                         <div class="card-body">
@@ -392,7 +392,7 @@ import Footer from '@/components/Footer.vue';
                                     </div>
                                   </div>
                                   <div class="col-md-6">
-                                    <img src="./public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
                                   </div>
                                   <div class="col-md-12">
                                     <hr>

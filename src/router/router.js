@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from '../components/view/Home.vue';
-import Detail from '../components/view/Detail.vue';
+import Detail from '../components/view/Detail_client.vue';
 import Details from '../components/view/Details.vue';
 import Reservation from '../components/view/reservation.vue';
 import Location from '../components/view/location.vue';
@@ -10,6 +10,8 @@ import Form from '../components/view/form_reservation.vue';
 import Forms from '../components/view/form_locations.vue';
 import Service from '../components/view/service.vue';
 import Connexion from '../components/view/connexion.vue';
+import Compte from '../components/view/compte_location_vehicule.vue';
+import Comptes from '../components/view/compte_reservation.vue';
 import Dashboard from '../components/view/dashbord.vue';
 import Activite from '../components/view/activite.vue';
 
@@ -80,6 +82,19 @@ const routes = [
     path: '/activite',
     name: 'Activite',
     component: Activite,
+    
+  },
+
+  {
+    path: '/compte_vehicule',
+    name: 'Compte',
+    component: Compte,
+    
+  },
+  {
+    path: '/compte_reservation',
+    name: 'Comptes',
+    component: Comptes,
     
   },
 ];

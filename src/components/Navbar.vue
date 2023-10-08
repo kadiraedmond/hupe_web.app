@@ -45,6 +45,8 @@
             <ul style="background: red;">
               <li><a href="{{url('constuction')}}">Tableau de bord</a></li>
               <li><a href="{{url('location_immobilier')}}">Mon compte</a></li>
+              <li><a v-bind:href="'/compte_vehicule'" id="a_compagnie">Compte location de vehicule</a></li>
+              <li><a v-bind:href="'/compte_reservation'">Compte reservation de ticket de bus</a></li>
               <li><a href="{{url('vente_immobilier')}}">Déconnexion</a></li>
                
             </ul>
