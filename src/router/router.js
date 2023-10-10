@@ -12,6 +12,7 @@ import Service from '../components/view/service.vue';
 import Connexion from '../components/view/connexion.vue';
 import Compte from '../components/view/compte_location_vehicule.vue';
 import Compt from '../components/view/compte_gros_engin.vue';
+import Comp from '../components/view/compte_achat_engin.vue';
 import Comptes from '../components/view/compte_reservation.vue';
 import Dashboard from '../components/view/dashbord.vue';
 import Activite from '../components/view/activite.vue';
@@ -103,6 +104,13 @@ const routes = [
     path: '/compte_gros_engin',
     name: 'Compt',
     component: Compt,
+    
+  },
+
+  {
+    path: '/compte_achat_engin',
+    name: 'Comp',
+    component: Comp,
     
   },
   {

@@ -542,7 +542,7 @@ import Footer from '@/components/Footer.vue';
               <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
                   <div class="col">
-                    <div class="card" style="background:#a6a6a621;">
+                    <div class="card" style="background:#a6a6a621; padding: 6px;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
                           <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
@@ -553,7 +553,7 @@ import Footer from '@/components/Footer.vue';
 
                         </div>
                       </div>
-                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
+                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;box-shadow: none; background: transparent; ">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
                           <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
@@ -566,7 +566,7 @@ import Footer from '@/components/Footer.vue';
                     </div>
                   </div>
                   <div class="col">
-                    <div class="card" style="background:#a6a6a621;">
+                    <div class="card" style="background:#a6a6a621;padding: 6px;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
                           <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
@@ -577,7 +577,7 @@ import Footer from '@/components/Footer.vue';
 
                         </div>
                       </div>
-                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
+                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621; box-shadow: none; background: transparent;">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
                           <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
@@ -590,7 +590,7 @@ import Footer from '@/components/Footer.vue';
                     </div>
                   </div>
                   <div class="col">
-                    <div class="card" style="background:#a6a6a621;">
+                    <div class="card" style="background:#a6a6a621;padding: 6px;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
                           <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
@@ -601,7 +601,7 @@ import Footer from '@/components/Footer.vue';
 
                         </div>
                       </div>
-                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
+                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621; box-shadow: none; background: transparent;">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
                           <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
@@ -2213,19 +2213,15 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                   Lieu de départ | <strong> Lomé </strong></p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Déstinations | <strong>kara </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Heure de départ | <strong>18h45min </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -2238,18 +2234,18 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                     Convocation |  <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Escale |   <strong>Blitta </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                    Jours de voyages |   <strong>Mardi</strong></p>
                                                   
                                                 </div>
                                               </div>
@@ -2306,7 +2302,9 @@ import Footer from '@/components/Footer.vue';
                                     <div id="flush-collapseTwo" class="accordion-collapse collapse"
                                       aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
+                                        <div class="card h-100 border-0" id="card_compagnie" style=" box-shadow: none; background: none;">
+                                          
+                                          <div class="card mb-3 mt-4"
                                             style=" margin: 10px; margin-top: -10px !important; width:98% ;">
                                             <div class="row g-0" style="margin: 10px;">
 
@@ -2324,19 +2322,15 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                   Lieu de départ | <strong> Lomé </strong></p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Déstinations | <strong>kara </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Heure de départ | <strong>18h45min </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -2349,23 +2343,25 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                     Convocation |  <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Escale |   <strong>Blitta </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                    Jours de voyages |   <strong>Mardi</strong></p>
                                                   
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
+
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -2890,19 +2886,15 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                   Lieu de départ | <strong> Lomé </strong></p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Déstinations | <strong>kara </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Heure de départ | <strong>18h45min </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -2915,18 +2907,18 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                     Convocation |  <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Escale |   <strong>Blitta </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                    Jours de voyages |   <strong>Mardi</strong></p>
                                                   
                                                 </div>
                                               </div>
@@ -2983,7 +2975,9 @@ import Footer from '@/components/Footer.vue';
                                     <div id="flush-collapseTwo" class="accordion-collapse collapse"
                                       aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
+                                        <div class="card h-100 border-0" id="card_compagnie" style=" box-shadow: none; background: none;">
+                                          
+                                          <div class="card mb-3 mt-4"
                                             style=" margin: 10px; margin-top: -10px !important; width:98% ;">
                                             <div class="row g-0" style="margin: 10px;">
 
@@ -3001,19 +2995,15 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                   Lieu de départ | <strong> Lomé </strong></p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Déstinations | <strong>kara </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Heure de départ | <strong>18h45min </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -3026,23 +3016,25 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                     Convocation |  <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Escale |   <strong>Blitta </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                    Jours de voyages |   <strong>Mardi</strong></p>
                                                   
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
+
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -3568,19 +3560,15 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                   Lieu de départ | <strong> Lomé </strong></p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Déstinations | <strong>kara </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Heure de départ | <strong>18h45min </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -3593,18 +3581,18 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                     Convocation |  <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Escale |   <strong>Blitta </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                    Jours de voyages |   <strong>Mardi</strong></p>
                                                   
                                                 </div>
                                               </div>
@@ -4950,6 +4938,90 @@ import Footer from '@/components/Footer.vue';
                 </div>
               </div>
 
+              <div class="tab-pane fade" id="demande-tab-pane" role="tabpanel" aria-labelledby="demande-tab"
+                tabindex="0">
+                <div class="row mt-5">
+                  <div class="col-md-6">
+                    <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal10" style="background:white !important;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);  border: none; ">
+                    <p style="color:#219935 ;"> frgthyjukilm </p>
+                    <p class="text-black"> dvfbghjk </p>
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal10" tabindex="-1" aria-labelledby="exampleModalLabel10" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel10">Informations du client </h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form class="row g-3">
+                          <div class="col-md-12">
+                            <p> client  |  joe</p>
+                            <p> Adresse  | lolkjml </p>
+                            <p> Contact  | +000 0000000 </p>
+                            <p> Objet  | frgthyjukilm </p>
+                            <p> Demande  | dvfbghjk </p>
+                          </div>
+                          <div class="col-md-12">
+                            <label for="inputEmail4" class="form-label">Entrez votre reponse  </label>
+                            <textarea class="form-control" id="validationTextarea" placeholder="Reponse" required></textarea>
+                          </div>
+                          
+                          <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary" style="background: #219935 ; border-color:#219935;">Repondre</button>
+                          </div>
+                        </form>
+                        </div>
+                         
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                    <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal10" style="background:white !important;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);  border: none; ">
+                    <p style="color:#219935 ;"> frgthyjukilm </p>
+                    <p class="text-black"> dvfbghjk </p>
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal10" tabindex="-1" aria-labelledby="exampleModalLabel10" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel10">Informations du client </h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form class="row g-3">
+                          <div class="col-md-12">
+                            <p> client  |  joe</p>
+                            <p> Adresse  | lolkjml </p>
+                            <p> Contact  | +000 0000000 </p>
+                            <p> Objet  | frgthyjukilm </p>
+                            <p> Demande  | dvfbghjk </p>
+                          </div>
+                          <div class="col-md-12">
+                            <label for="inputEmail4" class="form-label">Entrez votre reponse  </label>
+                            <textarea class="form-control" id="validationTextarea" placeholder="Reponse" required></textarea>
+                          </div>
+                          
+                          <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary" style="background: #219935 ; border-color:#219935;">Repondre</button>
+                          </div>
+                        </form>
+                        </div>
+                         
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="tab-pane fade" id="politique-tab-pane" role="tabpanel" aria-labelledby="politique-tab"
                 tabindex="0">
                 <div class="row mt-5">
@@ -5839,6 +5911,75 @@ import Footer from '@/components/Footer.vue';
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="collaborateur-tab-pane" role="tabpanel" aria-labelledby="collaborateur-tab" tabindex="0">
+              <div class="row mt-5">
+                 <div class="col-md-6">
+                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f6f8fb; padding: 16px; border-radius: 5px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 140px;" />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">JOE Doe</h5>
+                          <p class="card-text">+000 0000000000</p>
+                          <p class="card-text"><small class="text-muted">loren ipsun dalor</small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+                 <div class="col-md-6">
+                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f6f8fb; padding: 16px; border-radius: 5px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 140px;" />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">JOE Doe</h5>
+                          <p class="card-text">+000 0000000000</p>
+                          <p class="card-text"><small class="text-muted">loren ipsun dalor</small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+                 <div class="col-md-6">
+                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f6f8fb; padding: 16px; border-radius: 5px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 140px;" />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">JOE Doe</h5>
+                          <p class="card-text">+000 0000000000</p>
+                          <p class="card-text"><small class="text-muted">loren ipsun dalor</small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+                 <div class="col-md-6">
+                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f6f8fb; padding: 16px; border-radius: 5px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 140px;" />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">JOE Doe</h5>
+                          <p class="card-text">+000 0000000000</p>
+                          <p class="card-text"><small class="text-muted">loren ipsun dalor</small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 </div>
               </div>
             </div>
           </div>

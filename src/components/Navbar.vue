@@ -28,10 +28,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li> <router-link to="/" class="nav-link scrollto active" ><font-awesome-icon icon="fa-solid fa-user-secret" />
+          <li> <router-link to="/" class="nav-link scrollto active" ><i class='bx bx-home' id="icon_menu"></i>
               Accueil</router-link></li>
-          <li><router-link to="/services" class="nav-link scrollto"><i class='fas fa-category' id="icon_menu"></i> Services</router-link></li>
-          <li><a class="nav-link scrollto " href="#"><i class='fas fa-help-circle' id="icon_menu"></i> Aide </a></li>
+          <li><router-link to="/services" class="nav-link scrollto"><i class='bx bx-category' id="icon_menu"></i> Services</router-link></li>
+          <li><a class="nav-link scrollto " href="#"><i class='bx bx-help-circle' id="icon_menu"></i> Aide </a></li>
           <li style=" margin-left: 30px; font-size: 14px;  font-weight: 600;">
             <select class="form-select1" id="validationCustom04" required>
               <option selected value="">Francais</option>
@@ -40,7 +40,7 @@
 
           </li>
 
-          <li><router-link to="/connexion" class="nav-link scrollto " href="#"><i class='fas fa-user' id="icon_menu"></i>Connexion </router-link></li>
+          <li><router-link to="/connexion" class="nav-link scrollto " href="#"><i class='bx bx-user' id="icon_menu"></i> Connexion </router-link></li>
           <li class="dropdown"><a href="#"><i class='bx bx-category' id="icon_menu"></i> <span>Admin </span> <i class="bi bi-chevron-down"></i></a>
             <ul style="background: #219935;">
               <li><a href="{{url('constuction')}}">Tableau de bord</a></li>
@@ -48,6 +48,7 @@
               <li><a v-bind:href="'/compte_vehicule'">Compte location de vehicule</a></li>
               <li><a v-bind:href="'/compte_reservation'">Compte reservation de ticket de bus</a></li>
               <li><a v-bind:href="'/compte_gros_engin'">Compte location de gros engin</a></li>
+              <li><a v-bind:href="'/compte_achat_engin'">Compte vente d'engin </a></li>
               <li><a href="{{url('vente_immobilier')}}">Déconnexion</a></li>
                
             </ul>

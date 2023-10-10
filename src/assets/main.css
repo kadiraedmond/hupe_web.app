@@ -2074,3 +2074,14 @@ section {
     height: 50px;
 
 }
+
+
+#attente-tab .nav-link.active {
+  /* color: var(--bs-nav-tabs-link-active-color); */
+  /* background-color: var(--bs-nav-tabs-link-active-bg); */
+  /* border-color: var(--bs-nav-tabs-link-active-border-color); */
+  color: white;
+  /* background-color: var(--bs-nav-tabs-link-active-bg); */
+  border-color: #219935;
+  /* background-image: linear-gradient(to right, #219935 0%, #219935 51%, #219935 100%); */
+}

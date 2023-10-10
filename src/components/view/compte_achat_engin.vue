@@ -63,7 +63,7 @@ import Footer from '@/components/Footer.vue';
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                  type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Réservations</button>
+                  type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Activités</button>
               </li>
 
 
@@ -72,10 +72,7 @@ import Footer from '@/components/Footer.vue';
                   type="button" role="tab" aria-controls="demande-tab-pane" aria-selected="false">Demande</button>
               </li>
 
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="categorie-tab" data-bs-toggle="tab" data-bs-target="#categorie-tab-pane"
-                  type="button" role="tab" aria-controls="categorie-tab-pane" aria-selected="false">Catégorie</button>
-              </li>
+              
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="politique-tab" data-bs-toggle="tab" data-bs-target="#politique-tab-pane"
                   type="button" role="tab" aria-controls="politique-tab-pane" aria-selected="false">Politique</button>
@@ -134,7 +131,7 @@ import Footer from '@/components/Footer.vue';
                             </div>
 
                             <div class="col-md-6">
-                              <label for="validationCustom01" class="form-label">Catégories</label>
+                              <label for="validationCustom01" class="form-label">Type</label>
                               <input type="text" class="form-control" id="validationCustom01"  required>
                                
                             </div>
@@ -456,7 +453,7 @@ import Footer from '@/components/Footer.vue';
               <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
                   <div class="col">
-                    <div class="card" style="background:#a6a6a621;">
+                    <div class="card" style="background:#a6a6a621; padding: 6px;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
                           <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
@@ -467,7 +464,7 @@ import Footer from '@/components/Footer.vue';
 
                         </div>
                       </div>
-                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
+                      <div class="card h-100"   style="padding: 6px; background:#a6a6a621;">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
                           <img src="/public/assets/img/car4.jpg" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
@@ -801,19 +798,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Caterpillar </strong> | <strong> 2022 </strong> </p>
+                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Catégorie | Tracteur  </p>
+                                                    Essence | automatique | BG 5314</p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Moteur | <strong>essence </strong>  </p>
+                                                    chauffeur | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Etat | <strong>new </strong> </p>
+                                                    Intérieur | <strong>kara </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -826,12 +823,12 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Transmission  |  <strong>loren ipsun</strong>   </p>
+                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Kilométrage |   <strong>100km/h </strong> 
+                                                     Retour |   <strong>2023-07-29 </strong> 
                                                     </p>
                                                   <hr>
 
