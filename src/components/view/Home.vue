@@ -1,47 +1,111 @@
 <script setup>
-import Navbar from '@/components/Navbar.vue';
-// import Footer from '@/components/Footer.vue';
+import { onBeforeMount, ref } from "vue";
+import { collection, getDocs } from "firebase/firestore";
+import { firestoreDb } from "../../firebase/firebase.js";
 
+const imageSlideColRef = collection(firestoreDb, "slideAcceuilImages");
+const companiesColRef = collection(firestoreDb, "compagnies");
+const carLocationColRef = collection(firestoreDb, 'location_vehicules')
 
+const slideImages = ref([])
+const companies = ref([])
+const carsForLocation = ref([])
+
+const fetchSlideImages = async () => {
+  try {
+    const snapshot = await getDocs(imageSlideColRef);
+    snapshot.docs.forEach((doc) => slideImages.value.push({ ...doc.data() }));
+    // console.log(slideImages.value)
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+const fetchCompanies = async () => {
+  try {
+    const snapshot = await getDocs(companiesColRef);
+    snapshot.docs.forEach((doc) => companies.value.push(doc.data()));
+    // console.log(companies.value[0])
+  } catch (error) {
+    console.log(err.message);
+  }
+};
+
+const fetchCars = async () => {
+  try {
+    const snapshot = await getDocs(carLocationColRef);
+    snapshot.docs.forEach((doc) => carsForLocation.value.push({ ...doc.data() }));
+    console.log(carsForLocation.value)
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+onBeforeMount(() => {
+  fetchSlideImages()
+  fetchCompanies()
+  fetchCars()
+})
 </script>
 
 <template>
-  <Navbar></Navbar>
-
-
-  
   <!-- ========== Hero one =========== -->
-  <section id="hero" class="d-flex ">
-    <div class="container-fluid" style="background:#219935">
-      <div class="row g-3 mb-4" style="padding: 93px !important;">
-        <div class="col-lg-6 col-md-6 bg-white border-2" style="background:#219935 !important" >
-          <p class="text-white" style=" margin-top: 25%;">Découvrez notre sélection de véhicules de qualité à des tarifs imbattables. Que ce soit pour un voyage d'affaires ou des vacances en famille, trouvez la voiture parfaite pour votre escapade. Réservez en ligne, choisissez votre destination, et préparez-vous à prendre la route.</p>
+  <section id="hero" class="d-flex">
+    <div class="container-fluid" style="background: #219935">
+      <div class="row g-3 mb-4" style="padding: 93px !important">
+        <div
+          class="col-lg-6 col-md-6 bg-white border-2"
+          style="background: #219935 !important"
+        >
+          <p class="text-white" style="margin-top: 25%">
+            Découvrez notre sélection de véhicules de qualité à des tarifs
+            imbattables. Que ce soit pour un voyage d'affaires ou des vacances
+            en famille, trouvez la voiture parfaite pour votre escapade.
+            Réservez en ligne, choisissez votre destination, et préparez-vous à
+            prendre la route.
+          </p>
         </div>
-        <div class="col-lg-6 col-md-6 bg-white border-2" id="heros_left_section" style="background:#219935 !important" >
-          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
+        <div
+          class="col-lg-6 col-md-6 bg-white border-2"
+          id="heros_left_section"
+          style="background: #219935 !important"
+        >
+          <div
+            id="carouselExampleSlidesOnly"
+            class="carousel slide"
+            data-bs-ride="carousel"
+            style="height: 400px"
+          >
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="/public/assets/img/a.png" class="d-block w-100 h-50" alt="...">
+                <img
+                  :src="slideImages[0].downloadURL"
+                  class="d-block w-100 h-50"
+                  alt="..."
+                />
               </div>
               <div class="carousel-item">
-                <img src="/public/assets/img/b.png" class="d-block w-100 h-50" alt="...">
+                <img
+                  :src="slideImages[1].downloadURL"
+                  class="d-block w-100 h-50"
+                  alt="..."
+                />
               </div>
               <div class="carousel-item">
-                <img src="/public/assets/img/c.png" class="d-block w-100 h-50" alt="...">
+                <img
+                  :src="slideImages[1].downloadURL"
+                  class="d-block w-100 h-50"
+                  alt="..."
+                />
               </div>
             </div>
           </div>
         </div>
-
-
       </div>
-
     </div>
   </section>
 
-
   <main id="main">
-
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
     <!-- <section id="features" class="features" style="margin-top: -400px;">
       <div class="container">
@@ -112,7 +176,6 @@ import Navbar from '@/components/Navbar.vue';
       </div>
     </section> -->
 
-
     <!-- ======= Features Section ======= -->
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
@@ -122,73 +185,119 @@ import Navbar from '@/components/Navbar.vue';
           <div class="col-12">
             <div class="section-title text-center">
               <h2>Que voulez-vous faire ?</h2>
-
             </div>
           </div>
-
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div class="col">
-            <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
+            <div
+              class="card h-100 border-0 text-center"
+              style="background: #f6f8fb"
+            >
               <a v-bind:href="'/location'" class="mt-4">
-                  <img src="/public/assets/img/car.png" class="img-fluid w-25" alt="...">
+                <img
+                  src="assets/img/car.png"
+                  class="img-fluid w-25"
+                  alt="..."
+                />
               </a>
-              
-              <div class="card-body" style=" background: #219935;">
+
+              <div class="card-body" style="background: #219935">
                 <a v-bind:href="'/location'" class="mt-4" id="a">
-                  <h5 class="card-title text-white" style="font-size: 17px;">Louer un véhicule </h5>
+                  <h5 class="card-title text-white" style="font-size: 17px">
+                    Louer un véhicule
+                  </h5>
                 </a>
-               
-                <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
+
+                <p class="card-text" style="font-size: 14px">
+                  Évitez les files d'attente et réservez vos billets de bus en
+                  quelques instants.
+                </p>
               </div>
             </div>
           </div>
           <div class="col">
-              <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
-                <a v-bind:href="'/reservation'" class="mt-4 text-black">
-                    <img src="/public/assets/img/bus.png" class="img-fluid w-25" alt="...">
+            <div
+              class="card h-100 border-0 text-center"
+              style="background: #f6f8fb"
+            >
+              <a v-bind:href="'/reservation'" class="mt-4 text-black">
+                <img
+                  src="assets/img/bus.png"
+                  class="img-fluid w-25"
+                  alt="..."
+                />
+              </a>
+
+              <div class="card-body" style="background: #219935">
+                <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                  <h5 class="card-title text-white" style="font-size: 17px">
+                    Reserver un ticket de bus
+                  </h5>
                 </a>
-                
-                <div class="card-body" style=" background: #219935;">
-                  <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                    <h5 class="card-title text-white" style="font-size: 17px;">Reserver un ticket de bus</h5>
-                  </a>
-                 
-                  <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
-                </div>
+
+                <p class="card-text" style="font-size: 14px">
+                  Évitez les files d'attente et réservez vos billets de bus en
+                  quelques instants.
+                </p>
               </div>
+            </div>
           </div>
           <div class="col">
-              <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
+            <div
+              class="card h-100 border-0 text-center"
+              style="background: #f6f8fb"
+            >
+              <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                <img
+                  src="assets/img/engin.png"
+                  class="img-fluid w-25"
+                  alt="..."
+                />
+              </a>
+
+              <div class="card-body" style="background: #219935">
                 <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                    <img src="/public/assets/img/engin.png" class="img-fluid w-25" alt="...">
+                  <h5 class="card-title text-white" style="font-size: 17px">
+                    Louer un gros engin
+                  </h5>
                 </a>
-                
-                <div class="card-body" style=" background: #219935;">
-                  <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                    <h5 class="card-title text-white" style="font-size: 17px;">Louer un gros engin </h5>
-                  </a>
-                  
-                  <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
-                </div>
+
+                <p class="card-text" style="font-size: 14px">
+                  Évitez les files d'attente et réservez vos billets de bus en
+                  quelques instants.
+                </p>
               </div>
+            </div>
           </div>
           <div class="col">
-              <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
+            <div
+              class="card h-100 border-0 text-center"
+              style="background: #f6f8fb"
+            >
+              <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                <img
+                  src="assets/img/engine.png"
+                  class="img-fluid w-25"
+                  alt="..."
+                />
+              </a>
+
+              <div class="card-body" style="background: #219935">
                 <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                    <img src="/public/assets/img/engine.png" class="img-fluid w-25" alt="...">
+                  <h5 class="card-title text-white" style="font-size: 17px">
+                    Acheter un engin
+                  </h5>
                 </a>
-                
-                <div class="card-body" style=" background: #219935;">
-                  <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                    <h5 class="card-title text-white" style="font-size: 17px;">Acheter un engin</h5>
-                  </a>
-                  
-                  <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
-                </div>
+
+                <p class="card-text" style="font-size: 14px">
+                  Évitez les files d'attente et réservez vos billets de bus en
+                  quelques instants.
+                </p>
               </div>
-           </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -199,84 +308,198 @@ import Navbar from '@/components/Navbar.vue';
         <div class="row">
           <div class="col-12">
             <div class="section-title text-center">
-              <h2>En promotions </h2>
-              <p>Ne manquez pas nos offres spéciales du moment ! Découvrez des promotions exclusives pour rendre votre
-                voyage encore plus mémorable.</p>
-
+              <h2>En promotions</h2>
+              <p>
+                Ne manquez pas nos offres spéciales du moment ! Découvrez des
+                promotions exclusives pour rendre votre voyage encore plus
+                mémorable.
+              </p>
             </div>
           </div>
-
         </div>
 
-
-        
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
-            <div class="card" style="background:#a6a6a621;">
-               <div class="row" style="padding: 6px;"> 
-                <div class="col-md-12 d-flex"> 
-                    <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..." style=" width: 25px; height: 25px; margin-top: 6px;" >
-                  <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="/public/assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
-                  
+            <div class="card" style="background: #a6a6a621">
+              <div class="row" style="padding: 6px">
+                <div class="col-md-12 d-flex">
+                  <img
+                    src="assets/img/icone/car.png"
+                    class="img-fluid"
+                    alt="..."
+                    style="width: 25px; height: 25px; margin-top: 6px"
+                  />
+                  <h6
+                    style="font-size: 12px; margin-left: 5px; margin-top: 10px"
+                  >
+                    {{companies[0].raison_social}}
+                  </h6>
+                  <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
+                    <img
+                      src="assets/img/icone/map.png"
+                      class="img-fluid"
+                      alt="..."
+                    />
+                    {{companies[0].adresse}}
+                  </p>
                 </div>
-               </div>
-              <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
-                <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                  <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..." style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
+              </div>
+              <div
+                class="card h-100"
+                id="compagnie_card"
+                style="padding: 6px; background: #a6a6a621"
+              >
+                <a
+                  v-bind:href="'/detail'"
+                  style="
+                    border: 1px solid;
+                    border-radius: 5px;
+                    border-color: #a6a6a6;
+                  "
+                >
+                  <img
+                    src="assets/img/car3.jpg"
+                    class="card-img-top"
+                    alt="..."
+                    style="
+                      border-radius: 5px 5px 5px 5px;
+                      height: 215px !important;
+                      object-fit: cover;
+                    "
+                  />
                 </a>
-                <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                <button class="btn btn-primary" id="badges012">   93%  </button>
-                <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
-              </div>              
+                <button class="btn btn-primary" id="badges">
+                  <s> 5000 FCFA </s>
+                </button>
+                <button class="btn btn-primary" id="badges0">2000 FCFA</button>
+                <button class="btn btn-primary" id="badges012">93%</button>
+                <button class="btn btn-primary" id="badges0121">
+                  Toyota yaris 2022
+                </button>
+              </div>
             </div>
           </div>
           <div class="col">
-            <div class="card" style="background:#a6a6a621;">
-               <div class="row" style="padding: 6px;"> 
-                <div class="col-md-12 d-flex"> 
-                    <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..." style=" width: 25px; height: 25px; margin-top: 6px;" >
-                  <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="/public/assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
-                  
+            <div class="card" style="background: #a6a6a621">
+              <div class="row" style="padding: 6px">
+                <div class="col-md-12 d-flex">
+                  <img
+                    src="assets/img/icone/car.png"
+                    class="img-fluid"
+                    alt="..."
+                    style="width: 25px; height: 25px; margin-top: 6px"
+                  />
+                  <h6
+                    style="font-size: 12px; margin-left: 5px; margin-top: 10px"
+                  >
+                    {{companies[8].raison_social}}
+                  </h6>
+                  <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
+                    <img
+                      src="assets/img/icone/map.png"
+                      class="img-fluid"
+                      alt="..."
+                    />
+                    {{companies[8].adresse}}
+                  </p>
                 </div>
-               </div>
-              <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
-                <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                  <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..." style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
+              </div>
+              <div
+                class="card h-100"
+                id="compagnie_card"
+                style="padding: 6px; background: #a6a6a621"
+              >
+                <a
+                  v-bind:href="'/detail'"
+                  style="
+                    border: 1px solid;
+                    border-radius: 5px;
+                    border-color: #a6a6a6;
+                  "
+                >
+                  <img
+                    src="assets/img/car3.jpg"
+                    class="card-img-top"
+                    alt="..."
+                    style="
+                      border-radius: 5px 5px 5px 5px;
+                      height: 215px !important;
+                      object-fit: cover;
+                    "
+                  />
                 </a>
-                <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                <button class="btn btn-primary" id="badges012">   93%  </button>
-                <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
-              </div>              
+                <button class="btn btn-primary" id="badges">
+                  <s> 5000 FCFA </s>
+                </button>
+                <button class="btn btn-primary" id="badges0">2000 FCFA</button>
+                <button class="btn btn-primary" id="badges012">93%</button>
+                <button class="btn btn-primary" id="badges0121">
+                  Toyota yaris 2022
+                </button>
+              </div>
             </div>
           </div>
           <div class="col">
-            <div class="card" style="background:#a6a6a621;">
-               <div class="row" style="padding: 6px;"> 
-                <div class="col-md-12 d-flex"> 
-                    <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..." style=" width: 25px; height: 25px; margin-top: 6px;" >
-                  <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                  <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img src="/public/assets/img/icone/map.png" class="img-fluid" alt="..." > logone</p>
-                  
+            <div class="card" style="background: #a6a6a621">
+              <div class="row" style="padding: 6px">
+                <div class="col-md-12 d-flex">
+                  <img
+                    src="assets/img/icone/car.png"
+                    class="img-fluid"
+                    alt="..."
+                    style="width: 25px; height: 25px; margin-top: 6px"
+                  />
+                  <h6
+                    style="font-size: 12px; margin-left: 5px; margin-top: 10px"
+                  >
+                    {{companies[3].raison_social}}
+                  </h6>
+                  <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
+                    <img
+                      src="assets/img/icone/map.png"
+                      class="img-fluid"
+                      alt="..."
+                    />
+                    {{companies[4].adresse}}
+                  </p>
                 </div>
-               </div>
-              <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
-                <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                  <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..." style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
+              </div>
+              <div
+                class="card h-100"
+                id="compagnie_card"
+                style="padding: 6px; background: #a6a6a621"
+              >
+                <a
+                  v-bind:href="'/detail'"
+                  style="
+                    border: 1px solid;
+                    border-radius: 5px;
+                    border-color: #a6a6a6;
+                  "
+                >
+                  <img
+                    src="assets/img/car3.jpg"
+                    class="card-img-top"
+                    alt="..."
+                    style="
+                      border-radius: 5px 5px 5px 5px;
+                      height: 215px !important;
+                      object-fit: cover;
+                    "
+                  />
                 </a>
-                <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                <button class="btn btn-primary" id="badges012">   93%  </button>
-                <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
-              </div>              
+                <button class="btn btn-primary" id="badges">
+                  <s> 5000 FCFA </s>
+                </button>
+                <button class="btn btn-primary" id="badges0">2000 FCFA</button>
+                <button class="btn btn-primary" id="badges012">93%</button>
+                <button class="btn btn-primary" id="badges0121">
+                  Toyota yaris 2022
+                </button>
+              </div>
             </div>
           </div>
-           
         </div>
-
       </div>
     </section>
 
@@ -286,129 +509,190 @@ import Navbar from '@/components/Navbar.vue';
         <div class="row">
           <div class="col-12">
             <div class="section-title text-center">
-              <h2>Compagnies de locations populaires </h2>
-              <p>Explorez les compagnies de location les plus appréciées par les voyageurs du monde entier. Faites
-                confiance à l'expérience et à la qualité.</p>
-
+              <h2>Compagnies de locations populaires</h2>
+              <p>
+                Explorez les compagnies de location les plus appréciées par les
+                voyageurs du monde entier. Faites confiance à l'expérience et à
+                la qualité.
+              </p>
             </div>
           </div>
-
         </div>
 
-
-       
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
+            <div class="card h-100" id="compagnie_card">
               <a v-bind:href="'/detail'">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img
+                  :src="carsForLocation[6].vehicule_image_url"
+                  class="card-img-top"
+                  alt="..."
+                  style="border-radius: 10px 10px 0px 0px"
+                />
               </a>
 
               <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
+                <router-link
+                  to="/detail"
+                  class="nav-link px-4"
+                  id="a_compagnie"
+                >
                   <div class="row">
                     <div class="col-md-8">
                       <a v-bind:href="'/detail'">
-                        <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                        <h5 class="card-title" style="font-size: 15px">
+                          BG-Compagnie
+                        </h5>
                       </a>
-                      
                     </div>
                     <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                      <i
+                        class="bx bx-car"
+                        id="icon_menu"
+                        style="color: #219935"
+                      ></i>
                     </div>
                   </div>
                 </router-link>
 
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
+                <p class="card-text mt-2" style="font-size: 14px">
+                  <i
+                    class="bx bx-map"
+                    id="icon_menu"
+                    style="color: #219935"
+                  ></i>
+                  CI,rue 250
+                </p>
               </div>
             </div>
           </div>
           <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
+            <div class="card h-100" id="compagnie_card">
               <a v-bind:href="'/detail'">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img
+                  :src="carsForLocation[6].vehicule_image_url"
+                  class="card-img-top"
+                  alt="..."
+                  style="border-radius: 10px 10px 0px 0px"
+                />
               </a>
-                 
-              
+
               <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
-                 
+                <router-link
+                  to="/detail"
+                  class="nav-link px-4"
+                  id="a_compagnie"
+                >
                   <div class="row">
                     <div class="col-md-8">
                       <a v-bind:href="'/detail'">
-                        <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                        <h5 class="card-title" style="font-size: 15px">
+                          BG-Compagnie
+                        </h5>
                       </a>
-                     
                     </div>
                     <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                      <i
+                        class="bx bx-car"
+                        id="icon_menu"
+                        style="color: #219935"
+                      ></i>
                     </div>
                   </div>
                 </router-link>
-             
 
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
+                <p class="card-text mt-2" style="font-size: 14px">
+                  <i
+                    class="bx bx-map"
+                    id="icon_menu"
+                    style="color: #219935"
+                  ></i>
+                  CI,rue 250
+                </p>
               </div>
             </div>
           </div>
           <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
+            <div class="card h-100" id="compagnie_card">
               <a href="detail_compagnie.html">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img
+                  :src="carsForLocation[6].vehicule_image_url"
+                  class="card-img-top"
+                  alt="..."
+                  style="border-radius: 10px 10px 0px 0px"
+                />
               </a>
 
               <div class="card-body">
                 <a href="detail_compagnie.html" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                      <h5 class="card-title" style="font-size: 15px">
+                        BG-Compagnie
+                      </h5>
                     </div>
                     <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                      <i
+                        class="bx bx-car"
+                        id="icon_menu"
+                        style="color: #219935"
+                      ></i>
                     </div>
                   </div>
                 </a>
 
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
+                <p class="card-text mt-2" style="font-size: 14px">
+                  <i
+                    class="bx bx-map"
+                    id="icon_menu"
+                    style="color: #219935"
+                  ></i>
+                  CI,rue 250
+                </p>
               </div>
             </div>
           </div>
           <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
+            <div class="card h-100" id="compagnie_card">
               <a href="detail_compagnie.html">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img
+                  :src="carsForLocation[6].vehicule_image_url"
+                  class="card-img-top"
+                  alt="..."
+                  style="border-radius: 10px 10px 0px 0px"
+                />
               </a>
 
               <div class="card-body">
                 <a href="detail_compagnie.html" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                      <h5 class="card-title" style="font-size: 15px">
+                        BG-Compagnie
+                      </h5>
                     </div>
                     <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                      <i
+                        class="bx bx-car"
+                        id="icon_menu"
+                        style="color: #219935"
+                      ></i>
                     </div>
                   </div>
                 </a>
 
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
+                <p class="card-text mt-2" style="font-size: 14px">
+                  <i
+                    class="bx bx-map"
+                    id="icon_menu"
+                    style="color: #219935"
+                  ></i>
+                  CI,rue 250
+                </p>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -419,52 +703,89 @@ import Navbar from '@/components/Navbar.vue';
           <div class="col-12">
             <div class="section-title text-center">
               <h2>Véhicules populaires</h2>
-              <p>Découvrez les véhicules les plus prisés pour votre prochain voyage. Confort, style et fiabilité, nous
-                avons tout ce dont vous avez besoin.</p>
-
+              <p>
+                Découvrez les véhicules les plus prisés pour votre prochain
+                voyage. Confort, style et fiabilité, nous avons tout ce dont
+                vous avez besoin.
+              </p>
             </div>
           </div>
-
         </div>
-
 
         <div class="row row-cols-1 row-cols-md-2 g-4">
           <div class="col">
             <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px;">
+              <div class="row" style="margin: 10px">
                 <div class="col-md-6">
-                  <div class="card mb-3 border-0" style="max-width: 540px;">
+                  <div class="card mb-3 border-0" style="max-width: 540px">
                     <div class="row g-1">
                       <div class="col-md-4">
-                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                        <img
+                          src="assets/img/avatars/1.png"
+                          alt
+                          class="w-px-40 h-auto rounded-circle"
+                          style="width: 90px"
+                        />
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title" style="font-size: 15px;">Koudi</h5>
-                          <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                            style="color: #219935;"></i> CI,rue 250</p>
-        
+                          <h5 class="card-title" style="font-size: 15px">
+                            Koudi
+                          </h5>
+                          <p class="card-text mt-2" style="font-size: 14px">
+                            <i
+                              class="bx bx-map"
+                              id="icon_menu"
+                              style="color: #219935"
+                            ></i>
+                            CI,rue 250
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 text-end">
-                  <button class="btn btn-primary" style="    background: #219935;
-                  border-color: #219935; margin-top: 15px;">5000 FCFA</button>
+                  <button
+                    class="btn btn-primary"
+                    style="
+                      background: #219935;
+                      border-color: #219935;
+                      margin-top: 15px;
+                    "
+                  >
+                    5000 FCFA
+                  </button>
                 </div>
               </div>
-              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
-                <div class="row g-0" style="margin: 10px;">
+              <div
+                class="card mb-3 mt-4"
+                style="
+                  max-width: 540px;
+                  margin: 10px;
+                  margin-top: -10px !important;
+                "
+              >
+                <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
-                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                    <img
+                      :src="carsForLocation[6].vehicule_image_url"
+                      class="img-fluid rounded-start h-100"
+                      alt="..."
+                    />
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
                       <h5 class="card-title">Hyundai 2022</h5>
-                      <p class="card-text"> <strong>Modéle : </strong> Santafé</p>
-                      <p class="card-text"> <strong>Essence : </strong> Automobile</p>
-                      <p class="card-text"> <strong>Immatriculation : </strong> BG 3252</p>
+                      <p class="card-text">
+                        <strong>Modéle : </strong> Santafé
+                      </p>
+                      <p class="card-text">
+                        <strong>Essence : </strong> Automobile
+                      </p>
+                      <p class="card-text">
+                        <strong>Immatriculation : </strong> BG 3252
+                      </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
                   </div>
@@ -474,40 +795,77 @@ import Navbar from '@/components/Navbar.vue';
           </div>
           <div class="col">
             <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px;">
+              <div class="row" style="margin: 10px">
                 <div class="col-md-6">
-                  <div class="card mb-3 border-0" style="max-width: 540px;">
+                  <div class="card mb-3 border-0" style="max-width: 540px">
                     <div class="row g-1">
                       <div class="col-md-4">
-                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                        <img
+                          src="assets/img/avatars/1.png"
+                          alt
+                          class="w-px-40 h-auto rounded-circle"
+                          style="width: 90px"
+                        />
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title" style="font-size: 15px;">Koudi</h5>
-                          <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                            style="color: #219935;"></i> CI,rue 250</p>
-        
+                          <h5 class="card-title" style="font-size: 15px">
+                            Koudi
+                          </h5>
+                          <p class="card-text mt-2" style="font-size: 14px">
+                            <i
+                              class="bx bx-map"
+                              id="icon_menu"
+                              style="color: #219935"
+                            ></i>
+                            CI,rue 250
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 text-end">
-                  <button class="btn btn-primary" style="    background: #219935;
-                  border-color: #219935; margin-top: 15px;">5000 FCFA</button>
+                  <button
+                    class="btn btn-primary"
+                    style="
+                      background: #219935;
+                      border-color: #219935;
+                      margin-top: 15px;
+                    "
+                  >
+                    5000 FCFA
+                  </button>
                 </div>
               </div>
-              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
-                <div class="row g-0" style="margin: 10px;">
+              <div
+                class="card mb-3 mt-4"
+                style="
+                  max-width: 540px;
+                  margin: 10px;
+                  margin-top: -10px !important;
+                "
+              >
+                <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
-                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                    <img
+                      src="assets/img/car2.jpg"
+                      class="img-fluid rounded-start h-100"
+                      alt="..."
+                    />
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
                       <h5 class="card-title">Hyundai 2022</h5>
-                      <p class="card-text"> <strong>Modéle : </strong> Santafé</p>
-                      <p class="card-text"> <strong>Essence : </strong> Automobile</p>
-                      <p class="card-text"> <strong>Immatriculation : </strong> BG 3252</p>
+                      <p class="card-text">
+                        <strong>Modéle : </strong> Santafé
+                      </p>
+                      <p class="card-text">
+                        <strong>Essence : </strong> Automobile
+                      </p>
+                      <p class="card-text">
+                        <strong>Immatriculation : </strong> BG 3252
+                      </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
                   </div>
@@ -515,9 +873,7 @@ import Navbar from '@/components/Navbar.vue';
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
@@ -527,119 +883,178 @@ import Navbar from '@/components/Navbar.vue';
         <div class="row">
           <div class="col-12">
             <div class="section-title text-center">
-              <h2>Compagnies de transport populaires </h2>
-              <p>Simplifiez votre trajet en choisissant parmi les compagnies de transport les plus populaires. Voyagez
-                en toute tranquillité avec nos partenaires de confiance.</p>
-
+              <h2>Compagnies de transport populaires</h2>
+              <p>
+                Simplifiez votre trajet en choisissant parmi les compagnies de
+                transport les plus populaires. Voyagez en toute tranquillité
+                avec nos partenaires de confiance.
+              </p>
             </div>
           </div>
-
         </div>
-
 
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-                <router-link to="/details">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-               </router-link>
-
-              <div class="card-body">
-                <a href="detail_compagnies.html" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
-                    </div>
-                  </div>
-                </a>
-
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-                <router-link to="/details">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-               </router-link>
+            <div class="card h-100" id="compagnie_card">
+              <router-link to="/details">
+                <img
+                  src="assets/img/car2.jpg"
+                  class="card-img-top"
+                  alt="..."
+                  style="border-radius: 10px 10px 0px 0px"
+                />
+              </router-link>
 
               <div class="card-body">
                 <a href="detail_compagnies.html" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                      <h5 class="card-title" style="font-size: 15px">
+                        BG-Compagnie
+                      </h5>
                     </div>
                     <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                      <i
+                        class="bx bx-car"
+                        id="icon_menu"
+                        style="color: #219935"
+                      ></i>
                     </div>
                   </div>
                 </a>
 
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
+                <p class="card-text mt-2" style="font-size: 14px">
+                  <i
+                    class="bx bx-map"
+                    id="icon_menu"
+                    style="color: #219935"
+                  ></i>
+                  CI,rue 250
+                </p>
               </div>
             </div>
           </div>
           <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-                <router-link to="/details">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-               </router-link>
+            <div class="card h-100" id="compagnie_card">
+              <router-link to="/details">
+                <img
+                  src="assets/img/car2.jpg"
+                  class="card-img-top"
+                  alt="..."
+                  style="border-radius: 10px 10px 0px 0px"
+                />
+              </router-link>
 
               <div class="card-body">
                 <a href="detail_compagnies.html" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                      <h5 class="card-title" style="font-size: 15px">
+                        BG-Compagnie
+                      </h5>
                     </div>
                     <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                      <i
+                        class="bx bx-car"
+                        id="icon_menu"
+                        style="color: #219935"
+                      ></i>
                     </div>
                   </div>
                 </a>
 
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
+                <p class="card-text mt-2" style="font-size: 14px">
+                  <i
+                    class="bx bx-map"
+                    id="icon_menu"
+                    style="color: #219935"
+                  ></i>
+                  CI,rue 250
+                </p>
               </div>
             </div>
           </div>
           <div class="col">
+            <div class="card h-100" id="compagnie_card">
+              <router-link to="/details">
+                <img
+                  src="assets/img/car2.jpg"
+                  class="card-img-top"
+                  alt="..."
+                  style="border-radius: 10px 10px 0px 0px"
+                />
+              </router-link>
 
-            <div class="card h-100" id=compagnie_card>
+              <div class="card-body">
+                <a href="detail_compagnies.html" id="a_compagnie">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h5 class="card-title" style="font-size: 15px">
+                        BG-Compagnie
+                      </h5>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <i
+                        class="bx bx-car"
+                        id="icon_menu"
+                        style="color: #219935"
+                      ></i>
+                    </div>
+                  </div>
+                </a>
+
+                <p class="card-text mt-2" style="font-size: 14px">
+                  <i
+                    class="bx bx-map"
+                    id="icon_menu"
+                    style="color: #219935"
+                  ></i>
+                  CI,rue 250
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100" id="compagnie_card">
               <a href="detail_compagnies.html">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img
+                  src="assets/img/car2.jpg"
+                  class="card-img-top"
+                  alt="..."
+                  style="border-radius: 10px 10px 0px 0px"
+                />
               </a>
 
               <div class="card-body">
                 <a href="detail_compagnies.html" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                      <h5 class="card-title" style="font-size: 15px">
+                        BG-Compagnie
+                      </h5>
                     </div>
                     <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                      <i
+                        class="bx bx-car"
+                        id="icon_menu"
+                        style="color: #219935"
+                      ></i>
                     </div>
                   </div>
                 </a>
 
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
+                <p class="card-text mt-2" style="font-size: 14px">
+                  <i
+                    class="bx bx-map"
+                    id="icon_menu"
+                    style="color: #219935"
+                  ></i>
+                  CI,rue 250
+                </p>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -650,52 +1065,91 @@ import Navbar from '@/components/Navbar.vue';
           <div class="col-12">
             <div class="section-title text-center">
               <h2>Destinations populaires</h2>
-              <p>Explorez les destinations les plus en vogue du moment. Trouvez l'inspiration pour votre prochain voyage
-                et vivez des expériences inoubliables.</p>
-
+              <p>
+                Explorez les destinations les plus en vogue du moment. Trouvez
+                l'inspiration pour votre prochain voyage et vivez des
+                expériences inoubliables.
+              </p>
             </div>
           </div>
-
         </div>
-
 
         <div class="row row-cols-1 row-cols-md-2 g-4">
           <div class="col">
             <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px;">
+              <div class="row" style="margin: 10px">
                 <div class="col-md-6">
-                  <div class="card mb-3 border-0" style="max-width: 540px;">
+                  <div class="card mb-3 border-0" style="max-width: 540px">
                     <div class="row g-1">
                       <div class="col-md-4">
-                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                        <img
+                          src="assets/img/avatars/1.png"
+                          alt
+                          class="w-px-40 h-auto rounded-circle"
+                          style="width: 90px"
+                        />
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title" style="font-size: 15px;">Koudi</h5>
-                          <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                            style="color: #219935;"></i> CI,rue 250</p>
-        
+                          <h5 class="card-title" style="font-size: 15px">
+                            Koudi
+                          </h5>
+                          <p class="card-text mt-2" style="font-size: 14px">
+                            <i
+                              class="bx bx-map"
+                              id="icon_menu"
+                              style="color: #219935"
+                            ></i>
+                            CI,rue 250
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 text-end">
-                  <button class="btn btn-primary" style="    background: #219935;
-                  border-color: #219935; margin-top: 15px;">5000 FCFA</button>
+                  <button
+                    class="btn btn-primary"
+                    style="
+                      background: #219935;
+                      border-color: #219935;
+                      margin-top: 15px;
+                    "
+                  >
+                    5000 FCFA
+                  </button>
                 </div>
               </div>
-              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
-                <div class="row g-0" style="margin: 10px;">
+              <div
+                class="card mb-3 mt-4"
+                style="
+                  max-width: 540px;
+                  margin: 10px;
+                  margin-top: -10px !important;
+                "
+              >
+                <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
-                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                    <img
+                      src="assets/img/car2.jpg"
+                      class="img-fluid rounded-start h-100"
+                      alt="..."
+                    />
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <p class="card-text"> <strong>Trajet : </strong> Cody-Boualem</p>
-                      <p class="card-text"> <strong>Escales : </strong> Cody-Boualem</p>
-                      <p class="card-text"> <strong>Convocation : </strong>13 h 11 min</p>
-                      <p class="card-text"> <strong>Jours du voyages : </strong> Lundi</p>
+                      <p class="card-text">
+                        <strong>Trajet : </strong> Cody-Boualem
+                      </p>
+                      <p class="card-text">
+                        <strong>Escales : </strong> Cody-Boualem
+                      </p>
+                      <p class="card-text">
+                        <strong>Convocation : </strong>13 h 11 min
+                      </p>
+                      <p class="card-text">
+                        <strong>Jours du voyages : </strong> Lundi
+                      </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
                   </div>
@@ -705,40 +1159,79 @@ import Navbar from '@/components/Navbar.vue';
           </div>
           <div class="col">
             <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px;">
+              <div class="row" style="margin: 10px">
                 <div class="col-md-6">
-                  <div class="card mb-3 border-0" style="max-width: 540px;">
+                  <div class="card mb-3 border-0" style="max-width: 540px">
                     <div class="row g-1">
                       <div class="col-md-4">
-                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 90px;"/>
+                        <img
+                          src="assets/img/avatars/1.png"
+                          alt
+                          class="w-px-40 h-auto rounded-circle"
+                          style="width: 90px"
+                        />
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title" style="font-size: 15px;">Koudi</h5>
-                          <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                            style="color: #219935;"></i> CI,rue 250</p>
-        
+                          <h5 class="card-title" style="font-size: 15px">
+                            Koudi
+                          </h5>
+                          <p class="card-text mt-2" style="font-size: 14px">
+                            <i
+                              class="bx bx-map"
+                              id="icon_menu"
+                              style="color: #219935"
+                            ></i>
+                            CI,rue 250
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 text-end">
-                  <button class="btn btn-primary" style="    background: #219935;
-                  border-color: #219935; margin-top: 15px;">5000 FCFA</button>
+                  <button
+                    class="btn btn-primary"
+                    style="
+                      background: #219935;
+                      border-color: #219935;
+                      margin-top: 15px;
+                    "
+                  >
+                    5000 FCFA
+                  </button>
                 </div>
               </div>
-              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
-                <div class="row g-0" style="margin: 10px;">
+              <div
+                class="card mb-3 mt-4"
+                style="
+                  max-width: 540px;
+                  margin: 10px;
+                  margin-top: -10px !important;
+                "
+              >
+                <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
-                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="...">
+                    <img
+                      src="assets/img/car2.jpg"
+                      class="img-fluid rounded-start h-100"
+                      alt="..."
+                    />
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <p class="card-text"> <strong>Trajet : </strong> Cody-Boualem</p>
-                      <p class="card-text"> <strong>Escales : </strong> Cody-Boualem</p>
-                      <p class="card-text"> <strong>Convocation : </strong>13 h 11 min</p>
-                      <p class="card-text"> <strong>Jours du voyages : </strong> Lundi</p>
+                      <p class="card-text">
+                        <strong>Trajet : </strong> Cody-Boualem
+                      </p>
+                      <p class="card-text">
+                        <strong>Escales : </strong> Cody-Boualem
+                      </p>
+                      <p class="card-text">
+                        <strong>Convocation : </strong>13 h 11 min
+                      </p>
+                      <p class="card-text">
+                        <strong>Jours du voyages : </strong> Lundi
+                      </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
                   </div>
@@ -746,31 +1239,33 @@ import Navbar from '@/components/Navbar.vue';
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
-
     <!-- ======= Features Section ======= -->
-    <section id="features" class="features"  style="margin-top: -30px;">
+    <section id="features" class="features" style="margin-top: -30px">
       <div class="container">
-
         <div class="row">
           <div class="col-12">
             <div class="section-title text-center">
               <h2>Actualités</h2>
-              <p>Restez a jour avec les dernières nouvelles du monde du voyage . Les informations les plus récentes sur les destinations, les promotion et plus encore</p>
+              <p>
+                Restez a jour avec les dernières nouvelles du monde du voyage .
+                Les informations les plus récentes sur les destinations, les
+                promotion et plus encore
+              </p>
             </div>
           </div>
-          
         </div>
- 
+
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div class="col">
-            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-              <img src="/public/assets/img/blog.jpg" class="card-img-top" alt="...">
+            <div
+              class="card h-100 border-0"
+              style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+            >
+              <img src="assets/img/blog.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -780,24 +1275,39 @@ import Navbar from '@/components/Navbar.vue';
 
                 <div class="row mt-4">
                   <div class="col-md-6">
-                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                    <h5 class="" style="font-size: 15px">
+                      <i
+                        class="bx bxs-circle mr-2"
+                        style="margin-right: 2px"
+                      ></i>
+                      8 mars 2023
+                    </h5>
                   </div>
-                   
                 </div>
-                
-                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+
+                <p class="card-text" style="font-size: 13px">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content.
+                </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                    <button
+                      class="btn btn-primary"
+                      style="background-color: #219935 !important; border: none"
+                    >
+                      Voir plus
+                    </button>
                   </div>
                 </div>
               </div>
-               
             </div>
           </div>
           <div class="col">
-            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-              <img src="/public/assets/img/blog-1.jpg" class="card-img-top" alt="...">
+            <div
+              class="card h-100 border-0"
+              style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+            >
+              <img src="assets/img/blog-1.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -807,24 +1317,39 @@ import Navbar from '@/components/Navbar.vue';
 
                 <div class="row mt-4">
                   <div class="col-md-6">
-                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                    <h5 class="" style="font-size: 15px">
+                      <i
+                        class="bx bxs-circle mr-2"
+                        style="margin-right: 2px"
+                      ></i>
+                      8 mars 2023
+                    </h5>
                   </div>
-                   
                 </div>
-                
-                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+
+                <p class="card-text" style="font-size: 13px">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content.
+                </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                    <button
+                      class="btn btn-primary"
+                      style="background-color: #219935 !important; border: none"
+                    >
+                      Voir plus
+                    </button>
                   </div>
                 </div>
               </div>
-               
             </div>
           </div>
           <div class="col">
-            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-              <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
+            <div
+              class="card h-100 border-0"
+              style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+            >
+              <img src="assets/img/blog-2.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -834,24 +1359,39 @@ import Navbar from '@/components/Navbar.vue';
 
                 <div class="row mt-4">
                   <div class="col-md-6">
-                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                    <h5 class="" style="font-size: 15px">
+                      <i
+                        class="bx bxs-circle mr-2"
+                        style="margin-right: 2px"
+                      ></i>
+                      8 mars 2023
+                    </h5>
                   </div>
-                   
                 </div>
-                
-                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
+
+                <p class="card-text" style="font-size: 13px">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content.
+                </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                    <button
+                      class="btn btn-primary"
+                      style="background-color: #219935 !important; border: none"
+                    >
+                      Voir plus
+                    </button>
                   </div>
                 </div>
               </div>
-               
             </div>
           </div>
           <div class="col">
-            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-              <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
+            <div
+              class="card h-100 border-0"
+              style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+            >
+              <img src="assets/img/blog-2.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -861,72 +1401,93 @@ import Navbar from '@/components/Navbar.vue';
 
                 <div class="row mt-4">
                   <div class="col-md-6">
-                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                    <h5 class="" style="font-size: 15px">
+                      <i
+                        class="bx bxs-circle mr-2"
+                        style="margin-right: 2px"
+                      ></i>
+                      8 mars 2023
+                    </h5>
                   </div>
-                   
                 </div>
-                
-                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+
+                <p class="card-text" style="font-size: 13px">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content.
+                </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                    <button
+                      class="btn btn-primary"
+                      style="background-color: #219935 !important; border: none"
+                    >
+                      Voir plus
+                    </button>
                   </div>
                 </div>
               </div>
-               
             </div>
           </div>
         </div>
-       
-
-         
       </div>
     </section>
     <!-- End Features Section -->
 
-     
-    <section id="features" class="features"  style="margin-top: -90px;">
+    <section id="features" class="features" style="margin-top: -90px">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 text-center mt-5" style="margin-top: 80px !important;">
+          <div
+            class="col-md-12 text-center mt-5"
+            style="margin-top: 80px !important"
+          >
             <h1 id="titre_new">Inscrivez vous à notre Newsletter</h1>
-            
-             <p class="mt-4" style="font-weight: 600;">Veuillez renseignez votre adresse mail, pour etre au courant de toutes nos nouveautés</p>
-         
-        <div class="col-md-12 text-center mt-5">
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-              <form class="d-flex" action="" method="POST" enctype="multipart/form-data">
-               
-              <div class="input-group" style="margin-top: -14px;">
-                <input type="text" class="form-control form-control-lg input py-3"
-                    placeholder="Adresse email" name="email" id="input_newsletter">
-                <button class="btn btn-primary" style="background :#219935; border-color:#219935; border-radius: 0px 50px 50px 0px; width: 133px;">
-                    Envoyer
-                </button>
-              
+
+            <p class="mt-4" style="font-weight: 600">
+              Veuillez renseignez votre adresse mail, pour etre au courant de
+              toutes nos nouveautés
+            </p>
+
+            <div class="col-md-12 text-center mt-5">
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <form
+                    class="d-flex"
+                    action=""
+                    method="POST"
+                    enctype="multipart/form-data"
+                  >
+                    <div class="input-group" style="margin-top: -14px">
+                      <input
+                        type="text"
+                        class="form-control form-control-lg input py-3"
+                        placeholder="Adresse email"
+                        name="email"
+                        id="input_newsletter"
+                      />
+                      <button
+                        class="btn btn-primary"
+                        style="
+                          background: #219935;
+                          border-color: #219935;
+                          border-radius: 0px 50px 50px 0px;
+                          width: 133px;
+                        "
+                      >
+                        Envoyer
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-2"></div>
+              </div>
             </div>
-          </form>
-            </div>
-            <div class="col-md-2"></div>
           </div>
-          
-        </div>
-            
-          </div>
-          
         </div>
       </div>
     </section>
-
   </main>
   <!-- End #main -->
-
-
- 
 </template>
 
-<style scoped>
- 
-</style>
+<style scoped></style>
