@@ -42,11 +42,12 @@
 
           <li><router-link to="/connexion" class="nav-link scrollto " href="#"><i class='fas fa-user' id="icon_menu"></i>Connexion </router-link></li>
           <li class="dropdown"><a href="#"><i class='bx bx-category' id="icon_menu"></i> <span>Admin </span> <i class="bi bi-chevron-down"></i></a>
-            <ul style="background: red;">
+            <ul style="background: #219935;">
               <li><a href="{{url('constuction')}}">Tableau de bord</a></li>
               <li><a href="{{url('location_immobilier')}}">Mon compte</a></li>
-              <li><a v-bind:href="'/compte_vehicule'" id="a_compagnie">Compte location de vehicule</a></li>
+              <li><a v-bind:href="'/compte_vehicule'">Compte location de vehicule</a></li>
               <li><a v-bind:href="'/compte_reservation'">Compte reservation de ticket de bus</a></li>
+              <li><a v-bind:href="'/compte_gros_engin'">Compte location de gros engin</a></li>
               <li><a href="{{url('vente_immobilier')}}">Déconnexion</a></li>
                
             </ul>

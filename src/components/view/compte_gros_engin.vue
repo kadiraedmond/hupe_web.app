@@ -65,16 +65,10 @@ import Footer from '@/components/Footer.vue';
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
                   type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Réservations</button>
               </li>
-
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="demande-tab" data-bs-toggle="tab" data-bs-target="#demande-tab-pane"
-                  type="button" role="tab" aria-controls="demande-tab-pane" aria-selected="false">Demande</button>
-              </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="politique-tab" data-bs-toggle="tab" data-bs-target="#politique-tab-pane"
                   type="button" role="tab" aria-controls="politique-tab-pane" aria-selected="false">Politique</button>
               </li>
-
              
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane"
@@ -112,46 +106,67 @@ import Footer from '@/components/Footer.vue';
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un trajet </h1>
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un véhicule</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                               <form class="row g-3 needs-validation text-start" novalidate>
-                            <div class="col-md-12">
-                              <label for="validationCustom01" class="form-label">Lieu de départ </label>
+                            <div class="col-md-6">
+                              <label for="validationCustom01" class="form-label">Marque</label>
                               <input type="text" class="form-control" id="validationCustom01"  required>
                                
                             </div>
-                            <div class="col-md-12">
-                              <label for="validationCustom02" class="form-label">Destination</label>
+                            <div class="col-md-6">
+                              <label for="validationCustom02" class="form-label">Modéle</label>
                               <input type="text" class="form-control" id="validationCustom02"  required>
                                
                             </div>
 
-                            <div class="col-md-12">
-                              <label for="validationCustom01" class="form-label">Montant</label>
+                            <div class="col-md-6">
+                              <label for="validationCustom01" class="form-label">Catégories</label>
                               <input type="text" class="form-control" id="validationCustom01"  required>
                                
                             </div>
-                            <div class="col-md-12">
-                              <label for="validationCustom02" class="form-label">Heure de départ</label>
-                              <input type="time" class="form-control" id="validationCustom02"  required>
-                               
-                            </div>
-                            
-                            <div class="col-md-12">
-                              
-                              <label for="validationCustom02" class="form-label">Escale à faire</label>
+                            <div class="col-md-6">
+                              <label for="validationCustom02" class="form-label">Moteur</label>
                               <input type="text" class="form-control" id="validationCustom02"  required>
                                
                             </div>
 
-                            <div class="col-md-12">
-                              <label for="validationCustom01" class="form-label">Jours de voyages</label>
-                              <input type="text" class="form-control" id="validationCustom01"  required>
+                            <div class="col-md-6">
+                              <label for="validationCustom02" class="form-label">Transmission</label>
+                              <input type="text" class="form-control" id="validationCustom02"  required>
                                
                             </div>
-                            
+
+                            <div class="col-md-6">
+                              <label for="validationCustom02" class="form-label">Année</label>
+                              <input type="text" class="form-control" id="validationCustom02"  required>
+                               
+                            </div>
+                            <div class="col-md-12">
+                              <label for="validationCustom02" class="form-label">Prix</label>
+                              <input type="text" class="form-control" id="validationCustom02"  required>
+                               
+                            </div>
+
+                            <div class="col-md-6">
+                              <label for="validationCustom02" class="form-label">Etat</label>
+                              <input type="text" class="form-control" id="validationCustom02"  required>
+                               
+                            </div>
+
+                            <div class="col-md-6">
+                              <label for="validationCustom02" class="form-label">Kilométrage</label>
+                              <input type="text" class="form-control" id="validationCustom02"  required>
+                               
+                            </div>
+                           
+                            <div class="col-md-12">
+                              <label for="validationCustom02" class="form-label">Ajouter une images</label>
+                              <input type="file" class="form-control" id="validationCustom02"  required>
+                               
+                            </div>
                              
                             <div class="col-12 text-center">
                               <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
@@ -167,112 +182,51 @@ import Footer from '@/components/Footer.vue';
                 </div>
                 <div class="row mt-4">
                   <div class="col-md-6">
-                    
-                    <div class="card h-100" style="max-width: 540px;">
-                            <div class="card-body">
-                                 <div class="row">
-                                     
-                                    <div class="col-md-6  mt-2">
-                                      <button class="btn btn-primary mb-2" style="    background-color: #219935;
+                    <div class="card mb-3" style="max-width: 540px;">
+                      <div class="row g-0">
+                        <div class="col-md-4">
+                          <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..."
+                            style="height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <p class="card-text"> <strong>Caterpillar  2022 </strong></p>
+                              </div>
+                              <div class="col-md-6 text-end">
+                                <button class="btn btn-primary" style="    background-color: #219935;
                                   border-color: #219935;"> 5000 FCFA</button>
-                                    </div>
-                                    <div class="col-md-6  mt-2">
-                                       
-                                    </div>
+                              </div>
+                              <div class="col-md-6 mt-3">
+                                <p class="card-text"> <strong>Catégorie  | </strong> Tracteur</p>
+                              </div>
 
-                                    <div class="col-md-6 mt-2">
-                                        <p> <strong>Lieu de départ  |</strong> lorenipsun</p>
-                                    </div>
+                              <div class="col-md-6 mt-3">
+                                <p class="card-text"> <strong>Modèle  | </strong> Santafé</p>
+                              </div>
 
-                                    <div class="col-md-6 mt-2">
-                                        <p><strong>Destinations  |</strong>  lorenipsun</p>
-                                    </div>
+                              <div class="col-md-6 mt-3">
+                                <p class="card-text"> <strong>Moteur  | </strong> essence</p>
+                              </div>
+                              <div class="col-md-6 mt-3">
+                                <p class="card-text"> <strong>Etat  | </strong> 100km/h</p>
+                              </div>
+                              <div class="col-md-12 mt-3">
+                                <p class="card-text"> <strong>Transmission  | </strong> loren ipsu</p>
+                              </div>
+                              <div class="col-md-12 mt-3">
+                                <p class="card-text"> <strong>Kilométrage  | </strong> 100km/h</p>
+                              </div>
 
-                                    <div class="col-md-6  mt-2">
-                                      <p><strong> Heure de départ  |</strong> 9h15min</p>
-                                     </div>
-
-                                    <div class="col-md-6  mt-2">
-                                        <p><strong>Convocation  |</strong> 8h55min</p>
-                                    </div>
-
-                                    
-
-                                    <div class="col-md-6 mt-3">
-                                        <p><strong>Escale | </strong> lorenipsun</p>
-                                    </div>
-                                   
-                                     
-                                    <div class="col-md-6 mt-3">
-                                        <p><strong>Jours de voyage  |</strong> lmfkdfdkf</p>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-12 mt-4 text-start">
+                              <div class="col-md-12 mt-4 text-start">
                                 <div class="row row-clols-md-5">
                                   <div class="col">
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4"  style="    background-color:rgb(33 153 53 / 58%);
+                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                                      <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
                                       border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
-                                          class="img-fluid " alt="...">
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier un trajet </h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                          </div>
-                                          <div class="modal-body">
-                                            <form class="row g-3 needs-validation text-start" novalidate>
-                                          <div class="col-md-12">
-                                            <label for="validationCustom01" class="form-label">Lieu de départ </label>
-                                            <input type="text" class="form-control" id="validationCustom01"  required>
-                                            
-                                          </div>
-                                          <div class="col-md-12">
-                                            <label for="validationCustom02" class="form-label">Destination</label>
-                                            <input type="text" class="form-control" id="validationCustom02"  required>
-                                            
-                                          </div>
-
-                                          <div class="col-md-12">
-                                            <label for="validationCustom01" class="form-label">Montant</label>
-                                            <input type="text" class="form-control" id="validationCustom01"  required>
-                                            
-                                          </div>
-                                          <div class="col-md-12">
-                                            <label for="validationCustom02" class="form-label">Heure de départ</label>
-                                            <input type="time" class="form-control" id="validationCustom02"  required>
-                                            
-                                          </div>
-                                          
-                                          <div class="col-md-12">
-                                            
-                                            <label for="validationCustom02" class="form-label">Escale à faire</label>
-                                            <input type="text" class="form-control" id="validationCustom02"  required>
-                                            
-                                          </div>
-
-                                          <div class="col-md-12">
-                                            <label for="validationCustom01" class="form-label">Jours de voyages</label>
-                                            <input type="text" class="form-control" id="validationCustom01"  required>
-                                            
-                                          </div>
-                                          
-                                          
-                                          <div class="col-12 text-center">
-                                            <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Modifier</button>
-                                          </div>
-                                        </form>
-                                          </div>
-                                          
-                                        </div>
-                                      </div>
-                                    </div>
-                    
-                                   
+                                          class="img-fluid " alt="..."> </button>
+                                    </a>
                                   </div>
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
@@ -348,116 +302,60 @@ import Footer from '@/components/Footer.vue';
                                 </div>
 
                               </div>
-                            </div>            
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6">
-                    
-                    <div class="card h-100" style="max-width: 540px;">
-                            <div class="card-body">
-                                 <div class="row">
-                                     
-                                    <div class="col-md-6  mt-2">
-                                      <button class="btn btn-primary mb-2" style="    background-color: #219935;
+                    <div class="card mb-3" style="max-width: 540px;">
+                      <div class="row g-0">
+                        <div class="col-md-4">
+                          <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..."
+                            style="height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <p class="card-text"> <strong>Caterpillar  2022 </strong></p>
+                              </div>
+                              <div class="col-md-6 text-end">
+                                <button class="btn btn-primary" style="    background-color: #219935;
                                   border-color: #219935;"> 5000 FCFA</button>
-                                    </div>
-                                    <div class="col-md-6  mt-2">
-                                       
-                                    </div>
+                              </div>
+                              <div class="col-md-6 mt-3">
+                                <p class="card-text"> <strong>Catégorie  | </strong> Tracteur</p>
+                              </div>
 
-                                    <div class="col-md-6 mt-2">
-                                        <p> <strong>Lieu de départ  |</strong> lorenipsun</p>
-                                    </div>
+                              <div class="col-md-6 mt-3">
+                                <p class="card-text"> <strong>Modèle  | </strong> Santafé</p>
+                              </div>
 
-                                    <div class="col-md-6 mt-2">
-                                        <p><strong>Destinations  |</strong>  lorenipsun</p>
-                                    </div>
+                              <div class="col-md-6 mt-3">
+                                <p class="card-text"> <strong>Moteur  | </strong> essence</p>
+                              </div>
+                              <div class="col-md-6 mt-3">
+                                <p class="card-text"> <strong>Etat  | </strong> 100km/h</p>
+                              </div>
+                              <div class="col-md-12 mt-3">
+                                <p class="card-text"> <strong>Transmission  | </strong> loren ipsu</p>
+                              </div>
+                              <div class="col-md-12 mt-3">
+                                <p class="card-text"> <strong>Kilométrage  | </strong> 100km/h</p>
+                              </div>
 
-                                    <div class="col-md-6  mt-2">
-                                      <p><strong> Heure de départ  |</strong> 9h15min</p>
-                                     </div>
-
-                                    <div class="col-md-6  mt-2">
-                                        <p><strong>Convocation  |</strong> 8h55min</p>
-                                    </div>
-
-                                    
-
-                                    <div class="col-md-6 mt-3">
-                                        <p><strong>Escale | </strong> lorenipsun</p>
-                                    </div>
-                                   
-                                     
-                                    <div class="col-md-6 mt-3">
-                                        <p><strong>Jours de voyage  |</strong> lmfkdfdkf</p>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-12 mt-4 text-start">
+                              <div class="col-md-12 mt-4 text-start">
                                 <div class="row row-clols-md-5">
                                   <div class="col">
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4"  style="    background-color:rgb(33 153 53 / 58%);
+                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                                      <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
                                       border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
-                                          class="img-fluid " alt="...">
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier un trajet </h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                          </div>
-                                          <div class="modal-body">
-                                            <form class="row g-3 needs-validation text-start" novalidate>
-                                          <div class="col-md-12">
-                                            <label for="validationCustom01" class="form-label">Lieu de départ </label>
-                                            <input type="text" class="form-control" id="validationCustom01"  required>
-                                            
-                                          </div>
-                                          <div class="col-md-12">
-                                            <label for="validationCustom02" class="form-label">Destination</label>
-                                            <input type="text" class="form-control" id="validationCustom02"  required>
-                                            
-                                          </div>
-
-                                          <div class="col-md-12">
-                                            <label for="validationCustom01" class="form-label">Montant</label>
-                                            <input type="text" class="form-control" id="validationCustom01"  required>
-                                            
-                                          </div>
-                                          <div class="col-md-12">
-                                            <label for="validationCustom02" class="form-label">Heure de départ</label>
-                                            <input type="time" class="form-control" id="validationCustom02"  required>
-                                            
-                                          </div>
-                                          
-                                          <div class="col-md-12">
-                                            
-                                            <label for="validationCustom02" class="form-label">Escale à faire</label>
-                                            <input type="text" class="form-control" id="validationCustom02"  required>
-                                            
-                                          </div>
-
-                                          <div class="col-md-12">
-                                            <label for="validationCustom01" class="form-label">Jours de voyages</label>
-                                            <input type="text" class="form-control" id="validationCustom01"  required>
-                                            
-                                          </div>
-                                          
-                                          
-                                          <div class="col-12 text-center">
-                                            <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Modifier</button>
-                                          </div>
-                                        </form>
-                                          </div>
-                                          
-                                        </div>
-                                      </div>
-                                    </div>
-                    
-                                   
+                                          class="img-fluid " alt="..."> </button>
+                                    </a>
                                   </div>
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
@@ -533,7 +431,12 @@ import Footer from '@/components/Footer.vue';
                                 </div>
 
                               </div>
-                            </div>            
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -887,15 +790,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                   Lieu de départ | <strong> Lomé </strong></p>
+                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Déstinations | <strong>kara </strong>  </p>
+                                                    Essence | automatique | BG 5314</p>
+                                                  <hr>
+                                                  <p class="card-text"
+                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
+                                                    chauffeur | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Heure de départ | <strong>18h45min </strong> </p>
+                                                    Intérieur | <strong>kara </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -908,18 +815,18 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                     Convocation |  <strong>12h 43 min</strong> </p>
+                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Escale |   <strong>Blitta </strong> 
+                                                     Retour |   <strong>2023-07-29 </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Jours de voyages |   <strong>Mardi</strong></p>
+                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
                                                   
                                                 </div>
                                               </div>
@@ -994,15 +901,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                   Lieu de départ | <strong> Lomé </strong></p>
+                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Déstinations | <strong>kara </strong>  </p>
+                                                    Essence | automatique | BG 5314</p>
+                                                  <hr>
+                                                  <p class="card-text"
+                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
+                                                    chauffeur | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Heure de départ | <strong>18h45min </strong> </p>
+                                                    Intérieur | <strong>kara </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -1015,18 +926,18 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                     Convocation |  <strong>12h 43 min</strong> </p>
+                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Escale |   <strong>Blitta </strong> 
+                                                     Retour |   <strong>2023-07-29 </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Jours de voyages |   <strong>Mardi</strong></p>
+                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
                                                   
                                                 </div>
                                               </div>
@@ -1099,15 +1010,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                   Lieu de départ | <strong> Lomé </strong></p>
+                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Déstinations | <strong>kara </strong>  </p>
+                                                    Essence | automatique | BG 5314</p>
+                                                  <hr>
+                                                  <p class="card-text"
+                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
+                                                    chauffeur | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Heure de départ | <strong>18h45min </strong> </p>
+                                                    Intérieur | <strong>kara </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -1120,18 +1035,18 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                     Convocation |  <strong>12h 43 min</strong> </p>
+                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Escale |   <strong>Blitta </strong> 
+                                                     Retour |   <strong>2023-07-29 </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Jours de voyages |   <strong>Mardi</strong></p>
+                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
                                                   
                                                 </div>
                                               </div>
@@ -1209,15 +1124,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                   Lieu de départ | <strong> Lomé </strong></p>
+                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Déstinations | <strong>kara </strong>  </p>
+                                                    Essence | automatique | BG 5314</p>
+                                                  <hr>
+                                                  <p class="card-text"
+                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
+                                                    chauffeur | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Heure de départ | <strong>18h45min </strong> </p>
+                                                    Intérieur | <strong>kara </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -1230,18 +1149,18 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                     Convocation |  <strong>12h 43 min</strong> </p>
+                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Escale |   <strong>Blitta </strong> 
+                                                     Retour |   <strong>2023-07-29 </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Jours de voyages |   <strong>Mardi</strong></p>
+                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
                                                   
                                                 </div>
                                               </div>
@@ -1314,15 +1233,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                   Lieu de départ | <strong> Lomé </strong></p>
+                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Déstinations | <strong>kara </strong>  </p>
+                                                    Essence | automatique | BG 5314</p>
+                                                  <hr>
+                                                  <p class="card-text"
+                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
+                                                    chauffeur | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Heure de départ | <strong>18h45min </strong> </p>
+                                                    Intérieur | <strong>kara </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -1335,23 +1258,23 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                     Convocation |  <strong>12h 43 min</strong> </p>
+                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Escale |   <strong>Blitta </strong> 
+                                                     Retour |   <strong>2023-07-29 </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Jours de voyages |   <strong>Mardi</strong></p>
+                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
                                                   
                                                 </div>
                                               </div>
                                             </div>
-                                        </div>
+                                          </div>
                                       </div>
                                     </div>
                                   </div>
@@ -1419,15 +1342,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                   Lieu de départ | <strong> Lomé </strong></p>
+                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Déstinations | <strong>kara </strong>  </p>
+                                                    Essence | automatique | BG 5314</p>
+                                                  <hr>
+                                                  <p class="card-text"
+                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
+                                                    chauffeur | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Heure de départ | <strong>18h45min </strong> </p>
+                                                    Intérieur | <strong>kara </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -1440,18 +1367,18 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                     Convocation |  <strong>12h 43 min</strong> </p>
+                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Escale |   <strong>Blitta </strong> 
+                                                     Retour |   <strong>2023-07-29 </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Jours de voyages |   <strong>Mardi</strong></p>
+                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
                                                   
                                                 </div>
                                               </div>
@@ -1540,15 +1467,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                   Lieu de départ | <strong> Lomé </strong></p>
+                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Déstinations | <strong>kara </strong>  </p>
+                                                    Essence | automatique | BG 5314</p>
+                                                  <hr>
+                                                  <p class="card-text"
+                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
+                                                    chauffeur | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Heure de départ | <strong>18h45min </strong> </p>
+                                                    Intérieur | <strong>kara </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -1561,18 +1492,18 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                     Convocation |  <strong>12h 43 min</strong> </p>
+                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Escale |   <strong>Blitta </strong> 
+                                                     Retour |   <strong>2023-07-29 </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Jours de voyages |   <strong>Mardi</strong></p>
+                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
                                                   
                                                 </div>
                                               </div>

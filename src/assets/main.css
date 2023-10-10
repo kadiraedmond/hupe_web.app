@@ -2036,3 +2036,41 @@ section {
   border-color: #219935;
   color: black;
 }
+
+/* pages connexion  */
+#otp1{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    height: 50px;
+    margin-left: 40px;
+}
+
+#otp2{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    margin-left: 75px;
+    height: 50px;
+}
+
+#otp3{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    margin-left: 75px;
+    height: 50px;
+}
+
+#otp4{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    margin-left: 75px;
+    height: 50px;
+
+}

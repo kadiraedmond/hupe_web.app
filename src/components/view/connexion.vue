@@ -43,7 +43,10 @@ import Footer from '@/components/Footer.vue';
                         <label for="phoneNumber" class="form-label">Numéro de téléphone</label>
                         <input type="tel" class="form-control" id="phoneNumber" placeholder="Entrez votre numéro de téléphone">
                     </div>
-                    <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Se connecter</button>
+                    <router-link to="/otp">
+                     <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Se connecter</button>
+                    </router-link>
+                    <!-- <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Se connecter</button> -->
                 </form>
                     
                 </div>

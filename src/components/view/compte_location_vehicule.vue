@@ -461,7 +461,7 @@ import Footer from '@/components/Footer.vue';
 
                                 <div class="card-body">
                                   <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-start">
                                       <p class="text-white">0 CFA</p>
                                     </div>
 
@@ -469,7 +469,7 @@ import Footer from '@/components/Footer.vue';
                                       <p>ICONE</p>
                                     </div>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 text-start">
                                       <p class="text-white">
                                         <button class="btn btn-primary border-0 text-white"
                                           style="background: #0000008f; border-radius: 50%;">0</button> Tickets en attente
@@ -493,7 +493,7 @@ import Footer from '@/components/Footer.vue';
 
                                 <div class="card-body">
                                   <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-start">
                                       <p class="text-white">0 CFA</p>
                                     </div>
 
@@ -501,7 +501,7 @@ import Footer from '@/components/Footer.vue';
                                       <p>ICONE</p>
                                     </div>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 text-start">
                                       <p class="text-white">
                                         <button class="btn btn-primary border-0 text-white"
                                           style="background: #0000008f; border-radius: 50%;">0</button> Tickets validés
@@ -516,7 +516,7 @@ import Footer from '@/components/Footer.vue';
 
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 ">
                           <li class="nav-item " role="presentation">
                             <button class="nav-link  w-100" id="valid-tab" data-bs-toggle="tab"
                               data-bs-target="#confirm-tab-pane" type="button" role="tab" aria-controls="confirm-tab-pane"
@@ -525,7 +525,7 @@ import Footer from '@/components/Footer.vue';
 
                                 <div class="card-body">
                                   <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-start">
                                       <p class="text-white">0 CFA</p>
                                     </div>
 
@@ -533,7 +533,7 @@ import Footer from '@/components/Footer.vue';
                                       <p>ICONE</p>
                                     </div>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 text-start">
                                       <p class="text-white">
                                         <button class="btn btn-primary border-0 text-white"
                                           style="background: #0000008f; border-radius: 50%;">0</button> Tickets confirmés
@@ -557,7 +557,7 @@ import Footer from '@/components/Footer.vue';
 
                               <div class="card-body">
                                 <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 text-start">
                                     <p class="text-white">0 CFA</p>
                                   </div>
 
@@ -565,7 +565,7 @@ import Footer from '@/components/Footer.vue';
                                     <p>ICONE</p>
                                   </div>
 
-                                  <div class="col-md-12">
+                                  <div class="col-md-12 text-start">
                                     <p class="text-white">
                                       <button class="btn btn-primary border-0 text-white"
                                         style="background: #0000008f; border-radius: 50%;">0</button> Tickets annulés
@@ -589,7 +589,7 @@ import Footer from '@/components/Footer.vue';
 
                               <div class="card-body">
                                 <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 text-start">
                                     <p class="text-white">0 CFA</p>
                                   </div>
 
@@ -620,7 +620,7 @@ import Footer from '@/components/Footer.vue';
 
                               <div class="card-body">
                                 <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 text-start">
                                     <p class="text-white">0 CFA</p>
                                   </div>
 
@@ -628,7 +628,7 @@ import Footer from '@/components/Footer.vue';
                                     <p>ICONE</p>
                                   </div>
 
-                                  <div class="col-md-12">
+                                  <div class="col-md-12 text-start">
                                     <p class="text-white">
                                       <button class="btn btn-primary border-0 text-white"
                                         style="background: #0000008f; border-radius: 50%;">0</button> Tickets utilisés
@@ -3390,7 +3390,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Reporté
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -3503,7 +3503,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96">Annullé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96">Reporté
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -3612,7 +3612,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Reporté
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -3726,7 +3726,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">Reporté
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -3835,7 +3835,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">Reporté
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -3944,7 +3944,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Reporté
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -4068,7 +4068,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#FB3232;">Utilisé
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -4181,7 +4181,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96">Annullé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#FB3232">Utilisé
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -4290,7 +4290,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#FB3232">Utilise
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -4404,7 +4404,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -4513,7 +4513,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #FB3232">Utilisé
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -4622,7 +4622,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#FB3232;">Utilisé
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">

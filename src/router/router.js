@@ -11,10 +11,11 @@ import Forms from '../components/view/form_locations.vue';
 import Service from '../components/view/service.vue';
 import Connexion from '../components/view/connexion.vue';
 import Compte from '../components/view/compte_location_vehicule.vue';
+import Compt from '../components/view/compte_gros_engin.vue';
 import Comptes from '../components/view/compte_reservation.vue';
 import Dashboard from '../components/view/dashbord.vue';
 import Activite from '../components/view/activite.vue';
-
+import Otp from '../components/view/otp.vue';
 const routes = [
   {
     path: '/',
@@ -95,6 +96,19 @@ const routes = [
     path: '/compte_reservation',
     name: 'Comptes',
     component: Comptes,
+    
+  },
+
+  {
+    path: '/compte_gros_engin',
+    name: 'Compt',
+    component: Compt,
+    
+  },
+  {
+    path: '/otp',
+    name: 'Otp',
+    component: Otp,
     
   },
 ];
