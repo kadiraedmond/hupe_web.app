@@ -1,10 +1,7 @@
 <script>
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
 </script>
 
 <template>
-  <Navbar></Navbar>
 
   <main id="main">
 
@@ -123,45 +120,36 @@ import Footer from '@/components/Footer.vue';
                             </div>
 
                             <div class="col-md-6">
-                              <label for="validationCustom01" class="form-label">Catégories</label>
+                              <label for="validationCustom01" class="form-label">Immatriculation</label>
                               <input type="text" class="form-control" id="validationCustom01"  required>
                                
                             </div>
-                            <div class="col-md-6">
-                              <label for="validationCustom02" class="form-label">Moteur</label>
-                              <input type="text" class="form-control" id="validationCustom02"  required>
-                               
-                            </div>
-
-                            <div class="col-md-6">
-                              <label for="validationCustom02" class="form-label">Transmission</label>
-                              <input type="text" class="form-control" id="validationCustom02"  required>
-                               
-                            </div>
-
                             <div class="col-md-6">
                               <label for="validationCustom02" class="form-label">Année</label>
                               <input type="text" class="form-control" id="validationCustom02"  required>
                                
                             </div>
                             <div class="col-md-12">
-                              <label for="validationCustom02" class="form-label">Prix</label>
+                              <h2 style="    font-size: 17px;">Montant</h2>
+                            </div>
+
+                            <div class="col-md-4">
+                              
+                              <label for="validationCustom02" class="form-label">Prix journalier</label>
                               <input type="text" class="form-control" id="validationCustom02"  required>
                                
                             </div>
 
-                            <div class="col-md-6">
-                              <label for="validationCustom02" class="form-label">Etat</label>
+                            <div class="col-md-4">
+                              <label for="validationCustom01" class="form-label">Avec chauffeur</label>
+                              <input type="text" class="form-control" id="validationCustom01"  required>
+                               
+                            </div>
+                            <div class="col-md-4">
+                              <label for="validationCustom02" class="form-label">A l'intérieur</label>
                               <input type="text" class="form-control" id="validationCustom02"  required>
                                
                             </div>
-
-                            <div class="col-md-6">
-                              <label for="validationCustom02" class="form-label">Kilométrage</label>
-                              <input type="text" class="form-control" id="validationCustom02"  required>
-                               
-                            </div>
-                           
                             <div class="col-md-12">
                               <label for="validationCustom02" class="form-label">Ajouter une images</label>
                               <input type="file" class="form-control" id="validationCustom02"  required>
@@ -192,31 +180,20 @@ import Footer from '@/components/Footer.vue';
                           <div class="card-body">
                             <div class="row">
                               <div class="col-md-6">
-                                <p class="card-text"> <strong>Caterpillar  2022 </strong></p>
+                                <p class="card-text"> <strong>Hyundai 2022 </strong></p>
                               </div>
                               <div class="col-md-6 text-end">
                                 <button class="btn btn-primary" style="    background-color: #219935;
                                   border-color: #219935;"> 5000 FCFA</button>
                               </div>
-                              <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Catégorie  | </strong> Tracteur</p>
-                              </div>
-
-                              <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Modèle  | </strong> Santafé</p>
-                              </div>
-
-                              <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Moteur  | </strong> essence</p>
-                              </div>
-                              <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Etat  | </strong> 100km/h</p>
+                              <div class="col-md-12 mt-3">
+                                <p class="card-text"> <strong>Modèle : </strong> Santafé</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Transmission  | </strong> loren ipsu</p>
+                                <p class="card-text"> <strong>Essence : </strong> Automobile</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Kilométrage  | </strong> 100km/h</p>
+                                <p class="card-text"> <strong>Immatriculation : </strong> BG 5282</p>
                               </div>
 
                               <div class="col-md-12 mt-4 text-start">
@@ -321,32 +298,23 @@ import Footer from '@/components/Footer.vue';
                           <div class="card-body">
                             <div class="row">
                               <div class="col-md-6">
-                                <p class="card-text"> <strong>Caterpillar  2022 </strong></p>
+                                <p class="card-text"> <strong>Hyundai 2022 </strong></p>
                               </div>
                               <div class="col-md-6 text-end">
                                 <button class="btn btn-primary" style="    background-color: #219935;
                                   border-color: #219935;"> 5000 FCFA</button>
                               </div>
-                              <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Catégorie  | </strong> Tracteur</p>
-                              </div>
-
-                              <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Modèle  | </strong> Santafé</p>
-                              </div>
-
-                              <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Moteur  | </strong> essence</p>
-                              </div>
-                              <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Etat  | </strong> 100km/h</p>
+                              <div class="col-md-12 mt-3">
+                                <p class="card-text"> <strong>Modèle : </strong> Santafé</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Transmission  | </strong> loren ipsu</p>
+                                <p class="card-text"> <strong>Essence : </strong> Automobile</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Kilométrage  | </strong> 100km/h</p>
+                                <p class="card-text"> <strong>Immatriculation : </strong> BG 5282</p>
                               </div>
+
+
 
                               <div class="col-md-12 mt-4 text-start">
                                 <div class="row row-clols-md-5">
@@ -365,54 +333,11 @@ import Footer from '@/components/Footer.vue';
                                     </a>
                                   </div>
                                   <div class="col">
-                                     <!-- Button trigger modal -->
-                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style=" background-color: #219935; border-color: #219935;">
-                                        <img src="/public/assets/img/icone/promotion.png"
-                                          class="img-fluid " alt="..."> 
-                                      </button>
-
-                                      <!-- Modal -->
-                                      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Promouvoir un vehicule</h1>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                              <form class="row g-3 needs-validation text-start" novalidate>
-                                            <div class="col-md-12">
-                                              <label for="validationCustom01" class="form-label">Taux de réduction</label>
-                                              <input type="text" class="form-control" id="validationCustom01"  required>
-                                              
-                                            </div>
-                                            <div class="col-md-12">
-                                              <label for="validationCustom02" class="form-label">Montant</label>
-                                              <input type="text" class="form-control" id="validationCustom02"  required>
-                                              
-                                            </div>
-
-                                            <div class="col-md-6">
-                                              <label for="validationCustom01" class="form-label">Date de debut</label>
-                                              <input type="date" class="form-control" id="validationCustom01"  required>
-                                              
-                                            </div>
-                                            <div class="col-md-6">
-                                              <label for="validationCustom02" class="form-label">Date de fin</label>
-                                              <input type="date" class="form-control" id="validationCustom02"  required>
-                                              
-                                            </div>
-                                             
-                                            
-                                            <div class="col-12 text-center">
-                                              <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Promouvoir</button>
-                                            </div>
-                                          </form>
-                                            </div>
-                                            
-                                          </div>
-                                        </div>
-                                      </div> 
+                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                                      <button class="btn btn-primary" style="    background-color: #219935;
+                                      border-color: #219935;"><img src="/public/assets/img/icone/promotion.png"
+                                          class="img-fluid " alt="..."> </button>
+                                    </a>
                                   </div>
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
@@ -5784,7 +5709,5 @@ import Footer from '@/components/Footer.vue';
 
 </main>
 <!-- End #main -->
-
-
-<Footer></Footer></template>
+</template>
 <style></style>

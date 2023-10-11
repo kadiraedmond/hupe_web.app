@@ -1,11 +1,7 @@
 <script>
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
 </script>
 
 <template>
-  <Navbar></Navbar>
-
   <main id="main">
 
      <!-- ======= Portfolio Details Section ======= -->
@@ -14,17 +10,17 @@ import Footer from '@/components/Footer.vue';
   
           <div class="row g-2">
             <div class="col-lg-6">
-                <img src="/public/assets/img/res.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                <img src="/public/assets/img/lo.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
             </div>
             <div class="col-lg-6">
-               <h1 style="font-size: 54px;">Reserver un tickets de bus</h1>
+               <h1 style="font-size: 54px;">Louer un véhicules</h1>
                <p class="mt-4">Lorem ipsum dolor sit amet. Sed possimus architecto sit reprehenderit dicta qui eius laboriosam! Aut quia suscipit qui quod minima sit quidem voluptatum sit ullam odit ad nihil quasi.
                 Aut quia suscipit qui quod minima sit quidem voluptatum sit ullam odit ad nihil quasi.
                </p>
             </div>
           </div>    
         </div>
-      </section>
+    </section>
       <!-- End Portfolio Details Section -->
 
      <!-- ======= Expertise et conseils en immobiliers Section ======= -->
@@ -241,11 +237,7 @@ import Footer from '@/components/Footer.vue';
 
 
  </main>
-    <!-- End #main -->
-   
-
-  <Footer></Footer>
-    
+    <!-- End #main -->    
 </template>
 <style>
 </style>

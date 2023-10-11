@@ -1,11 +1,7 @@
 <script>
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
 </script>
 
 <template>
-  <Navbar></Navbar>
-
   <main id="main">
    <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details" style="margin-top: 80px;">
@@ -122,11 +118,7 @@ import Footer from '@/components/Footer.vue';
 
 
   </main>
-    <!-- End #main -->
-   
-
-  <Footer></Footer>
-    
+    <!-- End #main -->    
 </template>
 <style>
 </style>

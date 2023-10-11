@@ -1,15 +1,8 @@
 <script>
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
 </script>
 
 <template>
-  <Navbar></Navbar>
-
   <main id="main">
-
-  
-
     <section id="features" class="features" style="margin-top: 100px;">
       <div class="container">
         <div class="row">
@@ -68,12 +61,6 @@ import Footer from '@/components/Footer.vue';
 
  </main>
     <!-- End #main -->
-   
-
-  <Footer></Footer>
-
-  
-    
 </template>
 <style>
 </style>

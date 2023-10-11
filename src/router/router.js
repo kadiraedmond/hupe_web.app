@@ -1,21 +1,23 @@
 // src/router.js
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Home from '../components/view/Home.vue';
-import Detail from '../components/view/Detail_client.vue';
-import Details from '../components/view/Details.vue';
-import Reservation from '../components/view/reservation.vue';
-import Location from '../components/view/location.vue';
-import Form from '../components/view/form_reservation.vue';
-import Forms from '../components/view/form_locations.vue';
-import Service from '../components/view/service.vue';
-import Connexion from '../components/view/connexion.vue';
-import Compte from '../components/view/compte_location_vehicule.vue';
-import Compt from '../components/view/compte_gros_engin.vue';
-import Comptes from '../components/view/compte_reservation.vue';
-import Dashboard from '../components/view/dashbord.vue';
-import Activite from '../components/view/activite.vue';
-import Otp from '../components/view/otp.vue';
+import Home from '@/views/Home.vue';
+import Detail from '@/views/Detail_client.vue';
+import Details from '@/views/Details.vue';
+import Reservation from '@/views/reservation.vue';
+import Location from '@/views/location.vue';
+import Form from '@/views/form_reservation.vue';
+import Forms from '@/views/form_locations.vue';
+import Service from '@/views/service.vue';
+import Connexion from '@/views/connexion.vue';
+import Compte from '@/views/compte_location_vehicule.vue';
+import Compt from '@/views/compte_gros_engin.vue';
+import Comptes from '@/views/compte_reservation.vue';
+import Dashboard from '@/views/dashbord.vue';
+import Activite from '@/views/activite.vue';
+import Otp from '@/views/otp.vue';
+
+
 const routes = [
   {
     path: '/',

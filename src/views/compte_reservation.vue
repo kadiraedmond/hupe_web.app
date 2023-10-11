@@ -1,14 +1,8 @@
 <script>
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
 </script>
 
 <template>
-  <Navbar></Navbar>
-
   <main id="main">
-
-
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details" style="margin-top: 0px;">
       <img src="/public/assets/img/car2.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
@@ -5853,7 +5847,5 @@ import Footer from '@/components/Footer.vue';
 
 </main>
 <!-- End #main -->
-
-
-<Footer></Footer></template>
+</template>
 <style></style>

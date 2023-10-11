@@ -1,15 +1,50 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
-import { collection, getDocs } from "firebase/firestore";
-import { firestoreDb } from "../../firebase/firebase.js";
+import { doc, collection, getDocs } from "firebase/firestore";
+import { firestoreDb } from "@/firebase/firebase.js";
 
 const imageSlideColRef = collection(firestoreDb, "slideAcceuilImages");
 const companiesColRef = collection(firestoreDb, "compagnies");
-const carLocationColRef = collection(firestoreDb, 'location_vehicules')
+const carsLocationColRef = collection(firestoreDb, 'location_vehicules')
+const usersColRef = collection(firestoreDb, 'users')
+const reservationsColRef = collection(firestoreDb, 'reservation')
+
+const companie5DocRef = doc(firestoreDb, 'compagnies', 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+const companie6DocRef = doc(firestoreDb, 'compagnies', 'T599SBhvhnQZf1MPPO5bJMF6dYi1')
+const companie7DocRef = doc(firestoreDb, 'compagnies', 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
+
+const companie5SubColRef = collection(companie5DocRef, 'vehicules_programmer')
+const companie6SubColRef = collection(companie6DocRef, 'vehicules_programmer')
+const companie7SubColRef = collection(companie7DocRef, 'vehicules_programmer')
+
+const companie5SubData = ref([])
+const companie6SubData = ref([])
+const companie7SubData = ref([])
+
+const fetchCompaniesSubCollectionsData = async () => {
+   try {
+    const snapshot5 = await getDocs(companie5SubColRef);
+    const snapshot6 = await getDocs(companie6SubColRef);
+    const snapshot7 = await getDocs(companie7SubColRef);
+
+    snapshot5.docs.forEach((doc) => companie5SubData.value.push({ ...doc.data() }));
+    snapshot6.docs.forEach((doc) => companie6SubData.value.push({ ...doc.data() }));
+    snapshot7.docs.forEach((doc) => companie7SubData.value.push({ ...doc.data() }));
+
+    console.log(companie5SubData.value)
+    console.log(companie6SubData.value)
+    console.log(companie7SubData.value)
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
 
 const slideImages = ref([])
 const companies = ref([])
 const carsForLocation = ref([])
+const users = ref([])
+const reservations = ref([])
 
 const fetchSlideImages = async () => {
   try {
@@ -25,7 +60,7 @@ const fetchCompanies = async () => {
   try {
     const snapshot = await getDocs(companiesColRef);
     snapshot.docs.forEach((doc) => companies.value.push(doc.data()));
-    // console.log(companies.value[0])
+    // console.log(companies.value[5])
   } catch (error) {
     console.log(err.message);
   }
@@ -33,18 +68,42 @@ const fetchCompanies = async () => {
 
 const fetchCars = async () => {
   try {
-    const snapshot = await getDocs(carLocationColRef);
+    const snapshot = await getDocs(carsLocationColRef);
     snapshot.docs.forEach((doc) => carsForLocation.value.push({ ...doc.data() }));
-    console.log(carsForLocation.value)
+    // console.log(carsForLocation.value)
   } catch (err) {
     console.log(err.message);
   }
 };
 
+const fetchUsers = async () => {
+   try {
+    const snapshot = await getDocs(usersColRef);
+    snapshot.docs.forEach((doc) => users.value.push({ ...doc.data() }));
+    // console.log(users.value)
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
+const fetchReservations = async () => {
+   try {
+    const snapshot = await getDocs(reservationsColRef);
+    snapshot.docs.forEach((doc) => reservations.value.push({ ...doc.data() }));
+    // console.log(reservations.value)
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
 onBeforeMount(() => {
   fetchSlideImages()
   fetchCompanies()
   fetchCars()
+  fetchUsers()
+  fetchReservations()
+
+  fetchCompaniesSubCollectionsData()
 })
 </script>
 
@@ -324,7 +383,7 @@ onBeforeMount(() => {
               <div class="row" style="padding: 6px">
                 <div class="col-md-12 d-flex">
                   <img
-                    src="assets/img/icone/car.png"
+                    :src="companies[5].imageLogoUrl"
                     class="img-fluid"
                     alt="..."
                     style="width: 25px; height: 25px; margin-top: 6px"
@@ -332,7 +391,7 @@ onBeforeMount(() => {
                   <h6
                     style="font-size: 12px; margin-left: 5px; margin-top: 10px"
                   >
-                    {{companies[0].raison_social}}
+                    {{companies[5].raison_social}}
                   </h6>
                   <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                     <img
@@ -340,7 +399,7 @@ onBeforeMount(() => {
                       class="img-fluid"
                       alt="..."
                     />
-                    {{companies[0].adresse}}
+                    {{companies[5].adresse}}
                   </p>
                 </div>
               </div>
@@ -358,7 +417,7 @@ onBeforeMount(() => {
                   "
                 >
                   <img
-                    src="assets/img/car3.jpg"
+                    :src="companie5SubData[0].vehicule_image_url"
                     class="card-img-top"
                     alt="..."
                     style="
@@ -371,10 +430,10 @@ onBeforeMount(() => {
                 <button class="btn btn-primary" id="badges">
                   <s> 5000 FCFA </s>
                 </button>
-                <button class="btn btn-primary" id="badges0">2000 FCFA</button>
+                <button class="btn btn-primary" id="badges0">{{ companie5SubData[0].montant }} FCFA</button>
                 <button class="btn btn-primary" id="badges012">93%</button>
                 <button class="btn btn-primary" id="badges0121">
-                  Toyota yaris 2022
+                  {{ companie5SubData[0].vehicule }}
                 </button>
               </div>
             </div>
@@ -384,7 +443,7 @@ onBeforeMount(() => {
               <div class="row" style="padding: 6px">
                 <div class="col-md-12 d-flex">
                   <img
-                    src="assets/img/icone/car.png"
+                    :src="companies[6].imageLogoUrl"
                     class="img-fluid"
                     alt="..."
                     style="width: 25px; height: 25px; margin-top: 6px"
@@ -392,7 +451,7 @@ onBeforeMount(() => {
                   <h6
                     style="font-size: 12px; margin-left: 5px; margin-top: 10px"
                   >
-                    {{companies[8].raison_social}}
+                    {{companies[6].raison_social}}
                   </h6>
                   <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                     <img
@@ -400,7 +459,7 @@ onBeforeMount(() => {
                       class="img-fluid"
                       alt="..."
                     />
-                    {{companies[8].adresse}}
+                    {{companies[6].adresse}}
                   </p>
                 </div>
               </div>
@@ -418,7 +477,7 @@ onBeforeMount(() => {
                   "
                 >
                   <img
-                    src="assets/img/car3.jpg"
+                    :src="companie6SubData[0].vehicule_image_url"
                     class="card-img-top"
                     alt="..."
                     style="
@@ -431,10 +490,10 @@ onBeforeMount(() => {
                 <button class="btn btn-primary" id="badges">
                   <s> 5000 FCFA </s>
                 </button>
-                <button class="btn btn-primary" id="badges0">2000 FCFA</button>
+                <button class="btn btn-primary" id="badges0">{{ companie6SubData[0].montant }} FCFA</button>
                 <button class="btn btn-primary" id="badges012">93%</button>
                 <button class="btn btn-primary" id="badges0121">
-                  Toyota yaris 2022
+                  {{ companie6SubData[0].vehicule }}
                 </button>
               </div>
             </div>
@@ -444,7 +503,7 @@ onBeforeMount(() => {
               <div class="row" style="padding: 6px">
                 <div class="col-md-12 d-flex">
                   <img
-                    src="assets/img/icone/car.png"
+                    :src="companies[7].imageLogoUrl"
                     class="img-fluid"
                     alt="..."
                     style="width: 25px; height: 25px; margin-top: 6px"
@@ -452,7 +511,7 @@ onBeforeMount(() => {
                   <h6
                     style="font-size: 12px; margin-left: 5px; margin-top: 10px"
                   >
-                    {{companies[3].raison_social}}
+                    {{companies[7].raison_social}}
                   </h6>
                   <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                     <img
@@ -460,7 +519,7 @@ onBeforeMount(() => {
                       class="img-fluid"
                       alt="..."
                     />
-                    {{companies[4].adresse}}
+                    {{companies[7].adresse}}
                   </p>
                 </div>
               </div>
@@ -478,7 +537,7 @@ onBeforeMount(() => {
                   "
                 >
                   <img
-                    src="assets/img/car3.jpg"
+                    :src="companie7SubData[0].vehicule_image_url"
                     class="card-img-top"
                     alt="..."
                     style="
@@ -489,12 +548,12 @@ onBeforeMount(() => {
                   />
                 </a>
                 <button class="btn btn-primary" id="badges">
-                  <s> 5000 FCFA </s>
+                  <s> 5000  FCFA </s>
                 </button>
-                <button class="btn btn-primary" id="badges0">2000 FCFA</button>
+                <button class="btn btn-primary" id="badges0">{{ companie7SubData[0].montant }} FCFA</button>
                 <button class="btn btn-primary" id="badges012">93%</button>
                 <button class="btn btn-primary" id="badges0121">
-                  Toyota yaris 2022
+                  {{ companie7SubData[0].vehicule }}
                 </button>
               </div>
             </div>
@@ -541,7 +600,7 @@ onBeforeMount(() => {
                     <div class="col-md-8">
                       <a v-bind:href="'/detail'">
                         <h5 class="card-title" style="font-size: 15px">
-                          BG-Compagnie
+                          {{ companies[0].raison_social }}
                         </h5>
                       </a>
                     </div>
@@ -561,7 +620,7 @@ onBeforeMount(() => {
                     id="icon_menu"
                     style="color: #219935"
                   ></i>
-                  CI,rue 250
+                  {{ companies[0].adresse }}
                 </p>
               </div>
             </div>
@@ -587,7 +646,7 @@ onBeforeMount(() => {
                     <div class="col-md-8">
                       <a v-bind:href="'/detail'">
                         <h5 class="card-title" style="font-size: 15px">
-                          BG-Compagnie
+                          {{ companies[1].raison_social }}
                         </h5>
                       </a>
                     </div>
@@ -607,7 +666,7 @@ onBeforeMount(() => {
                     id="icon_menu"
                     style="color: #219935"
                   ></i>
-                  CI,rue 250
+                  {{ companies[1].adresse }}
                 </p>
               </div>
             </div>
@@ -628,7 +687,7 @@ onBeforeMount(() => {
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
-                        BG-Compagnie
+                        {{ companies[2].raison_social }}
                       </h5>
                     </div>
                     <div class="col-md-4 text-end">
@@ -647,7 +706,7 @@ onBeforeMount(() => {
                     id="icon_menu"
                     style="color: #219935"
                   ></i>
-                  CI,rue 250
+                  {{ companies[2].adresse }}
                 </p>
               </div>
             </div>
@@ -668,7 +727,7 @@ onBeforeMount(() => {
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
-                        BG-Compagnie
+                        {{ companies[3].raison_social }}
                       </h5>
                     </div>
                     <div class="col-md-4 text-end">
@@ -687,7 +746,7 @@ onBeforeMount(() => {
                     id="icon_menu"
                     style="color: #219935"
                   ></i>
-                  CI,rue 250
+                  {{ companies[3].adresse }}
                 </p>
               </div>
             </div>
@@ -721,7 +780,7 @@ onBeforeMount(() => {
                     <div class="row g-1">
                       <div class="col-md-4">
                         <img
-                          src="assets/img/avatars/1.png"
+                          :src="users[4].imageUrl"
                           alt
                           class="w-px-40 h-auto rounded-circle"
                           style="width: 90px"
@@ -730,7 +789,7 @@ onBeforeMount(() => {
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title" style="font-size: 15px">
-                            Koudi
+                            {{ users[4].firstName }}
                           </h5>
                           <p class="card-text mt-2" style="font-size: 14px">
                             <i
@@ -738,7 +797,7 @@ onBeforeMount(() => {
                               id="icon_menu"
                               style="color: #219935"
                             ></i>
-                            CI,rue 250
+                            {{ users[4].addresse }}
                           </p>
                         </div>
                       </div>
@@ -754,7 +813,7 @@ onBeforeMount(() => {
                       margin-top: 15px;
                     "
                   >
-                    5000 FCFA
+                    {{ carsForLocation[6].montant }} FCFA
                   </button>
                 </div>
               </div>
@@ -776,15 +835,15 @@ onBeforeMount(() => {
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">Hyundai 2022</h5>
+                      <h5 class="card-title">{{ carsForLocation[6].vehicule }}</h5>
                       <p class="card-text">
-                        <strong>Modéle : </strong> Santafé
+                        <strong>Modéle : </strong> {{ carsForLocation[6].modele }}
                       </p>
                       <p class="card-text">
                         <strong>Essence : </strong> Automobile
                       </p>
                       <p class="card-text">
-                        <strong>Immatriculation : </strong> BG 3252
+                        <strong>Immatriculation : </strong> {{ carsForLocation[6].plaque_vehicule }}
                       </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
@@ -801,8 +860,8 @@ onBeforeMount(() => {
                     <div class="row g-1">
                       <div class="col-md-4">
                         <img
-                          src="assets/img/avatars/1.png"
-                          alt
+                          :src="users[8].imageUrl"
+                          alt="..."
                           class="w-px-40 h-auto rounded-circle"
                           style="width: 90px"
                         />
@@ -810,7 +869,7 @@ onBeforeMount(() => {
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title" style="font-size: 15px">
-                            Koudi
+                            {{ users[8].firstName }}
                           </h5>
                           <p class="card-text mt-2" style="font-size: 14px">
                             <i
@@ -818,7 +877,7 @@ onBeforeMount(() => {
                               id="icon_menu"
                               style="color: #219935"
                             ></i>
-                            CI,rue 250
+                            {{ users[8].addresse }}
                           </p>
                         </div>
                       </div>
@@ -834,7 +893,7 @@ onBeforeMount(() => {
                       margin-top: 15px;
                     "
                   >
-                    5000 FCFA
+                    {{ carsForLocation[2].montant }} FCFA
                   </button>
                 </div>
               </div>
@@ -849,22 +908,22 @@ onBeforeMount(() => {
                 <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
                     <img
-                      src="assets/img/car2.jpg"
+                      :src="carsForLocation[6].vehicule_image_url"
                       class="img-fluid rounded-start h-100"
                       alt="..."
                     />
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">Hyundai 2022</h5>
+                      <h5 class="card-title">{{ carsForLocation[2].vehicule }}</h5>
                       <p class="card-text">
-                        <strong>Modéle : </strong> Santafé
+                        <strong>Modéle : </strong> {{ carsForLocation[2].modele }}
                       </p>
                       <p class="card-text">
                         <strong>Essence : </strong> Automobile
                       </p>
                       <p class="card-text">
-                        <strong>Immatriculation : </strong> BG 3252
+                        <strong>Immatriculation : </strong> {{ carsForLocation[2].plaque_vehicule }}
                       </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
@@ -898,7 +957,7 @@ onBeforeMount(() => {
             <div class="card h-100" id="compagnie_card">
               <router-link to="/details">
                 <img
-                  src="assets/img/car2.jpg"
+                  :src="carsForLocation[6].vehicule_image_url"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px"
@@ -910,7 +969,7 @@ onBeforeMount(() => {
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
-                        BG-Compagnie
+                        {{ companies[4].raison_social }}
                       </h5>
                     </div>
                     <div class="col-md-4 text-end">
@@ -929,7 +988,7 @@ onBeforeMount(() => {
                     id="icon_menu"
                     style="color: #219935"
                   ></i>
-                  CI,rue 250
+                  {{ companies[4].adresse }}
                 </p>
               </div>
             </div>
@@ -938,7 +997,7 @@ onBeforeMount(() => {
             <div class="card h-100" id="compagnie_card">
               <router-link to="/details">
                 <img
-                  src="assets/img/car2.jpg"
+                  :src="carsForLocation[6].vehicule_image_url"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px"
@@ -950,7 +1009,7 @@ onBeforeMount(() => {
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
-                        BG-Compagnie
+                        {{ companies[5].raison_social }}
                       </h5>
                     </div>
                     <div class="col-md-4 text-end">
@@ -969,7 +1028,7 @@ onBeforeMount(() => {
                     id="icon_menu"
                     style="color: #219935"
                   ></i>
-                  CI,rue 250
+                  {{ companies[5].adresse }}
                 </p>
               </div>
             </div>
@@ -978,7 +1037,7 @@ onBeforeMount(() => {
             <div class="card h-100" id="compagnie_card">
               <router-link to="/details">
                 <img
-                  src="assets/img/car2.jpg"
+                  :src="carsForLocation[6].vehicule_image_url"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px"
@@ -990,7 +1049,7 @@ onBeforeMount(() => {
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
-                        BG-Compagnie
+                        {{ companies[6].raison_social }}
                       </h5>
                     </div>
                     <div class="col-md-4 text-end">
@@ -1009,7 +1068,7 @@ onBeforeMount(() => {
                     id="icon_menu"
                     style="color: #219935"
                   ></i>
-                  CI,rue 250
+                  {{ companies[6].adresse }}
                 </p>
               </div>
             </div>
@@ -1018,7 +1077,7 @@ onBeforeMount(() => {
             <div class="card h-100" id="compagnie_card">
               <a href="detail_compagnies.html">
                 <img
-                  src="assets/img/car2.jpg"
+                  :src="carsForLocation[6].vehicule_image_url"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px"
@@ -1030,7 +1089,7 @@ onBeforeMount(() => {
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
-                        BG-Compagnie
+                        {{ companies[8].raison_social }}
                       </h5>
                     </div>
                     <div class="col-md-4 text-end">
@@ -1049,7 +1108,7 @@ onBeforeMount(() => {
                     id="icon_menu"
                     style="color: #219935"
                   ></i>
-                  CI,rue 250
+                  {{ companies[8].adresse }}
                 </p>
               </div>
             </div>
@@ -1083,7 +1142,7 @@ onBeforeMount(() => {
                     <div class="row g-1">
                       <div class="col-md-4">
                         <img
-                          src="assets/img/avatars/1.png"
+                          :src="carsForLocation[6].client_profil_url"
                           alt
                           class="w-px-40 h-auto rounded-circle"
                           style="width: 90px"
@@ -1092,7 +1151,7 @@ onBeforeMount(() => {
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title" style="font-size: 15px">
-                            Koudi
+                            {{ users[6].lastName }}
                           </h5>
                           <p class="card-text mt-2" style="font-size: 14px">
                             <i
@@ -1100,7 +1159,7 @@ onBeforeMount(() => {
                               id="icon_menu"
                               style="color: #219935"
                             ></i>
-                            CI,rue 250
+                            {{ users[6].addresse }}
                           </p>
                         </div>
                       </div>
@@ -1116,7 +1175,7 @@ onBeforeMount(() => {
                       margin-top: 15px;
                     "
                   >
-                    5000 FCFA
+                    {{ carsForLocation[6].montant }} FCFA
                   </button>
                 </div>
               </div>
@@ -1131,7 +1190,7 @@ onBeforeMount(() => {
                 <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
                     <img
-                      src="assets/img/car2.jpg"
+                      :src="carsForLocation[4].vehicule_image_url"
                       class="img-fluid rounded-start h-100"
                       alt="..."
                     />
@@ -1139,10 +1198,10 @@ onBeforeMount(() => {
                   <div class="col-md-8">
                     <div class="card-body">
                       <p class="card-text">
-                        <strong>Trajet : </strong> Cody-Boualem
+                        <strong>Trajet : </strong> {{ reservations[8].destination }}
                       </p>
                       <p class="card-text">
-                        <strong>Escales : </strong> Cody-Boualem
+                        <strong>Escales : </strong> {{ reservations[8].escale }}
                       </p>
                       <p class="card-text">
                         <strong>Convocation : </strong>13 h 11 min
@@ -1165,7 +1224,7 @@ onBeforeMount(() => {
                     <div class="row g-1">
                       <div class="col-md-4">
                         <img
-                          src="assets/img/avatars/1.png"
+                          :src="carsForLocation[4].client_profil_url"
                           alt
                           class="w-px-40 h-auto rounded-circle"
                           style="width: 90px"
@@ -1174,7 +1233,7 @@ onBeforeMount(() => {
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title" style="font-size: 15px">
-                            Koudi
+                            {{ users[6].lastName }}
                           </h5>
                           <p class="card-text mt-2" style="font-size: 14px">
                             <i
@@ -1182,7 +1241,7 @@ onBeforeMount(() => {
                               id="icon_menu"
                               style="color: #219935"
                             ></i>
-                            CI,rue 250
+                            {{ users[6].addresse }}
                           </p>
                         </div>
                       </div>
@@ -1198,7 +1257,7 @@ onBeforeMount(() => {
                       margin-top: 15px;
                     "
                   >
-                    5000 FCFA
+                    {{ carsForLocation[4].montant }} FCFA
                   </button>
                 </div>
               </div>
@@ -1213,7 +1272,7 @@ onBeforeMount(() => {
                 <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
                     <img
-                      src="assets/img/car2.jpg"
+                      :src="carsForLocation[4].vehicule_image_url"
                       class="img-fluid rounded-start h-100"
                       alt="..."
                     />
@@ -1221,10 +1280,10 @@ onBeforeMount(() => {
                   <div class="col-md-8">
                     <div class="card-body">
                       <p class="card-text">
-                        <strong>Trajet : </strong> Cody-Boualem
+                        <strong>Trajet : </strong> {{ reservations[4].destination }}
                       </p>
                       <p class="card-text">
-                        <strong>Escales : </strong> Cody-Boualem
+                        <strong>Escales : </strong> {{ reservations[4].escale }}
                       </p>
                       <p class="card-text">
                         <strong>Convocation : </strong>13 h 11 min
