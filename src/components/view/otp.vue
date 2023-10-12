@@ -36,9 +36,15 @@ import Footer from '@/components/Footer.vue';
                     </div>     
                     <!-- <input type="submit" value="Vérifier"> -->
                     <div class="row text-center mt-3">
-                      <div class="col-md-12">
+                      <!-- <div class="col-md-12">
                         <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Vérifier</button>
+                      </div> -->
+                      <div class="col-md-12">
+                        <router-link to="/choix_services">
+                        <button type="" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Vérifier</button>
+                      </router-link>
                       </div>
+                     
                     </div>
                 </form>
                 </div>

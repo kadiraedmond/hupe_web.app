@@ -8,6 +8,9 @@ import Details_engin from '../components/view/detail_gros_engin.vue';
 import Details_vente from '../components/view/detail_achat_engin.vue';
 import Reservation from '../components/view/reservation.vue';
 import Location from '../components/view/location.vue';
+import Choix from '../components/view/choix_service.vue';
+import Choi from '../components/view/choix_offres.vue';
+import Information from '../components/view/informations.vue';
 import Form from '../components/view/form_reservation.vue';
 import Forms from '../components/view/form_locations.vue';
 import Service from '../components/view/service.vue';
@@ -87,6 +90,19 @@ const routes = [
     component: Connexion,
     
   },
+  {
+    path: '/choix_services',
+    name: 'Choix',
+    component: Choix,
+    
+  },
+
+  {
+    path: '/choix_offres',
+    name: 'Choi',
+    component: Choi,
+    
+  },
 
   {
     path: '/dashboard',
@@ -139,6 +155,13 @@ const routes = [
     path: '/otp',
     name: 'Otp',
     component: Otp,
+    
+  },
+
+  {
+    path: '/information',
+    name: 'Imformaton',
+    component: Information,
     
   },
 ];

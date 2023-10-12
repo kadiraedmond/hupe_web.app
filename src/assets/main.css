@@ -2106,3 +2106,7 @@ section {
   border-color: #219935;
   /* background-image: linear-gradient(to right, #219935 0%, #219935 51%, #219935 100%); */
 }
+.form-check-input:checked{
+background-color: #219935 !important;
+border-color: #219935 !important;
+}

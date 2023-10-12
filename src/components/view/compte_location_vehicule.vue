@@ -4762,7 +4762,8 @@ import Footer from '@/components/Footer.vue';
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
+                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avant d’un véhicule ou d’une destination </li>
+                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Promotion d’une destination ou d’un véhicule </li>
                                   </ul>
                                   <h4 style="font-size: 18px; color: #219935; text-align: center;">Commission sur le chiffre d'affaires</h4>
                                   <div class="row">
@@ -4791,7 +4792,8 @@ import Footer from '@/components/Footer.vue';
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
                                     <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
                                     <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
+                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avant d’un véhicule ou d’une destination </li>
+                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Promotion d’une destination ou d’un véhicule </li>
                                   </ul>
                                   <h4 style="font-size: 18px; color: #219935; text-align: center;">Commission sur le chiffre d'affaires</h4>
                                   <div class="row">
