@@ -7,9 +7,8 @@ import './assets/slide.js'
 import './assets/slide2.js'
 import './assets/font.css'
 
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "bootstrap/dist/css/bootstrap.min.css";
-import 'font-awesome/css/font-awesome.min.css'
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import { createApp } from 'vue';
 import App from './App.vue';
