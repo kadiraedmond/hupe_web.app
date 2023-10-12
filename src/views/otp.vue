@@ -1,4 +1,13 @@
-<script>
+<script setup>
+import { ref } from 'vue'
+
+const otp1 = ref()
+const otp2 = ref()
+const otp3 = ref()
+const otp4 = ref()
+const otp5 = ref()
+const otp6 = ref()
+
 </script>
 
 <template>
@@ -18,10 +27,12 @@
                   <form class="" action="verification.php" method="POST"> 
                     <div class="row d-flex">
                       <div class="col-md-12">
-                        <input type="text" id="otp1" name="otp1" class="otp-input" pattern="\d" maxlength="1" required>
-                        <input type="text" id="otp2" name="otp2" class="otp-input" pattern="\d" maxlength="1" required>
-                        <input type="text" id="otp3" name="otp3" class="otp-input" pattern="\d" maxlength="1" required>
-                        <input type="text" id="otp4" name="otp4" class="otp-input" pattern="\d" maxlength="1" required>
+                        <input type="number" v-model="otp1" id="otp1" name="otp1" class="otp-input" pattern="\d" maxlength="1" required>
+                        <input type="number" v-model="otp2" id="otp2" name="otp2" class="otp-input" pattern="\d" maxlength="1" required>
+                        <input type="number" v-model="otp3" id="otp3" name="otp3" class="otp-input" pattern="\d" maxlength="1" required>
+                        <input type="number" v-model="otp4" id="otp4" name="otp4" class="otp-input" pattern="\d" maxlength="1" required>
+                        <input type="number" v-model="otp5" id="otp5" name="otp4" class="otp-input" pattern="\d" maxlength="1" required>
+                        <input type="number" v-model="otp6" id="otp6" name="otp4" class="otp-input" pattern="\d" maxlength="1" required>
                         <br><br>
                       </div>
                     </div>     

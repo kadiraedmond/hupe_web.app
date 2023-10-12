@@ -8,6 +8,10 @@ import Reservation from '@/views/reservation.vue';
 import Location from '@/views/location.vue';
 import Form from '@/views/form_reservation.vue';
 import Forms from '@/views/form_locations.vue';
+import Choix from '@/views/choix_service.vue';
+import Choi from '@/views/choix_offres.vue';
+import Cho from '@/views/choix_offres2.vue';
+import Information from '@/views/informations.vue';
 import Service from '@/views/service.vue';
 import Connexion from '@/views/connexion.vue';
 import Compte from '@/views/compte_location_vehicule.vue';
@@ -89,6 +93,27 @@ const routes = [
   },
 
   {
+    path: '/choix_services',
+    name: 'Choix',
+    component: Choix,
+    
+  },
+
+  {
+    path: '/choix_offres',
+    name: 'Choi',
+    component: Choi,
+    
+  },
+
+  {
+    path: '/choix_offres2',
+    name: 'Cho',
+    component: Cho,
+    
+  },
+
+  {
     path: '/compte_vehicule',
     name: 'Compte',
     component: Compte,
@@ -111,6 +136,13 @@ const routes = [
     path: '/otp',
     name: 'Otp',
     component: Otp,
+    
+  },
+
+  {
+    path: '/information',
+    name: 'Imformaton',
+    component: Information,
     
   },
 ];

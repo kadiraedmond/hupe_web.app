@@ -139,7 +139,8 @@ onBeforeMount(() => {
               <div class="carousel-item active">
                 <img
                   :src="slideImages[0].downloadURL"
-                  class="d-block w-100 h-50"
+                  class="d-block w-100"
+                  style="max-height:350px; object-fit: cover; border-radius: 10px;"
                   alt="..."
                 />
               </div>
@@ -147,13 +148,15 @@ onBeforeMount(() => {
                 <img
                   :src="slideImages[1].downloadURL"
                   class="d-block w-100 h-50"
+                  style="max-height:350px; object-fit: cover; border-radius: 10px;"
                   alt="..."
                 />
               </div>
               <div class="carousel-item">
                 <img
-                  :src="slideImages[1].downloadURL"
+                  :src="slideImages[2].downloadURL"
                   class="d-block w-100 h-50"
+                  style="max-height:350px; object-fit: cover; border-radius: 10px;"
                   alt="..."
                 />
               </div>
@@ -598,11 +601,11 @@ onBeforeMount(() => {
                 >
                   <div class="row">
                     <div class="col-md-8">
-                      <a v-bind:href="'/detail'">
+                      <div>
                         <h5 class="card-title" style="font-size: 15px">
                           {{ companies[0].raison_social }}
                         </h5>
-                      </a>
+                      </div>
                     </div>
                     <div class="col-md-4 text-end">
                       <i

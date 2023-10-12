@@ -42,19 +42,18 @@
         <ul>
           <li>
             <router-link to="/" class="nav-link scrollto active"
-              ><font-awesome-icon icon="fa-solid fa-user-secret" />
-              Accueil</router-link
+              ><i class="bx bx-home" id="icon_menu"></i> Accueil</router-link
             >
           </li>
           <li>
             <router-link to="/services" class="nav-link scrollto"
-              ><i class="fas fa-category" id="icon_menu"></i>
+              ><i class="bx bx-category" id="icon_menu"></i>
               Services</router-link
             >
           </li>
           <li>
             <a class="nav-link scrollto" href="#"
-              ><i class="fas fa-help-circle" id="icon_menu"></i> Aide
+              ><i class="bx bx-help-circle" id="icon_menu"></i> Aide
             </a>
           </li>
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
@@ -66,7 +65,7 @@
 
           <li>
             <router-link to="/connexion" class="nav-link scrollto" href="#"
-              ><i class="fas fa-user" id="icon_menu"></i>Connexion
+              ><i class="bx bx-user" id="icon_menu"></i> Connexion
             </router-link>
           </li>
           <li class="dropdown">
@@ -92,6 +91,10 @@
                   >Compte location de gros engin</a
                 >
               </li>
+              <li>
+                <a v-bind:href="'/compte_achat_engin'">Compte vente d'engin </a>
+              </li>
+              <li><a v-bind:href="'/compte_client'">Compte client </a></li>
               <li><a href="{{url('vente_immobilier')}}">Déconnexion</a></li>
             </ul>
           </li>
