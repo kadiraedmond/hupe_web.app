@@ -1,14 +1,93 @@
-<script>
+<script setup>
+import { onBeforeMount, onMounted, ref } from "vue"
+import { doc, collection, where, query, getDocs } from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
+
+const companiesColRef = collection(firestoreDb, "compagnies")
+const reservationColRef = collection(firestoreDb, 'reservation')
+
+const q = query(
+  collection(firestoreDb, 'reservation'),
+  where('compagnie_id', '==', 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+);
+
+const companie5DocRef = doc(firestoreDb, 'compagnies', 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+const companie5SubColRef = collection(companie5DocRef, 'vehicules_programmer')
+
+
+const companies = ref([])
+const reservations = ref([])
+const companie5SubData = ref([])
+
+const fetchCompanie5Cars = async () => {
+  try {
+    const snapshot5 = await getDocs(companie5SubColRef);
+    snapshot5.docs.forEach((doc) => companie5SubData.value.push({ ...doc.data() }))
+    // console.log(companie5SubData.value)
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+const fetchCompanies = async () => {
+  try {
+    const snapshot = await getDocs(companiesColRef);
+    snapshot.docs.forEach((doc) => companies.value.push(doc.data()))
+    // console.log(companies.value[5])
+  } catch (error) {
+    console.log(err.message);
+  }
+};
+
+const fetchReservations = async () => {
+  try {
+    const snapshot = await getDocs(reservationColRef);
+    snapshot.docs.forEach((doc) => reservations.value.push(doc.data()))
+    // console.log(reservations.value)
+  } catch (error) {
+    console.log(err.message);
+  }
+};
+
+const companie5Reservations = ref([])
+const enAttenteCount = ref(0)
+const enAttenteSolde = ref(0)
+const getCompanie5Reservations = async () => {
+  try {
+    const snapshot = await getDocs(q);
+    snapshot.docs.forEach((doc) => companie5Reservations.value.push(doc.data()))
+    console.log(companie5Reservations.value)
+
+    // reservations en attente
+    companie5Reservations.value.forEach(reservation => {
+      if (reservation.status == 'En attente') {
+        enAttenteCount.value++
+        enAttenteSolde.value += Number(reservation.montant)
+      }
+    })
+  } catch (error) {
+    console.log(err.message);
+  }
+}
+
+onBeforeMount(() => {
+  fetchCompanies()
+  fetchCompanie5Cars()
+  fetchReservations()
+})
+
+onMounted(() => {
+  getCompanie5Reservations()
+})
+
 </script>
 
 <template>
 
   <main id="main">
-
-
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details" style="margin-top: 0px;">
-      <img src="/public/assets/img/car2.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
+      <img :src="companies[5].imageCouvertureUrl" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
     </section>
     <!-- End Portfolio Details Section -->
 
@@ -19,11 +98,11 @@
             <div class="card mb-3 border-0" style="max-width: 540px;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 160px;" />
+                  <img :src="companies[5].imageLogoUrl" alt class="w-px-40 h-auto rounded-circle" style="width: 160px;" />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">BG compagnies</h5>
+                    <h5 class="card-title">{{ companies[5].raison_social }}</h5>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur </p>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur </p>
                   </div>
@@ -173,27 +252,27 @@
                     <div class="card mb-3" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
-                          <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..."
+                          <img :src="companie5SubData[0].vehicule_image_url2" class="img-fluid rounded-start" alt="..."
                             style="height: 100%; object-fit: cover;">
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
                             <div class="row">
                               <div class="col-md-6">
-                                <p class="card-text"> <strong>Hyundai 2022 </strong></p>
+                                <p class="card-text"> <strong> {{ companie5SubData[0].vehicule }} </strong></p>
                               </div>
                               <div class="col-md-6 text-end">
                                 <button class="btn btn-primary" style="    background-color: #219935;
-                                  border-color: #219935;"> 5000 FCFA</button>
+                                  border-color: #219935;"> {{ companie5SubData[0].montant }} FCFA</button>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Modèle : </strong> Santafé</p>
+                                <p class="card-text"> <strong>Modèle : </strong> {{ companie5SubData[0].modele }}</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Essence : </strong> Automobile</p>
+                                <p class="card-text"> <strong>Essence : </strong> {{ companie5SubData[0].boite }}</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Immatriculation : </strong> BG 5282</p>
+                                <p class="card-text"> <strong>Immatriculation : </strong> {{ companie5SubData[0].serie_vehicule }}</p>
                               </div>
 
                               <div class="col-md-12 mt-4 text-start">
@@ -291,27 +370,27 @@
                     <div class="card mb-3" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
-                          <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..."
+                          <img :src="companie5SubData[0].vehicule_image_url" class="img-fluid rounded-start" alt="..."
                             style="height: 100%; object-fit: cover;">
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
                             <div class="row">
                               <div class="col-md-6">
-                                <p class="card-text"> <strong>Hyundai 2022 </strong></p>
+                                <p class="card-text"> <strong>{{ companie5SubData[0].vehicule }} </strong></p>
                               </div>
                               <div class="col-md-6 text-end">
                                 <button class="btn btn-primary" style="    background-color: #219935;
-                                  border-color: #219935;"> 5000 FCFA</button>
+                                  border-color: #219935;"> {{ companie5SubData[0].montant }} FCFA</button>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Modèle : </strong> Santafé</p>
+                                <p class="card-text"> <strong>Modèle : </strong> {{ companie5SubData[0].modele }}</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Essence : </strong> Automobile</p>
+                                <p class="card-text"> <strong>Essence : </strong> {{ companie5SubData[0].boite }}</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Immatriculation : </strong> BG 5282</p>
+                                <p class="card-text"> <strong>Immatriculation : </strong> {{ companie5SubData[0].serie_vehicule }}</p>
                               </div>
 
 
@@ -373,23 +452,23 @@
                     <div class="card" style="background:#a6a6a621;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                          <img :src="companies[5].imageLogoUrl" class="img-fluid" alt="..."
                             style=" width: 25px; height: 25px; margin-top: 6px;">
-                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> {{ companies[5].raison_social }}</h6>
                           <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> {{ companies[5].adresse }}</p>
 
                         </div>
                       </div>
                       <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
+                          <img :src="companie5SubData[0].vehicule_image_url" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
                         </a>
                         <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                        <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+                        <button class="btn btn-primary" id="badges0"> {{ companie5SubData[0].montant }} FCFA</button>
                         <button class="btn btn-primary" id="badges012"> 93% </button>
-                        <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+                        <button class="btn btn-primary" id="badges0121"> {{ companie5SubData[0].vehicule }} </button>
                       </div>
                     </div>
                   </div>
@@ -397,23 +476,23 @@
                     <div class="card" style="background:#a6a6a621;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                          <img :src="companies[5].imageLogoUrl" class="img-fluid" alt="..."
                             style=" width: 25px; height: 25px; margin-top: 6px;">
-                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> {{ companies[5].raison_social }}</h6>
                           <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> {{ companies[5].adresse }}</p>
 
                         </div>
                       </div>
                       <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
+                          <img :src="companie5SubData[0].vehicule_image_url" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
                         </a>
                         <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                        <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+                        <button class="btn btn-primary" id="badges0"> {{ companie5SubData[0].montant }} FCFA</button>
                         <button class="btn btn-primary" id="badges012"> 93% </button>
-                        <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+                        <button class="btn btn-primary" id="badges0121">{{ companie5SubData[0].vehicule }} </button>
                       </div>
                     </div>
                   </div>
@@ -421,23 +500,23 @@
                     <div class="card" style="background:#a6a6a621;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                          <img :src="companies[5].imageLogoUrl" class="img-fluid" alt="..."
                             style=" width: 25px; height: 25px; margin-top: 6px;">
-                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> {{ companies[5].raison_social }}</h6>
                           <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="...">  {{ companies[5].adresse }}</p>
 
                         </div>
                       </div>
                       <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
+                          <img :src="companie5SubData[0].vehicule_image_url" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
                         </a>
                         <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                        <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+                        <button class="btn btn-primary" id="badges0"> {{ companie5SubData[0].montant }} FCFA</button>
                         <button class="btn btn-primary" id="badges012"> 93% </button>
-                        <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+                        <button class="btn btn-primary" id="badges0121">{{ companie5SubData[0].vehicule }} </button>
                       </div>
                     </div>
                   </div>
@@ -459,7 +538,7 @@
                                 <div class="card-body">
                                   <div class="row">
                                     <div class="col-md-6 text-start">
-                                      <p class="text-white">0 CFA</p>
+                                      <p class="text-white">{{ enAttenteSolde }} CFA</p>
                                     </div>
 
                                     <div class="col-md-6 text-end">
@@ -469,7 +548,7 @@
                                     <div class="col-md-12 text-start">
                                       <p class="text-white">
                                         <button class="btn btn-primary border-0 text-white"
-                                          style="background: #0000008f; border-radius: 50%;">0</button> Tickets en attente
+                                          style="background: #0000008f; border-radius: 50%;"> {{ enAttenteCount }}</button> Tickets en attente
                                       </p>
 
                                     </div>

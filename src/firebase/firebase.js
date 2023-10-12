@@ -3,14 +3,24 @@ import { getFirestore } from 'firebase/firestore'
 import 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: import.meta.FIREBASE_API_KEY,
-  authDomain: import.meta.AUTH_DOMAIN,
-  projectId: import.meta.PROJECT_ID,
-  storageBucket: import.meta.STORAGE_BUCKET,
-  messagingSenderId: import.meta.MESSAGING_SENDER_ID,
-  appId: import.meta.APP_ID,
-  measurementId: import.meta.MEASUREMENT_ID
+  apiKey: "AIzaSyCa39N7FYX4nCOEDZJcr-HuJlpM54UEMO8",
+  authDomain: "hupe-65ffd.firebaseapp.com",
+  projectId: "hupe-65ffd",
+  storageBucket: "hupe-65ffd.appspot.com",
+  messagingSenderId: "899802817973",
+  appId: "1:899802817973:web:738d161e16698efd9225fc",
+  measurementId: "G-2WCV615LJY"
 };
+
+// const firebaseConfig = {
+//   apiKey: import.meta.FIREBASE_API_KEY,
+//   authDomain: import.meta.FIREBASE_AUTH_DOMAIN,
+//   projectId: import.meta.FIREBASE_PROJECT_ID,
+//   storageBucket: import.meta.FIREBASE_STORAGE_BUCKET,
+//   messagingSenderId: import.meta.FIREBASE_MESSAGING_SENDER_ID,
+//   appId: import.meta.FIREBASE_APP_ID,
+//   measurementId: import.meta.FIREBASE_MEASUREMENT_ID
+// };
 
 const app = initializeApp(firebaseConfig);
 

@@ -31,9 +31,9 @@ const fetchCompaniesSubCollectionsData = async () => {
     snapshot6.docs.forEach((doc) => companie6SubData.value.push({ ...doc.data() }));
     snapshot7.docs.forEach((doc) => companie7SubData.value.push({ ...doc.data() }));
 
-    console.log(companie5SubData.value)
-    console.log(companie6SubData.value)
-    console.log(companie7SubData.value)
+    // console.log(companie5SubData.value)
+    // console.log(companie6SubData.value)
+    // console.log(companie7SubData.value)
   } catch (err) {
     console.log(err.message);
   }
