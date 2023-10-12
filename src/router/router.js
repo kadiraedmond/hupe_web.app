@@ -4,6 +4,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../components/view/Home.vue';
 import Detail from '../components/view/Detail_client.vue';
 import Details from '../components/view/Details.vue';
+import Details_engin from '../components/view/detail_gros_engin.vue';
+import Details_vente from '../components/view/detail_achat_engin.vue';
 import Reservation from '../components/view/reservation.vue';
 import Location from '../components/view/location.vue';
 import Form from '../components/view/form_reservation.vue';
@@ -14,6 +16,7 @@ import Compte from '../components/view/compte_location_vehicule.vue';
 import Compt from '../components/view/compte_gros_engin.vue';
 import Comp from '../components/view/compte_achat_engin.vue';
 import Comptes from '../components/view/compte_reservation.vue';
+import Client from '../components/view/compte_client.vue';
 import Dashboard from '../components/view/dashbord.vue';
 import Activite from '../components/view/activite.vue';
 import Otp from '../components/view/otp.vue';
@@ -33,6 +36,18 @@ const routes = [
     path: '/details',
     name: 'Details',
     component: Details,
+  },
+
+  {
+    path: '/details_location_engin',
+    name: 'Details_engin',
+    component: Details_engin,
+  },
+
+  {
+    path: '/details_vente_engin',
+    name: 'Details_vente',
+    component: Details_vente,
   },
 
   {
@@ -104,6 +119,13 @@ const routes = [
     path: '/compte_gros_engin',
     name: 'Compt',
     component: Compt,
+    
+  },
+
+  {
+    path: '/compte_client',
+    name: 'Client',
+    component: Client,
     
   },
 

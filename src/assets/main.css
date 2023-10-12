@@ -632,7 +632,8 @@ section {
 
 #card_compagnie{
   border-radius: 5px;
-  background: rgba(217, 217, 217, 0.13);
+  /* background: rgba(217, 217, 217, 0.13); */
+  background: #f3f4f6;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -2052,7 +2053,7 @@ section {
     border-radius: 10px;
     border-color: #219935;
     background: #d5f8e5;
-    margin-left: 75px;
+    margin-left: 10px;
     height: 50px;
 }
 
@@ -2061,7 +2062,7 @@ section {
     border-radius: 10px;
     border-color: #219935;
     background: #d5f8e5;
-    margin-left: 75px;
+    margin-left: 10px;
     height: 50px;
 }
 
@@ -2070,7 +2071,27 @@ section {
     border-radius: 10px;
     border-color: #219935;
     background: #d5f8e5;
-    margin-left: 75px;
+    margin-left: 10px;
+    height: 50px;
+
+}
+
+#otp5{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    margin-left: 10px;
+    height: 50px;
+
+}
+
+#otp6{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    margin-left: 10px;
     height: 50px;
 
 }
