@@ -80,11 +80,11 @@ import Footer from '@/components/Footer.vue';
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avant d’un véhicule ou d’une destination </li>
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Promotion d’une destination ou d’un véhicule </li>
                                   </ul>
-                                  <h4 style="font-size: 18px; color: #219935; text-align: center;">Commission sur le chiffre d'affaires</h4>
+                                  <h4 style="font-size: 18px; color: #219935; text-align: center;">Abonnement mensuel de 30 000 par mois </h4>
                                   <div class="row">
-                                    <div class="col-md-12 text-center mb-3">
+                                    <!-- <div class="col-md-12 text-center mb-3">
                                       <button type="button" class=" btn btn-primary text-center" style="background: white; border-color: #219935;"> <h5 class="card-title pricing-card-title " style="color:#219935">20%</h5></button>
-                                    </div>
+                                    </div> -->
                                     <!-- <div class="col-md-12 text-center">
                                       <button type="button" class=" btn btn-primary text-center" style="background: #219935; border-color: #219935;">Sélectionner</button>
                                     </div> -->

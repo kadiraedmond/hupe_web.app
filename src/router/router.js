@@ -10,6 +10,7 @@ import Reservation from '../components/view/reservation.vue';
 import Location from '../components/view/location.vue';
 import Choix from '../components/view/choix_service.vue';
 import Choi from '../components/view/choix_offres.vue';
+import Cho from '../components/view/choix_offres2.vue';
 import Information from '../components/view/informations.vue';
 import Form from '../components/view/form_reservation.vue';
 import Forms from '../components/view/form_locations.vue';
@@ -101,6 +102,13 @@ const routes = [
     path: '/choix_offres',
     name: 'Choi',
     component: Choi,
+    
+  },
+
+  {
+    path: '/choix_offres2',
+    name: 'Cho',
+    component: Cho,
     
   },
 
