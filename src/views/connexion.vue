@@ -1,47 +1,49 @@
 <script setup>
-import intlTelInput from "intl-tel-input";
-import "intl-tel-input/build/css/intlTelInput.css";
+// import intlTelInput from "intl-tel-input";
+// import "intl-tel-input/build/css/intlTelInput.css";
+
 import router from '@/router/router.js'
 
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
 import { auth } from '@/firebase/firebase.js'
 
 import { onMounted, ref } from 'vue'
+import { getConfirmation } from '@/utils/index.js'
+
 
 const phoneNumber = ref()
 
-onMounted(() => {
-  // Initialisez le composant intl-tel-input dans le hook mounted
-  const input = this.$refs.phoneInput;
-  const iti = intlTelInput(input, {
-    separateDialCode: true,
-    initialCountry: "auto", // Définissez le pays initial sur "auto"
-  });
+// onMounted(() => {
+//   // Initialisez le composant intl-tel-input dans le hook mounted
+//   const input = this.$refs.phoneInput;
+//   const iti = intlTelInput(input, {
+//     separateDialCode: true,
+//     initialCountry: "auto", // Définissez le pays initial sur "auto"
+//   });
 
-  // Écoutez les changements pour obtenir le numéro de téléphone sélectionné
-  iti.promise.then((countryData) => {
-    console.log("Indice du pays :", countryData.iso2);
-    console.log("Numéro de téléphone :", iti.getNumber());
-  });
-})
+//   // Écoutez les changements pour obtenir le numéro de téléphone sélectionné
+//   iti.promise.then((countryData) => {
+//     console.log("Indice du pays :", countryData.iso2);
+//     console.log("Numéro de téléphone :", iti.getNumber());
+//   });
+// })
 
 const logInWithPhoneNumber = async () => {
+  const phoneNum =  `+${countryCode.value}${phoneNumber.value}`
 
   const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container')
 
-  const confirmationResult = await signInWithPhoneNumber(auth, `+${phoneNumber.value}`, appVerifier);
+  const confirmationResult = await signInWithPhoneNumber(auth, phoneNum, appVerifier)
 
+  getConfirmation(auth, phoneNum)
+  localStorage.setItem('confirmationResult', JSON.stringify(confirmationResult))
   router.push('/otp')
-  const verificationCode = prompt('Entrez le code de vérification reçu par SMS : ');
+}
 
-  const userCredential = await confirmationResult.confirm(verificationCode);
-  const user = userCredential.user;
-  // try {    
+const countryCode = ref('')
 
-  //   console.log('Utilisateur connecté :', user);
-  // } catch (error) {
-  //   console.error('Erreur lors de la connexion :', error.message);
-  // }
+const handleCountryChange = countryData => {
+  countryCode.value = countryData.dialCode
 }
 
 </script>
@@ -74,37 +76,38 @@ const logInWithPhoneNumber = async () => {
                       enverrons un code pour la vérification
                     </p>
 
-                    <form>
+                    <form @submit.prevent="logInWithPhoneNumber">
                       <div class="mb-3">
                         <label for="phoneNumber" class="form-label"
                           >Numéro de téléphone</label
                         >
                       </div>
                       <div class="mb-3">
-                        <input
+                        <!-- <input
                           type="number"
                           class="form-control"
                           v-model="phoneNumber"
                           id="phoneNumber"
                           placeholder="Entrez votre numéro de téléphone avec l'indicatif (+33 ...)"
                           ref="phoneInput"
-                        />
+                        /> -->
+                        <vue-tel-input 
+                          v-model="phoneNumber"
+                          :enabledCountryCode="true"
+                          @country-changed="handleCountryChange"
+                         />
                       </div>
-                      <router-link to="/otp">
-                        <button
-                          type="submit"
-                          class="btn btn-primary mt-2"
-                          style="
-                            background-color: #219935;
-                            border-color: #219935;
-                          "
-                          @click="logInWithPhoneNumber"
-                        >
-                          Se connecter
-                        </button>
-                        <div id="recaptcha-container"></div>
-                      </router-link>
-                      <!-- <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Se connecter</button> -->
+                      
+                      <button
+                        type="submit"
+                        class="btn btn-primary mt-2"
+                        style="
+                          background-color: #219935;
+                          border-color: #219935;
+                        "                      >
+                        Se connecter
+                      </button>
+                      <div id="recaptcha-container"></div>
                     </form>
                   </div>
                 </div>

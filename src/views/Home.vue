@@ -259,7 +259,7 @@ onBeforeMount(() => {
             >
               <a v-bind:href="'/location'" class="mt-4">
                 <img
-                  src="assets/img/car.png"
+                  src="/public/assets/img/car.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -286,7 +286,7 @@ onBeforeMount(() => {
             >
               <a v-bind:href="'/reservation'" class="mt-4 text-black">
                 <img
-                  src="assets/img/bus.png"
+                  src="/public/assets/img/bus.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -313,7 +313,7 @@ onBeforeMount(() => {
             >
               <a v-bind:href="'/reservation'" class="mt-4" id="a">
                 <img
-                  src="assets/img/engin.png"
+                  src="/public/assets/img/engin.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -340,7 +340,7 @@ onBeforeMount(() => {
             >
               <a v-bind:href="'/reservation'" class="mt-4" id="a">
                 <img
-                  src="assets/img/engine.png"
+                  src="/public/assets/img/engine.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -398,7 +398,7 @@ onBeforeMount(() => {
                   </h6>
                   <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                     <img
-                      src="assets/img/icone/map.png"
+                      src="/public/assets/img/icone/map.png"
                       class="img-fluid"
                       alt="..."
                     />
@@ -458,7 +458,7 @@ onBeforeMount(() => {
                   </h6>
                   <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                     <img
-                      src="assets/img/icone/map.png"
+                      src="/public/assets/img/icone/map.png"
                       class="img-fluid"
                       alt="..."
                     />
@@ -518,7 +518,7 @@ onBeforeMount(() => {
                   </h6>
                   <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                     <img
-                      src="assets/img/icone/map.png"
+                      src="/public/assets/img/icone/map.png"
                       class="img-fluid"
                       alt="..."
                     />
@@ -1327,7 +1327,7 @@ onBeforeMount(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
-              <img src="assets/img/blog.jpg" class="card-img-top" alt="..." />
+              <img src="/public/assets/img/blog.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1369,7 +1369,7 @@ onBeforeMount(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
-              <img src="assets/img/blog-1.jpg" class="card-img-top" alt="..." />
+              <img src="/public/assets/img/blog-1.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1411,7 +1411,7 @@ onBeforeMount(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
-              <img src="assets/img/blog-2.jpg" class="card-img-top" alt="..." />
+              <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1453,7 +1453,7 @@ onBeforeMount(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
-              <img src="assets/img/blog-2.jpg" class="card-img-top" alt="..." />
+              <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">

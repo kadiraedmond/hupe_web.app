@@ -70,7 +70,7 @@
           </div>
           <div class="col-md-6">
             <img
-              src="/public/assets/img/r.jpg"
+              src="/public/assets/img/a.png"
               alt=""
               class="img-fluid"
               style="height: 658px; object-fit: cover; border-radius: 5px"

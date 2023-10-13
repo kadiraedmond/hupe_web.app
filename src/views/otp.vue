@@ -1,12 +1,30 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref, defineProps  } from 'vue'
 
+import { useConfirmation } from '@/utils/index.js'
 const otp1 = ref()
 const otp2 = ref()
 const otp3 = ref()
 const otp4 = ref()
 const otp5 = ref()
 const otp6 = ref()
+
+const joinedOTP = ref()
+
+const handleOtp = async () => {
+  joinedOTP.value = Number(`${otp1}${otp2}${otp3}${otp4}${otp5}${otp6}`)
+
+  const verificationCode = joinedOTP.value
+
+  const confirmationResult = useConfirmation()
+
+  // const confirmationResult = JSON.parse(localStorage.getItem('confirmationResult'))
+
+  const userCredential = await confirmationResult.confirm(verificationCode);
+  const user = userCredential.user;
+
+  console.log(user)
+}
 
 </script>
 
@@ -24,7 +42,7 @@ const otp6 = ref()
                   <p>Veuillez saisir le code que nous venons de vous envoyer sur le numéro</p>
                 </div>
                 <div class="col-md-12 mt-4">
-                  <form class="" action="verification.php" method="POST"> 
+                  <form @submit.prevent="handleOtp"> 
                     <div class="row d-flex">
                       <div class="col-md-12">
                         <input type="number" v-model="otp1" id="otp1" name="otp1" class="otp-input" pattern="\d" maxlength="1" required>
