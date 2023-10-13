@@ -257,20 +257,20 @@ onBeforeMount(() => {
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <a v-bind:href="'/location'" class="mt-4">
+              <router-link to="/location" class="mt-4">
                 <img
                   src="/public/assets/img/car.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
-              </a>
+              </router-link>
 
               <div class="card-body" style="background: #219935">
-                <a v-bind:href="'/location'" class="mt-4" id="a">
+                <router-link to="/location" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Louer un véhicule
                   </h5>
-                </a>
+                </router-link>
 
                 <p class="card-text" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
@@ -284,20 +284,20 @@ onBeforeMount(() => {
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <a v-bind:href="'/reservation'" class="mt-4 text-black">
+              <router-link to="/reservation" class="mt-4 text-black">
                 <img
                   src="/public/assets/img/bus.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
-              </a>
+              </router-link>
 
               <div class="card-body" style="background: #219935">
-                <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Reserver un ticket de bus
                   </h5>
-                </a>
+                </router-link>
 
                 <p class="card-text" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
@@ -311,20 +311,20 @@ onBeforeMount(() => {
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <a v-bind:href="'/reservation'" class="mt-4" id="a">
+              <router-link to="/reservation" class="mt-4" id="a">
                 <img
                   src="/public/assets/img/engin.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
-              </a>
+              </router-link>
 
               <div class="card-body" style="background: #219935">
-                <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Louer un gros engin
                   </h5>
-                </a>
+                </router-link>
 
                 <p class="card-text" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
@@ -338,20 +338,20 @@ onBeforeMount(() => {
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <a v-bind:href="'/reservation'" class="mt-4" id="a">
+              <router-link to="/reservation" class="mt-4" id="a">
                 <img
                   src="/public/assets/img/engine.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
-              </a>
+              </router-link>
 
               <div class="card-body" style="background: #219935">
-                <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Acheter un engin
                   </h5>
-                </a>
+                </router-link>
 
                 <p class="card-text" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
@@ -411,8 +411,8 @@ onBeforeMount(() => {
                 id="compagnie_card"
                 style="padding: 6px; background: #a6a6a621"
               >
-                <a
-                  v-bind:href="'/detail'"
+                <router-link
+                  to="/detail"
                   style="
                     border: 1px solid;
                     border-radius: 5px;
@@ -429,7 +429,7 @@ onBeforeMount(() => {
                       object-fit: cover;
                     "
                   />
-                </a>
+                </router-link>
                 <button class="btn btn-primary" id="badges">
                   <s> 5000 FCFA </s>
                 </button>
@@ -471,8 +471,8 @@ onBeforeMount(() => {
                 id="compagnie_card"
                 style="padding: 6px; background: #a6a6a621"
               >
-                <a
-                  v-bind:href="'/detail'"
+                <router-link
+                  to="/detail"
                   style="
                     border: 1px solid;
                     border-radius: 5px;
@@ -489,7 +489,7 @@ onBeforeMount(() => {
                       object-fit: cover;
                     "
                   />
-                </a>
+                </router-link>
                 <button class="btn btn-primary" id="badges">
                   <s> 5000 FCFA </s>
                 </button>
@@ -531,8 +531,8 @@ onBeforeMount(() => {
                 id="compagnie_card"
                 style="padding: 6px; background: #a6a6a621"
               >
-                <a
-                  v-bind:href="'/detail'"
+                <router-link
+                  to="/detail"
                   style="
                     border: 1px solid;
                     border-radius: 5px;
@@ -549,7 +549,7 @@ onBeforeMount(() => {
                       object-fit: cover;
                     "
                   />
-                </a>
+                </router-link>
                 <button class="btn btn-primary" id="badges">
                   <s> 5000  FCFA </s>
                 </button>
@@ -584,14 +584,14 @@ onBeforeMount(() => {
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div class="col">
             <div class="card h-100" id="compagnie_card">
-              <a v-bind:href="'/detail'">
+              <router-link to="/detail">
                 <img
                   :src="carsForLocation[6].vehicule_image_url"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px"
                 />
-              </a>
+              </router-link>
 
               <div class="card-body">
                 <router-link
@@ -630,14 +630,14 @@ onBeforeMount(() => {
           </div>
           <div class="col">
             <div class="card h-100" id="compagnie_card">
-              <a v-bind:href="'/detail'">
+              <router-link to="/detail">
                 <img
                   :src="carsForLocation[6].vehicule_image_url"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px"
                 />
-              </a>
+              </router-link>
 
               <div class="card-body">
                 <router-link
@@ -647,11 +647,11 @@ onBeforeMount(() => {
                 >
                   <div class="row">
                     <div class="col-md-8">
-                      <a v-bind:href="'/detail'">
+                      <router-link to="/detail">
                         <h5 class="card-title" style="font-size: 15px">
                           {{ companies[1].raison_social }}
                         </h5>
-                      </a>
+                      </router-link>
                     </div>
                     <div class="col-md-4 text-end">
                       <i
@@ -676,17 +676,17 @@ onBeforeMount(() => {
           </div>
           <div class="col">
             <div class="card h-100" id="compagnie_card">
-              <a href="detail_compagnie.html">
+              <router-link to="/detail">
                 <img
                   :src="carsForLocation[6].vehicule_image_url"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px"
                 />
-              </a>
+              </router-link>
 
               <div class="card-body">
-                <a href="detail_compagnie.html" id="a_compagnie">
+                <router-link to="/detail" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
@@ -701,7 +701,7 @@ onBeforeMount(() => {
                       ></i>
                     </div>
                   </div>
-                </a>
+                </router-link>
 
                 <p class="card-text mt-2" style="font-size: 14px">
                   <i
@@ -716,17 +716,17 @@ onBeforeMount(() => {
           </div>
           <div class="col">
             <div class="card h-100" id="compagnie_card">
-              <a href="detail_compagnie.html">
+              <router-link to="/detail">
                 <img
                   :src="carsForLocation[6].vehicule_image_url"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px"
                 />
-              </a>
+              </router-link>
 
               <div class="card-body">
-                <a href="detail_compagnie.html" id="a_compagnie">
+                <router-link to="/detail" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
@@ -741,7 +741,7 @@ onBeforeMount(() => {
                       ></i>
                     </div>
                   </div>
-                </a>
+                </router-link>
 
                 <p class="card-text mt-2" style="font-size: 14px">
                   <i
@@ -968,7 +968,7 @@ onBeforeMount(() => {
               </router-link>
 
               <div class="card-body">
-                <a href="detail_compagnies.html" id="a_compagnie">
+                <router-link to="/detail" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
@@ -983,7 +983,7 @@ onBeforeMount(() => {
                       ></i>
                     </div>
                   </div>
-                </a>
+                </router-link>
 
                 <p class="card-text mt-2" style="font-size: 14px">
                   <i
@@ -1008,7 +1008,7 @@ onBeforeMount(() => {
               </router-link>
 
               <div class="card-body">
-                <a href="detail_compagnies.html" id="a_compagnie">
+                <router-link to="/detail" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
@@ -1023,7 +1023,7 @@ onBeforeMount(() => {
                       ></i>
                     </div>
                   </div>
-                </a>
+                </router-link>
 
                 <p class="card-text mt-2" style="font-size: 14px">
                   <i
@@ -1048,7 +1048,7 @@ onBeforeMount(() => {
               </router-link>
 
               <div class="card-body">
-                <a href="detail_compagnies.html" id="a_compagnie">
+                <router-link to="/detail" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
@@ -1063,7 +1063,7 @@ onBeforeMount(() => {
                       ></i>
                     </div>
                   </div>
-                </a>
+                </router-link>
 
                 <p class="card-text mt-2" style="font-size: 14px">
                   <i
@@ -1078,17 +1078,17 @@ onBeforeMount(() => {
           </div>
           <div class="col">
             <div class="card h-100" id="compagnie_card">
-              <a href="detail_compagnies.html">
+              <router-link to="/detail">
                 <img
                   :src="carsForLocation[6].vehicule_image_url"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px"
                 />
-              </a>
+              </router-link>
 
               <div class="card-body">
-                <a href="detail_compagnies.html" id="a_compagnie">
+                <router-link to="/detail" id="a_compagnie">
                   <div class="row">
                     <div class="col-md-8">
                       <h5 class="card-title" style="font-size: 15px">
@@ -1103,7 +1103,7 @@ onBeforeMount(() => {
                       ></i>
                     </div>
                   </div>
-                </a>
+                </router-link>
 
                 <p class="card-text mt-2" style="font-size: 14px">
                   <i

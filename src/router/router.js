@@ -15,8 +15,10 @@ import Information from '@/views/informations.vue';
 import Service from '@/views/service.vue';
 import Connexion from '@/views/connexion.vue';
 import Compte from '@/views/compte_location_vehicule.vue';
+import Comp from '@/views/compte_achat_engin.vue';
 import Compt from '@/views/compte_gros_engin.vue';
 import Comptes from '@/views/compte_reservation.vue';
+import Client from '@/views/compte_client.vue';
 import Dashboard from '@/views/dashbord.vue';
 import Activite from '@/views/activite.vue';
 import Otp from '@/views/otp.vue';
@@ -132,6 +134,21 @@ const routes = [
     component: Compt,
     
   },
+
+  {
+    path: '/compte_client',
+    name: 'Client',
+    component: Client,
+    
+  },
+
+  {
+    path: '/compte_achat_engin',
+    name: 'Comp',
+    component: Comp,
+    
+  },
+
   {
     path: '/otp',
     name: 'Otp',

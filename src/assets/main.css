@@ -2052,7 +2052,7 @@ section {
     border-radius: 10px;
     border-color: #219935;
     background: #d5f8e5;
-    margin-left: 75px;
+    margin-left: 10px;
     height: 50px;
 }
 
@@ -2061,7 +2061,7 @@ section {
     border-radius: 10px;
     border-color: #219935;
     background: #d5f8e5;
-    margin-left: 75px;
+    margin-left: 10px;
     height: 50px;
 }
 
@@ -2070,7 +2070,27 @@ section {
     border-radius: 10px;
     border-color: #219935;
     background: #d5f8e5;
-    margin-left: 75px;
+    margin-left: 10px;
+    height: 50px;
+
+}
+
+#otp5{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    margin-left: 10px;
+    height: 50px;
+
+}
+
+#otp6{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    margin-left: 10px;
     height: 50px;
 
 }

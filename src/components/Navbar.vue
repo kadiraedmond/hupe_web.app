@@ -7,13 +7,13 @@
       style="height: 40px"
     >
       <h1 class="logo">
-        <a href="index.html"
+        <router-link to="/"
           ><img
             src="/assets/img/logo2.png"
             alt=""
             class="img-fluid"
             style="margin-top: -6px"
-        /></a>
+        /></router-link>
       </h1>
       <nav id="navbar" class="navbar">
         <ul>
@@ -52,9 +52,9 @@
             >
           </li>
           <li>
-            <a class="nav-link scrollto" href="#"
+            <router-link class="nav-link scrollto" to="/"
               ><i class="bx bx-help-circle" id="icon_menu"></i> Aide
-            </a>
+            </router-link>
           </li>
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
             <select class="form-select1" id="validationCustom04" required>
@@ -64,58 +64,40 @@
           </li>
 
           <li>
-            <router-link to="/connexion" class="nav-link scrollto" href="#"
+            <router-link to="/connexion" class="nav-link scrollto"
               ><i class="bx bx-user" id="icon_menu"></i> Connexion
             </router-link>
           </li>
           <li class="dropdown">
-            <a href="#"
+            <router-link to="/"
               ><i class="bx bx-category" id="icon_menu"></i>
               <span>Admin </span> <i class="bi bi-chevron-down"></i
-            ></a>
+            ></router-link>
             <ul style="background: #219935">
-              <li><a href="{{url('constuction')}}">Tableau de bord</a></li>
-              <li><a href="{{url('location_immobilier')}}">Mon compte</a></li>
+              <li><router-link to="/">Tableau de bord</router-link></li>
+              <li><router-link to="/">Mon compte</router-link></li>
               <li>
-                <a v-bind:href="'/compte_vehicule'"
-                  >Compte location de vehicule</a
+                <router-link to="/compte_vehicule"
+                  >Compte location de vehicule</router-link
                 >
               </li>
               <li>
-                <a v-bind:href="'/compte_reservation'"
-                  >Compte reservation de ticket de bus</a
+                <router-link to="/compte_reservation"
+                  >Compte reservation de ticket de bus</router-link
                 >
               </li>
               <li>
-                <a v-bind:href="'/compte_gros_engin'"
-                  >Compte location de gros engin</a
+                <router-link to="/compte_gros_engin"
+                  >Compte location de gros engin</router-link
                 >
               </li>
               <li>
-                <a v-bind:href="'/compte_achat_engin'">Compte vente d'engin </a>
+                <router-link to="/compte_achat_engin">Compte vente d'engin </router-link>
               </li>
-              <li><a v-bind:href="'/compte_client'">Compte client </a></li>
-              <li><a href="{{url('vente_immobilier')}}">Déconnexion</a></li>
+              <li><router-link to="/compte_client">Compte client </router-link></li>
+              <li><router-link to="/vente_immobilier">Déconnexion</router-link></li>
             </ul>
           </li>
-
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
