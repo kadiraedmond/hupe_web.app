@@ -194,23 +194,94 @@ import Footer from '@/components/Footer.vue';
                                   border-color: #219935;"> 5000 FCFA</button>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Modèle : </strong> Santafé</p>
+                                <p class="card-text"> <strong>Modèle  |  </strong> Santafé</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Essence : </strong> Automobile</p>
+                                <p class="card-text"> <strong>Essence  |  </strong> Automobile</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Immatriculation : </strong> BG 5282</p>
+                                <p class="card-text"> <strong>Immatriculation  |  </strong> BG 5282</p>
                               </div>
 
                               <div class="col-md-12 mt-4 text-start">
                                 <div class="row row-clols-md-5">
                                   <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
-                                      border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
+
+                                     <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModale" style="    background-color:rgb(33 153 53 / 58%);
+                                      border-color: rgb(33 153 53 / 58%);">
+                                      <img src="/public/assets/img/icone/edit.png"
+                                          class="img-fluid " alt="...">
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModale" tabindex="-1" aria-labelledby="exampleModalLabele" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabele">Modifier un véhicule</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form class="row g-3 needs-validation text-start" novalidate>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Marque</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Modéle</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Immatriculation</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Année</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-12">
+                                            <h2 style="    font-size: 17px;">Montant</h2>
+                                          </div>
+
+                                          <div class="col-md-4">
+                                            
+                                            <label for="validationCustom02" class="form-label">Prix journalier</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-4">
+                                            <label for="validationCustom01" class="form-label">Avec chauffeur</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-4">
+                                            <label for="validationCustom02" class="form-label">A l'intérieur</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Ajouter une images</label>
+                                            <input type="file" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          
+                                          <div class="col-12 text-center">
+                                            <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
+                                          </div>
+                                        </form>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
                                   </div>
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
@@ -312,25 +383,94 @@ import Footer from '@/components/Footer.vue';
                                   border-color: #219935;"> 5000 FCFA</button>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Modèle : </strong> Santafé</p>
+                                <p class="card-text"> <strong>Modèle  |  </strong> Santafé</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Essence : </strong> Automobile</p>
+                                <p class="card-text"> <strong>Essence  |  </strong> Automobile</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Immatriculation : </strong> BG 5282</p>
+                                <p class="card-text"> <strong>Immatriculation  |  </strong> BG 5282</p>
                               </div>
-
-
 
                               <div class="col-md-12 mt-4 text-start">
                                 <div class="row row-clols-md-5">
                                   <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
-                                      border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
+
+                                     <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModale" style="    background-color:rgb(33 153 53 / 58%);
+                                      border-color: rgb(33 153 53 / 58%);">
+                                      <img src="/public/assets/img/icone/edit.png"
+                                          class="img-fluid " alt="...">
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModale" tabindex="-1" aria-labelledby="exampleModalLabele" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabele">Modifier un véhicule</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form class="row g-3 needs-validation text-start" novalidate>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Marque</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Modéle</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Immatriculation</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Année</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-12">
+                                            <h2 style="    font-size: 17px;">Montant</h2>
+                                          </div>
+
+                                          <div class="col-md-4">
+                                            
+                                            <label for="validationCustom02" class="form-label">Prix journalier</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-4">
+                                            <label for="validationCustom01" class="form-label">Avec chauffeur</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-4">
+                                            <label for="validationCustom02" class="form-label">A l'intérieur</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Ajouter une images</label>
+                                            <input type="file" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          
+                                          <div class="col-12 text-center">
+                                            <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
+                                          </div>
+                                        </form>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
                                   </div>
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
@@ -340,11 +480,54 @@ import Footer from '@/components/Footer.vue';
                                     </a>
                                   </div>
                                   <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/promotion.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
+                                     <!-- Button trigger modal -->
+                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style=" background-color: #219935; border-color: #219935;">
+                                        <img src="/public/assets/img/icone/promotion.png"
+                                          class="img-fluid " alt="..."> 
+                                      </button>
+
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Promouvoir un vehicule</h1>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form class="row g-3 needs-validation text-start" novalidate>
+                                            <div class="col-md-12">
+                                              <label for="validationCustom01" class="form-label">Taux de réduction</label>
+                                              <input type="text" class="form-control" id="validationCustom01"  required>
+                                              
+                                            </div>
+                                            <div class="col-md-12">
+                                              <label for="validationCustom02" class="form-label">Montant</label>
+                                              <input type="text" class="form-control" id="validationCustom02"  required>
+                                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                              <label for="validationCustom01" class="form-label">Date de debut</label>
+                                              <input type="date" class="form-control" id="validationCustom01"  required>
+                                              
+                                            </div>
+                                            <div class="col-md-6">
+                                              <label for="validationCustom02" class="form-label">Date de fin</label>
+                                              <input type="date" class="form-control" id="validationCustom02"  required>
+                                              
+                                            </div>
+                                             
+                                            
+                                            <div class="col-12 text-center">
+                                              <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Promouvoir</button>
+                                            </div>
+                                          </form>
+                                            </div>
+                                            
+                                          </div>
+                                        </div>
+                                      </div> 
                                   </div>
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
@@ -377,79 +560,79 @@ import Footer from '@/components/Footer.vue';
               <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
                   <div class="col">
-                    <div class="card" style="background:#a6a6a621; padding: 6px;">
-                      <div class="row" style="padding: 6px;">
-                        <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
-                            style=" width: 25px; height: 25px; margin-top: 6px;">
-                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                          <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                        <div class="card border-0" style="background:#f3f4f6; padding: 6px;">
+                          <div class="row" style="padding: 6px;">
+                            <div class="col-md-12 d-flex">
+                              <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                                style=" width: 25px; height: 25px; margin-top: 6px;">
+                              <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                              <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
+                                  src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
 
+                            </div>
+                          </div>
+                          <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;box-shadow: none; background: transparent; ">
+                            <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px; border-color: #a6a6a6;">
+                              <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
+                                style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
+                            </a>
+                            <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+                            <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+                            <button class="btn btn-primary" id="badges012"> 93% </button>
+                            <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+                          </div>
                         </div>
-                      </div>
-                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;box-shadow: none; background: transparent; ">
-                        <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
-                            style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
-                        </a>
-                        <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                        <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                        <button class="btn btn-primary" id="badges012"> 93% </button>
-                        <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
-                      </div>
-                    </div>
                   </div>
                   <div class="col">
-                    <div class="card" style="background:#a6a6a621;padding: 6px;">
-                      <div class="row" style="padding: 6px;">
-                        <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
-                            style=" width: 25px; height: 25px; margin-top: 6px;">
-                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                          <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                        <div class="card border-0" style="background:#f3f4f6; padding: 6px;">
+                          <div class="row" style="padding: 6px;">
+                            <div class="col-md-12 d-flex">
+                              <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                                style=" width: 25px; height: 25px; margin-top: 6px;">
+                              <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                              <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
+                                  src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
 
+                            </div>
+                          </div>
+                          <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;box-shadow: none; background: transparent; ">
+                            <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px; border-color: #a6a6a6;">
+                              <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
+                                style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
+                            </a>
+                            <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+                            <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+                            <button class="btn btn-primary" id="badges012"> 93% </button>
+                            <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+                          </div>
                         </div>
-                      </div>
-                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621; box-shadow: none; background: transparent;">
-                        <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
-                            style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
-                        </a>
-                        <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                        <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                        <button class="btn btn-primary" id="badges012"> 93% </button>
-                        <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
-                      </div>
-                    </div>
                   </div>
                   <div class="col">
-                    <div class="card" style="background:#a6a6a621;padding: 6px;">
-                      <div class="row" style="padding: 6px;">
-                        <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
-                            style=" width: 25px; height: 25px; margin-top: 6px;">
-                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                          <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                        <div class="card border-0" style="background:#f3f4f6; padding: 6px;">
+                          <div class="row" style="padding: 6px;">
+                            <div class="col-md-12 d-flex">
+                              <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                                style=" width: 25px; height: 25px; margin-top: 6px;">
+                              <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                              <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
+                                  src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
 
+                            </div>
+                          </div>
+                          <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;box-shadow: none; background: transparent; ">
+                            <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px; border-color: #a6a6a6;">
+                              <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
+                                style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
+                            </a>
+                            <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
+                            <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
+                            <button class="btn btn-primary" id="badges012"> 93% </button>
+                            <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+                          </div>
                         </div>
-                      </div>
-                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621; box-shadow: none; background: transparent;">
-                        <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
-                            style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
-                        </a>
-                        <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                        <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                        <button class="btn btn-primary" id="badges012"> 93% </button>
-                        <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
-                      </div>
-                    </div>
                   </div>
 
-                </div>
+               </div>
               </div>
               <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
                 <div class="row mt-5">
@@ -664,7 +847,7 @@ import Footer from '@/components/Footer.vue';
                                         <div class="row" style="margin: 10px; width:100%">
                                             <div class="col-md-6">
                                               <div class="card mb-3 border-0"
-                                                style="max-width: 540px; background: #fafafa;">
+                                                style="max-width: 540px; background: white;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
                                                     <img src="/public/assets/img/avatars/1.png" alt

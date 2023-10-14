@@ -12,6 +12,7 @@ import Choix from '../components/view/choix_service.vue';
 import Choi from '../components/view/choix_offres.vue';
 import Cho from '../components/view/choix_offres2.vue';
 import Information from '../components/view/informations.vue';
+import Legales from '../components/view/legales.vue';
 import Form from '../components/view/form_reservation.vue';
 import Forms from '../components/view/form_locations.vue';
 import Service from '../components/view/service.vue';
@@ -76,6 +77,13 @@ const routes = [
     path: '/formulaire_location',
     name: 'Forms',
     component: Forms,
+    
+  },
+
+  {
+    path: '/legales',
+    name: 'Legales',
+    component: Legales,
     
   },
    

@@ -2096,6 +2096,14 @@ section {
 
 }
 
+.fixe{
+  position: fixed;
+    top: 90px;
+    /* right: 0; */
+    /* left: 0; */
+    z-index: 1030;
+}
+
 
 #attente-tab .nav-link.active {
   /* color: var(--bs-nav-tabs-link-active-color); */

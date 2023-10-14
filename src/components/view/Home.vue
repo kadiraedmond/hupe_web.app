@@ -1282,7 +1282,7 @@ import Navbar from '@/components/Navbar.vue';
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
                   </div>
                    
@@ -1309,7 +1309,7 @@ import Navbar from '@/components/Navbar.vue';
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
                   </div>
                    
@@ -1336,7 +1336,7 @@ import Navbar from '@/components/Navbar.vue';
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
                   </div>
                    
@@ -1363,7 +1363,7 @@ import Navbar from '@/components/Navbar.vue';
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
                   </div>
                    

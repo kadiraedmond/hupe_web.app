@@ -50,7 +50,7 @@ export default{
         <h4>Légales</h4>
         <ul>
 
-          <li><a href="#">Politiques de confidentialité</a></li>
+          <li><router-link to="/legales">Politiques de confidentialité</router-link></li>
           <li><a href="#">Politique de sécurité</a></li>
           <li><a href="#">Terme et conditions</a></li>
           <li><a href="#">Droit d’auteur </a></li>
