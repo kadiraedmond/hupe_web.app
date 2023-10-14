@@ -15,9 +15,11 @@ import 'vue-tel-input/vue-tel-input.css';
 
 
 import { createApp } from 'vue';
+import { createPinia } from 'pinia'
 import App from './App.vue';
 import router from './router/router';
 
+const pinia = createPinia()
 const app = createApp(App);
 
 const globalOptions = {
@@ -36,6 +38,7 @@ const globalOptions = {
 };
 
 app.use(router); 
+app.use(pinia)
 app.use(VueTelInput, globalOptions);
 
 app.mount('#app');

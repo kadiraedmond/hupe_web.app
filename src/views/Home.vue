@@ -168,76 +168,6 @@ onBeforeMount(() => {
   </section>
 
   <main id="main">
-    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <!-- <section id="features" class="features" style="margin-top: -400px;">
-      <div class="container">
-        <div class="row">
-          <div class="col-8">
-            
-          </div>
-          <div class="col-4 text-end">
-
-          </div>
-        </div>
-
-
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This card has even longer content than the first to show that equal height action.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This card has even longer content than the first to show that equal height action.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section> -->
-
     <!-- ======= Features Section ======= -->
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
@@ -394,7 +324,7 @@ onBeforeMount(() => {
                   <h6
                     style="font-size: 12px; margin-left: 5px; margin-top: 10px"
                   >
-                    {{companies[5].raison_social}}
+                    {{ companies[5].raison_social }}
                   </h6>
                   <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                     <img
@@ -402,7 +332,7 @@ onBeforeMount(() => {
                       class="img-fluid"
                       alt="..."
                     />
-                    {{companies[5].adresse}}
+                    {{ companies[5].adresse }}
                   </p>
                 </div>
               </div>

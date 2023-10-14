@@ -1,7 +1,8 @@
 <script setup>
 import { onMounted, ref, defineProps  } from 'vue'
 
-import { useConfirmation } from '@/utils/index.js'
+import { useAuthStore } from '@/store/auth.js'
+
 const otp1 = ref()
 const otp2 = ref()
 const otp3 = ref()
@@ -11,17 +12,19 @@ const otp6 = ref()
 
 const joinedOTP = ref()
 
+const authStore = useAuthStore()
+
 const handleOtp = async () => {
-  joinedOTP.value = Number(`${otp1}${otp2}${otp3}${otp4}${otp5}${otp6}`)
+  joinedOTP.value = `${otp1}${otp2}${otp3}${otp4}${otp5}${otp6}`
 
   const verificationCode = joinedOTP.value
 
-  const confirmationResult = useConfirmation()
-
-  // const confirmationResult = JSON.parse(localStorage.getItem('confirmationResult'))
+  const confirmationResult = authStore.getConfirmationResult
 
   const userCredential = await confirmationResult.confirm(verificationCode);
   const user = userCredential.user;
+
+  authStore.setUser(user)
 
   console.log(user)
 }

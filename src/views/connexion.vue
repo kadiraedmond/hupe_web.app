@@ -7,9 +7,9 @@ import router from '@/router/router.js'
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
 import { auth } from '@/firebase/firebase.js'
 
-import { onMounted, ref } from 'vue'
-import { getConfirmation } from '@/utils/index.js'
+import { useAuthStore } from '@/store/auth.js'
 
+import { onMounted, ref } from 'vue'
 
 const phoneNumber = ref()
 
@@ -27,17 +27,22 @@ const phoneNumber = ref()
 //     console.log("Numéro de téléphone :", iti.getNumber());
 //   });
 // })
+const authStore = useAuthStore()
 
 const logInWithPhoneNumber = async () => {
   const phoneNum =  `+${countryCode.value}${phoneNumber.value}`
 
   const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container')
 
-  const confirmationResult = await signInWithPhoneNumber(auth, phoneNum, appVerifier)
+  appVerifier.verify().then(response => {
+    if(response) {
+      authStore.authenticate(auth, phoneNum, appVerifier)
+      // const confirmationResult = await signInWithPhoneNumber(auth, phoneNum, appVerifier)
+    
+      router.push('/otp')
 
-  getConfirmation(auth, phoneNum)
-  localStorage.setItem('confirmationResult', JSON.stringify(confirmationResult))
-  router.push('/otp')
+    }
+  })
 }
 
 const countryCode = ref('')
