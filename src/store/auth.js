@@ -1,23 +1,25 @@
 import { defineStore } from 'pinia'
 import { signInWithPhoneNumber } from 'firebase/auth';
 
-export const useAuthStore = defineStore('auth', {
-    state: () => {
-        return {
-            user: {},
-            confirmationResult: {}
-        }
-    },
+export const useAuthStore = defineStore('authStore', {
+    state: () => ({
+        user: {},
+        confirmationResult: {}
+    }),
     getters: {
-        getConfirmationResult: state => {
-            return state.confirmationResult
+        getConfirmationResult() {
+            return this.confirmationResult
         }
     },
     actions: {
         async authenticate(authInstance, phone, verifier) {
-            this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
+            try {
+                this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
+            } catch (error) {
+               console.log(error) 
+            }
         },
-        setUser: user => {
+        setUser(user) {
             this.user = user
         }
     }

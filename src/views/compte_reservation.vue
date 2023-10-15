@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, onBeforeMount, ref } from "vue";
 import { useReservationStore } from "@/store/reservation.js";
-import { useCompanieStore } from "@/store/compagnie.js";
+import { useCompanieStore } from "@/store/companie.js";
 
 import { collection, doc, query, where, getDocs } from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
