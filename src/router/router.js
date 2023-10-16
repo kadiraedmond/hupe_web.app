@@ -24,7 +24,10 @@ import Comptes from '../components/view/compte_reservation.vue';
 import Client from '../components/view/compte_client.vue';
 import Dashboard from '../components/view/dashbord.vue';
 import Activite from '../components/view/activite.vue';
+import Partenaire from '../components/view/partenaire.vue';
+import Pclient from '../components/view/client.vue';
 import Otp from '../components/view/otp.vue';
+import Sclient from '../components/view/services_client.vue';
 const routes = [
   {
     path: '/',
@@ -162,6 +165,21 @@ const routes = [
   },
 
   {
+    path: '/pour_client',
+    name: 'Pclient',
+    component: Pclient,
+    
+  },
+
+  {
+    path: '/pour_partenaire',
+    name: 'Partenaire',
+    component: Partenaire,
+    
+  },
+
+
+  {
     path: '/compte_achat_engin',
     name: 'Comp',
     component: Comp,
@@ -178,6 +196,13 @@ const routes = [
     path: '/information',
     name: 'Imformaton',
     component: Information,
+    
+  },
+
+  {
+    path: '/service_client',
+    name: 'Sclient',
+    component: Sclient,
     
   },
 ];
