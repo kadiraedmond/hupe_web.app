@@ -1,4 +1,5 @@
 <script setup>
+import Vehicule from "@/components/Location/Vehicule.vue";
 import { onBeforeMount, onMounted, ref } from "vue"
 import { doc, collection, where, query, getDocs } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
@@ -130,321 +131,138 @@ onMounted(() => {
           <div class="col-lg-12">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="voiture-tab" data-bs-toggle="tab" data-bs-target="#voiture-tab-pane"
-                  type="button" role="tab" aria-controls="voiture-tab-pane" aria-selected="true">Véhicules</button>
+                <button
+                  class="nav-link active"
+                  id="voiture-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#voiture-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="voiture-tab-pane"
+                  aria-selected="true"
+                >
+                  Véhicules
+                </button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                  type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Promotion</button>
+                <button
+                  class="nav-link"
+                  id="profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="profile-tab-pane"
+                  aria-selected="false"
+                >
+                  Promotion
+                </button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                  type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Réservations</button>
+                <button
+                  class="nav-link"
+                  id="contact-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#contact-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="contact-tab-pane"
+                  aria-selected="false"
+                >
+                  Réservations
+                </button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="politique-tab" data-bs-toggle="tab" data-bs-target="#politique-tab-pane"
-                  type="button" role="tab" aria-controls="politique-tab-pane" aria-selected="false">Politique</button>
-              </li>
-             
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane"
-                  type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Offres</button>
-              </li>
-             
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="comptes-tab" data-bs-toggle="tab" data-bs-target="#comptes-tab-pane"
-                  type="button" role="tab" aria-controls="comptes-tab-pane" aria-selected="false">Comptes</button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="collaborateur-tab" data-bs-toggle="tab"
-                  data-bs-target="#collaborateur-tab-pane" type="button" role="tab" aria-controls="collaborateur-tab-pane"
-                  aria-selected="false">Collaborateurs</button>
+                <button
+                  class="nav-link"
+                  id="demande-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#demande-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="demande-tab-pane"
+                  aria-selected="false"
+                >
+                  Demande
+                </button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="apropos-tab" data-bs-toggle="tab" data-bs-target="#apropos-tab-pane"
-                  type="button" role="tab" aria-controls="apropos-tab-pane" aria-selected="false">A propos</button>
+                <button
+                  class="nav-link"
+                  id="politique-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#politique-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="politique-tab-pane"
+                  aria-selected="false"
+                >
+                  Politique
+                </button>
+              </li>
+
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="disabled-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#disabled-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="disabled-tab-pane"
+                  aria-selected="false"
+                >
+                  Offres
+                </button>
+              </li>
+
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="comptes-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#comptes-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="comptes-tab-pane"
+                  aria-selected="false"
+                >
+                  Comptes
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="collaborateur-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#collaborateur-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="collaborateur-tab-pane"
+                  aria-selected="false"
+                >
+                  Collaborateurs
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="apropos-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#apropos-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="apropos-tab-pane"
+                  aria-selected="false"
+                >
+                  A propos
+                </button>
               </li>
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="voiture-tab-pane" role="tabpanel" aria-labelledby="voiture-tab"
                 tabindex="0">
-                <div class="row mt-4">
-                  <div class="col-md-6"></div>
-                  <div class="col-md-6 text-end">
-                    <!-- Button trigger modal -->
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style=" background-color: #219935; border-color: #219935;">
-                        <img
-                          src="/public/assets/img/icone/plus.png" class="img-fluid " alt="..."> Ajouter
-                      </button>
-
-                      <!-- Modal -->
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un véhicule</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form class="row g-3 needs-validation text-start" novalidate>
-                            <div class="col-md-6">
-                              <label for="validationCustom01" class="form-label">Marque</label>
-                              <input type="text" class="form-control" id="validationCustom01"  required>
-                               
-                            </div>
-                            <div class="col-md-6">
-                              <label for="validationCustom02" class="form-label">Modéle</label>
-                              <input type="text" class="form-control" id="validationCustom02"  required>
-                               
-                            </div>
-
-                            <div class="col-md-6">
-                              <label for="validationCustom01" class="form-label">Immatriculation</label>
-                              <input type="text" class="form-control" id="validationCustom01"  required>
-                               
-                            </div>
-                            <div class="col-md-6">
-                              <label for="validationCustom02" class="form-label">Année</label>
-                              <input type="text" class="form-control" id="validationCustom02"  required>
-                               
-                            </div>
-                            <div class="col-md-12">
-                              <h2 style="    font-size: 17px;">Montant</h2>
-                            </div>
-
-                            <div class="col-md-4">
-                              
-                              <label for="validationCustom02" class="form-label">Prix journalier</label>
-                              <input type="text" class="form-control" id="validationCustom02"  required>
-                               
-                            </div>
-
-                            <div class="col-md-4">
-                              <label for="validationCustom01" class="form-label">Avec chauffeur</label>
-                              <input type="text" class="form-control" id="validationCustom01"  required>
-                               
-                            </div>
-                            <div class="col-md-4">
-                              <label for="validationCustom02" class="form-label">A l'intérieur</label>
-                              <input type="text" class="form-control" id="validationCustom02"  required>
-                               
-                            </div>
-                            <div class="col-md-12">
-                              <label for="validationCustom02" class="form-label">Ajouter une images</label>
-                              <input type="file" class="form-control" id="validationCustom02"  required>
-                               
-                            </div>
-                             
-                            <div class="col-12 text-center">
-                              <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
-                            </div>
-                          </form>
-                            </div>
-                             
-                          </div>
-                        </div>
-                      </div>
-                    
-                  </div>
-                </div>
-                <div class="row mt-4">
-                  <div class="col-md-6">
-                    <div class="card mb-3" style="max-width: 540px;">
-                      <div class="row g-0">
-                        <div class="col-md-4">
-                          <img :src="companie5SubData[0].vehicule_image_url2" class="img-fluid rounded-start" alt="..."
-                            style="height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-md-6">
-                                <p class="card-text"> <strong> {{ companie5SubData[0].vehicule }} </strong></p>
-                              </div>
-                              <div class="col-md-6 text-end">
-                                <button class="btn btn-primary" style="    background-color: #219935;
-                                  border-color: #219935;"> {{ companie5SubData[0].montant }} FCFA</button>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Modèle : </strong> {{ companie5SubData[0].modele }}</p>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Essence : </strong> {{ companie5SubData[0].boite }}</p>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Immatriculation : </strong> {{ companie5SubData[0].serie_vehicule }}</p>
-                              </div>
-
-                              <div class="col-md-12 mt-4 text-start">
-                                <div class="row row-clols-md-5">
-                                  <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
-                                      border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
-                                  </div>
-                                  <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/star.png" class="img-fluid "
-                                          alt="..."> </button>
-                                    </a>
-                                  </div>
-                                  <div class="col">
-                                     <!-- Button trigger modal -->
-                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style=" background-color: #219935; border-color: #219935;">
-                                        <img src="/public/assets/img/icone/promotion.png"
-                                          class="img-fluid " alt="..."> 
-                                      </button>
-
-                                      <!-- Modal -->
-                                      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Promouvoir un vehicule</h1>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                              <form class="row g-3 needs-validation text-start" novalidate>
-                                            <div class="col-md-12">
-                                              <label for="validationCustom01" class="form-label">Taux de réduction</label>
-                                              <input type="text" class="form-control" id="validationCustom01"  required>
-                                              
-                                            </div>
-                                            <div class="col-md-12">
-                                              <label for="validationCustom02" class="form-label">Montant</label>
-                                              <input type="text" class="form-control" id="validationCustom02"  required>
-                                              
-                                            </div>
-
-                                            <div class="col-md-6">
-                                              <label for="validationCustom01" class="form-label">Date de debut</label>
-                                              <input type="date" class="form-control" id="validationCustom01"  required>
-                                              
-                                            </div>
-                                            <div class="col-md-6">
-                                              <label for="validationCustom02" class="form-label">Date de fin</label>
-                                              <input type="date" class="form-control" id="validationCustom02"  required>
-                                              
-                                            </div>
-                                             
-                                            
-                                            <div class="col-12 text-center">
-                                              <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Promouvoir</button>
-                                            </div>
-                                          </form>
-                                            </div>
-                                            
-                                          </div>
-                                        </div>
-                                      </div> 
-                                  </div>
-                                  <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/unlock.png" class="img-fluid "
-                                          alt="..."> </button>
-                                    </a>
-                                  </div>
-                                  <div class="col text-center">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color: #ff000087;
-                                      border-color: #ff000087;"><img src="/public/assets/img/icone/delete.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
-                                  </div>
-                                </div>
-
-                              </div>
-
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card mb-3" style="max-width: 540px;">
-                      <div class="row g-0">
-                        <div class="col-md-4">
-                          <img :src="companie5SubData[0].vehicule_image_url" class="img-fluid rounded-start" alt="..."
-                            style="height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-md-6">
-                                <p class="card-text"> <strong>{{ companie5SubData[0].vehicule }} </strong></p>
-                              </div>
-                              <div class="col-md-6 text-end">
-                                <button class="btn btn-primary" style="    background-color: #219935;
-                                  border-color: #219935;"> {{ companie5SubData[0].montant }} FCFA</button>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Modèle : </strong> {{ companie5SubData[0].modele }}</p>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Essence : </strong> {{ companie5SubData[0].boite }}</p>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Immatriculation : </strong> {{ companie5SubData[0].serie_vehicule }}</p>
-                              </div>
-
-
-
-                              <div class="col-md-12 mt-4 text-start">
-                                <div class="row row-clols-md-5">
-                                  <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
-                                      border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
-                                  </div>
-                                  <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/star.png" class="img-fluid "
-                                          alt="..."> </button>
-                                    </a>
-                                  </div>
-                                  <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/promotion.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
-                                  </div>
-                                  <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/unlock.png" class="img-fluid "
-                                          alt="..."> </button>
-                                    </a>
-                                  </div>
-                                  <div class="col text-center">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color: #ff000087;
-                                      border-color: #ff000087;"><img src="/public/assets/img/icone/delete.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
-                                  </div>
-                                </div>
-
-                              </div>
-
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
+                <Vehicule/>
               </div>
               <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
