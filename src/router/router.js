@@ -23,6 +23,9 @@ import Dashboard from '@/views/dashbord.vue';
 import Activite from '@/views/activite.vue';
 import Otp from '@/views/otp.vue';
 
+import { auth } from '@/firebase/firebase.js'
+import { onAuthStateChanged } from 'firebase/auth'
+
 
 const routes = [
   {
@@ -84,7 +87,7 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
-    
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
@@ -119,34 +122,34 @@ const routes = [
     path: '/compte_vehicule',
     name: 'Compte',
     component: Compte,
-    
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
   {
     path: '/compte_reservation',
     name: 'Comptes',
     component: Comptes,
-    
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
     path: '/compte_gros_engin',
     name: 'Compt',
     component: Compt,
-    
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
     path: '/compte_client',
     name: 'Client',
     component: Client,
-    
+    // meta: { requiresAuth: true, allowedUserType: 'client' }
   },
 
   {
     path: '/compte_achat_engin',
     name: 'Comp',
     component: Comp,
-    
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
@@ -169,4 +172,35 @@ const router = createRouter({
   routes,
 });
 
-export default router;
+router.beforeEach((to, from, next) => {
+  // Recuperer l'utilisateur connecte de facon reactive
+  const authUser = {}
+  onAuthStateChanged(auth, user => {
+    authUser = user
+  })
+
+  if (to.matched.some((record) => record.meta.requiresAuth)) { 
+    if (authUser) {
+      const allowedUserType = to.meta.allowedUserType
+
+      // verifier si c'est une compagnie 
+      if (authUser.raison_social && allowedUserType === 'companie') {
+        next();
+      } 
+      // ou un client
+      else if (!authUser.raison_social && allowedUserType === 'client') {
+        next()
+      } else {
+        // Rediriger vers la page d'accueil si le type d'utilisateur n'est pas autorisé
+        next({ name: 'Home' }); 
+      }
+    } else {
+      // Rediriger vers la page d'accueil si l'utilisateur n'est pas authentifié
+      next({ name: 'Home' }); 
+    }
+  } else {
+    next();
+  }
+});
+
+export default router

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { collection, query, doc, where, getDocs} from "firebase/firestore";
+import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
 
 // const reservationColRef = collection(firestoreDb, "reservation");
@@ -10,7 +10,9 @@ export const useCompanieStore = defineStore('companieStore', {
     state: () => ({
         companies: [],
         locationCompanies: [],
+        popularLocationCompanies: [],
         transportCompanies: [],
+        popularTransportCompanies: [],
         companieCars: [],
         companieOneCar: null,
         companieSubData: [],
@@ -41,13 +43,40 @@ export const useCompanieStore = defineStore('companieStore', {
             }
         },
 
+        async getPopularLocationCompanies() {
+            try {
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Location'), where('offre', '==', 'vip'))
+                const snapshot = await getDocs(q);
+                snapshot.docs.forEach((doc) => this.popularLocationCompanies.push(doc.data()))
+
+                return this.popularLocationCompanies
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        
         async getTransportCompanies() {
             try {
                 const q = query(companiesColRef, where('type_compagnie', '==', 'Tansport'))
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => this.transportCompanies.push(doc.data()))
-
+                
                 return this.transportCompanies
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        
+        async getPopularTransportCompanies() {
+            try {
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Transport'), where('offre', '==', 'vip'))
+                const snapshot = await getDocs(q);
+                console.log(snapshot.docs)
+                snapshot.docs.forEach((doc) => this.popularTransportCompanies.push(doc.data()))
+
+                // console.log(this.popularTransportCompanies)
+                return this.popularTransportCompanies
             } catch (error) {
                 console.log(error);
             }
@@ -81,13 +110,14 @@ export const useCompanieStore = defineStore('companieStore', {
             }
         },
 
-        async getCompanie(companieId) {
+        async getCompanieById(companieId) {
             try {
-                const q = query(companiesColRef, where('uid', '==', `${companieId}`))
-                const snapshot = await getDocs(q);
-                snapshot.docs.forEach((doc) => this.companie.push(doc.data()))
-                
-                return this.companie[0] 
+                const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
+                const snapshot = await getDoc(companieDocRef);
+
+                if(snapshot.exists()) this.companie = snapshot.data()
+
+                return true
             } catch (error) {
                 console.log(error)
             }

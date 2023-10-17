@@ -4,20 +4,44 @@ import { onBeforeMount, onMounted, ref } from "vue";
 import { useCompanieStore } from "@/store/companie.js";
 import { useSlide } from "@/store/slideImages.js";
 import { useReservationStore } from "@/store/reservation.js";
+import { usePromotionStore } from '@/store/promotion.js'
 
 const companieStore = useCompanieStore();
 const slideStore = useSlide();
 const reservationStore = useReservationStore();
+const promotionStore = usePromotionStore()
 
 onBeforeMount(() => {
-  slideStore.getSlideImages;
+  slideStore.getSlideImages
+
   companieStore.getAllCompanies
-  companieStore.getLocationCompanies;
-  // console.log(companieStore.locationCompanies);
-  companieStore.getTransportCompanies;
-  console.log(companieStore.transportCompanies);
-  reservationStore.getAllReservations;
+
+  companieStore.getLocationCompanies
+
+  companieStore.getTransportCompanies
+
+  reservationStore.getAllReservations
+  promotionStore.getPromotionOffres
+  promotionStore.getPopularDestinations
+  promotionStore.getPopularCars
 });
+
+import { collection, query, doc, getDoc, where, getDocs} from "firebase/firestore";
+import { firestoreDb } from "@/firebase/firebase.js";
+
+async function getCompanieById(companieId) {
+  let companie = {}
+  try {
+      const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
+      const snapshot = await getDoc(companieDocRef);
+
+      if(snapshot.exists()) companie = snapshot.data()
+
+      return companie
+    } catch (error) {
+      console.log(error)
+    }
+}
 </script>
 
 <template>
@@ -210,7 +234,7 @@ onBeforeMount(() => {
           </div>
         </div>
         <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
-          <div class="col" v-for="(companie, index) in companieStore.companies" :key="index">
+          <div class="col" v-for="(offre, index) in promotionStore.offresVehicules" :key="index">
             <div
               class="card border-0"
               style="background: #f3f4f6; padding: 6px"
@@ -219,7 +243,7 @@ onBeforeMount(() => {
               <div class="row" style="padding: 6px">
                 <div class="col-md-12 d-flex">
                   <img
-                    :src="companie.imageLogoUrl"
+                    src=""
                     class="img-fluid"
                     alt="..."
                     style="width: 25px; height: 25px; margin-top: 6px"
@@ -227,7 +251,7 @@ onBeforeMount(() => {
                   <h6
                     style="font-size: 12px; margin-left: 5px; margin-top: 10px"
                   >
-                    {{ companie.raison_social }}
+                  Name Companie
                   </h6>
                   <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                     <img
@@ -235,7 +259,7 @@ onBeforeMount(() => {
                       class="img-fluid"
                       alt="..."
                     />
-                    {{ companie.adresse }}
+                    adresse Companie
                   </p>
                 </div>
               </div>
@@ -258,7 +282,7 @@ onBeforeMount(() => {
                   "
                 >
                   <img
-                    src="/public/assets/img/car3.jpg"
+                    :src="offre.vehicule_image_url"
                     class="card-img-top"
                     alt="..."
                     style="
@@ -269,12 +293,12 @@ onBeforeMount(() => {
                   />
                 </router-link>
                 <button class="btn btn-primary" id="badges">
-                  <s> 5000 FCFA </s>
+                  <s> {{ offre.ancien_montant }} FCFA </s>
                 </button>
-                <button class="btn btn-primary" id="badges0">2000 FCFA</button>
-                <button class="btn btn-primary" id="badges012">93%</button>
+                <button class="btn btn-primary" id="badges0">{{ offre.montant }} FCFA</button>
+                <button class="btn btn-primary" id="badges012">{{ offre.pourcentage }}%</button>
                 <button class="btn btn-primary" id="badges0121">
-                  Toyota yaris 2022
+                  {{ offre.vehicule }} {{ offre.modele }}
                 </button>
               </div>
             </div>
@@ -305,7 +329,7 @@ onBeforeMount(() => {
               class="card h-100"
               id="compagnie_card"
               style="background: #f3f4f6; box-shadow: none"
-              v-if="index < 4"
+              v-if="companie.offre == 'vip' && index < 4"
             >
               <router-link to="/detail">
                 <img
@@ -380,7 +404,7 @@ onBeforeMount(() => {
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
+          <div class="col" v-for="(vehicule, index) in promotionStore.popularCars" :key="index">
             <div class="card h-100" id="card_compagnie">
               <div class="row" style="margin: 10px">
                 <div class="col-md-7">
@@ -391,7 +415,7 @@ onBeforeMount(() => {
                     <div class="row g-1">
                       <div class="col-md-4">
                         <img
-                          src="/public/assets/img/avatars/1.png"
+                          src=""
                           alt
                           class="w-px-40 h-auto rounded-circle"
                           style="width: 50px"
@@ -421,7 +445,7 @@ onBeforeMount(() => {
                       font-size: 12px;
                     "
                   >
-                    5000 FCFA
+                    {{ vehicule.montant }} FCFA
                   </button>
                 </div>
               </div>
@@ -436,7 +460,7 @@ onBeforeMount(() => {
                 <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
                     <img
-                      src="/public/assets/img/car2.jpg"
+                      :src="vehicule.vehicule_image_url"
                       class="img-fluid rounded-start h-100"
                       alt="..."
                       style="object-fit: cover"
@@ -445,182 +469,16 @@ onBeforeMount(() => {
                   <div class="col-md-8">
                     <div class="card-body">
                       <p class="card-text" style="font-size: 13px">
-                        <strong>Hyundai 2022 </strong>
+                        <strong>{{ vehicule.vehicule }} </strong>
                       </p>
                       <p class="card-text" style="font-size: 13px">
-                        <strong>Modéle | </strong> Santafé
+                        <strong>Modéle | </strong> {{ vehicule.modele }}
                       </p>
                       <p class="card-text" style="font-size: 13px">
-                        <strong>Essence | </strong> Automobile
+                        <strong>Moteur | </strong> {{ vehicule.moteur }}
                       </p>
                       <p class="card-text" style="font-size: 13px">
-                        <strong>Immatriculation | </strong> BG 3252
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px">
-                <div class="col-md-7">
-                  <div
-                    class="card mb-3 border-0"
-                    style="max-width: 540px; background: #f3f4f6"
-                  >
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img
-                          src="/public/assets/img/avatars/1.png"
-                          alt
-                          class="w-px-40 h-auto rounded-circle"
-                          style="width: 50px"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 12px">
-                            Koudi
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 12px">
-                            <i class="bx bx-map" style="color: #219935"></i>
-                            CI,rue 250
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-5 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                      font-size: 12px;
-                    "
-                  >
-                    5000 FCFA
-                  </button>
-                </div>
-              </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
-              >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
-                    <img
-                      src="/public/assets/img/car2.jpg"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Hyundai 2022 </strong>
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Modéle | </strong> Santafé
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Essence | </strong> Automobile
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Immatriculation | </strong> BG 3252
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px">
-                <div class="col-md-7">
-                  <div
-                    class="card mb-3 border-0"
-                    style="max-width: 540px; background: #f3f4f6"
-                  >
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img
-                          src="/public/assets/img/avatars/1.png"
-                          alt
-                          class="w-px-40 h-auto rounded-circle"
-                          style="width: 50px"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 12px">
-                            Koudi
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 12px">
-                            <i class="bx bx-map" style="color: #219935"></i>
-                            CI,rue 250
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-5 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                      font-size: 12px;
-                    "
-                  >
-                    5000 FCFA
-                  </button>
-                </div>
-              </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
-              >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
-                    <img
-                      src="/public/assets/img/car2.jpg"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Hyundai 2022 </strong>
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Modéle | </strong> Santafé
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Essence | </strong> Automobile
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Immatriculation | </strong> BG 3252
+                        <strong>Immatriculation | </strong> {{ vehicule.serie_vehicule }}
                       </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
@@ -655,7 +513,7 @@ onBeforeMount(() => {
               class="card h-100"
               id="compagnie_card"
               style="background: #f3f4f6; box-shadow: none"
-              v-if="index < 4"
+              v-if="companie.offre == 'vip' && index < 4"
             >
               <router-link to="/details">
                 <img
@@ -730,7 +588,7 @@ onBeforeMount(() => {
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col" v-for="(reservation, index) in reservationStore.reservations" :key="index">
+          <div class="col" v-for="(popularDestination, index) in promotionStore.popularDestinations" :key="index">
             <div class="card h-100" id="card_compagnie" v-if="index < 6">
               <div class="row" style="margin: 10px">
                 <div class="col-md-7">
@@ -741,7 +599,7 @@ onBeforeMount(() => {
                     <div class="row g-1">
                       <div class="col-md-4">
                         <img
-                          :src="reservation.client_profil_url"
+                          src=""
                           alt
                           class="w-px-40 h-auto rounded-circle"
                           style="width: 50px"
@@ -750,11 +608,11 @@ onBeforeMount(() => {
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title" style="font-size: 12px">
-                            {{ reservation.nom_client }}
+                            {{ getCompanieById(popularDestination.compagnie_uid).raison_social }}
                           </h5>
                           <p class="card-text mt-2" style="font-size: 12px">
                             <i class="bx bx-map" style="color: #219935"></i>
-                            {{ reservation.lieu_depart }}
+                            {{ getCompanieById(popularDestination.compagnie_uid).adresse }}
                           </p>
                         </div>
                       </div>
@@ -771,7 +629,7 @@ onBeforeMount(() => {
                       font-size: 12px;
                     "
                   >
-                    {{ reservation.montant }} FCFA
+                    {{ popularDestination.montant }} FCFA
                   </button>
                 </div>
               </div>
@@ -795,16 +653,16 @@ onBeforeMount(() => {
                   <div class="col-md-8">
                     <div class="card-body">
                       <p class="card-text" style="font-size: 13px">
-                        <strong>Trajet | </strong>{{ reservation.destination }}
+                        <strong>Trajet | </strong>{{ popularDestination.lieu_depart }} - {{ popularDestination.destination }}
                       </p>
                       <p class="card-text" style="font-size: 13px">
-                        <strong>Escales | </strong> {{ reservation.escale }} 
+                        <strong>Escales | </strong> {{ popularDestination.escale }} 
                       </p>
                       <p class="card-text" style="font-size: 13px">
-                        <strong>Convocation | </strong>{{ reservation.heure_depart }}
+                        <strong>Convocation | </strong>{{ popularDestination.heure_convocation }}
                       </p>
                       <p class="card-text" style="font-size: 13px">
-                        <strong>Jours du voyages |</strong> champ a ajouter dans la table
+                        <strong>Jours du voyages |</strong> {{ popularDestination.jours_voyage }}
                       </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
@@ -823,7 +681,7 @@ onBeforeMount(() => {
         <div class="row">
           <div class="col-12">
             <div class="section-title text-center">
-              <h2>Compagnies de location d'engin populaires</h2>
+              <h2>Compagnies de location d'engins populaires</h2>
               <p>
                 Simplifiez votre trajet en choisissant parmi les compagnies de
                 transport les plus populaires. Voyagez en toute tranquillité
@@ -839,7 +697,7 @@ onBeforeMount(() => {
               class="card h-100"
               id="compagnie_card"
               style="background: #f3f4f6; box-shadow: none"
-              v-if="index < 4"
+              v-if="companie.offre == 'vip' && index < 4"
             >
               <router-link to="/details_location_engin">
                 <img

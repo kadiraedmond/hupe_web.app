@@ -57,7 +57,7 @@
             </router-link>
           </li>
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
-            <select class="form-select1" id="validationCustom04" required>
+            <select class="form-select1 px-3" id="validationCustom04" required>
               <option selected value="">Francais</option>
               <option>Anglais</option>
             </select>
