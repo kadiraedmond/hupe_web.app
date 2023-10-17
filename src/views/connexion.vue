@@ -36,9 +36,9 @@ const logInWithPhoneNumber = async () => {
 
   appVerifier.verify().then(response => {
     if(response) {
-      authStore.authenticate(auth, phoneNum, appVerifier)
       // const confirmationResult = await signInWithPhoneNumber(auth, phoneNum, appVerifier)
     
+      authStore.authenticate(auth, phoneNum, appVerifier)
       router.push('/otp')
 
     }

@@ -7,15 +7,13 @@ export const useAuthStore = defineStore('authStore', {
         confirmationResult: {}
     }),
     getters: {
-        getConfirmationResult() {
-            return this.confirmationResult
-        }
+        // 
     },
     actions: {
         async authenticate(authInstance, phone, verifier) {
             try {
                 this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
-            } catch (error) {
+                } catch (error) {
                console.log(error) 
             }
         },

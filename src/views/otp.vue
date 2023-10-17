@@ -2,6 +2,7 @@
 import { onMounted, ref, defineProps  } from 'vue'
 
 import { useAuthStore } from '@/store/auth.js'
+import router from '@/router/router.js'
 
 const otp1 = ref()
 const otp2 = ref()
@@ -10,23 +11,24 @@ const otp4 = ref()
 const otp5 = ref()
 const otp6 = ref()
 
-const joinedOTP = ref()
+const joinedOTP = ref('')
 
 const authStore = useAuthStore()
 
 const handleOtp = async () => {
-  joinedOTP.value = `${otp1}${otp2}${otp3}${otp4}${otp5}${otp6}`
+  joinedOTP.value = `${otp1.value}${otp2.value}${otp3.value}${otp4.value}${otp5.value}${otp6.value}`
 
   const verificationCode = joinedOTP.value
 
-  const confirmationResult = authStore.getConfirmationResult
-
+  const confirmationResult = authStore.confirmationResult
+  
   const userCredential = await confirmationResult.confirm(verificationCode);
   const user = userCredential.user;
 
   authStore.setUser(user)
 
-  console.log(user)
+  document.querySelector('#otpInputForm').reset()
+  router.push('/dashboard')
 }
 
 </script>
@@ -45,10 +47,10 @@ const handleOtp = async () => {
                   <p>Veuillez saisir le code que nous venons de vous envoyer sur le numéro</p>
                 </div>
                 <div class="col-md-12 mt-4">
-                  <form @submit.prevent="handleOtp"> 
+                  <form id="otpInputForm" @submit.prevent="handleOtp"> 
                     <div class="row d-flex">
                       <div class="col-md-12">
-                        <input type="number" v-model="otp1" id="otp1" name="otp1" class="otp-input" pattern="\d" maxlength="1" required>
+                        <input type="number" v-model="otp1" id="otp1" name="otp1" class="otp-input" pattern="\d" maxlength="1" required autoFocus>
                         <input type="number" v-model="otp2" id="otp2" name="otp2" class="otp-input" pattern="\d" maxlength="1" required>
                         <input type="number" v-model="otp3" id="otp3" name="otp3" class="otp-input" pattern="\d" maxlength="1" required>
                         <input type="number" v-model="otp4" id="otp4" name="otp4" class="otp-input" pattern="\d" maxlength="1" required>
