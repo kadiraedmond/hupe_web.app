@@ -28,6 +28,7 @@ import Partenaire from '../components/view/partenaire.vue';
 import Pclient from '../components/view/client.vue';
 import Otp from '../components/view/otp.vue';
 import Sclient from '../components/view/services_client.vue';
+import Info from '../components/view/infos.vue';
 const routes = [
   {
     path: '/',
@@ -198,6 +199,14 @@ const routes = [
     component: Information,
     
   },
+
+  {
+    path: '/informations',
+    name: 'Info',
+    component: Info,
+    
+  },
+
 
   {
     path: '/service_client',

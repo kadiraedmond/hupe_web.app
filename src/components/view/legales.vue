@@ -5,7 +5,7 @@
   
 
   <main id="main" style="background: rgb(213, 248, 229);">
-    <section id="features" class="features mt-4">
+    <section id="features" class="features">
       <div class="container">
         <div class="row">
             <div class="col-md-4" style="border-right: 1px solid;">
@@ -13,30 +13,30 @@
                     <div class="row ">
                         
                         <div class="col-md-12 mb-3">
-                            <img src="/assets/img/favicon.png" alt="" class="img-fluid"
-                            style="margin-top: -6px; width: 30px;"> 
+                           <router-link to="/"><img src="/assets/img/favicon.png" alt="" class="img-fluid"
+                            style="margin-top: -6px; width: 30px;"> </router-link> 
                         </div>
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 24px;">Centre de confidentialité</h2>
                         </div>
                         <div class="col-md-12 mb-2 text-start">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active  text-start" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Politiques de confidentialité</button>
+                                <button class="nav-link active  text-start" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"> <i class="bx bx-shield"></i> Politiques de confidentialité</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Politique de sécurité</button>
+                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">  <i class="bx bx-shield-alt"></i> Politique de sécurité</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Termes et conditions</button>
+                                <button class="nav-link text-start" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"> <i class="bx bx-globe"></i> Termes et conditions</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Droit d'auteur</button>
+                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"> <i class="bx bx-copyright"></i> Droit d'auteur</button>
                             </li>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Politique de confidentialité</h2>
 
-                                <h2 style="font-size: 24px; font-weight: 600;">Clause de la Politique de confidentialité </h2>
+                                <h2 style="font-size: 20px; font-weight: 600;color:#219935 ">Clause de la Politique de confidentialité </h2>
                             </div>
                             <div class="col-md-12" style="font-size: 15px;">
                                 <p>Dernière mise à jour : 12 octobre 2023 </p>
@@ -129,6 +129,51 @@
 
                                 <h2 style="font-size: 16px; font-weight:700;">Consentement aux modifications</h2>
                                 <p>En continuant à utiliser nos services après toute modification de cette politique de confidentialité, vous consentez aux termes révisés.</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <h2 style="font-size: 20px; font-weight: 600;color:#219935 ">Qu’est-ce qu’une politique de confidentialité  </h2>
+                            </div>
+                            <div class="col-md-12" style="font-size: 15px;">
+                                 
+
+                                 
+                                <P>Une politique de confidentialité, également appelée politique de protection des données ou politique de confidentialité des informations, est un document juridique ou une déclaration qui décrit comment une organisation, une entreprise, ou une application mobile/web collecte, utilise, stocke et protège les informations personnelles des utilisateurs ou des clients. La politique de confidentialité a pour objectif de garantir que les utilisateurs comprennent comment leurs données seront traitées, qu'elles soient collectées en ligne ou hors ligne, et de se conformer aux lois et réglementations relatives à la protection des données.
+                                Les éléments clés d'une politique de confidentialité incluent généralement 
+                                </P>
+                                                                
+                                <h2 style="font-size: 16px; font-weight:700;">Les types de données collectées</h2>
+                                <p>La politique précise les types de données personnelles collectées, tels que les noms, adresses, numéros de téléphone, adresses e-mail, informations de paiement, données de localisation, etc. </p>
+                                  
+                                 <h2 style="font-size: 16px; font-weight:700;">La manière dont les données sont collectées </h2>
+                                <p>Elle explique comment les données sont obtenues, que ce soit par le biais de formulaires en ligne, de cookies, de dispositifs de suivi, d'interactions avec le service client, etc. </p>
+                                 
+
+                                 <h2 style="font-size: 16px; font-weight:700;">L'objectif de la collecte des données</h2>
+                                <p>La politique indique pourquoi les données sont collectées, par exemple, pour fournir des services, améliorer l'expérience de l'utilisateur, communiquer avec les utilisateurs, se conformer aux obligations légales, etc. </p>
+                                  
+
+                                 <h2 style="font-size: 16px; font-weight:700;">Le partage des données</h2>
+                                <p>Elle précise si et comment les données seront partagées avec des tiers, tels que des fournisseurs de services, des partenaires commerciaux ou des organismes gouvernementaux.</p>
+
+                                <h2 style="font-size: 16px; font-weight:700;">La sécurité des données</h2>
+                                <p>La politique de confidentialité décrit les mesures de sécurité mises en place pour protéger les données contre les accès non autorisés, les fuites ou les pertes.</p>
+
+                                <h2 style="font-size: 16px; font-weight:700;">Les droits des utilisateurs</h2>
+                                <p>Elle informe les utilisateurs de leurs droits, tels que le droit d'accès, de rectification, de suppression, de portabilité des données, et le droit de s'opposer au traitement.</p>
+
+
+                                <h2 style="font-size: 16px; font-weight:700;">Consentement</h2>
+                                <p>La politique explique comment le consentement des utilisateurs est obtenu pour collecter et traiter leurs données.</p>
+
+                                 
+                                <h2 style="font-size: 16px; font-weight:700;">Mises à jour de la politique</h2>
+                                <p>Elle précise comment les utilisateurs seront informés des modifications apportées à la politique de confidentialité.</p>
+
+                                 
                             </div>
                         </div>
                     </div>
@@ -354,5 +399,10 @@
     <!-- End #main -->
     
 </template>
-<style>
+<style scoped>
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #fff;
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+}
 </style>

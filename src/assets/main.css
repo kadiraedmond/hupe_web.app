@@ -2007,6 +2007,7 @@ section {
     border-top: 1px solid #DFDFE0;
     padding: 1.8125rem 0;
     background: transparent;
+    color: #219935;
 }
 
 .accordion-button:not(.collapsed) {
@@ -2098,10 +2099,10 @@ section {
 
 .fixe{
   position: fixed;
-    top: 90px;
+    top: 20px;
     /* right: 0; */
     /* left: 0; */
-    z-index: 1030;
+    /* z-index: 1030; */
 }
 
 

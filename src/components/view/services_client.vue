@@ -4,61 +4,68 @@
 <template>
   
 
-  <main id="main" style="background: rgb(213, 248, 229);">
+  <main id="main" style="background: white;">
     <section id="features" class="features">
-      <div class="container">
-        <div class="row">
-            <div class="col-md-4" style="border-right: 1px solid;">
+     <div class="container-fluid">
+        <nav class="navbar bg-light fixed-top" style="background: #219935 !important;">
+        <div class="container">
+            <router-link to="/" class="navbar-brand">
+            <img src="/assets/img/logo2.png" alt="Bootstrap" width="30" height="30"> Services client
+            </router-link> 
+        </div>
+        </nav>
+     </div>
+      <div class="container mt-4">
+        <div class="row" style="margin-top: -22px;">
+            <div class="col-md-3" style="border-right: 1px solid; border-color:#EAEAEA">
                 <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; ">
                     <div class="row ">
                         
-                        <div class="col-md-12 mb-3">
-                            <img src="/assets/img/favicon.png" alt="" class="img-fluid"
-                            style="margin-top: -6px; width: 30px;"> 
-                        </div>
+                         
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 24px;">Services à la clientèle</h2>
                         </div>
                         <div class="col-md-12 mb-2 text-start">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active  text-start" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Support</button>
+                                <button class="nav-link active  text-start" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"> <i class="bx bx-support"></i> Support</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Aide</button>
+                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"> <i class="bx bx-help-circle"></i> Aide</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+                                <button class="nav-link text-start" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"><i class="bx bx-envelope"></i> Contact</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Comdition de partenariat</button>
+                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"><i class="bx bx-handshake"></i> Comdition de partenariat</button>
                             </li>
                         </div>
                     </div>
  
                 </ul>
             </div>
-            <div class="col-md-8" style=" padding: 30px;">
+            <div class="col-md-9" style=" padding: 30px;">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Support HUPE</h2>
+                                <hr>
                                 <p>Bienvenue sur la page de support de HUPE. Nous sommes là pour vous aider à tirer le meilleur parti de notre application. Trouvez ci-dessous les différentes options pour obtenir de l'assistance et des réponses à vos questions. </p>
                             </div>
                             <div class="col-md-12 mt-4" style="font-size: 13px;">
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Centre d'Aide</h5>
-                                        <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. </p>
+                                        <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. Vous y trouverez des réponses à de nombreuses questions fréquentes, des guides détaillés, des tutoriels vidéo et bien plus encore. </p>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <router-link to="/">
@@ -71,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="   border-radius: 15px !important;    background: #EAEAEA !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Messagerie interne </h5>
@@ -88,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="   border-radius: 15px !important; background: #EAEAEA !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Chat en Direct</h5>
@@ -105,7 +112,7 @@
                                     </div>
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="  border-radius: 15px !important;  background: #EAEAEA !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Assistance par E-mail</h5>
@@ -135,14 +142,17 @@
                                             </div>
                                         </button>
                                     </div>
+                                    <div class="col-md-12" style="padding:18px">
+                                        <p style="font-size: 15px;">Si vous avez besoin d'une assistance téléphonique, vous pouvez nous appeler au +225 07 05 87 51 94 Nos agents sont disponibles pendant nos heures d'ouverture de 8h00 à 20h00. Nous sommes là pour répondre à vos questions et résoudre vos problèmes.</p>
+                                    </div>
                                 </div>
                                 <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Centre d'Aide</h5>
-                                        <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. </p>
+                                        <h5 class="card-title">Signalement de Problèmes</h5>
+                                        <p class="card-text">Si vous rencontrez un problème technique ou si vous avez des suggestions pour améliorer notre application, veuillez utiliser notre formulaire de signalement de problèmes. Cela nous permettra de recueillir des informations détaillées pour résoudre le problème plus efficacement. </p>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <router-link to="/">
@@ -155,11 +165,11 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="   border-radius: 15px !important;  background: #EAEAEA !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Messagerie interne </h5>
-                                        <p class="card-text">La messagerie interne pour le support HUPE est une fonctionnalité qui facilite la communication directe entre les utilisateurs de l'application et notre équipe de support client. </p>
+                                        <h5 class="card-title">Assistance pour l'Accessibilité </h5>
+                                        <p class="card-text">Nous sommes déterminés à rendre notre application accessible à tous. Si vous avez des besoins spéciaux en matière d'accessibilité, veuillez nous contacter à support@hupe-africa.com Notre équipe est là pour répondre à toutes vos questions.</p>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <router-link to="/">
@@ -171,40 +181,7 @@
                                     </div>
                                     </div>
                                 </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Chat en Direct</h5>
-                                        <p class="card-text">Pour une assistance immédiate, utilisez notre service de chat en direct. Notre équipe de support est là pour répondre à vos questions en temps réel. Cliquez sur l'icône du chat en bas de l'écran pour démarrer une conversation </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Assistance par E-mail</h5>
-                                        <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
+                                
                                 </div>
                                 <div class="row" style="margin-top: -90px;">
                                     <div class="col-md-12">
@@ -220,6 +197,34 @@
                                         </button>
                                     </div>
                                 </div>
+                                <div class="row mt-4" style="background: white; border-radius: 10px;">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary w-100" id="services_client_btn" style="border:none !important">
+                                            <div class="row">
+                                                <div class="col-md-6 text-start">
+                                                    Twitter
+                                                </div>
+                                                <div class="col-md-6 text-end">
+                                                    <i class="bx bxl-twitter"></i>   <i class='bx bx-chevron-right'></i>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary w-100" id="services_client_btn" style="border: none">
+                                            <div class="row">
+                                                <div class="col-md-6 text-start">
+                                                    Facebook 
+                                                </div>
+                                                <div class="col-md-6 text-end">
+                                                    <i class="bx bxl-facebook"></i>    <i class='bx bx-chevron-right'></i>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -227,13 +232,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Centre d'Aide HUPE</h2>
+                                <hr>
                                 <p>Le Centre d'Aide HUPE est votre guichet unique pour toutes les informations et les ressources dont vous avez besoin pour utiliser pleinement notre application. Notre objectif est de vous offrir une expérience utilisateur fluide et satisfaisante, et le Centre d'Aide est conçu pour y contribuer.</p>
                                 <p>Ce que vous trouverez dans le Centre d'Aide </p>
                             </div>
                             <div class="col-md-12 mt-4" style="font-size: 13px;">
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="  border-radius: 15px !important;  background: #EAEAEA !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Foire Aux Questions (FAQ)</h5>
@@ -267,7 +273,7 @@
                                     </div>
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="  border-radius: 15px !important; background: #EAEAEA !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title"> Tutoriels Vidéo</h5>
@@ -284,7 +290,7 @@
                                     </div>
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style=" background: #EAEAEA !important; border-radius: 15px !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Articles Informatifs</h5>
@@ -317,7 +323,7 @@
                                 </div>
                                 <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="background: #EAEAEA !important; border-radius: 15px !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Personnalisation</h5>
@@ -334,7 +340,7 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style=" background: #EAEAEA !important; border-radius: 15px !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Mises à Jour et Nouveautés</h5>
@@ -351,7 +357,7 @@
                                     </div>
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="  background: #EAEAEA !important; border-radius: 15px !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Ressources d'Accessibilité</h5>
@@ -368,7 +374,7 @@
                                     </div>
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="  background: #EAEAEA !important; border-radius: 15px !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Assistance par E-mail</h5>
@@ -412,13 +418,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3"> Page de Contact HUPE</h2>
+                                <hr>
                                 <p>La page de contact HUPE est votre point de contact direct avec notre équipe de support client. Nous sommes là pour répondre à toutes vos questions, résoudre vos problèmes et vous offrir une assistance personnalisée.</p>
                                 <p>Comment Nous Contacter ?  </p>
                             </div>
                             <div class="col-md-12 mt-4" style="font-size: 13px;">
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="background: #EAEAEA !important; border-radius: 15px !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Assistance par E-mail</h5>
@@ -435,7 +442,7 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style=" background: #EAEAEA !important; border-radius: 15px !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Messagerie Interne </h5>
@@ -486,27 +493,14 @@
                                     </div>
                                 </div> -->
                                 </div>
-                                <div class="row" style="margin-top: -90px;">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-primary w-100" id="services_client_btn">
-                                            <div class="row">
-                                                <div class="col-md-6 text-start">
-                                                    Numéro de Téléphone
-                                                </div>
-                                                <div class="col-md-6 text-end">
-                                                    <i class='bx bx-chevron-right'></i>
-                                                </div>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+                                 
+                                <div class="row row-cols-1 row-cols-md-2 g-4 mt-4" style="margin-top: -128px !important;">
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="background: #EAEAEA !important; border-radius: 15px !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Personnalisation</h5>
-                                        <p class="card-text">Certains utilisateurs ont des besoins spécifiques, c'est pourquoi nous offrons des options de personnalisation, notamment la possibilité d'ajuster la taille du texte, les couleurs de l'interface et le contraste.</p>
+                                        <h5 class="card-title">Assistance pour l'Accessibilité</h5>
+                                        <p class="card-text">Si vous avez des besoins spéciaux en matière d'accessibilité, veuillez nous contacter à support@hupe-africa.com Notre équipe est là pour répondre à toutes vos questions liées à l'accessibilité.</p>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <router-link to="/">
@@ -519,11 +513,11 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
+                                    <div class="card h-75" style="    background: #EAEAEA !important; border-radius: 15px !important;">
                                     <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Mises à Jour et Nouveautés</h5>
-                                        <p class="card-text">Restez à jour avec les dernières améliorations et les nouvelles fonctionnalités de l'application. Nous publions régulièrement des informations sur les mises à jour pour que vous soyez toujours informé.</p>
+                                        <h5 class="card-title">Numéro de Téléphone</h5>
+                                        <p class="card-text">Si vous préférez parler à un membre de notre équipe, vous pouvez nous appeler au [numéro de téléphone de contact]. Nos agents sont disponibles pendant nos heures d'ouverture [heures d'ouverture du support] pour répondre à vos questions et vous aider.</p>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <router-link to="/">
@@ -535,40 +529,7 @@
                                     </div>
                                     </div>
                                 </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Ressources d'Accessibilité</h5>
-                                        <p class="card-text">Si vous avez des besoins spéciaux en matière d'accessibilité, consultez notre section dédiée aux ressources d'accessibilité pour obtenir des informations sur la manière d'utiliser l'application de manière plus conviviale.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Assistance par E-mail</h5>
-                                        <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
+                                 
                                 </div>
                                 <div class="row" style="margin-top: -90px;">
                                     <div class="col-md-12">
@@ -587,9 +548,75 @@
                                     <div class="col-md-12 mt-4">
                                         <p>Remplissez le formulaire ci-dessous pour nous contacter. Nous vous répondrons dans les plus brefs délais.</p>
 
+                                        <form class="row g-3 needs-validation mt-4" novalidate style="    background: #EAEAEA !important;; border-radius: 10px; padding: 15px;">
+                                        <div class="col-md-12">
+                                            <label for="validationCustom01" class="form-label">Nom</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            <div class="valid-feedback">
+                                            Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Adresse email</label>
+                                            <input type="email" class="form-control" id="validationCustom02"  required>
+                                            <div class="valid-feedback">
+                                            Looks good!
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Objet</label>
+                                            <input type="text" class="form-control" id="validationCustom02" required>
+                                            <div class="valid-feedback">
+                                            Looks good!
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                           <label for="validationCustom02" class="form-label">Message</label>
+                                           <textarea type="text" class="form-control" id="validationCustom02"></textarea> 
+                                            <div class="valid-feedback">
+                                            Looks good!
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="col-12">
+                                            <button class="btn btn-primary" style=" background: #219935; border-color: #219935;" type="submit">Envoyer</button>
+                                        </div>
+                                        </form>
+
 
                                     </div>
                                 </div>
+                                <div class="row mt-4" style="background: white; border-radius: 10px;">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary w-100" id="services_client_btn" style="border:none !important">
+                                            <div class="row">
+                                                <div class="col-md-6 text-start">
+                                                    Twitter
+                                                </div>
+                                                <div class="col-md-6 text-end">
+                                                    <i class="bx bxl-twitter"></i>   <i class='bx bx-chevron-right'></i>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary w-100" id="services_client_btn" style="border: none">
+                                            <div class="row">
+                                                <div class="col-md-6 text-start">
+                                                    Facebook 
+                                                </div>
+                                                <div class="col-md-6 text-end">
+                                                    <i class="bx bxl-facebook"></i>    <i class='bx bx-chevron-right'></i>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -675,5 +702,13 @@
     color: #219935;
     height: 45px
 }
+
+ 
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #fff;
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+}
+ 
 
 </style>
