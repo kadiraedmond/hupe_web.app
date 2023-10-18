@@ -3,12 +3,14 @@ import { collection, query, where, getDocs} from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
 
 const reservationColRef = collection(firestoreDb, "reservation");
+const locationVehiculesColRef = collection(firestoreDb, 'location_vehicules')
 
 
 export const useReservationStore = defineStore('reservationStore', {
     state: () => ({
         reservations: [],
-        companieReservations: []
+        companieLocations: [],
+        confirmatedLocations: []
     }),
     getters: {
         async getAllReservations() {
@@ -21,20 +23,16 @@ export const useReservationStore = defineStore('reservationStore', {
 
             return this.reservations
         },
-        async getCompanieReservation(companieId) {
+    },
+    actions: {
+        async setCompanieLocations(companieId) {
             try {
-                
-                const q = query(reservationColRef, where('compagnie_id', "==", `${companieId}`));
+                const q = query(locationVehiculesColRef, where('compagnie_id', "==", `${companieId}`));
                 const snapshot = await getDocs(q);
-                snapshot.docs.forEach((doc) => this.companieReservations.push({ ...doc.data() }));
-    
-                return this.reservations
+                snapshot.docs.forEach((doc) => this.companieLocations.push({ ...doc.data() }))
             } catch (error) {
                 console.log(error)
             }
         }
-    },
-    action: {
-        // 
     }
 })

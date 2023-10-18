@@ -28,7 +28,16 @@ const handleOtp = async () => {
   authStore.setUser(user)
 
   document.querySelector('#otpInputForm').reset()
-  router.push('/dashboard')
+
+  if(user.type_compagnie) {
+    if(user.type_compagnie == 'Location') {
+      router.push('/compte_vehicule')
+    } else if(user.type_compagnie == 'Transport') {
+      router.push('/compte_reservation')
+    }
+  } else {
+    router.push('/compte_client')
+  }
 }
 
 </script>

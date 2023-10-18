@@ -1,49 +1,75 @@
-<script setup>
- 
-</script>
+<script setup></script>
 
 <template>
   <div class="row mt-5">
     <div class="col-md-6"></div>
-       <div class="col-md-6 text-end">
-            <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style=" background-color: #219935; border-color: #219935;">
-           <img
-         src="/public/assets/img/icone/plus.png" class="img-fluid " alt="..."> Ajouter
-        </button>
+    <div class="col-md-6 text-end">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        style="background-color: #219935; border-color: #219935"
+      >
+        <img
+          src="/public/assets/img/icone/plus.png"
+          class="img-fluid"
+          alt="..."
+        />
+        Ajouter
+      </button>
 
-        <!-- Modal -->
-         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une politique</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form class="row g-3 needs-validation text-start" novalidate>
-                               <div class="col-md-12">
-                                <div class="mb-3">
-                                <label class="form-label" for="basic-default-message">Politique</label>
-                                <textarea
-                                  id="summernote"
-                                  class="form-control"
-                                  name="message"
-                                ></textarea>
-                     
-                                </div>
-                               </div>
-                              
-                                <div class="col-12 text-center">
-                                  <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
-                                </div>
-                              </form>
-                            </div>
-                             
-                          </div>
-                        </div>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Ajouter une politique
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form class="row g-3 needs-validation text-start" novalidate>
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <label class="form-label" for="basic-default-message"
+                      >Politique</label
+                    >
+                    <textarea
+                      id="summernote"
+                      class="form-control"
+                      name="message"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="col-12 text-center">
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #219935; border-color: #219935"
+                    type="submit"
+                  >
+                    Enregistrer
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-                    
+        </div>
+      </div>
     </div>
 
     <div class="col-md-12">

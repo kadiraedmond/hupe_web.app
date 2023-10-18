@@ -1,4 +1,16 @@
-<script setup></script>
+<script setup>
+import { auth } from '@/firebase/firebase.js'
+import { signOut } from 'firebase/auth'
+import { useAuthStore } from '@/store/auth.js'
+
+const authStore = useAuthStore()
+
+const logout = async () => {
+  await signOut(auth)
+  authStore.signOut
+}
+
+</script>
 
 <template>
   <header id="header" class="fixed-top">
@@ -64,38 +76,37 @@
           </li>
 
           <li>
-            <router-link to="/connexion" class="nav-link scrollto"
+            <router-link v-if="!authStore.isConnected" to="/connexion" class="nav-link scrollto"
               ><i class="bx bx-user" id="icon_menu"></i> Connexion
             </router-link>
           </li>
           <li class="dropdown">
-            <router-link to="/"
-              ><i class="bx bx-category" id="icon_menu"></i>
+            <router-link to=""
+              ><i class="bx bx-user" id="icon_menu"></i>
               <span>Admin </span> <i class="bi bi-chevron-down"></i
             ></router-link>
             <ul style="background: #219935">
-              <li><router-link to="/">Tableau de bord</router-link></li>
-              <li><router-link to="/">Mon compte</router-link></li>
+              <li><router-link v-if="authStore.isConnected" to="/">Mon compte</router-link></li>
               <li>
                 <router-link to="/compte_vehicule"
                   >Compte location de vehicule</router-link
                 >
               </li>
               <li>
-                <router-link to="/compte_reservation"
+                <router-link v-if="authStore.isConnected && authStore.isCompany" to="/compte_reservation"
                   >Compte reservation de ticket de bus</router-link
                 >
               </li>
               <li>
-                <router-link to="/compte_gros_engin"
+                <router-link v-if="authStore.isConnected && authStore.isCompany" to="/compte_gros_engin"
                   >Compte location de gros engin</router-link
                 >
               </li>
               <li>
-                <router-link to="/compte_achat_engin">Compte vente d'engin </router-link>
+                <router-link v-if="authStore.isConnected && authStore.isCompany" to="/compte_achat_engin">Compte vente d'engin </router-link>
               </li>
-              <li><router-link to="/compte_client">Compte client </router-link></li>
-              <li><router-link to="/vente_immobilier">Déconnexion</router-link></li>
+              <li><router-link v-if="authStore.isConnected" to="/compte_client">Compte client </router-link></li>
+              <li><router-link v-if="authStore.isConnected" to="/" @click="logout">Déconnexion</router-link></li>
             </ul>
           </li>
         </ul>

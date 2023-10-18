@@ -4,7 +4,7 @@ import { firestoreDb } from "@/firebase/firebase.js";
 
 // const reservationColRef = collection(firestoreDb, "reservation");
 const companiesColRef = collection(firestoreDb, "compagnies");
-const companieCarsColRef = collection(firestoreDb, "location_vehicules");
+const companieRentedCarsColRef = collection(firestoreDb, "location_vehicules");
 
 export const useCompanieStore = defineStore('companieStore', {
     state: () => ({
@@ -13,10 +13,12 @@ export const useCompanieStore = defineStore('companieStore', {
         popularLocationCompanies: [],
         transportCompanies: [],
         popularTransportCompanies: [],
-        companieCars: [],
+        companieRentedCars: [],
         companieOneCar: null,
-        companieSubData: [],
-        companie: {}
+        companieCars: [],
+        companieHistory: [],
+        companie: {},
+        totalAmount: 0
     }),
     getters: {
         async getAllCompanies() {
@@ -84,31 +86,19 @@ export const useCompanieStore = defineStore('companieStore', {
 
         async getCompanieRentedCars(companieId) {
             try {
-                const q = query(companieCarsColRef, where('companie_id', '==', `${companieId}`))
+                const q = query(companieRentedCarsColRef, where('companie_id', '==', `${companieId}`))
                 const snapshot = await getDocs(q);
-                snapshot.docs.forEach((doc) => this.companieCars.push(doc.data()))
+                snapshot.docs.forEach((doc) => this.companieRentedCars.push(doc.data()))
 
-                this.companieOneCar = this.companieCars[0]
-                return this.companieCars
+                this.companieOneCar = this.companieRentedCars[0]
+                return this.companieRentedCars
                 } catch (error) {
                 console.log(error);
             }
 
         },
 
-        async getCompanieCars(companieId) {
-            const companieDocRef = doc(firestoreDb, 'compagnies', companieId)
-            const companieSubColRef = collection(companieDocRef, 'vehicules_programmer')
-            
-            try {
-                const snapshot = await getDocs(companieSubColRef);
-                snapshot.docs.forEach((doc) => this.companieSubData.push({ ...doc.data() }));
-
-                return this.companieSubData
-            } catch (error) {
-                console.log(error)
-            }
-        },
+        
 
         async getCompanieById(companieId) {
             try {
@@ -117,13 +107,57 @@ export const useCompanieStore = defineStore('companieStore', {
 
                 if(snapshot.exists()) this.companie = snapshot.data()
 
-                return true
+                return this.companie
             } catch (error) {
                 console.log(error)
             }
         }
     },
     actions: {
-        // 
+        async setCompanieById(companyId) {
+            try {
+                const companieDocRef = doc(firestoreDb, 'compagnies', `${companyId}`)
+                const snapshot = await getDoc(companieDocRef);
+
+                if(snapshot.exists()) this.companie = snapshot.data()
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async setCompanieCars(companieId) {
+            const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
+            const companieSubColRef = collection(companieDocRef, 'vehicules_programmer')
+            
+            try {
+                const snapshot = await getDocs(companieSubColRef);
+                snapshot.docs.forEach((doc) => this.companieCars.push({ ...doc.data() }));
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async setCompanieHistory(companyId) {
+            const companieDocRef = doc(firestoreDb, 'compagnies', `${companyId}`)
+            const companieSubColRef = collection(companieDocRef, 'hystory')
+
+            try {
+                const snapshot = await getDocs(companieSubColRef);
+                snapshot.docs.forEach((doc) => this.companieHistory.push({ ...doc.data() }));
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async setTotalAmount(companyId) {
+            const companieDocRef = doc(firestoreDb, 'compagnies', `${companyId}`)
+            const companieSubColRef = collection(companieDocRef, 'myAccount')
+            const accountDocRef = doc(companieSubColRef, 'account')
+
+            try {
+                const snapshot = await getDoc(accountDocRef);
+
+                if(snapshot.exists()) this.totalAmount = snapshot.data()
+            } catch (error) {
+                console.log(error)
+            }
+        },
     }
 })

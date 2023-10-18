@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { collection, doc, getDocs } from 'firebase/firestore'
+import { collection, doc, query, where, getDocs } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 
 const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
@@ -14,7 +14,8 @@ export const usePromotionStore = defineStore('promotionStore', {
     state: () => ({
         offresVehicules: [],
         popularDestinations: [],
-        popularCars: []
+        popularCars: [],
+        companiePromotionCars: []
     }),
 
     getters: {
@@ -51,6 +52,15 @@ export const usePromotionStore = defineStore('promotionStore', {
     },
 
     actions: {
-        // 
+        async setCompaniePromotionCars(companyieId) {
+            try {
+                const q = query(vehiculeEnPromoColRef, where('compagnie_uid', '==', `${companyieId}`))
+                const snapshots = await getDocs(q)
+
+                snapshots.docs.forEach(doc => this.companiePromotionCars.push(doc.data()))
+            } catch (error) {
+                console.log(error)
+            }
+        }
     }
 })

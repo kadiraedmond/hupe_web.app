@@ -87,7 +87,7 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
-    // meta: { requiresAuth: true, allowedUserType: 'companie' }
+    meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
@@ -128,28 +128,28 @@ const routes = [
     path: '/compte_reservation',
     name: 'Comptes',
     component: Comptes,
-    // meta: { requiresAuth: true, allowedUserType: 'companie' }
+    meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
     path: '/compte_gros_engin',
     name: 'Compt',
     component: Compt,
-    // meta: { requiresAuth: true, allowedUserType: 'companie' }
+    meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
     path: '/compte_client',
     name: 'Client',
     component: Client,
-    // meta: { requiresAuth: true, allowedUserType: 'client' }
+    meta: { requiresAuth: true, allowedUserType: 'client' }
   },
 
   {
     path: '/compte_achat_engin',
     name: 'Comp',
     component: Comp,
-    // meta: { requiresAuth: true, allowedUserType: 'companie' }
+    meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
@@ -174,7 +174,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // Recuperer l'utilisateur connecte de facon reactive
-  const authUser = {}
+  let authUser = {}
   onAuthStateChanged(auth, user => {
     authUser = user
   })

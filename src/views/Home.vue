@@ -1,10 +1,13 @@
 <script setup>
-import { onBeforeMount, onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, computed, ref } from "vue";
 
 import { useCompanieStore } from "@/store/companie.js";
 import { useSlide } from "@/store/slideImages.js";
 import { useReservationStore } from "@/store/reservation.js";
 import { usePromotionStore } from '@/store/promotion.js'
+
+import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
+import { firestoreDb } from "@/firebase/firebase.js";
 
 const companieStore = useCompanieStore();
 const slideStore = useSlide();
@@ -26,22 +29,51 @@ onBeforeMount(() => {
   promotionStore.getPopularCars
 });
 
-import { collection, query, doc, getDoc, where, getDocs} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
+const getCompanyName = async (companyId) => {
+    try {
+        const companieDocRef = doc(firestoreDb, 'compagnies', `${companyId}`)
+        const snapshot = await getDoc(companieDocRef);
 
-async function getCompanieById(companieId) {
-  let companie = {}
-  try {
-      const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
-      const snapshot = await getDoc(companieDocRef);
+        let company = {}
+        if(snapshot.exists()) company = snapshot.data()
 
-      if(snapshot.exists()) companie = snapshot.data()
-
-      return companie
+        console.log(company.raison_social)
+        return company.raison_social
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
 }
+
+const getCompanyAdresse = async (companieId) => {
+    try {
+        const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
+        const snapshot = await getDoc(companieDocRef);
+
+        let company = {}
+        if(snapshot.exists()) company = snapshot.data()
+
+        console.log(company.adresse)
+        return company.adresse
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getCompanyLogo = async (companieId) => {
+    try {
+        const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
+        const snapshot = await getDoc(companieDocRef);
+
+        let company = {}
+        if(snapshot.exists()) company = snapshot.data()
+
+        console.log(company.imageLogoUrl)
+        return company.imageLogoUrl
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 </script>
 
 <template>
@@ -599,7 +631,7 @@ async function getCompanieById(companieId) {
                     <div class="row g-1">
                       <div class="col-md-4">
                         <img
-                          src=""
+                          :src="getCompanyLogo(popularDestination.compagnie_uid)"
                           alt
                           class="w-px-40 h-auto rounded-circle"
                           style="width: 50px"
@@ -608,11 +640,13 @@ async function getCompanieById(companieId) {
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title" style="font-size: 12px">
-                            {{ getCompanieById(popularDestination.compagnie_uid).raison_social }}
+                            <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.raison_social }} -->
+                            {{ getCompanyName(popularDestination.compagnie_uid) }}
                           </h5>
                           <p class="card-text mt-2" style="font-size: 12px">
                             <i class="bx bx-map" style="color: #219935"></i>
-                            {{ getCompanieById(popularDestination.compagnie_uid).adresse }}
+                            <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.adresse }} -->
+                            {{ getCompanyAdresse(popularDestination.compagnie_uid) }}
                           </p>
                         </div>
                       </div>
