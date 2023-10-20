@@ -4,7 +4,7 @@ import { firestoreDb } from "@/firebase/firebase.js";
 
 // const reservationColRef = collection(firestoreDb, "reservation");
 const companiesColRef = collection(firestoreDb, "compagnies");
-const companieRentedCarsColRef = collection(firestoreDb, "location_vehicules");
+const companieRentedCarsColRef = collection(firestoreDb, "location_vehicules")
 
 export const useCompanieStore = defineStore('companieStore', {
     state: () => ({
@@ -17,6 +17,7 @@ export const useCompanieStore = defineStore('companieStore', {
         companieOneCar: null,
         companieCars: [],
         companieHistory: [],
+        companieLocations: [],
         companie: {},
         totalAmount: 0
     }),
@@ -97,21 +98,6 @@ export const useCompanieStore = defineStore('companieStore', {
             }
 
         },
-
-        
-
-        async getCompanieById(companieId) {
-            try {
-                const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
-                const snapshot = await getDoc(companieDocRef);
-
-                if(snapshot.exists()) this.companie = snapshot.data()
-
-                return this.companie
-            } catch (error) {
-                console.log(error)
-            }
-        }
     },
     actions: {
         async setCompanieById(companyId) {
@@ -142,6 +128,15 @@ export const useCompanieStore = defineStore('companieStore', {
             try {
                 const snapshot = await getDocs(companieSubColRef);
                 snapshot.docs.forEach((doc) => this.companieHistory.push({ ...doc.data() }));
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async setCompanieLocations(companieId) {
+            try {
+                const q = query(companieRentedCarsColRef, where('compagnie_id', "==", `${companieId}`));
+                const snapshot = await getDocs(q);
+                snapshot.docs.forEach((doc) => this.companieLocations.push({ ...doc.data() }))
             } catch (error) {
                 console.log(error)
             }

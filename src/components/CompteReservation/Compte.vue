@@ -7,8 +7,8 @@ const companieStore = useCompanieStore()
 const authStore = useAuthStore()
 
 onBeforeMount(() => {
-  companieStore.setCompanieHistory(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
-  companieStore.setTotalAmount(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
+  companieStore.setCompanieHistory(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2')
+  companieStore.setTotalAmount(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2')
 })
 </script>
 

@@ -86,14 +86,14 @@ const logout = async () => {
               <span>Admin </span> <i class="bi bi-chevron-down"></i
             ></router-link>
             <ul style="background: #219935">
-              <li><router-link v-if="authStore.isConnected" to="/">Mon compte</router-link></li>
+              <li><router-link v-if="authStore.isConnected" to="/compte_client">Mon compte</router-link></li>
               <li>
-                <router-link to="/compte_vehicule"
+                <router-link to="/compte_vehicule" v-if="authStore.isConnected && authStore.isCompany"
                   >Compte location de vehicule</router-link
                 >
               </li>
               <li>
-                <router-link v-if="authStore.isConnected && authStore.isCompany" to="/compte_reservation"
+                <router-link to="/compte_reservation"
                   >Compte reservation de ticket de bus</router-link
                 >
               </li>

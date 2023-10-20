@@ -1,0 +1,111 @@
+<script setup>
+import { useDemandeStore } from '@/store/demande.js'
+import { useAuthStore } from '@/store/auth.js'
+import { onBeforeMount, ref } from "vue";
+
+import { collection, doc, getDoc} from "firebase/firestore";
+import { firestoreDb } from "@/firebase/firebase.js";
+
+const demandeStore = useDemandeStore()
+const authStore = useAuthStore()
+
+const usersColRef = collection(firestoreDb, 'users')
+
+
+const userInformations = ref({})
+
+const getClientInformations = async (clientId) => {
+  try {
+      const userDocRef = doc(usersColRef, `${clientId}`)
+      const snapshot = await getDoc(userDocRef);
+
+      if(snapshot.exists()) userInformations.value = snapshot.data()
+  } catch (error) {
+      console.log(error)
+  }
+}
+
+onBeforeMount(() => {
+  demandeStore.setDemandes(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2')
+})
+</script>
+
+<template>
+  <div class="row mt-5">
+    <div class="col-md-6" v-for="(demande, index) in demandeStore.demandes" :key="index">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary w-100 text-start"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal10"
+        style="
+          background: white !important;
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+          border: none;
+        "
+      >
+        <p style="color: #219935">{{ demande.objet }}</p>
+        <p class="text-black">{{ demande.demande }}</p>
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal10"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel10"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                Informations du client
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form class="row g-3">
+                <div class="col-md-12">
+                  <p>client | joe</p>
+                  <p>Adresse | lolkjml</p>
+                  <p>Contact | +000 0000000</p>
+                  <p>Objet | {{ demande.objet }}</p>
+                  <p>Demande | {{ demande.demande }}</p>
+                </div>
+                <div class="col-md-12">
+                  <label for="inputEmail4" class="form-label"
+                    >Entrez votre reponse
+                  </label>
+                  <textarea
+                    class="form-control"
+                    id="validationTextarea"
+                    placeholder="Reponse"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="col-12 text-center">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="background: #219935; border-color: #219935"
+                  >
+                    Repondre
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<style></style>

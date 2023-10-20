@@ -1,9 +1,9 @@
 <script setup>
-import { useCompanieStore } from '@/store/companie.js'
+import { useReservationStore } from '@/store/reservation.js'
 import { useAuthStore } from '@/store/auth.js'
 import { reactive, onBeforeMount, onMounted } from "vue";
 
-const companieStore = useCompanieStore()
+const reservationStore = useReservationStore()
 const authStore = useAuthStore()
 
 let enAttente = reactive({
@@ -32,40 +32,40 @@ let utilisees = reactive({
 })
 
 const updateReservationsDashboard = () => {
-  companieStore.companieLocations.forEach(location => {
-    if(location.status == 'En attente') {
+  reservationStore.companieReservations.forEach(reservation => {
+    if(reservation.status == 'En attente') {
       enAttente.totalNumber++
-      enAttente.totalPrice += Number(location.montant)
+      enAttente.totalPrice += Number(reservation.montant)
     }
     
-    else if(location.status == 'Validé') {
+    else if(reservation.status == 'Validé') {
       utilisees.totalNumber++
-      utilisees.totalPrice += Number(location.montant)
+      utilisees.totalPrice += Number(reservation.montant)
     }
     
-    else if(location.status == 'Confirmé') {
+    else if(reservation.status == 'Confirmé') {
       confirmees.totalNumber++
-      confirmees.totalPrice += Number(location.montant)
+      confirmees.totalPrice += Number(reservation.montant)
     }
     
-    else if(location.status == 'Annuler') {
+    else if(reservation.status == 'Annuler') {
       annulees.totalNumber++
-      annulees.totalPrice += Number(location.montant)
+      annulees.totalPrice += Number(reservation.montant)
     }
     
-    else if(location.status == 'Reporté') {
+    else if(reservation.status == 'Reporté') {
       reportees.totalNumber++
-      reportees.totalPrice += Number(location.montant)
+      reportees.totalPrice += Number(reservation.montant)
     }
     
-    else if(location.status == 'Utilisé') {
+    else if(reservation.status == 'Utilisé') {
       utilisees.totalNumber++
-      utilisees.totalPrice += Number(location.montant)
+      utilisees.totalPrice += Number(reservation.montant)
     }
   })
 }
 onBeforeMount(async () => {
-  await companieStore.setCompanieLocations(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
+  await reservationStore.setCompanieReservations(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2')
   updateReservationsDashboard()
 })
 
@@ -110,7 +110,7 @@ onBeforeMount(async () => {
                           >
                             {{ enAttente.totalNumber }}
                           </button>
-                          Location en attente
+                          Tickets en attente
                         </p>
                       </div>
                     </div>
@@ -154,7 +154,7 @@ onBeforeMount(async () => {
                           >
                             {{ valides.totalNumber }}
                           </button>
-                          Location validés
+                          Tickets validés
                         </p>
                       </div>
                     </div>
@@ -198,7 +198,7 @@ onBeforeMount(async () => {
                           >
                             {{ confirmees.totalNumber }}
                           </button>
-                          Location confirmés
+                          Tickets confirmés
                         </p>
                       </div>
                     </div>
@@ -242,7 +242,7 @@ onBeforeMount(async () => {
                           >
                             {{ annulees.totalNumber }}
                           </button>
-                          Location annulés
+                          Tickets annulés
                         </p>
                       </div>
                     </div>
@@ -286,7 +286,7 @@ onBeforeMount(async () => {
                           >
                             {{ reportees.totalNumber }}
                           </button>
-                          Location reportés
+                          Tickets reportés
                         </p>
                       </div>
                     </div>
@@ -330,7 +330,7 @@ onBeforeMount(async () => {
                           >
                             {{ utilisees.totalNumber }}
                           </button>
-                          Location utilisés
+                          Tickets utilisés
                         </p>
                       </div>
                     </div>
@@ -352,7 +352,7 @@ onBeforeMount(async () => {
           <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
-                <div class="col-md-6" v-for="(location, index) in companieStore.companieLocations" :key="index">
+                <div class="col-md-6" v-for="(reservation, index) in reservationStore.companieReservations" :key="index">
                   <div
                     class="accordion accordion-flush"
                     id="accordionFlushExample"
@@ -372,12 +372,12 @@ onBeforeMount(async () => {
                             <div class="col-md-6">
                               <div
                                 class="card mb-3 border-0"
-                                style="max-width: 540px; background: white"
+                                style="max-width: 540px; background: #fafafa"
                               >
                                 <div class="row g-1">
                                   <div class="col-md-4">
                                     <img
-                                      :src="location.client_profil_url"
+                                      :src="reservation.client_profil_url"
                                       alt
                                       class="w-px-40 h-auto rounded-circle"
                                       style="width: 50px"
@@ -389,7 +389,7 @@ onBeforeMount(async () => {
                                         class="card-title"
                                         style="font-size: 12px"
                                       >
-                                        {{ location.nom_client }}
+                                        {{ reservation.nom_client }}
                                       </h5>
                                       <p
                                         class="card-text mt-2"
@@ -417,7 +417,7 @@ onBeforeMount(async () => {
                                       color: rgb(247 127 0);
                                     "
                                   >
-                                    {{ location.status }}
+                                    {{ reservation.status }}
                                   </h6>
                                 </div>
                                 <div class="col-8">
@@ -430,7 +430,7 @@ onBeforeMount(async () => {
                                       font-size: 13px;
                                     "
                                   >
-                                    {{ location.montant }} FCFA
+                                    {{ reservation.montant }} FCFA
                                   </button>
                                 </div>
                               </div>
@@ -475,8 +475,7 @@ onBeforeMount(async () => {
                                         margin-top: -15px;
                                       "
                                     >
-                                      Il y a environ un jour
-                                      <br />
+                                      Il y a environ un jour <br />
                                       <strong> T22356_1253523 </strong>
                                     </p>
                                     <hr />
@@ -489,8 +488,7 @@ onBeforeMount(async () => {
                                         margin-bottom: -8px;
                                       "
                                     >
-                                      <strong>{{ location.vehicule }} </strong> |
-                                      <strong> {{ location.modele }} </strong>
+                                      Lieu de départ | <strong> {{ reservation.lieu_depart }} </strong>
                                     </p>
                                     <hr />
                                     <p
@@ -501,7 +499,7 @@ onBeforeMount(async () => {
                                         margin-bottom: -8px;
                                       "
                                     >
-                                      {{ location.moteur }} | {{ location.boite }} | {{ location.plaque_vehicule }}
+                                      Déstinations | <strong>{{ reservation.destination }} </strong>
                                     </p>
                                     <hr />
                                     <p
@@ -512,27 +510,15 @@ onBeforeMount(async () => {
                                         margin-bottom: -8px;
                                       "
                                     >
-                                      chauffeur |
-                                      <strong>{{ location.chauffeur }} </strong>
-                                    </p>
-                                    <hr />
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
-                                      "
-                                    >
-                                      Intérieur |
-                                      <strong>{{ location.interieurPays }} </strong>
+                                      Heure de départ |
+                                      <strong>{{ reservation.heure_depart }} </strong>
                                     </p>
                                     <hr />
                                   </div>
                                 </div>
                                 <div class="col-md-6">
                                   <img
-                                    :src="location.vehicule_image_url"
+                                    src="/public/assets/img/car2.jpg"
                                     class="img-fluid rounded-start h-100"
                                     alt="..."
                                     style="height: 85% !important"
@@ -548,10 +534,7 @@ onBeforeMount(async () => {
                                         margin-bottom: -8px;
                                       "
                                     >
-                                      Retrait |
-                                      <strong>{{ location.date_retrait }} </strong>
-                                      |
-                                      <strong>{{ location.heure_retrait }}</strong>
+                                      Convocation | <strong>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</strong>
                                     </p>
 
                                     <hr />
@@ -563,8 +546,7 @@ onBeforeMount(async () => {
                                         margin-bottom: -8px;
                                       "
                                     >
-                                      Retour |
-                                      <strong>{{ location.date_retour }} </strong>
+                                      Escale | <strong>{{ reservation.escale }} </strong>
                                     </p>
                                     <hr />
 
@@ -576,8 +558,7 @@ onBeforeMount(async () => {
                                         margin-bottom: -8px;
                                       "
                                     >
-                                      Nombres de jours de location |
-                                      <strong>5 jours</strong>
+                                      Jours de voyages | <strong>{{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</strong>
                                     </p>
                                   </div>
                                 </div>

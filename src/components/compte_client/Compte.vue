@@ -1,14 +1,14 @@
 <script setup>
-import { useCompanieStore } from '@/store/companie.js'
+import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount } from "vue"
 
-const companieStore = useCompanieStore()
+const userStore = useUserStore()
 const authStore = useAuthStore()
 
 onBeforeMount(() => {
-  companieStore.setCompanieHistory(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
-  companieStore.setTotalAmount(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
+  userStore.setUserHistory(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2')
+  userStore.setTotalAmount(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2')
 })
 </script>
 
@@ -22,10 +22,10 @@ onBeforeMount(() => {
         <div class="col-md-6">
           <div class="row mb-4">
             <div class="col-md-6">
-              <p><strong> Solde |</strong> {{ companieStore.totalAmount.solde }}</p>
+              <p><strong> Solde |</strong> {{ userStore.totalAmount.solde }}</p>
             </div>
             <div class="col-md-6 text-end">
-              <router-link to="'/formulaire_reservation'" id="a_compagnie">
+              <router-link to="/formulaire_reservation" id="a_compagnie">
                 <button
                   class="btn btn-primary"
                   style="
@@ -47,7 +47,7 @@ onBeforeMount(() => {
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-md-6" v-for="(history, index) in companieStore.companieHistory" :key="index">
+        <div class="col-md-6" v-for="(history, index) in userStore.userHistory" :key="index">
           <div class="row">
             <div
               class="col-md-12 mb-4"
@@ -62,7 +62,7 @@ onBeforeMount(() => {
                 <div class="col-md-4">
                   <p>
                     <img src="/public/assets/img/icone/calendar.png" alt="" />
-                    {{ history.date_retrait }}
+                    {{ history.date }}
                   </p>
                 </div>
               </div>
@@ -70,10 +70,10 @@ onBeforeMount(() => {
               <div class="row mb-2">
                 <div class="col-md-8">
                   <p>
-                    Montant |
+                    Topic |
                     <strong>
                       <img src="/public/assets/img/icone/circle.png" alt="" />
-                      {{ history.montantVerser }} FCFA</strong
+                      {{ history.topic }}</strong
                     >
                   </p>
                 </div>

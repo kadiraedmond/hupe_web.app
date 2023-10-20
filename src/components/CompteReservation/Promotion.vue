@@ -9,8 +9,7 @@ const promotionStore = usePromotionStore()
 const authStore = useAuthStore()
 
 onBeforeMount(() => {
-  companieStore.setCompanieCars(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2') // authStore.user.uid
-  promotionStore.setCompaniePromotionCars(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
+  promotionStore.setCompaniePromotionCars(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2')
 })
 
 </script>

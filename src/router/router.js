@@ -128,7 +128,7 @@ const routes = [
     path: '/compte_reservation',
     name: 'Comptes',
     component: Comptes,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
@@ -142,7 +142,7 @@ const routes = [
     path: '/compte_client',
     name: 'Client',
     component: Client,
-    meta: { requiresAuth: true, allowedUserType: 'client' }
+    // meta: { requiresAuth: true, allowedUserType: 'client' }
   },
 
   {
