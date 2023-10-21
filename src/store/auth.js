@@ -5,7 +5,10 @@ export const useAuthStore = defineStore('authStore', {
     state: () => ({
         user: {},
         isConnected: false,
-        isCompany: false,
+        isLocationCompany: false,
+        isReservationCompany: false,
+        isBigEnginsCompany: false,
+        isCarsSellingCompany: false,
         confirmationResult: {}
     }),
     getters: {
@@ -22,12 +25,17 @@ export const useAuthStore = defineStore('authStore', {
         setUser(user) {
             this.user = user
             this.isConnected = true
-            if(user.raison_social) this.isCompany = true
+            if(user.type_compagnie == 'Transport') {
+                this.isReservationCompany = true
+            } else if(user.type_compagnie == 'Location') {
+                this.isLocationCompany = true
+            }
         },
         signOut() {
             this.user = {}
             this.isConnected = false
-            this.isCompany = false
+            this.isLocationCompany = false
+            this.isReservationCompany = false
         }
     }
 })

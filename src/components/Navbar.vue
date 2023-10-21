@@ -82,30 +82,32 @@ const logout = async () => {
           </li>
           <li class="dropdown">
             <router-link to=""
+              v-if="authStore.isConnected"
               ><i class="bx bx-user" id="icon_menu"></i>
-              <span>Admin </span> <i class="bi bi-chevron-down"></i
+              <span>
+                {{ authStore.user.raison_social ? authStore.user.raison_social : authStore.user.username }} 
+              </span> <i class="bi bi-chevron-down"></i
             ></router-link>
             <ul style="background: #219935">
-              <li><router-link v-if="authStore.isConnected" to="/compte_client">Mon compte</router-link></li>
               <li>
-                <router-link to="/compte_vehicule" v-if="authStore.isConnected && authStore.isCompany"
-                  >Compte location de vehicule</router-link
+                <router-link to="/compte_vehicule" v-if="authStore.isConnected && authStore.isLocationCompany"
+                  >Compte location de vehicules</router-link
                 >
               </li>
               <li>
-                <router-link to="/compte_reservation"
+                <router-link to="/compte_reservation" v-if="authStore.isConnected && authStore.isReservationCompany"
                   >Compte reservation de ticket de bus</router-link
                 >
               </li>
               <li>
-                <router-link v-if="authStore.isConnected && authStore.isCompany" to="/compte_gros_engin"
-                  >Compte location de gros engin</router-link
+                <router-link v-if="authStore.isConnected && authStore.isBigEnginsCompany" to="/compte_gros_engin"
+                  >Compte location de gros engins</router-link
                 >
               </li>
               <li>
-                <router-link v-if="authStore.isConnected && authStore.isCompany" to="/compte_achat_engin">Compte vente d'engin </router-link>
+                <router-link v-if="authStore.isConnected && authStore.isCarsSellingCompany" to="/compte_achat_engin">Compte vente d'engins </router-link>
               </li>
-              <li><router-link v-if="authStore.isConnected" to="/compte_client">Compte client </router-link></li>
+              <li><router-link v-if="authStore.isConnected" to="/compte_client">Mon compte </router-link></li>
               <li><router-link v-if="authStore.isConnected" to="/" @click="logout">Déconnexion</router-link></li>
             </ul>
           </li>
