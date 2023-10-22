@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, onMounted, computed, ref } from "vue";
+import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
 
 import { useCompanieStore } from "@/store/companie.js";
 import { useSlide } from "@/store/slideImages.js";
@@ -28,51 +28,6 @@ onBeforeMount(() => {
   promotionStore.getPopularDestinations
   promotionStore.getPopularCars
 });
-
-const getCompanyName = async (companyId) => {
-    try {
-        const companieDocRef = doc(firestoreDb, 'compagnies', `${companyId}`)
-        const snapshot = await getDoc(companieDocRef);
-
-        let company = {}
-        if(snapshot.exists()) company = snapshot.data()
-
-        console.log(company.raison_social)
-        return company.raison_social
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-const getCompanyAdresse = async (companieId) => {
-    try {
-        const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
-        const snapshot = await getDoc(companieDocRef);
-
-        let company = {}
-        if(snapshot.exists()) company = snapshot.data()
-
-        console.log(company.adresse)
-        return company.adresse
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-const getCompanyLogo = async (companieId) => {
-    try {
-        const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
-        const snapshot = await getDoc(companieDocRef);
-
-        let company = {}
-        if(snapshot.exists()) company = snapshot.data()
-
-        console.log(company.imageLogoUrl)
-        return company.imageLogoUrl
-    } catch (error) {
-        console.log(error)
-    }
-}
 
 </script>
 
@@ -631,7 +586,7 @@ const getCompanyLogo = async (companieId) => {
                     <div class="row g-1">
                       <div class="col-md-4">
                         <img
-                          :src="getCompanyLogo(popularDestination.compagnie_uid)"
+                          :src="popularDestination.companieInfos.imageLogoUrl"
                           alt
                           class="w-px-40 h-auto rounded-circle"
                           style="width: 50px"
@@ -641,12 +596,12 @@ const getCompanyLogo = async (companieId) => {
                         <div class="card-body">
                           <h5 class="card-title" style="font-size: 12px">
                             <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.raison_social }} -->
-                            {{ getCompanyName(popularDestination.compagnie_uid) }}
+                            {{ popularDestination.companieInfos.raison_social }}
                           </h5>
                           <p class="card-text mt-2" style="font-size: 12px">
                             <i class="bx bx-map" style="color: #219935"></i>
                             <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.adresse }} -->
-                            {{ getCompanyAdresse(popularDestination.compagnie_uid) }}
+                            {{ popularDestination.companieInfos.adresse }}
                           </p>
                         </div>
                       </div>

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { collection, doc, query, where, getDocs } from 'firebase/firestore'
+import { collection, doc, query, where, getDoc, getDocs } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 
 const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
@@ -32,9 +32,18 @@ export const usePromotionStore = defineStore('promotionStore', {
         async getPopularDestinations() {
             try {
                 const snapshots = await getDocs(programmeEnAvantColRef)
-                snapshots.docs.forEach(doc => this.popularDestinations.push(doc.data()))
+                for(let i = 0; i < snapshots.docs.length; i++) {
+                    const programData = snapshots.docs[i].data()
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let company = {}
+                    if(snapshot.exists()) company = snapshot.data()
+                    this.popularDestinations.push({ ...programData, companieInfos: company })
 
-                return this.popularDestinations
+                }
+                
+                console.log(this.popularDestinations)
             } catch (error) {
                 console.log(error)
             }
