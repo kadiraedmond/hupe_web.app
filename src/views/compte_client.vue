@@ -1,7 +1,7 @@
 <script setup>
 import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
-import { onBeforeMount } from "vue";
+import { onBeforeMount, ref } from "vue";
 
 import Location from '@/components/compte_client/Location.vue'
 import Reservation from '@/components/compte_client/Reservation.vue'
@@ -11,6 +11,9 @@ import Apropos from '@/components/compte_client/Apropos.vue'
 import Compte from '@/components/compte_client/Compte.vue'
 import Post from '@/components/compte_client/Post.vue'
 
+import { addDoc, collection } from 'firebase/firestore'
+import { firestoreDb } from '@/firebase/firebase.js'
+
 const userStore = useUserStore()
 const authStore = useAuthStore()
 
@@ -18,6 +21,34 @@ onBeforeMount(async () => {
   userStore.setUser(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2')
 
 });
+
+const service = ref('')
+const object = ref('')
+const post = ref('')
+
+const clientPublicationColRef = collection(firestoreDb, 'client_publication')
+
+const submitPost = async () => {
+  const newData = {
+    client_id: authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2',
+    createdAt: new Date(),
+    demande: post.value,
+    lecteurs: [],
+    objet: object.value,
+    service: service.value,
+    status: 'En attente'
+  }
+
+  try {
+    const addedDoc = await addDoc(clientPublicationColRef, newData)
+    
+    if(addedDoc) console.log('Document added successfull')
+  } catch (error) {
+    console.log(error)
+  }
+
+  document.querySelector('#postForm').reset()
+}
 
 
 </script>
@@ -211,8 +242,10 @@ onBeforeMount(async () => {
                           </div>
                           <div class="modal-body">
                             <form
+                              id="postForm"
                               class="row g-3 needs-validation text-start"
                               novalidate
+                              @submit.prevent="submitPost"
                             >
                               <div class="col-md-12">
                                 <label
@@ -223,18 +256,19 @@ onBeforeMount(async () => {
                                 <select
                                   class="form-select"
                                   id="validationDefault04"
+                                  v-model="service"
                                   required
                                 >
-                                  <option selected disabled value="">
+                                  <option selected value="Location de véhicules">
                                     Location de véhicules
                                   </option>
-                                  <option value="">
-                                    Réservation de ticket de bus
+                                  <option value="Réservation de tickets de bus">
+                                    Réservation de tickets de bus
                                   </option>
-                                  <option value="">
-                                    Location de gros engin
+                                  <option value="Location de gros engins">
+                                    Location de gros engins
                                   </option>
-                                  <option value="">Vente d'engin</option>
+                                  <option value="Vente d'engins">Vente d'engins</option>
                                 </select>
                               </div>
                               <div class="col-md-12">
@@ -247,6 +281,7 @@ onBeforeMount(async () => {
                                   type="text"
                                   class="form-control"
                                   id="validationCustom02"
+                                  v-model="object"
                                   required
                                 ></textarea>
                               </div>
@@ -261,6 +296,7 @@ onBeforeMount(async () => {
                                   type="text"
                                   class="form-control"
                                   id="validationCustom02"
+                                  v-model="post"
                                   required
                                   style="height: 130px"
                                 ></textarea>
