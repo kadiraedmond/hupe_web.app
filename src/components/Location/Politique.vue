@@ -7,7 +7,7 @@
       <!-- Button trigger modal -->
       <button
         type="button"
-        class="btn btn-primary"
+        class="btn btn-primary mb-3"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         style="background-color: #219935; border-color: #219935"

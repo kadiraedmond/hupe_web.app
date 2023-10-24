@@ -7,8 +7,8 @@ const userStore = useUserStore()
 const authStore = useAuthStore()
 
 onBeforeMount(() => {
-  userStore.setUserHistory(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2')
-  userStore.setTotalAmount(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2')
+  userStore.setUserHistory(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+  userStore.setTotalAmount(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
 })
 </script>
 
@@ -39,7 +39,7 @@ onBeforeMount(() => {
                     class="img-fluid"
                     alt="..."
                   />
-                  Demander un retrait
+                  Recharger
                 </button>
               </router-link>
             </div>

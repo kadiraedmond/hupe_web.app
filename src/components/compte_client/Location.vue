@@ -68,7 +68,7 @@ const userStore = useUserStore();
 const authStore = useAuthStore();
 
 onBeforeMount(async () => {
-  await userStore.setLocationVehicule(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2')
+  await userStore.setLocationVehicule(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
 
   updateReservationsDashboard(userStore.locationVehicules)
 });

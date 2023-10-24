@@ -7,19 +7,19 @@ const demandeStore = useDemandeStore()
 const authStore = useAuthStore()
 
 onBeforeMount(() => {
-    demandeStore.setPosts(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2')
+    demandeStore.setPosts(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
 })
 </script>
 
 <template>
   <div class="row mt-5">
-    <div class="col-md-6" v-for="(post, index) in demandeStore.posts" :key="index">
+    <div class="col-md-6" v-for="(post, postIndex) in demandeStore.posts" :key="postIndex">
       <!-- Button trigger modal -->
       <button
         type="button"
         class="btn btn-primary w-100 text-start"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal10"
+        :data-bs-target="'#exampleModal10' + postIndex"
         style="
           background: white !important;
           box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -32,8 +32,10 @@ onBeforeMount(() => {
             <p class="text-black">{{ post.demande }}</p>
           </div>
           <div class="col-6 text-end">
-            <p class="text-black">Il y a environ 5 minute</p>
-            <p class="text-black">O reponse</p>
+            <p class="text-black">Il y a environ 5 minutes</p>
+            <p class="text-black">
+              {{ post.responses.length }} {{ post.responses.length === 0 ? 'réponses' : post.responses.length === 1 ? 'réponse' : 'réponses' }}
+            </p>
           </div>
         </div>
       </button>
@@ -41,16 +43,17 @@ onBeforeMount(() => {
       <!-- Modal -->
       <div
         class="modal fade"
-        id="exampleModal10"
+        :id="'exampleModal10' + postIndex"
         tabindex="-1"
         aria-labelledby="exampleModalLabel10"
         aria-hidden="true"
+        v-for="(response, responseIndex) in post.responses" :key="responseIndex"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                Reponses des compagnies
+                Réponses des compagnies
               </h1>
               <button
                 type="button"
@@ -72,14 +75,14 @@ onBeforeMount(() => {
                           <div class="row g-1">
                             <div class="col-md-12 d-flex">
                               <img
-                                src="/public/assets/img/avatars/1.png"
+                                :src="response.companyInfos.imageLogoUrl"
                                 alt
                                 class="w-px-40 h-auto rounded-circle"
                                 style="width: 50px"
                               />
                               <div class="card-body">
                                 <h5 class="card-title" style="font-size: 12px">
-                                  Koudi
+                                  {{ response.companyInfos.raison_social }}
                                 </h5>
                               </div>
                             </div>
@@ -88,76 +91,10 @@ onBeforeMount(() => {
                       </div>
                     </div>
                   </div>
+                  Votre Demande : <p class="text-black">{{ post.demande }}</p>
+                  Réponse : 
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">loren ipsun dolor</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-md-12 mb-3">
-                <div class="card w-100">
-                  <div class="card-header">
-                    <div class="row w-100" style="background: transparent">
-                      <div class="col-md-12">
-                        <div
-                          class="card mb-3 border-0"
-                          style="background: transparent"
-                        >
-                          <div class="row g-1">
-                            <div class="col-md-12 d-flex">
-                              <img
-                                src="/public/assets/img/avatars/1.png"
-                                alt
-                                class="w-px-40 h-auto rounded-circle"
-                                style="width: 50px"
-                              />
-                              <div class="card-body">
-                                <h5 class="card-title" style="font-size: 12px">
-                                  Koudi
-                                </h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">loren ipsun dolor</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-md-12 mb-3">
-                <div class="card w-100">
-                  <div class="card-header">
-                    <div class="row w-100" style="background: transparent">
-                      <div class="col-md-12">
-                        <div
-                          class="card mb-3 border-0"
-                          style="background: transparent"
-                        >
-                          <div class="row g-1">
-                            <div class="col-md-12 d-flex">
-                              <img
-                                src="/public/assets/img/avatars/1.png"
-                                alt
-                                class="w-px-40 h-auto rounded-circle"
-                                style="width: 50px"
-                              />
-                              <div class="card-body">
-                                <h5 class="card-title" style="font-size: 12px">
-                                  Koudi
-                                </h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">loren ipsun dolor</li>
+                    <li class="list-group-item">{{ response.reponse }}</li>
                   </ul>
                 </div>
               </div>

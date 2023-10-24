@@ -26,13 +26,13 @@ const getClientInformations = async (clientId) => {
 }
 
 onBeforeMount(() => {
-  demandeStore.setDemandes(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
+  demandeStore.setLocationDemandes()
 })
 </script>
 
 <template>
   <div class="row mt-5">
-    <div class="col-md-6" v-for="(demande, index) in demandeStore.demandes" :key="index">
+    <div class="col-md-6 my-1" v-for="(demande, index) in demandeStore.locationDemandes" :key="index">
       <!-- Button trigger modal -->
       <button
         type="button"
@@ -73,9 +73,9 @@ onBeforeMount(() => {
             <div class="modal-body">
               <form class="row g-3">
                 <div class="col-md-12">
-                  <p>client | joe</p>
-                  <p>Adresse | lolkjml</p>
-                  <p>Contact | +000 0000000</p>
+                  <p>client | {{ demande.userInfos.lastName }} {{ demande.userInfos.firstName }} </p>
+                  <p>Adresse | {{ demande.userInfos.addresse }}</p>
+                  <p>Contact | {{ demande.userInfos.telephone }}</p>
                   <p>Objet | {{ demande.objet }}</p>
                   <p>Demande | {{ demande.demande }}</p>
                 </div>

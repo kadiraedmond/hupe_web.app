@@ -110,7 +110,7 @@ onBeforeMount(() => {
                   aria-controls="profile-tab-pane"
                   aria-selected="false"
                 >
-                  Promotion
+                  Promotions
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -138,7 +138,7 @@ onBeforeMount(() => {
                   aria-controls="demande-tab-pane"
                   aria-selected="false"
                 >
-                  Demande
+                  Demandes
                 </button>
               </li>
               <li class="nav-item" role="presentation">

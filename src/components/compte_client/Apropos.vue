@@ -7,7 +7,7 @@ const userStore = useUserStore()
 const authStore = useAuthStore()
 
 onBeforeMount(() => {
-  userStore.setUser(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2') // authStore.user.uid
+  userStore.setUser(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2') // authStore.user.uid
 
 })
 </script>
