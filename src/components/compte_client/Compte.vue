@@ -10,6 +10,15 @@ onBeforeMount(() => {
   userStore.setUserHistory(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
   userStore.setTotalAmount(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
 })
+
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
 </script>
 
 <template>
@@ -62,7 +71,7 @@ onBeforeMount(() => {
                 <div class="col-md-4">
                   <p>
                     <img src="/public/assets/img/icone/calendar.png" alt="" />
-                    {{ history.date }}
+                    {{ new Intl.DateTimeFormat(undefined, options).format(history.date) }}
                   </p>
                 </div>
               </div>
