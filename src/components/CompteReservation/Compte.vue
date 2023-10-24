@@ -6,9 +6,10 @@ import { onBeforeMount } from "vue"
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
 
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  companieStore.setCompanieHistory(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2')
-  companieStore.setTotalAmount(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2')
+  companieStore.setCompanieHistory(savedUser.uid || authStore.user.uid)
+  companieStore.setTotalAmount(savedUser.uid || authStore.user.uid)
 })
 </script>
 

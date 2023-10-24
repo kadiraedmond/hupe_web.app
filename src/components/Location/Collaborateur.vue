@@ -6,9 +6,9 @@ import { onBeforeMount } from 'vue'
 const scannerStore = useScannerStore()
 const authStore = useAuthStore()
 
-
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  scannerStore.setCompanyScanners(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
+  scannerStore.setCompanyScanners(savedUser.uid || authStore.user.uid)
 })
 </script>
 

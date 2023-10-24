@@ -65,10 +65,11 @@ const updateReservationsDashboard = (data) => {
 }
 
 const userStore = useUserStore();
-const authStore = useAuthStore();
+const authStore = useAuthStore()
 
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(async () => {
-  await userStore.setReservationTickets(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2')
+  await userStore.setReservationTickets(savedUser.uid || authStore.user.uid)
 
   updateReservationsDashboard(userStore.reservationTickets)
 });

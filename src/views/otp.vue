@@ -26,6 +26,7 @@ const handleOtp = async () => {
   const user = userCredential.user;
 
   authStore.setUser(user)
+  localStorage.setItem('user', JSON.stringify(user))
 
   document.querySelector('#otpInputForm').reset()
 
@@ -59,7 +60,7 @@ const handleOtp = async () => {
                   <form id="otpInputForm" @submit.prevent="handleOtp"> 
                     <div class="row d-flex">
                       <div class="col-md-12">
-                        <input type="number" v-model="otp1" id="otp1" name="otp1" class="otp-input" pattern="\d" maxlength="1" required autoFocus>
+                        <input type="number" v-model="otp1" id="otp1" name="otp1" class="otp-input" pattern="\d" maxlength="1" required autofocus>
                         <input type="number" v-model="otp2" id="otp2" name="otp2" class="otp-input" pattern="\d" maxlength="1" required>
                         <input type="number" v-model="otp3" id="otp3" name="otp3" class="otp-input" pattern="\d" maxlength="1" required>
                         <input type="number" v-model="otp4" id="otp4" name="otp4" class="otp-input" pattern="\d" maxlength="1" required>

@@ -8,8 +8,9 @@ const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 const authStore = useAuthStore()
 
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  promotionStore.setCompaniePromotionCars(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2')
+  promotionStore.setCompaniePromotionCars(savedUser.uid || authStore.user.uid)
 })
 
 </script>

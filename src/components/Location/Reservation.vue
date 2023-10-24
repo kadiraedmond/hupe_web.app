@@ -64,8 +64,9 @@ const updateReservationsDashboard = () => {
     }
   })
 }
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(async () => {
-  await companieStore.setCompanieLocations(authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
+  await companieStore.setCompanieLocations(savedUser.uid || authStore.user.uid)
   updateReservationsDashboard()
 })
 

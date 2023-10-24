@@ -6,8 +6,9 @@ import { onBeforeMount } from "vue";
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
 
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  companieStore.setCompanieById(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2') // authStore.user.uid
+  companieStore.setCompanieById(savedUser.uid || authStore.user.uid) // authStore.user.uid
 
 })
 </script>
