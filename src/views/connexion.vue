@@ -1,7 +1,4 @@
 <script setup>
-// import intlTelInput from "intl-tel-input";
-// import "intl-tel-input/build/css/intlTelInput.css";
-
 import router from '@/router/router.js'
 
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
@@ -13,20 +10,6 @@ import { onMounted, ref } from 'vue'
 
 const phoneNumber = ref()
 
-// onMounted(() => {
-//   // Initialisez le composant intl-tel-input dans le hook mounted
-//   const input = this.$refs.phoneInput;
-//   const iti = intlTelInput(input, {
-//     separateDialCode: true,
-//     initialCountry: "auto", // Définissez le pays initial sur "auto"
-//   });
-
-//   // Écoutez les changements pour obtenir le numéro de téléphone sélectionné
-//   iti.promise.then((countryData) => {
-//     console.log("Indice du pays :", countryData.iso2);
-//     console.log("Numéro de téléphone :", iti.getNumber());
-//   });
-// })
 const authStore = useAuthStore()
 
 const logInWithPhoneNumber = async () => {

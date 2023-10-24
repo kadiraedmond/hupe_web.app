@@ -9,6 +9,14 @@ const authStore = useAuthStore()
 onBeforeMount(() => {
     demandeStore.setPosts(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
 })
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
 </script>
 
 <template>
@@ -32,7 +40,7 @@ onBeforeMount(() => {
             <p class="text-black">{{ post.demande }}</p>
           </div>
           <div class="col-6 text-end">
-            <p class="text-black">Il y a environ 5 minutes</p>
+            <p class="text-black">Posté le : {{ new Intl.DateTimeFormat(undefined, options).format(post.createdAt) }}</p>
             <p class="text-black">
               {{ post.responses.length }} {{ post.responses.length === 0 ? 'réponses' : post.responses.length === 1 ? 'réponse' : 'réponses' }}
             </p>
