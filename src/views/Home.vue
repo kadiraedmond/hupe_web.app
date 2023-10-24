@@ -323,7 +323,7 @@ onBeforeMount(() => {
                   :src="companie.imageLogoUrl"
                   class="card-img-top"
                   alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
+                  style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
                 />
               </router-link>
 
@@ -392,7 +392,8 @@ onBeforeMount(() => {
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col" v-for="(vehicule, index) in promotionStore.popularCars" :key="index">
-            <div class="card h-100" id="card_compagnie">
+            <router-link to="/detail_vehicule_location">
+              <div class="card h-100" id="card_compagnie">
               <div class="row" style="margin: 10px">
                 <div class="col-md-7">
                   <div
@@ -472,7 +473,9 @@ onBeforeMount(() => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> 
+            </router-link>
+           
           </div>
         </div>
       </div>
@@ -507,7 +510,7 @@ onBeforeMount(() => {
                   :src="companie.imageLogoUrl"
                   class="card-img-top"
                   alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
+                  style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
                 />
               </router-link>
 
@@ -576,7 +579,8 @@ onBeforeMount(() => {
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col" v-for="(popularDestination, index) in promotionStore.popularDestinations" :key="index">
-            <div class="card h-100" id="card_compagnie" v-if="index < 6">
+            <router-link to="/detail_reservation_ticket">
+              <div class="card h-100" id="card_compagnie" v-if="index < 6">
               <div class="row" style="margin: 10px">
                 <div class="col-md-7">
                   <div
@@ -659,6 +663,8 @@ onBeforeMount(() => {
                 </div>
               </div>
             </div>
+            </router-link>
+            
           </div>
         </div>
       </div>
@@ -693,7 +699,7 @@ onBeforeMount(() => {
                   :src="companie.imageCouvertureUrl"
                   class="card-img-top"
                   alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
+                  style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
                 />
               </router-link>
 

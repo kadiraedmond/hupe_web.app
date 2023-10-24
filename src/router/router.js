@@ -22,6 +22,14 @@ import Client from '@/views/compte_client.vue';
 import Dashboard from '@/views/dashbord.vue';
 import Activite from '@/views/activite.vue';
 import Otp from '@/views/otp.vue';
+import Partenaire from '@/views/partenaire.vue';
+import Pclient from '@/views/client.vue';
+import Sclient from '@/views/services_client.vue';
+import Info from '@/views/infos.vue';
+import Legales from '@/views/legales.vue';
+import Application from '@/views/application.vue';
+import Vehicule from '@/views/detail_vehicule_de_location.vue';
+import Reserve from '@/views/detail_reservation_ticket.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -165,6 +173,63 @@ const routes = [
     component: Information,
     
   },
+  {
+    path: '/informations',
+    name: 'Info',
+    component: Info,
+    
+  },
+
+
+  {
+    path: '/service_client',
+    name: 'Sclient',
+    component: Sclient,
+    
+  },
+
+  {
+    path: '/application',
+    name: 'Application',
+    component: Application,
+    
+  },
+
+  {
+    path: '/legales',
+    name: 'Legales',
+    component: Legales,
+    
+  },
+
+  {
+    path: '/pour_client',
+    name: 'Pclient',
+    component: Pclient,
+    
+  },
+
+  {
+    path: '/pour_partenaire',
+    name: 'Partenaire',
+    component: Partenaire,
+    
+  },
+
+  {
+    path: '/detail_vehicule_location',
+    name: 'Vehicule',
+    component: Vehicule,
+    
+  },
+
+  {
+    path: '/detail_reservation_ticket',
+    name: 'Reserve',
+    component: Reserve,
+    
+  },
+
 ];
 
 const router = createRouter({
