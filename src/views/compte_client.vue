@@ -30,7 +30,7 @@ const clientPublicationColRef = collection(firestoreDb, 'client_publication')
 
 const submitPost = async () => {
   const newData = {
-    client_id: authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2',
+    client_id: authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2',
     createdAt: new Date(),
     demande: post.value,
     lecteurs: [],

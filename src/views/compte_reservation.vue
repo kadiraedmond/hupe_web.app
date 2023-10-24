@@ -76,7 +76,7 @@ onBeforeMount(() => {
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                  type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Promotion</button>
+                  type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Promotions</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
@@ -85,7 +85,7 @@ onBeforeMount(() => {
 
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="demande-tab" data-bs-toggle="tab" data-bs-target="#demande-tab-pane"
-                  type="button" role="tab" aria-controls="demande-tab-pane" aria-selected="false">Demande</button>
+                  type="button" role="tab" aria-controls="demande-tab-pane" aria-selected="false">Demandes</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="politique-tab" data-bs-toggle="tab" data-bs-target="#politique-tab-pane"
