@@ -8,9 +8,9 @@ import { useAuthStore } from '@/store/auth.js'
 const authStore = useAuthStore()
 const companieStore = useCompanieStore()
 
-
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  companieStore.setCompanieById(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2') // authStore.user.uid
+  companieStore.setCompanieById(savedUser.uid || authStore.user.uid) // authStore.user.uid
 
 })
 

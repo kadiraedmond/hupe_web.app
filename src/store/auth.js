@@ -23,7 +23,7 @@ export const useAuthStore = defineStore('authStore', {
             }
         },
         setUser(user) {
-            this.user = user
+            this.user = user 
             this.isConnected = true
             if(user.type_compagnie == 'Transport') {
                 this.isReservationCompany = true
@@ -36,6 +36,8 @@ export const useAuthStore = defineStore('authStore', {
             this.isConnected = false
             this.isLocationCompany = false
             this.isReservationCompany = false
+
+            localStorage.removeItem('user')
         }
     }
 })

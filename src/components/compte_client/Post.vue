@@ -1,13 +1,16 @@
 <script setup>
 import { useDemandeStore } from '@/store/demande.js'
+import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount } from 'vue'
 
 const demandeStore = useDemandeStore()
+const userStore = useUserStore()
 const authStore = useAuthStore()
 
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-    demandeStore.setPosts(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+  demandeStore.setPosts(savedUser.uid || authStore.user.uid)
 })
 const options = {
   year: 'numeric', 

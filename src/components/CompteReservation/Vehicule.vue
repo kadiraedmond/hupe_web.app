@@ -6,8 +6,9 @@ import { onBeforeMount } from "vue";
 const reservationStore = useReservationStore()
 const authStore = useAuthStore()
 
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  reservationStore.setVehicules(authStore.user.uid || 'xnQN1qUGlBZVnH5JuKy7hEQDL0F2')
+  reservationStore.setVehicules(savedUser.uid || authStore.user.uid)
 })
 </script>
 

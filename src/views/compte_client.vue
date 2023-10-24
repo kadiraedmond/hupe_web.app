@@ -17,8 +17,9 @@ import { firestoreDb } from '@/firebase/firebase.js'
 const userStore = useUserStore()
 const authStore = useAuthStore()
 
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(async () => {
-  userStore.setUser(authStore.user.uid || 'Q0ZeyDlFSnQrAy8a7YEA88vJrFH2')
+  userStore.setUser(savedUser.uid || authStore.user.uid)
 
 });
 
@@ -30,7 +31,7 @@ const clientPublicationColRef = collection(firestoreDb, 'client_publication')
 
 const submitPost = async () => {
   const newData = {
-    client_id: authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2',
+    client_id: authStore.user.uid,
     createdAt: new Date(),
     demande: post.value,
     lecteurs: [],

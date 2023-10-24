@@ -64,11 +64,12 @@ const updateReservationsDashboard = (data) => {
   })
 }
 
-const userStore = useUserStore();
-const authStore = useAuthStore();
+const userStore = useUserStore()
+const authStore = useAuthStore()
 
+const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(async () => {
-  await userStore.setLocationVehicule(authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+  await userStore.setLocationVehicule(savedUser.uid || authStore.user.uid)
 
   updateReservationsDashboard(userStore.locationVehicules)
 });
