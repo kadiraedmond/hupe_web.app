@@ -123,7 +123,7 @@ const submitPost = async () => {
                   aria-controls="home-tab-pane"
                   aria-selected="true"
                 >
-                  Activité
+                  Activités
                 </button>
               </li>
               <li class="nav-item" role="presentation">
