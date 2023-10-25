@@ -46,7 +46,7 @@
             </div>
           </div>
 
-          <div class="col-md-6 text-end">
+          <!-- <div class="col-md-6 text-end">
             <a v-bind:href="'/dashboard'" id="a_compagnie">
               <button
                 class="btn btn-primary"
@@ -55,7 +55,7 @@
                 Tableau de bord
               </button>
             </a>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -182,20 +182,75 @@
                             </button>
                           </div>
                           <div class="col-md-6 text-end">
-                            <a
-                              v-bind:href="'/formulaire_location'"
-                              id="a_compagnie"
-                            >
-                              <button
-                                class="btn btn-primary"
-                                style="
-                                  background: #219935;
-                                  border-color: #219935;
-                                "
-                              >
-                                Reserver
-                              </button>
-                            </a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" style="
+                                      background-color: #219935;
+                                      border-color: #219935;
+                                    " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Reserver
+                                  </button>
+
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form class="row g-3 needs-validation" novalidate style="background: #21993552; padding: 10px; border-radius: 5px;">
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Nom</label>
+                                                <input type="text" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Prénoms</label>
+                                                <input type="text" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="validationCustom01" class="form-label">Ville de départ</label>
+                                                <input type="text" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="validationCustom01" class="form-label">Ville d'arrivée</label>
+                                                <input type="text" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Date de départ</label>
+                                                <input type="date" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Heure de départ</label>
+                                                <input type="time" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="validationCustom01" class="form-label">Nombres de personnes</label>
+                                                <input type="number" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-12 text-center">
+                                                <button class="btn btn-primary" type="submit" style="background: #219935;
+                                                border-color: #219935;">Soumettre</button>
+                                            </div>
+                                        </form>
+                                        </div>
+                                         
+                                      </div>
+                                    </div>
+                                  </div>
                           </div>
 
                           <div class="col-md-12 mt-4">

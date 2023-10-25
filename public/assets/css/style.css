@@ -2119,3 +2119,9 @@ section {
 background-color: #219935 !important;
 border-color: #219935 !important;
 }
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #fff;
+  background-color: var(--bs-nav-tabs-link-active-bg);
+  border-color: var(--bs-nav-tabs-link-active-border-color);
+}

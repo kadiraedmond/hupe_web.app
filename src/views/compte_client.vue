@@ -19,7 +19,7 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(async () => {
-  userStore.setUser(savedUser.uid || authStore.user.uid)
+  userStore.setUser('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
 
 });
 
@@ -97,9 +97,17 @@ const submitPost = async () => {
               </div>
             </div>
           </div>
+          <div class="col-md-8">
+ 
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6"></div>
         </div>
       </div>
     </section>
+     
     <!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Portfolio Details Section ======= -->
@@ -151,7 +159,7 @@ const submitPost = async () => {
                   aria-controls="contact-tab-pane"
                   aria-selected="false"
                 >
-                  Comptes
+                  Historiques
                 </button>
               </li>
               <!-- <li class="nav-item" role="presentation">
@@ -171,7 +179,7 @@ const submitPost = async () => {
                   aria-controls="apropos-tab-pane"
                   aria-selected="false"
                 >
-                  A propos
+                 Informations personnelles
                 </button>
               </li>
             </ul>

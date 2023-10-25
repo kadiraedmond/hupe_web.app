@@ -8,8 +8,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  userStore.setUserHistory(savedUser.uid || authStore.user.uid)
-  userStore.setTotalAmount(savedUser.uid || authStore.user.uid)
+  userStore.setUserHistory('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
+  userStore.setTotalAmount('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
 })
 
 const options = {
@@ -35,23 +35,52 @@ const options = {
               <p><strong> Solde |</strong> {{ userStore.totalAmount.solde }}</p>
             </div>
             <div class="col-md-6 text-end">
-              <router-link to="/formulaire_reservation" id="a_compagnie">
-                <button
-                  class="btn btn-primary"
-                  style="
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" style="
                     background-color: rgb(33 153 53);
                     border-color: rgb(33 153 53);
                     margin-top: -8px;
-                  "
-                >
+                  " data-bs-toggle="modal" data-bs-target="#exampleModalr">
                   <img
                     src="/public/assets/img/icone/plus.png"
                     class="img-fluid"
                     alt="..."
                   />
-                  Recharger
-                </button>
-              </router-link>
+                Recharger
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalr" tabindex="-1" aria-labelledby="exampleModalLabelr" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Recharger</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-end">
+                      <div class="row">
+                        <div class="col-md-12"></div>
+                        <div class="col-md-12">
+                          <form class="row g-3 needs-validation" novalidate>
+                            <div class="col-md-12 text-start">
+                              <label for="validationCustom01" class="form-label">Montant</label>
+                              <input type="text" class="form-control" id="validationCustom01" required>
+                              
+                            </div>
+                            
+                            <div class="col-12">
+                              <button class="btn btn-primary" type="submit" style="background: #219935; border-color: #219935;">Valider</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      
+                    </div>
+                     
+                  </div>
+                </div>
+              </div>
+               
             </div>
           </div>
         </div>

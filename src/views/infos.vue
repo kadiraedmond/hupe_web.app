@@ -1426,7 +1426,7 @@
                                 <h2 style="font-size: 20px; font-weight: 600;" class="mb-3">Navigation Accessible </h2>
                                 <p>Vous pouvez naviguer sur notre site web à l'aide du clavier. Utilisez les touches fléchées pour parcourir le contenu et appuyez sur la touche Entrée pour activer les liens.</p>
                                 <p>Si vous utilisez un lecteur d'écran, notre site est compatible avec des lecteurs d'écran populaires, tels que VoiceOver pour iOS et TalkBack pour Android. Pour activer la lecture vocale, suivez les instructions de votre lecteur d'écran.</p>
-                                <img src="public/assets/img/as.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
+                                <img src="/public/assets/img/as.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
                             </div>
 
                             <div class="col-md-12 mt-4">
@@ -1439,7 +1439,7 @@
 
                                     <div class="col-md-6 text-center">
                                          
-                                        <img src="public/assets/img/text.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                                        <img src="/public/assets/img/text.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
 
                                     </div>
                                 </div>
@@ -1456,7 +1456,7 @@
 
                                     <div class="col-md-6 text-center">
                                          
-                                         <img src="public/assets/img/vocal.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                                         <img src="/public/assets/img/vocal.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
  
                                      </div>
 
@@ -1475,7 +1475,7 @@
 
                                     <div class="col-md-6 text-center">
                                          
-                                         <img src="public/assets/img/uti.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                                         <img src="/public/assets/img/uti.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
  
                                      </div>
 
@@ -1494,7 +1494,7 @@
 
                                     <div class="col-md-6 text-center">
                                          
-                                         <img src="public/assets/img/perso.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                                         <img src="/public/assets/img/perso.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
  
                                      </div>
 
@@ -1740,11 +1740,11 @@
     --bs-accordion-btn-padding-y: 1rem;
     --bs-accordion-btn-color: var(--bs-body-color);
     --bs-accordion-btn-bg: var(--bs-accordion-bg);
-    --bs-accordion-btn-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+    --bs-accordion-btn-icon: url(data:image/svg+xml,%3csvg xmlns='http:/www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
     --bs-accordion-btn-icon-width: 1.25rem;
     --bs-accordion-btn-icon-transform: rotate(-180deg);
     --bs-accordion-btn-icon-transition: transform 0.2s ease-in-out;
-    --bs-accordion-btn-active-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23052c65'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+    --bs-accordion-btn-active-icon: url(data:image/svg+xml,%3csvg xmlns='http:/www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23052c65'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
     --bs-accordion-btn-focus-border-color: #86b7fe;
     --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
     --bs-accordion-body-padding-x: 1.25rem;

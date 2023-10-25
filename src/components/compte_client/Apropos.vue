@@ -8,7 +8,7 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  userStore.setUser(savedUser.uid || authStore.user.uid) // authStore.user.uid
+  userStore.setUser('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid) // authStore.user.uid
 
 })
 </script>
@@ -18,7 +18,7 @@ onBeforeMount(() => {
     <div class="col-md-12">
       <div class="card h-100" id="card_compagnie">
         <div class="card-body">
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-12">
               <p><strong>Nom |</strong> {{ userStore.user.lastName }}</p>
 
@@ -60,7 +60,7 @@ onBeforeMount(() => {
 
                   <div class="card-body">
                     <h5 class="card-title" style="font-size: 14px">
-                        <!-- site web -->
+                      
                     </h5>
                     <h5 class="card-title" style="font-size: 14px">
                       {{ userStore.user.telephone }}
@@ -105,11 +105,92 @@ onBeforeMount(() => {
                 </div>
               </div>
             </div>
+          </div> -->
+
+          <div class="row">
+            <div class="col-md-12">
+              <form class="row g-3 needs-validation" novalidate>
+              <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Nom </label>
+                <input type="text" class="form-control" id="validationCustom01" value="Mark" >
+                
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Prénoms</label>
+                <input type="text" class="form-control" id="validationCustom02" value="Otto" >
+                 
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Photo de profil</label>
+                <div class="input-group has-validation">
+                  <input type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                   
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Date de naissance </label>
+                <input type="date" class="form-control" id="validationCustom01" value="Mark" >
+                
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Professeion</label>
+                <input type="text" class="form-control" id="validationCustom01" value="Mark" >
+                
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Email</label>
+                <input type="email" class="form-control" id="validationCustom02" value="Otto" >
+                 
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Téléphone</label>
+                <div class="input-group has-validation">
+                  <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                   
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Pays</label>
+                <div class="input-group has-validation">
+                  <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" >
+                   
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Adresse</label>
+                <div class="input-group has-validation">
+                  <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                   
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Nom d'utilisateur</label>
+                <div class="input-group has-validation">
+                  <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                   
+                </div>
+              </div>
+
+              
+              
+              
+             
+              <div class="col-12 text-end">
+                <button class="btn btn-primary" type="submit">Enregistrer</button>
+              </div>
+            </form>
+            </div>
           </div>
 
           <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
         </div>
       </div>
+     
     </div>
   </div>
 </template>

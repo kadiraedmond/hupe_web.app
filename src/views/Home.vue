@@ -107,7 +107,7 @@ onBeforeMount(() => {
               </router-link>
 
               <div class="card-body" style="background: #219935">
-                <router-link to="/location'" class="mt-4" id="a">
+                <router-link to="/location" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Louer un véhicule
                   </h5>
