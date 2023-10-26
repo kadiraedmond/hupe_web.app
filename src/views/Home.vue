@@ -318,7 +318,7 @@ onBeforeMount(() => {
               style="background: #f3f4f6; box-shadow: none"
               v-if="companie.offre == 'vip' && index < 4"
             >
-              <router-link to="/detail">
+              <router-link :to="`/detail/${companie.uid}`">
                 <img
                   :src="companie.imageLogoUrl"
                   class="card-img-top"
@@ -328,7 +328,7 @@ onBeforeMount(() => {
               </router-link>
 
               <div class="card-body">
-                <router-link to="/detail">
+                <router-link :to="`/detail/${companie.uid}`">
                   <div class="row">
                     <div class="col-md-7">
                       <h5
