@@ -29,7 +29,7 @@ onBeforeMount(() => {
   
           <ol>
             <li> <router-link to="/" style="color: #219935;" >Home</router-link></li>
-            <li>Location de véhicule</li>
+            <li>Location de gros engin</li>
             <!-- <li>Toyota yaris 2022</li> -->
 
           </ol>
