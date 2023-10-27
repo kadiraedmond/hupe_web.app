@@ -564,6 +564,7 @@ onBeforeMount(async () => {
                                     >
                                       Jours de voyages | <strong>{{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</strong>
                                     </p>
+                                    
                                   </div>
                                 </div>
                               </div>
