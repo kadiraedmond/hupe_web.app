@@ -125,7 +125,7 @@ onBeforeMount(() => {
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <router-link to="/reservation'" class="mt-4 text-black">
+              <router-link to="/reservation" class="mt-4 text-black">
                 <img
                   src="/public/assets/img/bus.png"
                   class="img-fluid w-25"
@@ -152,7 +152,7 @@ onBeforeMount(() => {
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <router-link to="/reservation" class="mt-4" id="a">
+              <router-link to="/location_gros_engin" class="mt-4" id="a">
                 <img
                   src="/public/assets/img/engin.png"
                   class="img-fluid w-25"
@@ -161,7 +161,7 @@ onBeforeMount(() => {
               </router-link>
 
               <div class="card-body" style="background: #219935">
-                <router-link to="/reservation" class="mt-4" id="a">
+                <router-link to="/location_gros_engin" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Louer un gros engin
                   </h5>
@@ -398,7 +398,7 @@ onBeforeMount(() => {
                 <div class="col-md-7">
                   <div
                     class="card mb-3 border-0"
-                    style="max-width: 540px; background: #f3f4f6"
+                    style="max-width: 540px; background: rgb(250 250 250)"
                   >
                     <div class="row g-1">
                       <div class="col-md-4">
@@ -576,97 +576,199 @@ onBeforeMount(() => {
             </div>
           </div>
         </div>
-
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col" v-for="(popularDestination, index) in promotionStore.popularDestinations" :key="index">
-            <router-link to="/detail_reservation_ticket">
-              <div class="card h-100" id="card_compagnie" v-if="index < 6">
-              <div class="row" style="margin: 10px">
-                <div class="col-md-7">
-                  <div
-                    class="card mb-3 border-0"
-                    style="max-width: 540px; background: #f3f4f6"
-                  >
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img
-                          :src="popularDestination.companieInfos.imageLogoUrl"
-                          alt
-                          class="w-px-40 h-auto rounded-circle"
-                          style="width: 50px"
-                        />
+        <div class="swiffy-slider slider-item-show2 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-fadein slider-item-last-visible" style="width: 101%;">
+            <ul class="slider-container py-4">
+                <li class="" v-for="(popularDestination, index) in promotionStore.popularDestinations" :key="index">
+                  <router-link to="/detail_reservation_ticket">
+                    <div class="card h-100" id="card_compagnie" v-if="index < 6">
+                    <div class="row" style="margin: 10px">
+                      <div class="col-md-7">
+                        <div
+                          class="card mb-3 border-0"
+                          style="max-width: 540px; background: rgb(250 250 250)"
+                        >
+                          <div class="row g-1">
+                            <div class="col-md-4">
+                              <img
+                                :src="popularDestination.companieInfos.imageLogoUrl"
+                                alt
+                                class="w-px-40 h-auto rounded-circle"
+                                style="width: 50px"
+                              />
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h5 class="card-title" style="font-size: 12px">
+                                  <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.raison_social }} -->
+                                  {{ popularDestination.companieInfos.raison_social }}
+                                </h5>
+                                <p class="card-text mt-2" style="font-size: 12px">
+                                  <i class="bx bx-map" style="color: #219935"></i>
+                                  <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.adresse }} -->
+                                  {{ popularDestination.companieInfos.adresse }}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 12px">
-                            <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.raison_social }} -->
-                            {{ popularDestination.companieInfos.raison_social }}
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 12px">
-                            <i class="bx bx-map" style="color: #219935"></i>
-                            <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.adresse }} -->
-                            {{ popularDestination.companieInfos.adresse }}
-                          </p>
+                      <div class="col-md-5 text-end">
+                        <button
+                          class="btn btn-primary"
+                          style="
+                            background: #219935;
+                            border-color: #219935;
+                            margin-top: 15px;
+                            font-size: 12px;
+                          "
+                        >
+                          {{ popularDestination.montant }} FCFA
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      class="card mb-3 mt-4"
+                      style="
+                        max-width: 540px;
+                        margin: 10px;
+                        margin-top: -10px !important;
+                      "
+                    >
+                      <div class="row g-0" style="margin: 10px">
+                        <div class="col-md-4">
+                          <img
+                            src="/public/assets/img/car2.jpg"
+                            class="img-fluid rounded-start h-100"
+                            alt="..."
+                            style="object-fit: cover"
+                          />
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <p class="card-text" style="font-size: 13px">
+                              <strong>Trajet | </strong>{{ popularDestination.lieu_depart }} - {{ popularDestination.destination }}
+                            </p>
+                            <p class="card-text" style="font-size: 13px">
+                              <strong>Escales | </strong> {{ popularDestination.escale }} 
+                            </p>
+                            <p class="card-text" style="font-size: 13px">
+                              <strong>Convocation | </strong>{{ popularDestination.heure_convocation }}
+                            </p>
+                            <p class="card-text" style="font-size: 13px">
+                              <strong>Jours du voyages |</strong> {{ popularDestination.jours_voyage }}
+                            </p>
+                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-5 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                      font-size: 12px;
-                    "
-                  >
-                    {{ popularDestination.montant }} FCFA
-                  </button>
-                </div>
-              </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
-              >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
-                    <img
-                      src="/public/assets/img/car2.jpg"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Trajet | </strong>{{ popularDestination.lieu_depart }} - {{ popularDestination.destination }}
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Escales | </strong> {{ popularDestination.escale }} 
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Convocation | </strong>{{ popularDestination.heure_convocation }}
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Jours du voyages |</strong> {{ popularDestination.jours_voyage }}
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                  </router-link>
+                </li>
+                
+                <li class="slide-visible" v-for="(popularDestination, index) in promotionStore.popularDestinations" :key="index">
+                  <router-link to="/detail_reservation_ticket">
+                    <div class="card h-100" id="card_compagnie" v-if="index < 6">
+                    <div class="row" style="margin: 10px">
+                      <div class="col-md-7">
+                        <div
+                          class="card mb-3 border-0"
+                          style="max-width: 540px; background: rgb(250 250 250)"
+                        >
+                          <div class="row g-1">
+                            <div class="col-md-4">
+                              <img
+                                :src="popularDestination.companieInfos.imageLogoUrl"
+                                alt
+                                class="w-px-40 h-auto rounded-circle"
+                                style="width: 50px"
+                              />
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h5 class="card-title" style="font-size: 12px">
+                                  <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.raison_social }} -->
+                                  {{ popularDestination.companieInfos.raison_social }}
+                                </h5>
+                                <p class="card-text mt-2" style="font-size: 12px">
+                                  <i class="bx bx-map" style="color: #219935"></i>
+                                  <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.adresse }} -->
+                                  {{ popularDestination.companieInfos.adresse }}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-5 text-end">
+                        <button
+                          class="btn btn-primary"
+                          style="
+                            background: #219935;
+                            border-color: #219935;
+                            margin-top: 15px;
+                            font-size: 12px;
+                          "
+                        >
+                          {{ popularDestination.montant }} FCFA
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      class="card mb-3 mt-4"
+                      style="
+                        max-width: 540px;
+                        margin: 10px;
+                        margin-top: -10px !important;
+                      "
+                    >
+                      <div class="row g-0" style="margin: 10px">
+                        <div class="col-md-4">
+                          <img
+                            src="/public/assets/img/car2.jpg"
+                            class="img-fluid rounded-start h-100"
+                            alt="..."
+                            style="object-fit: cover"
+                          />
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <p class="card-text" style="font-size: 13px">
+                              <strong>Trajet | </strong>{{ popularDestination.lieu_depart }} - {{ popularDestination.destination }}
+                            </p>
+                            <p class="card-text" style="font-size: 13px">
+                              <strong>Escales | </strong> {{ popularDestination.escale }} 
+                            </p>
+                            <p class="card-text" style="font-size: 13px">
+                              <strong>Convocation | </strong>{{ popularDestination.heure_convocation }}
+                            </p>
+                            <p class="card-text" style="font-size: 13px">
+                              <strong>Jours du voyages |</strong> {{ popularDestination.jours_voyage }}
+                            </p>
+                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                  </router-link>
+                </li>
+                 
+            </ul>
+
+            <button type="button" class="slider-nav" aria-label="Aller à gauche" _mstaria-label="76453" _msthash="99"></button>
+            <button type="button" class="slider-nav slider-nav-next" aria-label="Aller à gauche" _mstaria-label="76453" _msthash="100"></button>
+
+            <div class="slider-indicators">
+                <button class="" aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="101"></button>
+                <button aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="102" class=""></button>
+                <button aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="103" class=""></button>
+                <button aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="104" class=""></button>
+                <button aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="105" class="active"></button>
             </div>
-            </router-link>
-            
-          </div>
         </div>
+
+       
       </div>
     </section>
 
@@ -747,6 +849,161 @@ onBeforeMount(() => {
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h2>Engin populaires</h2>
+              <p>Découvrez les véhicules les plus prisés pour votre prochain voyage. Confort, style et fiabilité, nous
+                avons tout ce dont vous avez besoin.</p>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <router-link to="/detail_engin_location">
+              <div class="card h-100" id="card_compagnie">
+              <div class="row" style="margin: 10px;">
+                <div class="col-md-7">
+                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f3f4f6;">
+                    <div class="row g-1">
+                      <div class="col-md-4">
+                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 50px;"/>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
+                          <p class="card-text mt-2" style="font-size: 12px; "> <i class='bx bx-map'  
+                            style="color: #219935;"></i> CI,rue 250</p>
+        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 text-end">
+                  <button class="btn btn-primary" style="    background: #219935;
+                  border-color: #219935; margin-top: 15px;font-size: 12px;">5000 FCFA</button>
+                </div>
+              </div>
+              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
+                <div class="row g-0" style="margin: 10px;">
+                  <div class="col-md-4">
+                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..." style="object-fit: cover;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <p class="card-text" style="font-size: 13px;"> <strong>Hyundai 2022 </strong> </p>
+                      <p class="card-text" style="font-size: 13px;"> <strong>Modéle | </strong> Santafé</p>
+                      <p class="card-text" style="font-size: 13px;"> <strong>Essence | </strong> Automobile</p>
+                      <p class="card-text" style="font-size: 13px;"> <strong>Immatriculation | </strong> BG 3252</p>
+                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </router-link>
+           
+          </div>
+          <div class="col">
+            <div class="card h-100" id="card_compagnie">
+              <div class="row" style="margin: 10px;">
+                <div class="col-md-7">
+                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f3f4f6;">
+                    <div class="row g-1">
+                      <div class="col-md-4">
+                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 50px;"/>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
+                          <p class="card-text mt-2" style="font-size: 12px; "> <i class='bx bx-map'  
+                            style="color: #219935;"></i> CI,rue 250</p>
+        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 text-end">
+                  <button class="btn btn-primary" style="    background: #219935;
+                  border-color: #219935; margin-top: 15px;font-size: 12px;">5000 FCFA</button>
+                </div>
+              </div>
+              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
+                <div class="row g-0" style="margin: 10px;">
+                  <div class="col-md-4">
+                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..." style="object-fit: cover;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <p class="card-text" style="font-size: 13px;"> <strong>Hyundai 2022 </strong> </p>
+                      <p class="card-text" style="font-size: 13px;"> <strong>Modéle | </strong> Santafé</p>
+                      <p class="card-text" style="font-size: 13px;"> <strong>Essence | </strong> Automobile</p>
+                      <p class="card-text" style="font-size: 13px;"> <strong>Immatriculation | </strong> BG 3252</p>
+                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100" id="card_compagnie">
+              <div class="row" style="margin: 10px;">
+                <div class="col-md-7">
+                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f3f4f6;">
+                    <div class="row g-1">
+                      <div class="col-md-4">
+                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 50px;"/>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
+                          <p class="card-text mt-2" style="font-size: 12px; "> <i class='bx bx-map'  
+                            style="color: #219935;"></i> CI,rue 250</p>
+        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 text-end">
+                  <button class="btn btn-primary" style="    background: #219935;
+                  border-color: #219935; margin-top: 15px;font-size: 12px;">5000 FCFA</button>
+                </div>
+              </div>
+              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
+                <div class="row g-0" style="margin: 10px;">
+                  <div class="col-md-4">
+                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..." style="object-fit: cover;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <p class="card-text" style="font-size: 13px;"> <strong>Hyundai 2022 </strong> </p>
+                      <p class="card-text" style="font-size: 13px;"> <strong>Modéle | </strong> Santafé</p>
+                      <p class="card-text" style="font-size: 13px;"> <strong>Essence | </strong> Automobile</p>
+                      <p class="card-text" style="font-size: 13px;"> <strong>Immatriculation | </strong> BG 3252</p>
+                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
 

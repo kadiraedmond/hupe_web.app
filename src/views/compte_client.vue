@@ -72,9 +72,9 @@ const submitPost = async () => {
     <!-- End Portfolio Details Section -->
 
     <section id="faq" class="faq" style="margin-top: -70px">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
         <div class="row g-4">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card mb-3 border-0" style="max-width: 540px">
               <div class="row g-0">
                 <div class="col-md-4">
@@ -82,29 +82,54 @@ const submitPost = async () => {
                     :src="userStore.user.imageUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 160px"
+                    style="width: 100px"
                   />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">
+                    <h5 class="card-title" style="font-size: 16px;">
                       {{ userStore.user.lastName }}
                       {{ userStore.user.firstName }}
                     </h5>
-                    <p class="card-text">{{ userStore.user.profession }}</p>
+                    <p class="card-text" style="font-size: 15px;">{{ userStore.user.profession }}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-8">
- 
+            <div class="row g-2" style="margin-top: 55px;">
+             
+              <div class="col-md-3">
+                <router-link to="/location">
+                  <button class="btn btn-primary"> Louer un véhicule</button>
+                </router-link>
+               
+              </div>
+              <div class="col-md-3">
+                <router-link to="/location">
+                  <button class="btn btn-primary">Reserver un ticket</button>
+                </router-link>
+               
+              </div>
+              <div class="col-md-3">
+                <router-link to="/location">
+                  <button class="btn btn-primary">Louer un gros engin</button>
+                </router-link>
+               
+              </div>
 
+               <div class="col-md-3">
+                <router-link to="/location">
+                  <button class="btn btn-primary"> Acheter un engin</button>
+                </router-link>
+               
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6"></div>
-        </div>
+       
       </div>
     </section>
      

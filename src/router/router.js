@@ -30,6 +30,8 @@ import Legales from '@/views/legales.vue';
 import Application from '@/views/application.vue';
 import Vehicule from '@/views/detail_vehicule_de_location.vue';
 import Reserve from '@/views/detail_reservation_ticket.vue';
+import Dengin from '@/views/detail_location_engin.vue';
+import Engin from '@/views/gros_engin.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -136,7 +138,7 @@ const routes = [
     path: '/compte_reservation',
     name: 'Comptes',
     component: Comptes,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
@@ -227,6 +229,20 @@ const routes = [
     path: '/detail_reservation_ticket',
     name: 'Reserve',
     component: Reserve,
+    
+  },
+
+  {
+    path: '/detail_engin_location',
+    name: 'Dengin',
+    component: Dengin,
+    
+  },
+
+  {
+    path: '/location_gros_engin',
+    name: 'Engin',
+    component: Engin,
     
   },
 
