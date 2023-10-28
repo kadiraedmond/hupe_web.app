@@ -19,6 +19,19 @@ onBeforeMount(async () => {
   locationStore.setUserLocations('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
 })
 
+const reporter = async (location) => {
+  // 
+}
+
+const payer = async (location) => {
+  // 
+}
+
+const message = ref('')
+const sendMessage = async () => {
+  // 
+}
+
 </script>
 
 <template>
@@ -47,8 +60,8 @@ onBeforeMount(async () => {
                     margin-top: -15px;
                   "
                 >
-                  Il y a environ un jour <br />
-                  <strong> {{ location.number }} </strong>
+                  {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }} <br />
+                  <strong> {{ location.ticket_id }} </strong>
                 </p>
                 <hr />
 
@@ -128,7 +141,7 @@ onBeforeMount(async () => {
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   Nombres de jours de location |
-                  <strong>5 jours</strong>
+                  <strong>{{ location.number }}</strong>
                 </p>
                 <hr />
 
@@ -139,11 +152,45 @@ onBeforeMount(async () => {
                       style="
                         background: white;
                         border-color: #219935;
-                        color: #219935;
-                      "
+                        color: #219935;"
+                        data-bs-toggle="modal"
+                        data-bs-target="#reportModal10"
                     >
                       Reporter
                     </button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="reportModal10"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel10"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                              Donnez les informations du report
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <form id="reportForm">
+                            <label>Nouvelle Date</label>
+                            <input type="date" />
+
+                            <button type="submit">
+                              Enregistrer
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="col-md-6">
@@ -173,9 +220,43 @@ onBeforeMount(async () => {
                     <button
                       class="btn btn-primary w-75"
                       style="background: #219935; border-color: #219935"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messageModal10"
                     >
                       Message
                     </button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="messageModal10"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel10"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                              Votre Message
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <form id="reportForm">
+                            <textarea cols="30" rows="10" />
+
+                            <button type="submit">
+                              Envoyer
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

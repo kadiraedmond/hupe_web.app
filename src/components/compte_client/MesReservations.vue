@@ -48,8 +48,8 @@ onBeforeMount(async () => {
                     margin-top: -15px;
                   "
                 >
-                  Il y a environ un jour <br />
-                  <strong> {{ reservation.number }} </strong>
+                  {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
+                  <strong> {{ reservation.ticket_id }} </strong>
                 </p>
                 <hr />
 
@@ -129,7 +129,7 @@ onBeforeMount(async () => {
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   Nombres de jours de reservation |
-                  <strong>5 jours</strong>
+                  <strong>{{ reservation.number }}</strong>
                 </p>
                 <hr />
 
@@ -188,9 +188,47 @@ onBeforeMount(async () => {
                         border-color: crimson;
                         color: crimson;
                       "
+                      data-bs-toggle="modal"
+                      data-bs-target="#annulModal10"
                     >
                       Annuler
                     </button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="annulModal10"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel10"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                              Donnez la raison de l'annulation
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          
+                          <div>
+                            <select>
+                              <option value="">Je n'ai plus besoin du ticket</option>
+                              <option value="">J'ai changé d'avis</option>
+                              <option value="">J'ai une autre option</option>
+                              <option value="">Autre</option>
+                            </select>
+                            <textarea cols="30" rows="10" />
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   </div>
                 </div>
