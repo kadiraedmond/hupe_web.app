@@ -18,6 +18,7 @@ export const useCompanieStore = defineStore('companieStore', {
         companieCars: [],
         companieHistory: [],
         companieLocations: [],
+        programmeVoyages: [],
         companie: {},
         totalAmount: 0
     }),
@@ -150,6 +151,18 @@ export const useCompanieStore = defineStore('companieStore', {
                 const snapshot = await getDoc(accountDocRef);
 
                 if(snapshot.exists()) this.totalAmount = snapshot.data()
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async setProgrammesVoyages(companyId) {
+            const companieDocRef = doc(firestoreDb, 'compagnies', `${companyId}`)
+            const programmeVoyagesColRef = collection(companieDocRef, 'programme_des_voyages')
+
+            try {
+                const snapshot = await getDocs(programmeVoyagesColRef);
+
+                snapshot.docs.forEach((doc) => this.programmeVoyages.push({ ...doc.data() }))
             } catch (error) {
                 console.log(error)
             }

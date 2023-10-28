@@ -3,7 +3,7 @@ import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
 import { onBeforeMount, ref } from "vue";
 
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, updateDoc, collection } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 
 import { useReservationStore } from '@/store/reservation.js'
@@ -15,9 +15,15 @@ const reservationStore = useReservationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(async () => {
-  userStore.setUser('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
-  reservationStore.setUserReservations('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
+  userStore.setUser(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+  reservationStore.setUserReservations(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
 })
+
+const option = ref()
+
+const annul = async (reservation) => {
+  // 
+}
 
 </script>
 
@@ -174,9 +180,45 @@ onBeforeMount(async () => {
                     <button
                       class="btn btn-primary w-75"
                       style="background: #219935; border-color: #219935"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messageModal10"
                     >
                       Message
                     </button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="messageModal10"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel10"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                              Votre Message à : {{ reservation.companieInfos.raison_social }}
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <form id="reportForm" @submit.prevent="sendMessage" style="height: 500px">
+                            <div class="d-flex w-100" style="position: absolute; bottom: 0">
+                              <input type="text" v-model="message" class="w-100" />
+                              <button type="submit" class="btn btn-primary">
+                                Envoyer
+                              </button>
+                            </div>
+
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="row" v-if="reservation.status == 'En attente'">
@@ -217,15 +259,17 @@ onBeforeMount(async () => {
                           </div>
                           
                           <div>
-                            <select>
-                              <option value="">Je n'ai plus besoin du ticket</option>
+                            <select v-model="option" class="w-100 mb-2">
+                              <option value="" selected>Je n'ai plus besoin du ticket</option>
                               <option value="">J'ai changé d'avis</option>
                               <option value="">J'ai une autre option</option>
                               <option value="">Autre</option>
                             </select>
-                            <textarea cols="30" rows="10" />
+                            <div class="mb-2">
+                              <textarea class="w-100" cols="30" rows="10" />
+                            </div>
                           </div>
-
+                          <button @click="annul(reservation)" class="btn btn-primary">Enregistrer</button>
                         </div>
                       </div>
                     </div>

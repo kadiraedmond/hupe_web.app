@@ -3,7 +3,7 @@ import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
 import { onBeforeMount, ref } from "vue";
 
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, updateDoc, collection } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 
 import { useLocationStore } from '@/store/location.js'
@@ -15,8 +15,8 @@ const locationStore = useLocationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(async () => {
-  userStore.setUser('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
-  locationStore.setUserLocations('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
+  userStore.setUser(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+  locationStore.setUserLocations(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
 })
 
 const reporter = async (location) => {
@@ -180,11 +180,11 @@ const sendMessage = async () => {
                               aria-label="Close"
                             ></button>
                           </div>
-                          <form id="reportForm">
+                          <form id="reportForm" @submit.prevent="sendMessage">
                             <label>Nouvelle Date</label>
                             <input type="date" />
 
-                            <button type="submit">
+                            <button type="submit" class="btn btn-primary">
                               Enregistrer
                             </button>
                           </form>
@@ -238,7 +238,7 @@ const sendMessage = async () => {
                         <div class="modal-content">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                              Votre Message
+                              Votre Message à : {{ location.companieInfos.raison_social }}
                             </h1>
                             <button
                               type="button"
@@ -247,12 +247,14 @@ const sendMessage = async () => {
                               aria-label="Close"
                             ></button>
                           </div>
-                          <form id="reportForm">
-                            <textarea cols="30" rows="10" />
+                          <form id="reportForm" @submit.prevent="sendMessage" style="height: 500px">
+                            <div class="d-flex w-100" style="position: absolute; bottom: 0">
+                              <input type="text" v-model="message" class="w-100" />
+                              <button type="submit" class="btn btn-primary">
+                                Envoyer
+                              </button>
+                            </div>
 
-                            <button type="submit">
-                              Envoyer
-                            </button>
                           </form>
                         </div>
                       </div>

@@ -230,15 +230,15 @@ onBeforeMount(() => {
               <div class="row" style="padding: 6px">
                 <div class="col-md-12 d-flex">
                   <img
-                    src=""
+                    :src="offre.companieInfos.imageLogoUrl"
                     class="img-fluid"
                     alt="..."
-                    style="width: 25px; height: 25px; margin-top: 6px"
+                    style="width: 25px; height: 25px; border-radius: 50%; margin-top: 6px; object-fit: contains"
                   />
                   <h6
                     style="font-size: 12px; margin-left: 5px; margin-top: 10px"
                   >
-                  Name Companie
+                  {{ offre.companieInfos.raison_social }}
                   </h6>
                   <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                     <img
@@ -246,7 +246,7 @@ onBeforeMount(() => {
                       class="img-fluid"
                       alt="..."
                     />
-                    adresse Companie
+                    {{ offre.companieInfos.adresse }}
                   </p>
                 </div>
               </div>
@@ -403,7 +403,7 @@ onBeforeMount(() => {
                     <div class="row g-1">
                       <div class="col-md-4">
                         <img
-                          src=""
+                          :src="vehicule.companieInfos.imageLogoUrl"
                           alt
                           class="w-px-40 h-auto rounded-circle"
                           style="width: 50px"
@@ -412,11 +412,11 @@ onBeforeMount(() => {
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title" style="font-size: 12px">
-                            Koudi
+                            {{ vehicule.companieInfos.raison_social }}
                           </h5>
                           <p class="card-text mt-2" style="font-size: 12px">
                             <i class="bx bx-map" style="color: #219935"></i>
-                            CI,rue 250
+                            {{ vehicule.companieInfos.adresse }}
                           </p>
                         </div>
                       </div>
@@ -505,7 +505,7 @@ onBeforeMount(() => {
               style="background: #f3f4f6; box-shadow: none"
               v-if="companie.offre == 'vip' && index < 4"
             >
-              <router-link to="/details">
+              <router-link :to="`/details/${companie.uid}`">
                 <img
                   :src="companie.imageLogoUrl"
                   class="card-img-top"
@@ -798,7 +798,7 @@ onBeforeMount(() => {
             >
               <router-link to="/details_location_engin">
                 <img
-                  :src="companie.imageCouvertureUrl"
+                  src="/public/assets/img/car2.jpg"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
@@ -813,7 +813,7 @@ onBeforeMount(() => {
                         class="card-title"
                         style="font-size: 15px; color: black"
                       >
-                        {{ companie.raison_social }}
+                        ENGIN corp
                       </h5>
                     </div>
                     <div class="col-md-5 text-end">
@@ -835,7 +835,7 @@ onBeforeMount(() => {
                 <div class="row">
                   <div class="col-md-8">
                     <p class="card-text mt-2" style="font-size: 14px">
-                      <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
+                      <i class="bx bx-map" style="color: #8b8b8b"></i> Lome
                     </p>
                   </div>
                   <div class="col-md-4 text-center mt-2">
@@ -858,7 +858,7 @@ onBeforeMount(() => {
         <div class="row">
           <div class="col-12">
             <div class="section-title text-center">
-              <h2>Engin populaires</h2>
+              <h2>Engins populaires</h2>
               <p>Découvrez les véhicules les plus prisés pour votre prochain voyage. Confort, style et fiabilité, nous
                 avons tout ce dont vous avez besoin.</p>
 
@@ -1259,7 +1259,6 @@ onBeforeMount(() => {
                     </div>
                   </form>
                 </div>
-                <div class="col-md-2"></div>
               </div>
             </div>
           </div>

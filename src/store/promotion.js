@@ -22,9 +22,16 @@ export const usePromotionStore = defineStore('promotionStore', {
         async getPromotionOffres() {
             try {
                 const snapshots = await getDocs(vehiculeEnPromoColRef)
-                snapshots.docs.forEach(doc => this.offresVehicules.push(doc.data()))
+                for(let i = 0; i < snapshots.docs.length; i++) {
+                    const programData = snapshots.docs[i].data()
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let company = {}
+                    if(snapshot.exists()) company = snapshot.data()
+                    this.offresVehicules.push({ ...programData, companieInfos: company })
 
-                console.log(this.offresVehicules)
+                }
             } catch (error) {
                 console.log(error)
             }
@@ -42,8 +49,6 @@ export const usePromotionStore = defineStore('promotionStore', {
                     this.popularDestinations.push({ ...programData, companieInfos: company })
 
                 }
-                
-                console.log(this.popularDestinations)
             } catch (error) {
                 console.log(error)
             }
@@ -51,9 +56,16 @@ export const usePromotionStore = defineStore('promotionStore', {
         async getPopularCars() {
             try {
                 const snapshots = await getDocs(vehiculesEnAvantColRef)
-                snapshots.docs.forEach(doc => this.popularCars.push(doc.data()))
+                for(let i = 0; i < snapshots.docs.length; i++) {
+                    const programData = snapshots.docs[i].data()
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let company = {}
+                    if(snapshot.exists()) company = snapshot.data()
+                    this.popularCars.push({ ...programData, companieInfos: company })
 
-                console.log(this.popularCars)
+                }
             } catch (error) {
                 console.log(error)
             }
@@ -61,9 +73,9 @@ export const usePromotionStore = defineStore('promotionStore', {
     },
 
     actions: {
-        async setCompaniePromotionCars(companyieId) {
+        async setCompaniePromotionCars(companieId) {
             try {
-                const q = query(vehiculeEnPromoColRef, where('compagnie_uid', '==', `${companyieId}`))
+                const q = query(vehiculeEnPromoColRef, where('compagnie_uid', '==', `${companieId}`))
                 const snapshots = await getDocs(q)
 
                 snapshots.docs.forEach(doc => this.companiePromotionCars.push(doc.data()))

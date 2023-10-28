@@ -31,8 +31,14 @@ const logout = async () => {
         <ul>
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
             <select class="form-select1" id="validationCustom04" required>
-              <option selected value="">Pays</option>
-              <option>Anglais</option>
+              <option selected value="">Togo</option>
+              <option>Sénégal</option>
+              <option>Niger</option>
+              <option>Mali</option>
+              <option>Côte d'Ivoire</option>
+              <option>Burkina Faso</option>
+              <option>Bénin</option>
+              <option>Guinée Conakry</option>
             </select>
           </li>
         </ul>

@@ -2,6 +2,7 @@
 import { onBeforeMount, onMounted, ref } from "vue"
 import { useRoute } from 'vue-router'
 import { useCompanieStore } from '@/store/companie.js'
+import { usePromotionStore } from '@/store/promotion.js'
 
 import { collection, doc, addDoc } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
@@ -11,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 const route = useRoute()
 const companieStore = useCompanieStore()
+const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
 const companieId = route.params.id
@@ -18,6 +20,7 @@ const companieId = route.params.id
 onBeforeMount(() => {
   companieStore.setCompanieById(companieId)
   companieStore.setCompanieCars(companieId)
+  promotionStore.setCompaniePromotionCars(companieId)
 })
 
 const name = ref('')
@@ -69,7 +72,7 @@ const reserver = async (car) => {
     chauffeur: avecChauffeur.value === true ? 'Oui' : 'Non',
     client_id: authStore.user.uid || savedUser.uid || '',
     client_profil_url: authStore.user.imageUrl || savedUser.imageUrl || '',
-    compagnie_id: companieId,
+    compagnie_id: companieId || companieStore.companie.uid,
     created_at: new Date(),
     date_retour: dateRetour.value,
     date_retrait: dateRetrait.value,
@@ -85,7 +88,7 @@ const reserver = async (car) => {
     moteur: car.moteur,
     nom_client: name.value,
     number: '',
-    payement: '',
+    payement: 'En attente',
     plaque_vehicule: car.serie_vehicule,
     status: 'En attente',
     telephone_client: phone.value,
@@ -191,20 +194,6 @@ const reserver = async (car) => {
                   aria-selected="false"
                 >
                   Promotion
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="contact-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#contact-tab-pane"
-                  type="button"
-                  role="tab"
-                  aria-controls="contact-tab-pane"
-                  aria-selected="false"
-                >
-                  Réservations
                 </button>
               </li>
               <!-- <li class="nav-item" role="presentation">
@@ -638,6 +627,7 @@ const reserver = async (car) => {
                   </div>
                 </div>
               </div>
+
               <div
                 class="tab-pane fade"
                 id="profile-tab-pane"
@@ -646,12 +636,12 @@ const reserver = async (car) => {
                 tabindex="0"
               >
                 <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
-                  <div class="col">
+                  <div class="col" v-for="(promoCar, i) in promotionStore.companiePromotionCars" :key="i">
                     <div class="card" style="background: #f7f7f78a">
                       <div class="row" style="padding: 6px">
                         <div class="col-md-12 d-flex">
                           <img
-                            src="/public/assets/img/icone/car.png"
+                            :src="companieStore.companie.imageLogoUrl"
                             class="img-fluid"
                             alt="..."
                             style="width: 25px; height: 25px; margin-top: 6px"
@@ -663,7 +653,7 @@ const reserver = async (car) => {
                               margin-top: 10px;
                             "
                           >
-                            Compagagnie test
+                            {{ companieStore.companie.raison_social }}
                           </h6>
                           <p
                             style="
@@ -677,7 +667,7 @@ const reserver = async (car) => {
                               class="img-fluid"
                               alt="..."
                             />
-                            logone
+                            {{ companieStore.companie.adresse }}
                           </p>
                         </div>
                       </div>
@@ -706,200 +696,17 @@ const reserver = async (car) => {
                           />
                         </a>
                         <button class="btn btn-primary" id="badges">
-                          <s> 5000 FCFA </s>
+                          <s> {{ promoCar.ancien_montant }} FCFA </s>
                         </button>
                         <button class="btn btn-primary" id="badges0">
-                          2000 FCFA
+                          {{ promoCar.montant }} FCFA
                         </button>
                         <button class="btn btn-primary" id="badges012">
-                          93%
+                          {{ promoCar.pourcentage }}%
                         </button>
                         <button class="btn btn-primary" id="badges0121">
-                          Toyota yaris 2022
+                          {{ promoCar.vehicule }} {{ promoCar.modele }} {{ promoCar.anne_vehicule }}
                         </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card" style="background: #a6a6a621">
-                      <div class="row" style="padding: 6px">
-                        <div class="col-md-12 d-flex">
-                          <img
-                            src="/public/assets/img/icone/car.png"
-                            class="img-fluid"
-                            alt="..."
-                            style="width: 25px; height: 25px; margin-top: 6px"
-                          />
-                          <h6
-                            style="
-                              font-size: 12px;
-                              margin-left: 5px;
-                              margin-top: 10px;
-                            "
-                          >
-                            Compagagnie test
-                          </h6>
-                          <p
-                            style="
-                              font-size: 12px;
-                              margin-left: 5px;
-                              margin-top: 6px;
-                            "
-                          >
-                            <img
-                              src="/public/assets/img/icone/map.png"
-                              class="img-fluid"
-                              alt="..."
-                            />
-                            logone
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="card h-100"
-                        id="compagnie_card"
-                        style="padding: 6px; background: #a6a6a621"
-                      >
-                        <a
-                          v-bind:href="'/detail'"
-                          style="
-                            border: 1px solid;
-                            border-radius: 5px;
-                            border-color: #a6a6a6;
-                          "
-                        >
-                          <img
-                            src="/public/assets/img/car3.jpg"
-                            class="card-img-top"
-                            alt="..."
-                            style="
-                              border-radius: 5px 5px 5px 5px;
-                              height: 215px !important;
-                              object-fit: cover;
-                            "
-                          />
-                        </a>
-                        <button class="btn btn-primary" id="badges">
-                          <s> 5000 FCFA </s>
-                        </button>
-                        <button class="btn btn-primary" id="badges0">
-                          2000 FCFA
-                        </button>
-                        <button class="btn btn-primary" id="badges012">
-                          93%
-                        </button>
-                        <button class="btn btn-primary" id="badges0121">
-                          Toyota yaris 2022
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card" style="background: #a6a6a621">
-                      <div class="row" style="padding: 6px">
-                        <div class="col-md-12 d-flex">
-                          <img
-                            src="/public/assets/img/icone/car.png"
-                            class="img-fluid"
-                            alt="..."
-                            style="width: 25px; height: 25px; margin-top: 6px"
-                          />
-                          <h6
-                            style="
-                              font-size: 12px;
-                              margin-left: 5px;
-                              margin-top: 10px;
-                            "
-                          >
-                            Compagagnie test
-                          </h6>
-                          <p
-                            style="
-                              font-size: 12px;
-                              margin-left: 5px;
-                              margin-top: 6px;
-                            "
-                          >
-                            <img
-                              src="/public/assets/img/icone/map.png"
-                              class="img-fluid"
-                              alt="..."
-                            />
-                            logone
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="card h-100"
-                        id="compagnie_card"
-                        style="padding: 6px; background: #a6a6a621"
-                      >
-                        <a
-                          v-bind:href="'/detail'"
-                          style="
-                            border: 1px solid;
-                            border-radius: 5px;
-                            border-color: #a6a6a6;
-                          "
-                        >
-                          <img
-                            src="/public/assets/img/car3.jpg"
-                            class="card-img-top"
-                            alt="..."
-                            style="
-                              border-radius: 5px 5px 5px 5px;
-                              height: 215px !important;
-                              object-fit: cover;
-                            "
-                          />
-                        </a>
-                        <button class="btn btn-primary" id="badges">
-                          <s> 5000 FCFA </s>
-                        </button>
-                        <button class="btn btn-primary" id="badges0">
-                          2000 FCFA
-                        </button>
-                        <button class="btn btn-primary" id="badges012">
-                          93%
-                        </button>
-                        <button class="btn btn-primary" id="badges0121">
-                          Toyota yaris 2022
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-             
-              <div
-                class="tab-pane fade"
-                id="disabled-tab-pane"
-                role="tabpanel"
-                aria-labelledby="disabled-tab"
-                tabindex="0"
-              >
-                <div class="row mt-5">
-                  <div class="col-md-12">
-                    <div class="card h-100" id="card_compagnie">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <p class="card-text">
-                              <strong>Location Hyundai Santa fe 2022 </strong>
-                            </p>
-                          </div>
-                          <div class="col-md-6 text-end">
-                            <button
-                              class="btn btn-primary"
-                              style="background: #219935; border-color: #219935"
-                            >
-                              5000 FCFA
-                            </button>
-                          </div>
-                        </div>
-                        <hr />
-
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
                     </div>
                   </div>
@@ -975,10 +782,10 @@ const reserver = async (car) => {
                         <div class="row">
                           <div class="col-md-12">
                             <p>
-                              <strong>Raison sociale |</strong> GB Compagnie
+                              <strong>Raison sociale |</strong> {{ companieStore.companie.raison_social }}
                             </p>
 
-                            <p><strong> Responsable |</strong> Mr joe</p>
+                            <p><strong> Responsable |</strong> {{ companieStore.companie.responsable }}</p>
                           </div>
 
                           <div
@@ -1004,7 +811,7 @@ const reserver = async (car) => {
                                     class="card-title"
                                     style="font-size: 14px"
                                   >
-                                    compagniegb@gmail.com
+                                    {{ companieStore.companie.adresse_mail }}
                                   </h5>
                                 </div>
                               </div>
@@ -1028,13 +835,13 @@ const reserver = async (car) => {
                                     class="card-title"
                                     style="font-size: 14px"
                                   >
-                                    compagniegb.com
+                                    {{ companieStore.companie.site_web }}
                                   </h5>
                                   <h5
                                     class="card-title"
                                     style="font-size: 14px"
                                   >
-                                    +000 000 000 00
+                                    {{ companieStore.companie.telephone }}
                                   </h5>
                                 </div>
                               </div>
@@ -1058,8 +865,7 @@ const reserver = async (car) => {
                                     class="card-title"
                                     style="font-size: 14px"
                                   >
-                                    Jean Dupont,10 Rue des Palmiers ,Quartier
-                                    des Cocotiers
+                                    {{ companieStore.companie.adresse }}
                                   </h5>
                                 </div>
                               </div>
@@ -1083,7 +889,7 @@ const reserver = async (car) => {
                                     class="card-title"
                                     style="font-size: 14px"
                                   >
-                                    1223.2522.55552
+                                    {{ companieStore.companie.latitude }} {{ companieStore.companie.longitude }}
                                   </h5>
                                 </div>
                               </div>
