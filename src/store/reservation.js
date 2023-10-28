@@ -10,7 +10,8 @@ export const useReservationStore = defineStore('reservationStore', {
         reservations: [],
         companieLocations: [],
         vehicules: [],
-        companieReservations: []
+        companieReservations: [],
+        userReservations: []
     }),
     getters: {
         async getAllReservations() {
@@ -41,6 +42,15 @@ export const useReservationStore = defineStore('reservationStore', {
                 const q = query(reservationColRef, where('compagnie_id', "==", `${companieId}`));
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => this.companieReservations.push({ ...doc.data() }))
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async setUserReservations(userId) {
+            try {
+                const q = query(reservationColRef, where('client_id', "==", `${userId}`));
+                const snapshot = await getDocs(q);
+                snapshot.docs.forEach((doc) => this.userReservations.push({ ...doc.data() }))
             } catch (error) {
                 console.log(error)
             }
