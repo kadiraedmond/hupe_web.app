@@ -18,7 +18,7 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  companieStore.setCompanieById(savedUser.uid || authStore.user.uid || 'YYiQmKBenyUzKzyxIEO1vHxfEPb2') // authStore.user.uid
+  companieStore.setCompanieById('YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid) // authStore.user.uid
 
 })
 </script>

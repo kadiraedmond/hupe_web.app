@@ -19,8 +19,11 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+* {
+  font-family: 'Poppins', sans-serif;
+}
 body {
-  font-family: "Open Sans", sans-serif;
   color: #444444;
 }
 
@@ -863,8 +866,8 @@ section {
 
 #conseil_titre{
   font-size: 23px;
-    font-weight: 700;
-    color: #219935;
+  font-weight: 700;
+  color: #219935;
 }
 #conseil_btn{
   color: #219935 !important;
@@ -874,7 +877,7 @@ section {
   font-weight: bolder;
 }
 .features .content+.content {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .features .content h3 {

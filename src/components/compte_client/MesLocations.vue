@@ -15,8 +15,8 @@ const locationStore = useLocationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(async () => {
-  userStore.setUser(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
-  locationStore.setUserLocations(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+  userStore.setUser('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
+  locationStore.setUserLocations('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
 })
 
 const reporter = async (location) => {
@@ -61,7 +61,7 @@ const sendMessage = async () => {
                   "
                 >
                   {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }} <br />
-                  <strong> {{ location.ticket_id }} </strong>
+                  <strong> {{ location.number }} </strong>
                 </p>
                 <hr />
 

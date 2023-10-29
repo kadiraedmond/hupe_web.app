@@ -29,18 +29,57 @@ onBeforeMount(() => {
   promotionStore.getPopularCars
 });
 
+onMounted(() => {
+  const text = document.querySelector(".sec-text")
+  const textLoad = () => {
+      setTimeout(() => {
+          text.textContent = "Notre application vous ouvre les portes d'un monde de ";
+      }, 0)
+      setTimeout(() => {
+          text.textContent = "possibilités pour répondre à tous vos besoins de déplacement.";
+      }, 4000)
+      setTimeout(() => {
+          text.textContent = "Que vous cherchiez à louer une voiture pour une escapade, ";
+      }, 8000)
+      setTimeout(() => {
+          text.textContent = "Que vous cherchiez à acheter la voiture de vos rêves, ";
+      }, 12000)
+      setTimeout(() => {
+          text.textContent = "Que vous cherchiez à trouver des gros engins pour vos projets, ";
+      }, 16000)
+      setTimeout(() => {
+          text.textContent = "Que vous cherchiez à réserver des billets de bus pour vos voyages, ";
+      }, 20000)
+      setTimeout(() => {
+          text.textContent = "Nous sommes là pour simplifier chaque étape de votre parcours.";
+      }, 24000)
+  }
+  
+  textLoad();
+  setInterval(textLoad, 28000)
+})
 </script>
 
 <template>
   <!-- ========== Hero one =========== -->
   <section id="hero" class="d-flex">
     <div class="container-fluid" style="background: #219935">
-      <div class="row g-3 mb-4" style="padding: 93px !important">
+      <div class="row g-3" style="padding: 93px !important">
         <div
           class="col-lg-6 col-md-6 bg-white border-2"
           style="background: #219935 !important"
         >
-          <p class="text-white" style="margin-top: 25%; font-size: 1.05rem">
+          <img 
+            src="/public/assets/img/accueil-car.png" 
+            style="width: 150px; height: 100px; object-fit: cover"
+          />
+          <div class="wrapper text-start" style="margin-top: 0.8rem">
+            <span class="text first-text">Quand la mobilité devient un jeu d'enfant ! </span> <br /> 
+            <span class="text sec-text" style="font-size: 1rem">
+              Notre application vous ouvre les portes d'un monde de possibilités pour répondre à tous vos besoins de déplacement. 
+            </span>
+          </div>
+          <p class="text-white text-start" style="margin-top: 3.8%; font-size: 0.86rem">
             Découvrez notre sélection de véhicules de qualité à des tarifs
             imbattables. Que ce soit pour un voyage d'affaires ou des vacances
             en famille, trouvez la voiture parfaite pour votre escapade.
@@ -63,14 +102,16 @@ onBeforeMount(() => {
               <div 
                 v-for="(slideImage, index) in slideStore.slideImages" 
                 :key="index" 
-                :class="index == 0 ? 'carousel-item active' : 'carousel-item'"
+                :class="index === 0 ? 'carousel-item active' : 'carousel-item'"
               >
+               <router-link :to="`/detail/${slideImage.companieInfos.uid}`">
                 <img
                   :src="slideImage.downloadURL"
                   class="d-block w-100"
                   alt="..."
-                  style="max-height:350px; height:350px; object-fit: cover; border-radius: 10px;"
+                  style="max-height:350px; height:350px; object-fit: cover; border-radius: 2.8px"
                 />
+               </router-link>
               </div>
             </div>
           </div>
@@ -261,7 +302,7 @@ onBeforeMount(() => {
                 "
               >
                 <router-link
-                  to="/detail"
+                  :to="`/detail/${offre.companieInfos.uid}`"
                   style="
                     border: 1px solid;
                     border-radius: 5px;
@@ -395,46 +436,46 @@ onBeforeMount(() => {
             <router-link to="/detail_vehicule_location">
               <div class="card h-100" id="card_compagnie">
               <div class="row" style="margin: 10px">
-                <div class="col-md-7">
+                <div class="col-md-12">
                   <div
                     class="card mb-3 border-0"
                     style="max-width: 540px; background: rgb(250 250 250)"
                   >
                     <div class="row g-1">
-                      <div class="col-md-4">
+                      <div class="col-md-8 d-flex">
                         <img
                           :src="vehicule.companieInfos.imageLogoUrl"
                           alt
                           class="w-px-40 h-auto rounded-circle"
-                          style="width: 50px"
+                          style="max-width: 50px; max-height: 50px"
                         />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 12px">
-                            {{ vehicule.companieInfos.raison_social }}
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 12px">
-                            <i class="bx bx-map" style="color: #219935"></i>
-                            {{ vehicule.companieInfos.adresse }}
-                          </p>
+                        <div>
+                          <div class="card-body">
+                            <h5 class="card-title" style="font-size: 12px">
+                              {{ vehicule.companieInfos.raison_social }}
+                            </h5>
+                            <p class="card-text mt-2" style="font-size: 12px">
+                              <i class="bx bx-map" style="color: #219935"></i>
+                              {{ vehicule.companieInfos.adresse }}
+                            </p>
+                          </div>
                         </div>
+                      </div>
+                      <div class="col-md-4 text-end">
+                        <button
+                          class="btn btn-primary"
+                          style="
+                            background: #219935;
+                            border-color: #219935;
+                            margin-top: 15px;
+                            font-size: 12px;
+                          "
+                        >
+                          {{ vehicule.montant }} FCFA
+                        </button>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-5 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                      font-size: 12px;
-                    "
-                  >
-                    {{ vehicule.montant }} FCFA
-                  </button>
                 </div>
               </div>
               <div
@@ -446,15 +487,15 @@ onBeforeMount(() => {
                 "
               >
                 <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <img
                       :src="vehicule.vehicule_image_url"
                       class="img-fluid rounded-start h-100"
                       alt="..."
-                      style="object-fit: cover"
+                      style="width: 150px; max-width: 150px; max-height: 150px; object-fit: cover"
                     />
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-6">
                     <div class="card-body">
                       <p class="card-text" style="font-size: 13px">
                         <strong>{{ vehicule.vehicule }} </strong>
@@ -1269,4 +1310,38 @@ onBeforeMount(() => {
   <!-- End #main -->
 </template>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+.wrapper .text {
+  position: relative;
+  color: #cad1f8;
+  font-size: 35px;
+  font-weight: 600;
+}
+.wrapper .text.first-text {
+  color: #FFF;
+}
+.text.sec-text:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #219935;
+  border-left: 2px solid #cad1f8;
+  animation: animate 4s steps(12) infinite;
+}
+@keyframes animate {
+  40%, 60%{
+      left: calc(100% + 5px);
+  }
+  100%{
+      left: 0%;
+  }
+}
+
+</style>

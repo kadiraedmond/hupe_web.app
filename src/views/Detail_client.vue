@@ -119,7 +119,7 @@ const reserver = async (car) => {
       style="margin-top: 0px"
     >
       <img
-        src="/public/assets/img/car2.jpg"
+        :src="companieStore.companie.imageCouvertureUrl"
         alt=""
         class="img-fluid w-100"
         style="height: 380px; object-fit: cover"
@@ -135,7 +135,7 @@ const reserver = async (car) => {
               <div class="row g-0">
                 <div class="col-md-4">
                   <img
-                    src="/public/assets/img/avatars/1.png"
+                    :src="companieStore.companie.imageLogoUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
                     style="width: 160px"

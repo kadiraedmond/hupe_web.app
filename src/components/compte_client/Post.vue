@@ -10,7 +10,7 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  demandeStore.setPosts(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+  demandeStore.setPosts('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
 })
 const options = {
   year: 'numeric', 

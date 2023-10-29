@@ -8,8 +8,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  userStore.setUserHistory(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
-  userStore.setTotalAmount(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+  userStore.setUserHistory( 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
+  userStore.setTotalAmount( 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
 })
 
 const options = {

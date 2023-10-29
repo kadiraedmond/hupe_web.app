@@ -8,7 +8,7 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  scannerStore.setCompanyScanners(savedUser.uid || authStore.user.uid || 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1')
+  scannerStore.setCompanyScanners('f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid)
 })
 </script>
 

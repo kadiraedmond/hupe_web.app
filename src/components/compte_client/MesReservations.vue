@@ -15,8 +15,8 @@ const reservationStore = useReservationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(async () => {
-  userStore.setUser(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
-  reservationStore.setUserReservations(savedUser.uid || authStore.user.uid || 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
+  userStore.setUser( 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
+  reservationStore.setUserReservations( 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
 })
 
 const option = ref()
@@ -55,7 +55,7 @@ const annul = async (reservation) => {
                   "
                 >
                   {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
-                  <strong> {{ reservation.ticket_id }} </strong>
+                  <strong> {{ reservation.number }} </strong>
                 </p>
                 <hr />
 

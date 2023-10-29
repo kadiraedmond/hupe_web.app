@@ -8,8 +8,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 onBeforeMount(() => {
-  companieStore.setCompanieHistory(savedUser.uid || authStore.user.uid ||  'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
-  companieStore.setTotalAmount(savedUser.uid || authStore.user.uid ||  'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
+  companieStore.setCompanieHistory('YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid)
+  companieStore.setTotalAmount('YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid)
 })
 </script>
 

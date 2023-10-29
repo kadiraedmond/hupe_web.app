@@ -28,17 +28,17 @@ const logout = async () => {
         /></router-link>
       </h1>
       <nav id="navbar" class="navbar">
-        <ul>
+        <ul >
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
-            <select class="form-select1" id="validationCustom04" required>
-              <option selected value="">Togo</option>
-              <option>Sénégal</option>
-              <option>Niger</option>
-              <option>Mali</option>
-              <option>Côte d'Ivoire</option>
+            <select class="form-select1" style="padding: 8.4px" id="validationCustom04" required>
+              <option selected value="">Bénin</option>
               <option>Burkina Faso</option>
-              <option>Bénin</option>
+              <option>Côte d'Ivoire</option>
               <option>Guinée Conakry</option>
+              <option>Mali</option>
+              <option>Niger</option>
+              <option>Sénégal</option>
+              <option>Togo</option>
             </select>
           </li>
         </ul>
@@ -46,9 +46,9 @@ const logout = async () => {
       <!-- .navbar -->
       <form class="d-flex" role="search">
         <input
-          class="form-control me-2"
+          class="form-control me-2 text-white"
           type="search"
-          placeholder="Search"
+          placeholder="Entrez un terme de recherche"
           aria-label="Search"
           id="search"
         />
@@ -75,7 +75,7 @@ const logout = async () => {
             </router-link>
           </li>
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
-            <select class="form-select1 px-3" id="validationCustom04" required>
+            <select class="form-select1 px-3" style="padding: 8px" id="validationCustom04" required>
               <option selected value="">Francais</option>
               <option>Anglais</option>
             </select>
