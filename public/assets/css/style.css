@@ -1904,7 +1904,7 @@ section {
 
 #footer .footer-top .footer-links ul a:hover {
   text-decoration: none;
-  color: #219935;
+  color: #cad1f8 !important;
 }
 
 #footer .footer-newsletter {

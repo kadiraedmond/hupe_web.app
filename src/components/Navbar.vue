@@ -74,6 +74,11 @@ const logout = async () => {
               ><i class="bx bx-help-circle" id="icon_menu"></i> Aide
             </router-link>
           </li>
+          <li>
+            <router-link class="nav-link scrollto" to="/promotion"
+              ><i class="bx bx-help-circle" id="icon_menu"></i> Promotion
+            </router-link>
+          </li>
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
             <select class="form-select1 px-3" style="padding: 8px" id="validationCustom04" required>
               <option selected value="">Francais</option>

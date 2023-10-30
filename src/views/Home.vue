@@ -31,7 +31,7 @@ onBeforeMount(() => {
 
 onMounted(() => {
   window.scrollTo(0, 0)
-  
+
   const text = document.querySelector(".sec-text")
   const textLoad = () => {
       setTimeout(() => {
@@ -100,6 +100,13 @@ onMounted(() => {
             data-bs-ride="carousel"
             style="height: 400px"
           >
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="border-radius: 50%; width: 10px; height: 10px"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="1" class="" aria-current="true" aria-label="Slide 2" style="border-radius: 50%; width: 10px; height: 10px"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="2" class="" aria-current="true" aria-label="Slide 3" style="border-radius: 50%; width: 10px; height: 10px"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="3" class="" aria-current="true" aria-label="Slide 4" style="border-radius: 50%; width: 10px; height: 10px"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="4" class="" aria-current="true" aria-label="Slide 5" style="border-radius: 50%; width: 10px; height: 10px"></button>
+            </div>
             <div class="carousel-inner overflow-hidden">
               <div 
                 v-for="(slideImage, index) in slideStore.slideImages" 
@@ -116,6 +123,7 @@ onMounted(() => {
                </router-link>
               </div>
             </div>
+            
           </div>
         </div>
       </div>
@@ -248,94 +256,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
-              <h2>En promotions</h2>
-              <p>
-                Ne manquez pas nos offres spéciales du moment ! Découvrez des
-                promotions exclusives pour rendre votre voyage encore plus
-                mémorable.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
-          <div class="col" v-for="(offre, index) in promotionStore.offresVehicules" :key="index">
-            <div
-              class="card border-0"
-              style="background: #f3f4f6; padding: 6px"
-              v-if="index < 6"
-            >
-              <div class="row" style="padding: 6px">
-                <div class="col-md-12 d-flex">
-                  <img
-                    :src="offre.companieInfos.imageLogoUrl"
-                    class="img-fluid"
-                    alt="..."
-                    style="width: 25px; height: 25px; border-radius: 50%; margin-top: 6px; object-fit: contains"
-                  />
-                  <h6
-                    style="font-size: 12px; margin-left: 5px; margin-top: 10px"
-                  >
-                  {{ offre.companieInfos.raison_social }}
-                  </h6>
-                  <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
-                    <img
-                      src="/public/assets/img/icone/map.png"
-                      class="img-fluid"
-                      alt="..."
-                    />
-                    {{ offre.companieInfos.adresse }}
-                  </p>
-                </div>
-              </div>
-              <div
-                class="card h-100"
-                id="compagnie_card"
-                style="
-                  padding: 6px;
-                  background: #a6a6a621;
-                  box-shadow: none;
-                  background: transparent;
-                "
-              >
-                <router-link
-                  :to="`/detail/${offre.companieInfos.uid}`"
-                  style="
-                    border: 1px solid;
-                    border-radius: 5px;
-                    border-color: #a6a6a6;
-                  "
-                >
-                  <img
-                    :src="offre.vehicule_image_url"
-                    class="card-img-top"
-                    alt="..."
-                    style="
-                      border-radius: 5px 5px 5px 5px;
-                      height: 215px !important;
-                      object-fit: cover;
-                    "
-                  />
-                </router-link>
-                <button class="btn btn-primary" id="badges">
-                  <s> {{ offre.ancien_montant }} FCFA </s>
-                </button>
-                <button class="btn btn-primary" id="badges0">{{ offre.montant }} FCFA</button>
-                <button class="btn btn-primary" id="badges012">{{ offre.pourcentage }}%</button>
-                <button class="btn btn-primary" id="badges0121">
-                  {{ offre.vehicule }} {{ offre.modele }}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
     <section id="features" class="features">

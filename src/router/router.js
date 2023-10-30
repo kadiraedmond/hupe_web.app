@@ -32,6 +32,7 @@ import Vehicule from '@/views/detail_vehicule_de_location.vue';
 import Reserve from '@/views/detail_reservation_ticket.vue';
 import Dengin from '@/views/detail_location_engin.vue';
 import Engin from '@/views/gros_engin.vue';
+import Promotion from '@/views/promotion.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -243,6 +244,13 @@ const routes = [
     path: '/location_gros_engin',
     name: 'Engin',
     component: Engin,
+    
+  },
+
+  {
+    path: '/promotion',
+    name: 'Promotion',
+    component: Promotion,
     
   },
 

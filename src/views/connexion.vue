@@ -43,46 +43,38 @@ onMounted(() => {
 <template>
   <main id="main">
     <section id="features" class="features" style="margin-top: 100px">
-      <div class="container">
+      <div class="container w-50">
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-8">
             <div class="card mb-3">
               <div class="row g-0">
-                <div class="col-md-4">
+                <div class="col-md-12 text-center">
+                  <h5 class="card-title mt-5">Authentification</h5>
                   <img
                     src="/public/assets/img/auth.png"
-                    class="img-fluid rounded-start w-100"
+                    class="img-fluid rounded-start w-25"
                     alt="..."
-                    style="margin-top: 25px"
+                    style="margin-top: 8px; object-fit: cover;"
                   />
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <!-- <div>
                     <input type="tel" ref="phoneInput">
                   </div> -->
                   <div class="card-body">
-                    <h5 class="card-title">Authentification</h5>
-                    <p class="card-text">
+                    <p class="card-text text-center">
                       Veuillez entrer votre numero de telephone, nous vous
                       enverrons un code pour la vérification
                     </p>
 
                     <form @submit.prevent="logInWithPhoneNumber">
-                      <div class="mb-3">
+                      <div class="mb-2 text-center">
                         <label for="phoneNumber" class="form-label"
                           >Numéro de téléphone</label
                         >
                       </div>
-                      <div class="mb-3">
-                        <!-- <input
-                          type="number"
-                          class="form-control"
-                          v-model="phoneNumber"
-                          id="phoneNumber"
-                          placeholder="Entrez votre numéro de téléphone avec l'indicatif (+33 ...)"
-                          ref="phoneInput"
-                        /> -->
+                      <div class="mb-3 mx-5 text-center">
                         <vue-tel-input 
                           v-model="phoneNumber"
                           :enabledCountryCode="true"
@@ -90,15 +82,17 @@ onMounted(() => {
                          />
                       </div>
                       
-                      <button
-                        type="submit"
-                        class="btn btn-primary mt-2"
-                        style="
-                          background-color: #219935;
-                          border-color: #219935;
-                        "                      >
-                        Se connecter
-                      </button>
+                      <div class="text-center">
+                        <button
+                          type="submit"
+                          class="btn btn-primary mt-2"
+                          style="
+                            background-color: #219935;
+                            border-color: #219935;
+                          "                      >
+                          Se connecter
+                        </button>
+                      </div>
                       <div id="recaptcha-container"></div>
                     </form>
                   </div>

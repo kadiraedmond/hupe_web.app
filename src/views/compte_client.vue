@@ -106,7 +106,7 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          <div class="col-md-8">
+          <!-- <div class="col-md-8">
             <div class="row g-2" style="margin-top: 55px;">
              
               <div class="col-md-3">
@@ -136,7 +136,7 @@ onMounted(() => {
               </div>
 
             </div>
-          </div>
+          </div> -->
         </div>
        
       </div>
