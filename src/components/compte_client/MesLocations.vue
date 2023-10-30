@@ -14,9 +14,12 @@ const authStore = useAuthStore()
 const locationStore = useLocationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
+
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
-  userStore.setUser('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
-  locationStore.setUserLocations('MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
+  userStore.setUser(userId)
+  locationStore.setUserLocations(userId)
 })
 
 const reporter = async (location) => {

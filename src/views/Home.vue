@@ -109,7 +109,7 @@ onMounted(() => {
                   :src="slideImage.downloadURL"
                   class="d-block w-100"
                   alt="..."
-                  style="max-height:350px; height:350px; object-fit: cover; border-radius: 2.8px"
+                  style="max-height:350px; height:350px; object-fit: cover"
                 />
                </router-link>
               </div>

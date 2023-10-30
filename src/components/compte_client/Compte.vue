@@ -7,9 +7,12 @@ const userStore = useUserStore()
 const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
+
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
-  userStore.setUserHistory( 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
-  userStore.setTotalAmount( 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid)
+  userStore.setUserHistory(userId)
+  userStore.setTotalAmount(userId)
 })
 
 const options = {

@@ -138,7 +138,7 @@ const reserver = async (car) => {
                     :src="companieStore.companie.imageLogoUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 160px"
+                    style="width: 150px; height: 150px; max-width: 150px; max-height: 150px; object-fit: cover;"
                   />
                 </div>
                 <div class="col-md-8">
