@@ -17,6 +17,10 @@ onBeforeMount(() => {
 
 })
 
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
 const companieColRef = doc(firestoreDb, "compagnies", `${companieStore.companie.uid}`)
 
 const isVIP = ref(false)

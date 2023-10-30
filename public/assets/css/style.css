@@ -137,7 +137,7 @@ h6 {
 #header {
   /* background: #f6f7ff; */ 
   background: #219935;
-  border-bottom: 2px solid #eceefe;
+  border-bottom: 1.5px solid #eceefe !important;
   transition: all 0.5s;
   z-index: 997;
   padding: 15px 0;
@@ -470,7 +470,7 @@ h6 {
   width: 100%;
   height: 100vh;
   background: white;
-  border-bottom: 2px solid white;
+  /* border-bottom: 2px solid white; */
   text-align: center;
 }
 

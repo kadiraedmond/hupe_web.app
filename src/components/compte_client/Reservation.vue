@@ -75,7 +75,11 @@ onBeforeMount(async () => {
   await userStore.setReservationTickets(userId)
 
   updateReservationsDashboard(userStore.reservationTickets)
-});
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 
 </script>
 

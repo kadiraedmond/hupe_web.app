@@ -1,7 +1,7 @@
 <script setup>
 import { useReservationStore } from '@/store/reservation.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount } from "vue";
+import { onBeforeMount, onMounted } from "vue";
 
 const reservationStore = useReservationStore()
 const authStore = useAuthStore()
@@ -12,6 +12,10 @@ const userId = savedUser.uid || authStore.user.uid
 // const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   reservationStore.setVehicules(userId)
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
 })
 </script>
 

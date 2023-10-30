@@ -1,7 +1,7 @@
 <script setup>
 import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 
 import { addDoc, updateDoc, collection } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'

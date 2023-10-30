@@ -1,7 +1,7 @@
 <script setup>
 import { useDemandeStore } from '@/store/demande.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 
 import { collection, doc, getDoc} from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
@@ -27,6 +27,10 @@ const getClientInformations = async (clientId) => {
 
 onBeforeMount(() => {
   demandeStore.setLocationDemandes()
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
 })
 </script>
 

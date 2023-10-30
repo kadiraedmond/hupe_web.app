@@ -12,7 +12,11 @@ const companieStore = useCompanieStore();
 onBeforeMount(() => {
   companieStore.getAllCompanies
   companieStore.getTransportCompanies
-});
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 
 </script>
 <template>

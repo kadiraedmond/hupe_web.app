@@ -14,6 +14,10 @@ onBeforeMount(() => {
   companieStore.setCompanieHistory(userId)
   companieStore.setTotalAmount(userId)
 })
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <template>

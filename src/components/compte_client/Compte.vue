@@ -15,6 +15,10 @@ onBeforeMount(() => {
   userStore.setTotalAmount(userId)
 })
 
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
 const options = {
   year: 'numeric', 
   month: '2-digit', 

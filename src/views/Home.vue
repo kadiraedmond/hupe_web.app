@@ -30,6 +30,8 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
+  window.scrollTo(0, 0)
+  
   const text = document.querySelector(".sec-text")
   const textLoad = () => {
       setTimeout(() => {
@@ -67,25 +69,25 @@ onMounted(() => {
       <div class="row g-3" style="padding: 93px !important">
         <div
           class="col-lg-6 col-md-6 bg-white border-2"
-          style="background: #219935 !important"
+          style="background: #219935 !important; display: flex; flex-direction: column"
         >
           <img 
             src="/public/assets/img/accueil-car.png" 
-            style="width: 150px; height: 100px; object-fit: cover"
+            style="width: 260px; height:260px; object-fit: cover; float: left"
           />
-          <div class="wrapper text-start" style="margin-top: 0.8rem">
+          <div class="wrapper text-start" style="margin-top: 2rem">
             <span class="text first-text">Quand la mobilité devient un jeu d'enfant ! </span> <br /> 
-            <span class="text sec-text" style="font-size: 1rem">
+            <span class="text sec-text" style="font-size: 1rem;">
               Notre application vous ouvre les portes d'un monde de possibilités pour répondre à tous vos besoins de déplacement. 
             </span>
           </div>
-          <p class="text-white text-start" style="margin-top: 3.8%; font-size: 0.86rem">
+          <!-- <p class="text-white text-start" style="margin-top: 3.8%; font-size: 0.86rem">
             Découvrez notre sélection de véhicules de qualité à des tarifs
             imbattables. Que ce soit pour un voyage d'affaires ou des vacances
             en famille, trouvez la voiture parfaite pour votre escapade.
             Réservez en ligne, choisissez votre destination, et préparez-vous à
             prendre la route.
-          </p>
+          </p> -->
         </div>
         <div
           class="col-lg-6 col-md-6 bg-white border-2"
@@ -1318,7 +1320,7 @@ onMounted(() => {
 .wrapper .text {
   position: relative;
   color: #cad1f8;
-  font-size: 35px;
+  font-size: 24px;
   font-weight: 600;
 }
 .wrapper .text.first-text {

@@ -11,7 +11,7 @@ import Politique from "@/components/CompteReservation/Politique.vue";
 
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount } from "vue";
+import { onBeforeMount, onMounted } from "vue";
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -24,6 +24,9 @@ onBeforeMount(() => {
   companieStore.setCompanieById(userId)
 })
 
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <template>

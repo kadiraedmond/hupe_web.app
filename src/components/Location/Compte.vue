@@ -1,7 +1,7 @@
 <script setup>
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount } from "vue"
+import { onBeforeMount, onMounted } from "vue"
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -13,6 +13,10 @@ const userId = savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieHistory(userId)
   companieStore.setTotalAmount(userId)
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
 })
 </script>
 

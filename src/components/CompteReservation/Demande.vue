@@ -28,6 +28,10 @@ const getClientInformations = async (clientId) => {
 onBeforeMount(() => {
   demandeStore.setReservationDemandes()
 })
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup>
 import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 
 import Location from '@/components/compte_client/Location.vue'
 import Reservation from '@/components/compte_client/Reservation.vue'
@@ -56,6 +56,10 @@ const submitPost = async () => {
   document.querySelector('#postForm').reset()
 }
 
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 
 </script>
 

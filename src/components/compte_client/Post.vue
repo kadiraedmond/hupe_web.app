@@ -2,7 +2,7 @@
 import { useDemandeStore } from '@/store/demande.js'
 import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, onMounted } from 'vue'
 
 const demandeStore = useDemandeStore()
 const userStore = useUserStore()
@@ -14,6 +14,10 @@ const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   demandeStore.setPosts(userId)
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
 })
 const options = {
   year: 'numeric', 

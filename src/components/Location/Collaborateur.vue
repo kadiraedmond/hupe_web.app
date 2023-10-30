@@ -1,7 +1,7 @@
 <script setup>
 import { useScannerStore } from '@/store/scanner.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, onMounted } from 'vue'
 
 const scannerStore = useScannerStore()
 const authStore = useAuthStore()
@@ -12,6 +12,10 @@ const userId = savedUser.uid || authStore.user.uid
 // const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   scannerStore.setCompanyScanners(userId)
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
 })
 </script>
 

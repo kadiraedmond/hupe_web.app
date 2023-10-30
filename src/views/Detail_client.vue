@@ -23,6 +23,10 @@ onBeforeMount(() => {
   promotionStore.setCompaniePromotionCars(companieId)
 })
 
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
 const name = ref('')
 const phone = ref('')
 const avecChauffeur = ref(false)

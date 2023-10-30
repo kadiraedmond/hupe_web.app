@@ -13,6 +13,10 @@ const userId = savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   scannerStore.setCompanyScanners(userId)
 })
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <template>

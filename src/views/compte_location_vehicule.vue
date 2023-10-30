@@ -11,7 +11,7 @@ import Politique from "@/components/Location/Politique.vue";
 
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount } from "vue";
+import { onBeforeMount, onMounted } from "vue";
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -23,6 +23,10 @@ const userId = savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieById(userId) // authStore.user.uid
 
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
 })
 </script>
 

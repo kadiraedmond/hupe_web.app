@@ -14,6 +14,7 @@ onBeforeMount(() => {
   userStore.setUser(userId) // authStore.user.uid
 
 })
+
 </script>
 
 <template>

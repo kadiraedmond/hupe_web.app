@@ -1,6 +1,9 @@
-<script>
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
+<script setup>
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->

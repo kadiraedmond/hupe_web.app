@@ -2,7 +2,7 @@
 import { useCompanieStore } from '@/store/companie.js'
 import { usePromotionStore } from '@/store/promotion.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount } from "vue";
+import { onBeforeMount, onMounted } from "vue";
 
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()

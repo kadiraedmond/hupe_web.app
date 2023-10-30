@@ -2,7 +2,7 @@
 import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
 
-import { onBeforeMount, reactive } from "vue";
+import { onBeforeMount, onMounted, reactive } from "vue";
 
 
 let enAttente = reactive({
@@ -75,7 +75,11 @@ onBeforeMount(async () => {
   await userStore.setLocationVehicule(userId)
 
   updateReservationsDashboard(userStore.locationVehicules)
-});
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 
 </script>
 

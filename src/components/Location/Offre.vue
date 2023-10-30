@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, onMounted } from 'vue'
 import { useCompanieStore } from '@/store/companie.js'
 import { doc, updateDoc} from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
@@ -15,6 +15,10 @@ const userId = savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieById(userId) // authStore.user.uid
 
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
 })
 
 const companieColRef = doc(firestoreDb, "compagnies", `${companieStore.companie.uid}`)
