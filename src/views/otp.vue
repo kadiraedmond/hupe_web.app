@@ -1,50 +1,38 @@
 <script setup>
-import { onMounted, ref, defineProps  } from 'vue'
+import { onMounted } from 'vue'
 
 import { useAuthStore } from '@/store/auth.js'
 import router from '@/router/router.js'
 
-const otp1 = ref()
-const otp2 = ref()
-const otp3 = ref()
-const otp4 = ref()
-const otp5 = ref()
-const otp6 = ref()
-
-const joinedOTP = ref('')
-
 const authStore = useAuthStore()
 
-const handleOtp = async () => {
-  joinedOTP.value = `${otp1.value}${otp2.value}${otp3.value}${otp4.value}${otp5.value}${otp6.value}`
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 
-  const verificationCode = joinedOTP.value
+const handleOnComplete = async (value) => {
+  const verificationCode = `${value}`
 
   const confirmationResult = authStore.confirmationResult
   
   const userCredential = await confirmationResult.confirm(verificationCode);
   const user = userCredential.user;
 
-  authStore.setUser(user)
-  localStorage.setItem('user', JSON.stringify(user))
-
-  document.querySelector('#otpInputForm').reset()
-
-  if(user.type_compagnie) {
-    if(user.type_compagnie == 'Location') {
-      router.push('/compte_vehicule')
-    } else if(user.type_compagnie == 'Transport') {
-      router.push('/compte_reservation')
+  if(user) {
+    authStore.setUser(user)
+    localStorage.setItem('user', JSON.stringify(user))
+  
+    if(user.type_compagnie) {
+      if(user.type_compagnie == 'Location') {
+        router.push('/compte_vehicule')
+      } else if(user.type_compagnie == 'Transport') {
+        router.push('/compte_reservation')
+      }
+    } else {
+      router.push('/compte_client')
     }
-  } else {
-    router.push('/compte_client')
   }
 }
-
-onMounted(() => {
-  window.scrollTo(0, 0)
-})
-
 
 </script>
 
@@ -54,52 +42,25 @@ onMounted(() => {
       <div class="container">
         <div class="row">
             <div class="col-md-6" style="background: #d5f8e5; border-radius: 5px; padding: 20px;">
-              <div class="row">
+              <div class="row mt-5">
                 <div class="col-md-12 text-center">
-                  <h3>Verification</h3>
+                  <h3>Vérification</h3>
                 </div>
                 <div class="col-md-12 text-center">
                   <p>Veuillez saisir le code que nous venons de vous envoyer sur le numéro</p>
                 </div>
-                <div class="col-md-12 mt-4">
-                  <form id="otpInputForm" @submit.prevent="handleOtp"> 
-                    <div class="row d-flex">
-                      <div class="col-md-12">
-                        <input type="number" v-model="otp1" id="otp1" name="otp1" class="otp-input" pattern="\d" maxlength="1" required autofocus>
-                        <input type="number" v-model="otp2" id="otp2" name="otp2" class="otp-input" pattern="\d" maxlength="1" required>
-                        <input type="number" v-model="otp3" id="otp3" name="otp3" class="otp-input" pattern="\d" maxlength="1" required>
-                        <input type="number" v-model="otp4" id="otp4" name="otp4" class="otp-input" pattern="\d" maxlength="1" required>
-                        <input type="number" v-model="otp5" id="otp5" name="otp4" class="otp-input" pattern="\d" maxlength="1" required>
-                        <input type="number" v-model="otp6" id="otp6" name="otp4" class="otp-input" pattern="\d" maxlength="1" required>
-                        <br><br>
-                      </div>
-                    </div>     
-                    <!-- <input type="submit" value="Vérifier"> -->
-                    <div class="row text-center mt-3">
-                      <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Vérifier</button>
-                      </div>
-                    </div>
-                </form>
-                </div>
-                <div class="col-md-12 mt-4">
-                  <div style="display: flex; flex-direction: row">
+                <div class="col-md-12 mt-3">
+                  <div class="d-flex justify-content-center">
                     <v-otp-input
                       ref="otpInput"
-                      v-model:value="bindModal"
                       input-classes="otp-input"
-                      separator="-"
-                      :num-inputs="4"
+                      separator=""
+                      :num-inputs="6"
                       :should-auto-focus="true"
-                      input-type="letter-numeric"
-                      :conditionalClass="['one', 'two', 'three', 'four']"
-                      :placeholder="['*', '*', '*', '*']"
-                      @on-change="handleOnChange"
+                      input-type="numeric"
                       @on-complete="handleOnComplete"
                     />
                   </div>
-                  <button @click="clearInput()">Clear Input</button>
-                  <button @click="fillInput('2929')">Fill Input</button>
                 </div>
                 <div class="col-md-12 text-center mt-3">
                   <p>Je n'ai pas reçu de message</P>
@@ -110,18 +71,38 @@ onMounted(() => {
             <div class="col-md-6 text-center">
                 <img src="/public/assets/img/otp.jpg" class="img-fluid rounded-start w-75" alt="...">
             </div>
-             
-            
+           </div> 
         </div>
      
-       </div>
     </section>
-
-
-
 
  </main>
     <!-- End #main -->
 </template>
 <style>
+.otp-input {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Background colour of an input field with value */
+.otp-input.is-complete {
+  background-color: #e4e4e4;
+}
+.otp-input::-webkit-inner-spin-button,
+.otp-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input::placeholder {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
+}
 </style>
