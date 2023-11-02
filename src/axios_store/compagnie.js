@@ -24,9 +24,17 @@ export const useCompagnieStore = defineStore('compagnieStore', {
         // }
 
         async setVehiculesCompagnie(compagnieId) {
-            const { data } = await axios.get(`${API_BASE}/vehicule`)
-            const vehicules = data.filter(vehicule => vehicule.compagnie_id === compagnieId)
-            this.vehiculesCompagnie = data
+            try {
+                const { data } = await axios.get(`${API_BASE}/vehicule`, {
+                    params: {
+                        compagnie_id: compagnieId
+                    }
+                })
+
+                this.vehiculesCompagnie = data
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 })
