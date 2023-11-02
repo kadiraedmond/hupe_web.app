@@ -13,8 +13,13 @@
                     <div class="row " style="width:30%">
                         
                         <div class="col-md-12 mb-3">
-                            <img src="/assets/img/favicon.png" alt="" class="img-fluid"
-                            style="margin-top: -6px; width: 30px;"> 
+                            <router-link to="/">
+                                <h1 class="text-black">
+                                  <i class="bx bx-x"></i>
+                               </h1>
+                            
+                            </router-link>
+                           
                         </div>
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 24px;"> Informations </h2>
@@ -37,6 +42,12 @@
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"> <i class="bx bx-accessibility"></i> Accessibilité </button>
+                            </li>
+                        </div>
+
+                        <div class="col-md-12 mb-2">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link text-start" id="blog-tab" data-bs-toggle="tab" data-bs-target="#blog-tab-pane" type="button" role="tab" aria-controls="blog-tab-pane" aria-selected="false"> <i class="bx bx-news"></i> Blog </button>
                             </li>
                         </div>
                     </div>
@@ -674,7 +685,7 @@
                                             <div class="col-md-12 mt-4">
                                                 <div class="row">
                                                     <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">1</button>
+                                                        <button class="btn btn-primary" id="circle_btn">3</button>
                                                         <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Messagerie </h1>
                                                     </div>
                                                 </div>
@@ -1407,199 +1418,297 @@
                     <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0"> 
                         <div class="row">
                             <div class="col-md-12">
-                                <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Vente de Véhicules HUPE  </h2>
-                                <p>Bienvenue sur la page de vente de véhicules HUPE. Notre service de vente de véhicules est conçu pour offrir aux acheteurs une expérience transparente et pratique lors de l'acquisition d'un nouveau véhicule. Découvrez ci-dessous les avantages de la vente de véhicules via HUPE et comment cela fonctionne.</p>
+                                <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Accessibilité sur HUPE </h2>
+                                <hr>
+                                <p>Chez HUPE, nous nous engageons à rendre nos services accessibles à tous. Nous croyons en l'importance de l'accessibilité et nous nous efforçons de fournir une expérience inclusive à l'ensemble de nos utilisateurs, y compris ceux ayant des besoins spéciaux. Sur cette page, nous vous expliquerons comment nous mettons en œuvre l'accessibilité sur notre site web  www.hupe-africa.com.</p>
                             </div>
-                            
-                        </div>
-                        <section id="faq" class="faq" style="margin-top: -40px;">
-                        <div class="container">
-                            <div class="row mb-5">
-                                <div class="col-md-10">
-                                    <h1 style="font-size: 20px; font-weight: 700;">Pourquoi Choisir HUPE pour la Vente de Véhicules ?</h1>
-                                </div>
+                            <div class="col-md-12">
+                                <h2 style="font-size: 20px; font-weight: 600;" class="mb-3">Navigation Accessible </h2>
+                                <p>Vous pouvez naviguer sur notre site web à l'aide du clavier. Utilisez les touches fléchées pour parcourir le contenu et appuyez sur la touche Entrée pour activer les liens.</p>
+                                <p>Si vous utilisez un lecteur d'écran, notre site est compatible avec des lecteurs d'écran populaires, tels que VoiceOver pour iOS et TalkBack pour Android. Pour activer la lecture vocale, suivez les instructions de votre lecteur d'écran.</p>
+                                <img src="public/assets/img/as.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
                             </div>
-                            <div class="row row-cols-1 row-cols-md-3 g-4">
-                                <div class="col">
-                                <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
-                                    <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/1.png')}}" class="img-fluid w-25" alt="...">
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 17px;"> Sélection de Véhicules de Qualité  </h5>
-                                    <p class="card-text" style="font-size: 14px;">HUPE propose une sélection de véhicules de qualité, y compris des voitures neuves, des véhicules d'occasion certifiés et des modèles populaires.</p>
+
+                            <div class="col-md-12 mt-4">
+                                <div class="row">
+                                    <div class="col-md-6" style=" margin-top: 40px;">
+                                        <h2 style="font-size: 20px; font-weight: 600;" class="mb-3">Contraste et Taille du Texte</h2>
+                                        <p>Nous comprenons que le contraste et la taille du texte sont essentiels pour la lisibilité. C'est pourquoi notre application propose des options de personnalisation qui vous permettent d'ajuster le contraste, la taille du texte et le style pour répondre à vos besoins individuels.</p>
+                                        
                                     </div>
-                                </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
-                                    <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/2.png')}}" class="img-fluid w-25" alt="...">
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Tarification Transparente  </h5>
-                                        <p class="card-text" style="font-size: 14px;"> Nos véhicules sont proposés à des prix transparents et compétitifs, et nous fournissons des informations détaillées sur chaque véhicule.</p>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
-                                    <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/3.png')}}" class="img-fluid w-25" alt="...">
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Processus d'Achat Facile </h5>
-                                        <p class="card-text" style="font-size: 14px;">: L'ensemble du processus d'achat, de la recherche du véhicule à la signature du contrat, peut être effectué en ligne via notre application ou notre site web.</p>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
-                                    <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Inspection et Historique </h5>
-                                        <p class="card-text" style="font-size: 14px;">Chaque véhicule est inspecté et dispose d'un historique complet, vous permettant de prendre une décision éclairée.</p>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
-                                    <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Financement Facilité  </h5>
-                                        <p class="card-text" style="font-size: 14px;">Si vous avez besoin de financement pour votre achat, HUPE propose des options de financement flexibles et abordables.</p>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </section>
-                        <section id="faq" class="faq" style="margin-top: -80px;">
-                        <div class="container">
-                            <div class="row mb-5">
-                                <div class="col-md-10">
-                                    <h1 style="font-size: 20px; font-weight: 700;">Comment Acheter un Véhicule via HUPE   </h1>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="accordion" id="accordionPanelsStayOpenExample">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                                1.	Téléchargez l'Application 
-                                            </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                                            <div class="accordion-body">
-                                                 Si vous n'avez pas encore installé notre application mobile, téléchargez-la depuis l'App Store (iOS) ou Google Play Store (Android).
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                                2.	Créez un Compte 
-                                            </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                                            <div class="accordion-body">
-                                                 Inscrivez-vous ou connectez-vous à votre compte HUPE.
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                                3. Parcourez les Véhicules 
-                                            </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                                            <div class="accordion-body">
-                                                Parcourez notre gamme de véhicules disponibles, consultez les détails, les spécifications et les photos.
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="panelsStayOpen-headingO">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseO" aria-expanded="false" aria-controls="panelsStayOpen-collapseO">
-                                                4.	Réservez un Essai Routier (si nécessaire) 
-                                            </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseO" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingO">
-                                            <div class="accordion-body">
-                                                Si vous souhaitez essayer le véhicule, vous pouvez réserver un essai routier à un moment qui vous convient.
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="panelsStayOpen-headingT">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseT" aria-expanded="false" aria-controls="panelsStayOpen-collapseT">
-                                                5. Finalisez l'Achat 
-                                            </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseT" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingT">
-                                            <div class="accordion-body">
-                                                Une fois que vous avez trouvé le véhicule qui vous convient, vous pouvez finaliser l'achat en effectuant le paiement en ligne de manière sécurisée.
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="panelsStayOpen-headingTh">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTh" aria-expanded="false" aria-controls="panelsStayOpen-collapseTh">
-                                                6.	Livraison du Véhicule 
-                                            </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseTh" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTh">
-                                            <div class="accordion-body">
-                                                Le véhicule sera livré à l'endroit que vous spécifiez, prêt à être utilisé.
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="panelsStayOpen-headingThe">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThe" aria-expanded="false" aria-controls="panelsStayOpen-collapseThe">
-                                                7.	Documents et Contrat 
-                                            </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseThe" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThe">
-                                            <div class="accordion-body">
-                                                Les documents et le contrat de vente seront fournis pour que vous puissiez officialiser votre achat.
-                                            </div>
-                                            </div>
-                                        </div>
+
+                                    <div class="col-md-6 text-center">
+                                         
+                                        <img src="public/assets/img/text.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+
                                     </div>
                                 </div>
                                 
                             </div>
-                        </div>
-                        </section>
-                        <section id="faq" class="faq" style="margin-top: -80px;">
-                        <div class="container">
-                            <div class="row mb-5">
-                                <div class="col-md-10">
-                                    <h1 style="font-size: 20px; font-weight: 700;">Assistance et Support </h1>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p>Si vous avez des questions ou rencontrez des problèmes lors du processus d'achat, n'hésitez pas à nous contacter via notre page de  <router-link to="/">support</router-link> . Nous sommes là pour vous aider.</p> 
-                                    <p>L'achat de véhicules avec HUPE est un moyen pratique de trouver le véhicule idéal pour répondre à vos besoins de mobilité. Essayez notre service de vente de véhicules dès aujourd'hui pour vivre une expérience d'achat de véhicules en toute simplicité.</p>
+                            <div class="col-md-12 mt-4">
+                                <div class="row">
+                                   
+                                    <div class="col-md-6" style=" margin-top: 40px;">
+                                        <h2 style="font-size: 20px; font-weight: 600;" class="mb-3">Commandes Vocales</h2>
+                                        <p>Pour les utilisateurs ayant des problèmes de mobilité, notre application prend en charge des commandes vocales. Vous pouvez activer la reconnaissance vocale pour effectuer des actions telles que la recherche de véhicules, la réservation de billets, etc</p>
+                                        
+                                    </div>
+
+                                    <div class="col-md-6 text-center">
+                                         
+                                         <img src="public/assets/img/vocal.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+ 
+                                     </div>
+
                                    
                                 </div>
                                 
                             </div>
+                            <div class="col-md-12 mt-4">
+                                <div class="row">
+                                   
+                                    <div class="col-md-6" style="margin-top: 40px;">
+                                        <h2 style="font-size: 20px; font-weight: 600;" class="mb-3">Simplicité d'Utilisation </h2>
+                                        <p>Nous avons conçu notre interface pour être simple et intuitive. Les éléments de l'interface sont suffisamment larges pour être faciles à toucher, et les interactions sont claires et directes.</p>
+                                        
+                                    </div>
+
+                                    <div class="col-md-6 text-center">
+                                         
+                                         <img src="public/assets/img/uti.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+ 
+                                     </div>
+
+                                   
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-12 mt-4">
+                                <div class="row">
+                                   
+                                    <div class="col-md-6" style="margin-top: 40px;">
+                                        <h2 style="font-size: 20px; font-weight: 600;" class="mb-3"> Options de Personnalisation </h2>
+                                        <p>Dans les paramètres de l'application, vous trouverez des options pour personnaliser l'apparence et le comportement de l'application, y compris la taille du texte, les couleurs et le contraste.</p>
+                                        
+                                    </div>
+
+                                    <div class="col-md-6 text-center">
+                                         
+                                         <img src="public/assets/img/perso.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+ 
+                                     </div>
+
+                                   
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-md-12 mt-4">
+                                <div class="row">
+                                   
+                                    <div class="col-md-12">
+                                        <h2 style="font-size: 20px; font-weight: 600;" class="mb-3"> Réponse aux Commentaires </h2>
+                                        <p>Nous apprécions vos commentaires sur l'accessibilité de notre application. Vos retours nous aident à identifier les domaines d'amélioration et à apporter des corrections. N'hésitez pas à nous faire part de vos commentaires.</p>
+                                        <p>Chez HUPE, nous nous engageons à offrir une expérience accessible et inclusive pour tous nos utilisateurs. Si vous avez des suggestions ou des préoccupations concernant l'accessibilité de notre application, veuillez nous contacter à support@hupe-africa.com ou en utilisant le formulaire de contact intégré à l'application.</p>
+                                        <p>Chez HUPE, nous nous engageons à offrir une expérience accessible à tous. Si vous avez des questions ou des suggestions concernant l'accessibilité de notre site, veuillez nous contacter à spport@hupe-africa.com ou en utilisant notre formulaire de contact.</p>
+                                        <p>Nous sommes là pour vous, et votre expérience est importante pour nous. Merci de faire partie de la communauté HUPE.</p>
+                                        
+                                    </div>
+
+                                    
+                                   
+                                </div>
+                                
+                            </div>
+                            
                         </div>
-                        </section>
+                        
+                    </div>
+                    <div class="tab-pane fade" id="blog-tab-pane" role="tabpanel" aria-labelledby="blog-tab" tabindex="0"> 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Actualités </h2>
+                                <hr>
+                                <p>Bienvenue sur le blog de Hupe, votre destination de confiance pour la location et la réservation de voitures. Notre mission est de vous fournir des informations utiles, des astuces de voyage, et des mises à jour sur les dernières tendances automobiles. Que vous soyez un voyageur avide, un passionné de voitures, ou simplement à la recherche de conseils pour un voyage sans tracas, notre blog est là pour vous.</p>
+                            </div>
+                             
+                        </div>
+
+                        <section id="features" class="features"  style="margin-top: -30px;">
+                    <div class="container">
+
+                         
+                
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="col">
+                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+                            <img src="/public/assets/img/blog.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="row" id="blog_row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title" id="blog_title">Card title</h5>
+                                </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                                </div>
+                                
+                                </div>
+                                
+                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                </div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+                            <img src="/public/assets/img/blog-1.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="row" id="blog_row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title" id="blog_title">Card title</h5>
+                                </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                                </div>
+                                
+                                </div>
+                                
+                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                </div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="row" id="blog_row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title" id="blog_title">Card title</h5>
+                                </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                                </div>
+                                
+                                </div>
+                                
+                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                </div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="row" id="blog_row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title" id="blog_title">Card title</h5>
+                                </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                                </div>
+                                
+                                </div>
+                                
+                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                </div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="row" id="blog_row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title" id="blog_title">Card title</h5>
+                                </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                                </div>
+                                
+                                </div>
+                                
+                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                </div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
+                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="row" id="blog_row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title" id="blog_title">Card title</h5>
+                                </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
+                                </div>
+                                
+                                </div>
+                                
+                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                </div>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        </div>
+                    
+
+                        
+                    </div>
+                    </section>
+                        
                     </div>
                 </div>
             </div>

@@ -4,20 +4,21 @@
 <template>
   
 
-  <main id="main" style="background: rgb(213, 248, 229);">
+  <main id="main">
     <section id="features" class="features">
       <div class="container">
         <div class="row">
-            <div class="col-md-4" style="border-right: 1px solid;">
+            <div class="col-md-3" style="border-right: 1px solid; border-color:#EAEAEA;">
                 <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; ">
                     <div class="row ">
                         
                         <div class="col-md-12 mb-3">
-                           <router-link to="/"><img src="/assets/img/favicon.png" alt="" class="img-fluid"
-                            style="margin-top: -6px; width: 30px;"> </router-link> 
+                           <router-link to="/"><h1 class="text-black">
+                                  <i class="bx bx-x"></i>
+                               </h1> </router-link> 
                         </div>
                         <div class="col-md-12 mb-4">
-                            <h2 style="font-size: 24px;">Centre de confidentialité</h2>
+                            <h2 style="font-size: 20px;">Centre de confidentialité</h2>
                         </div>
                         <div class="col-md-12 mb-2 text-start">
                             <li class="nav-item" role="presentation">
@@ -43,12 +44,13 @@
  
                 </ul>
             </div>
-            <div class="col-md-8" style=" padding: 30px;">
+            <div class="col-md-9" style=" padding: 20px; z-index: 1030;">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Politique de confidentialité</h2>
+                                <hr>
 
                                 <h2 style="font-size: 20px; font-weight: 600;color:#219935 ">Clause de la Politique de confidentialité </h2>
                             </div>
@@ -176,11 +178,104 @@
                                  
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <h2 style="font-size: 20px; font-weight: 600;color:#219935 ">Pourquoi une politique de confidentialité  </h2>
+                            </div>
+                            <div class="col-md-12" style="font-size: 15px;">
+                                 
+
+                                 
+                                <P>La politique de confidentialité est essentielle pour plusieurs raisons importantes  
+                                </P>
+                                                                
+                                <h2 style="font-size: 16px; font-weight:700;">Protection de la vie privée des utilisateurs</h2>
+                                <p>La politique de confidentialité protège la vie privée des utilisateurs en expliquant comment leurs données personnelles seront collectées, utilisées, stockées et partagées. Cela permet aux utilisateurs de comprendre quelles informations sont collectées à leur sujet et comment elles seront utilisées. </p>
+                                  
+                                 <h2 style="font-size: 16px; font-weight:700;">Conformité légale</h2>
+                                <p>Dans de nombreuses juridictions, il est obligatoire pour les entreprises de divulguer comment elles traitent les données personnelles des utilisateurs et de se conformer à des lois strictes sur la protection des données, telles que le RGPD en Europe ou la CCPA en Californie. La non-conformité peut entraîner des amendes importantes.</p>
+                                 
+
+                                 <h2 style="font-size: 16px; font-weight:700;">Confiance des utilisateurs</h2>
+                                <p>Une politique de confidentialité transparente et accessible inspire la confiance des utilisateurs. Les utilisateurs sont plus enclins à utiliser une application ou un service s'ils ont la certitude que leurs données sont bien protégées et utilisées de manière responsable. </p>
+                                  
+
+                                 <h2 style="font-size: 16px; font-weight:700;">Transparence et responsabilité</h2>
+                                <p>Une politique de confidentialité démontre la transparence de l'entreprise vis-à-vis de ses pratiques de collecte et de traitement des données. Cela permet de montrer que l'entreprise prend au sérieux ses responsabilités en matière de protection de la vie privée.</p>
+
+                                <h2 style="font-size: 16px; font-weight:700;">Réduction des risques juridiques</h2>
+                                <p>Une politique de confidentialité bien conçue peut réduire les risques juridiques en montrant que l'entreprise a pris des mesures pour protéger les données personnelles. Elle peut également servir de preuve en cas de litige lié à la protection des données.</p>
+
+                                <h2 style="font-size: 16px; font-weight:700;">Communication avec les utilisateurs </h2>
+                                <p>La politique de confidentialité permet à l'entreprise de communiquer avec les utilisateurs concernant les mises à jour importantes, les modifications de la politique, les incidents de sécurité, etc. C'est un moyen de maintenir une communication ouverte.</p>
+
+
+                                <h2 style="font-size: 16px; font-weight:700;">Gestion des consentements</h2>
+                                <p>Une politique de confidentialité explique comment le consentement est obtenu pour collecter et traiter les données. Cela est essentiel dans le cadre de réglementations telles que le RGPD, qui exigent un consentement explicite.</p>
+
+                                 
+                                <h2 style="font-size: 16px; font-weight:700;">Protection contre les abus</h2>
+                                <p>Une politique de confidentialité peut servir de mécanisme pour empêcher les utilisateurs de faire des réclamations injustes ou non fondées concernant le traitement de leurs données. Elle établit des normes claires pour les interactions entre l'entreprise et les utilisateurs.</p>
+
+                                 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <h2 style="font-size: 20px; font-weight: 600;color:#219935 ">Comment vous devez utiliser notre politique de confidentialité ? </h2>
+                            </div>
+                            <div class="col-md-12" style="font-size: 15px;">
+                                 
+
+                                 
+                                <P>En tant qu'utilisateur, vous pouvez utiliser la politique de confidentialité d'une entreprise de la manière suivante  
+                                </P>
+                                                                
+                                <h2 style="font-size: 16px; font-weight:700;">Lecture et compréhension</h2>
+                                <p>Lisez attentivement la politique de confidentialité de l'entreprise, que ce soit sur son site web, son application mobile ou tout autre support. Essayez de comprendre comment vos données personnelles seront collectées, utilisées, stockées et partagées.</p>
+                                  
+                                 <h2 style="font-size: 16px; font-weight:700;">Consentement éclairé</h2>
+                                <p>Assurez-vous de donner un consentement éclairé pour la collecte et le traitement de vos données personnelles conformément à la politique de confidentialité. Soyez conscient des types de données collectées et de la finalité de cette collecte.</p>
+                                 
+
+                                 <h2 style="font-size: 16px; font-weight:700;">Gestion des préférences</h2>
+                                <p>Si la politique de confidentialité le permet, utilisez les mécanismes de gestion des préférences pour personnaliser la manière dont vos données sont utilisées. Par exemple, vous pouvez choisir de ne pas recevoir de newsletters ou de publicités ciblées.</p>
+                                  
+
+                                 <h2 style="font-size: 16px; font-weight:700;">Transparence et responsabilité</h2>
+                                <p>Une politique de confidentialité démontre la transparence de l'entreprise vis-à-vis de ses pratiques de collecte et de traitement des données. Cela permet de montrer que l'entreprise prend au sérieux ses responsabilités en matière de protection de la vie privée.</p>
+
+                                <h2 style="font-size: 16px; font-weight:700;">Exercice de vos droits</h2>
+                                <p>Si vous souhaitez exercer vos droits, tels que le droit d'accès à vos données, de les rectifier, de les supprimer ou de les exporter, suivez les procédures indiquées dans la politique de confidentialité pour soumettre vos demandes.</p>
+
+                                <h2 style="font-size: 16px; font-weight:700;">Contact avec l'entreprise </h2>
+                                <p>Si vous avez des questions ou des préoccupations concernant la politique de confidentialité ou la manière dont vos données sont traitées, utilisez les coordonnées de contact fournies dans la politique pour contacter l'entreprise.</p>
+
+
+                                <h2 style="font-size: 16px; font-weight:700;">Signalement de problèmes</h2>
+                                <p>Si vous constatez des problèmes liés à la collecte ou au traitement de vos données, signalez-les à l'entreprise. Cela peut inclure des erreurs dans vos données, des préoccupations concernant la sécurité ou des violations potentielles de la politique de confidentialité.</p>
+
+                                 
+                                <h2 style="font-size: 16px; font-weight:700;">Surveillance des mises à jour</h2>
+                                <p>Soyez attentif aux mises à jour de la politique de confidentialité. Les entreprises peuvent apporter des modifications pour refléter des évolutions légales, des améliorations de la protection de la vie privée ou des changements dans leurs pratiques.</p>
+
+                                <h2 style="font-size: 16px; font-weight:700;">Faire preuve de vigilance </h2>
+                                <p>Soyez vigilant quant à la manière dont vos données personnelles sont utilisées en ligne, même en dehors de la politique de confidentialité de l'entreprise. Soyez conscient des pratiques de collecte de données de divers sites web et services en ligne.</p>
+
+
+                                 
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Politique de Sécurité HUPE</h2>
+                                <hr>
 
                             </div>
                             <div class="col-md-12" style="font-size: 15px;">
@@ -258,7 +353,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Conditions Générales d'Utilisation de l'Application HUPE</h2>
-
+                                <hr>
                             </div>
                             <div class="col-md-12" style="font-size: 15px;">
                                 <p>Dernière mise à jour : 12 octobre 2023 </p>
@@ -328,7 +423,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Politique de Droit d'Auteur de HUPE</h2>
-
+                                 <hr>
                             </div>
                             <div class="col-md-12" style="font-size: 15px;">
                                 <p>Dernière mise à jour : 12 octobre 2023 </p>

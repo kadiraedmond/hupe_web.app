@@ -13,8 +13,12 @@
                     <div class="row ">
                         
                         <div class="col-md-12 mb-3">
-                            <img src="/assets/img/favicon.png" alt="" class="img-fluid"
-                            style="margin-top: -6px; width: 30px;"> 
+                            <router-link to="/">
+                                <h1 class="text-black">
+                                  <i class="bx bx-x"></i>
+                               </h1>
+                            
+                            </router-link>
                         </div>
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 24px;">Services </h2>
@@ -49,6 +53,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Location de Véhicules </h2>
+                                <hr>
                                 <p>Bienvenue sur la page de location de véhicules HUPE. Notre service de location de véhicules est conçu pour offrir à nos utilisateurs une solution de mobilité pratique et flexible. Découvrez ci-dessous les avantages de la location de véhicules via HUPE et comment cela fonctionne.</p>
                             </div>
                             
@@ -64,7 +69,7 @@
                                 <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/1.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -76,7 +81,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/2.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -88,7 +93,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/3.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -100,7 +105,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -112,7 +117,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -246,6 +251,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Réservation de Billets de Bus  </h2>
+                                <hr>
                                 <p>Bienvenue sur la page de réservation de billets de bus HUPE. Notre service de réservation de billets de bus est conçu pour vous offrir une expérience de voyage en bus facile, pratique et sans tracas. Découvrez ci-dessous les avantages de la réservation de billets de bus via HUPE et comment cela fonctionne.</p>
                             </div>
                             
@@ -261,7 +267,7 @@
                                 <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/1.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/reservation/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -273,7 +279,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/2.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/reservation/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -285,7 +291,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/3.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/reservation/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -297,7 +303,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/reservation/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -309,7 +315,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/reservation/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -443,6 +449,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Location de Gros Engins HUPE</h2>
+                                <hr>
                                 <p>Bienvenue sur la page de location de gros engins HUPE. Notre service de location de gros engins est conçu pour répondre aux besoins de tous ceux qui ont des projets de construction, de terrassement, ou d'autres travaux nécessitant des engins lourds. Découvrez ci-dessous les avantages de la location de gros engins via HUPE et comment cela fonctionne.</p>
                             </div>
                             
@@ -458,7 +465,7 @@
                                 <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/1.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -470,7 +477,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/2.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -482,7 +489,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/3.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -494,7 +501,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -506,7 +513,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/location/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -640,6 +647,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Vente de Véhicules HUPE  </h2>
+                                <hr>
                                 <p>Bienvenue sur la page de vente de véhicules HUPE. Notre service de vente de véhicules est conçu pour offrir aux acheteurs une expérience transparente et pratique lors de l'acquisition d'un nouveau véhicule. Découvrez ci-dessous les avantages de la vente de véhicules via HUPE et comment cela fonctionne.</p>
                             </div>
                             
@@ -655,7 +663,7 @@
                                 <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/1.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/service/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -667,7 +675,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/2.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/service/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -679,7 +687,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/3.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/service/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -691,7 +699,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/service/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">
@@ -703,7 +711,7 @@
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="{{asset('front/assets/img/c/4.png')}}" class="img-fluid w-25" alt="...">
+                                        <img src="/public/assets/img/service/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body">

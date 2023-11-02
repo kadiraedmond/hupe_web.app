@@ -1,10 +1,9 @@
 <script>
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
+ 
 </script>
 
 <template>
-  <Navbar></Navbar>
+  
 
   <main id="main">
 
@@ -108,10 +107,71 @@ import Footer from '@/components/Footer.vue';
                                         <p><strong>Jours de voyage  |</strong> lmfkdfdkf</p>
                                     </div>
                                     <div class="col-md-12 text-center">
-                                      <a v-bind:href="'/formulaire_location'" id="a_compagnie">
-                                       <button class="btn btn-primary w-50" style="    background: #219935;
-                                       border-color: #219935;">Reserver</button>
-                                       </a>
+                                       <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" style="
+                                      background-color: #219935;
+                                      border-color: #219935;
+                                    " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Reserver
+                            </button>
+
+                                  <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header" style="background: #DEEEE4;">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-size: 17px !important;">Réservation de ticket</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form class="row g-3 needs-validation" novalidate >
+                                            <div class="col-md-12">
+                                                <label for="validationCustom01" class="form-label">Nom & Prénoms</label>
+                                                <input type="text" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            
+
+                                            <div class="col-md-12">
+                                                <label for="validationCustom01" class="form-label">Ville de départ</label>
+                                                <input type="text" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="validationCustom01" class="form-label">Ville d'arrivée</label>
+                                                <input type="text" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Date de départ</label>
+                                                <input type="date" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="validationCustom01" class="form-label">Heure de départ</label>
+                                                <input type="time" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="validationCustom01" class="form-label">Nombres de personnes</label>
+                                                <input type="number" class="form-control" id="validationCustom01"  required>
+                                                
+                                            </div>
+
+                                            <div class="col-12 text-center">
+                                                <button class="btn btn-primary" type="submit" style="background: #219935;
+                                                border-color: #219935;">Soumettre</button>
+                                            </div>
+                                        </form>
+                                        </div>
+                                         
+                                      </div>
+                                    </div>
+                             </div>
                                     </div>
  
                                  </div>

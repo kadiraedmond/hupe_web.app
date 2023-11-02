@@ -98,10 +98,107 @@ import Footer from '@/components/Footer.vue';
                             
 
                               <div class="col-md-12 mt-4 text-start">
-                                <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                  <button class="btn btn-primary w-50" style="    background-color: #219935;
-                                  border-color: #219935; font-size: 13px;"> Reserver</button>
-                                </a>
+                                 <!-- Button trigger modal -->
+                                 <button type="button" class="btn btn-primary" style="
+                                      background-color: #219935;
+                                      border-color: #219935;
+                                    " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Reserver
+                                  </button>
+
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header" style="background: #DEEEE4;">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-size:10px ;">Réservation de véhicule</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form class="row g-3 needs-validation" novalidate>
+                                              <div class="col-md-6">
+                                                  <label for="validationCustom01" class="form-label">Nom</label>
+                                                  <input type="text" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                              <div class="col-md-6">
+                                                  <label for="validationCustom01" class="form-label">Prénoms</label>
+                                                  <input type="text" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                              <div class="col-md-6">
+                                                  <label for="validationCustom01" class="form-label">Marque</label>
+                                                  <input type="text" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                              <div class="col-md-6">
+                                                  <label for="validationCustom01" class="form-label">Immatriculation</label>
+                                                  <input type="text" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                              <div class="col-md-12">
+                                                  <label for="validationCustom01" class="form-label">Modèle</label>
+                                                  <input type="text" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                              <div class="col-md-6">
+                                                  <label for="validationCustom01" class="form-label">Moteur</label>
+                                                  <input type="text" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                              <div class="col-md-6">
+                                                  <label for="validationCustom01" class="form-label">Transmission</label>
+                                                  <input type="text" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                            
+
+                                              <div class="col-md-6">
+                                                  <label for="validationCustom01" class="form-label">Date de Retrait</label>
+                                                  <input type="date" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <label for="validationCustom01" class="form-label">Heure de Retrait</label>
+                                                  <input type="time" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+                                              <div class="col-md-12">
+                                                  <label for="validationCustom01" class="form-label">Lieu du Retrait</label>
+                                                  <input type="time" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                              <div class="col-md-12">
+                                                  <label for="validationCustom01" class="form-label">Date de retour</label>
+                                                  <input type="date" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                              <div class="col-md-12">
+                                                  <label for="validationCustom01" class="form-label">Images</label>
+                                                  <input type="file" class="form-control" id="validationCustom01"  required>
+                                                  
+                                              </div>
+
+                                              <div class="col-12 text-center">
+                                                  <button class="btn btn-primary" type="submit" style="background: #219935;
+                                                  border-color: #219935;">Soumettre</button>
+                                              </div>
+                                          </form>
+                                        </div>
+                                         
+                                      </div>
+                                    </div>
+                                  </div>
+                                 
                                   
                               </div>
 

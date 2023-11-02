@@ -1,10 +1,20 @@
-<script>
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
+<script setup>
+ import { onMounted, onBeforeMount, ref } from 'vue'
+ import { useCompagnieStore } from '@/axios_store/compagnie.js'
+
+ const compagnieStore = useCompagnieStore()
+
+ const compagnieId = '657b5f1d-c793-436d-ba47-7230ea88a78a'
+
+ onBeforeMount(async () => {
+  compagnieStore.setCompagnie(compagnieId)
+  compagnieStore.setVehiculesCompagnie(compagnieId)
+  
+ })
 </script>
 
 <template>
-  <Navbar></Navbar>
+  
 
   <main id="main">
 
@@ -22,13 +32,13 @@ import Footer from '@/components/Footer.vue';
             <div class="card mb-3 border-0" style="max-width: 540px;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 160px;" />
+                  <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 100px;" />
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-5">
                   <div class="card-body">
-                    <h5 class="card-title">BG compagnies</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur </p>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur </p>
+                    <h5 class="card-title" style="font-size:16px"> {{ compagnieStore.compagnie.raison_sociale }}</h5>
+                    <p class="card-text" style="font-size:15px">{{compagnieStore.compagnie.description}} </p>
+                     
                   </div>
                 </div>
               </div>
@@ -90,11 +100,7 @@ import Footer from '@/components/Footer.vue';
                 <button class="nav-link" id="comptes-tab" data-bs-toggle="tab" data-bs-target="#comptes-tab-pane"
                   type="button" role="tab" aria-controls="comptes-tab-pane" aria-selected="false">Comptes</button>
               </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="collaborateur-tab" data-bs-toggle="tab"
-                  data-bs-target="#collaborateur-tab-pane" type="button" role="tab" aria-controls="collaborateur-tab-pane"
-                  aria-selected="false">Collaborateurs</button>
-              </li>
+              
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="apropos-tab" data-bs-toggle="tab" data-bs-target="#apropos-tab-pane"
                   type="button" role="tab" aria-controls="apropos-tab-pane" aria-selected="false">A propos</button>
@@ -121,7 +127,7 @@ import Footer from '@/components/Footer.vue';
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <form class="row g-3 needs-validation text-start" novalidate>
+                              <form class="row g-3 needs-validation text-start" novalidate action="">
                             <div class="col-md-6">
                               <label for="validationCustom01" class="form-label">Marque</label>
                               <input type="text" class="form-control" id="validationCustom01"  required>
@@ -192,7 +198,7 @@ import Footer from '@/components/Footer.vue';
                   </div>
                 </div>
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-6" v-for="(vehicule, index) in companieStore.vehiculesCompagnie" :key="index">
                     <div class="card mb-3" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
@@ -233,18 +239,98 @@ import Footer from '@/components/Footer.vue';
                               <div class="col-md-12 mt-4 text-start">
                                 <div class="row row-clols-md-5">
                                   <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
-                                      border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
+                                    
+
+                                     <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4" style="    background-color:rgb(33 153 53 / 58%);
+                                      border-color: rgb(33 153 53 / 58%);">
+                                      <img src="/public/assets/img/icone/edit.png"
+                                          class="img-fluid " alt="...">
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel4">Modifier un véhicule</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form class="row g-3 needs-validation text-start" novalidate>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Marque</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Modéle</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Catégories</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Moteur</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Transmission</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Année</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Prix</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Etat</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Kilométrage</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                        
+                                          <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Ajouter une images</label>
+                                            <input type="file" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          
+                                          <div class="col-12 text-center">
+                                            <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
+                                          </div>
+                                        </form>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                   <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                                  
                                       <button class="btn btn-primary" style="    background-color: #219935;
                                       border-color: #219935;"><img src="/public/assets/img/icone/star.png" class="img-fluid "
                                           alt="..."> </button>
-                                    </a>
+                                   
                                   </div>
                                   <div class="col">
                                      <!-- Button trigger modal -->
@@ -297,18 +383,18 @@ import Footer from '@/components/Footer.vue';
                                       </div> 
                                   </div>
                                   <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                                   
                                       <button class="btn btn-primary" style="    background-color: #219935;
                                       border-color: #219935;"><img src="/public/assets/img/icone/unlock.png" class="img-fluid "
                                           alt="..."> </button>
-                                    </a>
+                                   
                                   </div>
                                   <div class="col text-center">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                                    
                                       <button class="btn btn-primary" style="    background-color: #ff000087;
                                       border-color: #ff000087;"><img src="/public/assets/img/icone/delete.png"
                                           class="img-fluid " alt="..."> </button>
-                                    </a>
+                                    
                                   </div>
                                 </div>
 
@@ -332,7 +418,7 @@ import Footer from '@/components/Footer.vue';
                           <div class="card-body">
                             <div class="row">
                               <div class="col-md-6">
-                                <p class="card-text"> <strong>Caterpillar  2022 </strong></p>
+                                <p class="card-text"> <strong>{{vehicule.marque}} </strong></p>
                               </div>
                               <div class="col-md-6 text-end">
                                 <button class="btn btn-primary" style="    background-color: #219935;
@@ -362,18 +448,98 @@ import Footer from '@/components/Footer.vue';
                               <div class="col-md-12 mt-4 text-start">
                                 <div class="row row-clols-md-5">
                                   <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
-                                      <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
-                                      border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
-                                          class="img-fluid " alt="..."> </button>
-                                    </a>
+                                    
+
+                                     <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4" style="    background-color:rgb(33 153 53 / 58%);
+                                      border-color: rgb(33 153 53 / 58%);">
+                                      <img src="/public/assets/img/icone/edit.png"
+                                          class="img-fluid " alt="...">
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel4">Modifier un véhicule</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form class="row g-3 needs-validation text-start" novalidate>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Marque</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Modéle</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">Catégories</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Moteur</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Transmission</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Année</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Prix</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Etat</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Kilométrage</label>
+                                            <input type="text" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                        
+                                          <div class="col-md-12">
+                                            <label for="validationCustom02" class="form-label">Ajouter une images</label>
+                                            <input type="file" class="form-control" id="validationCustom02"  required>
+                                            
+                                          </div>
+                                          
+                                          <div class="col-12 text-center">
+                                            <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
+                                          </div>
+                                        </form>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                   <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                                  
                                       <button class="btn btn-primary" style="    background-color: #219935;
                                       border-color: #219935;"><img src="/public/assets/img/icone/star.png" class="img-fluid "
                                           alt="..."> </button>
-                                    </a>
+                                   
                                   </div>
                                   <div class="col">
                                      <!-- Button trigger modal -->
@@ -426,18 +592,18 @@ import Footer from '@/components/Footer.vue';
                                       </div> 
                                   </div>
                                   <div class="col">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                                   
                                       <button class="btn btn-primary" style="    background-color: #219935;
                                       border-color: #219935;"><img src="/public/assets/img/icone/unlock.png" class="img-fluid "
                                           alt="..."> </button>
-                                    </a>
+                                   
                                   </div>
                                   <div class="col text-center">
-                                    <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                                    
                                       <button class="btn btn-primary" style="    background-color: #ff000087;
                                       border-color: #ff000087;"><img src="/public/assets/img/icone/delete.png"
                                           class="img-fluid " alt="..."> </button>
-                                    </a>
+                                    
                                   </div>
                                 </div>
 
@@ -838,569 +1004,31 @@ import Footer from '@/components/Footer.vue';
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
                                                     Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTwo">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                        aria-controls="flush-collapseTwo" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
+                                                  <hr>
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                      <button class="btn btn-primary w-75" style="background: red; border-color:red;">Rejeter</button>
+                                                    </div>
+                                                    <div class="col-md-6 text-end">
+                                                      <button class="btn btn-primary w-75" style="background: #219935; border-color:#219935;" >Valider</button>
                                                     </div>
                                                   </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: rgb(247 127 0);">Attente
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                 
                                                   
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingThree">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                        aria-controls="flush-collapseThree" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; background: #fafafa;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
 
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: rgb(247 127 0);">Attente
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
                                         </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
                                       </div>
                                     </div>
                                   </div>
+                                  
                                 </div>
 
                               </div>
-                              <div class="col-md-6">
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingO">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseO" aria-expanded="false"
-                                        aria-controls="flush-collapseO" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; background: #fafafa;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: rgb(247 127 0);">Attente
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseO" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingO" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingT">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseT" aria-expanded="false"
-                                        aria-controls="flush-collapseT" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; background: #fafafa;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: rgb(247 127 0);">Attente
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseT" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingT" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTh">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTh" aria-expanded="false"
-                                        aria-controls="flush-collapseTh" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; background: #fafafa;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: rgb(247 127 0);">Attente
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseTh" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTh" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                              </div>
+                              
                             </div>
                           </div>
                         </div>
@@ -1413,10 +1041,10 @@ import Footer from '@/components/Footer.vue';
                               <div class="col-md-6">
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                   <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingOne">
+                                    <h2 class="accordion-header" id="flush-headingV">
                                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                        aria-controls="flush-collapseOne" id="reser">
+                                        data-bs-target="#flush-collapseV" aria-expanded="false"
+                                        aria-controls="flush-collapseV" id="reser">
                                         <div class="row" style="margin: 10px; width:100%">
                                             <div class="col-md-6">
                                               <div class="card mb-3 border-0"
@@ -1455,8 +1083,8 @@ import Footer from '@/components/Footer.vue';
                                         </div>
                                       </button>
                                     </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapseV" class="accordion-collapse collapse"
+                                      aria-labelledby="flush-headingV" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body" style="margin-top: -40px;">
                                         <div class="card h-100 border-0" id="card_compagnie" style=" box-shadow: none; background: none;">
                                           
@@ -1478,19 +1106,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                    <strong>Caterpillar </strong> | <strong>  2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
+                                                    Catégorie | Tracteur </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Modéle | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Moteur | <strong>hp4Lh </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -1503,478 +1131,50 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                      Etat  |  <strong>Neuve </strong>  </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Transmission |   <strong>Automatique </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTwo">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                        aria-controls="flush-collapseTwo" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
+                                                   Kilométrage  |   <strong>100km/h</strong></p>
+                                                   <hr>
+                                                   <div class="row">
+                                                     
+                                                    <div class="col-md-12 text-center">
+                                                      <button class="btn btn-primary" style="background:  #219935; border-color:#219935;">Annuler</button>
                                                     </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#219935">Validé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                   </div>
                                                   
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingThree">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                        aria-controls="flush-collapseThree" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
 
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#219935;">Validé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
                                         </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
                                       </div>
                                     </div>
                                   </div>
+                                  
                                 </div>
 
                               </div>
                               <div class="col-md-6">
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                   <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingO">
+                                    <h2 class="accordion-header" id="flush-headingVA">
                                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseO" aria-expanded="false"
-                                        aria-controls="flush-collapseO" id="reser">
+                                        data-bs-target="#flush-collapseVA" aria-expanded="false"
+                                        aria-controls="flush-collapseVA" id="reser">
                                         <div class="row" style="margin: 10px; width:100%">
                                             <div class="col-md-6">
                                               <div class="card mb-3 border-0"
                                                 style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #219935">Validé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseO" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingO" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingT">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseT" aria-expanded="false"
-                                        aria-controls="flush-collapseT" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; background: #fafafa;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #219935">Validé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseT" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingT" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTh">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTh" aria-expanded="false"
-                                        aria-controls="flush-collapseTh" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; background: #fafafa;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
                                                     <img src="/public/assets/img/avatars/1.png" alt
@@ -2009,10 +1209,12 @@ import Footer from '@/components/Footer.vue';
                                         </div>
                                       </button>
                                     </h2>
-                                    <div id="flush-collapseTh" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTh" data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapseVA" class="accordion-collapse collapse"
+                                      aria-labelledby="flush-headingVA" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
+                                        <div class="card h-100 border-0" id="card_compagnie" style=" box-shadow: none; background: none;">
+                                          
+                                          <div class="card mb-3 mt-4"
                                             style=" margin: 10px; margin-top: -10px !important; width:98% ;">
                                             <div class="row g-0" style="margin: 10px;">
 
@@ -2030,19 +1232,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                    <strong>Caterpillar </strong> | <strong>  2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
+                                                    Catégorie | Tracteur </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Modéle | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Moteur | <strong>hp4Lh </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -2055,29 +1257,42 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                      Etat  |  <strong>Neuve </strong>  </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Transmission |   <strong>Automatique </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                   Kilométrage  |   <strong>100km/h</strong></p>
+                                                   <hr>
+                                                   <div class="row">
+                                                    <div class="col-md-6">
+                                                       <button class="btn btn-primary w-75" style="background: white; border-color: #219935; color: #219935;">Annuler</button>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <button class="btn btn-primary" style="background:  #219935; border-color:#219935;">Procéder au paiement</button>
+                                                    </div>
+                                                   </div>
                                                   
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
+
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
+                                  
                                 </div>
 
                               </div>
+                               
                             </div>
                           </div>
                         </div>
@@ -2090,10 +1305,10 @@ import Footer from '@/components/Footer.vue';
                               <div class="col-md-6">
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                   <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingOne">
+                                    <h2 class="accordion-header" id="flush-headingC">
                                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                        aria-controls="flush-collapseOne" id="reser">
+                                        data-bs-target="#flush-collapseC" aria-expanded="false"
+                                        aria-controls="flush-collapseC" id="reser">
                                         <div class="row" style="margin: 10px; width:100%">
                                             <div class="col-md-6">
                                               <div class="card mb-3 border-0"
@@ -2118,7 +1333,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#3987FB;">Confirmé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#3987FB ;">Confirmé
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -2132,8 +1347,8 @@ import Footer from '@/components/Footer.vue';
                                         </div>
                                       </button>
                                     </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapseC" class="accordion-collapse collapse"
+                                      aria-labelledby="flush-headingC" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body" style="margin-top: -40px;">
                                         <div class="card h-100 border-0" id="card_compagnie" style=" box-shadow: none; background: none;">
                                           
@@ -2155,19 +1370,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                    <strong>Caterpillar </strong> | <strong>  2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
+                                                    Catégorie | Tracteur </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Modéle | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Moteur | <strong>hp4Lh </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -2180,18 +1395,19 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                      Etat  |  <strong>Neuve </strong>  </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Transmission |   <strong>Automatique </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                   Kilométrage  |   <strong>100km/h</strong></p>
+                                                   
                                                   
                                                 </div>
                                               </div>
@@ -2202,559 +1418,11 @@ import Footer from '@/components/Footer.vue';
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTwo">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                        aria-controls="flush-collapseTwo" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#3987FB">Confirmé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingThree">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                        aria-controls="flush-collapseThree" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#3987FB;">Confirmé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                  
                                 </div>
 
                               </div>
-                              <div class="col-md-6">
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingO">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseO" aria-expanded="false"
-                                        aria-controls="flush-collapseO" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #3987FB">Confirmé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseO" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingO" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingT">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseT" aria-expanded="false"
-                                        aria-controls="flush-collapseT" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; ">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #3987FB">Confirmé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseT" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingT" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTh">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTh" aria-expanded="false"
-                                        aria-controls="flush-collapseTh" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; ">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#3987FB;">Confirmé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseTh" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTh" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                              </div>
+                              
                             </div>
                           </div>
                         </div>
@@ -2767,10 +1435,10 @@ import Footer from '@/components/Footer.vue';
                               <div class="col-md-6">
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                   <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingOne">
+                                    <h2 class="accordion-header" id="flush-headingC">
                                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                        aria-controls="flush-collapseOne" id="reser">
+                                        data-bs-target="#flush-collapseC" aria-expanded="false"
+                                        aria-controls="flush-collapseC" id="reser">
                                         <div class="row" style="margin: 10px; width:100%">
                                             <div class="col-md-6">
                                               <div class="card mb-3 border-0"
@@ -2795,7 +1463,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Annulé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931D96 ;">Annulé
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -2809,8 +1477,8 @@ import Footer from '@/components/Footer.vue';
                                         </div>
                                       </button>
                                     </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapseC" class="accordion-collapse collapse"
+                                      aria-labelledby="flush-headingC" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body" style="margin-top: -40px;">
                                         <div class="card h-100 border-0" id="card_compagnie" style=" box-shadow: none; background: none;">
                                           
@@ -2832,19 +1500,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                    <strong>Caterpillar </strong> | <strong>  2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
+                                                    Catégorie | Tracteur </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Modéle | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Moteur | <strong>hp4Lh </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -2857,18 +1525,19 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                      Etat  |  <strong>Neuve </strong>  </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Transmission |   <strong>Automatique </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                   Kilométrage  |   <strong>100km/h</strong></p>
+                                                    
                                                   
                                                 </div>
                                               </div>
@@ -2879,559 +1548,11 @@ import Footer from '@/components/Footer.vue';
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTwo">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                        aria-controls="flush-collapseTwo" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96">Annullé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingThree">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                        aria-controls="flush-collapseThree" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Annulé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                  
                                 </div>
 
                               </div>
-                              <div class="col-md-6">
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingO">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseO" aria-expanded="false"
-                                        aria-controls="flush-collapseO" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">Annulé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseO" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingO" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingT">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseT" aria-expanded="false"
-                                        aria-controls="flush-collapseT" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; ">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">Annulé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseT" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingT" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTh">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTh" aria-expanded="false"
-                                        aria-controls="flush-collapseTh" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; ">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#931d96;">Annulé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseTh" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTh" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                              </div>
+                              
                             </div>
                           </div>
                         </div>
@@ -4123,10 +2244,10 @@ import Footer from '@/components/Footer.vue';
                               <div class="col-md-6">
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                   <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingOne">
+                                    <h2 class="accordion-header" id="flush-headingU">
                                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                        aria-controls="flush-collapseOne" id="reser">
+                                        data-bs-target="#flush-collapseU" aria-expanded="false"
+                                        aria-controls="flush-collapseC" id="reser">
                                         <div class="row" style="margin: 10px; width:100%">
                                             <div class="col-md-6">
                                               <div class="card mb-3 border-0"
@@ -4151,7 +2272,7 @@ import Footer from '@/components/Footer.vue';
                                             <div class="col-md-6 text-end">
                                               <div class="row">
                                                 <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#FB3232;">Utilisé
+                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:red ;">Utilisé
                                                   </h6>
                                                 </div>
                                                 <div class="col-8">
@@ -4165,8 +2286,8 @@ import Footer from '@/components/Footer.vue';
                                         </div>
                                       </button>
                                     </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapseU" class="accordion-collapse collapse"
+                                      aria-labelledby="flush-headingU" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body" style="margin-top: -40px;">
                                         <div class="card h-100 border-0" id="card_compagnie" style=" box-shadow: none; background: none;">
                                           
@@ -4188,19 +2309,19 @@ import Footer from '@/components/Footer.vue';
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
+                                                    <strong>Caterpillar </strong> | <strong>  2022 </strong> </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
+                                                    Catégorie | Tracteur </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
+                                                    Modéle | <strong>01 </strong>  </p>
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
+                                                    Moteur | <strong>hp4Lh </strong> </p>
                                                   <hr>
 
                                                 </div>
@@ -4213,18 +2334,19 @@ import Footer from '@/components/Footer.vue';
                                                 <div class="card-body">
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
+                                                      Etat  |  <strong>Neuve </strong>  </p>
 
                                                   <hr>
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
+                                                     Transmission |   <strong>Automatique </strong> 
                                                     </p>
                                                   <hr>
 
                                                   <p class="card-text"
                                                     style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
+                                                   Kilométrage  |   <strong>100km/h</strong></p>
+                                                   
                                                   
                                                 </div>
                                               </div>
@@ -4235,559 +2357,11 @@ import Footer from '@/components/Footer.vue';
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTwo">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                        aria-controls="flush-collapseTwo" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#FB3232">Utilisé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingThree">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                        aria-controls="flush-collapseThree" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#FB3232">Utilise
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                  
                                 </div>
 
                               </div>
-                              <div class="col-md-6">
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingO">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseO" aria-expanded="false"
-                                        aria-controls="flush-collapseO" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px;">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #931d96">
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseO" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingO" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingT">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseT" aria-expanded="false"
-                                        aria-controls="flush-collapseT" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; ">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color: #FB3232">Utilisé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseT" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingT" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTh">
-                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTh" aria-expanded="false"
-                                        aria-controls="flush-collapseTh" id="reser">
-                                        <div class="row" style="margin: 10px; width:100%">
-                                            <div class="col-md-6">
-                                              <div class="card mb-3 border-0"
-                                                style="max-width: 540px; ">
-                                                <div class="row g-1">
-                                                  <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
-                                                      class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                    <div class="card-body">
-                                                      <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                                                      <p class="card-text mt-2" style="font-size: 10px; "> <i
-                                                          class='bx bx-map' id="icon_menu" style="color: #219935;"></i>
-                                                        CI,rue 250</p>
-                                                    </div>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                              <div class="row">
-                                                <div class="col-4 text-end">
-                                                  <h6 style=" margin-top: 28px; font-size: 13px; color:#FB3232;">Utilisé
-                                                  </h6>
-                                                </div>
-                                                <div class="col-8">
-                                                  <button class="btn btn-primary"
-                                                    style="    background: #219935;
-                                                            border-color: #219935; margin-top: 15px; font-size: 13px;">5000 FCFA</button>
-                                                </div>
-                                              </div>
-
-                                            </div>
-                                        </div>
-                                      </button>
-                                    </h2>
-                                    <div id="flush-collapseTh" class="accordion-collapse collapse"
-                                      aria-labelledby="flush-headingTh" data-bs-parent="#accordionFlushExample">
-                                      <div class="accordion-body" style="margin-top: -40px;">
-                                        <div class="card mb-3 mt-4"
-                                            style=" margin: 10px; margin-top: -10px !important; width:98% ;">
-                                            <div class="row g-0" style="margin: 10px;">
-
-                                              <div class="col-md-6">
-                                                
-                                                <div class="card-body">
-                                                  <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                               <p class="card-text" style="background: #efefef; padding: 4px; border-radius: 5px; font-size: 12px; margin-top: -15px;">
-                                                    Il y a environ un jour <br>
-                                                   <strong> T22356_1253523 </strong> </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    <strong>Hyundai </strong> | <strong> Santafe 2022 </strong> </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Essence | automatique | BG 5314</p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    chauffeur | <strong>01 </strong>  </p>
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px;  margin-top: -8px; margin-bottom: -8px;">
-                                                    Intérieur | <strong>kara </strong> </p>
-                                                  <hr>
-
-                                                </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
-                                                  alt="..." style="height: 85% !important;">
-                                              </div>
-                                              <div class="col-md-12">
-                                                <div class="card-body">
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -32px; margin-bottom: -8px;">
-                                                      Retrait  |  <strong>2023-07-29 </strong> | <strong>12h 43 min</strong> </p>
-
-                                                  <hr>
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                     Retour |   <strong>2023-07-29 </strong> 
-                                                    </p>
-                                                  <hr>
-
-                                                  <p class="card-text"
-                                                    style="font-size: 13px; margin-top: -8px; margin-bottom: -8px;">
-                                                    Nombres de jours de location  |   <strong>5 jours</strong></p>
-                                                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                              </div>
+                              
                             </div>
                           </div>
                         </div>
@@ -4821,6 +2395,77 @@ import Footer from '@/components/Footer.vue';
                   </div>
                 </div>
               </div>
+
+              <div class="tab-pane fade" id="categorie-tab-pane" role="tabpanel" aria-labelledby="categorie-tab"
+                tabindex="0">
+
+                <div class="row mt-4">
+                  <div class="col-md-6"></div>
+                  <div class="col-md-6 text-end">
+                    <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModaled" style=" background-color: #219935; border-color: #219935;">
+                        <img
+                          src="/public/assets/img/icone/plus.png" class="img-fluid " alt="..."> Ajouter
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModaled" tabindex="-1" aria-labelledby="exampleModalLabeled" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabeled">Ajouter</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="row g-3 needs-validation text-start" novalidate>
+                            <div class="col-md-12">
+                              <label for="validationCustom01" class="form-label">Titre</label>
+                              <input type="text" class="form-control" id="validationCustom01"  required>
+                               
+                            </div>
+                           
+                             
+                            <div class="col-12 text-center">
+                              <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
+                            </div>
+                          </form>
+                            </div>
+                             
+                          </div>
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+
+                <div class="row mt-5">
+                  <div class="col-md-12">
+                    <h6 class="mb-3">Liste des catégories</h6>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">id</th>
+                          <th scope="col">Titre</th>
+                           
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                         
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Jacob</td>
+                          
+                        </tr>
+                         
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
               <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab"
                 tabindex="0">
                 <div class="row mt-5">
@@ -4830,7 +2475,7 @@ import Footer from '@/components/Footer.vue';
                           <div class="col-md-6">
                             <p> <strong> Profile actuel   | </strong>  <b style="color: #219935">Vip</b> </p>
        
-                              <div class="card mb-4 rounded-1 shadow-sm border-primary" style="border-color:#219935 !important">
+                            <div class="card mb-4 rounded-1 shadow-sm border-primary" style="border-color:#219935 !important">
                                 <div class="card-header py-3 text-bg-primary border-primary" style="background:#219935 !important ; border-color:#219935 !important">
                                   <h4 class="my-0 fw-normal text-center">Vip</h4>
                                 </div>
@@ -4841,25 +2486,25 @@ import Footer from '@/components/Footer.vue';
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
+                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avant d’un véhicule ou d’une destination </li>
+                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Promotion d’une destination ou d’un véhicule </li>
                                   </ul>
-                                  <h4 style="font-size: 18px; color: #219935; text-align: center;">Commission sur le chiffre d'affaires</h4>
+                                  <h4 style="font-size: 18px; color: #219935; text-align: center;">Abonnement mensuel de 30 000 par mois </h4>
                                   <div class="row">
-                                    <div class="col-md-12 text-center mb-3">
+                                    <!-- <div class="col-md-12 text-center mb-3">
                                       <button type="button" class=" btn btn-primary text-center" style="background: white; border-color: #219935;"> <h5 class="card-title pricing-card-title " style="color:#219935">20%</h5></button>
-                                    </div>
+                                    </div> -->
                                     <!-- <div class="col-md-12 text-center">
                                       <button type="button" class=" btn btn-primary text-center" style="background: #219935; border-color: #219935;">Sélectionner</button>
                                     </div> -->
                                   </div>
                                   
                                 </div>
-                              </div>
-                                   
+                            </div>
                           </div>
                           <div class="col-md-6">
                             <p> <strong>Changer de Profile  </strong> </p>
-                              <div class="card mb-4 rounded-1 shadow-sm border-primary" style="border-color:#219935 !important">
+                            <div class="card mb-4 rounded-1 shadow-sm border-primary" style="border-color:#219935 !important">
                                 <div class="card-header py-3 text-bg-primary border-primary" style="background:rgb(62 66 63) !important ; border-color:#219935 !important">
                                   <h4 class="my-0 fw-normal text-center">Basique</h4>
                                 </div>
@@ -4870,13 +2515,12 @@ import Footer from '@/components/Footer.vue';
                                     <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
                                     <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
                                     <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
+                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avant d’un véhicule ou d’une destination </li>
+                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Promotion d’une destination ou d’un véhicule </li>
                                   </ul>
-                                  <h4 style="font-size: 18px; color: #219935; text-align: center;">Commission sur le chiffre d'affaires</h4>
+                                  <h4 style="font-size: 18px; color: #219935; text-align: center;">Abonnement de 20 000 par mois </h4>
                                   <div class="row">
-                                    <div class="col-md-12 text-center mb-3">
-                                      <button type="button" class=" btn btn-primary text-center" style="background: white; border-color: #219935;"> <h5 class="card-title pricing-card-title " style="color:#219935">15%</h5></button>
-                                    </div>
+                                   
                                     <div class="col-md-12 text-center">
                                       <button type="button" class=" btn btn-primary text-center" style="background: #219935; border-color: #219935;">Sélectionner</button>
                                     </div>
@@ -4884,7 +2528,6 @@ import Footer from '@/components/Footer.vue';
                                   
                                 </div>
                               </div>
-                                   
                           </div>
                         </div>
  
@@ -4978,6 +2621,45 @@ import Footer from '@/components/Footer.vue';
 
               <div class="tab-pane fade" id="politique-tab-pane" role="tabpanel" aria-labelledby="politique-tab"
                 tabindex="0">
+
+                <div class="row mt-4">
+                  <div class="col-md-6"></div>
+                  <div class="col-md-6 text-end">
+                    <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalede" style=" background-color: #219935; border-color: #219935;">
+                        <img
+                          src="/public/assets/img/icone/plus.png" class="img-fluid " alt="..."> Ajouter
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModalede" tabindex="-1" aria-labelledby="exampleModalLabelede" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabelede">Ajouter</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="row g-3 needs-validation text-start" novalidate>
+                            <div class="col-md-12">
+                              <label for="validationCustom01" class="form-label">Contenue</label>
+                              <textarea type="text" class="form-control" id="validationCustom01"  required></textarea>
+                               
+                            </div>
+                           
+                             
+                            <div class="col-12 text-center">
+                              <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
+                            </div>
+                          </form>
+                            </div>
+                             
+                          </div>
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
                 <div class="row mt-5">
                   <div class="col-md-12">
                     <div class="card h-100" id="card_compagnie">
@@ -5032,7 +2714,7 @@ import Footer from '@/components/Footer.vue';
                       <div class="card-body">
                           <div class="row">
                             <div class="col-md-12">
-                              <p><strong>Raison sociale |</strong>   GB Compagnie</p>
+                              <p><strong>Raison sociale |</strong>   {{ compagnieStore.compagnie.raison_sociale }}</p>
 
                               <p>  <strong> Responsable |</strong>   Mr joe</p>
                             </div>
@@ -5045,7 +2727,7 @@ import Footer from '@/components/Footer.vue';
                                   </div>
                                   
                                   <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 14px">compagniegb@gmail.com</h5>
+                                    <h5 class="card-title" style="font-size: 14px">{{ compagnieStore.compagnie.email }}</h5>
                                    </div>
                                 </div>
                               </div>
@@ -5056,8 +2738,8 @@ import Footer from '@/components/Footer.vue';
                                   </div>
                                   
                                   <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 14px">compagniegb.com</h5>
-                                    <h5 class="card-title" style="font-size: 14px">+000 000 000 00</h5>
+                                    <h5 class="card-title" style="font-size: 14px">{{ compagnieStore.compagnie.site_web }}</h5>
+                                    <h5 class="card-title" style="font-size: 14px">{{ compagnieStore.compagnie.telephone }}</h5>
                                    </div>
                                 </div>
                               </div>
@@ -5068,7 +2750,7 @@ import Footer from '@/components/Footer.vue';
                                   </div>
                                   
                                   <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 14px">Jean Dupont,10 Rue des Palmiers ,Quartier des Cocotiers</h5>
+                                    <h5 class="card-title" style="font-size: 14px">{{ compagnieStore.compagnie.adresse }}</h5>
                                    </div>
                                 </div>
                               </div>
@@ -5079,7 +2761,7 @@ import Footer from '@/components/Footer.vue';
                                   </div>
                                   
                                   <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 14px">1223.2522.55552</h5>
+                                    <h5 class="card-title" style="font-size: 14px">{{ compagnieStore.compagnie.long }} - {{ compagnieStore.compagnie.lat}}</h5>
                                    </div>
                                 </div>
                               </div>
@@ -5095,6 +2777,44 @@ import Footer from '@/components/Footer.vue';
 
               <div class="tab-pane fade" id="activite-tab-pane" role="tabpanel" aria-labelledby="activite-tab"
                 tabindex="0">
+                <div class="row mt-4">
+                  <div class="col-md-6"></div>
+                  <div class="col-md-6 text-end">
+                    <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style=" background-color: #219935; border-color: #219935;">
+                        <img
+                          src="/public/assets/img/icone/plus.png" class="img-fluid " alt="..."> Ajouter
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabeled" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabeled">Ajouter</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="row g-3 needs-validation text-start" novalidate>
+                            <div class="col-md-12">
+                              <label for="validationCustom01" class="form-label">Titre</label>
+                              <input type="text" class="form-control" id="validationCustom01"  required>
+                               
+                            </div>
+                           
+                             
+                            <div class="col-12 text-center">
+                              <button class="btn btn-primary" style=" background-color: #219935; border-color: #219935;" type="submit">Enregistrer</button>
+                            </div>
+                          </form>
+                            </div>
+                             
+                          </div>
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
                 <div class="row mt-5">
                   <div class="col-md-12">
                     <div class="row">

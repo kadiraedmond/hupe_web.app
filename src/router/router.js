@@ -13,6 +13,7 @@ import Choi from '../components/view/choix_offres.vue';
 import Cho from '../components/view/choix_offres2.vue';
 import Information from '../components/view/informations.vue';
 import Legales from '../components/view/legales.vue';
+import Application from '../components/view/application.vue';
 import Form from '../components/view/form_reservation.vue';
 import Forms from '../components/view/form_locations.vue';
 import Service from '../components/view/service.vue';
@@ -29,6 +30,12 @@ import Pclient from '../components/view/client.vue';
 import Otp from '../components/view/otp.vue';
 import Sclient from '../components/view/services_client.vue';
 import Info from '../components/view/infos.vue';
+import Vehicule from '../components/view/detail_vehicule_de_location.vue';
+import Reserve from '../components/view/detail_reservation_ticket.vue';
+import Achat from '../components/view/detail_vente_engin.vue';
+import Ticket1 from '../components/view/ticket_location.vue';
+import Ticket2 from '../components/view/ticket_reservation.vue';
+import Message from '../components/view/message.vue';
 const routes = [
   {
     path: '/',
@@ -212,6 +219,56 @@ const routes = [
     path: '/service_client',
     name: 'Sclient',
     component: Sclient,
+    
+  },
+
+  {
+    path: '/application',
+    name: 'Application',
+    component: Application,
+    
+  },
+
+  {
+    path: '/detail_vehicule_location',
+    name: 'Vehicule',
+    component: Vehicule,
+    
+  },
+
+  {
+    path: '/detail_reservation_ticket',
+    name: 'Reserve',
+    component: Reserve,
+    
+  },
+
+  {
+    path: '/detail_vente_engin',
+    name: 'Achat',
+    component: Achat,
+    
+  },
+
+
+  {
+    path: '/ticket_location',
+    name: 'Ticket1',
+    component: Ticket1,
+    
+  },
+
+  {
+    path: '/ticket_reservation',
+    name: 'Ticket2',
+    component: Ticket2,
+    
+  },
+
+  {
+    path: '/messagerie',
+    name: 'Message',
+    component: Message,
     
   },
 ];

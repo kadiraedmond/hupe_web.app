@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"><i class="bx bx-handshake"></i> Comdition de partenariat</button>
+                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"><i class="bx bx-globe"></i> Comdition de partenariat</button>
                             </li>
                         </div>
                     </div>
@@ -623,52 +623,51 @@
                     <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0"> 
                         <div class="row">
                             <div class="col-md-12">
-                                <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Politique de Droit d'Auteur de HUPE</h2>
+                                <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Condition de partenariat </h2>
+                                <hr>
 
                             </div>
                             <div class="col-md-12" style="font-size: 15px;">
-                                <p>Dernière mise à jour : 12 octobre 2023 </p>
-
-                                <P>Bienvenue sur l'Application HUPE. Chez HUPE, nous respectons les droits d'auteur et nous attendons de nos utilisateurs qu'ils en fassent de même. Cette Politique de Droit d'Auteur explique les règles et les obligations liées aux droits d'auteur pour les utilisateurs de notre Application.
-                                </P>
-                                <p> Cette politique de droit d'auteur aide à sensibiliser les utilisateurs à leurs obligations en matière de droits d'auteur et à définir les sanctions en cas de violation. Elle contribue à protéger les droits de propriété intellectuelle de HUPE et de ses utilisateurs. </p>
                                 
-                                <h2 style="font-size: 16px; font-weight:700;">Contenu Protégé par les Droits d'Auteur</h2>
-                                <p>Tous les contenus présents sur l'Application, y compris les textes, les images, les vidéos, les logiciels, les graphiques et les autres éléments, sont protégés par les lois sur les droits d'auteur. Ils appartiennent à HUPE ou à des tiers ayant accordé à HUPE les droits nécessaires pour les utiliser.</p>
+
+                                <P>L'avenir de la mobilité commence ici ! Découvrez comment une collaboration HUPE peut vous ouvrir de nouvelles opportunités dans le secteur de la location de véhicules, de gros engins, de la réservation de tickets de bus et de la vente de véhicules.
+                                </P>
+                                
+                                <h2 style="font-size: 16px; font-weight:700;">Qualité des Services</h2>
+                                <p>Les partenaires s'engagent à fournir des services de haute qualité en conformité avec les normes de l'industrie. Les véhicules et engins proposés à la location doivent être bien entretenus, propres et sûrs. Les chauffeurs et les opérateurs de gros engins doivent être formés, licenciés et respecter les règles de sécurité.</p>
                                 
                                  <!-- <p> Comment nous collectons les données Nous pouvons collecter des données de différentes manières, notamment lorsque vous créez un compte, effectuez une réservation, utilisez notre application, communiquez avec notre service client, ou interagissez avec notre site web.</p> -->
 
-                                 <h2 style="font-size: 16px; font-weight:700;">Utilisation Autorisée du Contenu</h2>
-                                <p>Vous pouvez utiliser le contenu de l'Application uniquement dans le cadre de l'utilisation normale de nos services. Cela inclut la visualisation, le téléchargement, la publication, le partage et la création de liens vers le contenu, conformément à nos Conditions Générales d'Utilisation.</p>
+                                 <h2 style="font-size: 16px; font-weight:700;">Communication</h2>
+                                <p>Les partenaires doivent maintenir une communication claire et réactive avec l'application « Hupe » et les utilisateurs. Les demandes de réservation, de location et les questions des utilisateurs doivent être traitées de manière professionnelle et dans les délais.</p>
                                 
-                                 <h2 style="font-size: 16px; font-weight:700;">Interdictions en Matière de Droits d'Auteur</h2>
-                                <p>Il est interdit de copier, de reproduire, de distribuer, de publier, de modifier, de créer des œuvres dérivées, de vendre, de transférer ou d'utiliser de quelque manière que ce soit le contenu de l'Application sans l'autorisation écrite préalable de HUPE.</p>
+                                 <h2 style="font-size: 16px; font-weight:700;">Intégration Technique</h2>
+                                <p>Les partenaires doivent respecter les normes techniques et les exigences d'intégration fournies par « Hupe ». Cela garantit une expérience utilisateur homogène.</p>
                                  
                                 <p>Vous ne pouvez pas utiliser le contenu de l'Application d'une manière qui enfreint les droits d'auteur d'autres utilisateurs ou de tiers.</p>
 
-                                <h2 style="font-size: 16px; font-weight:700;">Signalement de Violation de Droit d'Auteur</h2>
-                                <p>Si vous croyez qu'un contenu publié sur l'Application viole vos droits d'auteur, veuillez-nous le signaler immédiatement en nous fournissant les informations nécessaires pour vérifier la violation. Nous traiterons ces signalements conformément à la loi applicable.</p>
-
-                                <h2 style="font-size: 16px; font-weight:700;">Sanctions en Cas de Violation</h2>
-                                <p>Les utilisateurs qui violent les droits d'auteur d'autrui ou de HUPE peuvent se voir imposer des sanctions, y compris la suppression de leur contenu, la résiliation de leur compte et des poursuites légales si nécessaire.</p>
+                                
+                                <h2 style="font-size: 16px; font-weight:700;">Respect de la Vie Privée</h2>
+                                <p>Les partenaires s'engagent à respecter les règlements en matière de protection des données et à traiter les informations des utilisateurs conformément à la politique de confidentialité de « Hupe ».</p>
 
 
-                                <h2 style="font-size: 16px; font-weight:700;">Respect de la Propriété Intellectuelle</h2>
-                                <p>HUPE respecte la propriété intellectuelle des autres et s'efforce de se conformer aux lois sur les droits d'auteur en vigueur.</p>
+                                <h2 style="font-size: 16px; font-weight:700;">Éthique</h2>
+                                <p>Les partenaires doivent respecter les normes éthiques et légales les plus élevées. Aucune forme de discrimination, de harcèlement ou de comportement illégal ne sera tolérée.</p>
 
                                  
-                                <h2 style="font-size: 16px; font-weight:700;">Contact</h2>
-                                <p>Pour toute question ou réclamation concernant notre Politique de Droit d'Auteur, veuillez nous contacter à [adresse e-mail de contact].</p>
+                                <h2 style="font-size: 16px; font-weight:700;">Résolution de Conflits</h2>
+                                <p>En cas de litige entre « Hupe » et le partenaire, les deux parties s'engagent à encourager la médiation et la résolution amiable des conflits.</p>
 
-                                <h2 style="font-size: 16px; font-weight:700;">Licence d'Utilisateur</h2>
-                                <p>En publiant du contenu sur l'Application, vous accordez à HUPE une licence mondiale, non exclusive, libre de redevance, transférable et sous-licenciable pour utiliser, reproduire, distribuer, adapter, afficher et créer des œuvres dérivées de ce contenu dans le but de fournir nos services.</p>
+                                <h2 style="font-size: 16px; font-weight:700;">Promotion et Marketing</h2>
+                                <p>Les partenaires s'engagent à collaborer pour promouvoir les services de manière mutuellement bénéfique, conformément aux accords de partenariat.</p>
 
-                                <h2 style="font-size: 16px; font-weight:700;">Utilisation de Contenu Sous Licence</h2>
-                                <p>Si vous publiez du contenu sur l'Application pour lequel vous détenez une licence d'utilisation, veuillez-vous assurer de respecter les termes de cette licence et de fournir toute attribution requise conformément à la licence.</p>
+                                <h2 style="font-size: 16px; font-weight:700;">Durée et Résiliation</h2>
+                                <p>La durée de partenariat sera spécifiée dans l'accord. Les deux parties ont le droit de mettre fin au partenariat conformément aux modalités convenues en cas de non-respect répété des conditions de partenariat.</p>
 
-                                <h2 style="font-size: 16px; font-weight:700;">Contenu Généré par les Utilisateurs</h2>
-                                <p>Lorsque nous collaborons avec des partenaires ou des fournisseurs de services tiers, nous nous assurons qu'ils respectent des normes de sécurité élevées pour protéger vos données et garantir la confidentialité.</p>
+                                <h2 style="font-size: 16px; font-weight:700;">Autres Dispositions</h2>
+                                <p>Toutes autres dispositions spécifiques à votre partenariat, telles que les engagements de marketing, les exclusivités territoriales, les exigences de rapports, etc., seront définies dans l'accord de partenariat.</p>
 
+                                <p>Ces conditions de partenariat servent de base pour nos relations commerciales et sont sujettes à des négociations et à un accord mutuel. Elles sont conçues pour garantir une collaboration fructueuse et transparente entre « Hupe » et ses partenaires.</p>
                                 
 
                                 <h2 style="font-size: 16px; font-weight:700;">Loi Applicable et Juridiction</h2>
