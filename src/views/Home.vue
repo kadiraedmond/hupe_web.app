@@ -1,6 +1,7 @@
 <script setup>
 import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
 
+import Vehicule from "@/components/Home/location.vue";
 import { useCompanieStore } from "@/store/companie.js";
 import { useSlide } from "@/store/slideImages.js";
 import { useReservationStore } from "@/store/reservation.js";
@@ -133,17 +134,18 @@ onMounted(() => {
   <main id="main">
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <section id="features" class="features" style="margin-top: -60px" >
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-6">
+            <div class="section-title ">
               <h2>Que voulez-vous faire ?</h2>
             </div>
           </div>
+          
         </div>
 
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: -68px">
           <div class="col">
             <div
               class="card h-100 border-0 text-center"
@@ -259,18 +261,24 @@ onMounted(() => {
   
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-8">
+            <div class="section-title">
               <h2>Compagnies de locations populaires</h2>
-              <p>
+              <p id="section-p">
                 Explorez les compagnies de location les plus appréciées par les
                 voyageurs du monde entier. Faites confiance à l'expérience et à
                 la qualité.
               </p>
             </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            </router-link>
+             
           </div>
         </div>
 
@@ -339,18 +347,24 @@ onMounted(() => {
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-8">
+            <div class="section-title">
               <h2>Véhicules populaires</h2>
-              <p>
+              <p id="section-p">
                 Découvrez les véhicules les plus prisés pour votre prochain
                 voyage. Confort, style et fiabilité, nous avons tout ce dont
                 vous avez besoin.
               </p>
             </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            </router-link>
+             
           </div>
         </div>
 
@@ -358,13 +372,13 @@ onMounted(() => {
           <div class="col" v-for="(vehicule, index) in promotionStore.popularCars" :key="index">
             <router-link to="/detail_vehicule_location">
               <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px">
+              <div class="row" style="margin: 0px">
                 <div class="col-md-12">
                   <div
                     class="card mb-3 border-0"
-                    style="max-width: 540px; background: rgb(250 250 250)"
+                    style="  background: rgb(250 250 250)"
                   >
-                    <div class="row g-1">
+                    <div class="row g-1 d-flex">
                       <div class="col-md-8 d-flex">
                         <img
                           :src="vehicule.companieInfos.imageLogoUrl"
@@ -373,12 +387,13 @@ onMounted(() => {
                           style="max-width: 50px; max-height: 50px"
                         />
                         <div>
-                          <div class="card-body">
+                          <div class="card-body d-flex">
+                            
                             <h5 class="card-title" style="font-size: 12px">
                               {{ vehicule.companieInfos.raison_social }}
                             </h5>
-                            <p class="card-text mt-2" style="font-size: 12px">
-                              <i class="bx bx-map" style="color: #219935"></i>
+                            <p class="card-text" style="font-size: 12px ;">
+                              <i class="bx bx-map" style="color: #219935 ; margin-left: 5px;"></i>
                               {{ vehicule.companieInfos.adresse }}
                             </p>
                           </div>
@@ -390,7 +405,7 @@ onMounted(() => {
                           style="
                             background: #219935;
                             border-color: #219935;
-                            margin-top: 15px;
+                            margin-top: 5px;
                             font-size: 12px;
                           "
                         >
@@ -446,18 +461,24 @@ onMounted(() => {
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <!-- <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-8">
+            <div class="section-title ">
               <h2>Compagnies de transport populaires</h2>
-              <p>
+              <p id="section-p">
                 Simplifiez votre trajet en choisissant parmi les compagnies de
                 transport les plus populaires. Voyagez en toute tranquillité
                 avec nos partenaires de confiance.
               </p>
             </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            </router-link>
+             
           </div>
         </div>
 
@@ -523,21 +544,54 @@ onMounted(() => {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+     <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-8">
+            <div class="section-title ">
+              <h2>Compagnies de transport populaires</h2>
+              <p id="section-p">
+                Simplifiez votre trajet en choisissant parmi les compagnies de
+                transport les plus populaires. Voyagez en toute tranquillité
+                avec nos partenaires de confiance.
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            </router-link>
+             
+          </div>
+        </div>
+
+        <Vehicule></Vehicule>
+      </div>
+    </section>
+
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features" style="margin-top: -60px">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <div class="section-title">
               <h2>Destinations populaires</h2>
-              <p>
+              <p id="section-p">
                 Explorez les destinations les plus en vogue du moment. Trouvez
                 l'inspiration pour votre prochain voyage et vivez des
                 expériences inoubliables.
               </p>
             </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            </router-link>
+             
           </div>
         </div>
         <div class="swiffy-slider slider-item-show2 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-fadein slider-item-last-visible" style="width: 101%;">
@@ -737,18 +791,24 @@ onMounted(() => {
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
-              <h2>Compagnies de location d'engins populaires</h2>
-              <p>
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Compagnies de location de gros engins populaires</h2>
+              <p id="section-p">
                 Simplifiez votre trajet en choisissant parmi les compagnies de
                 transport les plus populaires. Voyagez en toute tranquillité
                 avec nos partenaires de confiance.
               </p>
             </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            </router-link>
+             
           </div>
         </div>
 
@@ -817,16 +877,22 @@ onMounted(() => {
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
-              <h2>Engins populaires</h2>
-              <p>Découvrez les véhicules les plus prisés pour votre prochain voyage. Confort, style et fiabilité, nous
+          <div class="col-8">
+            <div class="section-title">
+              <h2> Gros engins populaires</h2>
+              <p id="section-p">Découvrez les véhicules les plus prisés pour votre prochain voyage. Confort, style et fiabilité, nous
                 avons tout ce dont vous avez besoin.</p>
 
             </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            </router-link>
+             
           </div>
 
         </div>
@@ -972,18 +1038,24 @@ onMounted(() => {
     </section>
 
     <!-- ======= Features Section ======= -->
-    <section id="features" class="features" style="margin-top: -30px">
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-8">
+            <div class="section-title">
               <h2>Actualités</h2>
-              <p>
+              <p id="section-p">
                 Restez a jour avec les dernières nouvelles du monde du voyage .
                 Les informations les plus récentes sur les destinations, les
                 promotion et plus encore
               </p>
             </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            </router-link>
+             
           </div>
         </div>
 
@@ -1177,20 +1249,20 @@ onMounted(() => {
     </section>
     <!-- End Features Section -->
 
-    <section id="features" class="features" style="margin-top: -90px">
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div
-            class="col-md-12 text-center mt-5"
-            style="margin-top: 80px !important"
-          >
-            <h1 id="titre_new">Inscrivez vous à notre Newsletter</h1>
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Inscrivez vous à notre Newsletter</h2>
+              <p id="section-p">Veuillez renseignez votre adresse mail, pour etre au courant de
+              toutes nos nouveautés</p>
 
-            <p class="mt-4" style="font-weight: 600">
-              Veuillez renseignez votre adresse mail, pour etre au courant de
-              toutes nos nouveautés
-            </p>
-
+            </div>
+          </div>
+ 
+        </div>
+        <div class="row">
             <div class="col-md-12 text-center mt-5">
               <div class="row">
                 <div class="col-md-2"></div>
@@ -1201,7 +1273,7 @@ onMounted(() => {
                     method="POST"
                     enctype="multipart/form-data"
                   >
-                    <div class="input-group" style="margin-top: -14px">
+                    <div class="input-group d-flex justify-content-center" style="margin-top: -40px">
                       <input
                         type="text"
                         class="form-control form-control-lg input py-3"
@@ -1227,7 +1299,8 @@ onMounted(() => {
             </div>
           </div>
         </div>
-      </div>
+      
+
     </section>
   </main>
   <!-- End #main -->
@@ -1266,5 +1339,13 @@ onMounted(() => {
       left: 0%;
   }
 }
-
+#section-p{
+  font-size: 15px;
+    margin-top: -27px;
+}
+#input_newsletter{
+  max-width: 440px !important;
+    max-height: 20px !important;
+    font-size: 17px;
+}
 </style>

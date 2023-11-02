@@ -78,7 +78,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12 mt-4">
       <div class="card h-100" id="card_compagnie">
         <div class="card-body">
           <H6>Lorem ipsum dolor sit amet</H6>

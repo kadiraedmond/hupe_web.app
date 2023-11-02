@@ -7,7 +7,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="col-md-12 mt-4">
+  <div class="col-md-6 mt-4">
     <div class="row" style="margin-top: 50px">
       <div class="col-md-6">
         <div
@@ -39,104 +39,102 @@ onMounted(() => {
               style="background: #f77f00; border-color: #f77f00"
             >
               <div class="row">
-                <div class="col-4">
+                <div class="col-2">
                   <i class="bx bx-time"></i>
                 </div>
-                <div class="col-4">En attente</div>
-                <div class="col-4">2</div>
+                <div class="col-8" style="font-size: 12px;">En attente</div>
+                <div class="col-2">2</div>
               </div>
             </boutton>
           </div>
-          <div class="col-md-12 mt-4">
+          <div class="col-md-12 mt-2">
             <boutton
               class="btn btn-primary w-100"
               style="background: #219935; border-color: #219935"
             >
               <div class="row">
-                <div class="col-4">
+                <div class="col-2">
                   <i class="bx bx-check-circle"></i>
                 </div>
-                <div class="col-4">Validé</div>
-                <div class="col-4">2</div>
+                <div class="col-8" style="font-size: 12px;">Validé</div>
+                <div class="col-2">2</div>
               </div>
             </boutton>
           </div>
-          <div class="col-md-12 mt-4">
+          <div class="col-md-12 mt-2">
             <boutton
               class="btn btn-primary w-100"
               style="background: red; border-color: red"
             >
               <div class="row">
-                <div class="col-4">
+                <div class="col-2">
                   <i class="bx bx-x-circle"></i>
                 </div>
-                <div class="col-4">Annulé</div>
-                <div class="col-4">2</div>
+                <div class="col-8" style="font-size: 12px;">Annulé</div>
+                <div class="col-2">2</div>
               </div>
             </boutton>
           </div>
-          <div class="col-md-12 mt-4">
+          <div class="col-md-12 mt-2">
             <boutton
               class="btn btn-primary w-100"
               style="background: #3987fb; border-color: #3987fb"
             >
               <div class="row">
-                <div class="col-4">
+                <div class="col-2">
                   <i class="bx bx-check-square"></i>
                 </div>
-                <div class="col-4">Confirmer</div>
-                <div class="col-4">2</div>
+                <div class="col-8" style="font-size: 12px;">Confirmer</div>
+                <div class="col-2">2</div>
               </div>
             </boutton>
           </div>
-          <div class="col-md-12 mt-4">
+          <div class="col-md-12 mt-2">
             <boutton
               class="btn btn-primary w-100"
               style="background: #931d96; border-color: #931d96"
             >
               <div class="row">
-                <div class="col-4">
+                <div class="col-2">
                   <i class="bx bx-check-circle"></i>
                 </div>
-                <div class="col-4">Utilisé</div>
-                <div class="col-4">2</div>
+                <div class="col-8" style="font-size: 12px;">Utilisé</div>
+                <div class="col-2">2</div>
               </div>
             </boutton>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-12">
-    <div class="row mt-4">
-      <div class="col-md-6">
+
+          <div class="col-md-12 mt-2">
         <boutton
           class="btn btn-primary w-100"
           style="background: #f77f00; border-color: #f77f00"
         >
           <div class="row">
-            <div class="col-4">
+            <div class="col-2">
               <i class="bx bx-error-alt"></i>
             </div>
-            <div class="col-4">En attente de report</div>
-            <div class="col-4">2</div>
+            <div class="col-8" style="font-size: 12px;">En attente de report</div>
+            <div class="col-2">2</div>
           </div>
         </boutton>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-12 mt-2">
         <boutton
           class="btn btn-primary w-100"
           style="background: #219935; border-color: #219935"
         >
           <div class="row">
-            <div class="col-4">
+            <div class="col-2">
               <i class="bx bx-reset"></i>
             </div>
-            <div class="col-4">Reporté</div>
-            <div class="col-4">2</div>
+            <div class="col-8" style="font-size: 12px;">Reporté</div>
+            <div class="col-2">2</div>
           </div>
         </boutton>
       </div>
+        </div>
+      </div>
     </div>
   </div>
+   
 </template>

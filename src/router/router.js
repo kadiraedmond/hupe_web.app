@@ -139,7 +139,7 @@ const routes = [
     path: '/compte_reservation',
     name: 'Comptes',
     component: Comptes,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {

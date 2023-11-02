@@ -1,15 +1,15 @@
 <script setup>
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount } from "vue"
+import { onBeforeMount , onMounted } from "vue"
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieHistory(userId)
   companieStore.setTotalAmount(userId)
@@ -76,7 +76,7 @@ onMounted(() => {
               </div>
               <p>{{ history.title }}</p>
               <div class="row mb-2">
-                <div class="col-md-8">
+                <div class="col-md-6">
                   <p>
                     Montant |
                     <strong>
@@ -85,7 +85,7 @@ onMounted(() => {
                     >
                   </p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6 text-end">
                   <button
                     class="btn btn-primary"
                     style="background: #219935; border-color: #219935"

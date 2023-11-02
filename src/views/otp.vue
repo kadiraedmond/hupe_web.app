@@ -45,6 +45,7 @@ onMounted(() => {
   window.scrollTo(0, 0)
 })
 
+
 </script>
 
 <template>
@@ -80,6 +81,25 @@ onMounted(() => {
                       </div>
                     </div>
                 </form>
+                </div>
+                <div class="col-md-12 mt-4">
+                  <div style="display: flex; flex-direction: row">
+                    <v-otp-input
+                      ref="otpInput"
+                      v-model:value="bindModal"
+                      input-classes="otp-input"
+                      separator="-"
+                      :num-inputs="4"
+                      :should-auto-focus="true"
+                      input-type="letter-numeric"
+                      :conditionalClass="['one', 'two', 'three', 'four']"
+                      :placeholder="['*', '*', '*', '*']"
+                      @on-change="handleOnChange"
+                      @on-complete="handleOnComplete"
+                    />
+                  </div>
+                  <button @click="clearInput()">Clear Input</button>
+                  <button @click="fillInput('2929')">Fill Input</button>
                 </div>
                 <div class="col-md-12 text-center mt-3">
                   <p>Je n'ai pas reçu de message</P>

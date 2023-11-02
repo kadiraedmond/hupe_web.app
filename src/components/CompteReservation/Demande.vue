@@ -1,7 +1,7 @@
 <script setup>
 import { useDemandeStore } from '@/store/demande.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref , onMounted } from "vue";
 
 import { collection, doc, getDoc} from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
@@ -36,7 +36,7 @@ onMounted(() => {
 
 <template>
   <div class="row mt-5">
-    <div class="col-md-6 my-1" v-for="(demande, index) in demandeStore.reservationDemandes" :key="index">
+    <div class="col-md-6 my-1" v-for="(demande, index) in demandeStore.reservationDemandes" :key="index" style="margin-bottom: 19px !important;">
       <!-- Button trigger modal -->
       <button
         type="button"
@@ -45,7 +45,7 @@ onMounted(() => {
         data-bs-target="#exampleModal10"
         style="
           background: white !important;
-          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 1px 1px;
           border: none;
         "
       >

@@ -30,7 +30,7 @@ const logout = async () => {
       <nav id="navbar" class="navbar">
         <ul >
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
-            <select class="form-select1" style="padding: 8.4px" id="validationCustom04" required>
+            <select class="form-select1" style="padding: 8.6px ; width: 96px;" id="validationCustom04" required>
               <option selected value="">Bénin</option>
               <option>Burkina Faso</option>
               <option>Côte d'Ivoire</option>
@@ -47,8 +47,9 @@ const logout = async () => {
       <form class="d-flex" role="search">
         <input
           class="form-control me-2 text-white"
+          style="width: 200; max-width: 200px;"
           type="search"
-          placeholder="Entrez un terme de recherche"
+          placeholder="Rechercher"
           aria-label="Search"
           id="search"
         />
@@ -130,4 +131,8 @@ const logout = async () => {
   </header>
 </template>
 
-<style scoped></style>
+<style scoped>
+ #search{
+  font-size: 15px;
+ }
+</style>

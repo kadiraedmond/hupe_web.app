@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 
+
 onMounted(() => {
   window.scrollTo(0, 0)
 })
@@ -12,12 +13,13 @@ onMounted(() => {
   <main id="main">
     <section id="features" class="features">
       <div class="container">
-        <div class="row" style="margin-top: -20px;">
+        <div class="row" style="margin-top: 42px;">
             <div class="col-md-3" style="border-right: 1px solid; border-color:#EAEAEA;">
-                <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; ">
+                <div class="row fixe">
+                    <ul class="nav nav-tabs " id="myTab" role="tablist" style="border: none; ">
                     <div class="row " style="width:30%">
                         
-                        <div class="col-md-12 mb-3">
+                        <!-- <div class="col-md-12 mb-3">
                             <router-link to="/">
                                 <h1 class="text-black">
                                   <i class="bx bx-x"></i>
@@ -25,7 +27,7 @@ onMounted(() => {
                             
                             </router-link>
                            
-                        </div>
+                        </div> -->
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 24px;"> Informations </h2>
                         </div>
@@ -58,8 +60,10 @@ onMounted(() => {
                     </div>
  
                 </ul>
+                </div>
+                
             </div>
-            <div class="col-md-9" style=" padding: 10px; z-index: 1030;">
+            <div class="col-md-9" style=" padding: 10px;">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
@@ -1717,6 +1721,7 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
+            <!-- z-index: 1030; -->
         </div>
       </div>
     </section>
