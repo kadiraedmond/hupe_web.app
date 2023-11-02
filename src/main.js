@@ -7,21 +7,21 @@
 // import './assets/slide2.js'
 // import './assets/font.css'
 
-// import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
-import VueTelInput from 'vue-tel-input';
-import 'vue-tel-input/vue-tel-input.css';
-import VOtpInput from "vue3-otp-input";
+import VueTelInput from 'vue-tel-input'
+import 'vue-tel-input/vue-tel-input.css'
+import VOtpInput from "vue3-otp-input"
 
 
-import { createApp } from 'vue';
+import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import App from './App.vue';
-import router from './router/router';
+import App from './App.vue'
+import router from './router/router'
 
 const pinia = createPinia()
-const app = createApp(App);
+const app = createApp(App)
 
 const globalOptions = {
     mode: 'international',
@@ -36,12 +36,11 @@ const globalOptions = {
         autofocus: true,
         placeholder: 'Téléphone'
     }
-};
+}
+
+
+app.use(router) 
+app.use(pinia)
+app.use(VueTelInput, globalOptions)
 
 app.component('v-otp-input', VOtpInput).mount('#app')
-
-app.use(router); 
-app.use(pinia)
-app.use(VueTelInput, globalOptions);
-
-app.mount('#app');
