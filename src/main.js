@@ -27,7 +27,7 @@ const globalOptions = {
     mode: 'international',
     autoDefaultCountry: true,
     dropdownOptions: {
-        diseable: false,
+        disable: false,
         showDialCodeInSelection: true,
     },
     inputOptions: {

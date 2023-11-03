@@ -568,7 +568,7 @@ onMounted(() => {
           </div>
         </div>
 
-        <Vehicule></Vehicule>
+        <Vehicule />
       </div>
     </section>
 
@@ -598,7 +598,7 @@ onMounted(() => {
             <ul class="slider-container py-4">
                 <li class="" v-for="(popularDestination, index) in promotionStore.popularDestinations" :key="index">
                   <router-link to="/detail_reservation_ticket">
-                    <div class="card h-100" id="card_compagnie" v-if="index < 6">
+                    <div class="card h-100" id="card_compagnie">
                     <div class="row" style="margin: 10px">
                       <div class="col-md-7">
                         <div

@@ -42,7 +42,7 @@ onMounted(() => {
         type="button"
         class="btn btn-primary w-100 text-start"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal10"
+        :data-bs-target="'#exampleModal10' + index"
         style="
           background: white !important;
           box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 1px 1px;
@@ -56,7 +56,7 @@ onMounted(() => {
       <!-- Modal -->
       <div
         class="modal fade"
-        id="exampleModal10"
+        :id="'exampleModal10' + index"
         tabindex="-1"
         aria-labelledby="exampleModalLabel10"
         aria-hidden="true"

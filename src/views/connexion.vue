@@ -74,7 +74,7 @@ onMounted(() => {
                           >Numéro de téléphone</label
                         >
                       </div>
-                      <div class="mb-3 mx-5 text-center">
+                      <div class="mb-3 mx-5">
                         <vue-tel-input 
                           v-model="phoneNumber"
                           :enabledCountryCode="true"
@@ -107,4 +107,8 @@ onMounted(() => {
   </main>
   <!-- End #main -->
 </template>
-<style></style>
+<style>
+::placeholder {
+  float: left;
+}
+</style>

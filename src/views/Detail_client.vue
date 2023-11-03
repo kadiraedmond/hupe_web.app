@@ -27,8 +27,9 @@ onMounted(() => {
   window.scrollTo(0, 0)
 })
 
+const user = JSON.parse(localStorage.getItem('user')) || authStore.user
+
 const name = ref('')
-const phone = ref('')
 const avecChauffeur = ref(false)
 const sansChauffeur = ref(false)
 const capitalPays = ref(false)
@@ -68,14 +69,13 @@ const handleFileChange = () => {
 }
 
 const locationColRef = collection(firestoreDb, 'location_vehicules')
-const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const reserver = async (car) => {
   const Data = {
     boite: car.boite,
     chauffeur: avecChauffeur.value === true ? 'Oui' : 'Non',
-    client_id: authStore.user.uid || savedUser.uid || '',
-    client_profil_url: authStore.user.imageUrl || savedUser.imageUrl || '',
+    client_id: user.uid || '',
+    client_profil_url: user.imageUrl || '',
     compagnie_id: companieId || companieStore.companie.uid,
     created_at: new Date(),
     date_retour: dateRetour.value,
@@ -95,7 +95,7 @@ const reserver = async (car) => {
     payement: 'En attente',
     plaque_vehicule: car.serie_vehicule,
     status: 'En attente',
-    telephone_client: phone.value,
+    telephone_client: user.telephone,
     ticket_id: uuidv4(),
     vehicule: car.vehicule,
     vehicule_image_url: car.vehicule_image_url,
@@ -132,7 +132,7 @@ const reserver = async (car) => {
     <!-- End Portfolio Details Section -->
 
     <section id="faq" class="faq" style="margin-top: -70px">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
         <div class="row g-4">
           <div class="col-md-6">
             <div class="card mb-3 border-0" style="max-width: 540px">
@@ -367,8 +367,9 @@ const reserver = async (car) => {
                                               type="text"
                                               class="form-control"
                                               id="validationCustom01"
-                                              v-model="phone"
+                                              :value="user.telephone"
                                               required
+                                              disabled
                                             />
                                           </div>
 

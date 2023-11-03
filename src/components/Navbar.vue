@@ -135,4 +135,8 @@ const logout = async () => {
  #search{
   font-size: 15px;
  }
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
 </style>

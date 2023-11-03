@@ -52,7 +52,7 @@ onMounted(() => {
  
                 </ul>
             </div>
-            <div class="col-md-9" style=" padding: 10px;">
+            <div class="col-md-9 mt-5" style=" padding: 10px;">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
@@ -893,6 +893,10 @@ onMounted(() => {
     background-color: var(--bs-nav-tabs-link-active-bg);
     border-color: var(--bs-nav-tabs-link-active-border-color);
     width: 255px !important;
+}
+
+#myTab {
+    z-index: -8;
 }
 
 </style>

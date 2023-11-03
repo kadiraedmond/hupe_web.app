@@ -15,7 +15,7 @@ onMounted(() => {
     <!-- End Portfolio Details Section -->
 
     <section id="faq" class="faq" style="margin-top: -70px;">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
         <div class="row g-4">
           <div class="col-md-6">
             <div class="card mb-3 border-0" style="max-width: 540px;">
