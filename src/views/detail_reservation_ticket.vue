@@ -92,19 +92,19 @@ onMounted(() => {
 </script>
 <template>
   <!-- ======= Breadcrumbs ======= -->
-  <section id="breadcrumbs" class="breadcrumbs">
+  <!-- <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
       <ol>
         <li><router-link to="/" style="color: #219935">Home</router-link></li>
         <li>Rerservation</li>
-        <li>Cocody-Abidjan</li>
+        <li>{{ companieStore.programme.lieu_depart }} - {{ companieStore.programme.destination }}</li>
       </ol>
     </div>
-  </section>
+  </section> -->
   <!-- End Breadcrumbs -->
 
   <!-- ======= Portfolio Details Section ======= -->
-  <section id="portfolio-details" class="portfolio-details">
+  <section id="portfolio-details" class="portfolio-details mt-5">
     <div class="container">
       <div class="row no-gutters mt-4">
         <div class="col-md-5">

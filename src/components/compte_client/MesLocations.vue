@@ -44,7 +44,7 @@ const sendMessage = async () => {
 <template>
     <div class="row mt-5">
     <h1 class="mb-4">Mes Locations</h1>
-    <div class="col-md-6 mb-4" v-for="(location, index) in locationStore.userLocations" :key="index">
+    <div class="col-md-4 mb-4" v-for="(location, index) in locationStore.userLocations" :key="index">
       <div
         class="card h-100 border-0"
         id="card_compagnie"
@@ -57,20 +57,30 @@ const sendMessage = async () => {
           <div class="row g-0" style="margin: 10px">
             <div class="col-md-6">
               <div class="card-body">
-                <p
-                  class="card-text"
-                  style="
-                    background: #efefef;
-                    padding: 4px;
-                    border-radius: 5px;
-                    font-size: 12px;
-                    margin-top: -15px;
-                  "
-                >
-                  {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }} <br />
-                  <strong> {{ location.number }} </strong>
-                </p>
-                <hr />
+                <div class="row">
+                  <div class="col-6">
+                    <p
+                      class="card-text"
+                      style="
+                        background: #efefef;
+                        padding: 4px;
+                        border-radius: 5px;
+                        font-size: 12px;
+                        margin-top: -15px;
+                      "
+                    >
+                      {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }} <br />
+                      <strong> {{ location.number }} </strong>
+                    </p>
+                  </div>
+
+                  <div class="col-6">
+                    <button class="btn btn-primary">
+                      {{ location.montant }}
+                    </button>
+                  </div>
+                </div>
+                <br />
 
                 <p
                   class="card-text"
@@ -79,7 +89,7 @@ const sendMessage = async () => {
                   Location |
                   <strong style="color: #219935">{{ location.status }} </strong>
                 </p>
-                <hr />
+                <br />
 
                 <p
                   class="card-text"
@@ -88,38 +98,38 @@ const sendMessage = async () => {
                   <strong>{{ location.modele }} </strong> |
                   <!-- <strong> Santafe 2022 </strong> -->
                 </p>
-                <hr />
+                <br />
                 <p
                   class="card-text"
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   {{ location.moteur }} | {{ location.boite }} | {{ location.plaque_vehicule }}
                 </p>
-                <hr />
+                <br />
                 <p
                   class="card-text"
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   chauffeur | <strong>{{ location.chauffeur }} </strong>
                 </p>
-                <hr />
+                <br />
                 <p
                   class="card-text"
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   Intérieur | <strong>{{ location.interieurPays }} </strong>
                 </p>
-                <hr />
+                <br />
               </div>
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <img
                 src="/public/assets/img/car2.jpg"
                 class="img-fluid rounded-start h-100"
                 alt="..."
                 style="height: 85% !important"
               />
-            </div>
+            </div> -->
             <div class="col-md-12">
               <div class="card-body">
                 <p
@@ -134,14 +144,14 @@ const sendMessage = async () => {
                   <strong>{{ location.heure_retrait }}</strong>
                 </p>
 
-                <hr />
+                <br />
                 <p
                   class="card-text"
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   Retour | <strong>{{ location.date_retour }} </strong>
                 </p>
-                <hr />
+                <br />
 
                 <p
                   class="card-text"
@@ -150,7 +160,7 @@ const sendMessage = async () => {
                   Nombres de jours de location |
                   <strong>{{ location.number }}</strong>
                 </p>
-                <hr />
+                <br />
 
                 <div class="row" v-if="location.status == 'Validé'">
                   <div class="col-md-6">

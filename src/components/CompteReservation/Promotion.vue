@@ -57,8 +57,8 @@ onMounted(() => {
             background: transparent;
           "
         >
-          <a
-            v-bind:href="'/detail'"
+          <router-link
+            to="/detail"
             style="border: 1px solid; border-radius: 5px; border-color: #a6a6a6"
           >
             <img
@@ -71,7 +71,7 @@ onMounted(() => {
                 object-fit: cover;
               "
             />
-          </a>
+          </router-link>
           <button class="btn btn-primary" id="badges">
             <s> {{ promotionCar.ancien_montant }} FCFA </s>
           </button>

@@ -35,7 +35,6 @@ onBeforeMount(() => {
           class="card h-100"
           id="compagnie_card"
           style="background: #f3f4f6; box-shadow: none"
-          v-if="companie.offre == 'vip'"
         >
           <router-link :to="`/details/${companie.uid}`">
             <img

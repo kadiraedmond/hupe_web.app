@@ -134,19 +134,19 @@ onMounted(() => {
 </script>
 <template>
   <!-- ======= Breadcrumbs ======= -->
-  <section id="breadcrumbs" class="breadcrumbs">
+  <!-- <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
       <ol>
         <li><router-link to="/" style="color: #219935">Home</router-link></li>
         <li>Location de véhicule</li>
-        <li>Toyota yaris 2022</li>
+        <li>{{ companieStore.car.vehicule }} {{ companieStore.car.modele }} {{ companieStore.car.anne_vehicule }}</li>
       </ol>
     </div>
-  </section>
+  </section> -->
   <!-- End Breadcrumbs -->
 
   <!-- ======= Portfolio Details Section ======= -->
-  <section id="portfolio-details" class="portfolio-details">
+  <section id="portfolio-details" class="portfolio-details mt-5">
     <div class="container">
       <div class="row no-gutters mt-4">
         <div class="col-md-5">
@@ -716,14 +716,13 @@ onMounted(() => {
             class="card h-100"
             id="compagnie_card"
             style="background: #f3f4f6; box-shadow: none"
-            v-if="car.uid !== carId"
           >
             <router-link to="/details_vente_engin">
               <img
                 :src="car.vehicule_image_url"
                 class="card-img-top"
                 alt="..."
-                style="border-radius: 10px 10px 0px 0px; width: 500px; height: 280px"
+                style="border-radius: 10px 10px 0px 0px; max-width: 350px; width: 350px; height: 280px; margin: 0 1rem"
               />
             </router-link>
             <button

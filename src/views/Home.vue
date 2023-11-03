@@ -370,7 +370,7 @@ onMounted(() => {
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col" v-for="(vehicule, index) in promotionStore.popularCars" :key="index">
-            <router-link to="/detail_vehicule_location">
+            <router-link :to="`/detail/${vehicule.compagnie_uid}`">
               <div class="card h-100" id="card_compagnie">
               <div class="row" style="margin: 0px">
                 <div class="col-md-12">

@@ -34,7 +34,7 @@ const annul = async (reservation) => {
 
   <div class="row mt-5">
     <h1 class="mb-4">Mes réservations</h1>
-    <div class="col-md-6 mb-4" v-for="(reservation, index) in reservationStore.userReservations" :key="index">
+    <div class="col-md-4 mb-4" v-for="(reservation, index) in reservationStore.userReservations" :key="index">
       <div
         class="card h-100 border-0"
         id="card_compagnie"
@@ -45,22 +45,32 @@ const annul = async (reservation) => {
           style="margin: 10px; margin-top: -10px !important; width: 98%"
         >
           <div class="row g-0" style="margin: 10px">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="card-body">
-                <p
-                  class="card-text"
-                  style="
-                    background: #efefef;
-                    padding: 4px;
-                    border-radius: 5px;
-                    font-size: 12px;
-                    margin-top: -15px;
-                  "
-                >
-                  {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
-                  <strong> {{ reservation.number }} </strong>
-                </p>
-                <hr />
+                <div class="row">
+                  <div class="col-6">
+                    <p
+                      class="card-text"
+                      style="
+                        background: #efefef;
+                        padding: 4px;
+                        border-radius: 5px;
+                        font-size: 12px;
+                        margin-top: -15px;
+                      "
+                    >
+                      {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
+                      <strong> {{ reservation.number }} </strong>
+                    </p>
+                  </div>
+
+                  <div class="col-6 text-end" style="margin-top: -10px">
+                    <button class="btn btn-primary" style="background-color: #219935; border: #219935">
+                      {{ reservation.montant }}
+                    </button>
+                  </div>
+                </div>
+               <br />
 
                 <p
                   class="card-text"
@@ -69,7 +79,7 @@ const annul = async (reservation) => {
                   Reservation |
                   <strong style="color: #219935">{{ reservation.status }} </strong>
                 </p>
-                <hr />
+               <br />
 
                 <p
                   class="card-text"
@@ -78,38 +88,38 @@ const annul = async (reservation) => {
                   <strong>{{ reservation.modele }} </strong> |
                   <!-- <strong> Santafe 2022 </strong> -->
                 </p>
-                <hr />
+               <br />
                 <p
                   class="card-text"
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   {{ reservation.moteur }} | {{ reservation.boite }} | {{ reservation.plaque_vehicule }}
                 </p>
-                <hr />
+               <br />
                 <p
                   class="card-text"
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   chauffeur | <strong>{{ reservation.chauffeur }} </strong>
                 </p>
-                <hr />
+               <br />
                 <p
                   class="card-text"
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   Intérieur | <strong>{{ reservation.interieurPays }} </strong>
                 </p>
-                <hr />
+               <br />
               </div>
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <img
                 src="/public/assets/img/car2.jpg"
                 class="img-fluid rounded-start h-100"
                 alt="..."
                 style="height: 85% !important"
               />
-            </div>
+            </div> -->
             <div class="col-md-12">
               <div class="card-body">
                 <p
@@ -124,14 +134,14 @@ const annul = async (reservation) => {
                   <strong>{{ reservation.heure_retrait }}</strong>
                 </p>
 
-                <hr />
+               <br />
                 <p
                   class="card-text"
                   style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                 >
                   Retour | <strong>{{ reservation.date_retour }} </strong>
                 </p>
-                <hr />
+               <br />
 
                 <p
                   class="card-text"
@@ -140,7 +150,7 @@ const annul = async (reservation) => {
                   Nombres de jours de reservation |
                   <strong>{{ reservation.number }}</strong>
                 </p>
-                <hr />
+               <br />
 
                 <div class="row" v-if="reservation.status == 'Validé'">
                   <div class="col-md-6">
