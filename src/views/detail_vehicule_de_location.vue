@@ -88,9 +88,9 @@ const reserver = async (car) => {
     created_at: new Date(),
     date_retour: dateRetour.value,
     date_retrait: dateRetrait.value,
-    enPromo: car.enPromo,
+    enPromo: car.enPromo || false,
     heure_retrait: heureRetrait.value,
-    identite_image_url: permis.value || "",
+    identite_image_url: '' || permis.value,
     interieurPays: interieurPays.value === true ? "Oui" : "Non",
     latitude: "",
     lieu_retrait: lieuRetrait.value,
@@ -103,7 +103,7 @@ const reserver = async (car) => {
     payement: "En attente",
     plaque_vehicule: car.serie_vehicule,
     status: "En attente",
-    telephone_client: user.telephone,
+    telephone_client: user.phoneNumber,
     ticket_id: uuidv4(),
     vehicule: car.vehicule,
     vehicule_image_url: car.vehicule_image_url,
@@ -331,7 +331,7 @@ onMounted(() => {
                         <form
                           class="row g-3 needs-validation"
                           novalidate
-                          @submit.prevent="reserver(car)"
+                          @submit.prevent="reserver(promotionStore.vehicule)"
                           id="reservationForm"
                         >
                           <div class="col-md-12">
@@ -361,7 +361,7 @@ onMounted(() => {
                               type="text"
                               class="form-control"
                               id="validationCustom01"
-                              :value="user.telephone"
+                              :value="user.phoneNumber"
                               required
                               disabled
                             />
@@ -378,7 +378,7 @@ onMounted(() => {
                               type="text"
                               class="form-control"
                               id="validationCustom01"
-                              :value="companieStore.car.vehicule"
+                              :value="promotionStore.vehicule.vehicule"
                               required
                               disabled
                             />
@@ -395,7 +395,7 @@ onMounted(() => {
                               type="text"
                               class="form-control"
                               id="validationCustom01"
-                              :value="companieStore.serie_vehicule"
+                              :value="promotionStore.vehicule.serie_vehicule"
                               required
                               disabled
                             />
@@ -412,7 +412,7 @@ onMounted(() => {
                               type="text"
                               class="form-control"
                               id="validationCustom01"
-                              :value="companieStore.car.modele"
+                              :value="promotionStore.vehicule.modele"
                               required
                               disabled
                             />
@@ -429,7 +429,7 @@ onMounted(() => {
                               type="text"
                               class="form-control"
                               id="validationCustom01"
-                              :value="companieStore.car.moteur"
+                              :value="promotionStore.vehicule.moteur"
                               required
                               disabled
                             />
@@ -446,7 +446,7 @@ onMounted(() => {
                               type="text"
                               class="form-control"
                               id="validationCustom01"
-                              :value="companieStore.car.boite"
+                              :value="promotionStore.vehicule.boite"
                               required
                               disabled
                             />

@@ -32,10 +32,6 @@ onBeforeMount(async () => {
 })
 
 const name = ref('')
-const villeDepart = ref('')
-const villeArrive = ref('')
-const dateDepart = ref()
-const heureDepart = ref()
 const nombrePersonnes = ref()
 
 const reservationColRef = collection(firestoreDb, 'reservation')
@@ -49,21 +45,21 @@ const reserver = async (programme) => {
   const Data = {
     client_id: user.uid,
     client_profil_url: user.imageUrl || '',
-    compagnie_id: companieId || programme.compagnie_id,
+    compagnie_id: programme.compagnie_uid,
     createdAt: new Date(),
-    date_depart: dateDepart,
+    date_depart: programme.date_depart || '',
     destination: programme.destination,
     escale: programme.escale,
-    heure_depart: heureDepart.value,
-    lieu_depart: villeDepart.value,
-    lieu_arrive: villeArrive.value,
+    heure_depart: programme.heure_depart,
+    lieu_depart: programme.lieu_depart,
+    lieu_arrive: programme.destination,
     montant: programme.montant,
     nom_client: name.value,
     nombre_personne: nombrePersonnes.value,
-    number: programme.number,
+    number: programme.number || '',
     payement: 'En attente',
-    status: programme.status,
-    telephone_client: user.telephone,
+    status: 'En attente',
+    telephone_client: user.phoneNumber,
     ticket_id: uuidv4()
   }
 
@@ -262,7 +258,7 @@ onMounted(() => {
                             id="reservationForm"
                             class="row g-3 needs-validation"
                             novalidate
-                            @submit.prevent="reserver(programme)"
+                            @submit.prevent="reserver(promotionStore.programme)"
                         >
                             <div class="col-md-12">
                             <label
@@ -291,8 +287,9 @@ onMounted(() => {
                                 type="text"
                                 class="form-control"
                                 id="validationCustom01"
-                                v-model="villeDepart"
+                                :value="promotionStore.programme.lieu_depart"
                                 required
+                                disabled
                             />
                             </div>
 
@@ -307,8 +304,9 @@ onMounted(() => {
                                 type="text"
                                 class="form-control"
                                 id="validationCustom01"
-                                v-model="villeArrive"
+                                :value="promotionStore.programme.destination"
                                 required
+                                disabled
                             />
                             </div>
 
@@ -323,8 +321,9 @@ onMounted(() => {
                                 type="date"
                                 class="form-control"
                                 id="validationCustom01"
-                                v-model="dateDepart"
+                                :value="promotionStore.programme.date_depart"
                                 required
+                                disabled
                             />
                             </div>
                             <div class="col-md-6">
@@ -338,8 +337,9 @@ onMounted(() => {
                                 type="time"
                                 class="form-control"
                                 id="validationCustom01"
-                                v-model="heure_depart"
+                                :value="promotionStore.programme.heure_depart"
                                 required
+                                disabled
                             />
                             </div>
 
