@@ -5,7 +5,7 @@ import { useCompanieStore } from '@/store/companie.js'
 import { usePromotionStore } from '@/store/promotion.js'
 import Loader from '@/components/Loader.vue'
 
-import { collection, doc, addDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, addDoc } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from 'vue3-toastify'
 
@@ -20,10 +20,15 @@ const promotionStore = usePromotionStore()
 const authStore = useAuthStore()
 const programmeId = route.params.id
 
-const companieId = companieStore.companie.uid
-onBeforeMount(() => {
-    companieStore.setProgrammeById(programmeId, companieId)
-    companieStore.setProgrammesVoyages(companieId)
+
+onBeforeMount(async () => {
+  await promotionStore.setProgramme(programmeId)
+
+  const companieId = promotionStore.programme.compagnie_uid
+  console.log(companieId)
+
+  companieStore.setCompanieById(companieId)
+  companieStore.setProgrammesVoyages(companieId)
 })
 
 const name = ref('')
@@ -40,6 +45,7 @@ const user = JSON.parse(localStorage.getItem('user')) || authStore.user
 const isLoading = ref(false)
 
 const reserver = async (programme) => {
+  isLoading.value = true
   const Data = {
     client_id: user.uid,
     client_profil_url: user.imageUrl || '',
@@ -119,7 +125,7 @@ onMounted(() => {
                     Trajet
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.programme.lieu_depart }} - {{ companieStore.programme.destination }}</p>
+                  <p class="card-text text-white">{{ promotionStore.programme.lieu_depart }} - {{ promotionStore.programme.destination }}</p>
                 </div>
               </div>
             </div>
@@ -133,7 +139,7 @@ onMounted(() => {
                     Escale
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.programme.escale }}</p>
+                  <p class="card-text text-white">{{ promotionStore.programme.escale }}</p>
                 </div>
               </div>
             </div>
@@ -147,7 +153,7 @@ onMounted(() => {
                     Heure de départ
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.programme.heure_depart }}</p>
+                  <p class="card-text text-white">{{ promotionStore.programme.heure_depart }}</p>
                 </div>
               </div>
             </div>
@@ -161,7 +167,7 @@ onMounted(() => {
                     Convocation
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.programme.heure_convocation }}</p>
+                  <p class="card-text text-white">{{ promotionStore.programme.heure_convocation }}</p>
                 </div>
               </div>
             </div>
@@ -175,7 +181,7 @@ onMounted(() => {
                     Jours du voyage
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.programme.jours_voyage }}</p>
+                  <p class="card-text text-white">{{ promotionStore.programme.jours_voyage }}</p>
                 </div>
               </div>
             </div>
@@ -189,7 +195,7 @@ onMounted(() => {
                     Nombres de place
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.programme.nb_place }}</p>
+                  <p class="card-text text-white">{{ promotionStore.programme.nb_place }}</p>
                 </div>
               </div>
             </div>
@@ -204,7 +210,7 @@ onMounted(() => {
                 class="btn btn-primary w-100"
                 style="background: #219935; border-color: #219935"
               >
-                {{ companieStore.programme.montant }} FCFA
+                {{ promotionStore.programme.montant }} FCFA
               </button>
             </div>
           </div>
@@ -434,7 +440,6 @@ onMounted(() => {
             class="card h-100"
             id="compagnie_card"
             style="background: #f3f4f6; box-shadow: none"
-            v-if="programme.uid !== programmeId"
           >
             <router-link to="/details_vente_engin">
               <img

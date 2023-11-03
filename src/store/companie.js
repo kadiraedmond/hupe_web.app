@@ -12,6 +12,8 @@ export const useCompanieStore = defineStore('companieStore', {
         locationCompanies: [],
         popularLocationCompanies: [],
         transportCompanies: [],
+        vipTransportCompanies: [],
+        vipLocationCompanies: [],
         popularTransportCompanies: [],
         companieRentedCars: [],
         companieOneCar: null,
@@ -43,7 +45,11 @@ export const useCompanieStore = defineStore('companieStore', {
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => this.locationCompanies.push(doc.data()))
 
-                return this.locationCompanies
+                for(let i = 0; i < this.locationCompanies.length; i++) {
+                    if(this.locationCompanies[i].offre == 'vip') {
+                        this.vipLocationCompanies.push(this.locationCompanies[i])
+                    }
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -68,7 +74,11 @@ export const useCompanieStore = defineStore('companieStore', {
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => this.transportCompanies.push(doc.data()))
                 
-                return this.transportCompanies
+                for(let i = 0; i < this.transportCompanies.length; i++) {
+                    if(this.transportCompanies[i].offre == 'vip') {
+                        this.vipTransportCompanies.push(this.transportCompanies[i])
+                    }
+                }
             } catch (error) {
                 console.log(error);
             }

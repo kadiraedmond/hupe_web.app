@@ -5,62 +5,76 @@ import Vehicule from "@/components/Home/location.vue";
 import { useCompanieStore } from "@/store/companie.js";
 import { useSlide } from "@/store/slideImages.js";
 import { useReservationStore } from "@/store/reservation.js";
-import { usePromotionStore } from '@/store/promotion.js'
+import { usePromotionStore } from "@/store/promotion.js";
 
-import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js"
+import {
+  collection,
+  query,
+  doc,
+  where,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
+import { firestoreDb } from "@/firebase/firebase.js";
 
 const companieStore = useCompanieStore();
 const slideStore = useSlide();
 const reservationStore = useReservationStore();
-const promotionStore = usePromotionStore()
+const promotionStore = usePromotionStore();
 
 onBeforeMount(() => {
-  slideStore.getSlideImages
+  slideStore.getSlideImages;
 
-  companieStore.getAllCompanies
+  companieStore.getAllCompanies;
 
-  companieStore.getLocationCompanies
+  companieStore.getLocationCompanies;
 
-  companieStore.getTransportCompanies
+  companieStore.getTransportCompanies;
 
-  reservationStore.getAllReservations
-  promotionStore.getPromotionOffres
-  promotionStore.getPopularDestinations
-  promotionStore.getPopularCars
+  reservationStore.getAllReservations;
+  promotionStore.getPromotionOffres;
+  promotionStore.getPopularDestinations;
+  promotionStore.getPopularCars;
 });
 
 onMounted(() => {
   window.scrollTo(0, 0)
 
-  const text = document.querySelector(".sec-text")
+  const text = document.querySelector(".sec-text");
   const textLoad = () => {
-      setTimeout(() => {
-          text.textContent = "Notre application vous ouvre les portes d'un monde de ";
-      }, 0)
-      setTimeout(() => {
-          text.textContent = "possibilités pour répondre à tous vos besoins de déplacement.";
-      }, 4000)
-      setTimeout(() => {
-          text.textContent = "Que vous cherchiez à louer une voiture pour une escapade, ";
-      }, 8000)
-      setTimeout(() => {
-          text.textContent = "Que vous cherchiez à acheter la voiture de vos rêves, ";
-      }, 12000)
-      setTimeout(() => {
-          text.textContent = "Que vous cherchiez à trouver des gros engins pour vos projets, ";
-      }, 16000)
-      setTimeout(() => {
-          text.textContent = "Que vous cherchiez à réserver des billets de bus pour vos voyages, ";
-      }, 20000)
-      setTimeout(() => {
-          text.textContent = "Nous sommes là pour simplifier chaque étape de votre parcours.";
-      }, 24000)
-  }
-  
+    setTimeout(() => {
+      text.textContent =
+        "Notre application vous ouvre les portes d'un monde de ";
+    }, 0);
+    setTimeout(() => {
+      text.textContent =
+        "possibilités pour répondre à tous vos besoins de déplacement.";
+    }, 4000);
+    setTimeout(() => {
+      text.textContent =
+        "Que vous cherchiez à louer une voiture pour une escapade, ";
+    }, 8000);
+    setTimeout(() => {
+      text.textContent =
+        "Que vous cherchiez à acheter la voiture de vos rêves, ";
+    }, 12000);
+    setTimeout(() => {
+      text.textContent =
+        "Que vous cherchiez à trouver des gros engins pour vos projets, ";
+    }, 16000);
+    setTimeout(() => {
+      text.textContent =
+        "Que vous cherchiez à réserver des billets de bus pour vos voyages, ";
+    }, 20000);
+    setTimeout(() => {
+      text.textContent =
+        "Nous sommes là pour simplifier chaque étape de votre parcours.";
+    }, 24000);
+  };
+
   textLoad();
-  setInterval(textLoad, 28000)
-})
+  setInterval(textLoad, 28000);
+});
 </script>
 
 <template>
@@ -70,16 +84,24 @@ onMounted(() => {
       <div class="row g-3" style="padding: 93px !important">
         <div
           class="col-lg-6 col-md-6 bg-white border-2"
-          style="background: #219935 !important; display: flex; flex-direction: column"
+          style="
+            background: #219935 !important;
+            display: flex;
+            flex-direction: column;
+          "
         >
-          <img 
-            src="/public/assets/img/accueil-car.png" 
-            style="width: 260px; height:260px; object-fit: cover; float: left"
+          <img
+            src="/public/assets/img/accueil-car.png"
+            style="width: 260px; height: 260px; object-fit: cover; float: left"
           />
           <div class="wrapper text-start" style="margin-top: 2rem">
-            <span class="text first-text">Quand la mobilité devient un jeu d'enfant ! </span> <br /> 
-            <span class="text sec-text" style="font-size: 1rem;">
-              Notre application vous ouvre les portes d'un monde de possibilités pour répondre à tous vos besoins de déplacement. 
+            <span class="text first-text"
+              >Quand la mobilité devient un jeu d'enfant !
+            </span>
+            <br />
+            <span class="text sec-text" style="font-size: 1rem">
+              Notre application vous ouvre les portes d'un monde de possibilités
+              pour répondre à tous vos besoins de déplacement.
             </span>
           </div>
           <!-- <p class="text-white text-start" style="margin-top: 3.8%; font-size: 0.86rem">
@@ -102,29 +124,68 @@ onMounted(() => {
             style="height: 400px"
           >
             <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="border-radius: 50%; width: 10px; height: 10px"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="1" class="" aria-current="true" aria-label="Slide 2" style="border-radius: 50%; width: 10px; height: 10px"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="2" class="" aria-current="true" aria-label="Slide 3" style="border-radius: 50%; width: 10px; height: 10px"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="3" class="" aria-current="true" aria-label="Slide 4" style="border-radius: 50%; width: 10px; height: 10px"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="4" class="" aria-current="true" aria-label="Slide 5" style="border-radius: 50%; width: 10px; height: 10px"></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="1"
+                class=""
+                aria-current="true"
+                aria-label="Slide 2"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="2"
+                class=""
+                aria-current="true"
+                aria-label="Slide 3"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="3"
+                class=""
+                aria-current="true"
+                aria-label="Slide 4"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="4"
+                class=""
+                aria-current="true"
+                aria-label="Slide 5"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
             </div>
             <div class="carousel-inner overflow-hidden">
-              <div 
-                v-for="(slideImage, index) in slideStore.slideImages" 
-                :key="index" 
+              <div
+                v-for="(slideImage, index) in slideStore.slideImages"
+                :key="index"
                 :class="index === 0 ? 'carousel-item active' : 'carousel-item'"
               >
-               <router-link :to="`/detail/${slideImage.companieInfos.uid}`">
-                <img
-                  :src="slideImage.downloadURL"
-                  class="d-block w-100"
-                  alt="..."
-                  style="max-height:350px; height:350px; object-fit: cover"
-                />
-               </router-link>
+                <router-link :to="`/detail/${slideImage.companieInfos.uid}`">
+                  <img
+                    :src="slideImage.downloadURL"
+                    class="d-block w-100"
+                    alt="..."
+                    style="max-height: 350px; height: 350px; object-fit: cover"
+                  />
+                </router-link>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -132,17 +193,15 @@ onMounted(() => {
   </section>
 
   <main id="main">
-
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features" style="margin-top: -60px" >
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
           <div class="col-6">
-            <div class="section-title ">
+            <div class="section-title">
               <h2>Que voulez-vous faire ?</h2>
             </div>
           </div>
-          
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: -68px">
@@ -258,10 +317,8 @@ onMounted(() => {
       </div>
     </section>
 
-  
-
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features" style="margin-top: -60px">
+    <section id="features" class="features" style="margin-top: -48px">
       <div class="container">
         <div class="row">
           <div class="col-8">
@@ -275,15 +332,23 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/">
-              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            <router-link to="/location">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
             </router-link>
-             
           </div>
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
+          <div
+            class="col"
+            v-for="(companie, index) in companieStore.vipLocationCompanies"
+            :key="index"
+          >
             <div
               class="card h-100"
               id="compagnie_card"
@@ -295,7 +360,11 @@ onMounted(() => {
                   :src="companie.imageLogoUrl"
                   class="card-img-top"
                   alt="..."
-                  style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
+                  style="
+                    border-radius: 10px 10px 0px 0px;
+                    max-height: 174px;
+                    object-fit: cover;
+                  "
                 />
               </router-link>
 
@@ -329,7 +398,8 @@ onMounted(() => {
                 <div class="row">
                   <div class="col-md-8">
                     <p class="card-text mt-2" style="font-size: 14px">
-                      <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
+                      <i class="bx bx-map" style="color: #8b8b8b"></i>
+                      {{ companie.adresse }}
                     </p>
                   </div>
                   <div class="col-md-4 text-center mt-2">
@@ -347,7 +417,7 @@ onMounted(() => {
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features" style="margin-top: -60px">
+    <section id="features" class="features" style="margin-top: -80px">
       <div class="container">
         <div class="row">
           <div class="col-8">
@@ -361,100 +431,118 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/">
-              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            <router-link to="/location">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
             </router-link>
-             
           </div>
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col" v-for="(vehicule, index) in promotionStore.popularCars" :key="index">
-            <router-link :to="`/detail/${vehicule.compagnie_uid}`">
+          <div
+            class="col"
+            v-for="(vehicule, index) in promotionStore.popularCars"
+            :key="index"
+          >
+            <router-link
+              :to="`/detail_vehicule_location/${vehicule.uid}`"
+              style="color: #000"
+            >
               <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 0px">
-                <div class="col-md-12">
-                  <div
-                    class="card mb-3 border-0"
-                    style="  background: rgb(250 250 250)"
-                  >
-                    <div class="row g-1 d-flex">
-                      <div class="col-md-8 d-flex">
-                        <img
-                          :src="vehicule.companieInfos.imageLogoUrl"
-                          alt
-                          class="w-px-40 h-auto rounded-circle"
-                          style="max-width: 50px; max-height: 50px"
-                        />
-                        <div>
-                          <div class="card-body d-flex">
-                            
-                            <h5 class="card-title" style="font-size: 12px">
-                              {{ vehicule.companieInfos.raison_social }}
-                            </h5>
-                            <p class="card-text" style="font-size: 12px ;">
-                              <i class="bx bx-map" style="color: #219935 ; margin-left: 5px;"></i>
-                              {{ vehicule.companieInfos.adresse }}
-                            </p>
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card mb-3 border-0"
+                      style="background: rgb(250 250 250)"
+                    >
+                      <div class="row g-1 d-flex">
+                        <div class="col-md-8 d-flex">
+                          <img
+                            :src="vehicule.companieInfos.imageLogoUrl"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="max-width: 50px; max-height: 50px"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 12px">
+                                {{ vehicule.companieInfos.raison_social }}
+                              </h5>
+                              <p class="card-text" style="font-size: 12px">
+                                <i
+                                  class="bx bx-map"
+                                  style="color: #219935; margin-left: 5px"
+                                ></i>
+                                {{ vehicule.companieInfos.adresse }}
+                              </p>
+                            </div>
                           </div>
                         </div>
+                        <div class="col-md-4 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                            {{ vehicule.montant }} FCFA
+                          </button>
+                        </div>
                       </div>
-                      <div class="col-md-4 text-end">
-                        <button
-                          class="btn btn-primary"
-                          style="
-                            background: #219935;
-                            border-color: #219935;
-                            margin-top: 5px;
-                            font-size: 12px;
-                          "
-                        >
-                          {{ vehicule.montant }} FCFA
-                        </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="card mb-3 mt-4"
+                  style="
+                    max-width: 540px;
+                    margin: 10px;
+                    margin-top: -10px !important;
+                  "
+                >
+                  <div class="row g-0" style="margin: 10px">
+                    <div class="col-md-6">
+                      <img
+                        :src="vehicule.vehicule_image_url"
+                        class="img-fluid rounded-start h-100"
+                        alt="..."
+                        style="
+                          width: 150px;
+                          max-width: 150px;
+                          max-height: 150px;
+                          object-fit: cover;
+                        "
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card-body">
+                        <p class="card-text" style="font-size: 13px">
+                          <strong>{{ vehicule.vehicule }} </strong>
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong>Modéle | </strong> {{ vehicule.modele }}
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong>Moteur | </strong> {{ vehicule.moteur }}
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong>Immatriculation | </strong>
+                          {{ vehicule.serie_vehicule }}
+                        </p>
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
-              >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-6">
-                    <img
-                      :src="vehicule.vehicule_image_url"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                      style="width: 150px; max-width: 150px; max-height: 150px; object-fit: cover"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card-body">
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>{{ vehicule.vehicule }} </strong>
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Modéle | </strong> {{ vehicule.modele }}
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Moteur | </strong> {{ vehicule.moteur }}
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Immatriculation | </strong> {{ vehicule.serie_vehicule }}
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> 
             </router-link>
-           
           </div>
         </div>
       </div>
@@ -546,12 +634,12 @@ onMounted(() => {
       </div>
     </section> -->
 
-     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-     <section id="features" class="features" style="margin-top: -60px">
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features" style="margin-top: -50px">
       <div class="container">
         <div class="row">
           <div class="col-8">
-            <div class="section-title ">
+            <div class="section-title">
               <h2>Compagnies de transport populaires</h2>
               <p id="section-p">
                 Simplifiez votre trajet en choisissant parmi les compagnies de
@@ -561,10 +649,14 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/">
-              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            <router-link to="/reservation">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
             </router-link>
-             
           </div>
         </div>
 
@@ -572,9 +664,8 @@ onMounted(() => {
       </div>
     </section>
 
-
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features" style="margin-top: -60px">
+    <section id="features" class="features" style="margin-top: -80px">
       <div class="container">
         <div class="row">
           <div class="col-8">
@@ -588,210 +679,177 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/">
-              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            <router-link to="/reservation">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
             </router-link>
-             
           </div>
         </div>
-        <div class="swiffy-slider slider-item-show2 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-fadein slider-item-last-visible" style="width: 101%;">
-            <ul class="slider-container py-4">
-                <li class="" v-for="(popularDestination, index) in promotionStore.popularDestinations" :key="index">
-                  <router-link to="/detail_reservation_ticket">
-                    <div class="card h-100" id="card_compagnie">
-                    <div class="row" style="margin: 10px">
-                      <div class="col-md-7">
-                        <div
-                          class="card mb-3 border-0"
-                          style="max-width: 540px; background: rgb(250 250 250)"
-                        >
-                          <div class="row g-1">
-                            <div class="col-md-4">
-                              <img
-                                :src="popularDestination.companieInfos.imageLogoUrl"
-                                alt
-                                class="w-px-40 h-auto rounded-circle"
-                                style="width: 50px"
-                              />
-                            </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
+        <div
+          class="swiffy-slider slider-item-show3 slider-item-reveal slider-nav-dark slider-nav-outside-expand"
+        >
+          <ul class="slider-container py-4" id="slider2">
+            <li
+              class=""
+              v-for="(
+                popularDestination, index
+              ) in promotionStore.popularDestinations"
+              :key="index"
+            >
+              <router-link :to="`/detail_reservation_ticket/${popularDestination.uid}`" style="color: #000">
+                <div class="card h-100" id="card_compagnie">
+                  <div class="row" style="margin: 0px">
+                    <div class="col-md-12">
+                      <div
+                        class="card mb-3 border-0"
+                        style="background: rgb(250 250 250)"
+                      >
+                        <div class="row g-1 d-flex">
+                          <div class="col-md-8 d-flex">
+                            <img
+                              :src="popularDestination.companieInfos.imageLogoUrl"
+                              alt
+                              class="w-px-40 h-auto rounded-circle"
+                              style="max-width: 50px; max-height: 50px"
+                            />
+                            <div>
+                              <div class="card-body d-flex">
                                 <h5 class="card-title" style="font-size: 12px">
-                                  <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.raison_social }} -->
-                                  {{ popularDestination.companieInfos.raison_social }}
+                                  {{
+                                    popularDestination.companieInfos
+                                      .raison_social
+                                  }}
                                 </h5>
-                                <p class="card-text mt-2" style="font-size: 12px">
-                                  <i class="bx bx-map" style="color: #219935"></i>
-                                  <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.adresse }} -->
+                                <p class="card-text" style="font-size: 12px">
+                                  <i
+                                    class="bx bx-map"
+                                    style="color: #219935; margin-left: 5px"
+                                  ></i>
                                   {{ popularDestination.companieInfos.adresse }}
                                 </p>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="col-md-5 text-end">
-                        <button
-                          class="btn btn-primary"
-                          style="
-                            background: #219935;
-                            border-color: #219935;
-                            margin-top: 15px;
-                            font-size: 12px;
-                          "
-                        >
-                          {{ popularDestination.montant }} FCFA
-                        </button>
-                      </div>
-                    </div>
-                    <div
-                      class="card mb-3 mt-4"
-                      style="
-                        max-width: 540px;
-                        margin: 10px;
-                        margin-top: -10px !important;
-                      "
-                    >
-                      <div class="row g-0" style="margin: 10px">
-                        <div class="col-md-4">
-                          <img
-                            src="/public/assets/img/car2.jpg"
-                            class="img-fluid rounded-start h-100"
-                            alt="..."
-                            style="object-fit: cover"
-                          />
-                        </div>
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <p class="card-text" style="font-size: 13px">
-                              <strong>Trajet | </strong>{{ popularDestination.lieu_depart }} - {{ popularDestination.destination }}
-                            </p>
-                            <p class="card-text" style="font-size: 13px">
-                              <strong>Escales | </strong> {{ popularDestination.escale }} 
-                            </p>
-                            <p class="card-text" style="font-size: 13px">
-                              <strong>Convocation | </strong>{{ popularDestination.heure_convocation }}
-                            </p>
-                            <p class="card-text" style="font-size: 13px">
-                              <strong>Jours du voyages |</strong> {{ popularDestination.jours_voyage }}
-                            </p>
-                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                          <div class="col-md-4 text-end">
+                            <button
+                              class="btn btn-primary"
+                              style="
+                                background: #219935;
+                                border-color: #219935;
+                                margin-top: 5px;
+                                font-size: 12px;
+                              "
+                            >
+                              {{ popularDestination.montant }} FCFA
+                            </button>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  </router-link>
-                </li>
-                
-                <li class="slide-visible" v-for="(popularDestination, index) in promotionStore.popularDestinations" :key="index">
-                  <router-link to="/detail_reservation_ticket">
-                    <div class="card h-100" id="card_compagnie">
-                    <div class="row" style="margin: 10px">
-                      <div class="col-md-7">
-                        <div
-                          class="card mb-3 border-0"
-                          style="max-width: 540px; background: rgb(250 250 250)"
-                        >
-                          <div class="row g-1">
-                            <div class="col-md-4">
-                              <img
-                                :src="popularDestination.companieInfos.imageLogoUrl"
-                                alt
-                                class="w-px-40 h-auto rounded-circle"
-                                style="width: 50px"
-                              />
-                            </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <h5 class="card-title" style="font-size: 12px">
-                                  <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.raison_social }} -->
-                                  {{ popularDestination.companieInfos.raison_social }}
-                                </h5>
-                                <p class="card-text mt-2" style="font-size: 12px">
-                                  <i class="bx bx-map" style="color: #219935"></i>
-                                  <!-- {{ companieStore.setCompanieById(popularDestination.compagnie_uid) && companieStore.companie.adresse }} -->
-                                  {{ popularDestination.companieInfos.adresse }}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                  <div
+                    class="card mb-3 mt-4"
+                    style="
+                      max-width: 540px;
+                      margin: 10px;
+                      margin-top: -10px !important;
+                    "
+                  >
+                    <div class="row g-0" style="margin: 10px">
+                      <div class="col-md-4">
+                        <img
+                          src="/public/assets/img/car2.jpg"
+                          class="img-fluid rounded-start h-100"
+                          alt="..."
+                          style="object-fit: cover"
+                        />
                       </div>
-                      <div class="col-md-5 text-end">
-                        <button
-                          class="btn btn-primary"
-                          style="
-                            background: #219935;
-                            border-color: #219935;
-                            margin-top: 15px;
-                            font-size: 12px;
-                          "
-                        >
-                          {{ popularDestination.montant }} FCFA
-                        </button>
-                      </div>
-                    </div>
-                    <div
-                      class="card mb-3 mt-4"
-                      style="
-                        max-width: 540px;
-                        margin: 10px;
-                        margin-top: -10px !important;
-                      "
-                    >
-                      <div class="row g-0" style="margin: 10px">
-                        <div class="col-md-4">
-                          <img
-                            src="/public/assets/img/car2.jpg"
-                            class="img-fluid rounded-start h-100"
-                            alt="..."
-                            style="object-fit: cover"
-                          />
-                        </div>
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <p class="card-text" style="font-size: 13px">
-                              <strong>Trajet | </strong>{{ popularDestination.lieu_depart }} - {{ popularDestination.destination }}
-                            </p>
-                            <p class="card-text" style="font-size: 13px">
-                              <strong>Escales | </strong> {{ popularDestination.escale }} 
-                            </p>
-                            <p class="card-text" style="font-size: 13px">
-                              <strong>Convocation | </strong>{{ popularDestination.heure_convocation }}
-                            </p>
-                            <p class="card-text" style="font-size: 13px">
-                              <strong>Jours du voyages |</strong> {{ popularDestination.jours_voyage }}
-                            </p>
-                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                          </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <p class="card-text" style="font-size: 13px">
+                            <strong>Trajet | </strong
+                            >{{ popularDestination.lieu_depart }} -
+                            {{ popularDestination.destination }}
+                          </p>
+                          <p class="card-text" style="font-size: 13px">
+                            <strong>Escales | </strong>
+                            {{ popularDestination.escale }}
+                          </p>
+                          <p class="card-text" style="font-size: 13px">
+                            <strong>Convocation | </strong
+                            >{{ popularDestination.heure_convocation }}
+                          </p>
+                          <p class="card-text" style="font-size: 13px">
+                            <strong>Jours du voyages |</strong>
+                            {{ popularDestination.jours_voyage }}
+                          </p>
+                          <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                         </div>
                       </div>
                     </div>
                   </div>
-                  </router-link>
-                </li>
-                 
-            </ul>
+                </div>
+              </router-link>
+            </li>
+          </ul>
 
-            <button type="button" class="slider-nav" aria-label="Aller à gauche" _mstaria-label="76453" _msthash="99"></button>
-            <button type="button" class="slider-nav slider-nav-next" aria-label="Aller à gauche" _mstaria-label="76453" _msthash="100"></button>
+          <button
+            type="button"
+            class="slider-nav"
+            aria-label="Aller à gauche"
+            _mstaria-label="76453"
+            _msthash="99"
+          ></button>
+          <button
+            type="button"
+            class="slider-nav slider-nav-next"
+            aria-label="Aller à gauche"
+            _mstaria-label="76453"
+            _msthash="100"
+          ></button>
 
-            <div class="slider-indicators">
-                <button class="" aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="101"></button>
-                <button aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="102" class=""></button>
-                <button aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="103" class=""></button>
-                <button aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="104" class=""></button>
-                <button aria-label="Aller à la diapositive" _mstaria-label="134940" _msthash="105" class="active"></button>
-            </div>
+          <div class="slider-indicators">
+            <button
+              class=""
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="101"
+            ></button>
+            <button
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="102"
+              class=""
+            ></button>
+            <button
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="103"
+              class=""
+            ></button>
+            <button
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="104"
+              class=""
+            ></button>
+            <button
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="105"
+              class="active"
+            ></button>
+          </div>
         </div>
-
-       
       </div>
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features" style="margin-top: -60px">
+    <section id="features" class="features" style="margin-top: -73px">
       <div class="container">
         <div class="row">
           <div class="col-8">
@@ -806,31 +864,43 @@ onMounted(() => {
           </div>
           <div class="col-4 text-end">
             <router-link to="/">
-              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
             </router-link>
-             
           </div>
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
+          <div
+            class="col"
+            v-for="(companie, index) in companieStore.locationCompanies"
+            :key="index"
+          >
             <div
               class="card h-100"
               id="compagnie_card"
               style="background: #f3f4f6; box-shadow: none"
               v-if="companie.offre == 'vip' && index < 4"
             >
-              <router-link to="/details_location_engin">
+              <router-link to="/details_location_engin" style="color: #000">
                 <img
                   src="/public/assets/img/car2.jpg"
                   class="card-img-top"
                   alt="..."
-                  style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
+                  style="
+                    border-radius: 10px 10px 0px 0px;
+                    max-height: 174px;
+                    object-fit: cover;
+                  "
                 />
               </router-link>
 
               <div class="card-body">
-                <router-link to="/detail">
+                <router-link to="/detail" style="color: #000">
                   <div class="row">
                     <div class="col-md-7">
                       <h5
@@ -877,110 +947,193 @@ onMounted(() => {
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features" style="margin-top: -60px">
+    <section id="features" class="features" style="margin-top: -84px">
       <div class="container">
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2> Gros engins populaires</h2>
-              <p id="section-p">Découvrez les véhicules les plus prisés pour votre prochain voyage. Confort, style et fiabilité, nous
-                avons tout ce dont vous avez besoin.</p>
-
+              <h2>Gros engins populaires</h2>
+              <p id="section-p">
+                Découvrez les véhicules les plus prisés pour votre prochain
+                voyage. Confort, style et fiabilité, nous avons tout ce dont
+                vous avez besoin.
+              </p>
             </div>
           </div>
           <div class="col-4 text-end">
             <router-link to="/">
-              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
             </router-link>
-             
           </div>
-
         </div>
-
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
-            <router-link to="/detail_engin_location">
+            <router-link to="/detail_engin_location" style="color: #000">
               <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px;">
-                <div class="col-md-7">
-                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f3f4f6;">
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 50px;"/>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                          <p class="card-text mt-2" style="font-size: 12px; "> <i class='bx bx-map'  
-                            style="color: #219935;"></i> CI,rue 250</p>
-        
+                <div class="row" style="margin: 10px">
+                  <div class="col-md-7">
+                    <div
+                      class="card mb-3 border-0"
+                      style="max-width: 540px; background: #f3f4f6"
+                    >
+                      <div class="row g-1">
+                        <div class="col-md-4">
+                          <img
+                            src="/public/assets/img/avatars/1.png"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="width: 50px"
+                          />
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h5 class="card-title" style="font-size: 12px">
+                              Koudi
+                            </h5>
+                            <p class="card-text mt-2" style="font-size: 12px">
+                              <i class="bx bx-map" style="color: #219935"></i>
+                              CI,rue 250
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-5 text-end">
-                  <button class="btn btn-primary" style="    background: #219935;
-                  border-color: #219935; margin-top: 15px;font-size: 12px;">5000 FCFA</button>
-                </div>
-              </div>
-              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
-                <div class="row g-0" style="margin: 10px;">
-                  <div class="col-md-4">
-                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..." style="object-fit: cover;">
+                  <div class="col-md-5 text-end">
+                    <button
+                      class="btn btn-primary"
+                      style="
+                        background: #219935;
+                        border-color: #219935;
+                        margin-top: 15px;
+                        font-size: 12px;
+                      "
+                    >
+                      5000 FCFA
+                    </button>
                   </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <p class="card-text" style="font-size: 13px;"> <strong>Hyundai 2022 </strong> </p>
-                      <p class="card-text" style="font-size: 13px;"> <strong>Modéle | </strong> Santafé</p>
-                      <p class="card-text" style="font-size: 13px;"> <strong>Essence | </strong> Automobile</p>
-                      <p class="card-text" style="font-size: 13px;"> <strong>Immatriculation | </strong> BG 3252</p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                </div>
+                <div
+                  class="card mb-3 mt-4"
+                  style="
+                    max-width: 540px;
+                    margin: 10px;
+                    margin-top: -10px !important;
+                  "
+                >
+                  <div class="row g-0" style="margin: 10px">
+                    <div class="col-md-4">
+                      <img
+                        src="/public/assets/img/car2.jpg"
+                        class="img-fluid rounded-start h-100"
+                        alt="..."
+                        style="object-fit: cover"
+                      />
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <p class="card-text" style="font-size: 13px">
+                          <strong>Hyundai 2022 </strong>
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong>Modéle | </strong> Santafé
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong>Essence | </strong> Automobile
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong>Immatriculation | </strong> BG 3252
+                        </p>
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             </router-link>
-           
           </div>
           <div class="col">
             <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px;">
+              <div class="row" style="margin: 10px">
                 <div class="col-md-7">
-                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f3f4f6;">
+                  <div
+                    class="card mb-3 border-0"
+                    style="max-width: 540px; background: #f3f4f6"
+                  >
                     <div class="row g-1">
                       <div class="col-md-4">
-                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 50px;"/>
+                        <img
+                          src="/public/assets/img/avatars/1.png"
+                          alt
+                          class="w-px-40 h-auto rounded-circle"
+                          style="width: 50px"
+                        />
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                          <p class="card-text mt-2" style="font-size: 12px; "> <i class='bx bx-map'  
-                            style="color: #219935;"></i> CI,rue 250</p>
-        
+                          <h5 class="card-title" style="font-size: 12px">
+                            Koudi
+                          </h5>
+                          <p class="card-text mt-2" style="font-size: 12px">
+                            <i class="bx bx-map" style="color: #219935"></i>
+                            CI,rue 250
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-5 text-end">
-                  <button class="btn btn-primary" style="    background: #219935;
-                  border-color: #219935; margin-top: 15px;font-size: 12px;">5000 FCFA</button>
+                  <button
+                    class="btn btn-primary"
+                    style="
+                      background: #219935;
+                      border-color: #219935;
+                      margin-top: 15px;
+                      font-size: 12px;
+                    "
+                  >
+                    5000 FCFA
+                  </button>
                 </div>
               </div>
-              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
-                <div class="row g-0" style="margin: 10px;">
+              <div
+                class="card mb-3 mt-4"
+                style="
+                  max-width: 540px;
+                  margin: 10px;
+                  margin-top: -10px !important;
+                "
+              >
+                <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
-                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..." style="object-fit: cover;">
+                    <img
+                      src="/public/assets/img/car2.jpg"
+                      class="img-fluid rounded-start h-100"
+                      alt="..."
+                      style="object-fit: cover"
+                    />
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <p class="card-text" style="font-size: 13px;"> <strong>Hyundai 2022 </strong> </p>
-                      <p class="card-text" style="font-size: 13px;"> <strong>Modéle | </strong> Santafé</p>
-                      <p class="card-text" style="font-size: 13px;"> <strong>Essence | </strong> Automobile</p>
-                      <p class="card-text" style="font-size: 13px;"> <strong>Immatriculation | </strong> BG 3252</p>
+                      <p class="card-text" style="font-size: 13px">
+                        <strong>Hyundai 2022 </strong>
+                      </p>
+                      <p class="card-text" style="font-size: 13px">
+                        <strong>Modéle | </strong> Santafé
+                      </p>
+                      <p class="card-text" style="font-size: 13px">
+                        <strong>Essence | </strong> Automobile
+                      </p>
+                      <p class="card-text" style="font-size: 13px">
+                        <strong>Immatriculation | </strong> BG 3252
+                      </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
                   </div>
@@ -990,40 +1143,80 @@ onMounted(() => {
           </div>
           <div class="col">
             <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px;">
+              <div class="row" style="margin: 10px">
                 <div class="col-md-7">
-                  <div class="card mb-3 border-0" style="max-width: 540px; background: #f3f4f6;">
+                  <div
+                    class="card mb-3 border-0"
+                    style="max-width: 540px; background: #f3f4f6"
+                  >
                     <div class="row g-1">
                       <div class="col-md-4">
-                        <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"  style="width: 50px;"/>
+                        <img
+                          src="/public/assets/img/avatars/1.png"
+                          alt
+                          class="w-px-40 h-auto rounded-circle"
+                          style="width: 50px"
+                        />
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title" style="font-size: 12px;">Koudi</h5>
-                          <p class="card-text mt-2" style="font-size: 12px; "> <i class='bx bx-map'  
-                            style="color: #219935;"></i> CI,rue 250</p>
-        
+                          <h5 class="card-title" style="font-size: 12px">
+                            Koudi
+                          </h5>
+                          <p class="card-text mt-2" style="font-size: 12px">
+                            <i class="bx bx-map" style="color: #219935"></i>
+                            CI,rue 250
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-5 text-end">
-                  <button class="btn btn-primary" style="    background: #219935;
-                  border-color: #219935; margin-top: 15px;font-size: 12px;">5000 FCFA</button>
+                  <button
+                    class="btn btn-primary"
+                    style="
+                      background: #219935;
+                      border-color: #219935;
+                      margin-top: 15px;
+                      font-size: 12px;
+                    "
+                  >
+                    5000 FCFA
+                  </button>
                 </div>
               </div>
-              <div class="card mb-3 mt-4" style="max-width: 540px; margin: 10px; margin-top: -10px !important;">
-                <div class="row g-0" style="margin: 10px;">
+              <div
+                class="card mb-3 mt-4"
+                style="
+                  max-width: 540px;
+                  margin: 10px;
+                  margin-top: -10px !important;
+                "
+              >
+                <div class="row g-0" style="margin: 10px">
                   <div class="col-md-4">
-                    <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..." style="object-fit: cover;">
+                    <img
+                      src="/public/assets/img/car2.jpg"
+                      class="img-fluid rounded-start h-100"
+                      alt="..."
+                      style="object-fit: cover"
+                    />
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <p class="card-text" style="font-size: 13px;"> <strong>Hyundai 2022 </strong> </p>
-                      <p class="card-text" style="font-size: 13px;"> <strong>Modéle | </strong> Santafé</p>
-                      <p class="card-text" style="font-size: 13px;"> <strong>Essence | </strong> Automobile</p>
-                      <p class="card-text" style="font-size: 13px;"> <strong>Immatriculation | </strong> BG 3252</p>
+                      <p class="card-text" style="font-size: 13px">
+                        <strong>Hyundai 2022 </strong>
+                      </p>
+                      <p class="card-text" style="font-size: 13px">
+                        <strong>Modéle | </strong> Santafé
+                      </p>
+                      <p class="card-text" style="font-size: 13px">
+                        <strong>Essence | </strong> Automobile
+                      </p>
+                      <p class="card-text" style="font-size: 13px">
+                        <strong>Immatriculation | </strong> BG 3252
+                      </p>
                       <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     </div>
                   </div>
@@ -1031,9 +1224,7 @@ onMounted(() => {
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
@@ -1053,9 +1244,13 @@ onMounted(() => {
           </div>
           <div class="col-4 text-end">
             <router-link to="/">
-              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
             </router-link>
-             
           </div>
         </div>
 
@@ -1255,52 +1450,53 @@ onMounted(() => {
           <div class="col-8">
             <div class="section-title">
               <h2>Inscrivez vous à notre Newsletter</h2>
-              <p id="section-p">Veuillez renseignez votre adresse mail, pour etre au courant de
-              toutes nos nouveautés</p>
-
+              <p id="section-p">
+                Veuillez renseignez votre adresse mail, pour etre au courant de
+                toutes nos nouveautés
+              </p>
             </div>
           </div>
- 
         </div>
         <div class="row">
-            <div class="col-md-12 text-center mt-5">
-              <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                  <form
-                    class="d-flex"
-                    action=""
-                    method="POST"
-                    enctype="multipart/form-data"
+          <div class="col-md-12 text-center mt-5">
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <form
+                  class="d-flex"
+                  action=""
+                  method="POST"
+                  enctype="multipart/form-data"
+                >
+                  <div
+                    class="input-group d-flex justify-content-center"
+                    style="margin-top: -40px"
                   >
-                    <div class="input-group d-flex justify-content-center" style="margin-top: -40px">
-                      <input
-                        type="text"
-                        class="form-control form-control-lg input py-3"
-                        placeholder="Adresse email"
-                        name="email"
-                        id="input_newsletter"
-                      />
-                      <button
-                        class="btn btn-primary"
-                        style="
-                          background: #219935;
-                          border-color: #219935;
-                          border-radius: 0px 50px 50px 0px;
-                          width: 133px;
-                        "
-                      >
-                        Envoyer
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg input py-3"
+                      placeholder="Adresse email"
+                      name="email"
+                      id="input_newsletter"
+                    />
+                    <button
+                      class="btn btn-primary"
+                      style="
+                        background: #219935;
+                        border-color: #219935;
+                        border-radius: 0px 50px 50px 0px;
+                        width: 133px;
+                      "
+                    >
+                      Envoyer
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
-      
-
+      </div>
     </section>
   </main>
   <!-- End #main -->
@@ -1318,7 +1514,7 @@ onMounted(() => {
   font-weight: 600;
 }
 .wrapper .text.first-text {
-  color: #FFF;
+  color: #fff;
 }
 .text.sec-text:before {
   content: "";
@@ -1332,20 +1528,21 @@ onMounted(() => {
   animation: animate 4s steps(12) infinite;
 }
 @keyframes animate {
-  40%, 60%{
-      left: calc(100% + 5px);
+  40%,
+  60% {
+    left: calc(100% + 5px);
   }
-  100%{
-      left: 0%;
+  100% {
+    left: 0%;
   }
 }
-#section-p{
+#section-p {
   font-size: 15px;
-    margin-top: -27px;
+  margin-top: -27px;
 }
-#input_newsletter{
+#input_newsletter {
   max-width: 440px !important;
-    max-height: 20px !important;
-    font-size: 17px;
+  max-height: 20px !important;
+  font-size: 17px;
 }
 </style>

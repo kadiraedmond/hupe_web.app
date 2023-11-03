@@ -20,8 +20,14 @@ const promotionStore = usePromotionStore()
 const authStore = useAuthStore()
 const companieId = route.params.id
 
-onBeforeMount(() => {
-  companieStore.setCompanieById(companieId)
+onBeforeMount(async () => {
+  await companieStore.setCompanieById(companieId)
+
+  toast.success(`Bienvenue chez ${companieStore.companie.raison_social}`, { 
+    autoClose: 3500, 
+    position: toast.POSITION.TOP_CENTER
+  })
+
   companieStore.setCompanieCars(companieId)
   companieStore.setProgrammesVoyages(companieId)
   promotionStore.setCompaniePromotionCars(companieId)

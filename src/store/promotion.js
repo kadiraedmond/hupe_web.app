@@ -15,6 +15,8 @@ export const usePromotionStore = defineStore('promotionStore', {
         offresVehicules: [],
         popularDestinations: [],
         popularCars: [],
+        vehicule: {},
+        programme: {},
         companiePromotionCars: []
     }),
 
@@ -82,6 +84,18 @@ export const usePromotionStore = defineStore('promotionStore', {
             } catch (error) {
                 console.log(error)
             }
+        },
+        async setProgramme(programmeId) {            
+            const docRef = doc(programmeEnAvantColRef, `${programmeId}`)
+            const snapshot = await getDoc(docRef)
+            
+            this.programme = snapshot.data()
+        },
+        async setVehicule(vehiculeId) {
+            const docRef = doc(vehiculesEnAvantColRef, `${vehiculeId}`)
+            const snapshot = await getDoc(docRef)
+
+            this.vehicule = snapshot.data()
         }
     }
 })

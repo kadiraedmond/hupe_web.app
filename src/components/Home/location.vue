@@ -28,7 +28,7 @@ onBeforeMount(() => {
     <ul class="slider-container py-4" id="slider2">
       <li
         style="margin-left: 14px; white-space: nowrap"
-        v-for="(companie, index) in companieStore.transportCompanies"
+        v-for="(companie, index) in companieStore.vipTransportCompanies"
         :key="index"
       >
         <div

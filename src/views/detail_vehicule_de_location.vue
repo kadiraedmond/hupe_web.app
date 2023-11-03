@@ -17,11 +17,15 @@ const companieStore = useCompanieStore();
 const promotionStore = usePromotionStore();
 
 const authStore = useAuthStore();
-const carId = route.params.id;
+const carId = route.params.id
 
 onBeforeMount(async () => {
-  const companieId = await companieStore.companie.uid
-  companieStore.setCarById(carId, companieId)
+  await promotionStore.setVehicule(carId)
+
+  const companieId = promotionStore.vehicule.compagnie_uid
+
+  companieStore.setCompanieById(companieId)
+  companieStore.setCompanieCars(companieId)
 });
 
 onMounted(() => {
@@ -74,6 +78,7 @@ const locationColRef = collection(firestoreDb, "location_vehicules");
 const isLoading = ref(false);
 
 const reserver = async (car) => {
+  isLoading.value = true
   const Data = {
     boite: car.boite,
     chauffeur: avecChauffeur.value === true ? "Oui" : "Non",
@@ -161,7 +166,7 @@ onMounted(() => {
                     Marque
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.car.vehicule }}</p>
+                  <p class="card-text text-white">{{ promotionStore.vehicule.vehicule }}</p>
                 </div>
               </div>
             </div>
@@ -175,7 +180,7 @@ onMounted(() => {
                     Modéle
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.car.modele }}</p>
+                  <p class="card-text text-white">{{ promotionStore.vehicule.modele }}</p>
                 </div>
               </div>
             </div>
@@ -189,7 +194,7 @@ onMounted(() => {
                     Année
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.car.anne_vehicule }}</p>
+                  <p class="card-text text-white">{{ promotionStore.vehicule.anne_vehicule }}</p>
                 </div>
               </div>
             </div>
@@ -203,7 +208,7 @@ onMounted(() => {
                     Moteur
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.car.moteur }}</p>
+                  <p class="card-text text-white">{{ promotionStore.vehicule.moteur }}</p>
                 </div>
               </div>
             </div>
@@ -217,7 +222,7 @@ onMounted(() => {
                     Immatriculation
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.car.serie_vehicule }}</p>
+                  <p class="card-text text-white">{{ promotionStore.vehicule.serie_vehicule }}</p>
                 </div>
               </div>
             </div>
@@ -231,7 +236,7 @@ onMounted(() => {
                     Transmission
                   </h5>
                   <hr style="color: white" />
-                  <p class="card-text text-white">{{ companieStore.car.boite }}</p>
+                  <p class="card-text text-white">{{ promotionStore.vehicule.boite }}</p>
                 </div>
               </div>
             </div>
@@ -246,7 +251,7 @@ onMounted(() => {
                 class="btn btn-primary w-100"
                 style="background: #219935; border-color: #219935"
               >
-                {{ companieStore.car.montant }} FCFA
+                {{ promotionStore.vehicule.montant }} FCFA
               </button>
             </div>
           </div>
@@ -259,7 +264,7 @@ onMounted(() => {
                 class="btn btn-primary w-100"
                 style="background: #219935; border-color: #219935"
               >
-                <i class="bx bx-plus"></i> {{ companieStore.car.avecchauffeurprix }} FCFA
+                <i class="bx bx-plus"></i> {{ promotionStore.vehicule.avecchauffeurprix }} FCFA
               </button>
             </div>
           </div>
@@ -272,7 +277,7 @@ onMounted(() => {
                 class="btn btn-primary w-100"
                 style="background: #219935; border-color: #219935"
               >
-                <i class="bx bx-plus"></i> {{ companieStore.car.interieurpaysprix }} FCFA
+                <i class="bx bx-plus"></i> {{ promotionStore.vehicule.interieurpaysprix }} FCFA
               </button>
             </div>
           </div>
@@ -646,7 +651,7 @@ onMounted(() => {
         </div>
         <div class="col-md-7">
           <img
-            :src="companieStore.car.vehicule_image_url"
+            :src="promotionStore.vehicule.vehicule_image_url"
             alt=""
             class="img-fluid"
             style="border-radius: 5px; width: 800px; height: 350px; max-width: 800px; max-height: 350px"
@@ -657,7 +662,7 @@ onMounted(() => {
               <div class="row mt-4">
                 <div class="col-md-3">
                   <img
-                    :src="companieStore.car.vehicule_image_url"
+                    :src="promotionStore.vehicule.vehicule_image_url"
                     alt=""
                     class="img-fluid"
                     style="border-radius: 5px; width: 120px; height: 60px; max-width: 120px; max-height: 60px"
@@ -665,7 +670,7 @@ onMounted(() => {
                 </div>
                 <div class="col-md-3">
                   <img
-                    :src="companieStore.car.vehicule_image_url"
+                    :src="promotionStore.vehicule.vehicule_image_url"
                     alt=""
                     class="img-fluid"
                     style="border-radius: 5px; width: 120px; height: 60px; max-width: 120px; max-height: 60px"
@@ -673,7 +678,7 @@ onMounted(() => {
                 </div>
                 <div class="col-md-3">
                   <img
-                    :src="companieStore.car.vehicule_image_url"
+                    :src="promotionStore.vehicule.vehicule_image_url"
                     alt=""
                     class="img-fluid"
                     style="border-radius: 5px; width: 120px; height: 60px; max-width: 120px; max-height: 60px"
@@ -681,7 +686,7 @@ onMounted(() => {
                 </div>
                 <div class="col-md-3">
                   <img
-                    :src="companieStore.car.vehicule_image_url"
+                    :src="promotionStore.vehicule.vehicule_image_url"
                     alt=""
                     class="img-fluid"
                     style="border-radius: 5px; width: 120px; height: 60px; max-width: 120px; max-height: 60px"

@@ -77,7 +77,7 @@ const logout = async () => {
           </li>
           <li>
             <router-link class="nav-link scrollto" to="/promotion"
-              ><i class="bx bx-help-circle" id="icon_menu"></i> Promotion
+              ><i class="bx bxs-megaphone" id="icon_menu"></i> Promotions
             </router-link>
           </li>
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
