@@ -13,7 +13,7 @@ onMounted(() => {
     <section id="features" class="features">
      <div class="container-fluid">
         <nav class="navbar bg-light fixed-top" style="background: #219935 !important;">
-        <div class="container">
+        <div class="container" style="margin-top: -5rem">
             <router-link to="/" class="navbar-brand">
             <img src="/assets/img/logo2.png" alt="Bootstrap" width="30" height="30"> Services client
             </router-link> 
@@ -25,8 +25,6 @@ onMounted(() => {
             <div class="col-md-3" style="border-right: 1px solid; border-color:#EAEAEA">
                 <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; ">
                     <div class="row ">
-                        
-                         
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 24px;">Services à la clientèle</h2>
                         </div>
@@ -713,6 +711,5 @@ onMounted(() => {
     background-color: var(--bs-nav-tabs-link-active-bg);
     border-color: var(--bs-nav-tabs-link-active-border-color);
 }
- 
 
 </style>

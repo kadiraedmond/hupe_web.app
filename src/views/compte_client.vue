@@ -15,6 +15,7 @@ import Post from '@/components/compte_client/Post.vue'
 
 import { addDoc, collection } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
+import { toast } from 'vue3-toastify'
 
 const userStore = useUserStore()
 const authStore = useAuthStore()
@@ -48,7 +49,13 @@ const submitPost = async () => {
   try {
     const addedDoc = await addDoc(clientPublicationColRef, newData)
     
-    if(addedDoc) console.log('Document added successfull')
+    if(addedDoc) {
+      console.log('Document added successfull')
+      toast.success("Publication effectuée avec succès", { 
+        autoClose: 3500, 
+        position: toast.POSITION.TOP_CENTER
+    })
+    } 
   } catch (error) {
     console.log(error)
   }

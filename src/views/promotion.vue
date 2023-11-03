@@ -57,7 +57,6 @@ onBeforeMount(() => {
             <div
               class="card border-0"
               style="background: #f3f4f6; padding: 6px"
-              v-if="index < 6"
             >
               <div class="row" style="padding: 6px">
                 <div class="col-md-12 d-flex">

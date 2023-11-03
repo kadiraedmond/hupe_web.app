@@ -16,7 +16,6 @@ export const useSlide = defineStore('slideStore', {
                     const programData = snapshots.docs[i].data()
                     const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnieUID}`)
                     const snapshot = await getDoc(companieDocRef)
-                    console.log(snapshot.data());
     
                     let company = {}
                     if(snapshot.exists()) company = snapshot.data()

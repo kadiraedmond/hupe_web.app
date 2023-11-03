@@ -3,9 +3,11 @@ import { onBeforeMount, onMounted, ref } from "vue"
 import { useRoute } from 'vue-router'
 import { useCompanieStore } from '@/store/companie.js'
 import { usePromotionStore } from '@/store/promotion.js'
+import Loader from '@/components/Loader.vue'
 
 import { collection, doc, addDoc } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
+import { toast } from 'vue3-toastify'
 
 import { useAuthStore } from '@/store/auth.js'
 
@@ -33,12 +35,16 @@ const heureDepart = ref()
 const nombrePersonnes = ref()
 
 const reservationColRef = collection(firestoreDb, 'reservation')
-const savedUser = JSON.parse(localStorage.getItem('user'))
+
+const user = JSON.parse(localStorage.getItem('user')) || authStore.user
+
+const isLoading = ref(false)
 
 const reserver = async (programme) => {
+  isLoading.value = true
   const Data = {
-    client_id: authStore.user.uid || savedUser.user.uid,
-    client_profil_url: authStore.user.imageUrl || '',
+    client_id: user.uid,
+    client_profil_url: user.imageUrl || '',
     compagnie_id: companieId || programme.compagnie_id,
     createdAt: new Date(),
     date_depart: dateDepart,
@@ -53,14 +59,25 @@ const reserver = async (programme) => {
     number: programme.number,
     payement: 'En attente',
     status: programme.status,
-    telephone_client: authStore.user.telephone,
+    telephone_client: user.telephone,
     ticket_id: uuidv4()
   }
 
   try {
     const docRef = await addDoc(reservationColRef, Data)
 
-    if(docRef) console.log('Document ajouté avec success')
+    if(docRef) {
+      console.log('Document ajouté avec success')
+
+      isLoading.value = false
+
+      document.querySelector('.btn-close').click()
+
+      toast.success("Réservation effectuée avec succès", { 
+        autoClose: 3500, 
+        position: toast.POSITION.TOP_CENTER
+      })
+    }
 
     document.querySelector('#reservationForm').reset()
   } catch (error) {
@@ -92,7 +109,7 @@ onMounted(() => {
     <!-- End Portfolio Details Section -->
 
     <section id="faq" class="faq" style="margin-top: -70px">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
         <div class="row g-4">
           <div class="col-md-6">
             <div class="card mb-3 border-0" style="max-width: 540px">
@@ -199,7 +216,7 @@ onMounted(() => {
                 tabindex="0"
               >
                 <div class="row mt-4">
-                  <div class="col-md-6" v-for="(programme, i) in companieStore.programmeVoyages" :key="i">
+                  <div class="col-md-6 mb-4" v-for="(programme, i) in companieStore.programmeVoyages" :key="i">
                     <div class="card h-100" id="card_compagnie">
                       <div class="card-body">
                         <div class="row">
@@ -241,21 +258,23 @@ onMounted(() => {
                           </div>
                           <div class="col-md-12">
                             <!-- Button trigger modal -->
-                            <button
-                              type="button"
-                              class="btn btn-primary"
-                              style="
-                                background-color: #219935;
-                                border-color: #219935;
-                              "
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                            >
-                              Reserver
-                            </button>
+                            <router-link :to="`/detail_reservation_ticket/${programme.uid}`">
+                              <button
+                                type="button"
+                                class="btn btn-primary"
+                                style="
+                                  background-color: #219935;
+                                  border-color: #219935;
+                                "
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                              >
+                                Voir plus
+                              </button>
+                            </router-link>
 
                             <!-- Modal -->
-                            <div
+                            <!-- <div
                               class="modal fade"
                               id="exampleModal"
                               tabindex="-1"
@@ -363,6 +382,11 @@ onMounted(() => {
                                         />
                                       </div>
 
+                                      <Loader 
+                                        style="position: absolute; left: 35%; top: 15%"
+                                        v-if="isLoading" 
+                                      />
+
                                       <div class="col-md-12">
                                         <label
                                           for="validationCustom01"
@@ -394,7 +418,7 @@ onMounted(() => {
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>

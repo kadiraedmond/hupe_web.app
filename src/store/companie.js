@@ -16,9 +16,11 @@ export const useCompanieStore = defineStore('companieStore', {
         companieRentedCars: [],
         companieOneCar: null,
         companieCars: [],
+        car: {},
         companieHistory: [],
         companieLocations: [],
         programmeVoyages: [],
+        programme: {},
         companie: {},
         totalAmount: 0
     }),
@@ -122,6 +124,19 @@ export const useCompanieStore = defineStore('companieStore', {
                 console.log(error)
             }
         },
+        async setCarById(carId, companieId) {
+            const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
+            const companieSubColRef = collection(companieDocRef, 'vehicules_programmer')
+            
+            const docRef = doc(companieSubColRef, `${carId}`)
+
+            const snapshot = await getDoc(docRef)
+            try {
+                if(snapshot.exists()) this.car = snapshot.data()
+            } catch (error) {
+                console.log(error)
+            }
+        },
         async setCompanieHistory(companyId) {
             const companieDocRef = doc(firestoreDb, 'compagnies', `${companyId}`)
             const companieSubColRef = collection(companieDocRef, 'hystory')
@@ -167,5 +182,18 @@ export const useCompanieStore = defineStore('companieStore', {
                 console.log(error)
             }
         },
+        async setProgrammeById(programmeId, companyId) {
+            const companieDocRef = doc(firestoreDb, 'compagnies', `${companyId}`)
+            const programmeVoyagesColRef = collection(companieDocRef, 'programme_des_voyages')
+
+            const docRef = doc(programmeVoyagesColRef, `${programmeId}`)
+
+            const snapshot = await getDoc(docRef)
+            try {
+                if(snapshot.exists()) this.programme = snapshot.data()
+            } catch (error) {
+                console.log(error)
+            }
+        }
     }
 })

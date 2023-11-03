@@ -505,4 +505,7 @@ onMounted(() => {
     background-color: var(--bs-nav-tabs-link-active-bg);
     border-color: var(--bs-nav-tabs-link-active-border-color);
 }
+#myTab {
+    z-index: -8;
+}
 </style>

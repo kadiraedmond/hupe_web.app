@@ -3,9 +3,11 @@ import { onBeforeMount, onMounted, ref } from "vue"
 import { useRoute } from 'vue-router'
 import { useCompanieStore } from '@/store/companie.js'
 import { usePromotionStore } from '@/store/promotion.js'
+import Loader from "@/components/Loader.vue"
 
 import { collection, doc, addDoc } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
+import { toast } from 'vue3-toastify'
 
 import { useAuthStore } from '@/store/auth.js'
 import { v4 as uuidv4 } from 'uuid'
@@ -70,7 +72,11 @@ const handleFileChange = () => {
 
 const locationColRef = collection(firestoreDb, 'location_vehicules')
 
+const isLoading = ref(false)
+
 const reserver = async (car) => {
+  isLoading.value = true
+
   const Data = {
     boite: car.boite,
     chauffeur: avecChauffeur.value === true ? 'Oui' : 'Non',
@@ -104,7 +110,18 @@ const reserver = async (car) => {
   try {
     const docRef = await addDoc(locationColRef, Data)
 
-    if(docRef) console.log('Document ajouté avec success')
+    if(docRef) {
+      console.log('Document ajouté avec success')
+      
+      isLoading.value = false
+
+      document.querySelector('.btn-close').click()
+
+      toast.success("Réservation effectuée avec succès", { 
+        autoClose: 3500, 
+        position: toast.POSITION.TOP_CENTER
+      })
+    }
 
     document.querySelector('#reservationForm').reset()
   } catch (error) {
@@ -241,7 +258,7 @@ const reserver = async (car) => {
                 tabindex="0"
               >
                 <div class="row mt-4">
-                  <div class="col-md-6" v-for="(car, i) in companieStore.companieCars" :key="i">
+                  <div class="col-md-6 mb-2" v-for="(car, i) in companieStore.companieCars" :key="i">
                     <div class="card mb-3" style="max-width: 540px">
                       <div class="row g-0">
                         <div class="col-md-4">
@@ -294,21 +311,23 @@ const reserver = async (car) => {
 
                               <div class="col-md-12 mt-4 text-start">
                                 <!-- Button trigger modal -->
-                                <button
-                                  type="button"
-                                  class="btn btn-primary"
-                                  style="
-                                    background-color: #219935;
-                                    border-color: #219935;
-                                  "
-                                  data-bs-toggle="modal"
-                                  :data-bs-target="'#exampleModal' + i"
-                                >
-                                  Reserver
-                                </button>
+                                <router-link :to="`/detail_vehicule_location/${car.uid}`">
+                                  <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    style="
+                                      background-color: #219935;
+                                      border-color: #219935;
+                                    "
+                                    data-bs-toggle="modal"
+                                    :data-bs-target="'#exampleModal' + i"
+                                  >
+                                    Voir plus
+                                  </button>
+                                </router-link>
 
                                 <!-- Modal -->
-                                <div
+                                <!-- <div
                                   class="modal fade"
                                   :id="'exampleModal' + i"
                                   tabindex="-1"
@@ -591,6 +610,11 @@ const reserver = async (car) => {
                                             />
                                           </div>
 
+                                          <Loader 
+                                            style="position: absolute; left: 35%; top: 15%"
+                                            v-if="isLoading" 
+                                          />
+
                                           <div class="col-md-12">
                                             <label
                                               for="validationCustom01"
@@ -622,7 +646,8 @@ const reserver = async (car) => {
                                       </div>
                                     </div>
                                   </div>
-                                </div>
+                                </div> -->
+                                
                               </div>
                             </div>
                           </div>

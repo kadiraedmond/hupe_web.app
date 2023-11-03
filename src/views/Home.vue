@@ -8,7 +8,7 @@ import { useReservationStore } from "@/store/reservation.js";
 import { usePromotionStore } from '@/store/promotion.js'
 
 import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
+import { firestoreDb } from "@/firebase/firebase.js"
 
 const companieStore = useCompanieStore();
 const slideStore = useSlide();
@@ -686,7 +686,7 @@ onMounted(() => {
                 
                 <li class="slide-visible" v-for="(popularDestination, index) in promotionStore.popularDestinations" :key="index">
                   <router-link to="/detail_reservation_ticket">
-                    <div class="card h-100" id="card_compagnie" v-if="index < 6">
+                    <div class="card h-100" id="card_compagnie">
                     <div class="row" style="margin: 10px">
                       <div class="col-md-7">
                         <div

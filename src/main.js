@@ -13,6 +13,7 @@
 import VueTelInput from 'vue-tel-input'
 import 'vue-tel-input/vue-tel-input.css'
 import VOtpInput from "vue3-otp-input"
+import 'vue3-toastify/dist/index.css'
 
 
 import { createApp } from 'vue'
