@@ -1,16 +1,79 @@
 <script setup>
+import { reactive } from 'vue'; 
  import { onMounted, onBeforeMount, ref } from 'vue'
- import { useCompagnieStore } from '@/axios_store/compagnie.js'
+//  import { useCompagnieStore } from '@/axios_store/compagnie.js'
 
- const compagnieStore = useCompagnieStore()
-
+//  Get From axios
+ import axios from "axios"
  const compagnieId = '657b5f1d-c793-436d-ba47-7230ea88a78a'
 
- onBeforeMount(async () => {
-  compagnieStore.setCompagnie(compagnieId)
-  compagnieStore.setVehiculesCompagnie(compagnieId)
-  
+
+ const vehicules = reactive({
+  list: []
+ });
+
+ const promotion = reactive({
+  vehicule_id: '',
+  taux_de_reduction: '',
+  montant: "",
+  date_de_debut: '',
+  date_de_fin: ''
  })
+
+ const addPromotion = (_id) => {
+  console.log('Click'),
+  axios({
+    headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+        },
+    url: "https://hupe-api-beta-test.cyclic.app//api/promotion/",
+    method: 'POST',
+    data: {
+      'id_vehicule': _id,
+      'taux_de_reduction': promotion.taux_de_reduction,
+      'montant' : promotion.montant,
+      'date_de_fin': promotion.date_de_fin,
+      'date_de_debut' : promotion.date_de_debut
+    }
+  }).then((response) => {
+  console.log('Insert')
+    // vehicules.list = response.data
+ }).catch((err) => {
+  console.log('Error: ', + err)
+ })
+ }
+
+ const getVehiculeForCompagnie = () => {
+  console.log('API Started')
+  axios({
+    headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+        },
+    url: "https://hupe-api-beta-test.cyclic.app//api/vehicule/for-me?from_company=" + compagnieId,
+    method: 'GET',
+ }).then((response) => {
+  console.log('Response: ', + response.data)
+    vehicules.list = response.data
+ }).catch((err) => {
+  console.log('Error: ', + err)
+ })
+ }
+
+ 
+
+//  const compagnieStore = useCompagnieStore()
+
+
+
+ onMounted(() => {
+  getVehiculeForCompagnie()
+ });
+
+
 </script>
 
 <template>
@@ -36,8 +99,8 @@
                 </div>
                 <div class="col-md-5">
                   <div class="card-body">
-                    <h5 class="card-title" style="font-size:16px"> {{ compagnieStore.compagnie.raison_sociale }}</h5>
-                    <p class="card-text" style="font-size:15px">{{compagnieStore.compagnie.description}} </p>
+                    <!-- <h5 class="card-title" style="font-size:16px"> {{ compagnieStore.compagnie.raison_sociale }}</h5>
+                    <p class="card-text" style="font-size:15px">{{compagnieStore.compagnie.description}} </p> -->
                      
                   </div>
                 </div>
@@ -198,7 +261,7 @@
                   </div>
                 </div>
                 <div class="row mt-4">
-                  <div class="col-md-6" v-for="(vehicule, index) in companieStore.vehiculesCompagnie" :key="index">
+                  <div class="col-md-6" v-for="(vehicule, index) in vehicules.list" :key="index">
                     <div class="card mb-3" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
@@ -209,31 +272,31 @@
                           <div class="card-body">
                             <div class="row">
                               <div class="col-md-6">
-                                <p class="card-text"> <strong>Caterpillar  2022 </strong></p>
+                                <p class="card-text"> <strong> {{ vehicule.marque }}  {{ vehicule.annee }} </strong></p>
                               </div>
                               <div class="col-md-6 text-end">
                                 <button class="btn btn-primary" style="    background-color: #219935;
-                                  border-color: #219935;"> 5000 FCFA</button>
+                                  border-color: #219935;"> {{ vehicule.prix }} FCFA</button>
                               </div>
                               <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Catégorie  | </strong> Tracteur</p>
+                                <p class="card-text"> <strong>Catégorie  | </strong> {{ vehicule.categories }}</p>
                               </div>
 
                               <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Modèle  | </strong> Santafé</p>
+                                <p class="card-text"> <strong>Modèle  | </strong> {{ vehicule.modele }}</p>
                               </div>
 
                               <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Moteur  | </strong> essence</p>
+                                <p class="card-text"> <strong>Moteur  | </strong> {{ vehicule.moteur }}</p>
                               </div>
                               <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Etat  | </strong> 100km/h</p>
+                                <p class="card-text"> <strong>Etat  | </strong> {{ vehicule.etat }}</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Transmission  | </strong> loren ipsu</p>
+                                <p class="card-text"> <strong>Transmission  | </strong> {{ vehicule.transmission }}</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Kilométrage  | </strong> 100km/h</p>
+                                <p class="card-text"> <strong>Kilométrage  | </strong> {{ vehicule.kilometrage }}</p>
                               </div>
 
                               <div class="col-md-12 mt-4 text-start">
@@ -348,26 +411,26 @@
                                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                              <form class="row g-3 needs-validation text-start" novalidate>
+                                              <form class="row g-3 needs-validation text-start" method="POST" @submit.prevent='addPromotion(vehicule._id)' novalidate>
                                             <div class="col-md-12">
-                                              <label for="validationCustom01" class="form-label">Taux de réduction</label>
-                                              <input type="text" class="form-control" id="validationCustom01"  required>
+                                              <label for="validationCustom01"  class="form-label">Taux de réduction</label>
+                                              <input type="text" v-model="promotion.taux_de_reduction" class="form-control" id="validationCustom01"  required>
                                               
                                             </div>
                                             <div class="col-md-12">
                                               <label for="validationCustom02" class="form-label">Montant</label>
-                                              <input type="text" class="form-control" id="validationCustom02"  required>
+                                              <input type="text" class="form-control" v-model="promotion.montant"  id="validationCustom02"  required>
                                               
                                             </div>
 
                                             <div class="col-md-6">
-                                              <label for="validationCustom01" class="form-label">Date de debut</label>
-                                              <input type="date" class="form-control" id="validationCustom01"  required>
+                                              <label for="validationCustom01"  class="form-label">Date de debut</label>
+                                              <input type="date" class="form-control" v-model="promotion.date_de_debut" id="validationCustom01"  required>
                                               
                                             </div>
                                             <div class="col-md-6">
                                               <label for="validationCustom02" class="form-label">Date de fin</label>
-                                              <input type="date" class="form-control" id="validationCustom02"  required>
+                                              <input type="date" class="form-control" v-model="promotion.date_de_fin" n id="validationCustom02"  required>
                                               
                                             </div>
                                              
@@ -417,9 +480,7 @@
                         <div class="col-md-8">
                           <div class="card-body">
                             <div class="row">
-                              <div class="col-md-6">
-                                <p class="card-text"> <strong>{{vehicule.marque}} </strong></p>
-                              </div>
+                              <!--  -->
                               <div class="col-md-6 text-end">
                                 <button class="btn btn-primary" style="    background-color: #219935;
                                   border-color: #219935;"> 5000 FCFA</button>
@@ -2707,7 +2768,7 @@
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="apropos-tab-pane" role="tabpanel" aria-labelledby="apropos-tab" tabindex="0">
+              <!-- <div class="tab-pane fade" id="apropos-tab-pane" role="tabpanel" aria-labelledby="apropos-tab" tabindex="0">
                 <div class="row mt-5">
                   <div class="col-md-12">
                     <div class="card h-100" id="card_compagnie">
@@ -2768,12 +2829,11 @@
                             </div>
                           </div>
 
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <div class="tab-pane fade" id="activite-tab-pane" role="tabpanel" aria-labelledby="activite-tab"
                 tabindex="0">
