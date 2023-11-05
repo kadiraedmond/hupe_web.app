@@ -36,8 +36,6 @@ export const useAuthStore = defineStore('authStore', {
             this.isConnected = false
             this.isLocationCompany = false
             this.isReservationCompany = false
-
-            localStorage.removeItem('user')
         }
     }
 })

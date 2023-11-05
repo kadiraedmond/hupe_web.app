@@ -85,17 +85,19 @@ export const usePromotionStore = defineStore('promotionStore', {
                 console.log(error)
             }
         },
-        async setProgramme(programmeId) {            
-            const docRef = doc(programmeEnAvantColRef, `${programmeId}`)
-            const snapshot = await getDoc(docRef)
+        async setProgramme(programmeId) {           
+            const programmeDocRef = doc(firestoreDb, 'programme_des_voyages', `${programmeId}`)
             
-            this.programme = snapshot.data()
+            const snapshot = await getDoc(programmeDocRef)
+            
+            if(snapshot.exists()) this.programme = snapshot.data()
         },
         async setVehicule(vehiculeId) {
-            const docRef = doc(vehiculesEnAvantColRef, `${vehiculeId}`)
-            const snapshot = await getDoc(docRef)
+            const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${vehiculeId}`)
 
-            this.vehicule = snapshot.data()
+            const snapshot = await getDoc(vehiculeDocRef)
+
+            if(snapshot.exists()) this.vehicule = snapshot.data()
         }
     }
 })

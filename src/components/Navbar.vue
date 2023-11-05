@@ -2,12 +2,56 @@
 import { auth } from '@/firebase/firebase.js'
 import { signOut } from 'firebase/auth'
 import { useAuthStore } from '@/store/auth.js'
+import { useSearchStore } from '@/store/search.js'
+import { useLocalisationStore } from '@/store/localisation.js'
+import axios from 'axios'
+import router from '@/router/router.js'
+
+import { onMounted, ref } from 'vue'
 
 const authStore = useAuthStore()
+const localisationStore = useLocalisationStore()
+const searchStore = useSearchStore()
+
+const user = authStore.user
+
+const country = ref()
+
+const searchTerm = ref('')
+
+const handleSearch = () => {
+  searchStore.search(searchTerm)
+}
+
+onMounted(async () => {
+  const response = await fetch('https://ipinfo.io/json')
+
+  if(response.ok) {
+    const data = response.json()
+
+    country.value = data.country
+    localisationStore.setCompaniesByLocalisation(data.country)
+  } else {
+    console.log(response)
+  }
+})
+
+const handleSelect = () => {
+  console.log(country.value)
+  localisationStore.setCompaniesByLocalisation(country.value)
+}
 
 const logout = async () => {
-  await signOut(auth)
-  authStore.signOut
+  try {
+    await signOut(auth)
+    authStore.signOut
+    localStorage.removeItem('user')
+
+    router.push('/')
+    location.reload()
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 </script>
@@ -30,26 +74,27 @@ const logout = async () => {
       <nav id="navbar" class="navbar">
         <ul >
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
-            <select class="form-select1" style="padding: 8.6px ; width: 114px;" id="validationCustom04" required>
-              <option selected value="">Bénin</option>
-              <option>Burkina Faso</option>
-              <option>Côte d'Ivoire</option>
-              <option>Guinée Conakry</option>
-              <option>Mali</option>
-              <option>Niger</option>
-              <option>Sénégal</option>
-              <option>Togo</option>
+            <select v-model="country" @change="handleSelect" class="form-select1" style="padding: 8.6px ; width: 114px;" id="validationCustom04" required>
+              <option value="BJ" selected>Bénin</option>
+              <option value="BF">Burkina Faso</option>
+              <option value="CI">Côte d'Ivoire</option>
+              <option value="GN">Guinée Conakry</option>
+              <option value="ML">Mali</option>
+              <option value="NE">Niger</option>
+              <option value="SN">Sénégal</option>
+              <option value="TG">Togo</option>
             </select>
           </li>
         </ul>
       </nav>
       <!-- .navbar -->
-      <form class="d-flex" role="search">
+      <form class="d-flex" role="search" @submit.prevent="handleSearch">
         <input
           class="form-control me-2 text-white"
           style="width: 200; max-width: 200px"
           type="search"
           placeholder="Rechercher"
+          v-model="searchTerm"
           aria-label="Search"
           id="search"
         />
@@ -88,13 +133,13 @@ const logout = async () => {
           </li>
 
           <li>
-            <router-link v-if="!authStore.isConnected" to="/connexion" class="nav-link scrollto"
+            <router-link v-if="!authStore.user.uid" to="/connexion" class="nav-link scrollto"
               ><i class="bx bx-user" id="icon_menu"></i> Connexion
             </router-link>
           </li>
           <li class="dropdown">
             <router-link to=""
-              v-if="authStore.isConnected"
+              v-if="authStore.user.uid"
               ><i class="bx bx-user" id="icon_menu"></i>
               <span>
                 {{ authStore.user.raison_social ? authStore.user.raison_social : authStore.user.username }} 
@@ -102,25 +147,27 @@ const logout = async () => {
             ></router-link>
             <ul style="background: #219935">
               <li>
-                <router-link to="/compte_vehicule" v-if="authStore.isConnected && authStore.isLocationCompany"
+                <router-link 
+                  to="/compte_vehicule" 
+                  v-if="(authStore.isConnected && authStore.isLocationCompany) || (user.raison_social && user.type_compagnie == 'Location')"
                   >Compte location de vehicules</router-link
                 >
               </li>
               <li>
-                <router-link to="/compte_reservation" v-if="authStore.isConnected && authStore.isReservationCompany"
+                <router-link to="/compte_reservation" v-if="(authStore.isConnected && authStore.isReservationCompany) || (user.raison_social && user.type_compagnie == 'Transport')"
                   >Compte reservation de ticket de bus</router-link
                 >
               </li>
               <li>
-                <router-link v-if="authStore.isConnected && authStore.isBigEnginsCompany" to="/compte_gros_engin"
+                <router-link v-if="authStore.isConnected && authStore.isBigEnginsCompany || user.raison_social" to="/compte_gros_engin"
                   >Compte location de gros engins</router-link
                 >
               </li>
               <li>
-                <router-link v-if="authStore.isConnected && authStore.isCarsSellingCompany" to="/compte_achat_engin">Compte vente d'engins </router-link>
+                <router-link v-if="authStore.isConnected && authStore.isCarsSellingCompany || user.raison_social" to="/compte_achat_engin">Compte vente d'engins </router-link>
               </li>
-              <li><router-link v-if="authStore.isConnected" to="/compte_client">Mon compte </router-link></li>
-              <li><router-link v-if="authStore.isConnected" to="/" @click="logout">Déconnexion</router-link></li>
+              <li><router-link v-if="authStore.user.uid" to="/compte_client">Mon compte </router-link></li>
+              <li><router-link v-if="authStore.user.uid" to="/" @click="logout">Déconnexion</router-link></li>
             </ul>
           </li>
         </ul>

@@ -24,8 +24,7 @@ const programmeId = route.params.id
 onBeforeMount(async () => {
   await promotionStore.setProgramme(programmeId)
 
-  const companieId = promotionStore.programme.compagnie_uid
-  console.log(companieId)
+  const companieId = await promotionStore.programme.compagnie_id
 
   companieStore.setCompanieById(companieId)
   companieStore.setProgrammesVoyages(companieId)
@@ -213,18 +212,32 @@ onMounted(() => {
 
           <div class="row mt-4">
             <div class="col-md-6 text-end">
-              <button
-                class="btn btn-primary w-100"
-                style="
-                  background: #219935;
-                  border-color: #219935;
-                  margin-top: 20px;
-                "
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Réserver
-              </button>
+              <router-link v-if="!user.token" to="/connexion">
+                <button
+                  class="btn btn-primary w-100"
+                  style="
+                    background: #219935;
+                    border-color: #219935;
+                    margin-top: 20px;
+                  "
+                >
+                  Réserver
+                </button>
+              </router-link>
+              <router-link v-if="user.token" to="">
+                <button
+                  class="btn btn-primary w-100"
+                  style="
+                    background: #219935;
+                    border-color: #219935;
+                    margin-top: 20px;
+                  "
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Réserver
+                </button>
+              </router-link>
 
               <div
                     class="modal fade"
@@ -232,6 +245,7 @@ onMounted(() => {
                     tabindex="-1"
                     aria-labelledby="exampleModalLabel"
                     aria-hidden="true"
+                    v-if="user.uid"
                 >
                     <div class="modal-dialog">
                     <div class="modal-content">
@@ -318,7 +332,7 @@ onMounted(() => {
                                 >Date de départ</label
                             >
                             <input
-                                type="date"
+                                type="text"
                                 class="form-control"
                                 id="validationCustom01"
                                 :value="promotionStore.programme.date_depart"
@@ -334,7 +348,7 @@ onMounted(() => {
                                 >Heure de départ</label
                             >
                             <input
-                                type="time"
+                                type="text"
                                 class="form-control"
                                 id="validationCustom01"
                                 :value="promotionStore.programme.heure_depart"

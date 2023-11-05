@@ -22,7 +22,7 @@ const carId = route.params.id
 onBeforeMount(async () => {
   await promotionStore.setVehicule(carId)
 
-  const companieId = promotionStore.vehicule.compagnie_uid
+  const companieId = await promotionStore.vehicule.compagnie_id
 
   companieStore.setCompanieById(companieId)
   companieStore.setCompanieCars(companieId)
@@ -75,7 +75,8 @@ const handleFileChange = () => {
 
 const locationColRef = collection(firestoreDb, "location_vehicules");
 
-const isLoading = ref(false);
+const isLoading = ref(false)
+
 
 const reserver = async (car) => {
   isLoading.value = true
@@ -286,18 +287,32 @@ onMounted(() => {
             <div class="col-md-12 mt-4 text-start">
               <!-- Button trigger modal -->
             <div class="col-md-6 text-end">
-              <button
-                class="btn btn-primary w-100"
-                style="
-                  background: #219935;
-                  border-color: #219935;
-                  margin-top: 20px;
-                "
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Réserver
-              </button>
+              <router-link v-if="!user.token" to="/connexion">
+                <button
+                  class="btn btn-primary w-100"
+                  style="
+                    background: #219935;
+                    border-color: #219935;
+                    margin-top: 20px;
+                  "
+                >
+                  Réserver
+                </button>
+              </router-link>
+              <router-link v-if="user.token" to="">
+                <button
+                  class="btn btn-primary w-100"
+                  style="
+                    background: #219935;
+                    border-color: #219935;
+                    margin-top: 20px;
+                  "
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Réserver
+                </button>
+              </router-link>
 
               <!-- Modal -->
                 <div

@@ -1,16 +1,20 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import { useAuthStore } from '@/store/auth.js'
 import router from '@/router/router.js'
+import Loader from '@/components/Loader.vue'
 
 const authStore = useAuthStore()
+
+const isLoading = ref(false)
 
 onMounted(() => {
   window.scrollTo(0, 0)
 })
 
 const handleOnComplete = async (value) => {
+  isLoading.value = true
   const verificationCode = `${value}`
 
   const confirmationResult = authStore.confirmationResult
@@ -59,6 +63,11 @@ const handleOnComplete = async (value) => {
                       :should-auto-focus="true"
                       input-type="numeric"
                       @on-complete="handleOnComplete"
+                    />
+
+                    <Loader 
+                      style="position: absolute; left: 24%; top: 35%"
+                      v-if="isLoading" 
                     />
                   </div>
                 </div>
