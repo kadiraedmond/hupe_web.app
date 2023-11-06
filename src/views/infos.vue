@@ -33,28 +33,28 @@ onMounted(() => {
                         </div>
                         <div class="col-md-12 mb-2 text-start">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active  text-start" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"> <i class="bx bx-question-mark"></i>  Foire aux questions </button>
+                                <button class="nav-link active  text-start" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" style="width: 245px !important;"> <i class="bx bx-question-mark"></i> Foire aux questions </button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"> <i class="bx bx-info-circle"></i> Qui sommes nous</button>
+                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" style="width: 245px !important;"> <i class="bx bx-info-circle"></i> Qui sommes nous</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"> <i class="bx bx-help-circle"></i> Comment ça marche </button>
+                                <button class="nav-link text-start" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false" style="width: 245px !important;"> <i class="bx bx-help-circle"></i> Comment ça marche </button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"> <i class="bx bx-accessibility"></i> Accessibilité </button>
+                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" style="width: 245px !important;"> <i class="bx bx-accessibility"></i> Accessibilité </button>
                             </li>
                         </div>
 
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="blog-tab" data-bs-toggle="tab" data-bs-target="#blog-tab-pane" type="button" role="tab" aria-controls="blog-tab-pane" aria-selected="false"> <i class="bx bx-news"></i> Blog </button>
+                                <button class="nav-link text-start" id="blog-tab" data-bs-toggle="tab" data-bs-target="#blog-tab-pane" type="button" role="tab" aria-controls="blog-tab-pane" aria-selected="false"  style="width: 245px !important;"> <i class="bx bx-news"></i> Blog </button>
                             </li>
                         </div>
                     </div>
@@ -1801,7 +1801,8 @@ onMounted(() => {
     padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
     font-size: var(--bs-nav-link-font-size);
     font-weight: var(--bs-nav-link-font-weight);
-    color: #219935;
+    /* color: #219935; */
+    color: black ;
     text-decoration: none;
     background: none;
     border: 0;

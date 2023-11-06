@@ -17,40 +17,40 @@ onMounted(() => {
                 <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; ">
                     <div class="row ">
                         
-                        <div class="col-md-12 mb-3">
+                        <!-- <div class="col-md-12 mb-3">
                            <router-link to="/"><h1 class="text-black">
                                   <i class="bx bx-x"></i>
                                </h1> </router-link> 
-                        </div>
+                        </div> -->
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 20px;">Centre de confidentialité</h2>
                         </div>
                         <div class="col-md-12 mb-2 text-start">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active  text-start" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"> <i class="bx bx-shield"></i> Politiques de confidentialité</button>
+                                <button class="nav-link active  text-start" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" style="width: 273px;"> <i class="bx bx-shield"></i> Politiques de confidentialité</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">  <i class="bx bx-shield-alt"></i> Politique de sécurité</button>
+                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" style="width: 245px;">  <i class="bx bx-shield-alt"></i> Politique de sécurité</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"> <i class="bx bx-globe"></i> Termes et conditions</button>
+                                <button class="nav-link text-start" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false" style="width: 245px;"> <i class="bx bx-globe"></i> Termes et conditions</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"> <i class="bx bx-copyright"></i> Droit d'auteur</button>
+                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" style="width: 245px;"> <i class="bx bx-copyright"></i> Droit d'auteur</button>
                             </li>
                         </div>
                     </div>
  
                 </ul>
             </div>
-            <div class="col-md-9" style=" padding: 20px; z-index: 1030;">
-                <div class="tab-content" id="myTabContent">
+            <div class="col-md-9" style=" padding: 20px; ">
+                <div class="tab-content" id="myTabContent" style="padding: 30px;">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
                             <div class="col-md-12">
@@ -506,6 +506,11 @@ onMounted(() => {
     border-color: var(--bs-nav-tabs-link-active-border-color);
 }
 #myTab {
-    z-index: -8;
+    z-index: 1030;
+    margin-top: 62px;
+}
+
+.nav-tabs .nav-link {
+    border: none !important;
 }
 </style>

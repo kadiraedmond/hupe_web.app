@@ -232,6 +232,34 @@
     }
   });
 
+
+  document.addEventListener("scroll", function() {
+    var navbar = document.querySelector(".navbar");
+    var stickyDiv = document.querySelector(".fixe");
+    var footer = document.querySelector("footer");
+    
+    if (navbar && stickyDiv && footer) {
+        var navbarHeight = navbar.offsetHeight;
+        var footerTop = footer.getBoundingClientRect().top;
+        var windowHeight = window.innerHeight;
+
+        // La hauteur (en pixels) à laquelle l'élément devrait devenir statique
+        var heightToSwitchToStatic = 50000;
+        
+        if (window.scrollY >= navbarHeight && window.scrollY + windowHeight <= footerTop) {
+          if (window.scrollY < heightToSwitchToStatic) {
+            stickyDiv.style.position = "fixed";
+            stickyDiv.style.top = navbarHeight + "px";
+        } else {
+            stickyDiv.style.position = "static";
+        }
+    } else {
+        stickyDiv.style.position = "static";
+        }
+    }
+});
+
+
   /**
    * Animation on scroll
    */

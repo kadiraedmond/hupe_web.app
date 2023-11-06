@@ -11,7 +11,7 @@ onMounted(() => {
 
   <main id="main" style="background: white;">
     <section id="features" class="features">
-     <div class="container-fluid">
+     <!-- <div class="container-fluid">
         <nav class="navbar bg-light fixed-top" style="background: #219935 !important;">
         <div class="container" style="margin-top: -5rem">
             <router-link to="/" class="navbar-brand">
@@ -19,33 +19,33 @@ onMounted(() => {
             </router-link> 
         </div>
         </nav>
-     </div>
+     </div> -->
       <div class="container mt-4">
         <div class="row" style="margin-top: -22px;">
             <div class="col-md-3" style="border-right: 1px solid; border-color:#EAEAEA">
                 <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; ">
-                    <div class="row ">
+                    <div class="row" style="margin-top: 34px;">
                         <div class="col-md-12 mb-4">
-                            <h2 style="font-size: 24px;">Services à la clientèle</h2>
+                            <h2 style="font-size: 24px;">Services clients</h2>
                         </div>
                         <div class="col-md-12 mb-2 text-start">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active  text-start" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"> <i class="bx bx-support"></i> Support</button>
+                                <button class="nav-link active  text-start w-25" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" style="width: 245px !important;"  aria-selected="true"> <i class="bx bx-support"></i> Support</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"> <i class="bx bx-help-circle"></i> Aide</button>
+                                <button class="nav-link  text-start w-25" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" style="width: 245px !important;"  aria-selected="false"> <i class="bx bx-help-circle"></i> Aide</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"><i class="bx bx-envelope"></i> Contact</button>
+                                <button class="nav-link text-start w-25" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" style="width: 245px !important;"  aria-selected="false"><i class="bx bx-envelope"></i> Contact</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"><i class="bx bx-globe"></i> Comdition de partenariat</button>
+                                <button class="nav-link text-start w-25" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" style="width: 245px !important;" aria-selected="false"><i class="bx bx-globe"></i> Comdition de partenariat</button>
                             </li>
                         </div>
                     </div>
@@ -704,7 +704,9 @@ onMounted(() => {
     color: #219935;
     height: 45px
 }
-
+.nav-tabs .nav-link {
+    border: none !important;
+}
  
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
     color: #fff;

@@ -2,6 +2,7 @@
 export default{
         name:"Footer"
     };
+    
  
 </script>
 <template>
@@ -36,7 +37,7 @@ export default{
       <div class="col footer-links">
         <h4>Liens utiles </h4>
         <ul>
-          <li> <router-link to="/services">Location de véhicules </router-link></li>
+          <li> <router-link to="{ name: 'Service', hash: '#contact-tab-pane' }">Location de véhicules </router-link></li>
           <li> <router-link to="/services">Réservations de tickets de bus  </router-link></li>
           <li> <router-link to="/services">Location de gros en engin </router-link></li>
           <li> <router-link to="/services">Vente de véhicule </router-link></li>

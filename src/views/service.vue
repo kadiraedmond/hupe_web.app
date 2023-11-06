@@ -3,7 +3,31 @@ import { onMounted } from 'vue'
 
 onMounted(() => {
   window.scrollTo(0, 0)
-})
+});
+
+document.addEventListener("scroll", function() {
+    var fixe = document.getElementById("fixe");
+    var footer = document.querySelector("footer");
+    
+    if (fixe && footer) {
+        var columnTop = fixe.getBoundingClientRect().top;
+        var footerTop = footer.getBoundingClientRect().top;
+        
+        if (columnTop + f.offsetHeight > footerTop) {
+            fixe.style.top = footerTop - columnTop - fixe.offsetHeight + "px";
+        } else {
+            fixe.style.top = "0";
+        }
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+ var elementToActivate = document.querySelector(window.location.hash);
+    if (elementToActivate) {
+  elementToActivate.classList.add("active"); // Appliquer une classe ou un style pour activer l'élément
+            }
+});
+
 </script>
 
 <template>
@@ -17,14 +41,14 @@ onMounted(() => {
                 <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; ">
                     <div class="row ">
                         
-                        <div class="col-md-12 mb-3">
+                        <!-- <div class="col-md-12 mb-3">
                             <router-link to="/">
                                 <h1 class="text-black">
                                   <i class="bx bx-x"></i>
                                </h1>
                             
                             </router-link>
-                        </div>
+                        </div> -->
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 24px;">Services </h2>
                         </div>
@@ -249,6 +273,15 @@ onMounted(() => {
                                 </div>
                                 
                             </div>
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6 text-end">
+                                    <router-link to="/location">
+                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Voir les véhicules disponibles en location.</boutton>
+                                    </router-link>
+                                   
+                                </div>
+                            </div>
                         </div>
                         </section>
                     </div>
@@ -446,6 +479,16 @@ onMounted(() => {
                                    
                                 </div>
                                 
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6 text-end">
+                                    <router-link to="/reservation">
+                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Voir les réservations de billets de bus disponibles</boutton>
+                                    </router-link>
+                                   
+                                </div>
                             </div>
                         </div>
                         </section>
@@ -645,6 +688,16 @@ onMounted(() => {
                                 </div>
                                 
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6 text-end">
+                                    <router-link to="/location_gros_engin">
+                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Voir les gros engin disponibles en location</boutton>
+                                    </router-link>
+                                   
+                                </div>
+                            </div>
                         </div>
                         </section>
                     </div>
@@ -843,6 +896,16 @@ onMounted(() => {
                                 </div>
                                 
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6 text-end">
+                                    <router-link to="/location_gros_engin">
+                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Voir les véhicule disponibles en vente</boutton>
+                                    </router-link>
+                                   
+                                </div>
+                            </div>
                         </div>
                         </section>
                     </div>
@@ -895,8 +958,13 @@ onMounted(() => {
     width: 255px !important;
 }
 
+.nav-tabs .nav-link {
+    border: none !important;
+}
+
 #myTab {
-    z-index: -8;
+    z-index: 1030;
+    margin-top: 62px;
 }
 
 </style>

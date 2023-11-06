@@ -26,7 +26,7 @@ onMounted(() => {
   
           <ol>
             <li> <router-link to="/" style="color: #219935;" >Home</router-link></li>
-            <li>Location de véhicule</li>
+            <li>Réservations de billets de bus</li>
             <!-- <li>Toyota yaris 2022</li> -->
 
           </ol>
