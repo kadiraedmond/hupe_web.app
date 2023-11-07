@@ -12,13 +12,17 @@ import { reactive } from 'vue';
   list: []
  });
 
+ const promotions = reactive({
+  list: []
+ });
+
  const promotion = reactive({
   vehicule_id: '',
   taux_de_reduction: '',
   montant: "",
   date_de_debut: '',
   date_de_fin: ''
- })
+ });
 
  const addPromotion = (_id) => {
   console.log('Click'),
@@ -63,6 +67,25 @@ import { reactive } from 'vue';
  })
  }
 
+ const getPromotionsForCompagnie = () => {
+  axios({
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+    },
+    // url: "https://hupe-api-beta-test.cyclic.app//api/promotion/for-me?from_company=" + compagnieId,
+     url: "https://hupe-api-beta-test.cyclic.app//api/promotion/",
+    method: 'GET',
+  }).then((response) => {
+    console.log('Response: ', + response.data)
+    promotions.list = response.data
+  }).catch((err) => {
+    console.log('Erreur:', err);
+  });
+};
+
+
  
 
 //  const compagnieStore = useCompagnieStore()
@@ -71,6 +94,7 @@ import { reactive } from 'vue';
 
  onMounted(() => {
   getVehiculeForCompagnie()
+  getPromotionsForCompagnie()
  });
 
 
@@ -682,15 +706,16 @@ import { reactive } from 'vue';
               </div>
               <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
-                  <div class="col">
+                  <div class="col mb-3" v-for="(promotion, index) in promotions.list" :key="index">
                     <div class="card" style="background:#a6a6a621;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
-                            style=" width: 25px; height: 25px; margin-top: 6px;">
+                          <i class='bx bx-car' style="font-size: 15px; color: #848484;"></i>
+                          <!-- <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                            style=" width: 25px; height: 25px; margin-top: 6px;"> -->
                           <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                          <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                          <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"> 
+                             <i class='bx bxs-map' style="font-size: 15px; color: #848484;"></i> logone</p>
 
                         </div>
                       </div>
@@ -701,60 +726,12 @@ import { reactive } from 'vue';
                         </a>
                         <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
                         <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                        <button class="btn btn-primary" id="badges012"> 93% </button>
+                        <button class="btn btn-primary" id="badges012">{{promotion.taux_de_reduction}} </button>
                         <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="card" style="background:#a6a6a621;">
-                      <div class="row" style="padding: 6px;">
-                        <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
-                            style=" width: 25px; height: 25px; margin-top: 6px;">
-                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                          <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
-
-                        </div>
-                      </div>
-                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
-                        <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car4.jpg" class="card-img-top" alt="..."
-                            style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
-                        </a>
-                        <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                        <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                        <button class="btn btn-primary" id="badges012"> 93% </button>
-                        <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card" style="background:#a6a6a621;">
-                      <div class="row" style="padding: 6px;">
-                        <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
-                            style=" width: 25px; height: 25px; margin-top: 6px;">
-                          <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
-                          <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
-
-                        </div>
-                      </div>
-                      <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
-                        <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car4.jpg" class="card-img-top" alt="..."
-                            style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
-                        </a>
-                        <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
-                        <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                        <button class="btn btn-primary" id="badges012"> 93% </button>
-                        <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
-                      </div>
-                    </div>
-                  </div>
-
+                  
                 </div>
               </div>
               <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
