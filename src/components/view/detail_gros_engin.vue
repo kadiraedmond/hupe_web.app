@@ -1,6 +1,59 @@
-<script>
+<script setup>
 import Navbar from '@/components/Navbar.vue';
 import Footer from '@/components/Footer.vue';
+import axios from 'axios';
+import { reactive } from 'vue';
+import { onMounted } from 'vue';
+
+const compagnieId = '657b5f1d-c793-436d-ba47-7230ea88a78a'
+
+const vehicules = reactive({
+  list: []
+});
+const vehiculeEnPromotion = reactive({
+  list: []
+});
+
+const getAllVehiculeEnPromotionForCompanie = () => {
+  axios({
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+    },
+    // urls: "hupe-api-beta-test.cyclic.app//api/promotion/for-me?from_company=" + compagnieId,
+    url: "https://hupe-api-beta-test.cyclic.app/api/promotion/vehicule_en_promotion/one/" + compagnieId,
+    method: 'GET',
+  }).then((response) => {
+    console.log('Response: ', + response.data)
+    vehiculeEnPromotion.list = response.data
+  }).catch((err) => {
+    console.log('Erreur:', err);
+  });
+}
+
+const getVehiculeForCompagnie = () => {
+  console.log('API Started')
+  axios({
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+    },
+    url: "https://hupe-api-beta-test.cyclic.app/api/vehicule/for-me?from_company=" + compagnieId,
+    method: 'GET',
+  }).then((response) => {
+    console.log('Response: ', + response.data)
+    vehicules.list = response.data
+  }).catch((err) => {
+    console.log('Error: ', + err)
+  })
+}
+
+onMounted(() => {
+  getAllVehiculeEnPromotionForCompanie();
+  getVehiculeForCompagnie();
+})
 </script>
 
 <template>
@@ -68,7 +121,7 @@ import Footer from '@/components/Footer.vue';
             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
               
               <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-6" v-for="(vehicule, index) in vehicules.list" :key="index">
                     <div class="card mb-3" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
@@ -83,27 +136,27 @@ import Footer from '@/components/Footer.vue';
                               </div>
                               <div class="col-md-6 text-end">
                                 <button class="btn btn-primary" style="    background-color: #219935;
-                                  border-color: #219935;"> 5000 FCFA</button>
+                                  border-color: #219935;"> {{ vehicule.prix }} FCFA</button>
                               </div>
                               <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Catégorie  | </strong> Tracteur</p>
+                                <p class="card-text"> <strong>Catégorie  | </strong> {{ vehicule.categories }}</p>
                               </div>
 
                               <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Modèle  | </strong> Santafé</p>
+                                <p class="card-text"> <strong>Modèle  | </strong> {{ vehicule.modele }}</p>
                               </div>
 
                               <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Moteur  | </strong> essence</p>
+                                <p class="card-text"> <strong>Moteur  | </strong> {{ vehicule.moteur }} </p>
                               </div>
                               <div class="col-md-6 mt-3">
-                                <p class="card-text"> <strong>Etat  | </strong> 100km/h</p>
+                                <p class="card-text"> <strong>Etat  | </strong>{{ vehicule.etat }}</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Transmission  | </strong> loren ipsu</p>
+                                <p class="card-text"> <strong>Transmission  | </strong>{{ vehicule.transmission }}</p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text"> <strong>Kilométrage  | </strong> 100km/h</p>
+                                <p class="card-text"> <strong>Kilométrage  | </strong> {{ vehicule.kilometrage }}</p>
                               </div>
 
                               <div class="col-md-12 mt-4 text-start">
@@ -878,16 +931,16 @@ import Footer from '@/components/Footer.vue';
               </div>
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-              <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
+              <div class="row row-cols-1 row-cols-md-3 mt-4 g-4"  v-for="(promotion, index) in vehiculeEnPromotion.list" :key="index">
                   <div class="col">
                         <div class="card border-0" style="background:#f3f4f6; padding: 6px;">
                           <div class="row" style="padding: 6px;">
                             <div class="col-md-12 d-flex">
                               <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
                                 style=" width: 25px; height: 25px; margin-top: 6px;">
-                              <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
+                              <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;">{{ promotion.raison_sociale }}</h6>
                               <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                                  src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                                  src="/public/assets/img/icone/map.png" class="img-fluid" alt="...">{{ promotion.adresse }}</p>
 
                             </div>
                           </div>
@@ -898,8 +951,8 @@ import Footer from '@/components/Footer.vue';
                             </a>
                             <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
                             <button class="btn btn-primary" id="badges0"> 2000 FCFA</button>
-                            <button class="btn btn-primary" id="badges012"> 93% </button>
-                            <button class="btn btn-primary" id="badges0121">Toyota yaris 2022 </button>
+                            <button class="btn btn-primary" id="badges012"> {{ promotion.taux_de_reduction }} </button>
+                            <button class="btn btn-primary" id="badges0121"> {{ promotion.marque }} {{ promotion.modele }} {{ promotion.annee }} </button>
                           </div>
                         </div>
                   </div>

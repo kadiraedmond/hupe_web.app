@@ -134,7 +134,7 @@ const getAllVehiculeEnPromotionForCompanie = () => {
 
 
 onMounted(() => {
-  getVehiculeForCompagnie()
+  getVehiculeForCompagnie();
   getPromotionsForCompagnie();
   getAllVehiculeEnPromotionForCompanie();
 });
