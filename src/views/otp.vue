@@ -19,22 +19,27 @@ const handleOnComplete = async (value) => {
 
   const confirmationResult = authStore.confirmationResult
   
-  const userCredential = await confirmationResult.confirm(verificationCode);
-  const user = userCredential.user;
+  const userCredential = await confirmationResult.confirm(verificationCode)
+  const user = userCredential.user
 
   if(user) {
     authStore.setUser(user)
     localStorage.setItem('user', JSON.stringify(user))
-  
-    if(user.type_compagnie) {
-      if(user.type_compagnie == 'Location') {
-        router.push('/compte_vehicule')
-      } else if(user.type_compagnie == 'Transport') {
-        router.push('/compte_reservation')
+
+    if(authStore.isNew === true) {
+      router.push('/choix_services')
+    } else if(authStore.isNew === false) {
+      if(user.type_compagnie) {
+        if(user.type_compagnie == 'Location') {
+          router.push('/compte_vehicule')
+        } else if(user.type_compagnie == 'Transport') {
+          router.push('/compte_reservation')
+        }
+      } else {
+        router.push('/compte_client')
       }
-    } else {
-      router.push('/compte_client')
     }
+  
   }
 }
 

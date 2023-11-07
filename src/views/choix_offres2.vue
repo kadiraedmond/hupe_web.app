@@ -1,9 +1,22 @@
 <script setup>
-import { onMounted } from "vue"
+import { onMounted, ref } from "vue"
+import router from '@/router/router.js'
+import { useAuthStore } from '@/store/auth.js'
+
+const authStore = useAuthStore()
 
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+const option = ref('')
+
+const handleSubmit = () => {
+  if(option.value !== '') {
+    authStore.setOffre2(option.value)
+    router.push('/information')
+  }
+}
 </script>
 
 <template>
@@ -22,7 +35,7 @@ onMounted(() => {
               </div>
               <div class="col-md-12 text-center"></div>
               <div class="col-md-12 mt-4">
-                <form class="" action="verification.php" method="POST">
+                <form @submit.prevent="handleSubmit">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="row">
@@ -124,8 +137,8 @@ onMounted(() => {
                               type="radio"
                               name="gridRadios"
                               id="gridRadios1"
-                              value="option1"
-                              checked
+                              value="basique"
+                              v-model="option"
                             />
                             <label class="form-check-label" for="gridRadios1">
                               Sélectionner
@@ -235,8 +248,8 @@ onMounted(() => {
                               type="radio"
                               name="gridRadios"
                               id="gridRadios1"
-                              value="option1"
-                              checked
+                              value="vip"
+                              v-model="option"
                             />
                             <label class="form-check-label" for="gridRadios1">
                               Sélectionner
@@ -252,9 +265,8 @@ onMounted(() => {
                         <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Valider</button>
                       </div> -->
                     <div class="col-md-12">
-                      <router-link to="/information">
                         <button
-                          type=""
+                          type="submit"
                           class="btn btn-primary"
                           style="
                             background-color: #219935;
@@ -263,7 +275,6 @@ onMounted(() => {
                         >
                           Valider
                         </button>
-                      </router-link>
                     </div>
                   </div>
                 </form>

@@ -1,9 +1,74 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
+import router from '@/router/router.js'
+import { useAuthStore } from '@/store/auth.js'
 
+const authStore = useAuthStore()
+
+let docRef
 onMounted(() => {
   window.scrollTo(0, 0)
+  docRef = doc(firestoreDb, 'compagnies', authStore.uniqueIdentifier)
 })
+
+const raison_social = ref('')
+const responsable = ref('')
+const addresse = ref('')
+const description = ref('')
+const image_couverture = ref()
+const image_logo = ref()
+
+const handleSubmit = async () => {
+  await updateDoc(docRef, {
+    adresse: addresse.value,
+    raison_social: raison_social.value,
+    responsable: responsable.value,
+    description: description.value,
+    imageCouvertureUrl: image_couverture.value || '', 
+    imageLogoUrl: image_logo.value || '', 
+    offre: authStore.offre !== '' ? authStore.offre : authStore.offre2 || '', 
+    type_compagnie: authStore.companieService || '',
+  })
+  .then(() => console.log('Document ajouté'))
+  
+  document.querySelector('#form').reset()
+
+  const snapshot = await getDoc(docRef)
+  let user
+  if(snapshot.exists()) user = snapshot.data()
+  authStore.setUser(user)
+  localStorage.setItem('user', JSON.stringify(user))
+
+  switch(authStore.companieService) {
+    case 'Location':
+      router.push('/compte_vehicule')
+      break
+    case 'Transport': 
+      router.push('/compte_reservation')
+      break
+    case 'Gros Engins': 
+      router.push('/compte_gros_engin')
+      break
+    case 'Vente Véhicules': 
+      router.push('/compte_achat_engin')
+      break
+    default: 
+      router.push('/')
+      break
+  }
+  
+  // if(authStore.companieService == 'Location') {
+  //   router.push('/compte_vehicule')
+  // } else if(authStore.companieService == 'Transport') {
+  //   router.push('/compte_reservation')
+  // } else if(authStore.companieService == 'Gros Engins') {
+  //   router.push('/compte_gros_engin')
+  // } else if(authStore.companieService == 'Vente Véhicules') {
+  //   router.push('/compte_achat_engin')
+  // }
+}
 </script>
 
 <template>
@@ -20,53 +85,51 @@ onMounted(() => {
                 Complétez les informations de votre compagnie
               </p>
             </div>
-            <form class="row g-3">
+            <form @submit.prevent="handleSubmit" id="form" class="row g-3">
               <div class="col-md-12">
                 <label for="text" class="form-label">Raison sociale </label>
-                <input type="text" class="form-control" id="inputEmail4" />
+                <input type="text" v-model="raison_social" class="form-control" id="inputEmail4" />
               </div>
               <div class="col-md-12">
                 <label for="text" class="form-label">Responsable </label>
-                <input type="text" class="form-control" id="inputPassword4" />
+                <input type="text" v-model="responsable" class="form-control" id="inputPassword4" />
               </div>
               <div class="col-12">
                 <label for="inputAddress" class="form-label">Addresse</label>
                 <input
                   type="text"
+                  v-model="addresse"
                   class="form-control"
                   id="inputAddress"
-                  placeholder=""
                 />
               </div>
               <div class="col-12">
                 <label for="inputAddress2" class="form-label"
                   >Description</label
                 >
-                <textarea type="text" class="form-control" id="inputAddress2">
+                <textarea type="text" v-model="description" class="form-control" id="inputAddress2">
                 </textarea>
               </div>
               <div class="col-md-12">
                 <label for="inputCity" class="form-label"
                   >Images de couverture</label
                 >
-                <input type="file" class="form-control" id="inputCity" />
+                <input type="file" v-on:change="image_couverture" class="form-control" id="inputCity" />
               </div>
 
               <div class="col-md-12">
                 <label for="inputCity" class="form-label">Logo</label>
-                <input type="file" class="form-control" id="inputCity" />
+                <input type="file" v-on:change="image_logo" class="form-control" id="inputCity" />
               </div>
 
               <div class="col-md-12 text-center mt-3">
-                <router-link to="/information">
                   <button
-                    type=""
+                    type="submit"
                     class="btn btn-primary w-50"
                     style="background-color: #219935; border-color: #219935"
                   >
                     Valider
                   </button>
-                </router-link>
               </div>
 
               <!-- <div class="col-12">

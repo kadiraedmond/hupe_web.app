@@ -1,5 +1,22 @@
 <script setup>
-import { onMounted } from "vue"
+import { onMounted, ref } from "vue"
+import { useAuthStore } from '@/store/auth.js'
+import router from '@/router/router.js'
+
+const authStore = useAuthStore()
+
+const option = ref('')
+
+const handleSubmit = () => {
+  if(option.value !== '') {
+    authStore.setCompanieService(option.value)
+    if(option.value == 'Location' || option.value == 'Transport') {
+      router.push('/choix_offres')
+    } else if(option.value == 'Gros Engins' || option.value == 'Vente Véhicule') {
+      router.push('/choix_offres2')
+    }
+  }
+}
 
 onMounted(() => {
   window.scrollTo(0, 0)
@@ -22,7 +39,7 @@ onMounted(() => {
               </div>
               <div class="col-md-12 text-center"></div>
               <div class="col-md-12 mt-4">
-                <form class="" action="verification.php" method="POST">
+                <form @submit.prevent="handleSubmit">
                   <div class="row">
                     <div class="col-md-3">
                       <div class="row">
@@ -40,8 +57,9 @@ onMounted(() => {
                               type="radio"
                               name="gridRadios"
                               id="gridRadios1"
-                              value="option1"
-                              checked
+                              value="Location"
+                              v-model="option"
+                              
                             />
                             <label class="form-check-label" for="gridRadios1">
                               Location de véhicule
@@ -66,11 +84,12 @@ onMounted(() => {
                               type="radio"
                               name="gridRadios"
                               id="gridRadios1"
-                              value="option1"
-                              checked
+                              value="Transport"
+                              v-model="option"
+                              
                             />
                             <label class="form-check-label" for="gridRadios1">
-                              Vendre des tickets de bus
+                              Vente des tickets de bus
                             </label>
                           </div>
                         </div>
@@ -92,8 +111,9 @@ onMounted(() => {
                               type="radio"
                               name="gridRadios"
                               id="gridRadios1"
-                              value="option1"
-                              checked
+                              value="Gros Engins"
+                              v-model="option"
+                              
                             />
                             <label class="form-check-label" for="gridRadios1">
                               Location de gros engins
@@ -118,8 +138,9 @@ onMounted(() => {
                               type="radio"
                               name="gridRadios"
                               id="gridRadios1"
-                              value="option1"
-                              checked
+                              value="Vente Véhicules"
+                              v-model="option"
+                              
                             />
                             <label class="form-check-label" for="gridRadios1">
                               Vente de véhicule
@@ -135,18 +156,16 @@ onMounted(() => {
                         <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Valider</button>
                       </div> -->
                     <div class="col-md-12">
-                      <router-link to="/choix_offres">
-                        <button
-                          type=""
-                          class="btn btn-primary"
-                          style="
-                            background-color: #219935;
-                            border-color: #219935;
-                          "
-                        >
-                          Valider
-                        </button>
-                      </router-link>
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="
+                          background-color: #219935;
+                          border-color: #219935;
+                        "
+                      >
+                        Valider
+                      </button>
                     </div>
                   </div>
                 </form>
