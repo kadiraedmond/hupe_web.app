@@ -108,6 +108,24 @@ const getAllVehiculeEnPromotion = () => {
   });
 };
 
+const getAllVehiculeEnPromotionForCompanie = () => {
+  axios({
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+    },
+    // urls: "hupe-api-beta-test.cyclic.app//api/promotion/for-me?from_company=" + compagnieId,
+    url: "https://hupe-api-beta-test.cyclic.app/api/promotion/vehicule_en_promotion/one/" + compagnieId,
+    method: 'GET',
+  }).then((response) => {
+    console.log('Response: ', + response.data)
+    vehiculeEnPromotion.list = response.data
+  }).catch((err) => {
+    console.log('Erreur:', err);
+  });
+}
+
 
 
 
@@ -118,7 +136,7 @@ const getAllVehiculeEnPromotion = () => {
 onMounted(() => {
   getVehiculeForCompagnie()
   getPromotionsForCompagnie();
-  getAllVehiculeEnPromotion();
+  getAllVehiculeEnPromotionForCompanie();
 });
 
 
