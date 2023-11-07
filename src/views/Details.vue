@@ -117,7 +117,7 @@ onMounted(() => {
     <section id="faq" class="faq" style="margin-top: -70px">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card mb-3 border-0" style="max-width: 540px">
               <div class="row g-0">
                 <div class="col-md-4">
@@ -125,7 +125,7 @@ onMounted(() => {
                     :src="companieStore.companie.imageLogoUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 160px"
+                    style="width: 100px; height: 100px !important; object-fit: cover;  border: 1px solid #d6d6d6;"
                   />
                 </div>
                 <div class="col-md-8">

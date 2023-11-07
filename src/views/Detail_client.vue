@@ -157,7 +157,7 @@ const reserver = async (car) => {
     <section id="faq" class="faq" style="margin-top: -70px">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card mb-3 border-0" style="max-width: 540px">
               <div class="row g-0">
                 <div class="col-md-4">
@@ -165,7 +165,7 @@ const reserver = async (car) => {
                     :src="companieStore.companie.imageLogoUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 150px; height: 150px; max-width: 150px; max-height: 150px; object-fit: cover;"
+                    style="width: 100px; height: 100px !important; object-fit: cover;  border: 1px solid #d6d6d6;"
                   />
                 </div>
                 <div class="col-md-8">
@@ -272,7 +272,7 @@ const reserver = async (car) => {
                             :src="car.vehicule_image_url"
                             class="img-fluid rounded-start"
                             alt="..."
-                            style="height: 100%; object-fit: cover"
+                            style="height: 271px; object-fit: cover;  width: 100%;"
                           />
                         </div>
                         <div class="col-md-8">

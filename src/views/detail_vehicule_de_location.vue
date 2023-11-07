@@ -284,7 +284,6 @@ onMounted(() => {
           </div>
 
           <div class="row mt-4">
-            <div class="col-md-12 mt-4 text-start">
               <!-- Button trigger modal -->
             <div class="col-md-6 text-end">
               <router-link v-if="!user.token" to="/connexion">
@@ -647,8 +646,8 @@ onMounted(() => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+             </div>
+           
             <div class="col-md-6 text-end">
               <router-link :to="`/detail/${companieStore.companie.uid}`">
                 <img
@@ -663,13 +662,13 @@ onMounted(() => {
               </router-link>
             </div>
           </div>
-        </div>
+          </div>
         <div class="col-md-7">
           <img
             :src="promotionStore.vehicule.vehicule_image_url"
             alt=""
             class="img-fluid"
-            style="border-radius: 5px; width: 800px; height: 350px; max-width: 800px; max-height: 350px"
+            style="border-radius: 5px; width: 800px; height: 350px;  max-height: 350px"
           />
           <div class="row mt-4">
             <div class="col-md-2"></div>
@@ -680,7 +679,7 @@ onMounted(() => {
                     :src="promotionStore.vehicule.vehicule_image_url"
                     alt=""
                     class="img-fluid"
-                    style="border-radius: 5px; width: 120px; height: 60px; max-width: 120px; max-height: 60px"
+                    style="border-radius: 5px; width: 120px; height: 60px;   max-height: 60px"
                   />
                 </div>
                 <div class="col-md-3">
@@ -688,7 +687,7 @@ onMounted(() => {
                     :src="promotionStore.vehicule.vehicule_image_url"
                     alt=""
                     class="img-fluid"
-                    style="border-radius: 5px; width: 120px; height: 60px; max-width: 120px; max-height: 60px"
+                    style="border-radius: 5px; width: 120px; height: 60px;   max-height: 60px"
                   />
                 </div>
                 <div class="col-md-3">
@@ -696,7 +695,7 @@ onMounted(() => {
                     :src="promotionStore.vehicule.vehicule_image_url"
                     alt=""
                     class="img-fluid"
-                    style="border-radius: 5px; width: 120px; height: 60px; max-width: 120px; max-height: 60px"
+                    style="border-radius: 5px; width: 120px; height: 60px;   max-height: 60px"
                   />
                 </div>
                 <div class="col-md-3">
@@ -704,7 +703,7 @@ onMounted(() => {
                     :src="promotionStore.vehicule.vehicule_image_url"
                     alt=""
                     class="img-fluid"
-                    style="border-radius: 5px; width: 120px; height: 60px; max-width: 120px; max-height: 60px"
+                    style="border-radius: 5px; width: 120px; height: 60px;  max-height: 60px"
                   />
                 </div>
               </div>
@@ -737,12 +736,12 @@ onMounted(() => {
             id="compagnie_card"
             style="background: #f3f4f6; box-shadow: none"
           >
-            <router-link to="/details_vente_engin">
+            <router-link to="/detail_vehicule_location">
               <img
                 :src="car.vehicule_image_url"
                 class="card-img-top"
                 alt="..."
-                style="border-radius: 10px 10px 0px 0px; max-width: 350px; width: 350px; height: 280px; margin: 0 1rem"
+                style="border-radius: 10px 10px 0px 0px;  height: 280px;"
               />
             </router-link>
             <button
@@ -754,7 +753,7 @@ onMounted(() => {
             </button>
 
             <div class="card-body">
-              <router-link to="/details_vente_engin">
+              <router-link to="/detail_vehicule_location">
                 <div class="row">
                   <div class="col-md-12">
                     <h5
