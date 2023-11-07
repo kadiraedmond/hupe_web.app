@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onBeforeMount, ref } from 'vue'
 import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc} from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
 import router from '@/router/router.js'
@@ -11,6 +11,18 @@ let docRef
 onMounted(() => {
   window.scrollTo(0, 0)
   docRef = doc(firestoreDb, 'compagnies', authStore.uniqueIdentifier)
+})
+
+let companieService
+let offre
+let offre2
+let userToken
+onBeforeMount(() => {
+  companieService = authStore.companieService
+  offre = authStore.offre
+  offre2 = authStore.offre2
+  userToken = authStore.user.stsTokenManager.accessToken
+  console.log(authStore.user.stsTokenManager.accessToken)
 })
 
 const raison_social = ref('')
@@ -28,8 +40,9 @@ const handleSubmit = async () => {
     description: description.value,
     imageCouvertureUrl: image_couverture.value || '', 
     imageLogoUrl: image_logo.value || '', 
-    offre: authStore.offre !== '' ? authStore.offre : authStore.offre2 || '', 
-    type_compagnie: authStore.companieService || '',
+    offre: offre !== '' ? offre : offre2 || '', 
+    token: userToken || '',
+    type_compagnie: companieService || '',
   })
   .then(() => console.log('Document ajouté'))
   
@@ -41,7 +54,7 @@ const handleSubmit = async () => {
   authStore.setUser(user)
   localStorage.setItem('user', JSON.stringify(user))
 
-  switch(authStore.companieService) {
+  switch(companieService) {
     case 'Location':
       router.push('/compte_vehicule')
       break

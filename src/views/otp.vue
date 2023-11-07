@@ -26,6 +26,8 @@ const handleOnComplete = async (value) => {
     authStore.setUser(user)
     localStorage.setItem('user', JSON.stringify(user))
 
+    console.log(authStore.user.stsTokenManager.accessToken)
+
     if(authStore.isNew === true) {
       router.push('/choix_services')
     } else if(authStore.isNew === false) {

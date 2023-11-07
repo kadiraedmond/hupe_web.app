@@ -9,6 +9,10 @@ import { firestoreDb } from "@/firebase/firebase.js";
 const demandeStore = useDemandeStore()
 const authStore = useAuthStore()
 
+const savedUser = JSON.parse(localStorage.getItem('user'))
+
+const userId = savedUser.uid || authStore.user.uid
+
 const usersColRef = collection(firestoreDb, 'users')
 
 
@@ -23,6 +27,23 @@ const getClientInformations = async (clientId) => {
   } catch (error) {
       console.log(error)
   }
+}
+const response = ref('')
+const handleSubmit = async (demande) => {
+  const docRef = doc(firestoreDb, 'client_publication', `${demande.uid}`)
+
+  const responseCol = collection(docRef, 'reponse')
+
+  await addDoc(responseCol, { compagnie: `${userId}`, reponse: response.value })
+              .then(() => 'Document ajouté')
+  
+  const snapshot = await getDoc(docRef)
+  let pub
+  if(snapshot.exists()) pub = snapshot.data()
+
+  await updateDoc(docRef, { lecteurs: [...pub.lecteurs, `${userId}`] })
+
+  document.querySelector('#form').reset()
 }
 
 onBeforeMount(() => {
@@ -42,7 +63,7 @@ onMounted(() => {
         type="button"
         class="btn btn-primary w-100 text-start"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal10"
+        :data-bs-target="'#exampleModal10' + index"
         style="
           background: white !important;
           box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -56,7 +77,7 @@ onMounted(() => {
       <!-- Modal -->
       <div
         class="modal fade"
-        id="exampleModal10"
+        :id="'exampleModal10' + index"
         tabindex="-1"
         aria-labelledby="exampleModalLabel10"
         aria-hidden="true"
@@ -75,7 +96,7 @@ onMounted(() => {
               ></button>
             </div>
             <div class="modal-body">
-              <form class="row g-3">
+              <form id="form" class="row g-3" @submit.prevent="handleSubmit(demande)">
                 <div class="col-md-12">
                   <p>client | {{ demande.userInfos.lastName }} {{ demande.userInfos.firstName }} </p>
                   <p>Adresse | {{ demande.userInfos.addresse }}</p>
@@ -91,6 +112,7 @@ onMounted(() => {
                     class="form-control"
                     id="validationTextarea"
                     placeholder="Reponse"
+                    v-model="response"
                     required
                   ></textarea>
                 </div>
@@ -101,7 +123,7 @@ onMounted(() => {
                     class="btn btn-primary"
                     style="background: #219935; border-color: #219935"
                   >
-                    Repondre
+                    Répondre
                   </button>
                 </div>
               </form>

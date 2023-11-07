@@ -14,6 +14,7 @@ const localisationStore = useLocalisationStore()
 const searchStore = useSearchStore()
 
 const user = authStore.user
+const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const country = ref()
 
@@ -133,28 +134,36 @@ const logout = async () => {
           </li>
 
           <li>
-            <router-link v-if="!authStore.user.uid" to="/connexion" class="nav-link scrollto"
+            <router-link v-if="!authStore.user.uid && !savedUser" to="/connexion" class="nav-link scrollto"
               ><i class="bx bx-user" id="icon_menu"></i> Connexion
             </router-link>
           </li>
           <li class="dropdown">
             <router-link to=""
-              v-if="authStore.user.uid"
+              v-if="authStore.user.uid || savedUser"
               ><i class="bx bx-user" id="icon_menu"></i>
               <span>
-                {{ authStore.user.raison_social ? authStore.user.raison_social : authStore.user.username }} 
+                {{ 
+                  authStore.user.raison_social ? authStore.user.raison_social : authStore.user.username 
+                  || savedUser.raison_social ? savedUser.raison_social : savedUser.username
+                }} 
               </span> <i class="bi bi-chevron-down"></i
             ></router-link>
             <ul style="background: #219935">
               <li>
                 <router-link 
                   to="/compte_vehicule" 
-                  v-if="(authStore.isConnected && authStore.isLocationCompany) || (user.raison_social && user.type_compagnie == 'Location')"
+                  v-if="(authStore.isConnected && authStore.isLocationCompany) 
+                        || (user.raison_social && user.type_compagnie == 'Location') 
+                        || (savedUser && savedUser.type_compagnie == 'Location')"
                   >Compte location de vehicules</router-link
                 >
               </li>
               <li>
-                <router-link to="/compte_reservation" v-if="(authStore.isConnected && authStore.isReservationCompany) || (user.raison_social && user.type_compagnie == 'Transport')"
+                <router-link to="/compte_reservation" 
+                v-if="(authStore.isConnected && authStore.isReservationCompany) 
+                      || (user.raison_social && user.type_compagnie == 'Transport') 
+                      || (savedUser && savedUser.type_compagnie == 'Transport')"
                   >Compte reservation de ticket de bus</router-link
                 >
               </li>
@@ -166,8 +175,15 @@ const logout = async () => {
               <li>
                 <router-link v-if="authStore.isConnected && authStore.isCarsSellingCompany || user.raison_social" to="/compte_achat_engin">Compte vente d'engins </router-link>
               </li>
-              <li><router-link v-if="authStore.user.uid" to="/compte_client">Mon compte </router-link></li>
-              <li><router-link v-if="authStore.user.uid" to="/" @click="logout">Déconnexion</router-link></li>
+              <li>
+                <router-link 
+                  v-if="(authStore.user.uid && !authStore.user.raison_social) 
+                        || (savedUser && !savedUser.raison_social)" 
+                  to="/compte_client">
+                  Mon compte 
+                </router-link>
+              </li>
+              <li><router-link v-if="authStore.user.uid || savedUser" to="/" @click="logout">Déconnexion</router-link></li>
             </ul>
           </li>
         </ul>
