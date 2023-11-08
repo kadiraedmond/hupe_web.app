@@ -673,11 +673,15 @@ const reserver = async (car) => {
               >
                 <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
                   <div class="col" v-for="(promoCar, i) in promotionStore.companiePromotionCars" :key="i">
-                    <div class="card" style="background: #f7f7f78a">
+                    
+                    <div
+                      class="card border-0"
+                      style="background: #f3f4f6; padding: 6px"
+                    >
                       <div class="row" style="padding: 6px">
                         <div class="col-md-12 d-flex">
                           <img
-                            :src="companieStore.companie.imageLogoUrl"
+                          :src="companieStore.companie.imageLogoUrl"
                             class="img-fluid"
                             alt="..."
                             style="width: 25px; height: 25px; margin-top: 6px"
@@ -689,7 +693,7 @@ const reserver = async (car) => {
                               margin-top: 10px;
                             "
                           >
-                            {{ companieStore.companie.raison_social }}
+                          {{ companieStore.companie.raison_social }}
                           </h6>
                           <p
                             style="
@@ -710,10 +714,15 @@ const reserver = async (car) => {
                       <div
                         class="card h-100"
                         id="compagnie_card"
-                        style="padding: 6px; background: #a6a6a621"
+                        style="
+                          padding: 6px;
+                          background: #a6a6a621;
+                          box-shadow: none;
+                          background: transparent;
+                        "
                       >
-                        <a
-                          v-bind:href="'/detail'"
+                        <router-link
+                          to="'/detail'"
                           style="
                             border: 1px solid;
                             border-radius: 5px;
@@ -730,7 +739,7 @@ const reserver = async (car) => {
                               object-fit: cover;
                             "
                           />
-                        </a>
+                    </router-link>
                         <button class="btn btn-primary" id="badges">
                           <s> {{ promoCar.ancien_montant }} FCFA </s>
                         </button>
@@ -949,9 +958,7 @@ const reserver = async (car) => {
   <!-- End #main -->
 </template>
 <style scoped>
-.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: #fff;
-    background-color: var(--bs-nav-tabs-link-active-bg);
-    border-color: var(--bs-nav-tabs-link-active-border-color);
+.nav-tabs .nav-link {
+    border: none !important;
 }
 </style>
