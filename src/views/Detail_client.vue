@@ -948,4 +948,10 @@ const reserver = async (car) => {
   </main>
   <!-- End #main -->
 </template>
-<style></style>
+<style scoped>
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #fff;
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+}
+</style>

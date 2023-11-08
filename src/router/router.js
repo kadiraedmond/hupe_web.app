@@ -33,6 +33,7 @@ import Reserve from '@/views/detail_reservation_ticket.vue';
 import Dengin from '@/views/detail_location_engin.vue';
 import Engin from '@/views/gros_engin.vue';
 import Promotion from '@/views/promotion.vue';
+import Notation from '@/views/notation.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -251,6 +252,13 @@ const routes = [
     path: '/promotion',
     name: 'Promotion',
     component: Promotion,
+    
+  },
+
+  {
+    path: '/notation',
+    name: 'Notation',
+    component: Notation,
     
   },
 

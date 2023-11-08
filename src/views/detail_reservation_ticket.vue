@@ -424,10 +424,10 @@ onMounted(() => {
         </div>
         <div class="col-md-7">
           <img
-            src="/public/assets/img/cc.jpg"
+            src="/public/assets/img/rb.jpg"
             alt=""
             class="img-fluid"
-            style="border-radius: 5px"
+            style="border-radius: 5px ;height: 397px; width: 100%; object-fit: cover;"
           />
         </div>
       </div>
@@ -457,7 +457,7 @@ onMounted(() => {
           >
             <router-link to="/details_vente_engin">
               <img
-                src="/public/assets/img/car2.jpg"
+                src="/public/assets/img/rb.jpg"
                 class="card-img-top"
                 alt="..."
                 style="border-radius: 10px 10px 0px 0px"
