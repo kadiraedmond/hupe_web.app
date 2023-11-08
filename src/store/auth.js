@@ -15,6 +15,7 @@ export const useAuthStore = defineStore('authStore', {
         companieService: '', 
         offre: '',
         offre2: '', 
+        isCompanie: false, 
         isLocationCompany: false,
         isReservationCompany: false,
         isBigEnginsCompany: false,
@@ -27,49 +28,51 @@ export const useAuthStore = defineStore('authStore', {
     actions: {
         async authenticate(authInstance, phone, verifier) {
             try {
-                const q = query(companiesColRef, where('telephone', '==', `${phone}`))
-                const snapshot = await getDocs(q)
-
-                console.log(snapshot.docs)
-
-                if(snapshot.docs.length > 0) {
-                    this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
-                } else {
-                    this.isNew = true
-                    const newCompanie = {
-                        uid: '', 
-                        adresse: '', 
-                        adresse_mail: '', 
-                        country: '', 
-                        createdAt: new Date(), 
-                        description: '', 
-                        imageCouvertureUrl: '', 
-                        imageLogoUrl: '', 
-                        joinedAt: new Date(), 
-                        latitude: '', 
-                        longitude: '', 
-                        mise_avant: true, 
-                        offre: '', 
-                        raison_social: '',
-                        responsable: '', 
-                        site_web: '', 
-                        status: '', 
-                        telephone: `${phone}`,
-                        token: '',
-                        type_compagnie: ''
+                if(this.isCompanie === true) {
+                    const q = query(companiesColRef, where('telephone', '==', `${phone}`))
+                    const snapshot = await getDocs(q)
+    
+                    if(snapshot.docs.length > 0) {
+                        this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
+                    } else {
+                        this.isNew = true
+                        const newCompanie = {
+                            uid: '', 
+                            adresse: '', 
+                            adresse_mail: '', 
+                            country: '', 
+                            createdAt: new Date(), 
+                            description: '', 
+                            imageCouvertureUrl: '', 
+                            imageLogoUrl: '', 
+                            joinedAt: new Date(), 
+                            latitude: '', 
+                            longitude: '', 
+                            mise_avant: true, 
+                            offre: '', 
+                            raison_social: '',
+                            responsable: '', 
+                            site_web: '', 
+                            status: '', 
+                            telephone: `${phone}`,
+                            token: '',
+                            type_compagnie: ''
+                        }
+    
+                        this.newCompanieData = newCompanie
+    
+                        const docRef = await addDoc(companiesColRef, newCompanie)
+    
+                        this.uniqueIdentifier = `${docRef.id}`
+                        console.log(this.uniqueIdentifier)
+    
+                        const companieDocRef = doc(companiesColRef, docRef.id)
+    
+                        await updateDoc(companieDocRef, { uid: `${docRef.id}` })
+    
+                        this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
                     }
-
-                    this.newCompanieData = newCompanie
-
-                    const docRef = await addDoc(companiesColRef, newCompanie)
-
-                    this.uniqueIdentifier = `${docRef.id}`
-                    console.log(this.uniqueIdentifier)
-
-                    const companieDocRef = doc(companiesColRef, docRef.id)
-
-                    await updateDoc(companieDocRef, { uid: `${docRef.id}` })
-
+                } else {
                     this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
                 }
                 } catch (error) {
@@ -99,6 +102,9 @@ export const useAuthStore = defineStore('authStore', {
         }, 
         setOffre2(offre2) {
             this.offre2 = `${offre2}`
+        }, 
+        setIsCompanie(val) {
+            this.isCompanie = val
         }
     }
 })

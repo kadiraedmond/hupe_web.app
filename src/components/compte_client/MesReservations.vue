@@ -3,8 +3,9 @@ import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
 import { onBeforeMount, onMounted, ref } from "vue";
 
-import { addDoc, updateDoc, collection } from 'firebase/firestore'
+import { addDoc, updateDoc, setDoc, getDoc, doc, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
+import { toast } from "vue3-toastify"
 
 import { useReservationStore } from '@/store/reservation.js'
 
@@ -15,17 +16,83 @@ const reservationStore = useReservationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   userStore.setUser(userId)
   reservationStore.setUserReservations(userId)
 })
 
-const option = ref()
+const option = ref('')
+const autre_raison = ref('')
 
 const annul = async (reservation) => {
-  // 
+  const docRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)
+
+  console.log(option.value)
+
+  let raison
+  if(option.value !== '' || option.value) {
+    raison = option.value
+  } else if(option.value == 'Autre' && autre_raison.value !== '') {
+    raison = autre_raison.value
+  }
+
+  await setDoc(docRef, { status: 'Annuler', raison_annulation: raison }, { merge: true })
+        .then(() => {
+          console.log('Document mis a jour')
+          toast.warn("Réservation annulée", {
+            autoClose: 3500,
+            position: toast.POSITION.TOP_RIGHT,
+          })
+        }) 
+  
+  document.querySelector('.btn-close').click()
+}
+
+const date_report = ref()
+
+const reporter = async (reservation) => {
+  
+  const reportColRef = collection(firestoreDb, 'reservation_reporter')
+
+  const { status, ...extracted_reservation } = reservation
+
+  const docRef = await addDoc(reportColRef, { extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
+        .then(() => {
+          console.log('Document ajouté')
+          toast.info("Réservation reportée", {
+            autoClose: 3500,
+            position: toast.POSITION.TOP_RIGHT,
+          })
+        }) 
+
+  await updateDoc(docRef, { uid: `${docRef.id}` })
+
+  document.querySelector('#reportForm').reset()
+  document.querySelector('.btn-close').click()
+}
+
+const message = ref('')
+
+const sendMessage = async (reservation) => {
+  const doc_id = `${userId}_${reservation.companieInfos.uid}`
+
+  const conversationDocRef = doc(firestoreDb, 'conversations', `${doc_id}`)
+
+  const docRef = await setDoc(conversationDocRef, {})
+
+  const messageColRef = collection(docRef, 'messages')
+  
+  const data = {
+    clientNumber: savedUser.telephone || authStore.user.telephone,
+    message: message.value,
+    otherUserId: reservation.companieInfos.uid,
+    sendAt: Timestamp.now(),
+    userId: userId
+  }
+
+  await addDoc(messageColRef, data).then('Document ajouté')
 }
 
 </script>
@@ -161,9 +228,44 @@ const annul = async (reservation) => {
                         border-color: #219935;
                         color: #219935;
                       "
+                      data-bs-toggle="modal"
+                      data-bs-target="#reportModal10"
                     >
                       Reporter
                     </button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="reportModal10"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel10"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                              Donnez les informations du report
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <form id="reportForm" @submit.prevent="reporter(reservation)">
+                            <label>Nouvelle Date</label>
+                            <input v-model="date_report" type="date" />
+
+                            <button type="submit" class="btn btn-primary">
+                              Enregistrer
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="col-md-6">
@@ -220,7 +322,7 @@ const annul = async (reservation) => {
                               aria-label="Close"
                             ></button>
                           </div>
-                          <form id="reportForm" @submit.prevent="sendMessage" style="height: 500px">
+                          <form id="reportForm" @submit.prevent="sendMessage(reservation)" style="height: 500px">
                             <div class="d-flex w-100" style="position: absolute; bottom: 0">
                               <input type="text" v-model="message" class="w-100" />
                               <button type="submit" class="btn btn-primary">
@@ -273,13 +375,13 @@ const annul = async (reservation) => {
                           
                           <div>
                             <select v-model="option" class="w-100 mb-2">
-                              <option value="" selected>Je n'ai plus besoin du ticket</option>
-                              <option value="">J'ai changé d'avis</option>
-                              <option value="">J'ai une autre option</option>
-                              <option value="">Autre</option>
+                              <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du ticket</option>
+                              <option value="J'ai changé d'avis">J'ai changé d'avis</option>
+                              <option value="J'ai une autre option">J'ai une autre option</option>
+                              <option value="Autre">Autre</option>
                             </select>
                             <div class="mb-2">
-                              <textarea class="w-100" cols="30" rows="10" />
+                              <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
                             </div>
                           </div>
                           <button @click="annul(reservation)" class="btn btn-primary">Enregistrer</button>

@@ -38,6 +38,18 @@ onMounted(() => {
   window.scrollTo(0, 0)
 })
 
+const isCompanie = ref(false)
+
+const handleInput = () => {
+  if(!isCompanie.value) {
+    isCompanie.value = true
+    authStore.setIsCompanie(true)
+  } else if(isCompanie.value) {
+    isCompanie.value = false
+    authStore.setIsCompanie(false)
+  }
+}
+
 </script>
 
 <template>
@@ -83,6 +95,19 @@ onMounted(() => {
                       </div>
                       
                       <div class="text-center">
+                        <div class="">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gridRadios"
+                            @click="handleInput"
+                            :checked="isCompanie"
+                          />
+                          {{ ' ' }}
+                          <label class="form-check-label" for="gridRadios1">
+                            Nous sommes une compagnie
+                          </label>
+                        </div>
                         <button
                           type="submit"
                           class="btn btn-primary mt-2"
