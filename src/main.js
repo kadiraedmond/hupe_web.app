@@ -7,13 +7,8 @@
 // import './assets/slide2.js'
 // import './assets/font.css'
 
-<<<<<<< HEAD
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-=======
-// import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
->>>>>>> firebase-connection
 
 import VueTelInput from 'vue-tel-input'
 import 'vue-tel-input/vue-tel-input.css'

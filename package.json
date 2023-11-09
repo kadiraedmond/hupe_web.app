@@ -11,11 +11,8 @@
     "axios": "^1.6.0",
     "bootstrap": "^5.3.1",
     "firebase": "^10.4.0",
-<<<<<<< HEAD
-=======
     "pinia": "^2.1.7",
     "uuid": "^9.0.1",
->>>>>>> firebase-connection
     "vue": "^3.3.4",
     "vue-otp-input": "^1.0.0",
     "vue-router": "^4.2.4",

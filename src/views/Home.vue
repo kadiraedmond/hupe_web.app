@@ -124,32 +124,6 @@ onMounted(() => {
             data-bs-ride="carousel"
             style="height: 400px"
           >
-<<<<<<< HEAD
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img
-                  :src="slideImages[0].downloadURL"
-                  class="d-block w-100 h-50"
-                  style="max-height: 350px; object-fit: cover; border-radius: 10px"
-                  alt="..."
-                />
-              </div>
-              <div class="carousel-item">
-                <img
-                  :src="slideImages[1].downloadURL"
-                  class="d-block w-100 h-50"
-                  style="max-height: 350px; object-fit: cover; border-radius: 10px"
-                  alt="..."
-                />
-              </div>
-              <div class="carousel-item">
-                <img
-                  :src="slideImages[1].downloadURL"
-                  class="d-block w-100 h-50"
-                  style="max-height: 350px; object-fit: cover; border-radius: 10px"
-                  alt="..."
-                />
-=======
             <div class="carousel-indicators">
               <button
                 type="button"
@@ -211,7 +185,6 @@ onMounted(() => {
                     style="max-height: 350px; height: 350px; object-fit: cover"
                   />
                 </router-link>
->>>>>>> firebase-connection
               </div>
             </div>
           </div>
@@ -349,214 +322,8 @@ onMounted(() => {
     <section id="features" class="features" style="margin-top: -48px">
       <div class="container">
         <div class="row">
-<<<<<<< HEAD
-          <div class="col-12">
-            <div class="section-title text-center">
-              <h2>En promotions</h2>
-              <p>
-                Ne manquez pas nos offres spéciales du moment ! Découvrez des
-                promotions exclusives pour rendre votre voyage encore plus
-                mémorable.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card" style="background: #a6a6a621">
-              <div class="row" style="padding: 6px">
-                <div class="col-md-12 d-flex">
-                  <img
-                    :src="companies[5].imageLogoUrl"
-                    class="img-fluid"
-                    alt="..."
-                    style="width: 25px; height: 25px; margin-top: 6px"
-                  />
-                  <h6
-                    style="font-size: 12px; margin-left: 5px; margin-top: 10px"
-                  >
-                    {{companies[5].raison_social}}
-                  </h6>
-                  <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
-                    <img
-                      src="/public/assets/img/icone/map.png"
-                      class="img-fluid"
-                      alt="..."
-                    />
-                    {{companies[5].adresse}}
-                  </p>
-                </div>
-              </div>
-              <div
-                class="card h-100"
-                id="compagnie_card"
-                style="padding: 6px; background: #a6a6a621"
-              >
-                <a
-                  v-bind:href="'/detail'"
-                  style="
-                    border: 1px solid;
-                    border-radius: 5px;
-                    border-color: #a6a6a6;
-                  "
-                >
-                  <img
-                    :src="companie5SubData[0].vehicule_image_url"
-                    class="card-img-top"
-                    alt="..."
-                    style="
-                      border-radius: 5px 5px 5px 5px;
-                      height: 215px !important;
-                      object-fit: cover;
-                    "
-                  />
-                </a>
-                <button class="btn btn-primary" id="badges">
-                  <s> 5000 FCFA </s>
-                </button>
-                <button class="btn btn-primary" id="badges0">{{ companie5SubData[0].montant }} FCFA</button>
-                <button class="btn btn-primary" id="badges012">93%</button>
-                <button class="btn btn-primary" id="badges0121">
-                  {{ companie5SubData[0].vehicule }}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card" style="background: #a6a6a621">
-              <div class="row" style="padding: 6px">
-                <div class="col-md-12 d-flex">
-                  <img
-                    :src="companies[6].imageLogoUrl"
-                    class="img-fluid"
-                    alt="..."
-                    style="width: 25px; height: 25px; margin-top: 6px"
-                  />
-                  <h6
-                    style="font-size: 12px; margin-left: 5px; margin-top: 10px"
-                  >
-                    {{companies[6].raison_social}}
-                  </h6>
-                  <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
-                    <img
-                      src="/public/assets/img/icone/map.png"
-                      class="img-fluid"
-                      alt="..."
-                    />
-                    {{companies[6].adresse}}
-                  </p>
-                </div>
-              </div>
-              <div
-                class="card h-100"
-                id="compagnie_card"
-                style="padding: 6px; background: #a6a6a621"
-              >
-                <a
-                  v-bind:href="'/detail'"
-                  style="
-                    border: 1px solid;
-                    border-radius: 5px;
-                    border-color: #a6a6a6;
-                  "
-                >
-                  <img
-                    :src="companie6SubData[0].vehicule_image_url"
-                    class="card-img-top"
-                    alt="..."
-                    style="
-                      border-radius: 5px 5px 5px 5px;
-                      height: 215px !important;
-                      object-fit: cover;
-                    "
-                  />
-                </a>
-                <button class="btn btn-primary" id="badges">
-                  <s> 5000 FCFA </s>
-                </button>
-                <button class="btn btn-primary" id="badges0">{{ companie6SubData[0].montant }} FCFA</button>
-                <button class="btn btn-primary" id="badges012">93%</button>
-                <button class="btn btn-primary" id="badges0121">
-                  {{ companie6SubData[0].vehicule }}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card" style="background: #a6a6a621">
-              <div class="row" style="padding: 6px">
-                <div class="col-md-12 d-flex">
-                  <img
-                    :src="companies[7].imageLogoUrl"
-                    class="img-fluid"
-                    alt="..."
-                    style="width: 25px; height: 25px; margin-top: 6px"
-                  />
-                  <h6
-                    style="font-size: 12px; margin-left: 5px; margin-top: 10px"
-                  >
-                    {{companies[7].raison_social}}
-                  </h6>
-                  <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
-                    <img
-                      src="/public/assets/img/icone/map.png"
-                      class="img-fluid"
-                      alt="..."
-                    />
-                    {{companies[7].adresse}}
-                  </p>
-                </div>
-              </div>
-              <div
-                class="card h-100"
-                id="compagnie_card"
-                style="padding: 6px; background: #a6a6a621"
-              >
-                <a
-                  v-bind:href="'/detail'"
-                  style="
-                    border: 1px solid;
-                    border-radius: 5px;
-                    border-color: #a6a6a6;
-                  "
-                >
-                  <img
-                    :src="companie7SubData[0].vehicule_image_url"
-                    class="card-img-top"
-                    alt="..."
-                    style="
-                      border-radius: 5px 5px 5px 5px;
-                      height: 215px !important;
-                      object-fit: cover;
-                    "
-                  />
-                </a>
-                <button class="btn btn-primary" id="badges">
-                  <s> 5000  FCFA </s>
-                </button>
-                <button class="btn btn-primary" id="badges0">{{ companie7SubData[0].montant }} FCFA</button>
-                <button class="btn btn-primary" id="badges012">93%</button>
-                <button class="btn btn-primary" id="badges0121">
-                  {{ companie7SubData[0].vehicule }}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
-=======
           <div class="col-8">
             <div class="section-title">
->>>>>>> firebase-connection
               <h2>Compagnies de locations populaires</h2>
               <p id="section-p">
                 Explorez les compagnies de location les plus appréciées par les
@@ -882,9 +649,9 @@ onMounted(() => {
                         <div class="col-8 d-flex">
                           <img
                           :src="popularDestination.companieInfos.imageLogoUrl"
-                            alt
-                            class="w-px-40 h-auto rounded-circle"
-                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                          alt=""
+                          class="w-px-40 h-auto rounded-circle"
+                          style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
                           />
                           <div>
                             <div class="card-body d-flex">
@@ -1053,14 +820,14 @@ onMounted(() => {
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div
             class="col"
-            v-for="(companie, index) in companieStore.locationCompanies"
+            v-for="(companie, index) in companieStore.vipLocationCompanies"
             :key="index"
           >
             <div
               class="card h-100"
               id="compagnie_card"
               style="background: #f3f4f6; box-shadow: none"
-              v-if="companie.offre == 'vip' && index < 4"
+              v-if="index < 4"
             >
               <router-link to="/details_location_engin" style="color: #000">
                 <img
@@ -1288,14 +1055,14 @@ onMounted(() => {
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div
             class="col"
-            v-for="(companie, index) in companieStore.locationCompanies"
+            v-for="(companie, index) in companieStore.vipLocationCompanies"
             :key="index"
           >
             <div
               class="card h-100"
               id="compagnie_card"
               style="background: #f3f4f6; box-shadow: none"
-              v-if="companie.offre == 'vip' && index < 4"
+              v-if="index < 4"
             >
               <router-link to="/details_location_engin" style="color: #000">
                 <img
@@ -1526,15 +1293,11 @@ onMounted(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
-<<<<<<< HEAD
-              <img src="/public/assets/img/blog.jpg" class="card-img-top" alt="..." />
-=======
               <img
                 src="/public/assets/img/blog.jpg"
                 class="card-img-top"
                 alt="..."
               />
->>>>>>> firebase-connection
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1576,15 +1339,11 @@ onMounted(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
-<<<<<<< HEAD
-              <img src="/public/assets/img/blog-1.jpg" class="card-img-top" alt="..." />
-=======
               <img
                 src="/public/assets/img/blog-1.jpg"
                 class="card-img-top"
                 alt="..."
               />
->>>>>>> firebase-connection
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1626,15 +1385,11 @@ onMounted(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
-<<<<<<< HEAD
-              <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="..." />
-=======
               <img
                 src="/public/assets/img/blog-2.jpg"
                 class="card-img-top"
                 alt="..."
               />
->>>>>>> firebase-connection
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1676,15 +1431,11 @@ onMounted(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
-<<<<<<< HEAD
-              <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="..." />
-=======
               <img
                 src="/public/assets/img/blog-2.jpg"
                 class="card-img-top"
                 alt="..."
               />
->>>>>>> firebase-connection
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
