@@ -19,8 +19,17 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-body {
-  font-family: "Open Sans", sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Poppins', "Open Sans", sans-serif;
   color: #444444;
 }
 
@@ -2052,7 +2061,7 @@ section {
     border-radius: 10px;
     border-color: #219935;
     background: #d5f8e5;
-    margin-left: 75px;
+    margin-left: 10px;
     height: 50px;
 }
 
@@ -2061,7 +2070,7 @@ section {
     border-radius: 10px;
     border-color: #219935;
     background: #d5f8e5;
-    margin-left: 75px;
+    margin-left: 10px;
     height: 50px;
 }
 
@@ -2070,7 +2079,27 @@ section {
     border-radius: 10px;
     border-color: #219935;
     background: #d5f8e5;
-    margin-left: 75px;
+    margin-left: 10px;
+    height: 50px;
+
+}
+
+#otp5{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    margin-left: 10px;
+    height: 50px;
+
+}
+
+#otp6{
+  width: 60px;
+    border-radius: 10px;
+    border-color: #219935;
+    background: #d5f8e5;
+    margin-left: 10px;
     height: 50px;
 
 }

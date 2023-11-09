@@ -1,4 +1,141 @@
-<script></script>
+<script setup>
+import { onBeforeMount, onMounted, ref } from "vue"
+import { useRoute } from 'vue-router'
+import { useCompanieStore } from '@/store/companie.js'
+import { usePromotionStore } from '@/store/promotion.js'
+import Loader from "@/components/Loader.vue"
+
+import { collection, doc, addDoc } from 'firebase/firestore'
+import { firestoreDb } from '@/firebase/firebase.js'
+import { toast } from 'vue3-toastify'
+
+import { useAuthStore } from '@/store/auth.js'
+import { v4 as uuidv4 } from 'uuid'
+
+const route = useRoute()
+const companieStore = useCompanieStore()
+const promotionStore = usePromotionStore()
+
+const authStore = useAuthStore()
+const companieId = route.params.id
+
+onBeforeMount(async () => {
+  await companieStore.setCompanieById(companieId)
+
+  toast.success(`Bienvenue chez ${companieStore.companie.raison_social}`, { 
+    autoClose: 3500, 
+    position: toast.POSITION.TOP_CENTER
+  })
+
+  companieStore.setCompanieCars(companieId)
+  promotionStore.setCompaniePromotionCars(companieId)
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
+const user = JSON.parse(localStorage.getItem('user')) || authStore.user
+
+const name = ref('')
+const avecChauffeur = ref(false)
+const sansChauffeur = ref(false)
+const capitalPays = ref(false)
+const interieurPays = ref(false)
+const dateRetrait = ref()
+const heureRetrait = ref()
+const lieuRetrait = ref('')
+const dateRetour = ref()
+const permis = ref()
+
+const toggleChauffeur = (num) => {
+  if(num == 1) {
+    avecChauffeur.value = true
+    sansChauffeur.value = false
+  } else if(num == 2) {
+    sansChauffeur.value = true
+    avecChauffeur.value = false
+  }
+}
+
+const togglePays = (num) => {
+  if(num == 3) {
+    capitalPays.value = true
+    interieurPays.value = false
+  } else if(num == 4) {
+    interieurPays.value = true
+    capitalPays.value = false
+  }
+}
+
+const handleFileChange = () => {
+    const fileInput = document.querySelector('#fileInput')
+    
+    const selectedFile = fileInput.files[0]
+
+    permis.value = selectedFile
+}
+
+const locationColRef = collection(firestoreDb, 'location_vehicules')
+
+const isLoading = ref(false)
+
+const reserver = async (car) => {
+  isLoading.value = true
+
+  const Data = {
+    boite: car.boite,
+    chauffeur: avecChauffeur.value === true ? 'Oui' : 'Non',
+    client_id: user.uid || '',
+    client_profil_url: user.imageUrl || '',
+    compagnie_id: companieId || companieStore.companie.uid,
+    created_at: new Date(),
+    date_retour: dateRetour.value,
+    date_retrait: dateRetrait.value,
+    enPromo: car.enPromo,
+    heure_retrait: heureRetrait.value,
+    identite_image_url: permis.value || '',
+    interieurPays: interieurPays.value === true ? 'Oui' : 'Non',
+    latitude: '',
+    lieu_retrait: lieuRetrait.value,
+    longitude: '',
+    modele: car.modele,
+    montant: car.montant,
+    moteur: car.moteur,
+    nom_client: name.value,
+    number: '',
+    payement: 'En attente',
+    plaque_vehicule: car.serie_vehicule,
+    status: 'En attente',
+    telephone_client: user.telephone,
+    ticket_id: uuidv4(),
+    vehicule: car.vehicule,
+    vehicule_image_url: car.vehicule_image_url,
+  }
+
+  try {
+    const docRef = await addDoc(locationColRef, Data)
+
+    if(docRef) {
+      console.log('Document ajouté avec success')
+      
+      isLoading.value = false
+
+      document.querySelector('.btn-close').click()
+
+      toast.success("Réservation effectuée avec succès", { 
+        autoClose: 3500, 
+        position: toast.POSITION.TOP_CENTER
+      })
+    }
+
+    document.querySelector('#reservationForm').reset()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+</script>
 
 <template>
   <main id="main">
@@ -9,7 +146,7 @@
       style="margin-top: 0px"
     >
       <img
-        src="/public/assets/img/car2.jpg"
+        :src="companieStore.companie.imageCouvertureUrl"
         alt=""
         class="img-fluid w-100"
         style="height: 380px; object-fit: cover"
@@ -18,42 +155,30 @@
     <!-- End Portfolio Details Section -->
 
     <section id="faq" class="faq" style="margin-top: -70px">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
         <div class="row g-4">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card mb-3 border-0" style="max-width: 540px">
               <div class="row g-0">
                 <div class="col-md-4">
                   <img
-                    src="/public/assets/img/avatars/1.png"
+                    :src="companieStore.companie.imageLogoUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 160px"
+                    style="width: 100px; height: 100px !important; object-fit: cover;  border: 1px solid #d6d6d6;"
                   />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">BG compagnies</h5>
+                    <h5 class="card-title">{{ companieStore.companie.raison_social }}</h5>
                     <p class="card-text">
-                      Lorem ipsum dolor sit amet, consectetur
+                      {{ companieStore.companie.description }}
                     </p>
-                    <p class="card-text">
-                      Lorem ipsum dolor sit amet, consectetur
-                    </p>
+                    
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6 text-end">
-            <a v-bind:href="'/dashboard'" id="a_compagnie">
-              <button
-                class="btn btn-primary"
-                style="background: #219935; border-color: #219935"
-              >
-                Tableau de bord
-              </button>
-            </a>
           </div>
         </div>
       </div>
@@ -98,34 +223,9 @@
                   Promotion
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="contact-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#contact-tab-pane"
-                  type="button"
-                  role="tab"
-                  aria-controls="contact-tab-pane"
-                  aria-selected="false"
-                >
-                  Réservations
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="disabled-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#disabled-tab-pane"
-                  type="button"
-                  role="tab"
-                  aria-controls="disabled-tab-pane"
-                  aria-selected="false"
-                >
-                  Tarifs
-                </button>
-              </li>
+              <!-- <li class="nav-item" role="presentation">
+              <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Tarifs</button>
+            </li> -->
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
@@ -164,23 +264,23 @@
                 tabindex="0"
               >
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-6 mb-2" v-for="(car, i) in companieStore.companieCars" :key="i">
                     <div class="card mb-3" style="max-width: 540px">
                       <div class="row g-0">
                         <div class="col-md-4">
                           <img
-                            src="/public/assets/img/car2.jpg"
+                            :src="car.vehicule_image_url"
                             class="img-fluid rounded-start"
                             alt="..."
-                            style="height: 100%; object-fit: cover"
+                            style="height: 271px; object-fit: cover;  width: 100%;"
                           />
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
                             <div class="row">
                               <div class="col-md-6">
-                                <p class="card-text">
-                                  <strong>Hyundai 2022 </strong>
+                                <p class="card-text" style="font-size: 13px">
+                                  <strong>{{ car.moteur }} | {{ car.modele }} | {{ car.anne_vehicule }} </strong>
                                 </p>
                               </div>
                               <div class="col-md-6 text-end">
@@ -189,110 +289,371 @@
                                   style="
                                     background-color: #219935;
                                     border-color: #219935;
+                                    font-size: 13px;
                                   "
                                 >
-                                  5000 FCFA
+                                  {{ car.montant }} FCFA
                                 </button>
                               </div>
+
                               <div class="col-md-12 mt-3">
-                                <p class="card-text">
-                                  <strong>Modèle : </strong> Santafé
+                                <p class="card-text" style="font-size: 13px">
+                                  {{ car.moteur }} | {{ car.boite }} | {{ car.serie_vehicule }}
                                 </p>
                               </div>
                               <div class="col-md-12 mt-3">
-                                <p class="card-text">
-                                  <strong>Essence : </strong> Automobile
+                                <p class="card-text" style="font-size: 13px">
+                                  Location simple | <strong> {{ car.montant }} CFA </strong>
                                 </p>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text">
-                                  <strong>Immatriculation : </strong> BG 5282
+                                <p class="card-text" style="font-size: 13px">
+                                  Location avec chauffeur |
+                                  <strong> {{ car.avecchauffeurprix }} CFA </strong>
+                                </p>
+                                <p class="card-text" style="font-size: 13px">
+                                  Location vers l'intérieur |
+                                  <strong> {{ car.interieurpaysprix }} CFA </strong>
                                 </p>
                               </div>
 
                               <div class="col-md-12 mt-4 text-start">
-                                <a
-                                  v-bind:href="'/formulaire_reservation'"
-                                  id="a_compagnie"
-                                >
+                                <!-- Button trigger modal -->
+                                <router-link :to="`/detail_vehicule_location/${car.uid}`">
                                   <button
-                                    class="btn btn-primary w-50"
+                                    type="button"
+                                    class="btn btn-primary"
                                     style="
                                       background-color: #219935;
                                       border-color: #219935;
                                     "
+                                    data-bs-toggle="modal"
+                                    :data-bs-target="'#exampleModal' + i"
                                   >
-                                    Reserver
+                                    Voir plus
                                   </button>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card mb-3" style="max-width: 540px">
-                      <div class="row g-0">
-                        <div class="col-md-4">
-                          <img
-                            src="/public/assets/img/car2.jpg"
-                            class="img-fluid rounded-start"
-                            alt="..."
-                            style="height: 100%; object-fit: cover"
-                          />
-                        </div>
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-md-6">
-                                <p class="card-text">
-                                  <strong>Hyundai 2022 </strong>
-                                </p>
-                              </div>
-                              <div class="col-md-6 text-end">
-                                <button
-                                  class="btn btn-primary"
-                                  style="
-                                    background-color: #219935;
-                                    border-color: #219935;
-                                  "
-                                >
-                                  5000 FCFA
-                                </button>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text">
-                                  <strong>Modèle : </strong> Santafé
-                                </p>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text">
-                                  <strong>Essence : </strong> Automobile
-                                </p>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text">
-                                  <strong>Immatriculation : </strong> BG 5282
-                                </p>
-                              </div>
+                                </router-link>
 
-                              <div class="col-md-12 mt-4 text-start">
-                                <a
-                                  v-bind:href="'/formulaire_reservation'"
-                                  id="a_compagnie"
+                                <!-- Modal -->
+                                <!-- <div
+                                  class="modal fade"
+                                  :id="'exampleModal' + i"
+                                  tabindex="-1"
+                                  aria-labelledby="exampleModalLabel"
+                                  aria-hidden="true"
                                 >
-                                  <button
-                                    class="btn btn-primary w-50"
-                                    style="
-                                      background-color: #219935;
-                                      border-color: #219935;
-                                    "
-                                  >
-                                    Reserver
-                                  </button>
-                                </a>
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div
+                                        class="modal-header"
+                                        style="background: #deeee4"
+                                      >
+                                        <h1
+                                          class="modal-title fs-5"
+                                          id="exampleModalLabel"
+                                          style="font-size: 17px !important"
+                                        >
+                                          Réservation de véhicule
+                                        </h1>
+                                        <button
+                                          type="button"
+                                          class="btn-close"
+                                          data-bs-dismiss="modal"
+                                          aria-label="Close"
+                                        ></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form
+                                          class="row g-3 needs-validation"
+                                          novalidate
+                                          @submit.prevent="reserver(car)"
+                                          id="reservationForm"
+                                        >
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Nom & prénoms</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="name"
+                                              required
+                                            />
+                                          </div>
+
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Téléphone</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="user.telephone"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Marque</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.vehicule"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Immatriculation</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.serie_vehicule"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Modèle</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.modele"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Moteur</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.moteur"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Transmission</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.boite"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Avec chauffeur</label
+                                            >
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="gridRadios"
+                                                id="gridRadios2"
+                                                value="Oui"
+                                                @click="toggleChauffeur(1)"
+                                                v-model="avecChauffeur"
+                                                :checked="avecChauffeur"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Sans chauffeur</label
+                                            >
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="gridRadios"
+                                                id="gridRadios1"
+                                                value="Non"
+                                                @click="toggleChauffeur(2)"
+                                                v-model="sansChauffeur"
+                                                :checked="sansChauffeur"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Capital du pays</label
+                                            >
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="gridRadios"
+                                                id="gridRadios4"
+                                                value="Non"
+                                                @click="togglePays(3)"
+                                                v-model="capitalPays"
+                                                :checked="capitalPays"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Intérieur du pays</label
+                                            >
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="gridRadios"
+                                                id="gridRadios5"
+                                                value="Oui"
+                                                @click="togglePays(4)"
+                                                v-model="interieurPays"
+                                                :checked="interieurPays"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Date de Retrait</label
+                                            >
+                                            <input
+                                              type="date"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="dateRetrait"
+                                              required
+                                            />
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Heure de Retrait</label
+                                            >
+                                            <input
+                                              type="time"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="heureRetrait"
+                                              required
+                                            />
+                                          </div>
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Lieu du Retrait</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="lieuRetrait"
+                                              required
+                                            />
+                                          </div>
+
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Date de retour</label
+                                            >
+                                            <input
+                                              type="date"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="dateRetour"
+                                              required
+                                            />
+                                          </div>
+
+                                          <Loader 
+                                            style="position: absolute; left: 35%; top: 15%"
+                                            v-if="isLoading" 
+                                          />
+
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Permis de conduire</label
+                                            >
+                                            <input
+                                              type="file"
+                                              class="form-control"
+                                              id="fileInput"
+                                              @change="handleFileChange"
+                                              required
+                                            />
+                                          </div>
+
+                                          <div class="col-12 text-center">
+                                            <button
+                                              class="btn btn-primary"
+                                              type="submit"
+                                              style="
+                                                background: #219935;
+                                                border-color: #219935;
+                                              "
+                                            >
+                                              Réserver
+                                            </button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div> -->
+                                
                               </div>
                             </div>
                           </div>
@@ -302,6 +663,7 @@
                   </div>
                 </div>
               </div>
+
               <div
                 class="tab-pane fade"
                 id="profile-tab-pane"
@@ -309,426 +671,87 @@
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-                <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
-                  <div class="col">
-                    <div class="card h-100" id="compagnie_card">
-                      <a href="detail_compagnie.html">
-                        <img
-                          src="/public/assets/img/car2.jpg"
-                          class="card-img-top"
-                          alt="..."
-                          style="border-radius: 10px 10px 10px 10px"
-                        />
-                      </a>
-                      <button class="btn btn-primary" id="badges">
-                        <s> 5000 FCFA </s>
-                      </button>
-                      <button class="btn btn-primary" id="badges0">
-                        2000 FCFA
-                      </button>
-                      <button class="btn btn-primary" id="badges01">
-                        <strong> 93% </strong> (500 +)
-                      </button>
-
-                      <div class="card-body">
-                        <a v-bind:href="'/detail'" id="a_compagnie">
-                          <div class="row">
-                            <div class="col-md-8">
-                              <h5 class="card-title" style="font-size: 15px">
-                                Hyundai 2022
-                              </h5>
-                            </div>
-                            <div class="col-md-4 text-end">
-                              <p>Santafé</p>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100" id="compagnie_card">
-                      <a href="detail_compagnie.html">
-                        <img
-                          src="/public/assets/img/car2.jpg"
-                          class="card-img-top"
-                          alt="..."
-                          style="border-radius: 10px 10px 10px 10px"
-                        />
-                      </a>
-                      <button class="btn btn-primary" id="badges">
-                        <s> 5000 FCFA </s>
-                      </button>
-                      <button class="btn btn-primary" id="badges0">
-                        2000 FCFA
-                      </button>
-                      <button class="btn btn-primary" id="badges01">
-                        <strong> 93% </strong> (500 +)
-                      </button>
-
-                      <div class="card-body">
-                        <a href="detail_compagnie.html" id="a_compagnie">
-                          <div class="row">
-                            <div class="col-md-8">
-                              <h5 class="card-title" style="font-size: 15px">
-                                Hyundai 2022
-                              </h5>
-                            </div>
-                            <div class="col-md-4 text-end">
-                              <p>Santafé</p>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100" id="compagnie_card">
-                      <a href="detail_compagnie.html">
-                        <img
-                          src="/public/assets/img/car2.jpg"
-                          class="card-img-top"
-                          alt="..."
-                          style="border-radius: 10px 10px 10px 10px"
-                        />
-                      </a>
-                      <button class="btn btn-primary" id="badges">
-                        <s> 5000 FCFA </s>
-                      </button>
-                      <button class="btn btn-primary" id="badges0">
-                        2000 FCFA
-                      </button>
-                      <button class="btn btn-primary" id="badges01">
-                        <strong> 93% </strong> (500 +)
-                      </button>
-
-                      <div class="card-body">
-                        <a href="detail_compagnie.html" id="a_compagnie">
-                          <div class="row">
-                            <div class="col-md-8">
-                              <h5 class="card-title" style="font-size: 15px">
-                                Hyundai 2022
-                              </h5>
-                            </div>
-                            <div class="col-md-4 text-end">
-                              <p>Santafé</p>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100" id="compagnie_card">
-                      <a href="detail_compagnie.html">
-                        <img
-                          src="/public/assets/img/car2.jpg"
-                          class="card-img-top"
-                          alt="..."
-                          style="border-radius: 10px 10px 10px 10px"
-                        />
-                      </a>
-                      <button class="btn btn-primary" id="badges">
-                        <s> 5000 FCFA </s>
-                      </button>
-                      <button class="btn btn-primary" id="badges0">
-                        2000 FCFA
-                      </button>
-                      <button class="btn btn-primary" id="badges01">
-                        <strong> 93% </strong> (500 +)
-                      </button>
-
-                      <div class="card-body">
-                        <a href="detail_compagnie.html" id="a_compagnie">
-                          <div class="row">
-                            <div class="col-md-8">
-                              <h5 class="card-title" style="font-size: 15px">
-                                Hyundai 2022
-                              </h5>
-                            </div>
-                            <div class="col-md-4 text-end">
-                              <p>Santafé</p>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="contact-tab-pane"
-                role="tabpanel"
-                aria-labelledby="contact-tab"
-                tabindex="0"
-              >
-                <div class="row mt-5">
-                  <div class="col-md-6">
-                    <div class="card h-100" id="card_compagnie">
-                      <div class="row" style="margin: 10px">
-                        <div class="col-md-6">
-                          <div
-                            class="card mb-3 border-0"
-                            style="max-width: 540px; background: #fafafa"
+                <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
+                  <div class="col" v-for="(promoCar, i) in promotionStore.companiePromotionCars" :key="i">
+                    
+                    <div
+                      class="card border-0"
+                      style="background: #f3f4f6; padding: 6px"
+                    >
+                      <div class="row" style="padding: 6px">
+                        <div class="col-md-12 d-flex">
+                          <img
+                          :src="companieStore.companie.imageLogoUrl"
+                            class="img-fluid"
+                            alt="..."
+                            style="width: 25px; height: 25px; margin-top: 6px"
+                          />
+                          <h6
+                            style="
+                              font-size: 12px;
+                              margin-left: 5px;
+                              margin-top: 10px;
+                            "
                           >
-                            <div class="row g-1">
-                              <div class="col-md-4">
-                                <img
-                                  src="/public/assets/img/avatars/1.png"
-                                  alt
-                                  class="w-px-40 h-auto rounded-circle"
-                                  style="width: 90px"
-                                />
-                              </div>
-                              <div class="col-md-8">
-                                <div class="card-body">
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 15px"
-                                  >
-                                    Koudi
-                                  </h5>
-                                  <p
-                                    class="card-text mt-2"
-                                    style="font-size: 14px"
-                                  >
-                                    <i
-                                      class="bx bx-map"
-                                      id="icon_menu"
-                                      style="color: #219935"
-                                    ></i>
-                                    CI,rue 250
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 text-end">
-                          <div class="row">
-                            <div class="col-4 text-end">
-                              <h6 style="margin-top: 28px; color: #219935">
-                                Validé
-                              </h6>
-                            </div>
-                            <div class="col-8">
-                              <button
-                                class="btn btn-primary"
-                                style="
-                                  background: #219935;
-                                  border-color: #219935;
-                                  margin-top: 15px;
-                                "
-                              >
-                                5000 FCFA
-                              </button>
-                            </div>
-                          </div>
+                          {{ companieStore.companie.raison_social }}
+                          </h6>
+                          <p
+                            style="
+                              font-size: 12px;
+                              margin-left: 5px;
+                              margin-top: 6px;
+                            "
+                          >
+                            <img
+                              src="/public/assets/img/icone/map.png"
+                              class="img-fluid"
+                              alt="..."
+                            />
+                            {{ companieStore.companie.adresse }}
+                          </p>
                         </div>
                       </div>
                       <div
-                        class="card mb-3 mt-4"
+                        class="card h-100"
+                        id="compagnie_card"
                         style="
-                          margin: 10px;
-                          margin-top: -10px !important;
-                          width: 98%;
+                          padding: 6px;
+                          background: #a6a6a621;
+                          box-shadow: none;
+                          background: transparent;
                         "
                       >
-                        <div class="row g-0" style="margin: 10px">
-                          <div class="col-md-6">
-                            <div class="card-body">
-                              <p class="card-text">
-                                <strong>Location Hyundai Santa fe 2022 </strong>
-                              </p>
-                              <hr />
-                              <p class="card-text">Moteur essence BG 5314</p>
-                              <hr />
-                              <p class="card-text">Avec chauffeur</p>
-                              <hr />
-                              <p class="card-text">Capital du pays</p>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <img
-                              src="/public/assets/img/car2.jpg"
-                              class="img-fluid rounded-start h-100"
-                              alt="..."
-                            />
-                          </div>
-                          <div class="col-md-12">
-                            <hr />
-                            <p class="card-text">
-                              Départ le <strong>Jours du voyages : </strong> à
-                              <strong>12h 43 min</strong>
-                            </p>
-
-                            <hr />
-                            <p class="card-text">
-                              Retrait à <strong>Aéroport : </strong> retour le
-                              <strong>2023-07-29</strong>
-                            </p>
-                            <hr />
-
-                            <p class="card-text">
-                              <strong>Nombres de jours de location </strong> 5
-                              jours
-                            </p>
-                            <hr />
-                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card h-100" id="card_compagnie">
-                      <div class="row" style="margin: 10px">
-                        <div class="col-md-6">
-                          <div
-                            class="card mb-3 border-0"
-                            style="max-width: 540px; background: #fafafa"
-                          >
-                            <div class="row g-1">
-                              <div class="col-md-4">
-                                <img
-                                  src="/public/assets/img/avatars/1.png"
-                                  alt
-                                  class="w-px-40 h-auto rounded-circle"
-                                  style="width: 90px"
-                                />
-                              </div>
-                              <div class="col-md-8">
-                                <div class="card-body">
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 15px"
-                                  >
-                                    Koudi
-                                  </h5>
-                                  <p
-                                    class="card-text mt-2"
-                                    style="font-size: 14px"
-                                  >
-                                    <i
-                                      class="bx bx-map"
-                                      id="icon_menu"
-                                      style="color: #219935"
-                                    ></i>
-                                    CI,rue 250
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 text-end">
-                          <div class="row">
-                            <div class="col-4 text-end">
-                              <h6 style="margin-top: 28px; color: #219935">
-                                Validé
-                              </h6>
-                            </div>
-                            <div class="col-8">
-                              <button
-                                class="btn btn-primary"
-                                style="
-                                  background: #219935;
-                                  border-color: #219935;
-                                  margin-top: 15px;
-                                "
-                              >
-                                5000 FCFA
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="card mb-3 mt-4"
-                        style="
-                          margin: 10px;
-                          margin-top: -10px !important;
-                          width: 98%;
-                        "
-                      >
-                        <div class="row g-0" style="margin: 10px">
-                          <div class="col-md-6">
-                            <div class="card-body">
-                              <p class="card-text">
-                                <strong>Location Hyundai Santa fe 2022 </strong>
-                              </p>
-                              <hr />
-                              <p class="card-text">Moteur essence BG 5314</p>
-                              <hr />
-                              <p class="card-text">Avec chauffeur</p>
-                              <hr />
-                              <p class="card-text">Capital du pays</p>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <img
-                              src="/public/assets/img/car2.jpg"
-                              class="img-fluid rounded-start h-100"
-                              alt="..."
-                            />
-                          </div>
-                          <div class="col-md-12">
-                            <hr />
-                            <p class="card-text">
-                              Départ le <strong>Jours du voyages : </strong> à
-                              <strong>12h 43 min</strong>
-                            </p>
-
-                            <hr />
-                            <p class="card-text">
-                              Retrait à <strong>Aéroport : </strong> retour le
-                              <strong>2023-07-29</strong>
-                            </p>
-                            <hr />
-
-                            <p class="card-text">
-                              <strong>Nombres de jours de location </strong> 5
-                              jours
-                            </p>
-                            <hr />
-                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="disabled-tab-pane"
-                role="tabpanel"
-                aria-labelledby="disabled-tab"
-                tabindex="0"
-              >
-                <div class="row mt-5">
-                  <div class="col-md-12">
-                    <div class="card h-100" id="card_compagnie">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <p class="card-text">
-                              <strong>Location Hyundai Santa fe 2022 </strong>
-                            </p>
-                          </div>
-                          <div class="col-md-6 text-end">
-                            <button
-                              class="btn btn-primary"
-                              style="background: #219935; border-color: #219935"
-                            >
-                              5000 FCFA
-                            </button>
-                          </div>
-                        </div>
-                        <hr />
-
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                        <router-link
+                          to="'/detail'"
+                          style="
+                            border: 1px solid;
+                            border-radius: 5px;
+                            border-color: #a6a6a6;
+                          "
+                        >
+                          <img
+                            src="/public/assets/img/car3.jpg"
+                            class="card-img-top"
+                            alt="..."
+                            style="
+                              border-radius: 5px 5px 5px 5px;
+                              height: 215px !important;
+                              object-fit: cover;
+                            "
+                          />
+                    </router-link>
+                        <button class="btn btn-primary" id="badges">
+                          <s> {{ promoCar.ancien_montant }} FCFA </s>
+                        </button>
+                        <button class="btn btn-primary" id="badges0">
+                          {{ promoCar.montant }} FCFA
+                        </button>
+                        <button class="btn btn-primary" id="badges012">
+                          {{ promoCar.pourcentage }}%
+                        </button>
+                        <button class="btn btn-primary" id="badges0121">
+                          {{ promoCar.vehicule }} {{ promoCar.modele }} {{ promoCar.anne_vehicule }}
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -746,6 +769,7 @@
                   <div class="col-md-12">
                     <div class="card h-100" id="card_compagnie">
                       <div class="card-body">
+                        <H6>Lorem ipsum dolor sit amet</H6>
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipiscing
                           elit, sed do eiusmod tempor incididunt ut labore et
@@ -763,6 +787,161 @@
                           commodo consequat
                         </p>
 
+                        <H6>Lorem ipsum dolor sit amet</H6>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat Lorem ipsum dolor sit amet,
+                          consectetur adipiscing elit, sed do eiusmod tempor
+                          <br />
+                          incididunt ut labore et dolore magna aliqua. Ut enim
+                          ad minim veniam, quis nostrud exercitation ullamco
+                          laboris nisi ut aliquip ex ea commodo consequatLorem
+                          ipsum dolor sit amet, <br />consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat
+                        </p>
+
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="tab-pane fade"
+                id="apropos-tab-pane"
+                role="tabpanel"
+                aria-labelledby="apropos-tab"
+                tabindex="0"
+              >
+                <div class="row mt-5">
+                  <div class="col-md-12">
+                    <div class="card h-100" id="card_compagnie">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <p>
+                              <strong>Raison sociale |</strong> {{ companieStore.companie.raison_social }}
+                            </p>
+
+                            <p><strong> Responsable |</strong> {{ companieStore.companie.responsable }}</p>
+                          </div>
+
+                          <div
+                            class="row row-cols-1 row-cols-md-4 mb-4 g-4"
+                            style="margin-top: -5px"
+                          >
+                            <div class="col">
+                              <div class="card h-100 text-center border-0">
+                                <div
+                                  class="row mt-4"
+                                  style="justify-content: center"
+                                >
+                                  <img
+                                    src="/public/assets/img/icone/mail.png"
+                                    class="img-fluid"
+                                    alt="..."
+                                    style="width: 64px"
+                                  />
+                                </div>
+
+                                <div class="card-body">
+                                  <h5
+                                    class="card-title"
+                                    style="font-size: 14px"
+                                  >
+                                    {{ companieStore.companie.adresse_mail }}
+                                  </h5>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="card h-100 text-center border-0">
+                                <div
+                                  class="row mt-4"
+                                  style="justify-content: center"
+                                >
+                                  <img
+                                    src="/public/assets/img/icone/web.png"
+                                    class="img-fluid"
+                                    alt="..."
+                                    style="width: 64px"
+                                  />
+                                </div>
+
+                                <div class="card-body">
+                                  <h5
+                                    class="card-title"
+                                    style="font-size: 14px"
+                                  >
+                                    {{ companieStore.companie.site_web }}
+                                  </h5>
+                                  <h5
+                                    class="card-title"
+                                    style="font-size: 14px"
+                                  >
+                                    {{ companieStore.companie.telephone }}
+                                  </h5>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="card h-100 text-center border-0">
+                                <div
+                                  class="row mt-4"
+                                  style="justify-content: center"
+                                >
+                                  <img
+                                    src="/public/assets/img/icone/maps.png"
+                                    class="img-fluid"
+                                    alt="..."
+                                    style="width: 64px"
+                                  />
+                                </div>
+
+                                <div class="card-body">
+                                  <h5
+                                    class="card-title"
+                                    style="font-size: 14px"
+                                  >
+                                    {{ companieStore.companie.adresse }}
+                                  </h5>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="card h-100 text-center border-0">
+                                <div
+                                  class="row mt-4"
+                                  style="justify-content: center"
+                                >
+                                  <img
+                                    src="/public/assets/img/icone/location.png"
+                                    class="img-fluid"
+                                    alt="..."
+                                    style="width: 64px"
+                                  />
+                                </div>
+
+                                <div class="card-body">
+                                  <h5
+                                    class="card-title"
+                                    style="font-size: 14px"
+                                  >
+                                    {{ companieStore.companie.latitude }} {{ companieStore.companie.longitude }}
+                                  </h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                         <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
                     </div>
@@ -775,48 +954,11 @@
       </div>
     </section>
     <!-- End Portfolio Details Section -->
-
-    <section id="features" class="features" style="margin-top: -90px">
-      <div class="container">
-        <div class="row">
-          <div
-            class="col-md-12 text-center mt-5"
-            style="margin-top: 80px !important"
-          >
-            <h1 id="titre_new">Inscrivez vous à notre Newsletter</h1>
-
-            <div class="col-md-12 text-center mt-5">
-              <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                  <form class="d-flex" role="search">
-                    <input
-                      class="form-control me-2"
-                      type="email"
-                      placeholder="Votre adresse e-mail"
-                      aria-label="Search"
-                    />
-                    <button
-                      class="btn btn-outline-success"
-                      style="
-                        background: #219935 !important;
-                        border-color: #219935 !important;
-                        color: white;
-                      "
-                      type="submit"
-                    >
-                      S'inscrire
-                    </button>
-                  </form>
-                </div>
-                <div class="col-md-4"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
   <!-- End #main -->
 </template>
-<style></style>
+<style scoped>
+.nav-tabs .nav-link {
+    border: none !important;
+}
+</style>

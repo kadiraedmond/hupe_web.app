@@ -1,4 +1,61 @@
-<script setup></script>
+<script setup>
+import { auth } from '@/firebase/firebase.js'
+import { signOut } from 'firebase/auth'
+import { useAuthStore } from '@/store/auth.js'
+import { useSearchStore } from '@/store/search.js'
+import { useLocalisationStore } from '@/store/localisation.js'
+import axios from 'axios'
+import router from '@/router/router.js'
+
+import { onMounted, ref } from 'vue'
+
+const authStore = useAuthStore()
+const localisationStore = useLocalisationStore()
+const searchStore = useSearchStore()
+
+const user = authStore.user
+const savedUser = JSON.parse(localStorage.getItem('user'))
+
+const country = ref()
+
+const searchTerm = ref('')
+
+const handleSearch = () => {
+  searchStore.search(searchTerm)
+}
+
+onMounted(async () => {
+  const response = await fetch('https://ipinfo.io/json')
+
+  if(response.ok) {
+    const data = response.json()
+
+    country.value = data.country
+    localisationStore.setCompaniesByLocalisation(data.country)
+  } else {
+    console.log(response)
+  }
+})
+
+const handleSelect = () => {
+  console.log(country.value)
+  localisationStore.setCompaniesByLocalisation(country.value)
+}
+
+const logout = async () => {
+  try {
+    await signOut(auth)
+    authStore.signOut
+    localStorage.removeItem('user')
+
+    router.push('/')
+    location.reload()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+</script>
 
 <template>
   <header id="header" class="fixed-top">
@@ -7,30 +64,38 @@
       style="height: 40px"
     >
       <h1 class="logo">
-        <a href="index.html"
+        <router-link to="/"
           ><img
             src="/assets/img/logo2.png"
             alt=""
             class="img-fluid"
             style="margin-top: -6px"
-        /></a>
+        /></router-link>
       </h1>
       <nav id="navbar" class="navbar">
-        <ul>
+        <ul >
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
-            <select class="form-select1" id="validationCustom04" required>
-              <option selected value="">Pays</option>
-              <option>Anglais</option>
+            <select v-model="country" @change="handleSelect" class="form-select1" style="padding: 8.6px ; width: 114px;" id="validationCustom04" required>
+              <option value="BJ" selected>Bénin</option>
+              <option value="BF">Burkina Faso</option>
+              <option value="CI">Côte d'Ivoire</option>
+              <option value="GN">Guinée Conakry</option>
+              <option value="ML">Mali</option>
+              <option value="NE">Niger</option>
+              <option value="SN">Sénégal</option>
+              <option value="TG">Togo</option>
             </select>
           </li>
         </ul>
       </nav>
       <!-- .navbar -->
-      <form class="d-flex" role="search">
+      <form class="d-flex" role="search" @submit.prevent="handleSearch">
         <input
-          class="form-control me-2"
+          class="form-control me-2 text-white"
+          style="width: 200; max-width: 200px"
           type="search"
-          placeholder="Search"
+          placeholder="Rechercher"
+          v-model="searchTerm"
           aria-label="Search"
           id="search"
         />
@@ -42,77 +107,85 @@
         <ul>
           <li>
             <router-link to="/" class="nav-link scrollto active"
-              ><font-awesome-icon icon="fa-solid fa-user-secret" />
-              Accueil</router-link
+              ><i class="bx bx-home" id="icon_menu"></i> Accueil</router-link
             >
           </li>
           <li>
             <router-link to="/services" class="nav-link scrollto"
-              ><i class="fas fa-category" id="icon_menu"></i>
+              ><i class="bx bx-category" id="icon_menu"></i>
               Services</router-link
             >
           </li>
           <li>
-            <a class="nav-link scrollto" href="#"
-              ><i class="fas fa-help-circle" id="icon_menu"></i> Aide
-            </a>
+            <router-link class="nav-link scrollto" to="/service_client"
+              ><i class="bx bx-help-circle" id="icon_menu"></i> Aide
+            </router-link>
+          </li>
+          <li>
+            <router-link class="nav-link scrollto" to="/promotion"
+              ><i class="bx bxs-megaphone" id="icon_menu"></i> Promotions
+            </router-link>
           </li>
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
-            <select class="form-select1" id="validationCustom04" required>
+            <select class="form-select1 px-3" style="padding: 8px" id="validationCustom04" required>
               <option selected value="">Francais</option>
               <option>Anglais</option>
             </select>
           </li>
 
           <li>
-            <router-link to="/connexion" class="nav-link scrollto" href="#"
-              ><i class="fas fa-user" id="icon_menu"></i>Connexion
+            <router-link v-if="!authStore.user.uid && !savedUser" to="/connexion" class="nav-link scrollto"
+              ><i class="bx bx-user" id="icon_menu"></i> Connexion
             </router-link>
           </li>
           <li class="dropdown">
-            <a href="#"
-              ><i class="bx bx-category" id="icon_menu"></i>
-              <span>Admin </span> <i class="bi bi-chevron-down"></i
-            ></a>
+            <router-link to=""
+              v-if="authStore.user.uid || savedUser"
+              ><i class="bx bx-user" id="icon_menu"></i>
+              <span>
+                {{ 
+                  authStore.user.raison_social ? authStore.user.raison_social : authStore.user.username 
+                  || savedUser.raison_social ? savedUser.raison_social : savedUser.username
+                }} 
+              </span> <i class="bi bi-chevron-down"></i
+            ></router-link>
             <ul style="background: #219935">
-              <li><a href="{{url('constuction')}}">Tableau de bord</a></li>
-              <li><a href="{{url('location_immobilier')}}">Mon compte</a></li>
               <li>
-                <a v-bind:href="'/compte_vehicule'"
-                  >Compte location de vehicule</a
+                <router-link 
+                  to="/compte_vehicule" 
+                  v-if="(authStore.isConnected && authStore.isLocationCompany) 
+                        || (user.raison_social && user.type_compagnie == 'Location') 
+                        || (savedUser && savedUser.type_compagnie == 'Location')"
+                  >Compte location de vehicules</router-link
                 >
               </li>
               <li>
-                <a v-bind:href="'/compte_reservation'"
-                  >Compte reservation de ticket de bus</a
+                <router-link to="/compte_reservation" 
+                v-if="(authStore.isConnected && authStore.isReservationCompany) 
+                      || (user.raison_social && user.type_compagnie == 'Transport') 
+                      || (savedUser && savedUser.type_compagnie == 'Transport')"
+                  >Compte reservation de ticket de bus</router-link
                 >
               </li>
               <li>
-                <a v-bind:href="'/compte_gros_engin'"
-                  >Compte location de gros engin</a
+                <router-link v-if="authStore.isConnected && authStore.isBigEnginsCompany || user.raison_social" to="/compte_gros_engin"
+                  >Compte location de gros engins</router-link
                 >
               </li>
-              <li><a href="{{url('vente_immobilier')}}">Déconnexion</a></li>
+              <li>
+                <router-link v-if="authStore.isConnected && authStore.isCarsSellingCompany || user.raison_social" to="/compte_achat_engin">Compte vente d'engins </router-link>
+              </li>
+              <li>
+                <router-link 
+                  v-if="(authStore.user.uid && !authStore.user.raison_social) 
+                        || (savedUser && !savedUser.raison_social)" 
+                  to="/compte_client">
+                  Mon compte 
+                </router-link>
+              </li>
+              <li><router-link v-if="authStore.user.uid || savedUser" to="/" @click="logout">Déconnexion</router-link></li>
             </ul>
           </li>
-
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -121,4 +194,12 @@
   </header>
 </template>
 
-<style scoped></style>
+<style scoped>
+ #search{
+  font-size: 15px;
+ }
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+</style>

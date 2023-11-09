@@ -1,236 +1,109 @@
-<script>
+<script setup>
+import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
+
+import { useCompanieStore } from "@/store/companie.js";
+
+import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
+import { firestoreDb } from "@/firebase/firebase.js";
+
+const companieStore = useCompanieStore();
+ 
+
+onBeforeMount(() => {
+  
+
+  companieStore.getAllCompanies
+
+  companieStore.getLocationCompanies
+
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
 </script>
 
 <template>
   <main id="main">
 
-     <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details" style="margin-top: 80px;">
+     <!-- ======= Breadcrumbs ======= -->
+     <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
-          <div class="row g-2">
-            <div class="col-lg-6">
-                <img src="/public/assets/img/lo.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
-            </div>
-            <div class="col-lg-6">
-               <h1 style="font-size: 54px;">Louer un véhicules</h1>
-               <p class="mt-4">Lorem ipsum dolor sit amet. Sed possimus architecto sit reprehenderit dicta qui eius laboriosam! Aut quia suscipit qui quod minima sit quidem voluptatum sit ullam odit ad nihil quasi.
-                Aut quia suscipit qui quod minima sit quidem voluptatum sit ullam odit ad nihil quasi.
-               </p>
-            </div>
-          </div>    
-        </div>
-    </section>
-      <!-- End Portfolio Details Section -->
+          <ol>
+            <li> <router-link to="/" style="color: #219935;" >Home</router-link></li>
+            <li>Location de véhicule</li>
+            <!-- <li>Toyota yaris 2022</li> -->
 
+          </ol>
+  
+        </div>
+    </section><!-- End Breadcrumbs -->
      <!-- ======= Expertise et conseils en immobiliers Section ======= -->
     <section id="features" class="features mt-4">
       <div class="container">
         
         <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a href="detail_compagnie.html">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-              </a>
+          <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
+            <div
+              class="card h-100"
+              id="compagnie_card"
+              style="background: #f3f4f6; box-shadow: none"
+            >
+              <router-link :to="`/detail/${companie.uid}`">
+                <img
+                  :src="companie.imageLogoUrl"
+                  class="card-img-top"
+                  alt="..."
+                  style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
+                />
+              </router-link>
 
               <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
+                <router-link :to="`/detail/${companie.uid}`">
                   <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
+                    <div class="col-md-7">
+                      <h5
+                        class="card-title"
+                        style="font-size: 15px; color: black"
+                      >
+                        {{ companie.raison_social }}
+                      </h5>
                     </div>
-                    <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
+                    <div class="col-md-5 text-end">
+                      <boutton
+                        class="btn btn-primary"
+                        style="
+                          background: white;
+                          border-color: white;
+                          border-radius: 30px;
+                          color: #219935;
+                          margin-top: -9px;
+                        "
+                      >
+                        <i class="bx bx-like" style="color: #219935"></i> 30%
+                      </boutton>
                     </div>
                   </div>
                 </router-link>
-
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-                   <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-              
-              <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
-                 
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
-                    </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <p class="card-text mt-2" style="font-size: 14px">
+                      <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
+                    </p>
                   </div>
-                </router-link>
-             
-
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a href="detail_compagnie.html">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-              </a>
-
-              <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
-                    </div>
+                  <div class="col-md-4 text-center mt-2">
+                    <i
+                      class="bx bx-car"
+                      style="color: #8b8b8b; font-size: 21px"
+                    ></i>
                   </div>
-               </router-link>
-
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a href="detail_compagnie.html">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-              </a>
-
-              <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
-                    </div>
-                  </div>
-                 </router-link>
-
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a href="detail_compagnie.html">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-              </a>
-
-              <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
-                    </div>
-                  </div>
-                </router-link>
-
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-                   <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-              
-              <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
-                 
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
-                    </div>
-                  </div>
-                </router-link>
-             
-
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a href="detail_compagnie.html">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-              </a>
-
-              <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
-                    </div>
-                  </div>
-               </router-link>
-
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-
-            <div class="card h-100" id=compagnie_card>
-              <a href="detail_compagnie.html">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
-              </a>
-
-              <div class="card-body">
-                <router-link to="/detail" class="nav-link px-4" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px;">BG-Compagnie</h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i class='bx bx-car' id="icon_menu" style="color: #219935;"></i>
-                    </div>
-                  </div>
-                 </router-link>
-
-
-                <p class="card-text mt-2" style="font-size: 14px; "> <i class='bx bx-map' id="icon_menu"
-                    style="color: #219935;"></i> CI,rue 250</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 

@@ -1,0 +1,43 @@
+<template>
+    <div class="loader" />
+</template>
+
+<style>
+/* LOADER */
+.loader {
+  border: 10px solid #FFF;
+  border-radius: 50%;
+  border-top: 10px solid #219935;
+  width: 150px;
+  height: 150px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  margin: 40px auto 20px;
+}
+
+.loaderText {
+  text-align: center;
+  color: #FFF;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+</style>

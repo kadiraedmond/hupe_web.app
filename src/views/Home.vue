@@ -1,128 +1,117 @@
 <script setup>
-import { onBeforeMount, ref } from "vue";
-import { doc, collection, getDocs } from "firebase/firestore";
+import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
+
+import Vehicule from "@/components/Home/location.vue";
+import Reservation from "@/components/Home/reservation.vue";
+import { useCompanieStore } from "@/store/companie.js";
+import { useSlide } from "@/store/slideImages.js";
+import { useReservationStore } from "@/store/reservation.js";
+import { usePromotionStore } from "@/store/promotion.js";
+
+import {
+  collection,
+  query,
+  doc,
+  where,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
 
-const imageSlideColRef = collection(firestoreDb, "slideAcceuilImages");
-const companiesColRef = collection(firestoreDb, "compagnies");
-const carsLocationColRef = collection(firestoreDb, 'location_vehicules')
-const usersColRef = collection(firestoreDb, 'users')
-const reservationsColRef = collection(firestoreDb, 'reservation')
-
-const companie5DocRef = doc(firestoreDb, 'compagnies', 'MIKsd9oIvxP860LDUMm9XNpvwzV2')
-const companie6DocRef = doc(firestoreDb, 'compagnies', 'T599SBhvhnQZf1MPPO5bJMF6dYi1')
-const companie7DocRef = doc(firestoreDb, 'compagnies', 'YYiQmKBenyUzKzyxIEO1vHxfEPb2')
-
-const companie5SubColRef = collection(companie5DocRef, 'vehicules_programmer')
-const companie6SubColRef = collection(companie6DocRef, 'vehicules_programmer')
-const companie7SubColRef = collection(companie7DocRef, 'vehicules_programmer')
-
-const companie5SubData = ref([])
-const companie6SubData = ref([])
-const companie7SubData = ref([])
-
-const fetchCompaniesSubCollectionsData = async () => {
-   try {
-    const snapshot5 = await getDocs(companie5SubColRef);
-    const snapshot6 = await getDocs(companie6SubColRef);
-    const snapshot7 = await getDocs(companie7SubColRef);
-
-    snapshot5.docs.forEach((doc) => companie5SubData.value.push({ ...doc.data() }));
-    snapshot6.docs.forEach((doc) => companie6SubData.value.push({ ...doc.data() }));
-    snapshot7.docs.forEach((doc) => companie7SubData.value.push({ ...doc.data() }));
-
-    // console.log(companie5SubData.value)
-    // console.log(companie6SubData.value)
-    // console.log(companie7SubData.value)
-  } catch (err) {
-    console.log(err.message);
-  }
-}
-
-
-const slideImages = ref([])
-const companies = ref([])
-const carsForLocation = ref([])
-const users = ref([])
-const reservations = ref([])
-
-const fetchSlideImages = async () => {
-  try {
-    const snapshot = await getDocs(imageSlideColRef);
-    snapshot.docs.forEach((doc) => slideImages.value.push({ ...doc.data() }));
-    // console.log(slideImages.value)
-  } catch (err) {
-    console.log(err.message);
-  }
-};
-
-const fetchCompanies = async () => {
-  try {
-    const snapshot = await getDocs(companiesColRef);
-    snapshot.docs.forEach((doc) => companies.value.push(doc.data()));
-    // console.log(companies.value[5])
-  } catch (error) {
-    console.log(err.message);
-  }
-};
-
-const fetchCars = async () => {
-  try {
-    const snapshot = await getDocs(carsLocationColRef);
-    snapshot.docs.forEach((doc) => carsForLocation.value.push({ ...doc.data() }));
-    // console.log(carsForLocation.value)
-  } catch (err) {
-    console.log(err.message);
-  }
-};
-
-const fetchUsers = async () => {
-   try {
-    const snapshot = await getDocs(usersColRef);
-    snapshot.docs.forEach((doc) => users.value.push({ ...doc.data() }));
-    // console.log(users.value)
-  } catch (err) {
-    console.log(err.message);
-  }
-}
-
-const fetchReservations = async () => {
-   try {
-    const snapshot = await getDocs(reservationsColRef);
-    snapshot.docs.forEach((doc) => reservations.value.push({ ...doc.data() }));
-    // console.log(reservations.value)
-  } catch (err) {
-    console.log(err.message);
-  }
-}
+const companieStore = useCompanieStore();
+const slideStore = useSlide();
+const reservationStore = useReservationStore();
+const promotionStore = usePromotionStore();
 
 onBeforeMount(() => {
-  fetchSlideImages()
-  fetchCompanies()
-  fetchCars()
-  fetchUsers()
-  fetchReservations()
+  slideStore.getSlideImages;
 
-  fetchCompaniesSubCollectionsData()
-})
+  companieStore.getAllCompanies;
+
+  companieStore.getLocationCompanies;
+
+  companieStore.getTransportCompanies;
+
+  reservationStore.getAllReservations;
+  promotionStore.getPromotionOffres;
+  promotionStore.getPopularDestinations;
+  promotionStore.getPopularCars;
+});
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+
+  const text = document.querySelector(".sec-text");
+  const textLoad = () => {
+    setTimeout(() => {
+      text.textContent =
+        "Notre application vous ouvre les portes d'un monde de ";
+    }, 0);
+    setTimeout(() => {
+      text.textContent =
+        "possibilités pour répondre à tous vos besoins de déplacement.";
+    }, 4000);
+    setTimeout(() => {
+      text.textContent =
+        "Que vous cherchiez à louer une voiture pour une escapade, ";
+    }, 8000);
+    setTimeout(() => {
+      text.textContent =
+        "Que vous cherchiez à acheter la voiture de vos rêves, ";
+    }, 12000);
+    setTimeout(() => {
+      text.textContent =
+        "Que vous cherchiez à trouver des gros engins pour vos projets, ";
+    }, 16000);
+    setTimeout(() => {
+      text.textContent =
+        "Que vous cherchiez à réserver des billets de bus pour vos voyages, ";
+    }, 20000);
+    setTimeout(() => {
+      text.textContent =
+        "Nous sommes là pour simplifier chaque étape de votre parcours.";
+    }, 24000);
+  };
+
+  textLoad();
+  setInterval(textLoad, 28000);
+});
 </script>
 
 <template>
   <!-- ========== Hero one =========== -->
   <section id="hero" class="d-flex">
     <div class="container-fluid" style="background: #219935">
-      <div class="row g-3 mb-4" style="padding: 93px !important">
+      <div class="row g-3" style="padding: 93px !important">
         <div
           class="col-lg-6 col-md-6 bg-white border-2"
-          style="background: #219935 !important"
+          style="
+            background: #219935 !important;
+            display: flex;
+            flex-direction: column;
+          "
         >
-          <p class="text-white" style="margin-top: 25%">
+          <img
+            src="/public/assets/img/accueil-car.png"
+            style="width: 260px; height: 260px; object-fit: cover; float: left"
+          />
+          <div class="wrapper text-start" style="margin-top: 2rem">
+            <span class="text first-text"
+              >Quand la mobilité devient un jeu d'enfant !
+            </span>
+            <br />
+            <span class="text sec-text" style="font-size: 1rem">
+              Notre application vous ouvre les portes d'un monde de possibilités
+              pour répondre à tous vos besoins de déplacement.
+            </span>
+          </div>
+          <!-- <p class="text-white text-start" style="margin-top: 3.8%; font-size: 0.86rem">
             Découvrez notre sélection de véhicules de qualité à des tarifs
             imbattables. Que ce soit pour un voyage d'affaires ou des vacances
             en famille, trouvez la voiture parfaite pour votre escapade.
             Réservez en ligne, choisissez votre destination, et préparez-vous à
             prendre la route.
-          </p>
+          </p> -->
         </div>
         <div
           class="col-lg-6 col-md-6 bg-white border-2"
@@ -135,6 +124,7 @@ onBeforeMount(() => {
             data-bs-ride="carousel"
             style="height: 400px"
           >
+<<<<<<< HEAD
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img
@@ -159,6 +149,69 @@ onBeforeMount(() => {
                   style="max-height: 350px; object-fit: cover; border-radius: 10px"
                   alt="..."
                 />
+=======
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="1"
+                class=""
+                aria-current="true"
+                aria-label="Slide 2"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="2"
+                class=""
+                aria-current="true"
+                aria-label="Slide 3"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="3"
+                class=""
+                aria-current="true"
+                aria-label="Slide 4"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                :data-bs-slide-to="4"
+                class=""
+                aria-current="true"
+                aria-label="Slide 5"
+                style="border-radius: 50%; width: 10px; height: 10px"
+              ></button>
+            </div>
+            <div class="carousel-inner overflow-hidden">
+              <div
+                v-for="(slideImage, index) in slideStore.slideImages"
+                :key="index"
+                :class="index === 0 ? 'carousel-item active' : 'carousel-item'"
+              >
+                <router-link :to="`/detail/${slideImage.companieInfos.uid}`">
+                  <img
+                    :src="slideImage.downloadURL"
+                    class="d-block w-100"
+                    alt="..."
+                    style="max-height: 350px; height: 350px; object-fit: cover"
+                  />
+                </router-link>
+>>>>>>> firebase-connection
               </div>
             </div>
           </div>
@@ -169,108 +222,36 @@ onBeforeMount(() => {
 
   <main id="main">
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <!-- <section id="features" class="features" style="margin-top: -400px;">
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-8">
-            
-          </div>
-          <div class="col-4 text-end">
-
-          </div>
-        </div>
-
-
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This card has even longer content than the first to show that equal height action.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This card has even longer content than the first to show that equal height action.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section> -->
-
-    <!-- ======= Features Section ======= -->
-
-    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-6">
+            <div class="section-title">
               <h2>Que voulez-vous faire ?</h2>
             </div>
           </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: -68px">
           <div class="col">
             <div
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <a v-bind:href="'/location'" class="mt-4">
+              <router-link to="/location" class="mt-4">
                 <img
                   src="/public/assets/img/car.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
-              </a>
+              </router-link>
 
               <div class="card-body" style="background: #219935">
-                <a v-bind:href="'/location'" class="mt-4" id="a">
+                <router-link to="/location" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Louer un véhicule
                   </h5>
-                </a>
+                </router-link>
 
                 <p class="card-text" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
@@ -284,20 +265,20 @@ onBeforeMount(() => {
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <a v-bind:href="'/reservation'" class="mt-4 text-black">
+              <router-link to="/reservation" class="mt-4 text-black">
                 <img
                   src="/public/assets/img/bus.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
-              </a>
+              </router-link>
 
               <div class="card-body" style="background: #219935">
-                <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Reserver un ticket de bus
                   </h5>
-                </a>
+                </router-link>
 
                 <p class="card-text" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
@@ -311,20 +292,20 @@ onBeforeMount(() => {
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <a v-bind:href="'/reservation'" class="mt-4" id="a">
+              <router-link to="/location_gros_engin" class="mt-4" id="a">
                 <img
                   src="/public/assets/img/engin.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
-              </a>
+              </router-link>
 
               <div class="card-body" style="background: #219935">
-                <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                <router-link to="/location_gros_engin" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Louer un gros engin
                   </h5>
-                </a>
+                </router-link>
 
                 <p class="card-text" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
@@ -338,20 +319,20 @@ onBeforeMount(() => {
               class="card h-100 border-0 text-center"
               style="background: #f6f8fb"
             >
-              <a v-bind:href="'/reservation'" class="mt-4" id="a">
+              <router-link to="/reservation" class="mt-4" id="a">
                 <img
                   src="/public/assets/img/engine.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
-              </a>
+              </router-link>
 
               <div class="card-body" style="background: #219935">
-                <a v-bind:href="'/reservation'" class="mt-4" id="a">
+                <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
                     Acheter un engin
                   </h5>
-                </a>
+                </router-link>
 
                 <p class="card-text" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
@@ -365,9 +346,10 @@ onBeforeMount(() => {
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <section id="features" class="features" style="margin-top: -48px">
       <div class="container">
         <div class="row">
+<<<<<<< HEAD
           <div class="col-12">
             <div class="section-title text-center">
               <h2>En promotions</h2>
@@ -571,753 +553,970 @@ onBeforeMount(() => {
         <div class="row">
           <div class="col-12">
             <div class="section-title text-center">
+=======
+          <div class="col-8">
+            <div class="section-title">
+>>>>>>> firebase-connection
               <h2>Compagnies de locations populaires</h2>
-              <p>
+              <p id="section-p">
                 Explorez les compagnies de location les plus appréciées par les
                 voyageurs du monde entier. Faites confiance à l'expérience et à
                 la qualité.
               </p>
             </div>
           </div>
-        </div>
-
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col">
-            <div class="card h-100" id="compagnie_card">
-              <a v-bind:href="'/detail'">
-                <img
-                  :src="carsForLocation[6].vehicule_image_url"
-                  class="card-img-top"
-                  alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
-                />
-              </a>
-
-              <div class="card-body">
-                <router-link
-                  to="/detail"
-                  class="nav-link px-4"
-                  id="a_compagnie"
-                >
-                  <div class="row">
-                    <div class="col-md-8">
-                      <a v-bind:href="'/detail'">
-                        <h5 class="card-title" style="font-size: 15px">
-                          {{ companies[0].raison_social }}
-                        </h5>
-                      </a>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i
-                        class="bx bx-car"
-                        id="icon_menu"
-                        style="color: #219935"
-                      ></i>
-                    </div>
-                  </div>
-                </router-link>
-
-                <p class="card-text mt-2" style="font-size: 14px">
-                  <i
-                    class="bx bx-map"
-                    id="icon_menu"
-                    style="color: #219935"
-                  ></i>
-                  {{ companies[0].adresse }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100" id="compagnie_card">
-              <a v-bind:href="'/detail'">
-                <img
-                  :src="carsForLocation[6].vehicule_image_url"
-                  class="card-img-top"
-                  alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
-                />
-              </a>
-
-              <div class="card-body">
-                <router-link
-                  to="/detail"
-                  class="nav-link px-4"
-                  id="a_compagnie"
-                >
-                  <div class="row">
-                    <div class="col-md-8">
-                      <a v-bind:href="'/detail'">
-                        <h5 class="card-title" style="font-size: 15px">
-                          {{ companies[1].raison_social }}
-                        </h5>
-                      </a>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i
-                        class="bx bx-car"
-                        id="icon_menu"
-                        style="color: #219935"
-                      ></i>
-                    </div>
-                  </div>
-                </router-link>
-
-                <p class="card-text mt-2" style="font-size: 14px">
-                  <i
-                    class="bx bx-map"
-                    id="icon_menu"
-                    style="color: #219935"
-                  ></i>
-                  {{ companies[1].adresse }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100" id="compagnie_card">
-              <a href="detail_compagnie.html">
-                <img
-                  :src="carsForLocation[6].vehicule_image_url"
-                  class="card-img-top"
-                  alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
-                />
-              </a>
-
-              <div class="card-body">
-                <a href="detail_compagnie.html" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px">
-                        {{ companies[2].raison_social }}
-                      </h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i
-                        class="bx bx-car"
-                        id="icon_menu"
-                        style="color: #219935"
-                      ></i>
-                    </div>
-                  </div>
-                </a>
-
-                <p class="card-text mt-2" style="font-size: 14px">
-                  <i
-                    class="bx bx-map"
-                    id="icon_menu"
-                    style="color: #219935"
-                  ></i>
-                  {{ companies[2].adresse }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100" id="compagnie_card">
-              <a href="detail_compagnie.html">
-                <img
-                  :src="carsForLocation[6].vehicule_image_url"
-                  class="card-img-top"
-                  alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
-                />
-              </a>
-
-              <div class="card-body">
-                <a href="detail_compagnie.html" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px">
-                        {{ companies[3].raison_social }}
-                      </h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i
-                        class="bx bx-car"
-                        id="icon_menu"
-                        style="color: #219935"
-                      ></i>
-                    </div>
-                  </div>
-                </a>
-
-                <p class="card-text mt-2" style="font-size: 14px">
-                  <i
-                    class="bx bx-map"
-                    id="icon_menu"
-                    style="color: #219935"
-                  ></i>
-                  {{ companies[3].adresse }}
-                </p>
-              </div>
-            </div>
+          <div class="col-4 text-end">
+            <router-link to="/location">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
+            </router-link>
           </div>
         </div>
+
+        <Vehicule />
       </div>
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <section id="features" class="features" style="margin-top: -80px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-8">
+            <div class="section-title">
               <h2>Véhicules populaires</h2>
-              <p>
+              <p id="section-p">
                 Découvrez les véhicules les plus prisés pour votre prochain
                 voyage. Confort, style et fiabilité, nous avons tout ce dont
                 vous avez besoin.
               </p>
             </div>
           </div>
+          <div class="col-4 text-end">
+            <router-link to="/location">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
+            </router-link>
+          </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-          <div class="col">
-            <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px">
-                <div class="col-md-6">
-                  <div class="card mb-3 border-0" style="max-width: 540px">
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img
-                          :src="users[4].imageUrl"
-                          alt
-                          class="w-px-40 h-auto rounded-circle"
-                          style="width: 90px"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 15px">
-                            {{ users[4].firstName }}
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 14px">
-                            <i
-                              class="bx bx-map"
-                              id="icon_menu"
-                              style="color: #219935"
-                            ></i>
-                            {{ users[4].addresse }}
-                          </p>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            class="col"
+            v-for="(vehicule, index) in promotionStore.popularCars"
+            :key="index"
+          >
+            <router-link
+              :to="`/detail_vehicule_location/${vehicule.uid}`"
+              style="color: #000"
+            >
+              <div class="card h-100 border-0" id="card_compagnie">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card mb-3 border-0"
+                      style="background: #f3f4f6;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-8 d-flex">
+                          <img
+                            :src="vehicule.companieInfos.imageLogoUrl"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 12px">
+                                {{ vehicule.companieInfos.raison_social }}
+                              </h5>
+                              <p class="card-text" style="font-size: 12px">
+                                <i
+                                  class="bx bx-map"
+                                  style="color: rgb(139 139 139); margin-left: 5px"
+                                ></i>
+                                {{ vehicule.companieInfos.adresse }}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                    "
-                  >
-                    {{ carsForLocation[6].montant }} FCFA
-                  </button>
-                </div>
-              </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
-              >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
-                    <img
-                      :src="carsForLocation[6].vehicule_image_url"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ carsForLocation[6].vehicule }}</h5>
-                      <p class="card-text">
-                        <strong>Modéle : </strong> {{ carsForLocation[6].modele }}
-                      </p>
-                      <p class="card-text">
-                        <strong>Essence : </strong> Automobile
-                      </p>
-                      <p class="card-text">
-                        <strong>Immatriculation : </strong> {{ carsForLocation[6].plaque_vehicule }}
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px">
-                <div class="col-md-6">
-                  <div class="card mb-3 border-0" style="max-width: 540px">
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img
-                          :src="users[8].imageUrl"
-                          alt="..."
-                          class="w-px-40 h-auto rounded-circle"
-                          style="width: 90px"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 15px">
-                            {{ users[8].firstName }}
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 14px">
-                            <i
-                              class="bx bx-map"
-                              id="icon_menu"
-                              style="color: #219935"
-                            ></i>
-                            {{ users[8].addresse }}
-                          </p>
+
+                        <div class="col-4 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                            {{ vehicule.montant }} FCFA
+                          </button>
                         </div>
+                        
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                    "
-                  >
-                    {{ carsForLocation[2].montant }} FCFA
-                  </button>
-                </div>
-              </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
-              >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
-                    <img
-                      :src="carsForLocation[6].vehicule_image_url"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ carsForLocation[2].vehicule }}</h5>
-                      <p class="card-text">
-                        <strong>Modéle : </strong> {{ carsForLocation[2].modele }}
-                      </p>
-                      <p class="card-text">
-                        <strong>Essence : </strong> Automobile
-                      </p>
-                      <p class="card-text">
-                        <strong>Immatriculation : </strong> {{ carsForLocation[2].plaque_vehicule }}
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                <div
+                  class="card mb-3 mt-4"
+                  style="
+                    max-width: 540px;
+                    margin: 10px;
+                    margin-top: -10px !important;
+                    background: #f3f4f6;
+                  "
+                >
+                  <div class="row g-0" style="margin: 10px">
+                    <div class="col-4">
+                      <img
+                        :src="vehicule.vehicule_image_url"
+                        class="img-fluid h-100"
+                        alt="..."
+                        style="
+                          width: 150px;
+                          object-fit: cover;
+                        "
+                      />
                     </div>
+                    
+                    <div class="col-8">
+                      <div class="card-body">
+                        <p class="card-text" style="font-size: 13px ; ">
+                          {{ vehicule.vehicule }} |{{  vehicule.annee }}
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Modéle | </strong> {{ vehicule.modele }}
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Moteur | </strong> {{ vehicule.moteur }}
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Immatriculation | </strong>
+                          {{ vehicule.serie_vehicule }}
+                        </p>
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
-            </div>
+            </router-link>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <!-- <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-8">
+            <div class="section-title ">
               <h2>Compagnies de transport populaires</h2>
-              <p>
+              <p id="section-p">
                 Simplifiez votre trajet en choisissant parmi les compagnies de
                 transport les plus populaires. Voyagez en toute tranquillité
                 avec nos partenaires de confiance.
               </p>
             </div>
           </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
+            </router-link>
+             
+          </div>
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col">
-            <div class="card h-100" id="compagnie_card">
-              <router-link to="/details">
+          <div class="col" v-for="(companie, index) in companieStore.transportCompanies" :key="index">
+            <div
+              class="card h-100"
+              id="compagnie_card"
+              style="background: #f3f4f6; box-shadow: none"
+              v-if="companie.offre == 'vip' && index < 4"
+            >
+              <router-link :to="`/details/${companie.uid}`">
                 <img
-                  :src="carsForLocation[6].vehicule_image_url"
+                  :src="companie.imageLogoUrl"
                   class="card-img-top"
                   alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
+                  style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
                 />
               </router-link>
 
               <div class="card-body">
-                <a href="detail_compagnies.html" id="a_compagnie">
+                <router-link to="/detail">
                   <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px">
-                        {{ companies[4].raison_social }}
+                    <div class="col-md-7">
+                      <h5
+                        class="card-title"
+                        style="font-size: 15px; color: black"
+                      >
+                        {{ companie.raison_social }} 
                       </h5>
                     </div>
-                    <div class="col-md-4 text-end">
-                      <i
-                        class="bx bx-car"
-                        id="icon_menu"
-                        style="color: #219935"
-                      ></i>
+                    <div class="col-md-5 text-end">
+                      <boutton
+                        class="btn btn-primary"
+                        style="
+                          background: white;
+                          border-color: white;
+                          border-radius: 30px;
+                          color: #219935;
+                          margin-top: -9px;
+                        "
+                      >
+                        <i class="bx bx-like" style="color: #219935"></i> 30%
+                      </boutton>
                     </div>
                   </div>
-                </a>
-
-                <p class="card-text mt-2" style="font-size: 14px">
-                  <i
-                    class="bx bx-map"
-                    id="icon_menu"
-                    style="color: #219935"
-                  ></i>
-                  {{ companies[4].adresse }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100" id="compagnie_card">
-              <router-link to="/details">
-                <img
-                  :src="carsForLocation[6].vehicule_image_url"
-                  class="card-img-top"
-                  alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
-                />
-              </router-link>
-
-              <div class="card-body">
-                <a href="detail_compagnies.html" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px">
-                        {{ companies[5].raison_social }}
-                      </h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i
-                        class="bx bx-car"
-                        id="icon_menu"
-                        style="color: #219935"
-                      ></i>
-                    </div>
+                </router-link>
+                <div class="row">
+                  <div class="col-md-8">
+                    <p class="card-text mt-2" style="font-size: 14px">
+                      <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
+                    </p>
                   </div>
-                </a>
-
-                <p class="card-text mt-2" style="font-size: 14px">
-                  <i
-                    class="bx bx-map"
-                    id="icon_menu"
-                    style="color: #219935"
-                  ></i>
-                  {{ companies[5].adresse }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100" id="compagnie_card">
-              <router-link to="/details">
-                <img
-                  :src="carsForLocation[6].vehicule_image_url"
-                  class="card-img-top"
-                  alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
-                />
-              </router-link>
-
-              <div class="card-body">
-                <a href="detail_compagnies.html" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px">
-                        {{ companies[6].raison_social }}
-                      </h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i
-                        class="bx bx-car"
-                        id="icon_menu"
-                        style="color: #219935"
-                      ></i>
-                    </div>
+                  <div class="col-md-4 text-center mt-2">
+                    <i
+                      class="bx bx-car"
+                      style="color: #8b8b8b; font-size: 21px"
+                    ></i>
                   </div>
-                </a>
-
-                <p class="card-text mt-2" style="font-size: 14px">
-                  <i
-                    class="bx bx-map"
-                    id="icon_menu"
-                    style="color: #219935"
-                  ></i>
-                  {{ companies[6].adresse }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100" id="compagnie_card">
-              <a href="detail_compagnies.html">
-                <img
-                  :src="carsForLocation[6].vehicule_image_url"
-                  class="card-img-top"
-                  alt="..."
-                  style="border-radius: 10px 10px 0px 0px"
-                />
-              </a>
-
-              <div class="card-body">
-                <a href="detail_compagnies.html" id="a_compagnie">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title" style="font-size: 15px">
-                        {{ companies[8].raison_social }}
-                      </h5>
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <i
-                        class="bx bx-car"
-                        id="icon_menu"
-                        style="color: #219935"
-                      ></i>
-                    </div>
-                  </div>
-                </a>
-
-                <p class="card-text mt-2" style="font-size: 14px">
-                  <i
-                    class="bx bx-map"
-                    id="icon_menu"
-                    style="color: #219935"
-                  ></i>
-                  {{ companies[8].adresse }}
-                </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section> -->
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features" style="margin-top: -50px">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Compagnies de transport populaires</h2>
+              <p id="section-p">
+                Simplifiez votre trajet en choisissant parmi les compagnies de
+                transport les plus populaires. Voyagez en toute tranquillité
+                avec nos partenaires de confiance.
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/reservation">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
+            </router-link>
+          </div>
+        </div>
+
+        <Reservation />
+      </div>
     </section>
 
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <section id="features" class="features" style="margin-top: -80px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-8">
+            <div class="section-title">
               <h2>Destinations populaires</h2>
-              <p>
+              <p id="section-p">
                 Explorez les destinations les plus en vogue du moment. Trouvez
                 l'inspiration pour votre prochain voyage et vivez des
                 expériences inoubliables.
               </p>
             </div>
           </div>
+          <div class="col-4 text-end">
+            <router-link to="/reservation">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
+            </router-link>
+          </div>
+        </div>
+        <div
+          class="swiffy-slider slider-item-show3 slider-item-reveal slider-nav-dark slider-nav-outside-expand"
+        >
+          <ul class="slider-container py-4" id="slider2">
+             
+            <li
+            class=""
+            v-for="(
+                popularDestination, index
+              ) in promotionStore.popularDestinations"
+              :key="index"
+          >
+            <router-link :to="`/detail_reservation_ticket/${popularDestination.uid}`" style="color: #000">
+              <div class="card h-100 border-0" id="card_compagnie">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card mb-3 border-0"
+                      style="background: #f3f4f6;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        <div class="col-8 d-flex">
+                          <img
+                          :src="popularDestination.companieInfos.imageLogoUrl"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 12px">
+                                {{
+                                    popularDestination.companieInfos
+                                      .raison_social
+                                  }}
+                              </h5>
+                              <p class="card-text" style="font-size: 12px">
+                                <i
+                                  class="bx bx-map"
+                                  style="color: rgb(139 139 139); margin-left: 5px"
+                                ></i>
+                                {{ popularDestination.companieInfos.adresse }}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                          {{ popularDestination.montant }} FCFA
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="card mb-3 mt-4"
+                  style="
+                    max-width: 540px;
+                    margin: 10px;
+                    margin-top: -10px !important;
+                    background: #f3f4f6;
+                  "
+                >
+                  <div class="row g-0" style="margin: 10px">
+                    <div class="col-8">
+                      <div class="card-body">
+
+                        <p class="card-text" style="font-size: 13px">
+                            <strong style="color:rgb(139 139 139) ;font-weight: 500;">Trajet | </strong
+                            >{{ popularDestination.lieu_depart }} -
+                            {{ popularDestination.destination }}
+                          </p>
+                          <p class="card-text" style="font-size: 13px">
+                            <strong style="color:rgb(139 139 139) ;font-weight: 500;">Escales | </strong>
+                            {{ popularDestination.escale }}
+                          </p>
+                          <p class="card-text" style="font-size: 13px">
+                            <strong style="color:rgb(139 139 139) ;font-weight: 500;">Convocation | </strong
+                            >{{ popularDestination.heure_convocation }}
+                          </p>
+                          <p class="card-text" style="font-size: 13px">
+                            <strong style="color:rgb(139 139 139) ;font-weight: 500;">Jours du voyages |</strong>
+                            {{ popularDestination.jours_voyage }}
+                          </p>
+                         
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <img
+                          src="/public/assets/img/rb.jpg"
+                          class="img-fluid rounded-start h-100"
+                          alt="..."
+                          style="object-fit: cover"
+                        />
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </router-link>
+          </li>
+          </ul>
+
+          <button
+            type="button"
+            class="slider-nav"
+            aria-label="Aller à gauche"
+            _mstaria-label="76453"
+            _msthash="99"
+          ></button>
+          <button
+            type="button"
+            class="slider-nav slider-nav-next"
+            aria-label="Aller à gauche"
+            _mstaria-label="76453"
+            _msthash="100"
+          ></button>
+
+          <div class="slider-indicators" style="display:none">
+            <button
+              class=""
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="101"
+            ></button>
+            <button
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="102"
+              class=""
+            ></button>
+            <button
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="103"
+              class=""
+            ></button>
+            <button
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="104"
+              class=""
+            ></button>
+            <button
+              aria-label="Aller à la diapositive"
+              _mstaria-label="134940"
+              _msthash="105"
+              class="active"
+            ></button>
+          </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-          <div class="col">
-            <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px">
-                <div class="col-md-6">
-                  <div class="card mb-3 border-0" style="max-width: 540px">
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img
-                          :src="carsForLocation[6].client_profil_url"
-                          alt
-                          class="w-px-40 h-auto rounded-circle"
-                          style="width: 90px"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 15px">
-                            {{ users[6].lastName }}
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 14px">
-                            <i
-                              class="bx bx-map"
-                              id="icon_menu"
-                              style="color: #219935"
-                            ></i>
-                            {{ users[6].addresse }}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                    "
-                  >
-                    {{ carsForLocation[6].montant }} FCFA
-                  </button>
-                </div>
-              </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
+        
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features" style="margin-top: -73px">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Compagnies de location de gros engins populaires</h2>
+              <p id="section-p">
+                Simplifiez votre trajet en choisissant parmi les compagnies de
+                transport les plus populaires. Voyagez en toute tranquillité
+                avec nos partenaires de confiance.
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
               >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
-                    <img
-                      :src="carsForLocation[4].vehicule_image_url"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <p class="card-text">
-                        <strong>Trajet : </strong> {{ reservations[8].destination }}
-                      </p>
-                      <p class="card-text">
-                        <strong>Escales : </strong> {{ reservations[8].escale }}
-                      </p>
-                      <p class="card-text">
-                        <strong>Convocation : </strong>13 h 11 min
-                      </p>
-                      <p class="card-text">
-                        <strong>Jours du voyages : </strong> Lundi
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                Voir plus</boutton
+              >
+            </router-link>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div
+            class="col"
+            v-for="(companie, index) in companieStore.locationCompanies"
+            :key="index"
+          >
+            <div
+              class="card h-100"
+              id="compagnie_card"
+              style="background: #f3f4f6; box-shadow: none"
+              v-if="companie.offre == 'vip' && index < 4"
+            >
+              <router-link to="/details_location_engin" style="color: #000">
+                <img
+                  src="/public/assets/img/car2.jpg"
+                  class="card-img-top"
+                  alt="..."
+                  style="
+                    border-radius: 10px 10px 0px 0px;
+                    max-height: 174px;
+                    object-fit: cover;
+                  "
+                />
+              </router-link>
+
+              <div class="card-body">
+                <router-link to="/detail" style="color: #000">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <h5
+                        class="card-title"
+                        style="font-size: 15px; color: black"
+                      >
+                        ENGIN corp
+                      </h5>
                     </div>
+                    <div class="col-md-5 text-end">
+                      <boutton
+                        class="btn btn-primary"
+                        style="
+                          background: white;
+                          border-color: white;
+                          border-radius: 30px;
+                          color: #219935;
+                          margin-top: -9px;
+                        "
+                      >
+                        <i class="bx bx-like" style="color: #219935"></i> 30%
+                      </boutton>
+                    </div>
+                  </div>
+                </router-link>
+                <div class="row">
+                  <div class="col-md-8">
+                    <p class="card-text mt-2" style="font-size: 14px">
+                      <i class="bx bx-map" style="color: #8b8b8b"></i> Lome
+                    </p>
+                  </div>
+                  <div class="col-md-4 text-center mt-2">
+                    <i
+                      class="bx bx-car"
+                      style="color: #8b8b8b; font-size: 21px"
+                    ></i>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px">
-                <div class="col-md-6">
-                  <div class="card mb-3 border-0" style="max-width: 540px">
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img
-                          :src="carsForLocation[4].client_profil_url"
-                          alt
-                          class="w-px-40 h-auto rounded-circle"
-                          style="width: 90px"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 15px">
-                            {{ users[6].lastName }}
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 14px">
-                            <i
-                              class="bx bx-map"
-                              id="icon_menu"
-                              style="color: #219935"
-                            ></i>
-                            {{ users[6].addresse }}
-                          </p>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features" style="margin-top: -84px">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Gros engins populaires</h2>
+              <p id="section-p">
+                Découvrez les véhicules les plus prisés pour votre prochain
+                voyage. Confort, style et fiabilité, nous avons tout ce dont
+                vous avez besoin.
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
+            </router-link>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            class="col"
+             
+          >
+            <router-link
+              :to="`//detail_engin_location/`"
+              style="color: #000"
+            >
+              <div class="card h-100 border-0" id="card_compagnie">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card mb-3 border-0"
+                      style="background: #f3f4f6;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-8 d-flex">
+                          <img
+                            src="/public/assets/img/avatars/1.png"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 12px">
+                                Compagnie
+                              </h5>
+                              <p class="card-text" style="font-size: 12px">
+                                <i
+                                  class="bx bx-map"
+                                  style="color: rgb(139 139 139); margin-left: 5px"
+                                ></i>
+                               loren  
+                              </p>
+                            </div>
+                          </div>
                         </div>
+
+                        <div class="col-4 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                           5000 FCFA
+                          </button>
+                        </div>
+                        
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                    "
-                  >
-                    {{ carsForLocation[4].montant }} FCFA
-                  </button>
+                <div
+                  class="card mb-3 mt-4"
+                  style="
+                    max-width: 540px;
+                    margin: 10px;
+                    margin-top: -10px !important;
+                    background: #f3f4f6;
+                  "
+                >
+                  <div class="row g-0" style="margin: 10px">
+                    <div class="col-4">
+                      <img
+                        src="/public/assets/img/car2.jpg"
+                        class="img-fluid h-100"
+                        alt="..."
+                        style="
+                          width: 150px;
+                          object-fit: cover;
+                        "
+                      />
+                    </div>
+                    
+                    <div class="col-8">
+                      <div class="card-body">
+                        <p class="card-text" style="font-size: 13px ; ">
+                          Caterpillar |2022
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Modéle | </strong> loren ipsun
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Moteur | </strong> hp500h255
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Immatriculation | </strong>
+                          BG 20250
+                        </p>
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
+                    </div>
+                    
+                  </div>
                 </div>
               </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
+            </router-link>
+          </div>
+           
+        </div>
+      </div>
+    </section>
+
+     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+     <section id="features" class="features" style="margin-top: -73px">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Compagnies de vente de véhicule populaires</h2>
+              <p id="section-p">
+                Simplifiez votre trajet en choisissant parmi les compagnies de
+                transport les plus populaires. Voyagez en toute tranquillité
+                avec nos partenaires de confiance.
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
               >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
-                    <img
-                      :src="carsForLocation[4].vehicule_image_url"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <p class="card-text">
-                        <strong>Trajet : </strong> {{ reservations[4].destination }}
-                      </p>
-                      <p class="card-text">
-                        <strong>Escales : </strong> {{ reservations[4].escale }}
-                      </p>
-                      <p class="card-text">
-                        <strong>Convocation : </strong>13 h 11 min
-                      </p>
-                      <p class="card-text">
-                        <strong>Jours du voyages : </strong> Lundi
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                Voir plus</boutton
+              >
+            </router-link>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div
+            class="col"
+            v-for="(companie, index) in companieStore.locationCompanies"
+            :key="index"
+          >
+            <div
+              class="card h-100"
+              id="compagnie_card"
+              style="background: #f3f4f6; box-shadow: none"
+              v-if="companie.offre == 'vip' && index < 4"
+            >
+              <router-link to="/details_location_engin" style="color: #000">
+                <img
+                  src="/public/assets/img/car2.jpg"
+                  class="card-img-top"
+                  alt="..."
+                  style="
+                    border-radius: 10px 10px 0px 0px;
+                    max-height: 174px;
+                    object-fit: cover;
+                  "
+                />
+              </router-link>
+
+              <div class="card-body">
+                <router-link to="/detail" style="color: #000">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <h5
+                        class="card-title"
+                        style="font-size: 15px; color: black"
+                      >
+                        ENGIN corp
+                      </h5>
                     </div>
+                    <div class="col-md-5 text-end">
+                      <boutton
+                        class="btn btn-primary"
+                        style="
+                          background: white;
+                          border-color: white;
+                          border-radius: 30px;
+                          color: #219935;
+                          margin-top: -9px;
+                        "
+                      >
+                        <i class="bx bx-like" style="color: #219935"></i> 30%
+                      </boutton>
+                    </div>
+                  </div>
+                </router-link>
+                <div class="row">
+                  <div class="col-md-8">
+                    <p class="card-text mt-2" style="font-size: 14px">
+                      <i class="bx bx-map" style="color: #8b8b8b"></i> Lome
+                    </p>
+                  </div>
+                  <div class="col-md-4 text-center mt-2">
+                    <i
+                      class="bx bx-car"
+                      style="color: #8b8b8b; font-size: 21px"
+                    ></i>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features" style="margin-top: -84px">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Vente populaires</h2>
+              <p id="section-p">
+                Découvrez les véhicules les plus prisés pour votre prochain
+                voyage. Confort, style et fiabilité, nous avons tout ce dont
+                vous avez besoin.
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
+            </router-link>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            class="col"
+             
+          >
+            <router-link
+              :to="`//detail_engin_location/`"
+              style="color: #000"
+            >
+              <div class="card h-100 border-0" id="card_compagnie">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card mb-3 border-0"
+                      style="background: #f3f4f6;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-8 d-flex">
+                          <img
+                            src="/public/assets/img/avatars/1.png"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 12px">
+                                Compagnie
+                              </h5>
+                              <p class="card-text" style="font-size: 12px">
+                                <i
+                                  class="bx bx-map"
+                                  style="color: rgb(139 139 139); margin-left: 5px"
+                                ></i>
+                               loren  
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-4 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                           5000 FCFA
+                          </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="card mb-3 mt-4"
+                  style="
+                    max-width: 540px;
+                    margin: 10px;
+                    margin-top: -10px !important;
+                    background: #f3f4f6;
+                  "
+                >
+                  <div class="row g-0" style="margin: 10px">
+                    <div class="col-4">
+                      <img
+                        src="/public/assets/img/car2.jpg"
+                        class="img-fluid h-100"
+                        alt="..."
+                        style="
+                          width: 150px;
+                          object-fit: cover;
+                        "
+                      />
+                    </div>
+                    
+                    <div class="col-8">
+                      <div class="card-body">
+                        <p class="card-text" style="font-size: 13px ; ">
+                          Caterpillar |2022
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Modéle | </strong> loren ipsun
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Moteur | </strong> hp500h255
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Immatriculation | </strong>
+                          BG 20250
+                        </p>
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </router-link>
+          </div>
+           
         </div>
       </div>
     </section>
 
     <!-- ======= Features Section ======= -->
-    <section id="features" class="features" style="margin-top: -30px">
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
+          <div class="col-8">
+            <div class="section-title">
               <h2>Actualités</h2>
-              <p>
+              <p id="section-p">
                 Restez a jour avec les dernières nouvelles du monde du voyage .
                 Les informations les plus récentes sur les destinations, les
                 promotion et plus encore
               </p>
             </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
+            </router-link>
           </div>
         </div>
 
@@ -1327,7 +1526,15 @@ onBeforeMount(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
+<<<<<<< HEAD
               <img src="/public/assets/img/blog.jpg" class="card-img-top" alt="..." />
+=======
+              <img
+                src="/public/assets/img/blog.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+>>>>>>> firebase-connection
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1336,7 +1543,7 @@ onBeforeMount(() => {
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <h5 class="" style="font-size: 15px">
                       <i
                         class="bx bxs-circle mr-2"
@@ -1369,7 +1576,15 @@ onBeforeMount(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
+<<<<<<< HEAD
               <img src="/public/assets/img/blog-1.jpg" class="card-img-top" alt="..." />
+=======
+              <img
+                src="/public/assets/img/blog-1.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+>>>>>>> firebase-connection
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1378,7 +1593,7 @@ onBeforeMount(() => {
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <h5 class="" style="font-size: 15px">
                       <i
                         class="bx bxs-circle mr-2"
@@ -1411,7 +1626,15 @@ onBeforeMount(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
+<<<<<<< HEAD
               <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="..." />
+=======
+              <img
+                src="/public/assets/img/blog-2.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+>>>>>>> firebase-connection
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1420,7 +1643,7 @@ onBeforeMount(() => {
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <h5 class="" style="font-size: 15px">
                       <i
                         class="bx bxs-circle mr-2"
@@ -1453,7 +1676,15 @@ onBeforeMount(() => {
               class="card h-100 border-0"
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
+<<<<<<< HEAD
               <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="..." />
+=======
+              <img
+                src="/public/assets/img/blog-2.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+>>>>>>> firebase-connection
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
@@ -1462,7 +1693,7 @@ onBeforeMount(() => {
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <h5 class="" style="font-size: 15px">
                       <i
                         class="bx bxs-circle mr-2"
@@ -1495,53 +1726,57 @@ onBeforeMount(() => {
     </section>
     <!-- End Features Section -->
 
-    <section id="features" class="features" style="margin-top: -90px">
+    <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div
-            class="col-md-12 text-center mt-5"
-            style="margin-top: 80px !important"
-          >
-            <h1 id="titre_new">Inscrivez vous à notre Newsletter</h1>
-
-            <p class="mt-4" style="font-weight: 600">
-              Veuillez renseignez votre adresse mail, pour etre au courant de
-              toutes nos nouveautés
-            </p>
-
-            <div class="col-md-12 text-center mt-5">
-              <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                  <form
-                    class="d-flex"
-                    action=""
-                    method="POST"
-                    enctype="multipart/form-data"
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Inscrivez vous à notre Newsletter</h2>
+              <p id="section-p">
+                Veuillez renseignez votre adresse mail, pour etre au courant de
+                toutes nos nouveautés
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center mt-5">
+            <div class="row" style="margin-bottom: -82px;">
+               
+              <div class="col-md-6">
+                <form
+                  class="d-flex"
+                  action=""
+                  method="POST"
+                  enctype="multipart/form-data"
+                >
+                  <div
+                    class="input-group d-flex justify-content-center"
+                    style="margin-top: 15px"
                   >
-                    <div class="input-group" style="margin-top: -14px">
-                      <input
-                        type="text"
-                        class="form-control form-control-lg input py-3"
-                        placeholder="Adresse email"
-                        name="email"
-                        id="input_newsletter"
-                      />
-                      <button
-                        class="btn btn-primary"
-                        style="
-                          background: #219935;
-                          border-color: #219935;
-                          border-radius: 0px 50px 50px 0px;
-                          width: 133px;
-                        "
-                      >
-                        Envoyer
-                      </button>
-                    </div>
-                  </form>
-                </div>
-                <div class="col-md-2"></div>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg input py-3"
+                      placeholder="Adresse email"
+                      name="email"
+                      id="input_newsletter"
+                    />
+                    <button
+                      class="btn btn-primary"
+                      style="
+                        background: #219935;
+                        border-color: #219935;
+                        border-radius: 0px 50px 50px 0px;
+                        width: 133px;
+                      "
+                    >
+                      Envoyer
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6">
+                <img src="/public/assets/img/newletter.png" style="margin-top: -95px;" class="img-fluid w-50" alt="">
               </div>
             </div>
           </div>
@@ -1552,4 +1787,61 @@ onBeforeMount(() => {
   <!-- End #main -->
 </template>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+.wrapper .text {
+  position: relative;
+  color: #cad1f8;
+  font-size: 24px;
+  font-weight: 600;
+}
+.wrapper .text.first-text {
+  color: #fff;
+}
+.text.sec-text:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #219935;
+  border-left: 2px solid #cad1f8;
+  animation: animate 4s steps(12) infinite;
+}
+@keyframes animate {
+  40%,
+  60% {
+    left: calc(100% + 5px);
+  }
+  100% {
+    left: 0%;
+  }
+}
+#section-p {
+  font-size: 15px;
+  margin-top: -27px;
+}
+#input_newsletter {
+  max-width: 440px !important;
+  max-height: 20px !important;
+  font-size: 17px;
+}
+
+.slider-item-show3 {
+    --swiffy-slider-item-count: 2.7;
+}
+
+@media (max-width: 768px) {
+  .slider-item-show3 {
+    --swiffy-slider-item-count: 0.9;
+}
+
+
+  }
+
+
+</style>
