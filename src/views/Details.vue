@@ -125,7 +125,7 @@ onMounted(() => {
                     :src="companieStore.companie.imageLogoUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 100px; height: 100px !important; object-fit: cover;  border: 1px solid #d6d6d6;"
+                    style="width: 100px; height: 100px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
                   />
                 </div>
                 <div class="col-md-8">

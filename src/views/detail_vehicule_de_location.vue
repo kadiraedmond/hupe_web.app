@@ -657,6 +657,7 @@ onMounted(() => {
                     width: 70px !important;
                     height: 70px;
                     border-radius: 50%;
+                    border: 2.8px solid #E8E8E8
                   "
                 />
               </router-link>

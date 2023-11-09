@@ -22,8 +22,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   userStore.setUser(userId)
 
@@ -93,12 +93,12 @@ onMounted(() => {
           <div class="col-md-4">
             <div class="card mb-3 border-0" style="max-width: 540px">
               <div class="row g-0">
-                <div class="col-md-4">
+                <div class="col-md-4" style="border: 2.8px solid #E8E8E8; border-radius: 100%; display: flex; justify-content: center; align-items: center">
                   <img
                     :src="userStore.user.imageUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 100px"
+                    style="width: 100%; height: 100%"
                   />
                 </div>
                 <div class="col-md-8">

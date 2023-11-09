@@ -65,7 +65,7 @@ onMounted(() => {
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
                                     <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/aide2.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Centre d'Aide</h5>
                                         <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. Vous y trouverez des réponses à de nombreuses questions fréquentes, des guides détaillés, des tutoriels vidéo et bien plus encore. </p>
@@ -82,7 +82,7 @@ onMounted(() => {
                                 </div>
                                 <div class="col">
                                     <div class="card h-75" style="   border-radius: 15px !important;    background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/messagerie-interne.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Messagerie interne </h5>
                                         <p class="card-text">La messagerie interne pour le support HUPE est une fonctionnalité qui facilite la communication directe entre les utilisateurs de l'application et notre équipe de support client. </p>
@@ -99,7 +99,7 @@ onMounted(() => {
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
                                     <div class="card h-75" style="   border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/chat-direct.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Chat en Direct</h5>
                                         <p class="card-text">Pour une assistance immédiate, utilisez notre service de chat en direct. Notre équipe de support est là pour répondre à vos questions en temps réel. Cliquez sur l'icône du chat en bas de l'écran pour démarrer une conversation </p>
@@ -116,7 +116,7 @@ onMounted(() => {
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
                                     <div class="card h-75" style="  border-radius: 15px !important;  background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/email-assistance.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Assistance par E-mail</h5>
                                         <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. </p>
@@ -152,7 +152,7 @@ onMounted(() => {
                                 <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
                                 <div class="col">
                                     <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/signal-problem.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Signalement de Problèmes</h5>
                                         <p class="card-text">Si vous rencontrez un problème technique ou si vous avez des suggestions pour améliorer notre application, veuillez utiliser notre formulaire de signalement de problèmes. Cela nous permettra de recueillir des informations détaillées pour résoudre le problème plus efficacement. </p>
@@ -169,7 +169,7 @@ onMounted(() => {
                                 </div>
                                 <div class="col">
                                     <div class="card h-75" style="   border-radius: 15px !important;  background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/messagerie.png" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Assistance pour l'Accessibilité </h5>
                                         <p class="card-text">Nous sommes déterminés à rendre notre application accessible à tous. Si vous avez des besoins spéciaux en matière d'accessibilité, veuillez nous contacter à support@hupe-africa.com Notre équipe est là pour répondre à toutes vos questions.</p>

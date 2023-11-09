@@ -2,6 +2,7 @@
 import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
 
 import Vehicule from "@/components/Home/location.vue";
+import Reservation from "@/components/Home/reservation.vue";
 import { useCompanieStore } from "@/store/companie.js";
 import { useSlide } from "@/store/slideImages.js";
 import { useReservationStore } from "@/store/reservation.js";
@@ -343,76 +344,7 @@ onMounted(() => {
           </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div
-            class="col"
-            v-for="(companie, index) in companieStore.vipLocationCompanies"
-            :key="index"
-          >
-            <div
-              class="card h-100"
-              id="compagnie_card"
-              style="background: #f3f4f6; box-shadow: none"
-              v-if="companie.offre == 'vip' && index < 4"
-            >
-              <router-link :to="`/detail/${companie.uid}`">
-                <img
-                  :src="companie.imageLogoUrl"
-                  class="card-img-top"
-                  alt="..."
-                  style="
-                    border-radius: 10px 10px 0px 0px;
-                    max-height: 174px;
-                    object-fit: cover;
-                  "
-                />
-              </router-link>
-
-              <div class="card-body">
-                <router-link :to="`/detail/${companie.uid}`">
-                  <div class="row">
-                    <div class="col-md-7">
-                      <h5
-                        class="card-title"
-                        style="font-size: 15px; color: black"
-                      >
-                        {{ companie.raison_social }}
-                      </h5>
-                    </div>
-                    <div class="col-md-5 text-end">
-                      <boutton
-                        class="btn btn-primary"
-                        style="
-                          background: white;
-                          border-color: white;
-                          border-radius: 30px;
-                          color: #219935;
-                          margin-top: -9px;
-                        "
-                      >
-                        <i class="bx bx-like" style="color: #219935"></i> 30%
-                      </boutton>
-                    </div>
-                  </div>
-                </router-link>
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="card-text mt-2" style="font-size: 14px">
-                      <i class="bx bx-map" style="color: #8b8b8b"></i>
-                      {{ companie.adresse }}
-                    </p>
-                  </div>
-                  <div class="col-md-4 text-center mt-2">
-                    <i
-                      class="bx bx-car"
-                      style="color: #8b8b8b; font-size: 21px"
-                    ></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Vehicule />
       </div>
     </section>
 
@@ -452,20 +384,21 @@ onMounted(() => {
               :to="`/detail_vehicule_location/${vehicule.uid}`"
               style="color: #000"
             >
-              <div class="card h-100" id="card_compagnie">
+              <div class="card h-100 border-0" id="card_compagnie">
                 <div class="row" style="margin: 0px">
                   <div class="col-md-12">
                     <div
                       class="card mb-3 border-0"
-                      style="background: rgb(250 250 250)"
+                      style="background: #f3f4f6;"
                     >
-                      <div class="row g-1 d-flex">
-                        <div class="col-md-8 d-flex">
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-8 d-flex">
                           <img
                             :src="vehicule.companieInfos.imageLogoUrl"
                             alt
                             class="w-px-40 h-auto rounded-circle"
-                            style="max-width: 50px; max-height: 50px"
+                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
                           />
                           <div>
                             <div class="card-body d-flex">
@@ -475,14 +408,15 @@ onMounted(() => {
                               <p class="card-text" style="font-size: 12px">
                                 <i
                                   class="bx bx-map"
-                                  style="color: #219935; margin-left: 5px"
+                                  style="color: rgb(139 139 139); margin-left: 5px"
                                 ></i>
                                 {{ vehicule.companieInfos.adresse }}
                               </p>
                             </div>
                           </div>
                         </div>
-                        <div class="col-md-4 text-end">
+
+                        <div class="col-4 text-end">
                           <button
                             class="btn btn-primary"
                             style="
@@ -495,6 +429,7 @@ onMounted(() => {
                             {{ vehicule.montant }} FCFA
                           </button>
                         </div>
+                        
                       </div>
                     </div>
                   </div>
@@ -505,40 +440,41 @@ onMounted(() => {
                     max-width: 540px;
                     margin: 10px;
                     margin-top: -10px !important;
+                    background: #f3f4f6;
                   "
                 >
                   <div class="row g-0" style="margin: 10px">
-                    <div class="col-md-6">
+                    <div class="col-4">
                       <img
                         :src="vehicule.vehicule_image_url"
-                        class="img-fluid rounded-start h-100"
+                        class="img-fluid h-100"
                         alt="..."
                         style="
                           width: 150px;
-                          max-width: 150px;
-                          max-height: 150px;
                           object-fit: cover;
                         "
                       />
                     </div>
-                    <div class="col-md-6">
+                    
+                    <div class="col-8">
                       <div class="card-body">
-                        <p class="card-text" style="font-size: 13px">
-                          <strong>{{ vehicule.vehicule }} </strong>
+                        <p class="card-text" style="font-size: 13px ; ">
+                          {{ vehicule.vehicule }} |{{  vehicule.annee }}
                         </p>
                         <p class="card-text" style="font-size: 13px">
-                          <strong>Modéle | </strong> {{ vehicule.modele }}
+                          <strong style=" font-weight: 500;">Modéle | </strong> {{ vehicule.modele }}
                         </p>
                         <p class="card-text" style="font-size: 13px">
-                          <strong>Moteur | </strong> {{ vehicule.moteur }}
+                          <strong style=" font-weight: 500;">Moteur | </strong> {{ vehicule.moteur }}
                         </p>
                         <p class="card-text" style="font-size: 13px">
-                          <strong>Immatriculation | </strong>
+                          <strong style=" font-weight: 500;">Immatriculation | </strong>
                           {{ vehicule.serie_vehicule }}
                         </p>
                         <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -660,7 +596,7 @@ onMounted(() => {
           </div>
         </div>
 
-        <Vehicule />
+        <Reservation />
       </div>
     </section>
 
@@ -693,108 +629,113 @@ onMounted(() => {
           class="swiffy-slider slider-item-show3 slider-item-reveal slider-nav-dark slider-nav-outside-expand"
         >
           <ul class="slider-container py-4" id="slider2">
+             
             <li
-              class=""
-              v-for="(
+            class=""
+            v-for="(
                 popularDestination, index
               ) in promotionStore.popularDestinations"
               :key="index"
-            >
-              <router-link :to="`/detail_reservation_ticket/${popularDestination.uid}`" style="color: #000">
-                <div class="card h-100" id="card_compagnie">
-                  <div class="row" style="margin: 0px">
-                    <div class="col-md-12">
-                      <div
-                        class="card mb-3 border-0"
-                        style="background: rgb(250 250 250)"
-                      >
-                        <div class="row g-1 d-flex">
-                          <div class="col-md-8 d-flex">
-                            <img
-                              :src="popularDestination.companieInfos.imageLogoUrl"
-                              alt
-                              class="w-px-40 h-auto rounded-circle"
-                              style="max-width: 50px; max-height: 50px"
-                            />
-                            <div>
-                              <div class="card-body d-flex">
-                                <h5 class="card-title" style="font-size: 12px">
-                                  {{
+          >
+            <router-link :to="`/detail_reservation_ticket/${popularDestination.uid}`" style="color: #000">
+              <div class="card h-100 border-0" id="card_compagnie">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card mb-3 border-0"
+                      style="background: #f3f4f6;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        <div class="col-8 d-flex">
+                          <img
+                          :src="popularDestination.companieInfos.imageLogoUrl"
+                          alt=""
+                          class="w-px-40 h-auto rounded-circle"
+                          style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 12px">
+                                {{
                                     popularDestination.companieInfos
                                       .raison_social
                                   }}
-                                </h5>
-                                <p class="card-text" style="font-size: 12px">
-                                  <i
-                                    class="bx bx-map"
-                                    style="color: #219935; margin-left: 5px"
-                                  ></i>
-                                  {{ popularDestination.companieInfos.adresse }}
-                                </p>
-                              </div>
+                              </h5>
+                              <p class="card-text" style="font-size: 12px">
+                                <i
+                                  class="bx bx-map"
+                                  style="color: rgb(139 139 139); margin-left: 5px"
+                                ></i>
+                                {{ popularDestination.companieInfos.adresse }}
+                              </p>
                             </div>
                           </div>
-                          <div class="col-md-4 text-end">
-                            <button
-                              class="btn btn-primary"
-                              style="
-                                background: #219935;
-                                border-color: #219935;
-                                margin-top: 5px;
-                                font-size: 12px;
-                              "
-                            >
-                              {{ popularDestination.montant }} FCFA
-                            </button>
-                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="card mb-3 mt-4"
-                    style="
-                      max-width: 540px;
-                      margin: 10px;
-                      margin-top: -10px !important;
-                    "
-                  >
-                    <div class="row g-0" style="margin: 10px">
-                      <div class="col-md-4">
-                        <img
-                          src="/public/assets/img/car2.jpg"
-                          class="img-fluid rounded-start h-100"
-                          alt="..."
-                          style="object-fit: cover"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <p class="card-text" style="font-size: 13px">
-                            <strong>Trajet | </strong
-                            >{{ popularDestination.lieu_depart }} -
-                            {{ popularDestination.destination }}
-                          </p>
-                          <p class="card-text" style="font-size: 13px">
-                            <strong>Escales | </strong>
-                            {{ popularDestination.escale }}
-                          </p>
-                          <p class="card-text" style="font-size: 13px">
-                            <strong>Convocation | </strong
-                            >{{ popularDestination.heure_convocation }}
-                          </p>
-                          <p class="card-text" style="font-size: 13px">
-                            <strong>Jours du voyages |</strong>
-                            {{ popularDestination.jours_voyage }}
-                          </p>
-                          <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                        <div class="col-4 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                          {{ popularDestination.montant }} FCFA
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </router-link>
-            </li>
+                <div
+                  class="card mb-3 mt-4"
+                  style="
+                    max-width: 540px;
+                    margin: 10px;
+                    margin-top: -10px !important;
+                    background: #f3f4f6;
+                  "
+                >
+                  <div class="row g-0" style="margin: 10px">
+                    <div class="col-8">
+                      <div class="card-body">
+
+                        <p class="card-text" style="font-size: 13px">
+                            <strong style="color:rgb(139 139 139) ;font-weight: 500;">Trajet | </strong
+                            >{{ popularDestination.lieu_depart }} -
+                            {{ popularDestination.destination }}
+                          </p>
+                          <p class="card-text" style="font-size: 13px">
+                            <strong style="color:rgb(139 139 139) ;font-weight: 500;">Escales | </strong>
+                            {{ popularDestination.escale }}
+                          </p>
+                          <p class="card-text" style="font-size: 13px">
+                            <strong style="color:rgb(139 139 139) ;font-weight: 500;">Convocation | </strong
+                            >{{ popularDestination.heure_convocation }}
+                          </p>
+                          <p class="card-text" style="font-size: 13px">
+                            <strong style="color:rgb(139 139 139) ;font-weight: 500;">Jours du voyages |</strong>
+                            {{ popularDestination.jours_voyage }}
+                          </p>
+                         
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <img
+                          src="/public/assets/img/rb.jpg"
+                          class="img-fluid rounded-start h-100"
+                          alt="..."
+                          style="object-fit: cover"
+                        />
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </router-link>
+          </li>
           </ul>
 
           <button
@@ -812,7 +753,7 @@ onMounted(() => {
             _msthash="100"
           ></button>
 
-          <div class="slider-indicators">
+          <div class="slider-indicators" style="display:none">
             <button
               class=""
               aria-label="Aller à la diapositive"
@@ -845,6 +786,8 @@ onMounted(() => {
             ></button>
           </div>
         </div>
+
+        
       </div>
     </section>
 
@@ -877,14 +820,14 @@ onMounted(() => {
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div
             class="col"
-            v-for="(companie, index) in companieStore.locationCompanies"
+            v-for="(companie, index) in companieStore.vipLocationCompanies"
             :key="index"
           >
             <div
               class="card h-100"
               id="compagnie_card"
               style="background: #f3f4f6; box-shadow: none"
-              v-if="companie.offre == 'vip' && index < 4"
+              v-if="index < 4"
             >
               <router-link to="/details_location_engin" style="color: #000">
                 <img
@@ -943,6 +886,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
+        
       </div>
     </section>
 
@@ -973,50 +917,62 @@ onMounted(() => {
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <router-link to="/detail_engin_location" style="color: #000">
-              <div class="card h-100" id="card_compagnie">
-                <div class="row" style="margin: 10px">
-                  <div class="col-md-7">
+          <div
+            class="col"
+             
+          >
+            <router-link
+              :to="`//detail_engin_location/`"
+              style="color: #000"
+            >
+              <div class="card h-100 border-0" id="card_compagnie">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
                     <div
                       class="card mb-3 border-0"
-                      style="max-width: 540px; background: #f3f4f6"
+                      style="background: #f3f4f6;"
                     >
-                      <div class="row g-1">
-                        <div class="col-md-4">
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-8 d-flex">
                           <img
                             src="/public/assets/img/avatars/1.png"
                             alt
                             class="w-px-40 h-auto rounded-circle"
-                            style="width: 50px"
+                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
                           />
-                        </div>
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <h5 class="card-title" style="font-size: 12px">
-                              Koudi
-                            </h5>
-                            <p class="card-text mt-2" style="font-size: 12px">
-                              <i class="bx bx-map" style="color: #219935"></i>
-                              CI,rue 250
-                            </p>
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 12px">
+                                Compagnie
+                              </h5>
+                              <p class="card-text" style="font-size: 12px">
+                                <i
+                                  class="bx bx-map"
+                                  style="color: rgb(139 139 139); margin-left: 5px"
+                                ></i>
+                               loren  
+                              </p>
+                            </div>
                           </div>
                         </div>
+
+                        <div class="col-4 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                           5000 FCFA
+                          </button>
+                        </div>
+                        
                       </div>
                     </div>
-                  </div>
-                  <div class="col-md-5 text-end">
-                    <button
-                      class="btn btn-primary"
-                      style="
-                        background: #219935;
-                        border-color: #219935;
-                        margin-top: 15px;
-                        font-size: 12px;
-                      "
-                    >
-                      5000 FCFA
-                    </button>
                   </div>
                 </div>
                 <div
@@ -1025,205 +981,282 @@ onMounted(() => {
                     max-width: 540px;
                     margin: 10px;
                     margin-top: -10px !important;
+                    background: #f3f4f6;
                   "
                 >
                   <div class="row g-0" style="margin: 10px">
-                    <div class="col-md-4">
+                    <div class="col-4">
                       <img
                         src="/public/assets/img/car2.jpg"
-                        class="img-fluid rounded-start h-100"
+                        class="img-fluid h-100"
                         alt="..."
-                        style="object-fit: cover"
+                        style="
+                          width: 150px;
+                          object-fit: cover;
+                        "
                       />
                     </div>
-                    <div class="col-md-8">
+                    
+                    <div class="col-8">
                       <div class="card-body">
-                        <p class="card-text" style="font-size: 13px">
-                          <strong>Hyundai 2022 </strong>
+                        <p class="card-text" style="font-size: 13px ; ">
+                          Caterpillar |2022
                         </p>
                         <p class="card-text" style="font-size: 13px">
-                          <strong>Modéle | </strong> Santafé
+                          <strong style=" font-weight: 500;">Modéle | </strong> loren ipsun
                         </p>
                         <p class="card-text" style="font-size: 13px">
-                          <strong>Essence | </strong> Automobile
+                          <strong style=" font-weight: 500;">Moteur | </strong> hp500h255
                         </p>
                         <p class="card-text" style="font-size: 13px">
-                          <strong>Immatriculation | </strong> BG 3252
+                          <strong style=" font-weight: 500;">Immatriculation | </strong>
+                          BG 20250
                         </p>
                         <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
                     </div>
+                    
                   </div>
                 </div>
               </div>
             </router-link>
           </div>
-          <div class="col">
-            <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px">
-                <div class="col-md-7">
-                  <div
-                    class="card mb-3 border-0"
-                    style="max-width: 540px; background: #f3f4f6"
-                  >
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img
-                          src="/public/assets/img/avatars/1.png"
-                          alt
-                          class="w-px-40 h-auto rounded-circle"
-                          style="width: 50px"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 12px">
-                            Koudi
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 12px">
-                            <i class="bx bx-map" style="color: #219935"></i>
-                            CI,rue 250
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-5 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                      font-size: 12px;
-                    "
-                  >
-                    5000 FCFA
-                  </button>
-                </div>
-              </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
+           
+        </div>
+      </div>
+    </section>
+
+     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+     <section id="features" class="features" style="margin-top: -73px">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Compagnies de vente de véhicule populaires</h2>
+              <p id="section-p">
+                Simplifiez votre trajet en choisissant parmi les compagnies de
+                transport les plus populaires. Voyagez en toute tranquillité
+                avec nos partenaires de confiance.
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
               >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
-                    <img
-                      src="/public/assets/img/car2.jpg"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Hyundai 2022 </strong>
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Modéle | </strong> Santafé
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Essence | </strong> Automobile
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Immatriculation | </strong> BG 3252
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                Voir plus</boutton
+              >
+            </router-link>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div
+            class="col"
+            v-for="(companie, index) in companieStore.vipLocationCompanies"
+            :key="index"
+          >
+            <div
+              class="card h-100"
+              id="compagnie_card"
+              style="background: #f3f4f6; box-shadow: none"
+              v-if="index < 4"
+            >
+              <router-link to="/details_location_engin" style="color: #000">
+                <img
+                  src="/public/assets/img/car2.jpg"
+                  class="card-img-top"
+                  alt="..."
+                  style="
+                    border-radius: 10px 10px 0px 0px;
+                    max-height: 174px;
+                    object-fit: cover;
+                  "
+                />
+              </router-link>
+
+              <div class="card-body">
+                <router-link to="/detail" style="color: #000">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <h5
+                        class="card-title"
+                        style="font-size: 15px; color: black"
+                      >
+                        ENGIN corp
+                      </h5>
                     </div>
+                    <div class="col-md-5 text-end">
+                      <boutton
+                        class="btn btn-primary"
+                        style="
+                          background: white;
+                          border-color: white;
+                          border-radius: 30px;
+                          color: #219935;
+                          margin-top: -9px;
+                        "
+                      >
+                        <i class="bx bx-like" style="color: #219935"></i> 30%
+                      </boutton>
+                    </div>
+                  </div>
+                </router-link>
+                <div class="row">
+                  <div class="col-md-8">
+                    <p class="card-text mt-2" style="font-size: 14px">
+                      <i class="bx bx-map" style="color: #8b8b8b"></i> Lome
+                    </p>
+                  </div>
+                  <div class="col-md-4 text-center mt-2">
+                    <i
+                      class="bx bx-car"
+                      style="color: #8b8b8b; font-size: 21px"
+                    ></i>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card h-100" id="card_compagnie">
-              <div class="row" style="margin: 10px">
-                <div class="col-md-7">
-                  <div
-                    class="card mb-3 border-0"
-                    style="max-width: 540px; background: #f3f4f6"
-                  >
-                    <div class="row g-1">
-                      <div class="col-md-4">
-                        <img
-                          src="/public/assets/img/avatars/1.png"
-                          alt
-                          class="w-px-40 h-auto rounded-circle"
-                          style="width: 50px"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" style="font-size: 12px">
-                            Koudi
-                          </h5>
-                          <p class="card-text mt-2" style="font-size: 12px">
-                            <i class="bx bx-map" style="color: #219935"></i>
-                            CI,rue 250
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-5 text-end">
-                  <button
-                    class="btn btn-primary"
-                    style="
-                      background: #219935;
-                      border-color: #219935;
-                      margin-top: 15px;
-                      font-size: 12px;
-                    "
-                  >
-                    5000 FCFA
-                  </button>
-                </div>
-              </div>
-              <div
-                class="card mb-3 mt-4"
-                style="
-                  max-width: 540px;
-                  margin: 10px;
-                  margin-top: -10px !important;
-                "
-              >
-                <div class="row g-0" style="margin: 10px">
-                  <div class="col-md-4">
-                    <img
-                      src="/public/assets/img/car2.jpg"
-                      class="img-fluid rounded-start h-100"
-                      alt="..."
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Hyundai 2022 </strong>
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Modéle | </strong> Santafé
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Essence | </strong> Automobile
-                      </p>
-                      <p class="card-text" style="font-size: 13px">
-                        <strong>Immatriculation | </strong> BG 3252
-                      </p>
-                      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <section id="features" class="features" style="margin-top: -84px">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <div class="section-title">
+              <h2>Vente populaires</h2>
+              <p id="section-p">
+                Découvrez les véhicules les plus prisés pour votre prochain
+                voyage. Confort, style et fiabilité, nous avons tout ce dont
+                vous avez besoin.
+              </p>
             </div>
           </div>
+          <div class="col-4 text-end">
+            <router-link to="/">
+              <boutton
+                class="btn btn-primary"
+                style="background: white; color: #219935; border-color: #219935"
+              >
+                Voir plus</boutton
+              >
+            </router-link>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            class="col"
+             
+          >
+            <router-link
+              :to="`//detail_engin_location/`"
+              style="color: #000"
+            >
+              <div class="card h-100 border-0" id="card_compagnie">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card mb-3 border-0"
+                      style="background: #f3f4f6;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-8 d-flex">
+                          <img
+                            src="/public/assets/img/avatars/1.png"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 12px">
+                                Compagnie
+                              </h5>
+                              <p class="card-text" style="font-size: 12px">
+                                <i
+                                  class="bx bx-map"
+                                  style="color: rgb(139 139 139); margin-left: 5px"
+                                ></i>
+                               loren  
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-4 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                           5000 FCFA
+                          </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="card mb-3 mt-4"
+                  style="
+                    max-width: 540px;
+                    margin: 10px;
+                    margin-top: -10px !important;
+                    background: #f3f4f6;
+                  "
+                >
+                  <div class="row g-0" style="margin: 10px">
+                    <div class="col-4">
+                      <img
+                        src="/public/assets/img/car2.jpg"
+                        class="img-fluid h-100"
+                        alt="..."
+                        style="
+                          width: 150px;
+                          object-fit: cover;
+                        "
+                      />
+                    </div>
+                    
+                    <div class="col-8">
+                      <div class="card-body">
+                        <p class="card-text" style="font-size: 13px ; ">
+                          Caterpillar |2022
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Modéle | </strong> loren ipsun
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Moteur | </strong> hp500h255
+                        </p>
+                        <p class="card-text" style="font-size: 13px">
+                          <strong style=" font-weight: 500;">Immatriculation | </strong>
+                          BG 20250
+                        </p>
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </router-link>
+          </div>
+           
         </div>
       </div>
     </section>
@@ -1459,9 +1492,9 @@ onMounted(() => {
         </div>
         <div class="row">
           <div class="col-md-12 text-center mt-5">
-            <div class="row">
-              <div class="col-md-2"></div>
-              <div class="col-md-8">
+            <div class="row" style="margin-bottom: -82px;">
+               
+              <div class="col-md-6">
                 <form
                   class="d-flex"
                   action=""
@@ -1470,7 +1503,7 @@ onMounted(() => {
                 >
                   <div
                     class="input-group d-flex justify-content-center"
-                    style="margin-top: -40px"
+                    style="margin-top: 15px"
                   >
                     <input
                       type="text"
@@ -1492,6 +1525,9 @@ onMounted(() => {
                     </button>
                   </div>
                 </form>
+              </div>
+              <div class="col-md-6">
+                <img src="/public/assets/img/newletter.png" style="margin-top: -95px;" class="img-fluid w-50" alt="">
               </div>
             </div>
           </div>
@@ -1545,4 +1581,18 @@ onMounted(() => {
   max-height: 20px !important;
   font-size: 17px;
 }
+
+.slider-item-show3 {
+    --swiffy-slider-item-count: 2.7;
+}
+
+@media (max-width: 768px) {
+  .slider-item-show3 {
+    --swiffy-slider-item-count: 0.9;
+}
+
+
+  }
+
+
 </style>

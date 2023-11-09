@@ -16,8 +16,8 @@ const locationStore = useLocationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   userStore.setUser(userId)
   locationStore.setUserLocations(userId)
@@ -76,7 +76,53 @@ const annul = async (location) => {
 }
 
 const payer = async (location) => {
-  // 
+  function checkout() {
+      CinetPay.setConfig({
+          apikey: '8147832776464ac622a6806.22624295',//   YOUR APIKEY
+          site_id: '132831',//YOUR_SITE_ID
+          // notify_url: 'http://mondomaine.com/notify/',
+          // mode: 'PRODUCTION'
+          mode: 'DEVELOPEMENT'
+      });
+      CinetPay.getCheckout({
+          transaction_id: Math.floor(Math.random() * 100000000).toString(), // YOUR TRANSACTION ID
+          amount: Number(location.montant),
+          currency: 'XOF',
+          channels: 'ALL',
+          description: `Paiement pour la location ${location.number}`,   
+            //Fournir ces variables pour le paiements par carte bancaire
+          customer_name: `${userStore.user.lastName}`,//Le nom du client
+          customer_surname: `${userStore.user.firstName}`,//Le prenom du client
+          customer_email: `${userStore.user.email}`,//l'email du client
+          customer_phone_number: `${userStore.user.telephone}`,//l'email du client
+          customer_address : `${userStore.user.addresse}`,//addresse du client
+          customer_city: '',// La ville du client
+          customer_country : `${userStore.user.country}`,// le code ISO du pays
+          customer_state : `${userStore.user.country}`,// le code ISO l'état
+          customer_zip_code : '', // code postal
+
+      });
+      CinetPay.waitResponse((data) => {
+          if (data.status == "REFUSED") {
+              toast.warn("Votre paiement a échoué", {
+                autoClose: 3500,
+                position: toast.POSITION.TOP_CENTER,
+              })
+            window.location.reload()
+          } else if (data.status == "ACCEPTED") {
+            toast.success("Votre paiement a été effectué avec succès", {
+              autoClose: 3500,
+              position: toast.POSITION.TOP_CENTER,
+            })
+            window.location.reload()
+          }
+      });
+      CinetPay.onError((data) => {
+          console.log(data)
+      })
+  }
+
+  checkout()
 }
 
 const message = ref('')

@@ -39,6 +39,7 @@ onMounted(() => {
 })
 
 const isCompanie = ref(false)
+const isClient = ref(false)
 
 const handleInput = () => {
   if(!isCompanie.value) {
@@ -47,6 +48,14 @@ const handleInput = () => {
   } else if(isCompanie.value) {
     isCompanie.value = false
     authStore.setIsCompanie(false)
+  }
+}
+
+const handleClient = () => {
+  if(!isClient.value) {
+    isClient.value = true
+  } else {
+    isClient.value = false
   }
 }
 
@@ -93,8 +102,22 @@ const handleInput = () => {
                           @country-changed="handleCountryChange"
                          />
                       </div>
-                      
-                      <div class="text-center">
+
+                      <div class="d-flex justify-content-between mb-2">
+                        <div class="">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gridRadios"
+                            @click="handleClient"
+                            :checked="isClient"
+                            required
+                          />
+                          {{ ' ' }}
+                          <label class="form-check-label" for="gridRadios1">
+                            Je suis un client
+                          </label>
+                        </div>
                         <div class="">
                           <input
                             class="form-check-input"
@@ -102,12 +125,16 @@ const handleInput = () => {
                             name="gridRadios"
                             @click="handleInput"
                             :checked="isCompanie"
+                            required
                           />
                           {{ ' ' }}
                           <label class="form-check-label" for="gridRadios1">
                             Nous sommes une compagnie
                           </label>
                         </div>
+                      </div>
+                      
+                      <div class="text-center">
                         <button
                           type="submit"
                           class="btn btn-primary mt-2"
