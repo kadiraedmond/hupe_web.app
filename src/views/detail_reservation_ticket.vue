@@ -224,7 +224,7 @@ onMounted(() => {
                   Réserver
                 </button>
               </router-link>
-              <router-link v-if="user.token" to="">
+              <router-link v-if="user.token && !user.raison_social" to="">
                 <button
                   class="btn btn-primary w-100"
                   style="

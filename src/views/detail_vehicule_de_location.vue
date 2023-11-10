@@ -4,6 +4,7 @@ import { useRoute } from "vue-router"
 import { useCompanieStore } from "@/store/companie.js"
 import { usePromotionStore } from "@/store/promotion.js"
 import Loader from "@/components/Loader.vue"
+import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 import { collection, doc, addDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
@@ -34,20 +35,20 @@ onMounted(() => {
 
 const user = JSON.parse(localStorage.getItem("user")) || authStore.user;
 
-const name = ref("");
-const avecChauffeur = ref(false);
-const sansChauffeur = ref(false);
-const capitalPays = ref(false);
-const interieurPays = ref(false);
-const dateRetrait = ref();
-const heureRetrait = ref();
-const lieuRetrait = ref("");
-const dateRetour = ref();
-const permis = ref();
+const name = ref('')
+const avecChauffeur = ref(false)
+const sansChauffeur = ref(false)
+const capitalPays = ref(false)
+const interieurPays = ref(false)
+const dateRetrait = ref()
+const heureRetrait = ref()
+const lieuRetrait = ref('')
+const dateRetour = ref()
+const permis = ref()
 
 const toggleChauffeur = (num) => {
   if (num == 1) {
-    avecChauffeur.value = true;
+    avecChauffeur.value = true
     sansChauffeur.value = false;
   } else if (num == 2) {
     sansChauffeur.value = true;
@@ -67,13 +68,12 @@ const togglePays = (num) => {
 
 const handleFileChange = async (e) => {
   const file = e.target.files[0]
-  const storageRef = storage.ref(`location_vehicule/${file.name}`)
-  
-  // Mettre le fichier dans le storage de Firebase
-  const snapshot = await storageRef.put(file)
+  const storageRef = fireRef(storage, `location_vehicule/${companieId}/${file.name}`)
 
-  // Récupérer l'URL du fichier téléchargé
-  const downloadURL = await snapshot.ref.getDownloadURL()
+  await uploadBytes(storageRef, file)
+  
+  const downloadURL = await getDownloadURL(storageRef)
+  // console.log(downloadURL)
   permis.value = downloadURL
 }
 
@@ -91,8 +91,8 @@ const reserver = async (car) => {
     client_profil_url: user.imageUrl || "",
     compagnie_id: companieStore.companie.uid,
     created_at: new Date(),
-    date_retour: dateRetour.value,
-    date_retrait: dateRetrait.value,
+    date_retour: new Date(dateRetour.value),
+    date_retrait: new Date(dateRetrait.value),
     enPromo: car.enPromo || false,
     heure_retrait: heureRetrait.value,
     identite_image_url: '' || permis.value,
@@ -302,7 +302,7 @@ onMounted(() => {
                   Réserver
                 </button>
               </router-link>
-              <router-link v-if="user.token" to="">
+              <router-link v-if="user.token && !user.raison_social" to="">
                 <button
                   class="btn btn-primary w-100"
                   style="

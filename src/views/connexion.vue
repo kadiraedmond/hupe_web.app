@@ -17,11 +17,11 @@ const logInWithPhoneNumber = async () => {
 
   const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container')
 
-  await authStore.authenticate(auth, phoneNum, appVerifier)
-  authStore.setAppVerifier(appVerifier)
-  authStore.setPhoneNum(phoneNum)
   
-  appVerifier.verify().then(response => {
+  authStore.authenticate(auth, phoneNum, appVerifier)
+  await appVerifier.verify().then(response => {
+    authStore.setAppVerifier(appVerifier)
+    authStore.setPhoneNum(phoneNum)
     if(response) {
       router.push('/otp')
     }

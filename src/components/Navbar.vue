@@ -136,7 +136,7 @@ const logout = async () => {
           </li>
 
           <li>
-            <router-link v-if="!authStore.user.uid && !savedUser" to="/connexion" class="nav-link scrollto"
+            <router-link v-if="!authStore.user.uid && !savedUser" to="/connexion" class="nav-link scrollto" :class="{ active: $route.path === '/connexion' }"
               ><i class="bx bx-user" id="icon_menu"></i> Connexion
             </router-link>
           </li>

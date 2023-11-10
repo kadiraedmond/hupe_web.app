@@ -142,7 +142,7 @@ const changeProfilHandler = async () => {
                     </h5>
                   </button>
                 </div>
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center" v-if="companieStore.companie.offre !=='vip'">
                   <button type="button" class="btn btn-primary text-center" style="background: #219935; border-color: #219935;" @click="changeProfilHandler">Sélectionner</button>
                 </div>
               </div>
@@ -239,7 +239,7 @@ const changeProfilHandler = async () => {
                     </h5>
                   </button>
                 </div>
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center" v-if="companieStore.companie.offre !== 'basique'">
                   <button
                     type="button"
                     class="btn btn-primary text-center"

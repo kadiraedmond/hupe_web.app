@@ -7,6 +7,7 @@ import { useAuthStore } from '@/store/auth.js'
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 const authStore = useAuthStore()
+const savedUser = JSON.parse(localStorage.getItem('user'))
 
 let docRef
 onMounted(() => {
@@ -23,8 +24,8 @@ onBeforeMount(() => {
   companieService = authStore.companieService
   offre = authStore.offre
   offre2 = authStore.offre2
-  new_uid = authStore.user.uid
-  userToken = authStore.user.stsTokenManager.accessToken
+  new_uid = authStore.user.uid || savedUser.uid
+  userToken = authStore.user.stsTokenManager.accessToken || savedUser.stsTokenManager.accessToken
   // console.log(authStore.user.stsTokenManager.accessToken)
 })
 
