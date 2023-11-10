@@ -92,25 +92,47 @@ const options = {
                         >
                           <div class="row g-1">
                             <div class="col-md-12 d-flex">
-                              <img
-                                :src="response.companyInfos.imageLogoUrl"
-                                alt
-                                class="w-px-40 h-auto rounded-circle"
-                                style="width: 50px"
-                              />
-                              <div class="card-body">
-                                <h5 class="card-title" style="font-size: 12px">
-                                  {{ response.companyInfos.raison_social }}
-                                </h5>
-                              </div>
+                              <router-link 
+                                :to="`/detail/${response.companyInfos.uid}`" 
+                                v-if="response.companyInfos.type_compagnie == 'Location'"
+                              >
+                                <img
+                                  :src="response.companyInfos.imageLogoUrl"
+                                  alt
+                                  class="w-px-40 h-auto rounded-circle"
+                                  style="width: 50px"
+                                />
+                                <div class="card-body">
+                                  <h5 class="card-title" style="font-size: 12px">
+                                    {{ response.companyInfos.raison_social }}
+                                  </h5>
+                                </div>
+                              </router-link>
+                              
+                              <router-link 
+                                :to="`/details/${response.companyInfos.uid}`" 
+                                v-if="response.companyInfos.type_compagnie == 'Transport'"
+                              >
+                                <img
+                                  :src="response.companyInfos.imageLogoUrl"
+                                  alt
+                                  class="w-px-40 h-auto rounded-circle"
+                                  style="width: 50px"
+                                />
+                                <div class="card-body">
+                                  <h5 class="card-title" style="font-size: 12px">
+                                    {{ response.companyInfos.raison_social }}
+                                  </h5>
+                                </div>
+                              </router-link>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  Votre Demande : <p class="text-black">{{ post.demande }}</p>
-                  Réponse : 
+                  {{ " " }} Votre Demande : <p class="text-black">{{ post.demande }}</p>
+                  {{ " " }} Réponse : 
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ response.reponse }}</li>
                   </ul>

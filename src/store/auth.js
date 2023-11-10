@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { signInWithPhoneNumber } from 'firebase/auth'
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc} from "firebase/firestore"
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, Timestamp } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const companiesColRef = collection(firestoreDb, "compagnies")
@@ -20,7 +20,9 @@ export const useAuthStore = defineStore('authStore', {
         isReservationCompany: false,
         isBigEnginsCompany: false,
         isCarsSellingCompany: false,
-        confirmationResult: {}
+        confirmationResult: {},
+        appVerifier: {},
+        phoneNum: ''
     }),
     getters: {
         // 
@@ -45,7 +47,7 @@ export const useAuthStore = defineStore('authStore', {
                             description: '', 
                             imageCouvertureUrl: '', 
                             imageLogoUrl: '', 
-                            joinedAt: new Date(), 
+                            joinedAt: Timestamp.now(), 
                             latitude: '', 
                             longitude: '', 
                             mise_avant: true, 
@@ -105,6 +107,12 @@ export const useAuthStore = defineStore('authStore', {
         }, 
         setIsCompanie(val) {
             this.isCompanie = val
+        },
+        setAppVerifier(val) {
+            this.appVerifier = val
+        },
+        setPhoneNum(val) {
+            this.phoneNum = val
         }
     }
 })

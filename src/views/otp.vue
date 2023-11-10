@@ -1,14 +1,26 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onBeforeMount, ref } from 'vue'
 
 import { useAuthStore } from '@/store/auth.js'
+import { auth } from '@/firebase/firebase.js'
 import router from '@/router/router.js'
 import Loader from '@/components/Loader.vue'
+import Swal from 'sweetalert2'
 
 const authStore = useAuthStore()
 
 const isLoading = ref(false)
+const isNew = ref(false)
+const isCompanie = ref(false)
+const phoneNum = ref('')
+const appVerifier = ref({})
 
+onBeforeMount(() => {
+  isNew.value = authStore.isNew
+  isCompanie.value = authStore.isCompanie
+  phoneNum.value = authStore.phoneNum
+  appVerifier.value = authStore.appVerifier
+})
 onMounted(() => {
   window.scrollTo(0, 0)
 })
@@ -26,23 +38,32 @@ const handleOnComplete = async (value) => {
     authStore.setUser(user)
     localStorage.setItem('user', JSON.stringify(user))
 
-    console.log(authStore.user.stsTokenManager.accessToken)
+    // console.log(authStore.user.stsTokenManager.accessToken)
 
-    if(authStore.isNew === true) {
+    if(isNew.value && isCompanie.value) {
       router.push('/choix_services')
-    } else if(authStore.isNew === false) {
-      if(user.type_compagnie) {
+    } else if(!isNew.value && isCompanie.value) {
+      if(user.raison_social || user.type_compagnie) {
         if(user.type_compagnie == 'Location') {
           router.push('/compte_vehicule')
         } else if(user.type_compagnie == 'Transport') {
           router.push('/compte_reservation')
         }
-      } else {
-        router.push('/compte_client')
-      }
+      } 
+    } else if(!isCompanie.value) {
+      router.push('/compte_client')
     }
   
   }
+}
+
+const resendCode = async () => {
+  Swal.fire({
+    title: "Envoie du code de vérification",
+    text: "Le code a été envoyé avec succès",
+    icon: "success"
+  })
+  authStore.authenticate(auth, phoneNum.value, appVerifier.value)
 }
 
 </script>
@@ -76,14 +97,14 @@ const handleOnComplete = async (value) => {
                     />
 
                     <Loader 
-                      style="position: absolute; left: 24%; top: 35%"
+                      style="position: absolute; left: 44.8%; top: 28%"
                       v-if="isLoading" 
                     />
                   </div>
                 </div>
                 <div class="col-md-12 text-center mt-3">
-                  <p>Je n'ai pas reçu de message</P>
-                    <p><a href=""> Renvoyer le code</a></p>
+                  <p>Je n'ai pas reçu de message</p>
+                    <button class="btn btn-primary" @click="resendCode">Renvoyer le code</button>
                 </div>
               </div>
             </div>

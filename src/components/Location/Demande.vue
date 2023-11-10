@@ -1,13 +1,15 @@
 <script setup>
 import { useDemandeStore } from '@/store/demande.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue"
 
-import { collection, doc, getDoc} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
+import { collection, doc, getDoc} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
+import { useCompanieStore } from '@/store/companie.js'
 
 const demandeStore = useDemandeStore()
 const authStore = useAuthStore()
+const companieStore = useCompanieStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
@@ -49,6 +51,7 @@ const handleSubmit = async (demande) => {
 
 onBeforeMount(() => {
   demandeStore.setLocationDemandes()
+  companieStore.setCompanieById(userId)
 })
 
 onMounted(() => {
@@ -57,7 +60,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="row mt-5">
+  <div class="row mt-5" v-if="companieStore.companie.status == 'active'">
     <div class="col-md-6 my-1" v-for="(demande, index) in demandeStore.locationDemandes" :key="index">
       <!-- Button trigger modal -->
       <button

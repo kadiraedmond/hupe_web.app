@@ -1,13 +1,15 @@
 <script setup>
 import { useDemandeStore } from '@/store/demande.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, ref , onMounted } from "vue";
+import { onBeforeMount, ref , onMounted } from "vue"
+import { useCompanieStore } from '@/store/companie.js'
 
-import { collection, doc, getDoc} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
+import { collection, doc, getDoc} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
 
 const demandeStore = useDemandeStore()
 const authStore = useAuthStore()
+const companieStore = useCompanieStore()
 
 const usersColRef = collection(firestoreDb, 'users')
 
@@ -27,6 +29,7 @@ const getClientInformations = async (clientId) => {
 
 onBeforeMount(() => {
   demandeStore.setReservationDemandes()
+  companieStore.setCompanieById(userId)
 })
 
 onMounted(() => {
@@ -35,7 +38,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="row mt-5">
+  <div class="row mt-5" v-if="companieStore.companie.status == 'active'">
     <div class="col-md-6 my-1" v-for="(demande, index) in demandeStore.reservationDemandes" :key="index" style="margin-bottom: 19px !important;">
       <!-- Button trigger modal -->
       <button

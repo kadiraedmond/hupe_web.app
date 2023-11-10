@@ -4,6 +4,7 @@ import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc} from
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import router from '@/router/router.js'
 import { useAuthStore } from '@/store/auth.js'
+import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 const authStore = useAuthStore()
 
@@ -17,11 +18,13 @@ let companieService
 let offre
 let offre2
 let userToken
+let new_uid
 onBeforeMount(() => {
-  // companieService = authStore.companieService
-  // offre = authStore.offre
-  // offre2 = authStore.offre2
-  // userToken = authStore.user.stsTokenManager.accessToken
+  companieService = authStore.companieService
+  offre = authStore.offre
+  offre2 = authStore.offre2
+  new_uid = authStore.user.uid
+  userToken = authStore.user.stsTokenManager.accessToken
   // console.log(authStore.user.stsTokenManager.accessToken)
 })
 
@@ -34,25 +37,23 @@ const image_logo = ref()
 
 const uploadBanner = async (e) => {
   const file = e.target.files[0]
-  const storageRef = storage.ref(`compagniesImages/${file.name}`)
-  
-  // Mettre le fichier dans le stockage de Firebase
-  const snapshot = await storageRef.put(file)
+  const storageRef = fireRef(storage, `compagniesImages/${new_uid}/${file.name}`)
 
-  // Récupérer l'URL du fichier téléchargé
-  const downloadURL = await snapshot.ref.getDownloadURL()
+  await uploadBytes(storageRef, file)
+  
+  const downloadURL = await getDownloadURL(storageRef)
+  // console.log(downloadURL)
   image_couverture.value = downloadURL
 }
 
 const uploadProfilePicture = async (e) => {
   const file = e.target.files[0]
-  const storageRef = storage.ref(`compagniesImages/${file.name}`)
-  
-  // Mettre le fichier dans le stockage de Firebase
-  const snapshot = await storageRef.put(file)
+  const storageRef = fireRef(storage, `compagniesImages/${new_uid}/${file.name}`)
 
-  // Récupérer l'URL du fichier téléchargé
-  const downloadURL = await snapshot.ref.getDownloadURL()
+  await uploadBytes(storageRef, file)
+  
+  const downloadURL = await getDownloadURL(storageRef)
+  // console.log(downloadURL)
   image_logo.value = downloadURL
 }
 
@@ -152,12 +153,12 @@ const handleSubmit = async () => {
                 <label for="inputCity" class="form-label"
                   >Images de couverture</label
                 >
-                <input type="file" v-on:change="uploadBanner" class="form-control" id="inputCity" />
+                <input type="file" accept="image/*" v-on:change="uploadBanner" class="form-control" id="inputCity" />
               </div>
 
               <div class="col-md-12">
                 <label for="inputCity" class="form-label">Logo</label>
-                <input type="file" v-on:change="uploadProfilePicture" class="form-control" id="inputCity" />
+                <input type="file" accept="image/*" v-on:change="uploadProfilePicture" class="form-control" id="inputCity" />
               </div>
 
               <div class="col-md-12 text-center mt-3">
