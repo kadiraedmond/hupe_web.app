@@ -119,12 +119,12 @@ const logout = async () => {
             >
           </li>
           <li>
-            <router-link class="nav-link scrollto" to="/service_client"
+            <router-link class="nav-link scrollto" to="/service_client" :class="{ active: $route.path === '/service_client' }"
               ><i class="bx bx-help-circle" id="icon_menu"></i> Aide
             </router-link>
           </li>
           <li>
-            <router-link class="nav-link scrollto" to="/promotion"
+            <router-link class="nav-link scrollto" to="/promotion" :class="{ active: $route.path === '/promotion' }"
               ><i class="bx bxs-megaphone" id="icon_menu"></i> Promotions
             </router-link>
           </li>

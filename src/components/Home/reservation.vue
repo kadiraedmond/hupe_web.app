@@ -31,10 +31,11 @@ onBeforeMount(() => {
         v-for="(companie, index) in companieStore.vipTransportCompanies"
         :key="index"
       >
+      <!-- #f9f9f9 -->
         <div
           class="card h-100"
           id="compagnie_card"
-          style="background: #f3f4f6; box-shadow: none"
+          style="background: #f9f9f9; box-shadow: none"
         >
           <router-link :to="`/details/${companie.uid}`">
             <img
@@ -44,14 +45,16 @@ onBeforeMount(() => {
               style="
                 border-radius: 10px 10px 0px 0px;
                 max-height: 174px;
+                min-height: 174px;
                 object-fit: cover;
               "
             />
           </router-link>
+          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
 
           <div class="card-body">
             <router-link :to="`/details/${companie.uid}`">
-              <div class="row">
+              <div class="row mt-2">
                 <div class="col-7">
                   <h5 class="card-title" style="font-size: 15px; color: black">
                     {{ companie.raison_social }}
@@ -121,4 +124,17 @@ onBeforeMount(() => {
 
 
   }
+
+  #badgesLogo {
+    display: inline-block;
+    left: 9px;
+    width: 45px;
+    height: 45px;
+    /* padding: 1px 14px; */
+    position: absolute;
+    margin-top: 150px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    object-fit: cover;
+}
 </style>

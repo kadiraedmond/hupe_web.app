@@ -21,7 +21,27 @@ const handleSubmit = () => {
 <!-- #d5f8e5 -->
 <template>
   <main id="main">
-    <section id="features" class="features" style="margin-top: 100px">
+    <section id="features" class="features" style="margin-top: 50px">
+      <div class="container mt-2 mb-5">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                
+                <li class=" active w-25 text-center" aria-current="page"> <button class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;background: white;border-color: #219935 ;color: #219935;">1</button> Téléphone</li>
+                <li class=" w-25 text-center"> <button class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;background: white;border-color: #219935 ;color: #219935;">2</button>Choix de services</li>
+                <li class=" w-25 text-center"> <button class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;background: #219935;border-color: #219935">3</button>Choix offres</li>
+                <li class="breadcrumb-item  w-25 text-center"> <button class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;background: white;border-color: #219935 ;color: #219935;" >4</button>Informations</li>
+                
+                <!-- Ajoutez plus d'étapes si nécessaire -->
+              </ol>
+            </nav>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+            
+      </div>
       <div class="container">
         <div class="row">
           <div class="col-md-1"></div>
