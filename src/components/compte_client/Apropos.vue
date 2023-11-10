@@ -4,7 +4,7 @@ import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, ref } from "vue"
 
 import { addDoc, updateDoc, collection, Timestamp } from 'firebase/firestore'
-import { firestoreDb } from '@/firebase/firebase.js'
+import { firestoreDb, storage } from '@/firebase/firebase.js'
 import { toast } from "vue3-toastify"
 
 const userStore = useUserStore()
@@ -44,6 +44,18 @@ onBeforeMount(async () => {
   nom_utilisteur.value = username
 
 })
+
+const uploadProfilePicture = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = storage.ref(`usersImages/${file.name}`)
+  
+  // Mettre le fichier dans le stockage de Firebase
+  const snapshot = await storageRef.put(file)
+
+  // Récupérer l'URL du fichier téléchargé
+  const downloadURL = await snapshot.ref.getDownloadURL()
+  photo_profil.value = downloadURL
+}
 
 const handleSubmit = async () => {
   const userDocRef = doc(firestoreDb, 'users', `${userId}`)
@@ -182,7 +194,7 @@ const handleSubmit = async () => {
               <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Photo de profil</label>
                 <div class="input-group has-validation">
-                  <input v-on:change="photo_profil" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                  <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
                    
                 </div>
               </div>

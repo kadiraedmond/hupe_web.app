@@ -65,7 +65,7 @@ onMounted(() => {
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
                                     <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide2.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/aide_.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Centre d'Aide</h5>
                                         <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. Vous y trouverez des réponses à de nombreuses questions fréquentes, des guides détaillés, des tutoriels vidéo et bien plus encore. </p>

@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, onBeforeMount, ref } from 'vue'
 import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc} from "firebase/firestore"
-import { firestoreDb } from "@/firebase/firebase.js"
+import { firestoreDb, storage } from "@/firebase/firebase.js"
 import router from '@/router/router.js'
 import { useAuthStore } from '@/store/auth.js'
 
@@ -31,6 +31,30 @@ const addresse = ref('')
 const description = ref('')
 const image_couverture = ref()
 const image_logo = ref()
+
+const uploadBanner = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = storage.ref(`compagniesImages/${file.name}`)
+  
+  // Mettre le fichier dans le stockage de Firebase
+  const snapshot = await storageRef.put(file)
+
+  // Récupérer l'URL du fichier téléchargé
+  const downloadURL = await snapshot.ref.getDownloadURL()
+  image_couverture.value = downloadURL
+}
+
+const uploadProfilePicture = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = storage.ref(`compagniesImages/${file.name}`)
+  
+  // Mettre le fichier dans le stockage de Firebase
+  const snapshot = await storageRef.put(file)
+
+  // Récupérer l'URL du fichier téléchargé
+  const downloadURL = await snapshot.ref.getDownloadURL()
+  image_logo.value = downloadURL
+}
 
 const handleSubmit = async () => {
   await updateDoc(docRef, {
@@ -101,11 +125,11 @@ const handleSubmit = async () => {
             <form @submit.prevent="handleSubmit" id="form" class="row g-3">
               <div class="col-md-12">
                 <label for="text" class="form-label">Raison sociale </label>
-                <input type="text" v-model="raison_social" class="form-control" id="inputEmail4" />
+                <input type="text" v-model="raison_social" class="form-control" id="inputEmail4" required />
               </div>
               <div class="col-md-12">
                 <label for="text" class="form-label">Responsable </label>
-                <input type="text" v-model="responsable" class="form-control" id="inputPassword4" />
+                <input type="text" v-model="responsable" class="form-control" id="inputPassword4" required />
               </div>
               <div class="col-12">
                 <label for="inputAddress" class="form-label">Addresse</label>
@@ -114,25 +138,26 @@ const handleSubmit = async () => {
                   v-model="addresse"
                   class="form-control"
                   id="inputAddress"
+                  required
                 />
               </div>
               <div class="col-12">
                 <label for="inputAddress2" class="form-label"
                   >Description</label
                 >
-                <textarea type="text" v-model="description" class="form-control" id="inputAddress2">
+                <textarea type="text" v-model="description" class="form-control" id="inputAddress2" required>
                 </textarea>
               </div>
               <div class="col-md-12">
                 <label for="inputCity" class="form-label"
                   >Images de couverture</label
                 >
-                <input type="file" v-on:change="image_couverture" class="form-control" id="inputCity" />
+                <input type="file" v-on:change="uploadBanner" class="form-control" id="inputCity" />
               </div>
 
               <div class="col-md-12">
                 <label for="inputCity" class="form-label">Logo</label>
-                <input type="file" v-on:change="image_logo" class="form-control" id="inputCity" />
+                <input type="file" v-on:change="uploadProfilePicture" class="form-control" id="inputCity" />
               </div>
 
               <div class="col-md-12 text-center mt-3">

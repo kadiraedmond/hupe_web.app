@@ -53,7 +53,7 @@ export const useAuthStore = defineStore('authStore', {
                             raison_social: '',
                             responsable: '', 
                             site_web: '', 
-                            status: '', 
+                            status: 'padding', 
                             telephone: `${phone}`,
                             token: '',
                             type_compagnie: ''

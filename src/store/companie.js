@@ -43,7 +43,12 @@ export const useCompanieStore = defineStore('companieStore', {
             try {
                 const q = query(companiesColRef, where('type_compagnie', '==', 'Location'))
                 const snapshot = await getDocs(q);
-                snapshot.docs.forEach((doc) => this.locationCompanies.push(doc.data()))
+                snapshot.docs.forEach((doc) => {
+                    const data = doc.data()
+                    if(data.status == 'active') {
+                        this.locationCompanies.push(data)
+                    }
+                })
 
                 for(let i = 0; i < this.locationCompanies.length; i++) {
                     if(this.locationCompanies[i].offre == 'vip') {
@@ -72,7 +77,12 @@ export const useCompanieStore = defineStore('companieStore', {
             try {
                 const q = query(companiesColRef, where('type_compagnie', '==', 'Tansport'))
                 const snapshot = await getDocs(q);
-                snapshot.docs.forEach((doc) => this.transportCompanies.push(doc.data()))
+                snapshot.docs.forEach((doc) => {
+                    const data = doc.data()
+                    if(data.status == 'active') {
+                        this.transportCompanies.push(data)
+                    }
+                })
                 
                 for(let i = 0; i < this.transportCompanies.length; i++) {
                     if(this.transportCompanies[i].offre == 'vip') {

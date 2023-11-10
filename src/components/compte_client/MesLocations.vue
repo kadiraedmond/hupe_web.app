@@ -322,6 +322,7 @@ const sendMessage = async (location) => {
                   <button
                     class="btn btn-primary"
                     style="background: #219935; border-color: #219935"
+                    @click="payer(location)"
                   >
                     Procéder au paiement
                   </button>

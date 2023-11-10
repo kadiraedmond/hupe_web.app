@@ -1,22 +1,22 @@
 <script setup>
-import { onBeforeMount, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
-import { useCompanieStore } from "@/store/companie.js";
-import { usePromotionStore } from "@/store/promotion.js";
-import Loader from "@/components/Loader.vue";
+import { onBeforeMount, onMounted, ref } from "vue"
+import { useRoute } from "vue-router"
+import { useCompanieStore } from "@/store/companie.js"
+import { usePromotionStore } from "@/store/promotion.js"
+import Loader from "@/components/Loader.vue"
 
-import { collection, doc, addDoc } from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
-import { toast } from "vue3-toastify";
+import { collection, doc, addDoc } from "firebase/firestore"
+import { firestoreDb, storage } from "@/firebase/firebase.js"
+import { toast } from "vue3-toastify"
 
-import { useAuthStore } from "@/store/auth.js";
-import { v4 as uuidv4 } from "uuid";
+import { useAuthStore } from "@/store/auth.js"
+import { v4 as uuidv4 } from "uuid"
 
-const route = useRoute();
-const companieStore = useCompanieStore();
-const promotionStore = usePromotionStore();
+const route = useRoute()
+const companieStore = useCompanieStore()
+const promotionStore = usePromotionStore()
 
-const authStore = useAuthStore();
+const authStore = useAuthStore()
 const carId = route.params.id
 
 onBeforeMount(async () => {
@@ -65,13 +65,17 @@ const togglePays = (num) => {
   }
 };
 
-const handleFileChange = () => {
-  const fileInput = document.querySelector("#fileInput");
+const handleFileChange = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = storage.ref(`location_vehicule/${file.name}`)
+  
+  // Mettre le fichier dans le storage de Firebase
+  const snapshot = await storageRef.put(file)
 
-  const selectedFile = fileInput.files[0];
-
-  permis.value = selectedFile;
-};
+  // Récupérer l'URL du fichier téléchargé
+  const downloadURL = await snapshot.ref.getDownloadURL()
+  permis.value = downloadURL
+}
 
 const locationColRef = collection(firestoreDb, "location_vehicules");
 

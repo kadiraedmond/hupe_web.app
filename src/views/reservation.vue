@@ -47,7 +47,7 @@ onMounted(() => {
             >
               <router-link :to="`/details/${companie.uid}`">
                 <img
-                  :src="companie.imageLogoUrl"
+                  :src="companie.imageCouvertureUrl"
                   class="card-img-top"
                   alt="..."
                   style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
