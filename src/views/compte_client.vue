@@ -79,7 +79,7 @@ onMounted(() => {
       style="margin-top: 0px"
     >
       <img
-        src="/public/assets/img/car2.jpg"
+        src="/public/assets/img/clt1.jpg"
         alt=""
         class="img-fluid w-100"
         style="height: 380px; object-fit: cover"
@@ -209,7 +209,7 @@ onMounted(() => {
               <!-- <li class="nav-item" role="presentation">
                 <button class="nav-link" id="politique-tab" data-bs-toggle="tab" data-bs-target="#politique-tab-pane" type="button" role="tab" aria-controls="politique-tab-pane" aria-selected="false">Politique</button>
             </li> -->
-              <li class="nav-item" role="presentation">
+              <!-- <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
                   id="res-tab"
@@ -237,7 +237,7 @@ onMounted(() => {
                 >
                 Mes locations
                 </button>
-              </li>
+              </li> -->
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"

@@ -34,6 +34,8 @@ import Dengin from '@/views/detail_location_engin.vue';
 import Engin from '@/views/gros_engin.vue';
 import Promotion from '@/views/promotion.vue';
 import Notation from '@/views/notation.vue';
+import Statuts from '@/views/statuts.vue';
+import Statut from '@/views/statut.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -262,6 +264,20 @@ const routes = [
     
   },
 
+  {
+    path: '/location_de_vehicule',
+    name: 'Statuts',
+    component: Statuts,
+    
+  },
+
+
+  {
+    path: '/reservation_de_ticket',
+    name: 'Statut',
+    component: Statut,
+    
+  },
 ];
 
 const router = createRouter({

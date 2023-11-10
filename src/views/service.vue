@@ -273,11 +273,18 @@ document.addEventListener("DOMContentLoaded", function() {
                                 </div>
                                 
                             </div>
-                            <div class="row">
-                                <div class="col-md-6"></div>
-                                <div class="col-md-6 text-end">
+                            <div class="row mt-4">
+                                <div class="col-md-12 text-center">
+                                    <p>Pour voir les compagnies offrant ces services, cliquez ici</p>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <p style="font-size: 20px;"><i class='bx bx-down-arrow-alt'></i></p>
+                                </div>
+                                 
+                                <div class="col-md-12 text-center">
                                     <router-link to="/location">
-                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Voir les véhicules disponibles en location.</boutton>
+                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Location de Véhicules</boutton>
                                     </router-link>
                                    
                                 </div>
@@ -481,11 +488,19 @@ document.addEventListener("DOMContentLoaded", function() {
                                 
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6"></div>
-                                <div class="col-md-6 text-end">
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-12 text-center">
+                                    <p>Pour voir les compagnies offrant ces services, cliquez ici</p>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <p style="font-size: 20px;"><i class='bx bx-down-arrow-alt'></i></p>
+                                </div>
+                                 
+                                <div class="col-md-12 text-center">
                                     <router-link to="/reservation">
-                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Voir les réservations de billets de bus disponibles</boutton>
+                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Réservation de Billets de Bus</boutton>
                                     </router-link>
                                    
                                 </div>
@@ -689,11 +704,19 @@ document.addEventListener("DOMContentLoaded", function() {
                                 
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6"></div>
-                                <div class="col-md-6 text-end">
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-12 text-center">
+                                    <p>Pour voir les compagnies offrant ces services, cliquez ici</p>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <p style="font-size: 20px;"><i class='bx bx-down-arrow-alt'></i></p>
+                                </div>
+                                 
+                                <div class="col-md-12 text-center">
                                     <router-link to="/location_gros_engin">
-                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Voir les gros engin disponibles en location</boutton>
+                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Location de Gros Engins</boutton>
                                     </router-link>
                                    
                                 </div>
@@ -906,6 +929,23 @@ document.addEventListener("DOMContentLoaded", function() {
                                    
                                 </div>
                             </div>
+
+                            <div class="row mt-4">
+                                <div class="col-md-12 text-center">
+                                    <p>Pour voir les compagnies offrant ces services, cliquez ici</p>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <p style="font-size: 20px;"><i class='bx bx-down-arrow-alt'></i></p>
+                                </div>
+                                 
+                                <div class="col-md-12 text-center">
+                                    <router-link to="/location_gros_engin">
+                                        <boutton class="btn btn-primary" style="background:#219935; border-color:#219935">Véhicule disponibles en vente</boutton>
+                                    </router-link>
+                                   
+                                </div>
+                            </div>
                         </div>
                         </section>
                     </div>
@@ -956,6 +996,12 @@ document.addEventListener("DOMContentLoaded", function() {
     background-color: var(--bs-nav-tabs-link-active-bg);
     border-color: var(--bs-nav-tabs-link-active-border-color);
     width: 255px !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--bs-accordion-active-bg);
+    box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+    color: white !important;
 }
 
 .nav-tabs .nav-link {

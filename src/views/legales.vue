@@ -50,7 +50,9 @@ onMounted(() => {
                 </ul>
             </div>
             <div class="col-md-9" style=" padding: 20px; ">
-                <div class="tab-content" id="myTabContent" style="padding: 30px;">
+                <div class="tab-content" id="myTabContent" style="    padding: 60px;
+    margin-top: -25px;
+    text-align: justify">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
                             <div class="col-md-12">

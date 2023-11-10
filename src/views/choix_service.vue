@@ -31,19 +31,19 @@ onMounted(() => {
           <div class="col-md-1"></div>
           <div
             class="col-md-10"
-            style="background: #d5f8e5; border-radius: 5px; padding: 20px"
+            style=" border-radius: 5px; padding: 20px; "
           >
             <div class="row">
               <div class="col-md-12 text-center">
                 <h3>Quel service offrez-vous ?</h3>
               </div>
-              <div class="col-md-12 text-center"></div>
+              <div class="col-md-12"></div>
               <div class="col-md-12 mt-4">
                 <form @submit.prevent="handleSubmit">
                   <div class="row">
-                    <div class="col-md-3">
-                      <div class="row">
-                        <div class="col-md-12 text-center">
+                    <div class="col-md-6">
+                      <div class="row text-center" id="row1">
+                        <div class="col-md-12">
                           <img
                             src="/public/assets/img/car.png"
                             class="img-fluid w-25"
@@ -51,7 +51,7 @@ onMounted(() => {
                           />
                         </div>
                         <div class="col-md-12">
-                          <div class="form-check">
+                          <div class="form-check mb-3">
                             <input
                               class="form-check-input"
                               type="radio"
@@ -68,9 +68,9 @@ onMounted(() => {
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-3">
-                      <div class="row">
-                        <div class="col-md-12 text-center">
+                    <div class="col-md-6">
+                      <div class="row text-center" id="row2">
+                        <div class="col-md-12">
                           <img
                             src="/public/assets/img/bus.png"
                             class="img-fluid w-25"
@@ -78,7 +78,7 @@ onMounted(() => {
                           />
                         </div>
                         <div class="col-md-12">
-                          <div class="form-check">
+                          <div class="form-check  mb-3">
                             <input
                               class="form-check-input"
                               type="radio"
@@ -95,9 +95,9 @@ onMounted(() => {
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-3">
-                      <div class="row">
-                        <div class="col-md-12 text-center">
+                    <div class="col-md-6 mt-4">
+                      <div class="row text-center" id="row1">
+                        <div class="col-md-12">
                           <img
                             src="/public/assets/img/engin.png"
                             class="img-fluid w-25"
@@ -105,7 +105,7 @@ onMounted(() => {
                           />
                         </div>
                         <div class="col-md-12">
-                          <div class="form-check">
+                          <div class="form-check  mb-3">
                             <input
                               class="form-check-input"
                               type="radio"
@@ -122,9 +122,9 @@ onMounted(() => {
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-3">
-                      <div class="row">
-                        <div class="col-md-12 text-center">
+                    <div class="col-md-6 mt-4">
+                      <div class="row text-center" id="row2">
+                        <div class="col-md-12">
                           <img
                             src="/public/assets/img/engine.png"
                             class="img-fluid w-25"
@@ -132,7 +132,7 @@ onMounted(() => {
                           />
                         </div>
                         <div class="col-md-12">
-                          <div class="form-check">
+                          <div class="form-check  mb-3">
                             <input
                               class="form-check-input"
                               type="radio"
@@ -158,7 +158,7 @@ onMounted(() => {
                     <div class="col-md-12">
                       <button
                         type="submit"
-                        class="btn btn-primary"
+                        class="btn btn-primary w-25"
                         style="
                           background-color: #219935;
                           border-color: #219935;
@@ -183,4 +183,17 @@ onMounted(() => {
   </main>
   <!-- End #main -->
 </template>
-<style></style>
+<style scoped>
+#row1{
+  border: 1px solid #219935;
+    padding: 20px;
+    border-radius: 5px
+}
+
+#row2{
+  border: 1px solid #219935;
+    padding: 22px;
+    border-radius: 5px;
+    margin-left:0px;
+}
+</style>

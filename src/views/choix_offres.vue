@@ -18,7 +18,7 @@ const handleSubmit = () => {
   }
 }
 </script>
-
+<!-- #d5f8e5 -->
 <template>
   <main id="main">
     <section id="features" class="features" style="margin-top: 100px">
@@ -27,7 +27,7 @@ const handleSubmit = () => {
           <div class="col-md-1"></div>
           <div
             class="col-md-10"
-            style="background: #d5f8e5; border-radius: 5px; padding: 20px"
+            style=" border-radius: 5px; padding: 20px"
           >
             <div class="row">
               <div class="col-md-12 text-center">
@@ -159,7 +159,7 @@ const handleSubmit = () => {
                               
                             />
                             <label class="form-check-label" for="gridRadios1">
-                              Sélectionner
+                               
                             </label>
                           </div>
                         </div>
@@ -285,7 +285,7 @@ const handleSubmit = () => {
                               
                             />
                             <label class="form-check-label" for="gridRadios1">
-                              Sélectionner
+                               
                             </label>
                           </div>
                         </div>

@@ -64,11 +64,12 @@ export default{
       <div class="col footer-links">
         <h4>Retrouvez-nous sur</h4>
         <div class="social-links text-md-right pt-0 pt-md-0">
-          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bx bxl-youtube"></i></a>
-          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://twitter.com/Hupeafrica" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100088080067301" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/hupeafrica/" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UCh07rr8p-XHo0zrmZfFQd1w" class="google-plus"><i class="bx bxl-youtube"></i></a>
+          <a href="https://www.linkedin.com/showcase/91588607" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://www.linkedin.com/showcase/91588607" class="tiktok"><i class='bx bxl-tiktok'></i></a>
         </div>
       </div>
 
