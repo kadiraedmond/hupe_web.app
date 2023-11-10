@@ -52,7 +52,10 @@ const handleOnComplete = async (value) => {
     <section id="features" class="features" style="margin-top: 100px;">
       <div class="container">
         <div class="row">
-            <div class="col-md-6" style="background: #d5f8e5; border-radius: 5px; padding: 20px;">
+            <div class="col-md-3 text-center">
+              
+            </div>
+            <div class="col-md-6" style="background: white; border-radius: 5px; padding: 20px; border: 1px solid #219935;" >
               <div class="row mt-5">
                 <div class="col-md-12 text-center">
                   <h3>Vérification</h3>
@@ -84,8 +87,8 @@ const handleOnComplete = async (value) => {
                 </div>
               </div>
             </div>
-            <div class="col-md-6 text-center">
-                <img src="/public/assets/img/otp.jpg" class="img-fluid rounded-start w-75" alt="...">
+            <div class="col-md-3 text-center">
+                
             </div>
            </div> 
         </div>

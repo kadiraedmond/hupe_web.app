@@ -18,11 +18,11 @@ let offre
 let offre2
 let userToken
 onBeforeMount(() => {
-  companieService = authStore.companieService
-  offre = authStore.offre
-  offre2 = authStore.offre2
-  userToken = authStore.user.stsTokenManager.accessToken
-  console.log(authStore.user.stsTokenManager.accessToken)
+  // companieService = authStore.companieService
+  // offre = authStore.offre
+  // offre2 = authStore.offre2
+  // userToken = authStore.user.stsTokenManager.accessToken
+  // console.log(authStore.user.stsTokenManager.accessToken)
 })
 
 const raison_social = ref('')

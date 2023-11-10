@@ -53,7 +53,8 @@ const logout = async () => {
   } catch (error) {
     console.log(error)
   }
-}
+};
+
 
 </script>
 
@@ -106,12 +107,13 @@ const logout = async () => {
       <nav id="navbar" class="navbar">
         <ul>
           <li>
-            <router-link to="/" class="nav-link scrollto active"
+            <router-link to="/" class="nav-link scrollto " :class="{ active: $route.path === '/' }"
               ><i class="bx bx-home" id="icon_menu"></i> Accueil</router-link
             >
           </li>
+          
           <li>
-            <router-link to="/services" class="nav-link scrollto"
+            <router-link to="/services" class="nav-link scrollto" :class="{ active: $route.path === '/services' }"
               ><i class="bx bx-category" id="icon_menu"></i>
               Services</router-link
             >

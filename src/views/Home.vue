@@ -226,7 +226,7 @@ onMounted(() => {
                   </h5>
                 </router-link>
 
-                <p class="card-text" style="font-size: 14px">
+                <p class="card-text text-black" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
                   quelques instants.
                 </p>
@@ -249,11 +249,11 @@ onMounted(() => {
               <div class="card-body" style="background: #219935">
                 <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
-                    Reserver un ticket de bus
+                    Réserver un ticket de bus
                   </h5>
                 </router-link>
 
-                <p class="card-text" style="font-size: 14px">
+                <p class="card-text text-black" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
                   quelques instants.
                 </p>
@@ -280,7 +280,7 @@ onMounted(() => {
                   </h5>
                 </router-link>
 
-                <p class="card-text" style="font-size: 14px">
+                <p class="card-text text-black" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
                   quelques instants.
                 </p>
@@ -303,11 +303,11 @@ onMounted(() => {
               <div class="card-body" style="background: #219935">
                 <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px">
-                    Acheter un engin
+                    Acheter un véhicule
                   </h5>
                 </router-link>
 
-                <p class="card-text" style="font-size: 14px">
+                <p class="card-text text-black" style="font-size: 14px">
                   Évitez les files d'attente et réservez vos billets de bus en
                   quelques instants.
                 </p>

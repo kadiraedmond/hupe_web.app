@@ -29,70 +29,70 @@ onBeforeMount(() => {
       <li
         style="margin-left: 14px; white-space: nowrap"
         v-for="(companie, index) in companieStore.vipLocationCompanies"
-            :key="index"
+        :key="index"
       >
       <div
-              class="card h-100"
-              id="compagnie_card"
-              style="background: #f3f4f6; box-shadow: none"
-              v-if="companie.offre == 'vip' && index < 4"
-            >
-              <router-link :to="`/detail/${companie.uid}`">
-                <img
-                  :src="companie.imageCouvertureUrl"
-                  class="card-img-top"
-                  alt="..."
-                  style="
-                    border-radius: 10px 10px 0px 0px;
-                    max-height: 174px;
-                    object-fit: cover;
-                  "
-                />
-              </router-link>
+        class="card h-100"
+        id="compagnie_card"
+        style="background: #f3f4f6; box-shadow: none"
+        v-if="companie.offre == 'vip' && index < 4"
+      >
+        <router-link :to="`/detail/${companie.uid}`">
+          <img
+            :src="companie.imageCouvertureUrl"
+            class="card-img-top"
+            alt="..."
+            style="
+              border-radius: 10px 10px 0px 0px;
+              max-height: 174px;
+              object-fit: cover;
+            "
+          />
+        </router-link>
 
-              <div class="card-body">
-                <router-link :to="`/detail/${companie.uid}`">
-                  <div class="row">
-                    <div class="col-7">
-                      <h5
-                        class="card-title"
-                        style="font-size: 15px; color: black"
-                      >
-                        {{ companie.raison_social }}
-                      </h5>
-                    </div>
-                    <div class="col-5 text-end">
-                      <boutton
-                        class="btn btn-primary"
-                        style="
-                          background: white;
-                          border-color: white;
-                          border-radius: 30px;
-                          color: #219935;
-                          margin-top: -9px;
-                        "
-                      >
-                        <i class="bx bx-like" style="color: #219935"></i> 30%
-                      </boutton>
-                    </div>
-                  </div>
-                </router-link>
-                <div class="row">
-                  <div class="col-8">
-                    <p class="card-text mt-2" style="font-size: 14px">
-                      <i class="bx bx-map" style="color: #8b8b8b"></i>
-                      {{ companie.adresse }}
-                    </p>
-                  </div>
-                  <div class="col-4 text-center mt-2">
-                    <i
-                      class="bx bx-car"
-                      style="color: #8b8b8b; font-size: 21px"
-                    ></i>
-                  </div>
-                </div>
+        <div class="card-body">
+          <router-link :to="`/detail/${companie.uid}`">
+            <div class="row">
+              <div class="col-7">
+                <h5
+                  class="card-title"
+                  style="font-size: 15px; color: black"
+                >
+                  {{ companie.raison_social }}
+                </h5>
+              </div>
+              <div class="col-5 text-end">
+                <boutton
+                  class="btn btn-primary"
+                  style="
+                    background: white;
+                    border-color: white;
+                    border-radius: 30px;
+                    color: #219935;
+                    margin-top: -9px;
+                  "
+                >
+                  <i class="bx bx-like" style="color: #219935"></i> 30%
+                </boutton>
               </div>
             </div>
+          </router-link>
+          <div class="row">
+            <div class="col-8">
+              <p class="card-text mt-2" style="font-size: 14px">
+                <i class="bx bx-map" style="color: #8b8b8b"></i>
+                {{ companie.adresse }}
+              </p>
+            </div>
+            <div class="col-4 text-center mt-2">
+              <i
+                class="bx bx-car"
+                style="color: #8b8b8b; font-size: 21px"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
       </li>
     </ul>
 
@@ -121,7 +121,6 @@ onBeforeMount(() => {
 @media (max-width: 768px) {
   .slider-item-show3 {
     --swiffy-slider-item-count: 0.9 !important;
-}
-
   }
+}
 </style>
