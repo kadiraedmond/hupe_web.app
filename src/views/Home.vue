@@ -209,7 +209,7 @@ onMounted(() => {
           <div class="col">
             <div
               class="card h-100 border-0 text-center"
-              style="background: #f6f8fb"
+              style="background: #f9f9f9"
             >
               <router-link to="/location" class="mt-4">
                 <img
@@ -236,7 +236,7 @@ onMounted(() => {
           <div class="col">
             <div
               class="card h-100 border-0 text-center"
-              style="background: #f6f8fb"
+              style="background: #f9f9f9"
             >
               <router-link to="/reservation" class="mt-4 text-black">
                 <img
@@ -263,7 +263,7 @@ onMounted(() => {
           <div class="col">
             <div
               class="card h-100 border-0 text-center"
-              style="background: #f6f8fb"
+              style="background: #f9f9f9"
             >
               <router-link to="/location_gros_engin" class="mt-4" id="a">
                 <img
@@ -290,7 +290,7 @@ onMounted(() => {
           <div class="col">
             <div
               class="card h-100 border-0 text-center"
-              style="background: #f6f8fb"
+              style="background: #f9f9f9"
             >
               <router-link to="/reservation" class="mt-4" id="a">
                 <img
@@ -335,8 +335,7 @@ onMounted(() => {
           <div class="col-4 text-end">
             <router-link to="/location">
               <boutton
-                class="btn btn-primary"
-                style="background: white; color: #219935; border-color: #219935"
+                class="btn btn-primary" id="btn-end"
               >
                 Voir plus</boutton
               >
@@ -365,8 +364,7 @@ onMounted(() => {
           <div class="col-4 text-end">
             <router-link to="/location">
               <boutton
-                class="btn btn-primary"
-                style="background: white; color: #219935; border-color: #219935"
+                class="btn btn-primary" id="btn-end"
               >
                 Voir plus</boutton
               >
@@ -389,7 +387,7 @@ onMounted(() => {
                   <div class="col-md-12">
                     <div
                       class="card mb-3 border-0"
-                      style="background: #f3f4f6;"
+                      style="background: #f9f9f9;"
                     >
                       <div class="row g-1 d-flex mt-2">
                         
@@ -438,9 +436,9 @@ onMounted(() => {
                   class="card mb-3 mt-4"
                   style="
                     max-width: 540px;
-                    margin: 10px;
+                    margin: 8px;
                     margin-top: -10px !important;
-                    background: #f3f4f6;
+                    background: #f9f9f9;
                   "
                 >
                   <div class="row g-0" style="margin: 10px">
@@ -451,6 +449,7 @@ onMounted(() => {
                         alt="..."
                         style="
                           width: 150px;
+                          height: 160px !important;
                           object-fit: cover;
                         "
                       />
@@ -484,92 +483,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <!-- <section id="features" class="features" style="margin-top: -60px">
-      <div class="container">
-        <div class="row">
-          <div class="col-8">
-            <div class="section-title ">
-              <h2>Compagnies de transport populaires</h2>
-              <p id="section-p">
-                Simplifiez votre trajet en choisissant parmi les compagnies de
-                transport les plus populaires. Voyagez en toute tranquillité
-                avec nos partenaires de confiance.
-              </p>
-            </div>
-          </div>
-          <div class="col-4 text-end">
-            <router-link to="/">
-              <boutton class="btn btn-primary" style="background: white; color: #219935; border-color: #219935"> Voir plus</boutton>
-            </router-link>
-             
-          </div>
-        </div>
-
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col" v-for="(companie, index) in companieStore.transportCompanies" :key="index">
-            <div
-              class="card h-100"
-              id="compagnie_card"
-              style="background: #f3f4f6; box-shadow: none"
-              v-if="companie.offre == 'vip' && index < 4"
-            >
-              <router-link :to="`/details/${companie.uid}`">
-                <img
-                  :src="companie.imageLogoUrl"
-                  class="card-img-top"
-                  alt="..."
-                  style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                />
-              </router-link>
-
-              <div class="card-body">
-                <router-link to="/detail">
-                  <div class="row">
-                    <div class="col-md-7">
-                      <h5
-                        class="card-title"
-                        style="font-size: 15px; color: black"
-                      >
-                        {{ companie.raison_social }} 
-                      </h5>
-                    </div>
-                    <div class="col-md-5 text-end">
-                      <boutton
-                        class="btn btn-primary"
-                        style="
-                          background: white;
-                          border-color: white;
-                          border-radius: 30px;
-                          color: #219935;
-                          margin-top: -9px;
-                        "
-                      >
-                        <i class="bx bx-like" style="color: #219935"></i> 30%
-                      </boutton>
-                    </div>
-                  </div>
-                </router-link>
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="card-text mt-2" style="font-size: 14px">
-                      <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                    </p>
-                  </div>
-                  <div class="col-md-4 text-center mt-2">
-                    <i
-                      class="bx bx-car"
-                      style="color: #8b8b8b; font-size: 21px"
-                    ></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
+    
     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
     <section id="features" class="features" style="margin-top: -50px">
       <div class="container">
@@ -587,8 +501,8 @@ onMounted(() => {
           <div class="col-4 text-end">
             <router-link to="/reservation">
               <boutton
-                class="btn btn-primary"
-                style="background: white; color: #219935; border-color: #219935"
+                class="btn btn-primary" id="btn-end"
+                 
               >
                 Voir plus</boutton
               >
@@ -618,7 +532,7 @@ onMounted(() => {
             <router-link to="/reservation">
               <boutton
                 class="btn btn-primary"
-                style="background: white; color: #219935; border-color: #219935"
+               id="btn-end"
               >
                 Voir plus</boutton
               >
@@ -643,7 +557,7 @@ onMounted(() => {
                   <div class="col-md-12">
                     <div
                       class="card mb-3 border-0"
-                      style="background: #f3f4f6;"
+                      style="background: #f9f9f9;"
                     >
                       <div class="row g-1 d-flex mt-2">
                         <div class="col-8 d-flex">
@@ -692,12 +606,12 @@ onMounted(() => {
                   class="card mb-3 mt-4"
                   style="
                     max-width: 540px;
-                    margin: 10px;
+                    margin: 8px;
                     margin-top: -10px !important;
-                    background: #f3f4f6;
+                    background: #f9f9f9;
                   "
                 >
-                  <div class="row g-0" style="margin: 10px">
+                  <div class="row g-0" style="margin: 5px">
                     <div class="col-8">
                       <div class="card-body">
 
@@ -725,7 +639,7 @@ onMounted(() => {
                     <div class="col-4">
                       <img
                           src="/public/assets/img/rb.jpg"
-                          class="img-fluid rounded-start h-100"
+                          class="img-fluid h-100"
                           alt="..."
                           style="object-fit: cover"
                         />
@@ -806,10 +720,10 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/">
+            <router-link to="/location_gros_engin">
               <boutton
                 class="btn btn-primary"
-                style="background: white; color: #219935; border-color: #219935"
+               id="btn-end"
               >
                 Voir plus</boutton
               >
@@ -826,7 +740,7 @@ onMounted(() => {
             <div
               class="card h-100"
               id="compagnie_card"
-              style="background: #f3f4f6; box-shadow: none"
+              style="background: #f9f9f9; box-shadow: none"
               v-if="index < 4"
             >
               <router-link to="/details_location_engin" style="color: #000">
@@ -842,9 +756,11 @@ onMounted(() => {
                 />
               </router-link>
 
+              <img src="/public/assets/img/avatars/5.png" alt="" id="badgesLogo">
+
               <div class="card-body">
                 <router-link to="/detail" style="color: #000">
-                  <div class="row">
+                  <div class="row mt-2">
                     <div class="col-md-7">
                       <h5
                         class="card-title"
@@ -905,10 +821,9 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/">
+            <router-link to="/location_gros_engin">
               <boutton
-                class="btn btn-primary"
-                style="background: white; color: #219935; border-color: #219935"
+                class="btn btn-primary" id="btn-end"
               >
                 Voir plus</boutton
               >
@@ -930,7 +845,7 @@ onMounted(() => {
                   <div class="col-md-12">
                     <div
                       class="card mb-3 border-0"
-                      style="background: #f3f4f6;"
+                      style="background: #f9f9f9;"
                     >
                       <div class="row g-1 d-flex mt-2">
                         
@@ -979,9 +894,9 @@ onMounted(() => {
                   class="card mb-3 mt-4"
                   style="
                     max-width: 540px;
-                    margin: 10px;
+                    margin: 8px;
                     margin-top: -10px !important;
-                    background: #f3f4f6;
+                    background: #f9f9f9;
                   "
                 >
                   <div class="row g-0" style="margin: 10px">
@@ -1041,10 +956,10 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/">
+            <router-link to="/ vente-vehicule">
               <boutton
-                class="btn btn-primary"
-                style="background: white; color: #219935; border-color: #219935"
+                class="btn btn-primary" id="btn-end"
+                
               >
                 Voir plus</boutton
               >
@@ -1061,7 +976,7 @@ onMounted(() => {
             <div
               class="card h-100"
               id="compagnie_card"
-              style="background: #f3f4f6; box-shadow: none"
+              style="background: #f9f9f9; box-shadow: none"
               v-if="index < 4"
             >
               <router-link to="/details_location_engin" style="color: #000">
@@ -1076,10 +991,11 @@ onMounted(() => {
                   "
                 />
               </router-link>
+              <img src="/public/assets/img/avatars/5.png" alt="" id="badgesLogo">
 
               <div class="card-body">
                 <router-link to="/detail" style="color: #000">
-                  <div class="row">
+                  <div class="row mt-2">
                     <div class="col-md-7">
                       <h5
                         class="card-title"
@@ -1140,10 +1056,9 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/">
+            <router-link to="/vente_vehicule">
               <boutton
-                class="btn btn-primary"
-                style="background: white; color: #219935; border-color: #219935"
+                class="btn btn-primary" id="btn-end"
               >
                 Voir plus</boutton
               >
@@ -1165,7 +1080,7 @@ onMounted(() => {
                   <div class="col-md-12">
                     <div
                       class="card mb-3 border-0"
-                      style="background: #f3f4f6;"
+                      style="background: #f9f9f9;"
                     >
                       <div class="row g-1 d-flex mt-2">
                         
@@ -1214,9 +1129,9 @@ onMounted(() => {
                   class="card mb-3 mt-4"
                   style="
                     max-width: 540px;
-                    margin: 10px;
+                    margin: 8px;
                     margin-top: -10px !important;
-                    background: #f3f4f6;
+                    background: #f9f9f9;
                   "
                 >
                   <div class="row g-0" style="margin: 10px">
@@ -1276,10 +1191,10 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/">
+            <router-link to="/informations">
               <boutton
-                class="btn btn-primary"
-                style="background: white; color: #219935; border-color: #219935"
+                class="btn btn-primary" id="btn-end"
+                
               >
                 Voir plus</boutton
               >
@@ -1416,8 +1331,7 @@ onMounted(() => {
                 <div class="row">
                   <div class="col-md-6">
                     <button
-                      class="btn btn-primary"
-                      style="background-color: #219935 !important; border: none"
+                      class="btn btn-primary"  style="background-color: #219935 !important; border: none"
                     >
                       Voir plus
                     </button>
@@ -1479,7 +1393,7 @@ onMounted(() => {
 
     <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
-        <div class="row">
+        <div class="row mb-4">
           <div class="col-8">
             <div class="section-title">
               <h2>Inscrivez vous à notre Newsletter</h2>
@@ -1526,8 +1440,8 @@ onMounted(() => {
                   </div>
                 </form>
               </div>
-              <div class="col-md-6">
-                <img src="/public/assets/img/newletter.png" style="margin-top: -95px;" class="img-fluid w-50" alt="">
+              <div class="col-md-6" style="    background: #f9f9f9; margin-top: -73px; border-radius: 10px;  margin-bottom: 60px">
+                <img src="/public/assets/img/newletter.png"  class="img-fluid w-50" alt="">
               </div>
             </div>
           </div>
@@ -1593,6 +1507,31 @@ onMounted(() => {
 
 
   }
+
+  #btn-end{
+    background: white;
+     color: #219935;
+      border-color: #219935;
+  }
+
+  #btn-end:hover{
+    background-color: #219935 !important;
+    color: white;
+     border-color: white;
+  }
+
+  #badgesLogo {
+    display: inline-block;
+    left: 9px;
+    width: 45px;
+    height: 45px;
+    /* padding: 1px 14px; */
+    position: absolute;
+    margin-top: 150px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    object-fit: cover;
+}
 
 
 </style>

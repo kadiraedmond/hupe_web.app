@@ -110,12 +110,40 @@ const handleSubmit = async () => {
 
 <template>
   <main id="main">
-    <section id="features" class="features" style="margin-top: 100px">
+    <section id="features" class="features" style="margin-top: 50px">
+      <div class="container mt-2 mb-5">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                
+                <li class=" active w-25 text-center" aria-current="page"> <button class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;background: white;border-color: #219935 ;color: #219935;">1</button> Téléphone</li>
+                <li class=" w-25 text-center"> <button class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;background: white;border-color: #219935 ;color: #219935;">2</button>Choix de services</li>
+                <li class=" w-25 text-center"> <button class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;background: white;border-color: #219935 ;color: #219935;">3</button>Choix offres</li>
+                <li class="breadcrumb-item  w-25 text-center"> <button class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;background: #219935;border-color: #219935">4</button>Informations</li>
+                
+                <!-- Ajoutez plus d'étapes si nécessaire -->
+              </ol>
+            </nav>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+            
+      </div>
+            
       <div class="container">
         <div class="row">
+          <div class="col-md-3">
+           
+             
+            </div>
           <div
             class="col-md-6"
-            style="background: #d5f8e5; border-radius: 5px; padding: 20px"
+            style="
+            /* background: #d5f8e5 */
+             border-radius: 5px; padding: 20px ;
+            border: 1px solid #219935;"
           >
             <div class="col-md-12 text-center">
               <p style="font-weight: 700">
@@ -152,13 +180,14 @@ const handleSubmit = async () => {
                 <label for="inputCity" class="form-label"
                   >Images de couverture</label
                 >
-                <input type="file" v-on:change="uploadBanner" class="form-control" id="inputCity" />
+                <input type="file" accept="image/*" v-on:change="uploadBanner" class="form-control" id="inputCity" />
               </div>
 
               <div class="col-md-12">
                 <label for="inputCity" class="form-label">Logo</label>
-                <input type="file" v-on:change="uploadProfilePicture" class="form-control" id="inputCity" />
+                <input type="file" accept="image/*" v-on:change="uploadProfilePicture" class="form-control" id="inputCity" />
               </div>
+              
 
               <div class="col-md-12 text-center mt-3">
                   <button
@@ -175,13 +204,8 @@ const handleSubmit = async () => {
                     </div> -->
             </form>
           </div>
-          <div class="col-md-6">
-            <img
-              src="/public/assets/img/r.jpg"
-              alt=""
-              class="img-fluid"
-              style="height: 658px; object-fit: cover; border-radius: 5px"
-            />
+          <div class="col-md-3">
+             
           </div>
         </div>
       </div>

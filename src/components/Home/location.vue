@@ -34,7 +34,7 @@ onBeforeMount(() => {
       <div
         class="card h-100"
         id="compagnie_card"
-        style="background: #f3f4f6; box-shadow: none"
+        style="background: #f9f9f9; box-shadow: none"
         v-if="companie.offre == 'vip' && index < 4"
       >
         <router-link :to="`/detail/${companie.uid}`">
@@ -45,14 +45,17 @@ onBeforeMount(() => {
             style="
               border-radius: 10px 10px 0px 0px;
               max-height: 174px;
+              min-height: 174px;
               object-fit: cover;
             "
           />
         </router-link>
 
+        <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+
         <div class="card-body">
           <router-link :to="`/detail/${companie.uid}`">
-            <div class="row">
+            <div class="row mt-2">
               <div class="col-7">
                 <h5
                   class="card-title"
@@ -122,5 +125,18 @@ onBeforeMount(() => {
   .slider-item-show3 {
     --swiffy-slider-item-count: 0.9 !important;
   }
+}
+
+#badgesLogo {
+  display: inline-block;
+    left: 9px;
+    width: 45px;
+    height: 45px;
+    /* padding: 1px 14px; */
+    position: absolute;
+    margin-top: 150px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    object-fit: cover;
 }
 </style>
