@@ -1,10 +1,11 @@
 <script setup>
 import { onMounted, onBeforeMount, ref } from 'vue'
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc} from "firebase/firestore"
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import router from '@/router/router.js'
 import { useAuthStore } from '@/store/auth.js'
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
+import Swal from 'sweetalert2'
 
 const authStore = useAuthStore()
 const savedUser = JSON.parse(localStorage.getItem('user'))
@@ -35,6 +36,9 @@ const addresse = ref('')
 const description = ref('')
 const image_couverture = ref()
 const image_logo = ref()
+const email = ref('')
+
+const isUploading = ref(false)
 
 const uploadBanner = async (e) => {
   const file = e.target.files[0]
@@ -44,7 +48,13 @@ const uploadBanner = async (e) => {
   
   const downloadURL = await getDownloadURL(storageRef)
   // console.log(downloadURL)
-  image_couverture.value = downloadURL
+
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    image_couverture.value = downloadURL
+    isUploading.value = false
+  }
 }
 
 const uploadProfilePicture = async (e) => {
@@ -55,12 +65,19 @@ const uploadProfilePicture = async (e) => {
   
   const downloadURL = await getDownloadURL(storageRef)
   // console.log(downloadURL)
-  image_logo.value = downloadURL
+
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    image_logo.value = downloadURL
+    isUploading.value = false
+  }
 }
 
 const handleSubmit = async () => {
   await updateDoc(docRef, {
-    adresse: addresse.value,
+    adresse: addresse.value, 
+    email: email.value, 
     raison_social: raison_social.value,
     responsable: responsable.value,
     description: description.value,
@@ -72,8 +89,6 @@ const handleSubmit = async () => {
   })
   .then(() => console.log('Document ajouté'))
   
-  document.querySelector('#form').reset()
-
   const snapshot = await getDoc(docRef)
   let user
   if(snapshot.exists()) user = snapshot.data()
@@ -161,6 +176,10 @@ const handleSubmit = async () => {
                 <label for="text" class="form-label">Responsable </label>
                 <input type="text" v-model="responsable" class="form-control" id="inputPassword4" required />
               </div>
+              <div class="col-md-12">
+                <label for="text" class="form-label">Email </label>
+                <input type="email" v-model="email" class="form-control" id="inputPassword4" required />
+              </div>
               <div class="col-12">
                 <label for="inputAddress" class="form-label">Addresse</label>
                 <input
@@ -196,6 +215,7 @@ const handleSubmit = async () => {
                     type="submit"
                     class="btn btn-primary w-50"
                     style="background-color: #219935; border-color: #219935"
+                    :disabled="isUploading"
                   >
                     Valider
                   </button>

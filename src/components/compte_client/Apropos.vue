@@ -28,6 +28,7 @@ const nom_utilisteur = ref('')
 
 
 onBeforeMount(async () => {
+  userId = savedUser.uid || authStore.user.uid
   await userStore.setUser(userId) 
   
   const { lastName, firstName, imageUrl, dateNaisse, profession, email, telephone, country, addresse, username } = userStore.user
@@ -44,6 +45,7 @@ onBeforeMount(async () => {
   nom_utilisteur.value = username
 
 })
+const isUploading = ref(false)
 
 const uploadProfilePicture = async (e) => {
   const file = e.target.files[0]
@@ -54,7 +56,12 @@ const uploadProfilePicture = async (e) => {
 
   // Récupérer l'URL du fichier téléchargé
   const downloadURL = await snapshot.ref.getDownloadURL()
-  photo_profil.value = downloadURL
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    photo_profil.value = downloadURL
+    isUploading.value = false
+  }
 }
 
 const handleSubmit = async () => {
@@ -75,9 +82,10 @@ const handleSubmit = async () => {
 
   await updateDoc(userDocRef, data).then(() => {
     console.log('Document mis a jour')
-    toast.success("Informations mises à jour", {
-      autoClose: 3500,
-      position: toast.POSITION.TOP_CENTER,
+    Swal.fire({
+      title: "Succès",
+      text: "Informations misent à jour",
+      icon: "success"
     })
   })
 }
@@ -246,7 +254,7 @@ const handleSubmit = async () => {
               </div>
 
               <div class="col-12 text-end">
-                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                <button class="btn btn-primary" type="submit" :disabled="isUploading">Enregistrer</button>
               </div>
             </form>
             </div>

@@ -3,6 +3,7 @@ import router from '@/router/router.js'
 
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
 import { auth } from '@/firebase/firebase.js'
+import Swal from 'sweetalert2'
 
 import { useAuthStore } from '@/store/auth.js'
 
@@ -22,8 +23,16 @@ const logInWithPhoneNumber = async () => {
   await appVerifier.verify().then(response => {
     authStore.setAppVerifier(appVerifier)
     authStore.setPhoneNum(phoneNum)
-    if(response) {
+    if(response && authStore.errorMessage === '') {
       router.push('/otp')
+    } else if(authStore.errorMessage !== '') {
+      Swal.fire({
+        title: "Erreur",
+        text: `${authStore.errorMessage}`,
+        icon: "error"
+      })
+
+      authStore.resetErrorMessage()
     }
   })
 }
@@ -103,8 +112,11 @@ const handleClient = () => {
                          />
                       </div>
 
-                      <div class="d-flex justify-content-between mb-2">
-                        <div class="">
+                      <div class="d-flex justify-content-between my-2">
+                        <div class="" style="display: flex; flex-direction: column; align-items: center">
+                          <label class="form-check-label mb-2" for="gridRadios1">
+                            Je suis un client
+                          </label>
                           <input
                             class="form-check-input"
                             type="radio"
@@ -113,12 +125,11 @@ const handleClient = () => {
                             :checked="isClient"
                             required
                           />
-                          {{ ' ' }}
-                          <label class="form-check-label" for="gridRadios1">
-                            Je suis un client
-                          </label>
                         </div>
-                        <div class="">
+                        <div class="" style="display: flex; flex-direction: column; align-items: center">
+                          <label class="form-check-label mb-2 " for="gridRadios1">
+                            Nous sommes une compagnie
+                          </label>
                           <input
                             class="form-check-input"
                             type="radio"
@@ -127,10 +138,6 @@ const handleClient = () => {
                             :checked="isCompanie"
                             required
                           />
-                          {{ ' ' }}
-                          <label class="form-check-label" for="gridRadios1">
-                            Nous sommes une compagnie
-                          </label>
                         </div>
                       </div>
                       

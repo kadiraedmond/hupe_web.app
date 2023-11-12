@@ -6,6 +6,8 @@ import { auth } from '@/firebase/firebase.js'
 import router from '@/router/router.js'
 import Loader from '@/components/Loader.vue'
 import Swal from 'sweetalert2'
+import { firestoreDb } from "@/firebase/firebase.js"
+import { updateDoc } from "firebase/firestore"
 
 const authStore = useAuthStore()
 
@@ -50,7 +52,12 @@ const handleOnComplete = async (value) => {
           router.push('/compte_reservation')
         }
       } 
-    } else if(!isCompanie.value) {
+    } else if(!isCompanie.value && isNew) {
+      const docRef = doc(firestoreDb, 'users', user.uid)
+      await updateDoc(docRef, { token: user.stsTokenManager.accessToken })
+      console.log('We are here')
+      router.push('/compte_client')
+    } else if(!isCompanie.value && !isNew) {
       router.push('/compte_client')
     }
   
@@ -104,7 +111,7 @@ const resendCode = async () => {
                 </div>
                 <div class="col-md-12 text-center mt-3">
                   <p>Je n'ai pas reçu de message</p>
-                    <button class="btn btn-primary" @click="resendCode">Renvoyer le code</button>
+                    <button id="resend-btn" class="btn btn-primary" @click="resendCode">Renvoyer le code</button>
                 </div>
               </div>
             </div>
@@ -144,5 +151,17 @@ input::placeholder {
   font-size: 15px;
   text-align: center;
   font-weight: 600;
+}
+
+#resend-btn {
+  border: 1.5px solid #219935;
+  background: transparent;
+  color: #000;
+}
+
+#resend-btn:hover {
+  background: #219935;
+  color: #FFF;
+  
 }
 </style>

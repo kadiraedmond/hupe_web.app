@@ -4,6 +4,7 @@ import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, Time
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const companiesColRef = collection(firestoreDb, "compagnies")
+const usersColRef = collection(firestoreDb, "users")
 
 export const useAuthStore = defineStore('authStore', {
     state: () => ({
@@ -22,7 +23,8 @@ export const useAuthStore = defineStore('authStore', {
         isCarsSellingCompany: false,
         confirmationResult: {},
         appVerifier: {},
-        phoneNum: ''
+        phoneNum: '',
+        errorMessage: ''
     }),
     getters: {
         // 
@@ -31,51 +33,115 @@ export const useAuthStore = defineStore('authStore', {
         async authenticate(authInstance, phone, verifier) {
             try {
                 if(this.isCompanie === true) {
+
+                    // Recherche dans la table des compagnies
                     const q = query(companiesColRef, where('telephone', '==', `${phone}`))
                     const snapshot = await getDocs(q)
     
                     if(snapshot.docs.length > 0) {
+                        this.isNew = false
                         this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
                     } else {
-                        this.isNew = true
-                        const newCompanie = {
-                            uid: '', 
-                            adresse: '', 
-                            adresse_mail: '', 
-                            country: '', 
-                            createdAt: new Date(), 
-                            description: '', 
-                            imageCouvertureUrl: '', 
-                            imageLogoUrl: '', 
-                            joinedAt: Timestamp.now(), 
-                            latitude: '', 
-                            longitude: '', 
-                            mise_avant: true, 
-                            offre: '', 
-                            raison_social: '',
-                            responsable: '', 
-                            site_web: '', 
-                            status: 'padding', 
-                            telephone: `${phone}`,
-                            token: '',
-                            type_compagnie: ''
+
+                        // au cas ou le numéro n'est pas trouvé dans la table des compagnies vérifier s'il n'est pas utilisé pour un compte client
+                        const q = query(usersColRef, where('telephone', '==', `${phone}`))
+                        const snapshot = await getDocs(q)
+        
+                        if(snapshot.docs.length > 0) {
+                            this.errorMessage = 'Ce numéro a déjà été utilisé pour un compte client'
+                        } 
+                        // Si rien de tout ce qui précede alors créer le compte
+                        else {
+
+                            this.isNew = true
+                            const newCompanie = {
+                                uid: '', 
+                                adresse: '', 
+                                adresse_mail: '', 
+                                country: '', 
+                                createdAt: new Date(), 
+                                description: '', 
+                                imageCouvertureUrl: '', 
+                                imageLogoUrl: '', 
+                                joinedAt: Timestamp.now(), 
+                                latitude: '', 
+                                longitude: '', 
+                                mise_avant: true, 
+                                offre: '', 
+                                raison_social: '',
+                                responsable: '', 
+                                site_web: '', 
+                                status: 'padding', 
+                                telephone: `${phone}`,
+                                token: '',
+                                type_compagnie: ''
+                            }
+        
+                            this.newCompanieData = newCompanie
+        
+                            const docRef = await addDoc(companiesColRef, newCompanie)
+        
+                            this.uniqueIdentifier = `${docRef.id}`
+                            console.log(this.uniqueIdentifier)
+        
+                            const companieDocRef = doc(companiesColRef, docRef.id)
+        
+                            await updateDoc(companieDocRef, { uid: `${docRef.id}` })
+        
+                            this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
                         }
-    
-                        this.newCompanieData = newCompanie
-    
-                        const docRef = await addDoc(companiesColRef, newCompanie)
-    
-                        this.uniqueIdentifier = `${docRef.id}`
-                        console.log(this.uniqueIdentifier)
-    
-                        const companieDocRef = doc(companiesColRef, docRef.id)
-    
-                        await updateDoc(companieDocRef, { uid: `${docRef.id}` })
-    
-                        this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
                     }
-                } else {
-                    this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
+                } 
+                
+                // Recherche dans la table des clients
+                else if(this.isCompanie === false) {
+                    const q = query(usersColRef, where('telephone', '==', `${phone}`))
+                    const snapshot = await getDocs(q)
+    
+                    if(snapshot.docs.length > 0) {
+                        this.isNew = false
+                        this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
+                    } else {
+
+                        // au cas ou le numéro n'est pas trouvé dans la table des clients vérifier s'il n'est pas utilisé pour un compte compagnies
+                        const q = query(companiesColRef, where('telephone', '==', `${phone}`))
+                        const snapshot = await getDocs(q)
+        
+                        if(snapshot.docs.length > 0) {
+                            this.errorMessage = 'Ce numéro a déjà été utilisé pour un compte compagnie'
+                        } 
+
+                        // Si rien de tout ce qui précede alors créer le compte
+                        else {
+                            this.isNew = true
+                            const newUser = {
+                                uid: '', 
+                                addresse: '', 
+                                country: '', 
+                                createdAt: new Date(), 
+                                dateNaisse: '', 
+                                email: '', 
+                                firstName: '', 
+                                imageUrl: '', 
+                                joinedAt: Timestamp.now(), 
+                                lastName: '', 
+                                lieuNaissance: '', 
+                                profession: '', 
+                                telephone: `${phone}`, 
+                                token: '', 
+                                username: ''
+                            }
+        
+                            const docRef = await addDoc(usersColRef, newUser)
+        
+                            const userDocRef = doc(companiesColRef, docRef.id)
+        
+                            await updateDoc(userDocRef, { uid: `${docRef.id}` })
+    
+                            this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
+                        }
+                    }
+
                 }
                 } catch (error) {
                console.log(error) 
@@ -98,7 +164,10 @@ export const useAuthStore = defineStore('authStore', {
         },
         setCompanieService(service) {
             this.companieService = service
-        }, 
+        },
+        resetErrorMessage() {
+          this.errorMessage = ''  
+        },
         setOffre(offre) {
             this.offre = `${offre}`
         }, 

@@ -14,6 +14,7 @@ import Cho from '@/views/choix_offres2.vue';
 import Information from '@/views/informations.vue';
 import Service from '@/views/service.vue';
 import Connexion from '@/views/connexion.vue';
+import ClientConnexion from '@/views/connexion_client.vue';
 import Compte from '@/views/compte_location_vehicule.vue';
 import Comp from '@/views/compte_achat_engin.vue';
 import Compt from '@/views/compte_gros_engin.vue';
@@ -94,6 +95,12 @@ const routes = [
     path: '/connexion',
     name: 'Connexion',
     component: Connexion,
+    
+  },
+  {
+    path: '/connexion-client',
+    name: 'ClientConnexion',
+    component: ClientConnexion,
     
   },
 

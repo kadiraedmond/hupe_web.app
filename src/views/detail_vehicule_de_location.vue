@@ -290,7 +290,7 @@ onMounted(() => {
           <div class="row mt-4">
               <!-- Button trigger modal -->
             <div class="col-md-6 text-end">
-              <router-link v-if="!user.token" to="/connexion">
+              <router-link v-if="!user.uid" to="/connexion-client">
                 <button
                   class="btn btn-primary w-100"
                   style="
@@ -302,7 +302,7 @@ onMounted(() => {
                   Réserver
                 </button>
               </router-link>
-              <router-link v-if="user.token && !user.raison_social" to="">
+              <router-link v-if="user.uid && !user.raison_social" to="">
                 <button
                   class="btn btn-primary w-100"
                   style="

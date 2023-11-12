@@ -1,7 +1,8 @@
 <script setup>
-import { useUserStore } from "@/store/user.js";
-import { useAuthStore } from "@/store/auth.js";
-import { onBeforeMount, onMounted, ref } from "vue";
+import { useUserStore } from "@/store/user.js"
+import { useAuthStore } from "@/store/auth.js"
+import { onBeforeMount, onMounted, ref } from "vue"
+import router from '@/router/router.js'
 
 import { addDoc, updateDoc, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
@@ -35,6 +36,7 @@ const reporter = async (location) => {
 
   const { status, ...extracted_location } = location
 
+  console.log(new Date(date_report.value))
   const docRef = await addDoc(reportColRef, { extracted_location, status: 'En attente', report: new Date(date_report.value) })
         .then(() => {
           console.log('Document ajouté')
@@ -318,17 +320,16 @@ const sendMessage = async (location) => {
                     </div>
                   </div>
 
-                <div class="col-md-6">
-                  <button
-                    class="btn btn-primary"
-                    style="background: #219935; border-color: #219935"
-                    @click="payer(location)"
-                  >
-                    Procéder au paiement
-                  </button>
-                </div>
+                  <div class="col-md-6">
+                    <button
+                      class="btn btn-primary"
+                      style="background: #219935; border-color: #219935"
+                      @click="payer(location)"
+                    >
+                      Procéder au paiement
+                    </button>
+                  </div>
 
-                <div class="row" v-if="location.status == 'En attente'">
                   <div class="col-md-6">
                     <button
                       class="btn btn-primary w-75"
@@ -380,7 +381,6 @@ const sendMessage = async (location) => {
                         </div>
                       </div>
                     </div>
-                  </div>
                   </div>
                 </div>
 
@@ -435,7 +435,6 @@ const sendMessage = async (location) => {
                                 Envoyer
                               </button>
                             </div>
-
                           </form>
                         </div>
                       </div>
