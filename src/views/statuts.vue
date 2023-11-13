@@ -418,48 +418,14 @@ onMounted(() => {
                                 </button>
                             </div>
                             <div class="col-6 text-end">
+                              <router-link to="/messagerie">
                                 <button
                                 class="btn btn-primary w-75"
                                 style="background: #219935; border-color: #219935 ;font-size: 12px; "
-                                data-bs-toggle="modal"
-                                data-bs-target="#messageModal10"
                                 >
                                 Message
                                 </button>
-
-                                <!-- Modal -->
-                                <div
-                                class="modal fade"
-                                id="messageModal10"
-                                tabindex="-1"
-                                aria-labelledby="exampleModalLabel10"
-                                aria-hidden="true"
-                                >
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                                        Votre Message à : {{ location.companieInfos.raison_social }}
-                                        </h1>
-                                        <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    <form id="reportForm" @submit.prevent="sendMessage(location)" style="height: 500px">
-                                        <div class="d-flex w-100" style="position: absolute; bottom: 0">
-                                        <input type="text" v-model="message" class="w-100" />
-                                        <button type="submit" class="btn btn-primary">
-                                            Envoyer
-                                        </button>
-                                        </div>
-
-                                    </form>
-                                    </div>
-                                </div>
-                                </div>
+                              </router-link>
                             </div>
                             </div>
                         </div>

@@ -1,7 +1,11 @@
 <script setup>
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, onMounted } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue"
+import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc } from "firebase/firestore"
+import { firestoreDb, storage } from "@/firebase/firebase.js"
+import { toast } from 'vue3-toastify'
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -10,13 +14,90 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 // const userId = savedUser.uid || authStore.user.uid
 const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
-onBeforeMount(() => {
+onBeforeMount(async () => {
+  await companieStore.resetCompanieCars()
   companieStore.setCompanieCars(userId) // authStore.user.uid
 })
 
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+const marque = ref('')
+const modele = ref('')
+const immatriculation = ref('')
+const annee = ref('')
+const moteur = ref('')
+const prix_journalier = ref()
+const prix_avec_chauffeur = ref()
+const prix_interieur = ref()
+const image = ref()
+
+const isUploading = ref(false)
+
+const handleSubmit = async () => {
+  const docRef = doc(firestoreDb, 'compagnies', `${userId}`)
+  const collectionRef = collection(docRef, 'vehicules_programmer')
+
+  const data = {
+    uid: '', 
+    annee_vehicule: annee.value, 
+    avecchauffeurprix: prix_avec_chauffeur.value, 
+    boite: '', 
+    capitalprix: '', 
+    compagnie_id: userId, 
+    enAvant: false, 
+    enPromo: false, 
+    interieurpaysprix: prix_interieur.value, 
+    modele: modele.value, 
+    montant: prix_journalier.value, 
+    moteur: moteur.value, 
+    serie_vehicule: immatriculation.value, 
+    status: 'active', 
+    vehicule: marque.value, 
+    vehicule_image_url: image.value, 
+    addedAt: new Date()
+  }
+  const newDoc = await addDoc(collectionRef, data)
+
+  if(newDoc) {
+    const updateNewDoc = await updateDoc(newDoc, { uid: `${newDoc.id}` })
+
+    if(updateDoc) {
+      console.log('ID ajouté')
+    }
+
+    console.log('Document ajouté')
+    await document.querySelector('.btn-close').click()
+    Swal.fire({
+      title: "Succès",
+      text: "Votre véhicule a été ajouté",
+      icon: "success"
+    })
+    toast.success("Votre véhicule a été ajouté", { 
+      autoClose: 3500, 
+      position: toast.POSITION.TOP_CENTER
+    })
+  }
+
+}
+
+const handleFile = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `location_vehicule/${companieStore.companie.uid}/${file.name}`)
+
+  await uploadBytes(storageRef, file)
+  
+  const downloadURL = await getDownloadURL(storageRef)
+  // console.log(downloadURL)
+
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    image.value = downloadURL
+    isUploading.value = false
+  }
+}
 
 </script>
 
@@ -62,7 +143,7 @@ onMounted(() => {
               ></button>
             </div>
             <div class="modal-body">
-              <form class="row g-3 needs-validation text-start" novalidate>
+              <form @submit.prevent="handleSubmit" class="row g-3 needs-validation text-start" novalidate>
                 <div class="col-md-6">
                   <label for="validationCustom01" class="form-label"
                     >Marque</label
@@ -71,6 +152,7 @@ onMounted(() => {
                     type="text"
                     class="form-control"
                     id="validationCustom01"
+                    v-model="marque"
                     required
                   />
                 </div>
@@ -82,10 +164,10 @@ onMounted(() => {
                     type="text"
                     class="form-control"
                     id="validationCustom02"
+                    v-model="modele"
                     required
                   />
                 </div>
-
                 <div class="col-md-6">
                   <label for="validationCustom01" class="form-label"
                     >Immatriculation</label
@@ -94,6 +176,7 @@ onMounted(() => {
                     type="text"
                     class="form-control"
                     id="validationCustom01"
+                    v-model="immatriculation"
                     required
                   />
                 </div>
@@ -105,6 +188,19 @@ onMounted(() => {
                     type="text"
                     class="form-control"
                     id="validationCustom02"
+                    v-model="annee"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="validationCustom02" class="form-label"
+                    >Moteur</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationCustom02"
+                    v-model="moteur"
                     required
                   />
                 </div>
@@ -117,9 +213,10 @@ onMounted(() => {
                     >Prix journalier</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="validationCustom02"
+                    v-model="prix_journalier"
                     required
                   />
                 </div>
@@ -129,9 +226,10 @@ onMounted(() => {
                     >Avec chauffeur</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="validationCustom01"
+                    v-model="prix_avec_chauffeur"
                     required
                   />
                 </div>
@@ -140,20 +238,22 @@ onMounted(() => {
                     >A l'intérieur</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="validationCustom02"
+                    v-model="prix_interieur"
                     required
                   />
                 </div>
                 <div class="col-md-12">
                   <label for="validationCustom02" class="form-label"
-                    >Ajouter une images</label
+                    >Ajouter une image</label
                   >
                   <input
                     type="file"
                     class="form-control"
                     id="validationCustom02"
+                    @change="handleFile"
                     required
                   />
                 </div>
@@ -163,6 +263,7 @@ onMounted(() => {
                     class="btn btn-primary"
                     style="background-color: #219935; border-color: #219935"
                     type="submit"
+                    :disabled="isUploading"
                   >
                     Enregistrer
                   </button>
@@ -174,7 +275,7 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <div class="row mt-4">
+  <div class="row mt-4" v-if="companieStore.companieCars.length > 0">
     <div class="col-md-6" v-for="(car, index) in companieStore.companieCars" :key="index">
       <div class="card mb-3" style="max-width: 540px">
         <div class="row g-0">
@@ -224,8 +325,8 @@ onMounted(() => {
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModale"
                         style="
-                          background-color: rgb(33 153 53 / 58%);
-                          border-color: rgb(33 153 53 / 58%);
+                          background-color: #219935;
+                          border-color: #219935;
                         "
                       >
                         <img
@@ -394,24 +495,19 @@ onMounted(() => {
                       </div>
                     </div>
                     <div class="col">
-                      <a
-                        v-bind:href="'/formulaire_reservation'"
-                        id="a_compagnie"
+                      <button
+                        class="btn btn-primary"
+                        style="
+                          background-color: #219935;
+                          border-color: #219935;
+                        "
                       >
-                        <button
-                          class="btn btn-primary"
-                          style="
-                            background-color: #219935;
-                            border-color: #219935;
-                          "
-                        >
-                          <img
-                            src="/public/assets/img/icone/star.png"
-                            class="img-fluid"
-                            alt="..."
-                          />
-                        </button>
-                      </a>
+                        <img
+                          src="/public/assets/img/icone/star.png"
+                          class="img-fluid"
+                          alt="..."
+                        />
+                      </button>
                     </div>
                     <div class="col">
                       <!-- Button trigger modal -->
@@ -531,8 +627,7 @@ onMounted(() => {
                       </div>
                     </div>
                     <div class="col">
-                      <a
-                        v-bind:href="'/formulaire_reservation'"
+                      <div
                         id="a_compagnie"
                       >
                         <button
@@ -548,13 +643,10 @@ onMounted(() => {
                             alt="..."
                           />
                         </button>
-                      </a>
+                      </div>
                     </div>
                     <div class="col text-center">
-                      <a
-                        v-bind:href="'/formulaire_reservation'"
-                        id="a_compagnie"
-                      >
+                      <div id="a_compagnie">
                         <button
                           class="btn btn-primary"
                           style="
@@ -568,7 +660,7 @@ onMounted(() => {
                             alt="..."
                           />
                         </button>
-                      </a>
+                      </div>
                     </div>
                   </div>
                 </div>

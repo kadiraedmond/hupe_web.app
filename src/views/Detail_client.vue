@@ -20,6 +20,7 @@ const authStore = useAuthStore()
 const companieId = route.params.id
 
 onBeforeMount(async () => {
+  await companieStore.resetCompanieCars()
   await companieStore.setCompanieById(companieId)
 
   toast.success(`Bienvenue chez ${companieStore.companie.raison_social}`, { 

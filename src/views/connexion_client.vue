@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 
 import { useAuthStore } from '@/store/auth.js'
 
-import { onMounted, ref } from 'vue'
+import { onMounted, onBeforeMount, ref } from 'vue'
 
 const phoneNumber = ref()
 
@@ -47,26 +47,9 @@ onMounted(() => {
   window.scrollTo(0, 0)
 })
 
-const isCompanie = ref(false)
-const isClient = ref(false)
-
-const handleInput = () => {
-  if(!isCompanie.value) {
-    isCompanie.value = true
-    authStore.setIsCompanie(true)
-  } else if(isCompanie.value) {
-    isCompanie.value = false
+onBeforeMount(() => {
     authStore.setIsCompanie(false)
-  }
-}
-
-const handleClient = () => {
-  if(!isClient.value) {
-    isClient.value = true
-  } else {
-    isClient.value = false
-  }
-}
+})
 
 </script>
 
@@ -112,7 +95,7 @@ const handleClient = () => {
                          />
                       </div>
 
-                      <div class="d-flex justify-content-between my-2">
+                      <div class="d-flex justify-content-center my-2">
                         <div class="" style="display: flex; flex-direction: column; align-items: center">
                           <label class="form-check-label mb-2" for="gridRadios1">
                             Je suis un client
@@ -121,21 +104,7 @@ const handleClient = () => {
                             class="form-check-input"
                             type="radio"
                             name="gridRadios"
-                            @click="handleClient"
-                            :checked="isClient"
-                            required
-                          />
-                        </div>
-                        <div class="" style="display: flex; flex-direction: column; align-items: center">
-                          <label class="form-check-label mb-2 " for="gridRadios1">
-                            Nous sommes une compagnie
-                          </label>
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="gridRadios"
-                            @click="handleInput"
-                            :checked="isCompanie"
+                            checked
                             required
                           />
                         </div>

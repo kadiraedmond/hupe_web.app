@@ -14,6 +14,7 @@ import Cho from '@/views/choix_offres2.vue';
 import Information from '@/views/informations.vue';
 import Service from '@/views/service.vue';
 import Connexion from '@/views/connexion.vue';
+import ClientConnexion from '@/views/connexion_client.vue';
 import Compte from '@/views/compte_location_vehicule.vue';
 import Comp from '@/views/compte_achat_engin.vue';
 import Compt from '@/views/compte_gros_engin.vue';
@@ -24,6 +25,7 @@ import Activite from '@/views/activite.vue';
 import Otp from '@/views/otp.vue';
 import Partenaire from '@/views/partenaire.vue';
 import Pclient from '@/views/client.vue';
+import Message from '@/views/message.vue';
 import Sclient from '@/views/services_client.vue';
 import Info from '@/views/infos.vue';
 import Legales from '@/views/legales.vue';
@@ -98,12 +100,25 @@ const routes = [
     component: Connexion,
     
   },
+  {
+    path: '/connexion-client',
+    name: 'ClientConnexion',
+    component: ClientConnexion,
+    
+  },
 
   {
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
     meta: { requiresAuth: true, allowedUserType: 'companie' }
+  },
+
+  {
+    path: '/messagerie',
+    name: 'Message',
+    component: Message,
+    
   },
 
   {

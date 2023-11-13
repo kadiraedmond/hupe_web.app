@@ -33,7 +33,7 @@ onMounted(() => {
               <p><strong> Solde |</strong> {{ companieStore.totalAmount.solde }}</p>
             </div>
             <div class="col-md-6 text-end">
-              <router-link to="'/formulaire_reservation'" id="a_compagnie">
+              <router-link to="" id="a_compagnie">
                 <button
                   class="btn btn-primary"
                   style="
