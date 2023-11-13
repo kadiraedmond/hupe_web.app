@@ -67,8 +67,8 @@ const updateReservationsDashboard = () => {
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   await reservationStore.setCompanieReservations(userId)
   updateReservationsDashboard()
@@ -86,7 +86,7 @@ onMounted(() => {
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <div class="row">
           <div class="col-md-4">
-            <li class="nav-item" role="presentation">
+            <li class="nav-item mb-3" role="presentation">
               <button
                 class="nav-link active w-100"
                 id="attente-tab"
@@ -98,7 +98,7 @@ onMounted(() => {
                 aria-selected="true"
               >
                 <div
-                  class="card text-bg-warning mb-3 border-0"
+                  class="card text-bg-warning mb-3 mt-3 border-0"
                   style="background: #f77f00 !important"
                 >
                   <div class="card-body">
@@ -108,7 +108,7 @@ onMounted(() => {
                       </div>
 
                       <div class="col-md-6 text-end">
-                        <p>ICONE</p>
+                        <p style=" font-size: 23px;margin-top: -6px; color: white;"> <i class="bx bx-time"></i> </p>
                       </div>
 
                       <div class="col-md-12 text-start">
@@ -142,7 +142,7 @@ onMounted(() => {
                 aria-selected="true"
               >
                 <div
-                  class="card text-bg-warning mb-3 border-0"
+                  class="card text-bg-warning mb-3 mt-3 border-0"
                   style="background: #219935 !important"
                 >
                   <div class="card-body">
@@ -152,7 +152,7 @@ onMounted(() => {
                       </div>
 
                       <div class="col-md-6 text-end">
-                        <p>ICONE</p>
+                        <p style=" font-size: 23px;margin-top: -6px; color: white;"> <i class="bx bx-check-circle"></i> </p>
                       </div>
 
                       <div class="col-md-12 text-start">
@@ -186,7 +186,7 @@ onMounted(() => {
                 aria-selected="true"
               >
                 <div
-                  class="card text-bg-warning mb-3 border-0"
+                  class="card text-bg-warning mb-3 mt-3 border-0"
                   style="background: #3987fb !important"
                 >
                   <div class="card-body">
@@ -196,7 +196,7 @@ onMounted(() => {
                       </div>
 
                       <div class="col-md-6 text-end">
-                        <p>ICONE</p>
+                        <p style=" font-size: 23px;margin-top: -6px; color: white;"> <i class="bx bx-check-square"></i> </p>
                       </div>
 
                       <div class="col-md-12 text-start">
@@ -230,7 +230,7 @@ onMounted(() => {
                 aria-selected="true"
               >
                 <div
-                  class="card text-bg-warning mb-3 border-0"
+                  class="card text-bg-warning mb-3 mt-3 border-0"
                   style="background: #931d96 !important"
                 >
                   <div class="card-body">
@@ -240,7 +240,7 @@ onMounted(() => {
                       </div>
 
                       <div class="col-md-6 text-end">
-                        <p>ICONE</p>
+                        <p style=" font-size: 23px;margin-top: -6px; color: white;">  <i class="bx bx-x-circle"></i> </p>
                       </div>
 
                       <div class="col-md-12 text-start">
@@ -274,7 +274,7 @@ onMounted(() => {
                 aria-selected="true"
               >
                 <div
-                  class="card text-bg-warning mb-3 border-0"
+                  class="card text-bg-warning mb-3 mt-3 border-0"
                   style="background: #3987fb !important"
                 >
                   <div class="card-body">
@@ -284,10 +284,10 @@ onMounted(() => {
                       </div>
 
                       <div class="col-md-6 text-end">
-                        <p>ICONE</p>
+                        <p style=" font-size: 23px;margin-top: -6px; color: white;">  <i class="bx bx-reset"></i> </p>
                       </div>
 
-                      <div class="col-md-12">
+                      <div class="col-md-12 text-start">
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
@@ -318,7 +318,7 @@ onMounted(() => {
                 aria-selected="true"
               >
                 <div
-                  class="card text-bg-warning mb-3 border-0"
+                  class="card text-bg-warning mb-3 mt-3 border-0"
                   style="background: #fb3232 !important"
                 >
                   <div class="card-body">
@@ -328,7 +328,7 @@ onMounted(() => {
                       </div>
 
                       <div class="col-md-6 text-end">
-                        <p>ICONE</p>
+                        <p style=" font-size: 23px;margin-top: -6px; color: white;">   <i class="bx bx-check-circle"></i> </p>
                       </div>
 
                       <div class="col-md-12 text-start">
@@ -361,180 +361,166 @@ onMounted(() => {
         >
           <div class="row mt-5">
             <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-6" v-for="(reservation, index) in reservationStore.companieReservations" :key="index">
+              <div class="row g-1">
+                <div class="col-md-12">
                   <div
                     class="accordion accordion-flush"
                     id="accordionFlushExample"
-                    v-if="reservation.status == 'En attente'"
                   >
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="flush-headingOne">
+                  <div class="row">
+                    <div class="col-md-4" v-for="(reservation, index) in reservationStore.companieReservations" :key="index">
+                      <div class="accordion-item mb-3" style="border: 1px solid #d2d2d2; border-radius: 5px;"  v-if="reservation.status == 'En attente'" >
+                      <h2 class="accordion-header" :id="'flush-headingOne' + index">
                         <button
                           class="accordion-button collapsed"
                           type="button"
                           data-bs-toggle="collapse"
-                          data-bs-target="#flush-collapseOne"
+                          :data-bs-target="'#flush-collapseOne' + index"
                           aria-expanded="false"
-                          aria-controls="flush-collapseOne"
+                          :aria-controls="'flush-collapseOne' + index"
                           id="reser"
                         >
-                          <div class="row" style="margin: 10px; width: 100%">
-                            <div class="col-md-6">
-                              <div
-                                class="card mb-3 border-0"
-                                style="max-width: 540px; background: #fafafa"
-                              >
-                                <div class="row g-1">
-                                  <div class="col-md-4">
-                                    <img
-                                      :src="reservation.client_profil_url"
-                                      alt
-                                      class="w-px-40 h-auto rounded-circle"
-                                      style="width: 50px"
-                                    />
-                                  </div>
-                                  <div class="col-md-8">
-                                    <div class="card-body">
-                                      <h5
-                                        class="card-title"
-                                        style="font-size: 12px"
-                                      >
-                                        {{ reservation.nom_client }}
-                                      </h5>
-                                      <p
-                                        class="card-text mt-2"
-                                        style="font-size: 10px"
-                                      >
-                                        <i
-                                          class="bx bx-map"
-                                          id="icon_menu"
-                                          style="color: #219935"
-                                        ></i>
-                                        CI,rue 250
-                                      </p>
-                                    </div>
-                                  </div>
+                          <div class="row g-1 d-flex mt-1" style=" width: 100%">
+                            <div class="col-md-6 d-flex">
+                              <img
+                              :src="reservation.client_profil_url"
+                                alt
+                                class="w-px-40 h-auto rounded-circle"
+                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                              />
+                              <div>
+                                <div class="card-body" style="margin-left: 10px; margin-top: 10px; ">
+                                  <h5 class="card-title" style="font-size: 12px ; margin-bottom: 6px;">
+                                    {{ reservation.nom_client }}
+                                  </h5>
+                                  <p class="card-text" style="font-size: 12px">
+                                    <i
+                                      class="bx bx-map"
+                                      style="color: rgb(139 139 139);"
+                                    ></i>
+                                    CI,rue 250
+                                  </p>
                                 </div>
                               </div>
+                             
                             </div>
                             <div class="col-md-6 text-end">
-                              <div class="row">
-                                <div class="col-4 text-end">
-                                  <h6
-                                    style="
-                                      margin-top: 28px;
-                                      font-size: 13px;
-                                      color: rgb(247 127 0);
-                                    "
-                                  >
-                                    {{ reservation.status }}
-                                  </h6>
-                                </div>
-                                <div class="col-8">
+                              
+                                  <strong style="color: rgb(247 127 0);font-size: 12px; margin-right: 10px; font-weight: 500;">{{ location.status }} </strong>
                                   <button
                                     class="btn btn-primary"
                                     style="
                                       background: #219935;
                                       border-color: #219935;
-                                      margin-top: 15px;
-                                      font-size: 13px;
+                                      margin-top: 5px;
+                                      font-size: 12px;
                                     "
                                   >
                                     {{ reservation.montant }} FCFA
                                   </button>
-                                </div>
-                              </div>
+                                       
                             </div>
                           </div>
                         </button>
                       </h2>
                       <div
-                        id="flush-collapseOne"
+                        :id="'flush-collapseOne' + index"
                         class="accordion-collapse collapse"
-                        aria-labelledby="flush-headingOne"
+                        :aria-labelledby="'flush-headingOne' + index"
                         data-bs-parent="#accordionFlushExample"
                       >
-                        <div class="accordion-body" style="margin-top: -40px">
+                        <div class="accordion-body" style="margin-top: 8px ; padding: 7px;">
                           <div
                             class="card h-100 border-0"
                             id="card_compagnie"
                             style="box-shadow: none; background: none"
                           >
                             <div
-                              class="card mb-3 mt-4"
+                              class="card  mt-4"
                               style="
-                                margin: 10px;
+                                 
                                 margin-top: -10px !important;
-                                width: 98%;
+                                width: 100%;
                               "
                             >
-                              <div class="row g-0" style="margin: 10px">
-                                <div class="col-md-6">
+                              <div class="row g-0" style="margin: -2px">
+                                <div class="col-md-12">
                                   <div class="card-body">
-                                    <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        background: #efefef;
-                                        padding: 4px;
-                                        border-radius: 5px;
-                                        font-size: 12px;
-                                        margin-top: -15px;
-                                      "
-                                    >
-                                      Il y a environ un jour <br />
-                                      <strong> T22356_1253523 </strong>
-                                    </p>
-                                    <hr />
+                                    <div class="row mt-2">
+                                        <div class="col-6">
+                                            <p
+                                            class="card-text"
+                                            style="
+                                                background: #efefef;
+                                                padding: 4px;
+                                                border-radius: 5px;
+                                                font-size: 12px;
+                                                margin-top: -15px;
+                                            "
+                                            >
+                                            {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
+                                            
+                                            </p>
+                                        </div>       
+                                    </div>
+                                    <br />
+                                          
 
                                     <p
                                       class="card-text"
                                       style="
                                         font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
+                                        margin-top: -11px;
+                                        margin-bottom: 11px;
                                       "
                                     >
-                                      Lieu de départ | <strong> {{ reservation.lieu_depart }} </strong>
+                                    Lieu de départ | <strong> {{ reservation.lieu_depart }} </strong>
                                     </p>
-                                    <hr />
+                                   
                                     <p
                                       class="card-text"
                                       style="
                                         font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
+                                        margin-top: 0px;
+                                        margin-bottom: 11px;
                                       "
                                     >
-                                      Déstinations | <strong>{{ reservation.destination }} </strong>
+                                    Déstinations | <strong>{{ reservation.destination }} </strong>
                                     </p>
-                                    <hr />
+                                   
                                     <p
                                       class="card-text"
                                       style="
                                         font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
+                                        margin-top: 0px;
+                                        margin-bottom: 11px;
                                       "
                                     >
-                                      Heure de départ |
+                                    Heure de départ |
                                       <strong>{{ reservation.heure_depart }} </strong>
                                     </p>
-                                    <hr />
+                                    
+                                    <p
+                                      class="card-text"
+                                      style="
+                                        font-size: 13px;
+                                        margin-top: 0px;
+                                        margin-bottom: 11px;
+                                      "
+                                    >
+                                    Convocation | <strong>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</strong>
+                                    </p>
+                                   
                                   </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                   <img
-                                    src="/public/assets/img/car2.jpg"
+                                    :src="location.vehicule_image_url"
                                     class="img-fluid rounded-start h-100"
                                     alt="..."
                                     style="height: 85% !important"
                                   />
-                                </div>
+                                </div> -->
                                 <div class="col-md-12">
                                   <div class="card-body">
                                     <p
@@ -545,33 +531,33 @@ onMounted(() => {
                                         margin-bottom: -8px;
                                       "
                                     >
-                                      Convocation | <strong>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</strong>
+                                    Escale | <strong>{{ reservation.escale }} </strong>
                                     </p>
 
-                                    <hr />
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
-                                      "
-                                    >
-                                      Escale | <strong>{{ reservation.escale }} </strong>
-                                    </p>
-                                    <hr />
-
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
-                                      "
-                                    >
-                                      Jours de voyages | <strong>{{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</strong>
-                                    </p>
                                     
+                                    <p
+                                      class="card-text"
+                                      style="
+                                        font-size: 13px;
+                                        margin-top: 20px;
+                                        margin-bottom: 20px;
+                                      "
+                                    >
+                                      Retour |
+                                      <strong>{{ location.date_retour }} </strong>
+                                    </p>
+                                     
+
+                                    <p
+                                      class="card-text"
+                                      style="
+                                        font-size: 13px;
+                                        margin-top: -11px;
+                                        margin-bottom: 11px;
+                                      "
+                                    >
+                                    Jours de voyages | <strong>{{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</strong>
+                                    </p>
                                   </div>
                                 </div>
                               </div>
@@ -580,9 +566,14 @@ onMounted(() => {
                         </div>
                       </div>
                     </div>
+                    </div>
+                  </div>
+
+                    
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>
@@ -1759,4 +1750,24 @@ onMounted(() => {
     </div>
   </div>
 </template>
-<style></style>
+<style scoped>
+.nav-tabs .nav-link {
+    /* margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); */
+    /* background: 0 0; */
+    /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+    /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+    /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+    margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
+    border: var(--bs-nav-tabs-border-width) solid transparent;
+    border-color: #219935;
+    color: black;
+    border-radius: 5px;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: #219935;
+    background: #21993554;
+}
+</style>

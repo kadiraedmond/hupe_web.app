@@ -5,6 +5,8 @@ import { onMounted } from "vue"
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+    
 </script>
 
 <template>
@@ -16,7 +18,7 @@ onMounted(() => {
         type="button"
         class="btn btn-primary mb-3"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#exampleModalA"
         style="background-color: #219935; border-color: #219935"
       >
         <img
@@ -30,15 +32,15 @@ onMounted(() => {
       <!-- Modal -->
       <div
         class="modal fade"
-        id="exampleModal"
+        id="exampleModalA"
         tabindex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="exampleModalLabelA"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+            <div class="modal-header" style="background: #219935; color: white;">
+              <h1 class="modal-title fs-5" id="exampleModalLabelA">
                 Ajouter une politique
               </h1>
               <button
@@ -52,15 +54,16 @@ onMounted(() => {
               <form class="row g-3 needs-validation text-start" novalidate>
                 <div class="col-md-12">
                   <div class="mb-3">
-                    <label class="form-label" for="basic-default-message"
-                      >Politique</label
-                    >
-                    <textarea
-                      id="summernote"
-                      class="form-control"
-                      name="message"
-                    ></textarea>
-                  </div>
+                          <label class="form-label" for="basic-default-message">Contenue</label>
+                          <textarea
+                            
+                            class="form-control"
+                            name="message"
+                          ></textarea>
+                     
+                      </div>
+                  
+                   
                 </div>
 
                 <div class="col-12 text-center">

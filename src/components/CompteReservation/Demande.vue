@@ -13,6 +13,9 @@ const companieStore = useCompanieStore()
 
 const usersColRef = collection(firestoreDb, 'users')
 
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+
 
 const userInformations = ref({})
 
@@ -66,7 +69,7 @@ onMounted(() => {
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #219935; color: white;">
               <h1 class="modal-title fs-5" id="exampleModalLabel10">
                 Informations du client
               </h1>
