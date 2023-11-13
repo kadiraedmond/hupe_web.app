@@ -12,9 +12,10 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
-onBeforeMount(() => {
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+onBeforeMount(async () => {
+  await companieStore.resetCompanieCars()
   companieStore.setCompanieCars(userId) // authStore.user.uid
 })
 
@@ -130,7 +131,7 @@ const handleFile = async (e) => {
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #219935; color : white">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
                 Ajouter un véhicule
               </h1>
@@ -274,7 +275,7 @@ const handleFile = async (e) => {
       </div>
     </div>
   </div>
-  <div class="row mt-4">
+  <div class="row mt-4" v-if="companieStore.companieCars.length > 0">
     <div class="col-md-6" v-for="(car, index) in companieStore.companieCars" :key="index">
       <div class="card mb-3" style="max-width: 540px">
         <div class="row g-0">
@@ -324,8 +325,8 @@ const handleFile = async (e) => {
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModale"
                         style="
-                          background-color: rgb(33 153 53 / 58%);
-                          border-color: rgb(33 153 53 / 58%);
+                          background-color: #219935;
+                          border-color: #219935;
                         "
                       >
                         <img
@@ -494,24 +495,19 @@ const handleFile = async (e) => {
                       </div>
                     </div>
                     <div class="col">
-                      <router-link
-                        to=""
-                        id="a_compagnie"
+                      <button
+                        class="btn btn-primary"
+                        style="
+                          background-color: #219935;
+                          border-color: #219935;
+                        "
                       >
-                        <button
-                          class="btn btn-primary"
-                          style="
-                            background-color: #219935;
-                            border-color: #219935;
-                          "
-                        >
-                          <img
-                            src="/public/assets/img/icone/star.png"
-                            class="img-fluid"
-                            alt="..."
-                          />
-                        </button>
-                      </router-link>
+                        <img
+                          src="/public/assets/img/icone/star.png"
+                          class="img-fluid"
+                          alt="..."
+                        />
+                      </button>
                     </div>
                     <div class="col">
                       <!-- Button trigger modal -->
@@ -631,8 +627,7 @@ const handleFile = async (e) => {
                       </div>
                     </div>
                     <div class="col">
-                      <router-link
-                        href=""
+                      <div
                         id="a_compagnie"
                       >
                         <button
@@ -648,13 +643,10 @@ const handleFile = async (e) => {
                             alt="..."
                           />
                         </button>
-                      </router-link>
+                      </div>
                     </div>
                     <div class="col text-center">
-                      <router-link
-                        href=""
-                        id="a_compagnie"
-                      >
+                      <div id="a_compagnie">
                         <button
                           class="btn btn-primary"
                           style="
@@ -668,7 +660,7 @@ const handleFile = async (e) => {
                             alt="..."
                           />
                         </button>
-                      </router-link>
+                      </div>
                     </div>
                   </div>
                 </div>

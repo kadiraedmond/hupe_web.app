@@ -175,16 +175,33 @@ onMounted(() => {
                     <!-- <div class="col-md-12">
                         <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Valider</button>
                       </div> -->
-                    <div class="col-md-12">
+                      <div class="col-md-6 text-start">
+                        <router-link to="/connexion">
+                          <button
+                        
+                        class="btn btn-primary "
+                        style="
+                          background-color: white;
+                          color: #219935;
+                          border-color: #219935 ; width: 30%;
+                        "
+                      >
+                      <i class='bx bx-left-arrow-alt' ></i>   Précédent 
+                      </button>
+                        </router-link>
+                     
+                    </div>
+                    <div class="col-md-6 text-end">
                       <button
                         type="submit"
-                        class="btn btn-primary w-25"
+                        class="btn btn-primary"
                         style="
                           background-color: #219935;
                           border-color: #219935;
+                          width: 30%;
                         "
                       >
-                        Valider
+                        Suivant <i class='bx bx-right-arrow-alt'></i>
                       </button>
                     </div>
                   </div>

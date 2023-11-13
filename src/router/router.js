@@ -25,6 +25,7 @@ import Activite from '@/views/activite.vue';
 import Otp from '@/views/otp.vue';
 import Partenaire from '@/views/partenaire.vue';
 import Pclient from '@/views/client.vue';
+import Message from '@/views/message.vue';
 import Sclient from '@/views/services_client.vue';
 import Info from '@/views/infos.vue';
 import Legales from '@/views/legales.vue';
@@ -37,6 +38,8 @@ import Promotion from '@/views/promotion.vue';
 import Notation from '@/views/notation.vue';
 import Statuts from '@/views/statuts.vue';
 import Statut from '@/views/statut.vue';
+import Pays from '@/views/pays.vue';
+import Confirmation from '@/views/attente.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -109,6 +112,13 @@ const routes = [
     name: 'Dashboard',
     component: Dashboard,
     meta: { requiresAuth: true, allowedUserType: 'companie' }
+  },
+
+  {
+    path: '/messagerie',
+    name: 'Message',
+    component: Message,
+    
   },
 
   {
@@ -283,6 +293,20 @@ const routes = [
     path: '/reservation_de_ticket',
     name: 'Statut',
     component: Statut,
+    
+  },
+
+  {
+    path: '/partenaire_par_pays',
+    name: 'Pays',
+    component: Pays,
+    
+  },
+
+  {
+    path: '/confirmation',
+    name: 'Confirmation',
+    component: Confirmation,
     
   },
 ];

@@ -95,6 +95,10 @@ const sendMessage = async (reservation) => {
   await addDoc(messageColRef, data).then('Document ajouté')
 }
 
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
@@ -113,21 +117,71 @@ const sendMessage = async (reservation) => {
       <section id="portfolio-details" class="portfolio-details">
           <div class="container">
   
-              <div class="row no-gutters g-1 mt-4">
+              <div class="row no-gutters g-4 mt-4">
                 <div class="col-md-4 mb-4" v-for="(reservation, index) in reservationStore.userReservations" :key="index">
                 <div
                     class="card h-100 border-0"
                     id="card_compagnie"
-                    style="box-shadow: none; background: none"
+                    style=" background: none ;padding: 6px;"
                 >
+                        <div class="row" style="margin: 0px">
+                        <div class="col-md-12">
+                            <div
+                            class="card  border-0"
+                            style="background: white;"
+                            >
+                            <div class="row g-1 d-flex mt-1">
+                                
+                                <div class="col-6 d-flex">
+                                <img
+                                    src="/public/assets/img/avatars/1.png"
+                                    alt
+                                    class="w-px-40 h-auto rounded-circle"
+                                    style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                />
+                                <div>
+                                    <div class="card-body" style="margin-top: -10px;">
+                                    <h5 class="card-title" style="font-size: 12px">
+                                        Compagnie
+                                    </h5>
+                                    <p class="card-text" style="font-size: 12px">
+                                        <i
+                                        class="bx bx-map"
+                                        style="color: rgb(139 139 139); margin-left: 2px"
+                                        ></i>
+                                    loren  
+                                    </p>
+                                    </div>
+                                </div>
+                                </div>
+                            
+
+                                <div class="col-6 text-end">
+                                    <strong style="color: #219935 ;font-size: 12px; margin-right: 10px; font-weight: 500;"> {{ reservation.status }} </strong>
+                                <button
+                                    class="btn btn-primary"
+                                    style="
+                                    background: #219935;
+                                    border-color: #219935;
+                                    margin-top: 5px;
+                                    font-size: 10px;
+                                    "
+                                >
+                                {{ reservation.montant }} FCFA
+                                </button>
+                                </div>
+                                
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     <div
-                    class="card mb-3 mt-4"
-                    style="margin: 10px; margin-top: -10px !important; width: 98%"
+                    class="card h-100"
                     >
-                    <div class="row g-0" style="margin: 10px">
+                    <div class="row g-0" style="margin: -2px">
                         <div class="col-md-12">
                         <div class="card-body">
-                            <div class="row">
+                            <div class="row mt-2">
                             <div class="col-6">
                                 <p
                                 class="card-text"
@@ -140,30 +194,26 @@ const sendMessage = async (reservation) => {
                                 "
                                 >
                                 {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
-                                <strong> {{ reservation.number }} </strong>
+                               
                                 </p>
                             </div>
 
-                            <div class="col-6 text-end" style="margin-top: -10px">
-                                <button class="btn btn-primary" style="background-color: #219935; border: #219935">
-                                {{ reservation.montant }}
-                                </button>
-                            </div>
+                            
                             </div>
                         <br />
 
                             <p
                             class="card-text"
-                            style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
+                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
-                            Reservation |
-                            <strong style="color: #219935">{{ reservation.status }} </strong>
+                            N° |  <strong> {{ reservation.number }} </strong>
+                             
                             </p>
                         <br />
 
                             <p
                             class="card-text"
-                            style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
+                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
                             <strong>{{ reservation.modele }} </strong> |
                             <!-- <strong> Santafe 2022 </strong> -->
@@ -185,7 +235,7 @@ const sendMessage = async (reservation) => {
                         <br />
                             <p
                             class="card-text"
-                            style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
+                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
                             Intérieur | <strong>{{ reservation.interieurPays }} </strong>
                             </p>
@@ -206,7 +256,7 @@ const sendMessage = async (reservation) => {
                             class="card-text"
                             style="
                                 font-size: 13px;
-                                margin-top: -32px;
+                                margin-top: -41px;
                                 margin-bottom: -8px;
                             "
                             >
@@ -217,7 +267,7 @@ const sendMessage = async (reservation) => {
                         <br />
                             <p
                             class="card-text"
-                            style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
+                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
                             Retour | <strong>{{ reservation.date_retour }} </strong>
                             </p>
@@ -225,7 +275,7 @@ const sendMessage = async (reservation) => {
 
                             <p
                             class="card-text"
-                            style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
+                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
                             Nombres de jours de reservation |
                             <strong>{{ reservation.number }}</strong>
@@ -349,7 +399,7 @@ const sendMessage = async (reservation) => {
                                 </div>
                             </div>
                             </div>
-                            <div class="row" v-if="reservation.status == 'En attente'">
+                            <div class="row" v-if="reservation.status == 'validé'">
                             <div class="col-md-6">
                                 <button
                                 class="btn btn-primary w-75"
@@ -411,47 +461,18 @@ const sendMessage = async (reservation) => {
                 </div>
               </div>
 
-              <div class="row">
-                <div class="col-md-12">
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Accordion Item #1
-                        </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            Accordion Item #2
-                        </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            Accordion Item #3
-                        </button>
-                        </h2>
-                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-              </div>
+              
   
           </div>
       </section>
       <!-- End Portfolio Details Section -->
 </template>
 
-<style>
+<style scoped>
+#card_compagnie {
+    border-radius: 5px !important;
+    /* background: rgba(217, 217, 217, 0.13); */
+    
+    box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.25) !important;
+}
 </style>

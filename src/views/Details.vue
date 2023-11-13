@@ -164,6 +164,7 @@ onMounted(() => {
                   role="tab"
                   aria-controls="home-tab-pane"
                   aria-selected="true"
+                  style="border-radius: 5px 0px 0px 0px !important;"
                 >
                   Programmes
                 </button>
@@ -207,6 +208,7 @@ onMounted(() => {
                   role="tab"
                   aria-controls="apropos-tab-pane"
                   aria-selected="false"
+                  style="border-radius: 0px 5px 0px 0px !important;"
                 >
                   A propos
                 </button>
@@ -675,4 +677,16 @@ onMounted(() => {
   </main>
   <!-- End #main -->
 </template>
-<style></style>
+<style scoped>
+  .nav-tabs .nav-link {
+      /* margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); */
+      /* background: 0 0; */
+      /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+      /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+      /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+      margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
+      border: var(--bs-nav-tabs-border-width) solid transparent;
+      border-color: #219935;
+      border-radius: 0px !important;
+  }
+</style>

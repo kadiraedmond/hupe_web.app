@@ -8,8 +8,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieHistory(userId)
   companieStore.setTotalAmount(userId)
@@ -33,7 +33,7 @@ onMounted(() => {
               <p><strong> Solde |</strong> {{ companieStore.totalAmount.solde }}</p>
             </div>
             <div class="col-md-6 text-end">
-              <router-link to="'/formulaire_reservation'" id="a_compagnie">
+              <router-link to="" id="a_compagnie">
                 <button
                   class="btn btn-primary"
                   style="

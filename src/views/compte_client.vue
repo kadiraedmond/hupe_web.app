@@ -93,12 +93,15 @@ onMounted(() => {
           <div class="col-md-4">
             <div class="card mb-3 border-0" style="max-width: 540px">
               <div class="row g-0">
-                <div class="col-md-4" style="border: 2.8px solid #E8E8E8; border-radius: 100%; display: flex; justify-content: center; align-items: center">
+                <div class="col-md-4" style=" display: flex; justify-content: center; align-items: center">
                   <img
                     :src="userStore.user.imageUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 100%; height: 100%"
+                    style="width: 100px;
+    height: 100px !important;
+    object-fit: cover;
+    border: 2.8px solid rgb(232, 232, 232);"
                   />
                 </div>
                 <div class="col-md-8">
@@ -171,6 +174,7 @@ onMounted(() => {
                   role="tab"
                   aria-controls="home-tab-pane"
                   aria-selected="true"
+                  style="border-radius: 5px 0px 0px 0px !important;"
                 >
                   Activités
                 </button>
@@ -248,6 +252,7 @@ onMounted(() => {
                   role="tab"
                   aria-controls="apropos-tab-pane"
                   aria-selected="false"
+                  style="border-radius: 0px 5px 0px 0px !important;"
                 >
                  Informations personnelles
                 </button>
@@ -308,7 +313,7 @@ onMounted(() => {
                     >
                       <div class="modal-dialog">
                         <div class="modal-content">
-                          <div class="modal-header">
+                          <div class="modal-header" style="background-color: #219935 ; color: white;">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">
                               Faire une publication
                             </h1>
@@ -503,4 +508,17 @@ onMounted(() => {
   </main>
   <!-- End #main -->
 </template>
-<style></style>
+<style scoped>
+
+.nav-tabs .nav-link {
+    /* margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); */
+    /* background: 0 0; */
+    /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+    /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+    /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+    margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
+    border: var(--bs-nav-tabs-border-width) solid transparent;
+    border-color: #219935;
+    border-radius: 0px !important;
+}
+</style>

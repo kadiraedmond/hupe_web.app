@@ -41,16 +41,13 @@ onBeforeMount(() => {
     <section id="features" class="features">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
-              <h2>En promotions</h2>
-              <p>
-                Ne manquez pas nos offres spéciales du moment ! Découvrez des
+          <div class="col-md-12 ">
+            <h4>En promotions</h4>
+            <p> Ne manquez pas nos offres spéciales du moment ! Découvrez des
                 promotions exclusives pour rendre votre voyage encore plus
-                mémorable.
-              </p>
-            </div>
+                mémorable.</p>
           </div>
+           
         </div>
         <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
           <div class="col" v-for="(offre, index) in promotionStore.offresVehicules" :key="index">

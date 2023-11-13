@@ -43,14 +43,17 @@ onMounted(() => {
     <section id="faq" class="faq" style="margin-top: -70px;">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card mb-3 border-0" style="max-width: 540px;">
               <div class="row g-0">
-                <div class="col-md-4" style="border: 2.8px solid #E8E8E8; border-radius: 100%; display: flex; justify-content: center; align-items: center">
+                <div class="col-md-4" style="  display: flex;">
                   <img :src="companieStore.companie.imageLogoUrl" 
                   alt="" 
                   class="w-px-40 h-auto rounded-circle" 
-                  style="width: 100%; height: 100%" />
+                  style="width: 100px;
+                    height: 100px !important;
+                    object-fit: cover;
+                    border: 2.8px solid rgb(232, 232, 232);" />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
@@ -82,7 +85,7 @@ onMounted(() => {
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="voiture-tab" data-bs-toggle="tab" data-bs-target="#voiture-tab-pane"
-                  type="button" role="tab" aria-controls="voiture-tab-pane" aria-selected="true">Véhicules</button>
+                  type="button" role="tab" aria-controls="voiture-tab-pane" aria-selected="true"  style="border-radius: 5px 0px 0px 0px !important;">Véhicules</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
@@ -119,7 +122,7 @@ onMounted(() => {
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="apropos-tab" data-bs-toggle="tab" data-bs-target="#apropos-tab-pane"
-                  type="button" role="tab" aria-controls="apropos-tab-pane" aria-selected="false">A propos</button>
+                  type="button" role="tab" aria-controls="apropos-tab-pane" aria-selected="false"  style="border-radius: 0px 5px 0px 0px !important;">A propos</button>
               </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -240,4 +243,17 @@ onMounted(() => {
 </main>
 <!-- End #main -->
 </template>
-<style></style>
+<style scoped>
+
+.nav-tabs .nav-link {
+    /* margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); */
+    /* background: 0 0; */
+    /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+    /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+    /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+    margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
+    border: var(--bs-nav-tabs-border-width) solid transparent;
+    border-color: #219935;
+    border-radius: 0px !important;
+}
+</style>

@@ -84,14 +84,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="col-md-6">
+  <div class="col-md-6 " style="
+    border-bottom: 2px solid #eee;
+    margin: -1px; padding: 12px;">
     <div class="row">
       <div class="col-md-6">
         <div
           class="card h-100 border-0 text-center"
           style="background: #f6f8fb"
         >
-          <router-link to="/" class="mt-4">
+          <router-link to="/reservation_de_ticket" class="mt-4">
             <img
               src="/public/assets/img/bus.png"
               class="img-fluid w-25"
@@ -113,6 +115,7 @@ onMounted(() => {
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
+            <router-link to="/reservation_de_ticket">
             <boutton
               class="btn btn-primary w-100"
               style="background: #f77f00; border-color: #f77f00"
@@ -125,8 +128,10 @@ onMounted(() => {
                 <div class="col-2">{{ enAttente.totalNumber }}</div>
               </div>
             </boutton>
+          </router-link>
           </div>
           <div class="col-md-12 mt-2">
+            <router-link to="/reservation_de_ticket">
             <boutton
               class="btn btn-primary w-100"
               style="background: #219935; border-color: #219935"
@@ -139,8 +144,10 @@ onMounted(() => {
                 <div class="col-2">{{ valides.totalNumber }}</div>
               </div>
             </boutton>
+          </router-link>
           </div>
           <div class="col-md-12 mt-2">
+            <router-link to="/reservation_de_ticket">
             <boutton
               class="btn btn-primary w-100"
               style="background: red; border-color: red"
@@ -153,8 +160,10 @@ onMounted(() => {
                 <div class="col-2">{{ annulees.totalNumber }}</div>
               </div>
             </boutton>
+          </router-link>
           </div>
           <div class="col-md-12 mt-2">
+            <router-link to="/reservation_de_ticket">
             <boutton
               class="btn btn-primary w-100"
               style="background: #3987fb; border-color: #3987fb"
@@ -167,8 +176,10 @@ onMounted(() => {
                 <div class="col-2">{{ confirmees.totalNumber }}</div>
               </div>
             </boutton>
+          </router-link>
           </div>
           <div class="col-md-12 mt-2">
+            <router-link to="/reservation_de_ticket">
             <boutton
               class="btn btn-primary w-100"
               style="background: #931d96; border-color: #931d96"
@@ -181,9 +192,11 @@ onMounted(() => {
                 <div class="col-2">{{ utilisees.totalNumber }}</div>
               </div>
             </boutton>
+          </router-link>
           </div>
 
           <div class="col-md-12 mt-2">
+            <router-link to="/reservation_de_ticket">
             <boutton
               class="btn btn-primary w-100"
               style="background: #f77f00; border-color: #f77f00"
@@ -196,8 +209,10 @@ onMounted(() => {
                 <div class="col-2">{{ enAttente.totalNumber }}</div>
               </div>
             </boutton>
+          </router-link>
           </div>
           <div class="col-md-12 mt-2">
+            <router-link to="/reservation_de_ticket">
             <boutton
               class="btn btn-primary w-100"
               style="background: #219935; border-color: #219935"
@@ -210,6 +225,7 @@ onMounted(() => {
                 <div class="col-2">{{ reportees.totalNumber }}</div>
               </div>
             </boutton>
+          </router-link>
           </div>
         </div>
       </div>
