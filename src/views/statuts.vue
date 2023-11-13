@@ -203,9 +203,7 @@ onMounted(() => {
                                     {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }} <br />
                                      
                                     </p>
-                                </div>
-
-                                
+                                </div>       
                             </div>
                             <br />
 

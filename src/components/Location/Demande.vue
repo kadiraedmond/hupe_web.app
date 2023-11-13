@@ -88,7 +88,7 @@ onMounted(() => {
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background: #219935; color: white;">
               <h1 class="modal-title fs-5" id="exampleModalLabel10">
                 Informations du client
               </h1>
