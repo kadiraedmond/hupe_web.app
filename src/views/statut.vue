@@ -142,14 +142,14 @@ onMounted(() => {
                                 <div>
                                     <div class="card-body" style="margin-top: -10px;">
                                     <h5 class="card-title" style="font-size: 12px">
-                                        Compagnie
+                                        {{ reservation.companieInfos.raison_social }}
                                     </h5>
                                     <p class="card-text" style="font-size: 12px">
                                         <i
                                         class="bx bx-map"
                                         style="color: rgb(139 139 139); margin-left: 2px"
                                         ></i>
-                                    loren  
+                                     {{ reservation.companieInfos.adresse }}
                                     </p>
                                     </div>
                                 </div>

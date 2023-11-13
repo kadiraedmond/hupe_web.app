@@ -115,7 +115,7 @@ const routes = [
   },
 
   {
-    path: '/messagerie',
+    path: '/messagerie/:id',
     name: 'Message',
     component: Message,
     

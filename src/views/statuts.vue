@@ -97,7 +97,7 @@ const sendMessage = async (location) => {
     userId: userId
   }
 
-  await addDoc(messageColRef, data).then('Document ajouté')
+  await addDoc(messageColRef, data).then(() => console.log('Document ajouté'))
 
 }
 
@@ -148,14 +148,14 @@ onMounted(() => {
                           <div>
                             <div class="card-body" style="margin-top: -10px;">
                               <h5 class="card-title" style="font-size: 12px">
-                                Compagnie
+                                {{ location.companieInfos.raison_social }}
                               </h5>
                               <p class="card-text" style="font-size: 12px">
                                 <i
                                   class="bx bx-map"
                                   style="color: rgb(139 139 139); margin-left: 2px"
                                 ></i>
-                               loren  
+                                {{ location.companieInfos.adresse }}
                               </p>
                             </div>
                           </div>
@@ -285,7 +285,7 @@ onMounted(() => {
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
                             Nombres de jours de location |
-                            <strong>{{ location.number }}</strong>
+                            <strong>{{  }}</strong>
                             </p>
                             <br />
 
@@ -404,29 +404,29 @@ onMounted(() => {
                             </div>
 
                             <div class="row mb-2" v-if="location.status == 'Confirmé'" style="margin: 4px; margin-top: -15px;">
-                            <div class="col-6 text-start">
-                                <button
-                                class="btn btn-primary w-75"
-                                style="
-                                    background: white;
-                                    border-color: #219935;
-                                    color: #219935;
-                                    font-size: 12px; 
-                                "
-                                >
-                                Appel
-                                </button>
-                            </div>
-                            <div class="col-6 text-end">
-                              <router-link to="/messagerie">
-                                <button
-                                class="btn btn-primary w-75"
-                                style="background: #219935; border-color: #219935 ;font-size: 12px; "
-                                >
-                                Message
-                                </button>
-                              </router-link>
-                            </div>
+                              <div class="col-6 text-start">
+                                  <button
+                                  class="btn btn-primary w-75"
+                                  style="
+                                      background: white;
+                                      border-color: #219935;
+                                      color: #219935;
+                                      font-size: 12px; 
+                                  "
+                                  >
+                                  Appel
+                                  </button>
+                              </div>
+                              <div class="col-6 text-end">
+                                <router-link :to="`/messagerie/${location.companieInfos.uid}`">
+                                  <button
+                                  class="btn btn-primary w-75"
+                                  style="background: #219935; border-color: #219935 ;font-size: 12px; "
+                                  >
+                                  Message
+                                  </button>
+                                </router-link>
+                              </div>
                             </div>
                         </div>
                         </div>

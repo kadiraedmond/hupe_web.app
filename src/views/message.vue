@@ -1,4 +1,79 @@
-<script setup></script>
+<script setup>
+import { useRoute } from 'vue-router'
+import { useCompanieStore } from "@/store/companie.js"
+import { onBeforeMount, ref } from 'vue'
+import { useAuthStore } from '@/store/auth.js'
+
+import { addDoc, updateDoc, doc, getDocs, collection, Timestamp } from 'firebase/firestore'
+import { firestoreDb } from '@/firebase/firebase.js'
+
+const savedUser = JSON.parse(localStorage.getItem('user'))
+
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+const authStore = useAuthStore()
+
+const route = useRoute()
+
+const message = ref('')
+const messages = ref([])
+
+const companieId = route.params.id
+const companieStore = useCompanieStore()
+
+const doc_id = `${userId}_${companieId}`
+
+const conversationDocRef = doc(firestoreDb, 'conversations', `${doc_id}`)
+
+onBeforeMount(async () => {
+  await companieStore.setCompanieById(companieId)
+
+  if(conversationDocRef) {
+    const messageColRef = collection(conversationDocRef, 'messages')
+    const snapshot = await getDocs(messageColRef)
+
+    snapshot.docs.forEach(doc => messages.value.push(doc.data()))
+  }
+  console.log(messages.value)
+})
+
+const handleSubmit = async () => {
+  let messageColRef
+
+  if(!conversationDocRef) {
+    const docRef = await setDoc(conversationDocRef, {})
+    messageColRef = collection(docRef, 'messages')
+  } else {
+    messageColRef = collection(conversationDocRef, 'messages')
+  }
+  
+  const data = {
+    clientNumber: savedUser.telephone || savedUser.phoneNumber || authStore.user.telephone,
+    message: message.value,
+    otherUserId: companieId,
+    sendAt: Timestamp.now(),
+    userId: userId
+  }
+
+  const newData = await addDoc(messageColRef, data)
+
+  if(newData) {
+    console.log('Document ajouté')
+    messages.value.push(data)
+    message.value = ''
+  }
+}
+
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
+
+</script>
 
 <template>
   <!-- style="background: rgb(213, 248, 229);" -->
@@ -19,7 +94,7 @@
                   <div class="row g-0">
                     <div class="col-md-4">
                       <img
-                        src="/public/assets/img/avatars/5.png"
+                        :src="companieStore.companie.imageLogoUrl"
                         class="img-fluid rounded-start"
                         alt="..."
                         style="border-radius: 50% !important; width: 70px"
@@ -28,10 +103,10 @@
                     <div class="col-md-8">
                       <div class="card-body">
                         <h5 class="card-title" style="font-size: 14px">
-                          Joe doe
+                          {{ companieStore.companie.raison_social }}
                         </h5>
                         <p class="card-text" style="font-size: 12px">
-                          Partenaire
+                          {{ companieStore.companie.description }}
                         </p>
                       </div>
                     </div>
@@ -51,16 +126,9 @@
                     id="messages"
                     style="height: 500px; overflow-y: scroll; padding: 12px"
                   >
-                    <div class="row">
+                    <div class="row" v-for="(message, index) in messages" :key="index">
                         <!-- Receiver -->
-                      <div class="col-md-6">
-                        <div class="message-time" style="font-size: 11px">
-                          <i
-                            class="bx bx-check"
-                            style="font-size: 15px; color: #219935"
-                          ></i>
-                          10:32
-                        </div>
+                      <div class="col-md-6 mb-2" v-if="message.userId !== userId">
                         <div
                           class="message incoming"
                           style="
@@ -70,20 +138,23 @@
                           "
                         >
                           <div class="message-text" style="font-size: 14px">
-                            Lorem ipsum dolor sit amet, consectetur adipisci
-                            elit, sed eiusmod tempor incidunt ut labore
+                            {{ message.message }}
+                          </div>
+                          <div class="message-time text-end" style="font-size: 11px">
+                              <i
+                                class="bx bx-check"
+                                style="font-size: 15px; color: #219935"
+                              ></i>
+                              {{ new Intl.DateTimeFormat(undefined, options).format(message.sendAt) }}
                           </div>
                         </div>
                       </div>
 
                       <div class="col-md-6"></div>
-                      <div class="col-md-6"></div>
+                      <!-- <div class="col-md-6"></div> -->
 
                         <!-- Sender -->
-                      <div class="col-md-6">
-                        <div class="message-time" style="font-size: 11px">
-                          10:32
-                        </div>
+                      <div class="col-md-6 mb-2" v-if="message.userId == userId">
                         <div
                           class="message outgoing"
                           style="
@@ -96,8 +167,10 @@
                             class="message-text mt-2"
                             style="font-size: 14px"
                           >
-                            Lorem ipsum dolor sit amet, consectetur adipisci
-                            elit, sed eiusmod
+                            {{ message.message }}
+                          </div>
+                          <div class="message-time text-end" style="font-size: 11px">
+                            {{ new Intl.DateTimeFormat(undefined, options).format(message.sendAt) }}
                           </div>
                         </div>
                       </div>                      
@@ -106,12 +179,13 @@
                     <!-- Ajoutez d'autres messages ici -->
                   </div>
                   <!-- Formulaire de saisie de messages -->
-                    <form>
+                    <form @submit.prevent="handleSubmit">
                         <div class="input-group mb-3" style="height: 43px">
                             <input
                             type="text"
                             class="form-control"
                             id="message-input"
+                            v-model="message"
                             placeholder="Tapez votre message"
                             />
                             <button
