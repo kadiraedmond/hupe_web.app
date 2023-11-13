@@ -7,8 +7,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="col-md-6 mt-4">
-    <div class="row" style="margin-top: 50px">
+  <div class="col-md-6 " style="border-right: 2px solid #eee;
+     
+    margin: -1px;  padding: 12px;">
+    <div class="row" style="margin-top: 22px">
       <div class="col-md-6">
         <div
           class="card h-100 border-0 text-center"

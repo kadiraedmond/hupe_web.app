@@ -104,7 +104,7 @@ const resendCode = async () => {
                 </div>
                 <div class="col-md-12 text-center mt-3">
                   <p>Je n'ai pas reçu de message</p>
-                    <button class="btn btn-primary" @click="resendCode">Renvoyer le code</button>
+                    <button class="btn btn-primary"  style=" background-color: #219935; border-color: #219935; " @click="resendCode">Renvoyer le code</button>
                 </div>
               </div>
             </div>

@@ -36,6 +36,8 @@ import Promotion from '@/views/promotion.vue';
 import Notation from '@/views/notation.vue';
 import Statuts from '@/views/statuts.vue';
 import Statut from '@/views/statut.vue';
+import Pays from '@/views/pays.vue';
+import Confirmation from '@/views/attente.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -276,6 +278,20 @@ const routes = [
     path: '/reservation_de_ticket',
     name: 'Statut',
     component: Statut,
+    
+  },
+
+  {
+    path: '/partenaire_par_pays',
+    name: 'Pays',
+    component: Pays,
+    
+  },
+
+  {
+    path: '/confirmation',
+    name: 'Confirmation',
+    component: Confirmation,
     
   },
 ];

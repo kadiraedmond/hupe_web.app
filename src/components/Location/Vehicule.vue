@@ -8,8 +8,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieCars(userId) // authStore.user.uid
 })
@@ -50,7 +50,7 @@ onMounted(() => {
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #219935; color : white">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
                 Ajouter un véhicule
               </h1>

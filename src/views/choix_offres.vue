@@ -168,7 +168,7 @@ const handleSubmit = () => {
                           </div>
                         </div>
                         <div class="col-md-12">
-                          <div class="form-check">
+                          <div class="form-check" style="    margin-left: 50%;">
                             <input
                               class="form-check-input"
                               type="radio"
@@ -294,7 +294,7 @@ const handleSubmit = () => {
                           </div>
                         </div>
                         <div class="col-md-12">
-                          <div class="form-check">
+                          <div class="form-check" style="    margin-left: 50%;">
                             <input
                               class="form-check-input"
                               type="radio"
@@ -317,17 +317,34 @@ const handleSubmit = () => {
                     <!-- <div class="col-md-12">
                         <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Valider</button>
                       </div> -->
-                    <div class="col-md-12">
-                        <button
-                          type="submit"
-                          class="btn btn-primary"
-                          style="
-                            background-color: #219935;
-                            border-color: #219935;
-                          "
-                        >
-                          Valider
-                        </button>
+                      <div class="col-md-6 text-start">
+                        <router-link to="/choix_services">
+                          <button
+                        
+                        class="btn btn-primary "
+                        style="
+                          background-color: white;
+                          color: #219935;
+                          border-color: #219935 ; width: 30%;
+                        "
+                      >
+                      <i class='bx bx-left-arrow-alt' ></i>   Précédent 
+                      </button>
+                        </router-link>
+                     
+                    </div>
+                    <div class="col-md-6 text-end">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="
+                          background-color: #219935;
+                          border-color: #219935;
+                          width: 30%;
+                        "
+                      >
+                        Suivant <i class='bx bx-right-arrow-alt'></i>
+                      </button>
                     </div>
                   </div>
                 </form>

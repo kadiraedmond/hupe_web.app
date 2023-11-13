@@ -11,20 +11,12 @@ onMounted(() => {
 
   <main id="main" style="background: white;">
     <section id="features" class="features">
-     <!-- <div class="container-fluid">
-        <nav class="navbar bg-light fixed-top" style="background: #219935 !important;">
-        <div class="container" style="margin-top: -5rem">
-            <router-link to="/" class="navbar-brand">
-            <img src="/assets/img/logo2.png" alt="Bootstrap" width="30" height="30"> Services client
-            </router-link> 
-        </div>
-        </nav>
-     </div> -->
-      <div class="container mt-4">
-        <div class="row" style="margin-top: -22px;">
+     
+      <div class="container">
+        <div class="row" style="margin-top: -20px;">
             <div class="col-md-3" style="border-right: 1px solid; border-color:#EAEAEA">
                 <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; ">
-                    <div class="row" style="margin-top: 34px;">
+                    <div class="row">
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 24px;">Services clients</h2>
                         </div>
@@ -52,7 +44,7 @@ onMounted(() => {
  
                 </ul>
             </div>
-            <div class="col-md-9" style=" padding: 30px;">
+            <div class="col-md-9 mt-5" style=" padding: 10px;">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
@@ -623,7 +615,8 @@ onMounted(() => {
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0"> 
+                    <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0" style="    padding: 30px;
+    margin-top: -30px;"> 
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Condition de partenariat </h2>
@@ -712,6 +705,11 @@ onMounted(() => {
     color: #fff;
     background-color: var(--bs-nav-tabs-link-active-bg);
     border-color: var(--bs-nav-tabs-link-active-border-color);
+}
+
+#myTab {
+    z-index: 1030;
+    margin-top: 62px;
 }
 
 </style>

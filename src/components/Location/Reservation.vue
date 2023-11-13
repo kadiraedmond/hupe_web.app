@@ -66,8 +66,8 @@ const updateReservationsDashboard = () => {
 }
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   await companieStore.setCompanieLocations(userId)
   updateReservationsDashboard()
@@ -85,7 +85,7 @@ onMounted(() => {
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <div class="row">
           <div class="col-md-4">
-            <li class="nav-item" role="presentation">
+            <li class="nav-item mb-4" role="presentation">
               <button
                 class="nav-link active w-100"
                 id="attente-tab"

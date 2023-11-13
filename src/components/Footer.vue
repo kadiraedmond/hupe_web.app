@@ -55,8 +55,8 @@ export default{
         <ul>
 
           <li><router-link to="/legales">Politiques de confidentialité</router-link></li>
-          <li><router-link to="/legales">Politique de sécurité </router-link></li>
-          <li><router-link to="/legales">Terme et conditions </router-link></li>
+          <li><router-link to="/legales">Politiques de sécurité </router-link></li>
+          <li><router-link to="/legales">Termes et conditions </router-link></li>
           <li><router-link to="/legales">Droit d’auteur </router-link></li>
         </ul>
       </div>

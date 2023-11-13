@@ -191,15 +191,40 @@ const handleSubmit = async () => {
               </div>
               
 
-              <div class="col-md-12 text-center mt-3">
-                  <button
-                    type="submit"
-                    class="btn btn-primary w-50"
-                    style="background-color: #219935; border-color: #219935"
-                  >
-                    Valider
-                  </button>
-              </div>
+              <div class="row text-center mt-4">
+                    <!-- <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Valider</button>
+                      </div> -->
+                      <div class="col-md-6 text-start">
+                        <router-link to="/choix_offres">
+                          <button
+                        
+                        class="btn btn-primary "
+                        style="
+                          background-color: white;
+                          color: #219935;
+                          border-color: #219935 ; width: 30%;
+                        "
+                      >
+                      <i class='bx bx-left-arrow-alt' ></i>   Précédent 
+                      </button>
+                        </router-link>
+                     
+                    </div>
+                    <div class="col-md-6 text-end">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="
+                          background-color: #219935;
+                          border-color: #219935;
+                          width: 30%;
+                        "
+                      >
+                        Terminer  <i class='bx bx-check'></i> 
+                      </button>
+                    </div>
+                  </div>
 
               <!-- <div class="col-12">
                         <button type="submit" class="btn btn-primary">Sign in</button>

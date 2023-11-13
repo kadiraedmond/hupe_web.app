@@ -386,7 +386,7 @@ onMounted(() => {
                 <div class="row" style="margin: 0px">
                   <div class="col-md-12">
                     <div
-                      class="card mb-3 border-0"
+                      class="card h-100 mb-3 border-0"
                       style="background: #f9f9f9;"
                     >
                       <div class="row g-1 d-flex mt-2">
@@ -556,7 +556,7 @@ onMounted(() => {
                 <div class="row" style="margin: 0px">
                   <div class="col-md-12">
                     <div
-                      class="card mb-3 border-0"
+                      class="card h-100 mb-3 border-0"
                       style="background: #f9f9f9;"
                     >
                       <div class="row g-1 d-flex mt-2">
@@ -603,7 +603,7 @@ onMounted(() => {
                   </div>
                 </div>
                 <div
-                  class="card mb-3 mt-4"
+                  class="card mb-3 mt-4 h-100"
                   style="
                     max-width: 540px;
                     margin: 8px;
@@ -1395,20 +1395,21 @@ onMounted(() => {
       <div class="container">
         <div class="row mb-4">
           <div class="col-8">
-            <div class="section-title">
-              <h2>Inscrivez vous à notre Newsletter</h2>
-              <p id="section-p">
-                Veuillez renseignez votre adresse mail, pour etre au courant de
-                toutes nos nouveautés
-              </p>
-            </div>
+            
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 text-center mt-5">
             <div class="row" style="margin-bottom: -82px;">
                
-              <div class="col-md-6">
+              <div class="col-md-6" style=" margin-top: -64px;">
+                <div class="section-title text-start">
+              <h2>Inscrivez vous à notre Newsletter</h2>
+              <p id="section-p">
+                Veuillez renseignez votre adresse mail, pour etre au courant de
+                toutes nos nouveautés
+              </p>
+            </div>
                 <form
                   class="d-flex"
                   action=""

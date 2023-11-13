@@ -158,7 +158,7 @@ const reserver = async (car) => {
       <div class="container">
         <div class="row g-4">
           <div class="col-md-4">
-            <div class="card mb-3 border-0" style="max-width: 540px">
+            <div class="card mb-3 border-0">
               <div class="row g-0">
                 <div class="col-md-4">
                   <img
@@ -205,6 +205,7 @@ const reserver = async (car) => {
                   role="tab"
                   aria-controls="home-tab-pane"
                   aria-selected="true"
+                  style="border-radius: 5px 0px 0px 0px !important;"
                 >
                   Véhicules
                 </button>
@@ -250,6 +251,7 @@ const reserver = async (car) => {
                   role="tab"
                   aria-controls="apropos-tab-pane"
                   aria-selected="false"
+                  style="border-radius: 0px 5px 0px 0px !important;"
                 >
                   A propos
                 </button>
@@ -958,7 +960,19 @@ const reserver = async (car) => {
   <!-- End #main -->
 </template>
 <style scoped>
-.nav-tabs .nav-link {
+/* .nav-tabs .nav-link {
     border: none !important;
+} */
+
+.nav-tabs .nav-link {
+    /* margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); */
+    /* background: 0 0; */
+    /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+    /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+    /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+    margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
+    border: var(--bs-nav-tabs-border-width) solid transparent;
+    border-color: #219935;
+    border-radius: 0px !important;
 }
 </style>
