@@ -26,6 +26,7 @@ import Otp from '@/views/otp.vue';
 import Partenaire from '@/views/partenaire.vue';
 import Pclient from '@/views/client.vue';
 import Message from '@/views/message.vue';
+import MessageCompagnie from '@/views/message_compagnie.vue';
 import Sclient from '@/views/services_client.vue';
 import Info from '@/views/infos.vue';
 import Legales from '@/views/legales.vue';
@@ -118,6 +119,13 @@ const routes = [
     path: '/messagerie/:id',
     name: 'Message',
     component: Message,
+    
+  },
+
+  {
+    path: '/messagerie-compagnie/:id',
+    name: 'MessageCompagnie',
+    component: MessageCompagnie,
     
   },
 

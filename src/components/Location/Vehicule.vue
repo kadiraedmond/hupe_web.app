@@ -3,12 +3,16 @@ import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc } from "firebase/firestore"
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import { toast } from 'vue3-toastify'
+import { v4 as uuidv4 } from 'uuid'
+import Swal from 'sweetalert2'
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
+
+const companieCars = ref([])
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
@@ -17,6 +21,7 @@ const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user
 onBeforeMount(async () => {
   await companieStore.resetCompanieCars()
   companieStore.setCompanieCars(userId) // authStore.user.uid
+  companieCars.value = companieStore.companieCars
 })
 
 onMounted(() => {
@@ -61,6 +66,7 @@ const handleSubmit = async () => {
   const newDoc = await addDoc(collectionRef, data)
 
   if(newDoc) {
+    companieCars.value.push(data)
     const updateNewDoc = await updateDoc(newDoc, { uid: `${newDoc.id}` })
 
     if(updateDoc) {
@@ -96,6 +102,197 @@ const handleFile = async (e) => {
   } else {
     image.value = downloadURL
     isUploading.value = false
+  }
+}
+
+const taux_reduction = ref()
+const montant = ref()
+const date_debut = ref()
+const date_fin = ref()
+
+const promote = async (car) => {
+  const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+  const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
+
+  const docRef = doc(vehiculesColRef, `${car.uid}`)
+
+  if(companieStore.companie.offre === 'vip') {
+    const update = await updateDoc(docRef, { enPromo: true })
+    
+    const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
+    const carInPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
+  
+    const data = {
+      ancien_montant: car.montant, 
+      annee_vehicule: car.anne_vehicule, 
+      boite: car.boite, 
+      compagnie_id: userId, 
+      country: companieStore.companie.country, 
+      createdAt: new Date(), 
+      debut_promo: new Date(date_debut.value), 
+      fin_promo: new Date(date_fin.value), 
+      idTrack: uuidv4(), 
+      modele: car.modele, 
+      montant: montant.value, 
+      moteur: car.moteur, 
+      pourcentage: '', 
+      vehicule: car.vehicule, 
+      vehicule_image_url: car.vehicule_image_url
+    }
+  
+    const addedDoc = await addDoc(carInPromoColRef, data)
+  
+    if(addedDoc) {
+      console.log('Document ajouté')
+      Swal.fire({
+        title: "Succès",
+        text: "Votre véhicule a été mis en promotion",
+        icon: "success"
+      })
+
+      const update = await updateDoc(addedDoc, { uid: addedDoc.id })
+      if(update) {
+        console.log('ID ajouté')
+      }
+    }
+  } else {
+    Swal.fire({
+      title: "Erreur",
+      text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
+      icon: "error"
+    })
+  }
+  
+}
+
+const unlock = async (car) => {
+  const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+  const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
+
+  const docRef = doc(vehiculesColRef, `${car.uid}`)
+
+  if(car.status == 'desactive') {
+    const update = await updateDoc(docRef, { status: 'active' })
+  
+    if(update) {
+      console.log('Véhicule dévérouillé')
+      Swal.fire({
+        title: "Succès",
+        text: "Véhicule dévérouillé",
+        icon: "success"
+      })
+    }
+  } else if(car.status == 'active') {
+    const update = await updateDoc(docRef, { status: 'desactive' })
+  
+    if(update) {
+      console.log('Véhicule Vérouillé')
+      Swal.fire({
+        title: "Succès",
+        text: "Véhicule Vérouillé",
+        icon: "success"
+      })
+    }
+  }
+  
+}
+
+const star = async (car) => {
+  // 
+}
+
+const remove = async (car) => {
+  Swal.fire({
+    title: 'Etes-vous sûr de vouloir supprimer ce véhicule ?',
+    showCancelButton: true,
+    confirmButtonText: 'Oui',
+    cancelButtonText: 'Non',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+      const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
+
+      const docRef = doc(vehiculesColRef, `${car.uid}`)
+
+      const result = deleteDoc(docRef)
+
+      if(result) {
+        Swal.fire({
+          title: "Succès",
+          text: "Véhicule supprimé",
+          icon: "success"
+        })
+      }
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      // 
+    }
+  })
+}
+
+const edit_marque = ref()
+const edit_modele = ref()
+const edit_immatriculation = ref()
+const edit_annee = ref()
+const edit_prix_journalier = ref()
+const edit_prix_chauffeur = ref()
+const edit_prix_interieur = ref()
+const edit_image = ref()
+
+const handleEditPicture = async () => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `location_vehicule/${userId}/${file.name}`)
+
+  await uploadBytes(storageRef, file)
+  
+  const downloadURL = await getDownloadURL(storageRef)
+  // console.log(downloadURL)
+
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    edit_image.value = downloadURL
+    isUploading.value = false
+  }
+}
+
+const update = async (car) => {
+  if(!edit_marque.value || !edit_modele.modele || !edit_immatriculation.value || !edit_annee.value || !edit_prix_journalier.value || !edit_prix_chauffeur.value || !edit_prix_interieur.value) {
+    Swal.fire({
+      title: "Erreur",
+      text: "Entrez des données",
+      icon: "error"
+    })
+  }
+  const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+  const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
+
+  const docRef = doc(vehiculesColRef, `${car.uid}`)
+
+  const data = {
+    anne_vehicule: edit_annee.value, 
+    avecchauffeurprix: edit_prix_chauffeur.value, 
+    interieurpaysprix: edit_prix_interieur.value, 
+    vehicule: edit_marque.value, 
+    montant: edit_prix_journalier.value, 
+    modele: edit_modele.value, 
+    serie_vehicule: edit_immatriculation.value, 
+    vehicule_image_url: edit_image.value
+  }
+
+  const update = await updateDoc(docRef, data)
+
+  if(update) {
+    Swal.fire({
+      title: "Succès",
+      text: "Votre véhicule a été mis à jour",
+      icon: "success"
+    })
+  } else {
+    Swal.fire({
+      title: "Erreur",
+      text: "Une erreur s'est produite lors des modifications",
+      icon: "error"
+    })
   }
 }
 
@@ -275,8 +472,8 @@ const handleFile = async (e) => {
       </div>
     </div>
   </div>
-  <div class="row mt-4" v-if="companieStore.companieCars.length > 0">
-    <div class="col-md-6" v-for="(car, index) in companieStore.companieCars" :key="index">
+  <div class="row mt-4" v-if="companieCars.length > 0">
+    <div class="col-md-6" v-for="(car, index) in companieCars" :key="index">
       <div class="card mb-3" style="max-width: 540px">
         <div class="row g-0">
           <div class="col-md-4">
@@ -364,6 +561,7 @@ const handleFile = async (e) => {
                               <form
                                 class="row g-3 needs-validation text-start"
                                 novalidate
+                                @submit.prevent="update(car)"
                               >
                                 <div class="col-md-6">
                                   <label
@@ -472,6 +670,7 @@ const handleFile = async (e) => {
                                     type="file"
                                     class="form-control"
                                     id="validationCustom02"
+                                    @change="handleEditPicture"
                                     required
                                   />
                                 </div>
@@ -501,6 +700,7 @@ const handleFile = async (e) => {
                           background-color: #219935;
                           border-color: #219935;
                         "
+                        @click="star(car)"
                       >
                         <img
                           src="/public/assets/img/icone/star.png"
@@ -540,7 +740,7 @@ const handleFile = async (e) => {
                                 class="modal-title fs-5"
                                 id="exampleModalLabel"
                               >
-                                Promouvoir un vehicule
+                                Promouvoir un véhicule
                               </h1>
                               <button
                                 type="button"
@@ -553,6 +753,7 @@ const handleFile = async (e) => {
                               <form
                                 class="row g-3 needs-validation text-start"
                                 novalidate
+                                @submit.prevent="promote(car)"
                               >
                                 <div class="col-md-12">
                                   <label
@@ -564,6 +765,7 @@ const handleFile = async (e) => {
                                     type="text"
                                     class="form-control"
                                     id="validationCustom01"
+                                    v-model="taux_reduction"
                                     required
                                   />
                                 </div>
@@ -577,6 +779,7 @@ const handleFile = async (e) => {
                                     type="text"
                                     class="form-control"
                                     id="validationCustom02"
+                                    v-model="montant"
                                     required
                                   />
                                 </div>
@@ -591,6 +794,7 @@ const handleFile = async (e) => {
                                     type="date"
                                     class="form-control"
                                     id="validationCustom01"
+                                    v-model="date_debut"
                                     required
                                   />
                                 </div>
@@ -604,6 +808,7 @@ const handleFile = async (e) => {
                                     type="date"
                                     class="form-control"
                                     id="validationCustom02"
+                                    v-model="date_fin"
                                     required
                                   />
                                 </div>
@@ -636,6 +841,7 @@ const handleFile = async (e) => {
                             background-color: #219935;
                             border-color: #219935;
                           "
+                          @click="unlock(car)"
                         >
                           <img
                             src="/public/assets/img/icone/unlock.png"
@@ -653,6 +859,7 @@ const handleFile = async (e) => {
                             background-color: #ff000087;
                             border-color: #ff000087;
                           "
+                          @click="remove(car)"
                         >
                           <img
                             src="/public/assets/img/icone/delete.png"

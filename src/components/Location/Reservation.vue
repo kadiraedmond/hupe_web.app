@@ -57,8 +57,7 @@ const updateReservationsDashboard = () => {
 const savedUser = JSON.parse(localStorage.getItem("user"));
 
 // const userId = savedUser.uid || authStore.user.uid
-const userId =
-  "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid;
+const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid;
 onBeforeMount(async () => {
   await companieStore.setCompanieLocations(userId);
   updateReservationsDashboard();
@@ -1240,7 +1239,9 @@ onMounted(() => {
                                           <button class="btn " style="background:white ; color:#219935 ; border-color:#219935 ; font-size: 12px;">Appel</button>
                                         </div>
                                         <div class="col-md-6 text-end">
-                                          <button class="btn " style="background:#219935 ; color:white; font-size: 12px; ">Message</button>
+                                          <router-link :to="`/messagerie-compagnie/${location.client_id}`">
+                                            <button class="btn " style="background:#219935 ; color:white; font-size: 12px; ">Message</button>
+                                          </router-link>
                                         </div>
                                       </div>
                                     </div>
