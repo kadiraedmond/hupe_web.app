@@ -14,6 +14,7 @@ export const useLocationStore = defineStore('locationStore', {
     },
     actions: {
         async setUserLocations(userId) {
+            this.userLocations = []
             try {
                 const q = query(locationColRef, where('client_id', "==", `${userId}`));
                 const snapshots = await getDocs(q)

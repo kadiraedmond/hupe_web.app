@@ -9,6 +9,12 @@ import { toast } from "vue3-toastify"
 
 import { useReservationStore } from '@/store/reservation.js'
 
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+const param = route.params.param
+
 
 const userStore = useUserStore()
 const authStore = useAuthStore()
@@ -18,9 +24,27 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 // const userId = savedUser.uid || authStore.user.uid
 const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+
+const reservations = ref([])
 onBeforeMount(async () => {
   userStore.setUser(userId)
   reservationStore.setUserReservations(userId)
+
+  reservationStore.userReservations.forEach(reservation => {
+    if(param === 'en-attente' && reservation.status === 'En attente') {
+      reservations.value.push(reservation)
+    } else if(param === 'valide' && reservation.status === 'Validé') {
+      reservations.value.push(reservation)
+    } else if(param === 'reporte' && reservation.status === 'Reporté') {
+      reservations.value.push(reservation)
+    } else if(param === 'utilise' && reservation.status === 'Utilisé') {
+      reservations.value.push(reservation)
+    } else if(param === 'confirme' && reservation.status === 'Confirmé') {
+      reservations.value.push(reservation)
+    } else if(param === 'annule' && reservation.status === 'Annuler') {
+      reservations.value.push(reservation)
+    }
+  })
 })
 
 const option = ref('')
@@ -162,7 +186,7 @@ onMounted(() => {
           <div class="container">
   
               <div class="row no-gutters g-4 mt-4">
-                <div class="col-md-4 mb-4" v-for="(reservation, index) in reservationStore.userReservations" :key="index">
+                <div class="col-md-4 mb-4" v-for="(reservation, index) in reservations" :key="index">
                 <div
                     class="card h-100 border-0"
                     id="card_compagnie"

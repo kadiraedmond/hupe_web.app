@@ -9,6 +9,11 @@ import { toast } from "vue3-toastify"
 import Swal from 'sweetalert2'
 
 import { useLocationStore } from '@/store/location.js'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+const param = route.params.param
 
 
 const userStore = useUserStore()
@@ -19,9 +24,27 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 // const userId = savedUser.uid || authStore.user.uid
 const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+
+const locations = ref([])
 onBeforeMount(async () => {
   userStore.setUser(userId)
   locationStore.setUserLocations(userId)
+  
+  locationStore.userLocations.forEach(location => {
+    if(param === 'en-attente' && location.status === 'En attente') {
+      locations.value.push(location)
+    } else if(param === 'valide' && location.status === 'Validé') {
+      locations.value.push(location)
+    } else if(param === 'reporte' && location.status === 'Reporté') {
+      location.value.push(location)
+    } else if(param === 'utilise' && location.status === 'Utilisé') {
+      locations.value.push(location)
+    } else if(param === 'confirme' && location.status === 'Confirmé') {
+      locations.value.push(location)
+    } else if(param === 'annule' && location.status === 'Annuler') {
+      locations.value.push(location)
+    }
+  })
 })
 
 onMounted(() => {
@@ -165,7 +188,7 @@ onMounted(() => {
           <div class="container">
   
               <div class="row  g-4 mt-4">
-                <div class="col-md-4 mb-4" v-for="(location, index) in locationStore.userLocations" :key="index">
+                <div class="col-md-4 mb-4" v-for="(location, index) in locations" :key="index">
                 <div
                     class="card h-100 border-0 "
                     id="card_compagnie"

@@ -290,7 +290,7 @@ const routes = [
   },
 
   {
-    path: '/location_de_vehicule',
+    path: '/location_de_vehicule/:param',
     name: 'Statuts',
     component: Statuts,
     
@@ -298,7 +298,7 @@ const routes = [
 
 
   {
-    path: '/reservation_de_ticket',
+    path: '/reservation_de_ticket/:param',
     name: 'Statut',
     component: Statut,
     

@@ -1,9 +1,11 @@
 <script setup>
-import { useUserStore } from "@/store/user.js";
-import { useAuthStore } from "@/store/auth.js";
+import { useUserStore } from "@/store/user.js"
+import { useAuthStore } from "@/store/auth.js"
 
-import { onBeforeMount, onMounted, reactive } from "vue";
+import { onBeforeMount, onMounted, reactive } from "vue"
+import { useLocationStore } from '@/store/location.js'
 
+const locationStore = useLocationStore()
 
 let enAttente = reactive({
   totalNumber: 0,
@@ -30,8 +32,8 @@ let utilisees = reactive({
   totalPrice: 0
 })
 
-const updateReservationsDashboard = (data) => {
-  data.forEach(data => {
+const updateReservationsDashboard = (datas) => {
+  datas.forEach(data => {
     if(data.status == 'En attente') {
       enAttente.totalNumber++
       enAttente.totalPrice += Number(data.montant)
@@ -72,9 +74,9 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 // const userId = savedUser.uid || authStore.user.uid
 const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
-  await userStore.setLocationVehicule(userId)
+  await locationStore.setUserLocations(userId)
 
-  updateReservationsDashboard(userStore.locationVehicules)
+  updateReservationsDashboard(locationStore.userLocations)
 })
 
 onMounted(() => {
@@ -116,7 +118,7 @@ onMounted(() => {
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
-            <router-link to="/location_de_vehicule">
+            <router-link :to="`/location_de_vehicule/${`en-attente`}`">
             <boutton
               class="btn btn-primary w-100"
               style="background: #f77f00; border-color: #f77f00"
@@ -132,84 +134,84 @@ onMounted(() => {
           </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/location_de_vehicule">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #219935; border-color: #219935"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-check-circle"></i>
+            <router-link :to="`/location_de_vehicule/${`valide`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #219935; border-color: #219935"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-check-circle"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Validé</div>
+                  <div class="col-2">{{ valides.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Validé</div>
-                <div class="col-2">{{ valides.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/location_de_vehicule">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: red; border-color: red"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-x-circle"></i>
+            <router-link :to="`/location_de_vehicule/${`annule`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: red; border-color: red"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-x-circle"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Annulé</div>
+                  <div class="col-2">{{ annulees.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Annulé</div>
-                <div class="col-2">{{ annulees.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/location_de_vehicule">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #3987fb; border-color: #3987fb"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-check-square"></i>
+            <router-link :to="`/location_de_vehicule/${`confirme`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #3987fb; border-color: #3987fb"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-check-square"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Confirmer</div>
+                  <div class="col-2">{{ confirmees.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Confirmer</div>
-                <div class="col-2">{{ confirmees.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/location_de_vehicule">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #931d96; border-color: #931d96"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-check-circle"></i>
+            <router-link :to="`/location_de_vehicule/${`utilise`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #931d96; border-color: #931d96"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-check-circle"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Utilisé</div>
+                  <div class="col-2">{{ utilisees.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Utilisé</div>
-                <div class="col-2">{{ utilisees.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/location_de_vehicule">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #219935; border-color: #219935"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-reset"></i>
+            <router-link :to="`/location_de_vehicule/${`reporte`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #219935; border-color: #219935"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-reset"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Reporté</div>
+                  <div class="col-2">{{ reportees.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Reporté</div>
-                <div class="col-2">{{ reportees.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
 
           <div class="col-md-12 mt-2">

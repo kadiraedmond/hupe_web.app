@@ -1,5 +1,5 @@
 <script setup>
-import { useUserStore } from "@/store/user.js"
+import { useReservationStore } from "@/store/reservation.js"
 import { useAuthStore } from "@/store/auth.js"
 
 import { onBeforeMount, onMounted, reactive } from "vue";
@@ -30,8 +30,8 @@ let utilisees = reactive({
   totalPrice: 0
 })
 
-const updateReservationsDashboard = (data) => {
-  data.forEach(data => {
+const updateReservationsDashboard = (datas) => {
+  datas.forEach(data => {
     if(data.status == 'En attente') {
       enAttente.totalNumber++
       enAttente.totalPrice += Number(data.montant)
@@ -64,7 +64,7 @@ const updateReservationsDashboard = (data) => {
   })
 }
 
-const userStore = useUserStore();
+const reservationStore = useReservationStore();
 const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
@@ -72,9 +72,9 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 // const userId = savedUser.uid || authStore.user.uid
 const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
-  await userStore.setReservationTickets(userId)
+  await reservationStore.setUserReservations(userId)
 
-  updateReservationsDashboard(userStore.reservationTickets)
+  updateReservationsDashboard(reservationStore.userReservations)
 })
 
 onMounted(() => {
@@ -115,117 +115,117 @@ onMounted(() => {
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
-            <router-link to="/reservation_de_ticket">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #f77f00; border-color: #f77f00"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-time"></i>
+            <router-link :to="`/reservation_de_ticket/${`en-attente`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #f77f00; border-color: #f77f00"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-time"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">En attente</div>
+                  <div class="col-2">{{ enAttente.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">En attente</div>
-                <div class="col-2">{{ enAttente.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/reservation_de_ticket">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #219935; border-color: #219935"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-check-circle"></i>
+            <router-link :to="`/reservation_de_ticket/${`valide`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #219935; border-color: #219935"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-check-circle"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Validé</div>
+                  <div class="col-2">{{ valides.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Validé</div>
-                <div class="col-2">{{ valides.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/reservation_de_ticket">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: red; border-color: red"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-x-circle"></i>
+            <router-link :to="`/reservation_de_ticket/${`annule`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: red; border-color: red"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-x-circle"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Annulé</div>
+                  <div class="col-2">{{ annulees.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Annulé</div>
-                <div class="col-2">{{ annulees.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/reservation_de_ticket">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #3987fb; border-color: #3987fb"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-check-square"></i>
+            <router-link :to="`/reservation_de_ticket/${`confirme`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #3987fb; border-color: #3987fb"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-check-square"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Confirmer</div>
+                  <div class="col-2">{{ confirmees.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Confirmer</div>
-                <div class="col-2">{{ confirmees.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/reservation_de_ticket">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #931d96; border-color: #931d96"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-check-circle"></i>
+            <router-link :to="`/reservation_de_ticket/${`utilise`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #931d96; border-color: #931d96"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-check-circle"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Utilisé</div>
+                  <div class="col-2">{{ utilisees.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Utilisé</div>
-                <div class="col-2">{{ utilisees.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
 
           <div class="col-md-12 mt-2">
-            <router-link to="/reservation_de_ticket">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #f77f00; border-color: #f77f00"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-error-alt"></i>
+            <router-link :to="`/reservation_de_ticket/${`en-attente-de-report`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #f77f00; border-color: #f77f00"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-error-alt"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">En attente de report</div>
+                  <div class="col-2">{{ 0 }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">En attente de report</div>
-                <div class="col-2">{{ enAttente.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link to="/reservation_de_ticket">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #219935; border-color: #219935"
-            >
-              <div class="row">
-                <div class="col-2">
-                  <i class="bx bx-reset"></i>
+            <router-link :to="`/reservation_de_ticket/${`reporte`}`">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #219935; border-color: #219935"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <i class="bx bx-reset"></i>
+                  </div>
+                  <div class="col-8" style="font-size: 12px;">Reporté</div>
+                  <div class="col-2">{{ reportees.totalNumber }}</div>
                 </div>
-                <div class="col-8" style="font-size: 12px;">Reporté</div>
-                <div class="col-2">{{ reportees.totalNumber }}</div>
-              </div>
-            </boutton>
-          </router-link>
+              </boutton>
+            </router-link>
           </div>
         </div>
       </div>

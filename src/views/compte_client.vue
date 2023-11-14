@@ -1,7 +1,7 @@
 <script setup>
-import { useUserStore } from "@/store/user.js";
-import { useAuthStore } from "@/store/auth.js";
-import { onBeforeMount, onMounted, ref } from "vue";
+import { useUserStore } from "@/store/user.js"
+import { useAuthStore } from "@/store/auth.js"
+import { onBeforeMount, onMounted, ref } from "vue"
 
 import Location from '@/components/compte_client/Location.vue'
 import Reservation from '@/components/compte_client/Reservation.vue'
@@ -99,9 +99,9 @@ onMounted(() => {
                     alt
                     class="w-px-40 h-auto rounded-circle"
                     style="width: 100px;
-    height: 100px !important;
-    object-fit: cover;
-    border: 2.8px solid rgb(232, 232, 232);"
+                          height: 100px !important;
+                          object-fit: cover;
+                          border: 2.8px solid rgb(232, 232, 232);"
                   />
                 </div>
                 <div class="col-md-8">
@@ -374,7 +374,7 @@ onMounted(() => {
                                 <label
                                   for="validationCustom02"
                                   class="form-label"
-                                  >Entrer votre demande</label
+                                  >Entrez votre demande</label
                                 >
                                 <textarea
                                   type="text"
