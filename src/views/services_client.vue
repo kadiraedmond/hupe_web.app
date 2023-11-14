@@ -44,7 +44,7 @@ onMounted(() => {
  
                 </ul>
             </div>
-            <div class="col-md-9 mt-5" style=" padding: 10px;">
+            <div class="col-md-9 mt-5" style=" padding: 20px;">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="row">
@@ -543,7 +543,7 @@ onMounted(() => {
                                     <div class="col-md-12 mt-4">
                                         <p>Remplissez le formulaire ci-dessous pour nous contacter. Nous vous répondrons dans les plus brefs délais.</p>
 
-                                        <form class="row g-3 needs-validation mt-4" novalidate style="    background: #EAEAEA !important;; border-radius: 10px; padding: 15px;">
+                                        <form class="row g-3 needs-validation mt-4" novalidate style=" border: 1px solid #EAEAEA ; border-radius: 10px; padding: 15px;">
                                         <div class="col-md-12">
                                             <label for="validationCustom01" class="form-label">Nom</label>
                                             <input type="text" class="form-control" id="validationCustom01"  required>
