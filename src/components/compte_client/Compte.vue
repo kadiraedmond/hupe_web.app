@@ -2,15 +2,18 @@
 import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
+import { updateDoc, doc, collection, getDoc } from "firebase/firestore"
 
 const userStore = useUserStore()
 const authStore = useAuthStore()
+import Swal from 'sweetalert2'
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 // const userId = savedUser.uid || authStore.user.uid
 const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
+  userStore.setUser(userId)
   userStore.setUserHistory(userId)
   userStore.setTotalAmount(userId)
 })
@@ -30,8 +33,86 @@ const options = {
 
 const montant = ref()
 
-const handleSubmit = async () => {
-  // 
+const apiKey = '8147832776464ac622a6806.22624295'
+const site_id = '132831'
+
+const recharge = async () => {
+  function checkout() {
+    CinetPay.setConfig({
+        apikey: apiKey,   //   YOUR APIKEY
+        site_id: site_id,  //YOUR_SITE_ID
+        notify_url: 'http://hupe-africa.com/notify/',
+        mode: 'PRODUCTION'
+    })
+    CinetPay.getCheckout({
+        transaction_id: Math.floor(Math.random() * 100000000).toString(), // YOUR TRANSACTION ID
+        amount: Number(montant.value),
+        currency: 'XOF',
+        channels: 'ALL',
+        description: `Rechargement de compte`,   
+          //Fournir ces variables pour le paiements par carte bancaire
+        customer_name: `${userStore.user.lastName}`,//Le nom du client
+        customer_surname: `${userStore.user.firstName}`,//Le prenom du client
+        // customer_email: `${userStore.user.email}`,//l'email du client
+        customer_phone_number: `${userStore.user.telephone}`,//l'email du client
+        // customer_address : `${userStore.user.addresse}`,//addresse du client
+        // customer_city: '',// La ville du client
+        // customer_country : `${userStore.user.country}`,// le code ISO du pays
+        // customer_state : `${userStore.user.country}`,// le code ISO l'état
+        // customer_zip_code : '', // code postal
+
+    })
+    CinetPay.waitResponse(async (data) => {
+        if (data.status == "REFUSED") {
+          Swal.fire({
+            title: "Erreur",
+            text: "Votre rechargement a échoué",
+            icon: "error"
+          })
+
+        } else if (data.status == "ACCEPTED") {
+
+          const userDocRef = doc(firestoreDb, 'users', `${userId}`)
+          const userSubColRef = collection(userDocRef, 'myAccount')
+          const accountDocRef = doc(userSubColRef, 'account')
+
+          const snapshot = await getDoc(accountDocRef)
+
+          let amount
+          if(snapshot.exists()) amount = snapshot.data()
+
+          let data = {}
+          if(!amount.solde || amount.solde == 0 || amount.solde === '') {
+            data = {
+              solde: Number(montant.value), 
+              new_recharge: new Date()
+            }
+          } else {
+            data = {
+              solde: Number(amount.solde) + Number(montant.value), 
+              new_recharge: new Date()
+            }
+          }
+
+          const update = await updateDoc(accountDocRef, data)
+
+          if(update) {
+            console.log('Rechargement effectué')
+          }
+
+          Swal.fire({
+            title: "Succès",
+            text: "Votre rechargement a été effectué avec succès",
+            icon: "success"
+          })
+        }
+    })
+    CinetPay.onError((data) => {
+      console.log(data)
+    })
+  }
+
+  checkout()
 }
 </script>
 
@@ -74,10 +155,10 @@ const handleSubmit = async () => {
                       <div class="row">
                         <div class="col-md-12"></div>
                         <div class="col-md-12">
-                          <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
+                          <form @submit.prevent="recharge" class="row g-3 needs-validation" novalidate>
                             <div class="col-md-12 text-start">
                               <label for="validationCustom01" class="form-label">Montant</label>
-                              <input type="number" class="form-control" id="validationCustom01" v-model="montant" required>
+                              <input type="number" class="form-control" v-model="montant" required>
                               
                             </div>
                             
