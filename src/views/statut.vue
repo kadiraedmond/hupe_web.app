@@ -73,6 +73,50 @@ const reporter = async (reservation) => {
   document.querySelector('.btn-close').click()
 }
 
+const payer = async (reservation) => {
+  const userDocRef = doc(firestoreDb, 'users', `${userId}`)
+  const userSubColRef = collection(userDocRef, 'myAccount')
+  const accountDocRef = doc(userSubColRef, 'account')
+
+  const snapshot = await getDoc(accountDocRef)
+
+  let amount
+  if(snapshot.exists()) amount = snapshot.data()
+
+  if(!amount.solde || amount.solde == 0 || amount.solde === '' || amount.solde < Number(reservation.montant)) {
+    Swal.fire({
+      title: "Error",
+      text: "Votre solde est insuffisant",
+      icon: "error"
+    })
+  } else {
+    const result = await Swal.fire({
+        title: 'Continuer le payement ?',
+        showCancelButton: true,
+        confirmButtonText: 'Oui',
+        cancelButtonText: 'Non',
+    })
+      
+    if (result.isConfirmed) {
+        const data = {
+          solde: Number(amount.solde) - Number(reservation.montant), 
+        }
+    
+        try {
+            await updateDoc(accountDocRef, data)
+            Swal.fire({
+            title: "Succès",
+            text: "Payement effectué",
+            icon: "success"
+            })
+            console.log('Payement effectué')
+        } catch (error) {
+            console.log(error)
+        }
+    }
+  }
+}
+
 const message = ref('')
 
 const sendMessage = async (reservation) => {
@@ -335,6 +379,7 @@ onMounted(() => {
                                 <button
                                 class="btn btn-primary"
                                 style="background: #219935; border-color: #219935"
+                                @click="payer(reservation)"
                                 >
                                 Procéder au paiement
                                 </button>

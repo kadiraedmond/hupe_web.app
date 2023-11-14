@@ -236,31 +236,31 @@ const star = async (car) => {
 }
 
 const remove = async (car) => {
-  Swal.fire({
+  const SwlResult = await Swal.fire({
     title: 'Êtes-vous sûr de vouloir supprimer ce Véhicule ?',
     showCancelButton: true,
     confirmButtonText: 'Oui',
     cancelButtonText: 'Non',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
-      const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
-
-      const docRef = doc(vehiculesColRef, `${car.uid}`)
-
-      const result = deleteDoc(docRef)
-
-      if(result) {
-        Swal.fire({
-          title: "Succès",
-          text: "Véhicule supprimé",
-          icon: "success"
-        })
-      }
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      // 
-    }
   })
+
+  if(SwlResult.isConfirmed) {
+    const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+    const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
+
+    const docRef = doc(vehiculesColRef, `${car.uid}`)
+
+    const result = deleteDoc(docRef)
+
+    if(result) {
+      Swal.fire({
+        title: "Succès",
+        text: "Véhicule supprimé",
+        icon: "success"
+      })
+    }
+  } else if (SwlResult.dismiss === Swal.DismissReason.cancel) {
+    // 
+  }
 }
 
 const edit_marque = ref()

@@ -7,6 +7,7 @@ import router from '@/router/router.js'
 import { addDoc, updateDoc, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from "vue3-toastify"
+import Swal from 'sweetalert2'
 
 import { useLocationStore } from '@/store/location.js'
 
@@ -78,53 +79,47 @@ const annul = async (location) => {
 }
 
 const payer = async (location) => {
-  function checkout() {
-      CinetPay.setConfig({
-          apikey: '8147832776464ac622a6806.22624295',//   YOUR APIKEY
-          site_id: '132831',//YOUR_SITE_ID
-          // notify_url: 'http://mondomaine.com/notify/',
-          // mode: 'PRODUCTION'
-          mode: 'DEVELOPEMENT'
-      });
-      CinetPay.getCheckout({
-          transaction_id: Math.floor(Math.random() * 100000000).toString(), // YOUR TRANSACTION ID
-          amount: Number(location.montant),
-          currency: 'XOF',
-          channels: 'ALL',
-          description: `Paiement pour la location ${location.number}`,   
-            //Fournir ces variables pour le paiements par carte bancaire
-          customer_name: `${userStore.user.lastName}`,//Le nom du client
-          customer_surname: `${userStore.user.firstName}`,//Le prenom du client
-          customer_email: `${userStore.user.email}`,//l'email du client
-          customer_phone_number: `${userStore.user.telephone}`,//l'email du client
-          customer_address : `${userStore.user.addresse}`,//addresse du client
-          customer_city: '',// La ville du client
-          customer_country : `${userStore.user.country}`,// le code ISO du pays
-          customer_state : `${userStore.user.country}`,// le code ISO l'état
-          customer_zip_code : '', // code postal
+  const userDocRef = doc(firestoreDb, 'users', `${userId}`)
+  const userSubColRef = collection(userDocRef, 'myAccount')
+  const accountDocRef = doc(userSubColRef, 'account')
 
-      });
-      CinetPay.waitResponse((data) => {
-          if (data.status == "REFUSED") {
-              toast.warn("Votre paiement a échoué", {
-                autoClose: 3500,
-                position: toast.POSITION.TOP_CENTER,
-              })
-            window.location.reload()
-          } else if (data.status == "ACCEPTED") {
-            toast.success("Votre paiement a été effectué avec succès", {
-              autoClose: 3500,
-              position: toast.POSITION.TOP_CENTER,
-            })
-            window.location.reload()
-          }
-      });
-      CinetPay.onError((data) => {
-          console.log(data)
-      })
+  const snapshot = await getDoc(accountDocRef)
+
+  let amount
+  if(snapshot.exists()) amount = snapshot.data()
+
+  if(!amount.solde || amount.solde == 0 || amount.solde === '' || amount.solde < Number(location.montant)) {
+    Swal.fire({
+      title: "Error",
+      text: "Votre solde est insuffisant",
+      icon: "error"
+    })
+  } else {
+    const result = await Swal.fire({
+      title: 'Continuez le payement ?',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+    })
+      
+    if (result.isConfirmed) {
+      const data = {
+        solde: Number(amount.solde) - Number(location.montant), 
+      }
+  
+      try {
+        await updateDoc(accountDocRef, data)
+        Swal.fire({
+          title: "Succès",
+          text: "Payement effectué",
+          icon: "success"
+        })
+        console.log('Payement effectué')
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
-
-  checkout()
 }
 
 const message = ref('')

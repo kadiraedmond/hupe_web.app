@@ -3,9 +3,10 @@ import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
 import { onBeforeMount, onMounted, ref } from "vue";
 
-import { addDoc, updateDoc, collection, Timestamp } from 'firebase/firestore'
+import { addDoc, updateDoc, collection, doc, getDoc, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from "vue3-toastify"
+import Swal from 'sweetalert2'
 
 import { useLocationStore } from '@/store/location.js'
 
@@ -76,7 +77,47 @@ const annul = async (location) => {
 }
 
 const payer = async (location) => {
-  // 
+  const userDocRef = doc(firestoreDb, 'users', `${userId}`)
+  const userSubColRef = collection(userDocRef, 'myAccount')
+  const accountDocRef = doc(userSubColRef, 'account')
+
+  const snapshot = await getDoc(accountDocRef)
+
+  let amount
+  if(snapshot.exists()) amount = snapshot.data()
+
+  if(!amount.solde || amount.solde == 0 || amount.solde === '' || amount.solde < Number(location.montant)) {
+    Swal.fire({
+      title: "Error",
+      text: "Votre solde est insuffisant",
+      icon: "error"
+    })
+  } else {
+    const result = await Swal.fire({
+      title: 'Continuez le payement ?',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+    })
+      
+    if (result.isConfirmed) {
+      const data = {
+        solde: Number(amount.solde) - Number(location.montant), 
+      }
+  
+      try {
+        await updateDoc(accountDocRef, data)
+        Swal.fire({
+          title: "Succès",
+          text: "Payement effectué",
+          icon: "success"
+        })
+        console.log('Payement effectué')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 }
 
 const message = ref('')
@@ -339,6 +380,7 @@ onMounted(() => {
                                 <button
                                 class="btn btn-primary"
                                 style="background: #219935; border-color: #219935"
+                                @click="payer(location)"
                                 >
                                 Procéder au paiement
                                 </button>

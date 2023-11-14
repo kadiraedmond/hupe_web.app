@@ -74,56 +74,6 @@ const reporter = async (reservation) => {
   document.querySelector('.btn-close').click()
 }
 
-const payer = async (reservation) => {
-  function checkout() {
-      CinetPay.setConfig({
-          apikey: '8147832776464ac622a6806.22624295',//   YOUR APIKEY
-          site_id: '132831',//YOUR_SITE_ID
-          // notify_url: 'http://mondomaine.com/notify/',
-          // mode: 'PRODUCTION'
-          mode: 'DEVELOPEMENT'
-      });
-      CinetPay.getCheckout({
-          transaction_id: Math.floor(Math.random() * 100000000).toString(), // YOUR TRANSACTION ID
-          amount: Number(reservation.montant),
-          currency: 'XOF',
-          channels: 'ALL',
-          description: `Paiement pour la reservation ${reservation.number}`,   
-            //Fournir ces variables pour le paiements par carte bancaire
-          customer_name: `${userStore.user.lastName}`,//Le nom du client
-          customer_surname: `${userStore.user.firstName}`,//Le prenom du client
-          customer_email: `${userStore.user.email}`,//l'email du client
-          customer_phone_number: `${userStore.user.telephone}`,//l'email du client
-          customer_address : `${userStore.user.addresse}`,//addresse du client
-          customer_city: '',// La ville du client
-          customer_country : `${userStore.user.country}`,// le code ISO du pays
-          customer_state : `${userStore.user.country}`,// le code ISO l'état
-          customer_zip_code : '', // code postal
-
-      });
-      CinetPay.waitResponse((data) => {
-          if (data.status == "REFUSED") {
-              toast.warn("Votre paiement a échoué", {
-                autoClose: 3500,
-                position: toast.POSITION.TOP_CENTER,
-              })
-            window.location.reload()
-          } else if (data.status == "ACCEPTED") {
-            toast.success("Votre paiement a été effectué avec succès", {
-              autoClose: 3500,
-              position: toast.POSITION.TOP_CENTER,
-            })
-            window.location.reload()
-          }
-      });
-      CinetPay.onError((data) => {
-          console.log(data)
-      })
-  }
-
-  checkout()
-}
-
 const message = ref('')
 
 const sendMessage = async (reservation) => {
@@ -144,6 +94,39 @@ const sendMessage = async (reservation) => {
   }
 
   await addDoc(messageColRef, data).then('Document ajouté')
+}
+
+const payer = async (reservation) => {
+  const userDocRef = doc(firestoreDb, 'users', `${userId}`)
+  const userSubColRef = collection(userDocRef, 'myAccount')
+  const accountDocRef = doc(userSubColRef, 'account')
+
+  const snapshot = await getDoc(accountDocRef)
+
+  let amount
+  if(snapshot.exists()) amount = snapshot.data()
+
+  if(!amount.solde || amount.solde == 0 || amount.solde === '' || amount.solde < Number(reservation.montant)) {
+    Swal.fire({
+      title: "Error",
+      text: "Votre solde est insuffisant",
+      icon: "error"
+    })
+  } else {
+    const data = {
+      solde: Number(amount.solde) - Number(reservation.montant), 
+    }
+
+    const update = await updateDoc(accountDocRef, data)
+
+    if(update) {
+      Swal.fire({
+        title: "Succès",
+        text: "Payement effectué",
+        icon: "success"
+      })
+    }
+  }
 }
 
 </script>
@@ -323,6 +306,7 @@ const sendMessage = async (reservation) => {
                     <button
                       class="btn btn-primary"
                       style="background: #219935; border-color: #219935"
+                      @click="payer(reservation)"
                     >
                       Procéder au paiement
                     </button>
