@@ -41,7 +41,7 @@ export default{
           <li> <router-link to="/services">Réservations de tickets de bus  </router-link></li>
           <li> <router-link to="/services">Location de gros en engin </router-link></li>
           <li> <router-link to="/services">Vente de véhicule </router-link></li>
-          <li> <router-link to="/services">Partenaires par pays  </router-link></li> 
+          <li> <router-link to="/partenaire_par_pays">Partenaires par pays  </router-link></li> 
           <li> <router-link to="/pour_partenaire">Pour les partenaires </router-link></li>
           <li> <router-link to="/pour_client">Pour les clients </router-link></li>
          

@@ -704,7 +704,8 @@ onMounted(() => {
                       >
                         <div
                           class="accordion-item mb-3"
-                          style="border: 1px solid #d2d2d2; border-radius: 5px"
+                          style="border: 1px solid #d2d2d2; border-radius: 5px" 
+                          v-if="location.status == 'Validé'"
                         >
                           <h2
                             class="accordion-header"
@@ -1285,18 +1286,19 @@ onMounted(() => {
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px"
+                          v-if="location.status == 'Annuler'"
                         >
                           <h2
                             class="accordion-header"
-                            :id="'flush-headingOne' + index"
+                            :id="'flush-headingOnea' + index"
                           >
                             <button
                               class="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
-                              :data-bs-target="'#flush-collapseOne' + index"
+                              :data-bs-target="'#flush-collapseOnea' + index"
                               aria-expanded="false"
-                              :aria-controls="'flush-collapseOne' + index"
+                              :aria-controls="'flush-collapseOnea' + index"
                               id="reser"
                             >
                               <div
@@ -1370,9 +1372,9 @@ onMounted(() => {
                             </button>
                           </h2>
                           <div
-                            :id="'flush-collapseOne' + index"
+                            :id="'flush-collapseOnea' + index"
                             class="accordion-collapse collapse"
-                            :aria-labelledby="'flush-headingOne' + index"
+                            :aria-labelledby="'flush-headingOnea' + index"
                             data-bs-parent="#accordionFlushExample"
                           >
                             <div
@@ -1573,18 +1575,19 @@ onMounted(() => {
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px"
+                          v-if="location.status == 'Reporté'"
                         >
                           <h2
                             class="accordion-header"
-                            :id="'flush-headingOne' + index"
+                            :id="'flush-headingOner' + index"
                           >
                             <button
                               class="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
-                              :data-bs-target="'#flush-collapseOne' + index"
+                              :data-bs-target="'#flush-collapseOner' + index"
                               aria-expanded="false"
-                              :aria-controls="'flush-collapseOne' + index"
+                              :aria-controls="'flush-collapseOner' + index"
                               id="reser"
                             >
                               <div
@@ -1658,9 +1661,9 @@ onMounted(() => {
                             </button>
                           </h2>
                           <div
-                            :id="'flush-collapseOne' + index"
+                            :id="'flush-collapseOner' + index"
                             class="accordion-collapse collapse"
-                            :aria-labelledby="'flush-headingOne' + index"
+                            :aria-labelledby="'flush-headingOner' + index"
                             data-bs-parent="#accordionFlushExample"
                           >
                             <div
@@ -1861,6 +1864,7 @@ onMounted(() => {
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px"
+                          v-if="location.status == 'Utilisé'"
                         >
                           <h2
                             class="accordion-header"

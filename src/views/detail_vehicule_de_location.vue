@@ -746,7 +746,7 @@ onMounted(() => {
                 :src="car.vehicule_image_url"
                 class="card-img-top"
                 alt="..."
-                style="border-radius: 10px 10px 0px 0px;  height: 280px;"
+                style="border-radius: 10px 10px 0px 0px;  height: 179px; object-fit: cover;"
               />
             </router-link>
             <button

@@ -15,7 +15,7 @@ onMounted(() => {
         type="button"
         class="btn btn-primary"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#exampleModalpoli"
         style="background-color: #219935; border-color: #219935"
       >
         <img
@@ -29,15 +29,15 @@ onMounted(() => {
       <!-- Modal -->
       <div
         class="modal fade"
-        id="exampleModal"
+        id="exampleModalpoli"
         tabindex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="exampleModalLabelpoli"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+            <div class="modal-header" style="background-color: #219935; color: white;">
+              <h1 class="modal-title fs-5" id="exampleModalLabelpoli">
                 Ajouter une politique
               </h1>
               <button

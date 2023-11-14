@@ -235,13 +235,13 @@ onMounted(() => {
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
                                     <div class="card h-75" style="  border-radius: 15px !important;  background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/faq.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Foire Aux Questions (FAQ)</h5>
                                         <p class="card-text">Consultez notre FAQ pour trouver des réponses aux questions les plus courantes sur l'utilisation de l'application, les fonctionnalités, les paiements, la sécurité et bien d'autres sujets.</p>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <router-link to="/">
+                                                <router-link to="/informations">
                                                     <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
                                                 </router-link>
                                                
@@ -251,8 +251,8 @@ onMounted(() => {
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <div class="card h-75" style="  border-radius: 15px !important; background: #EAEAEA !important;">
+                                    <img src="/public/assets/img/guide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Guides d'Utilisation </h5>
                                         <p class="card-text">Nous avons créé des guides d'utilisation détaillés qui vous expliquent étape par étape comment utiliser chaque aspect de l'application. Que vous souhaitiez réserver un véhicule, acheter un billet de bus ou utiliser notre service de location de gros engins, vous trouverez un guide correspondant.</p>
@@ -269,7 +269,7 @@ onMounted(() => {
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
                                     <div class="card h-75" style="  border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/video.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title"> Tutoriels Vidéo</h5>
                                         <p class="card-text"> Certaines personnes préfèrent apprendre en visualisant. Notre collection de tutoriels vidéo vous guide à travers les processus les plus importants de l'application, en vous montrant exactement comment effectuer différentes tâches.</p>
@@ -286,13 +286,13 @@ onMounted(() => {
                                 </div>
                                 <div class="col" style=" margin-top: -90px;">
                                     <div class="card h-75" style=" background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/blog1.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Articles Informatifs</h5>
                                         <p class="card-text">Trouvez des articles informatifs sur divers sujets liés à la mobilité, à l'industrie automobile, aux voyages en bus, aux conseils de sécurité et plus encore. Nous vous tenons informés sur les dernières tendances et les informations utiles. </p>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <router-link to="/">
+                                                <router-link to="/informations">
                                                     <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
                                                 </router-link>
                                                
@@ -336,7 +336,7 @@ onMounted(() => {
                                 </div>
                                 <div class="col">
                                     <div class="card h-75" style=" background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                    <img src="/public/assets/img/mise.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
                                         <h5 class="card-title">Mises à Jour et Nouveautés</h5>
                                         <p class="card-text">Restez à jour avec les dernières améliorations et les nouvelles fonctionnalités de l'application. Nous publions régulièrement des informations sur les mises à jour pour que vous soyez toujours informé.</p>

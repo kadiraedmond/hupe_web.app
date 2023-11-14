@@ -218,7 +218,7 @@ onMounted(() => {
                 >
                   <div class="modal-dialog">
                     <div class="modal-content">
-                      <div class="modal-header">
+                      <div class="modal-header" style="background-color: #219935; color: white;">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">
                           Modifier un trajet
                         </h1>
@@ -362,7 +362,7 @@ onMounted(() => {
                 >
                   <div class="modal-dialog">
                     <div class="modal-content">
-                      <div class="modal-header">
+                      <div class="modal-header" style="background-color: #219935; color: white;">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">
                           Promouvoir un vehicule
                         </h1>
@@ -443,7 +443,7 @@ onMounted(() => {
                 </div>
               </div>
               <div class="col">
-                <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
+                <routeur-link to="/" id="a_compagnie">
                   <button
                     class="btn btn-primary"
                     style="background-color: #219935; border-color: #219935"
@@ -454,7 +454,7 @@ onMounted(() => {
                       alt="..."
                     />
                   </button>
-                </a>
+                </routeur-link>
               </div>
               <div class="col text-center">
                 <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
