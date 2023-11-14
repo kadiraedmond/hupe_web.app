@@ -77,7 +77,7 @@ export const usePromotionStore = defineStore('promotionStore', {
     actions: {
         async setCompaniePromotionCars(companieId) {
             try {
-                const q = query(vehiculeEnPromoColRef, where('compagnie_uid', '==', `${companieId}`))
+                const q = query(vehiculeEnPromoColRef, where('compagnie_id', '==', `${companieId}`))
                 const snapshots = await getDocs(q)
 
                 snapshots.docs.forEach(doc => this.companiePromotionCars.push(doc.data()))

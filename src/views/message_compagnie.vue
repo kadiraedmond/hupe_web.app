@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from 'vue-router'
-import { useCompanieStore } from "@/store/companie.js"
+import { useUserStore } from "@/store/user.js"
 import { onBeforeMount, ref } from 'vue'
 import { useAuthStore } from '@/store/auth.js'
 
@@ -10,7 +10,7 @@ import { firestoreDb } from '@/firebase/firebase.js'
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 // const userId = savedUser.uid || authStore.user.uid
-const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 const authStore = useAuthStore()
 
 const route = useRoute()
@@ -19,17 +19,17 @@ const message = ref('')
 const messages = ref([])
 const receive_messages = ref([])
 
-const companieId = route.params.id
-const companieStore = useCompanieStore()
+const clientId = route.params.id
+const userStore = useUserStore()
 
-const doc_id = `${userId}_${companieId}`
-const other_doc_id = `${companieId}_${userId}`
+const doc_id = `${userId}_${clientId}`
+const other_doc_id = `${clientId}_${userId}`
 
 const conversationDocRef = doc(firestoreDb, 'conversations', `${doc_id}`)
 const otherConversationDocRef = doc(firestoreDb, 'conversations', `${other_doc_id}`)
 
 onBeforeMount(async () => {
-  await companieStore.setCompanieById(companieId)
+  await userStore.setUser(clientId)
 
   if(conversationDocRef) {
     const messageColRef = collection(conversationDocRef, 'messages')
@@ -59,7 +59,7 @@ const handleSubmit = async () => {
   const data = {
     clientNumber: savedUser.telephone || savedUser.phoneNumber || authStore.user.telephone,
     message: message.value,
-    otherUserId: companieId,
+    otherUserId: clientId,
     sendAt: Timestamp.now(),
     userId: userId
   }
@@ -102,49 +102,21 @@ const options = {
                 >
                   <div class="row g-0">
                     <div class="col-md-4">
-                      <router-link 
-                      :to="`/detail/${companieStore.companie.uid}`" 
-                      v-if="companieStore.companie.type_compagnie == 'Location'">
-                        <img
-                          :src="companieStore.companie.imageLogoUrl"
-                          class="img-fluid rounded-start"
-                          alt="..."
-                          style="border-radius: 50% !important; width: 70px"
-                        />
-                      </router-link>
-                      <router-link 
-                      :to="`/details/${companieStore.companie.uid}`" 
-                      v-if="companieStore.companie.type_compagnie == 'Transport'">
-                        <img
-                          :src="companieStore.companie.imageLogoUrl"
-                          class="img-fluid rounded-start"
-                          alt="..."
-                          style="border-radius: 50% !important; width: 70px"
-                        />
-                      </router-link>
+                      <img
+                        :src="userStore.user.imageUrl"
+                        class="img-fluid rounded-start"
+                        alt="..."
+                        style="border-radius: 50% !important; width: 70px"
+                      />
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
-                        <router-link 
-                        :to="`/detail/${companieStore.companie.uid}`" 
-                        v-if="companieStore.companie.type_compagnie == 'Location'" style="color: #000">
-                          <h5 class="card-title" style="font-size: 14px">
-                            {{ companieStore.companie.raison_social }}
-                          </h5>
-                          <p class="card-text" style="font-size: 12px">
-                            {{ companieStore.companie.description }}
-                          </p>
-                        </router-link>
-                        <router-link 
-                        :to="`/details/${companieStore.companie.uid}`" 
-                        v-if="companieStore.companie.type_compagnie == 'Transport'" style="color: #000">
-                          <h5 class="card-title" style="font-size: 14px">
-                            {{ companieStore.companie.raison_social }}
-                          </h5>
-                          <p class="card-text" style="font-size: 12px">
-                            {{ companieStore.companie.description }}
-                          </p>
-                        </router-link>
+                        <h5 class="card-title" style="font-size: 14px">
+                          {{ userStore.user.lastName }} {{ userStore.user.firstName }}
+                        </h5>
+                        <p class="card-text" style="font-size: 12px">
+                          {{ userStore.user.telephone }}
+                        </p>
                       </div>
                     </div>
                   </div>
