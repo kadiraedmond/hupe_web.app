@@ -1,7 +1,7 @@
 <script setup>
 import { useCompanieStore } from "@/store/companie.js";
 import { useAuthStore } from "@/store/auth.js";
-import { reactive, onBeforeMount, onMounted } from "vue";
+import { reactive, ref, onBeforeMount, onMounted } from "vue";
 
 const companieStore = useCompanieStore();
 const authStore = useAuthStore();
@@ -57,10 +57,33 @@ const updateReservationsDashboard = () => {
 const savedUser = JSON.parse(localStorage.getItem("user"));
 
 // const userId = savedUser.uid || authStore.user.uid
-const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid;
+const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid
+
+const elements_en_attente = ref([])
+const elements_valide = ref([])
+const elements_reporte = ref([])
+const elements_confirme = ref([])
+const elements_utilise = ref([])
+const elements_annule = ref([])
+
 onBeforeMount(async () => {
   await companieStore.setCompanieLocations(userId);
   updateReservationsDashboard();
+  
+  companieStore.companieLocations.forEach(comp => {
+    if(comp.status == 'En attente') {
+      elements_en_attente.value.push(comp)
+    } else if(comp.status == 'Validé') {
+      elements_valide.value.push(comp)
+    } else if(comp.status == 'Reporté') {
+      elements_reporte.value.push(comp)
+    } else if(comp.status == 'Confirmé') {
+      elements_confirme.value.push(comp)
+    } else if(comp.status == 'Annuler') {
+      elements_annule.value.push(comp)
+    }
+  })
+  console.log(elements_confirme.value)
 });
 
 onMounted(() => {
@@ -409,13 +432,12 @@ onMounted(() => {
                         class="col-md-4"
                         v-for="(
                           location, index
-                        ) in companieStore.companieLocations"
+                        ) in elements_en_attente"
                         :key="index"
                       >
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px"
-                          v-if="location.status == 'En attente'"
                         >
                           <h2
                             class="accordion-header"
@@ -698,13 +720,12 @@ onMounted(() => {
                         class="col-md-4"
                         v-for="(
                           location, index
-                        ) in companieStore.companieLocations"
+                        ) in elements_valide"
                         :key="index"
                       >
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px" 
-                          v-if="location.status == 'Validé'"
                         >
                           <h2
                             class="accordion-header"
@@ -987,13 +1008,12 @@ onMounted(() => {
                         class="col-md-4"
                         v-for="(
                           location, index
-                        ) in companieStore.companieLocations"
+                        ) in elements_confirme"
                         :key="index"
                       >
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px"
-                          v-if="location.status == 'Confirmé'"
                         >
                           <h2
                             class="accordion-header"
@@ -1281,13 +1301,12 @@ onMounted(() => {
                         class="col-md-4"
                         v-for="(
                           location, index
-                        ) in companieStore.companieLocations"
+                        ) in elements_annule"
                         :key="index"
                       >
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px"
-                          v-if="location.status == 'Annuler'"
                         >
                           <h2
                             class="accordion-header"
@@ -1570,13 +1589,12 @@ onMounted(() => {
                         class="col-md-4"
                         v-for="(
                           location, index
-                        ) in companieStore.companieLocations"
+                        ) in elements_reporte"
                         :key="index"
                       >
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px"
-                          v-if="location.status == 'Reporté'"
                         >
                           <h2
                             class="accordion-header"
@@ -1859,13 +1877,12 @@ onMounted(() => {
                         class="col-md-4"
                         v-for="(
                           location, index
-                        ) in companieStore.companieLocations"
+                        ) in elements_utilise"
                         :key="index"
                       >
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px"
-                          v-if="location.status == 'Utilisé'"
                         >
                           <h2
                             class="accordion-header"

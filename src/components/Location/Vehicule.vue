@@ -21,7 +21,8 @@ const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user
 onBeforeMount(async () => {
   await companieStore.resetCompanieCars()
   companieStore.setCompanieCars(userId) // authStore.user.uid
-  companieCars.value = companieStore.companieCars
+  companieCars.value = companieStore.companieCars 
+  console.log(companieStore.companieCars)
 })
 
 onMounted(() => {
@@ -198,7 +199,41 @@ const unlock = async (car) => {
 }
 
 const star = async (car) => {
-  // 
+  const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+  const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
+
+  const docRef = doc(vehiculesColRef, `${car.uid}`)
+
+  if(companieStore.companie.offre === 'vip') {
+    const update = await updateDoc(docRef, { enAvant: true })
+    
+    const miseEn_avantDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'mise_en_avant')
+    const carEn_avantColRef = collection( miseEn_avantDocRef, 'vehicule_en_avant')
+
+    const addedDoc = await addDoc(carEn_avantColRef, car)
+
+    if(addedDoc) {
+      console.log('Document ajouté')
+      Swal.fire({
+        title: "Succès",
+        text: "Votre véhicule a été mis en avant",
+        icon: "success"
+      })
+
+      const update = await updateDoc(addedDoc, { uid: addedDoc.id, enAvant: true })
+
+      if(update) {
+        console.log('ID ajouté')
+      }
+    }
+  
+  } else {
+    Swal.fire({
+      title: "Erreur",
+      text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
+      icon: "error"
+    })
+  }
 }
 
 const remove = async (car) => {
@@ -256,13 +291,13 @@ const handleEditPicture = async () => {
 }
 
 const update = async (car) => {
-  if(!edit_marque.value || !edit_modele.modele || !edit_immatriculation.value || !edit_annee.value || !edit_prix_journalier.value || !edit_prix_chauffeur.value || !edit_prix_interieur.value) {
-    Swal.fire({
-      title: "Erreur",
-      text: "Entrez des données",
-      icon: "error"
-    })
-  }
+  // if(!edit_marque.value || !edit_modele.modele || !edit_immatriculation.value || !edit_annee.value || !edit_prix_journalier.value || !edit_prix_chauffeur.value || !edit_prix_interieur.value) {
+  //   Swal.fire({
+  //     title: "Erreur",
+  //     text: "Entrez des données",
+  //     icon: "error"
+  //   })
+  // }
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
   const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
 
