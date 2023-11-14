@@ -9,7 +9,7 @@ export const useReservationStore = defineStore('reservationStore', {
     state: () => ({
         reservations: [],
         companieLocations: [],
-        vehicules: [],
+        trajets: [],
         companieReservations: [],
         userReservations: []
     }),
@@ -26,13 +26,14 @@ export const useReservationStore = defineStore('reservationStore', {
         },
     },
     actions: {
-        async setVehicules(companieId) {
+        async setTrajets(companieId) {
             const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
             const companieSubColRef = collection(companieDocRef, 'programme_des_voyages')
             
             try {
                 const snapshot = await getDocs(companieSubColRef);
-                snapshot.docs.forEach((doc) => this.vehicules.push({ ...doc.data() }))
+                snapshot.docs.forEach((doc) => this.trajets.push({ ...doc.data() }))
+                console.log(this.trajets)
             } catch (error) {
                 console.log(error)
             }

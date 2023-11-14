@@ -69,9 +69,31 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 // const userId = savedUser.uid || authStore.user.uid
 const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+
+const elements_en_attente = ref([])
+const elements_valide = ref([])
+const elements_reporte = ref([])
+const elements_confirme = ref([])
+const elements_utilise = ref([])
+const elements_annule = ref([])
+
 onBeforeMount(async () => {
   await reservationStore.setCompanieReservations(userId)
   updateReservationsDashboard()
+
+  reservationStore.companieReservations.forEach(comp => {
+    if(comp.status == 'En attente') {
+      elements_en_attente.value.push(comp)
+    } else if(comp.status == 'Validé') {
+      elements_valide.value.push(comp)
+    } else if(comp.status == 'Reporté') {
+      elements_reporte.value.push(comp)
+    } else if(comp.status == 'Confirmé') {
+      elements_confirme.value.push(comp)
+    } else if(comp.status == 'Annuler') {
+      elements_annule.value.push(comp)
+    }
+  })
 })
 
 onMounted(() => {
@@ -368,8 +390,8 @@ onMounted(() => {
                     id="accordionFlushExample"
                   >
                   <div class="row">
-                    <div class="col-md-4" v-for="(reservation, index) in reservationStore.companieReservations" :key="index">
-                      <div class="accordion-item mb-3" style="border: 1px solid #d2d2d2; border-radius: 5px;"  v-if="reservation.status == 'En attente'" >
+                    <div class="col-md-4" v-for="(reservation, index) in elements_en_attente" :key="index">
+                      <div class="accordion-item mb-3" style="border: 1px solid #d2d2d2; border-radius: 5px;" >
                       <h2 class="accordion-header" :id="'flush-headingOne' + index">
                         <button
                           class="accordion-button collapsed"
@@ -588,11 +610,10 @@ onMounted(() => {
           <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
-                <div class="col-md-6" v-for="(reservation, index) in reservationStore.companieReservations" :key="index">
+                <div class="col-md-6" v-for="(reservation, index) in elements_valide" :key="index">
                   <div
                     class="accordion accordion-flush"
                     id="accordionFlushExample"
-                    v-if="reservation.status == 'Validé'"
                   >
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingOne">
@@ -821,11 +842,10 @@ onMounted(() => {
           <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
-                <div class="col-md-6" v-for="(reservation, index) in reservationStore.companieReservations" :key="index">
+                <div class="col-md-6" v-for="(reservation, index) in elements_confirme" :key="index">
                   <div
                     class="accordion accordion-flush"
                     id="accordionFlushExample"
-                    v-if="reservation.status == 'Confirmé'"
                   >
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingOne">
@@ -1055,11 +1075,10 @@ onMounted(() => {
           <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
-                <div class="col-md-6" v-for="(reservation, index) in reservationStore.companieReservations" :key="index">
+                <div class="col-md-6" v-for="(reservation, index) in elements_annule" :key="index">
                   <div
                     class="accordion accordion-flush"
                     id="accordionFlushExample"
-                    v-if="reservation.status == 'Annuler'"
                   >
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingOne">
@@ -1289,11 +1308,10 @@ onMounted(() => {
           <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
-                <div class="col-md-6" v-for="(reservation, index) in reservationStore.companieReservations" :key="index">
+                <div class="col-md-6" v-for="(reservation, index) in elements_reporte" :key="index">
                   <div
                     class="accordion accordion-flush"
                     id="accordionFlushExample"
-                    v-if="reservation.status == 'Reporté'"
                   >
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingOne">
@@ -1523,11 +1541,10 @@ onMounted(() => {
           <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
-                <div class="col-md-6" v-for="(reservation, index) in reservationStore.companieReservations" :key="index">
+                <div class="col-md-6" v-for="(reservation, index) in elements_utilise" :key="index">
                   <div
                     class="accordion accordion-flush"
                     id="accordionFlushExample"
-                    v-if="reservation.status == 'Utilisé'"
                   >
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingOne">

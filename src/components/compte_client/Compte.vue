@@ -1,7 +1,7 @@
 <script setup>
 import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, onMounted } from "vue"
+import { onBeforeMount, onMounted, ref } from "vue"
 
 const userStore = useUserStore()
 const authStore = useAuthStore()
@@ -26,6 +26,12 @@ const options = {
   hour: '2-digit', 
   minute: '2-digit', 
   second: '2-digit', 
+}
+
+const montant = ref()
+
+const handleSubmit = async () => {
+  // 
 }
 </script>
 
@@ -68,10 +74,10 @@ const options = {
                       <div class="row">
                         <div class="col-md-12"></div>
                         <div class="col-md-12">
-                          <form class="row g-3 needs-validation" novalidate>
+                          <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
                             <div class="col-md-12 text-start">
                               <label for="validationCustom01" class="form-label">Montant</label>
-                              <input type="text" class="form-control" id="validationCustom01" required>
+                              <input type="number" class="form-control" id="validationCustom01" v-model="montant" required>
                               
                             </div>
                             

@@ -1,17 +1,17 @@
 <script setup>
-import Vehicule from "@/components/CompteReservation/Vehicule.vue";
-import Promotion from "@/components/CompteReservation/Promotion.vue";
-import Reservation from "@/components/CompteReservation/Reservation.vue";
-import Demande from "@/components/CompteReservation/Demande.vue";
-import Offre from "@/components/CompteReservation/Offre.vue";
-import Collaborateur from "@/components/CompteReservation/Collaborateur.vue";
-import Apropos from "@/components/CompteReservation/Apropos.vue";
-import Compte from "@/components/CompteReservation/Compte.vue";
-import Politique from "@/components/CompteReservation/Politique.vue";
+import Vehicule from "@/components/CompteReservation/Vehicule.vue"
+import Promotion from "@/components/CompteReservation/Promotion.vue"
+import Reservation from "@/components/CompteReservation/Reservation.vue"
+import Demande from "@/components/CompteReservation/Demande.vue"
+import Offre from "@/components/CompteReservation/Offre.vue"
+import Collaborateur from "@/components/CompteReservation/Collaborateur.vue"
+import Apropos from "@/components/CompteReservation/Apropos.vue"
+import Compte from "@/components/CompteReservation/Compte.vue"
+import Politique from "@/components/CompteReservation/Politique.vue"
 
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, onMounted } from "vue";
+import { onBeforeMount, onMounted } from "vue"
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -85,7 +85,7 @@ onMounted(() => {
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="voiture-tab" data-bs-toggle="tab" data-bs-target="#voiture-tab-pane"
-                  type="button" role="tab" aria-controls="voiture-tab-pane" aria-selected="true"  style="border-radius: 5px 0px 0px 0px !important;">Véhicules</button>
+                  type="button" role="tab" aria-controls="voiture-tab-pane" aria-selected="true"  style="border-radius: 5px 0px 0px 0px !important;">Trajets</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"

@@ -22,7 +22,6 @@ onBeforeMount(async () => {
   await companieStore.resetCompanieCars()
   companieStore.setCompanieCars(userId) // authStore.user.uid
   companieCars.value = companieStore.companieCars 
-  console.log(companieStore.companieCars)
 })
 
 onMounted(() => {
@@ -238,7 +237,7 @@ const star = async (car) => {
 
 const remove = async (car) => {
   Swal.fire({
-    title: 'Etes-vous sûr de vouloir supprimer ce véhicule ?',
+    title: 'Êtes-vous sûr de vouloir supprimer ce Véhicule ?',
     showCancelButton: true,
     confirmButtonText: 'Oui',
     cancelButtonText: 'Non',
@@ -329,6 +328,34 @@ const update = async (car) => {
       icon: "error"
     })
   }
+}
+
+const handleMarque = (e) => {
+  edit_marque.value = e.target.value
+}
+
+const handleModele = (e) => {
+  edit_modele.value = e.target.value
+}
+
+const handleImmatriculation = (e) => {
+  edit_immatriculation.value = e.target.value
+}
+
+const handleAnneeVehicule = (e) => {
+  edit_annee.value = e.target.value
+}
+
+const handleMontant = (e) => {
+  edit_prix_journalier.value = e.target.value
+}
+
+const handlePrixChauffeur = (e) => {
+  edit_prix_chauffeur.value = e.target.value
+}
+
+const handleInterieurPaysPrix = (e) => {
+  edit_prix_interieur.value = e.target.value
 }
 
 </script>
@@ -608,6 +635,8 @@ const update = async (car) => {
                                     type="text"
                                     class="form-control"
                                     id="validationCustom01"
+                                    :value="car.vehicule"
+                                    @input="handleMarque"
                                     required
                                   />
                                 </div>
@@ -621,6 +650,8 @@ const update = async (car) => {
                                     type="text"
                                     class="form-control"
                                     id="validationCustom02"
+                                    :value="car.modele"
+                                    @input="handleModele"
                                     required
                                   />
                                 </div>
@@ -635,6 +666,8 @@ const update = async (car) => {
                                     type="text"
                                     class="form-control"
                                     id="validationCustom01"
+                                    :value="car.serie_vehicule"
+                                    @input="handleImmatriculation"
                                     required
                                   />
                                 </div>
@@ -645,9 +678,11 @@ const update = async (car) => {
                                     >Année</label
                                   >
                                   <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
                                     id="validationCustom02"
+                                    :value="car.anne_vehicule"
+                                    @input="handleAnneeVehicule"
                                     required
                                   />
                                 </div>
@@ -662,9 +697,11 @@ const update = async (car) => {
                                     >Prix journalier</label
                                   >
                                   <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
                                     id="validationCustom02"
+                                    :value="car.montant"
+                                    @input="handleMontant"
                                     required
                                   />
                                 </div>
@@ -676,9 +713,11 @@ const update = async (car) => {
                                     >Avec chauffeur</label
                                   >
                                   <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
                                     id="validationCustom01"
+                                    :value="car.avecchauffeurprix"
+                                    @input="handlePrixChauffeur"
                                     required
                                   />
                                 </div>
@@ -689,9 +728,11 @@ const update = async (car) => {
                                     >A l'intérieur</label
                                   >
                                   <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
                                     id="validationCustom02"
+                                    :value="car.interieurpaysprix"
+                                    @input="handleInterieurPaysPrix"
                                     required
                                   />
                                 </div>
@@ -728,7 +769,7 @@ const update = async (car) => {
                         </div>
                       </div>
                     </div>
-                    <div class="col">
+                    <div class="col" v-if="companieStore.companie.offre == 'vip'">
                       <button
                         class="btn btn-primary"
                         style="
@@ -744,7 +785,7 @@ const update = async (car) => {
                         />
                       </button>
                     </div>
-                    <div class="col">
+                    <div class="col" v-if="companieStore.companie.offre == 'vip'">
                       <!-- Button trigger modal -->
                       <button
                         type="button"

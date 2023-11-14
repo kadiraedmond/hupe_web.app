@@ -67,8 +67,8 @@ const elements_utilise = ref([])
 const elements_annule = ref([])
 
 onBeforeMount(async () => {
-  await companieStore.setCompanieLocations(userId);
-  updateReservationsDashboard();
+  await companieStore.setCompanieLocations(userId)
+  updateReservationsDashboard()
   
   companieStore.companieLocations.forEach(comp => {
     if(comp.status == 'En attente') {
@@ -83,7 +83,6 @@ onBeforeMount(async () => {
       elements_annule.value.push(comp)
     }
   })
-  console.log(elements_confirme.value)
 });
 
 onMounted(() => {

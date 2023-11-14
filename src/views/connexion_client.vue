@@ -87,7 +87,7 @@ onBeforeMount(() => {
                           >Numéro de téléphone</label
                         >
                       </div>
-                      <div class="mb-3 mx-5">
+                      <div class="mb-2 mx-5">
                         <vue-tel-input 
                           v-model="phoneNumber"
                           :enabledCountryCode="true"
@@ -95,7 +95,7 @@ onBeforeMount(() => {
                          />
                       </div>
 
-                      <div class="d-flex justify-content-center my-2">
+                      <!-- <div class="d-flex justify-content-center my-2">
                         <div class="" style="display: flex; flex-direction: column; align-items: center">
                           <label class="form-check-label mb-2" for="gridRadios1">
                             Je suis un client
@@ -108,7 +108,7 @@ onBeforeMount(() => {
                             required
                           />
                         </div>
-                      </div>
+                      </div> -->
                       
                       <div class="text-center">
                         <button
