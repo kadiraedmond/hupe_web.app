@@ -402,114 +402,24 @@ onMounted(() => {
                         </div>
                       </div>
                       <div class="tab-pane fade" id="nav-Côte" role="tabpanel" aria-labelledby="nav-Côte-tab" tabindex="0">
-                        <div class="row mt-4">
-                          <div class="col-md-12">
-                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                              <div class="col">
-                                <router-link to="/">
-                                  <div class="card">
-                                  <img src="/public/assets/img/logo/1.jpg" class="card-img-top" alt="..." style="min-height: 200px;max-height: 200px;">
-                                   
-                                </div>
-                                </router-link>
-                               
-                              </div>
-                               
-                            </div>
-                          </div>
-                        </div>
+                        ....
                       </div>
                       <div class="tab-pane fade" id="nav-Mali" role="tabpanel" aria-labelledby="nav-Mali-tab" tabindex="0">...</div>
                       <div class="tab-pane fade" id="nav-Benin" role="tabpanel" aria-labelledby="nav-Benin-tab" tabindex="0">
-                        <div class="row mt-4">
-                          <div class="col-md-12">
-                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                              <div class="col">
-                                <router-link to="/">
-                                  <div class="card">
-                                  <img src="/public/assets/img/logo/1.jpg" class="card-img-top" alt="..." style="min-height: 200px;max-height: 200px;">
-                                   
-                                </div>
-                                </router-link>
-                               
-                              </div>
-                               
-                            </div>
-                          </div>
-                        </div>
+                        ...
                       </div>
                       <div class="tab-pane fade" id="nav-Burkina" role="tabpanel" aria-labelledby="nav-Burkina-tab" tabindex="0">
-                        <div class="row mt-4">
-                          <div class="col-md-12">
-                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                              <div class="col">
-                                <router-link to="/">
-                                  <div class="card">
-                                  <img src="/public/assets/img/logo/1.jpg" class="card-img-top" alt="..." style="min-height: 200px;max-height: 200px;">
-                                   
-                                </div>
-                                </router-link>
-                               
-                              </div>
-                               
-                            </div>
-                          </div>
-                        </div>
+                        ...
                       </div>
                       <div class="tab-pane fade" id="nav-Guinée" role="tabpanel" aria-labelledby="nav-Guinée-tab" tabindex="0">
-                        <div class="row mt-4">
-                          <div class="col-md-12">
-                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                              <div class="col">
-                                <router-link to="/">
-                                  <div class="card">
-                                  <img src="/public/assets/img/logo/1.jpg" class="card-img-top" alt="..." style="min-height: 200px;max-height: 200px;">
-                                   
-                                </div>
-                                </router-link>
-                               
-                              </div>
-                               
-                            </div>
-                          </div>
-                        </div>
+                        ....
                       </div>
                       <div class="tab-pane fade" id="nav-Niger" role="tabpanel" aria-labelledby="nav-Niger-tab" tabindex="0">
-                        <div class="row mt-4">
-                          <div class="col-md-12">
-                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                              <div class="col">
-                                <router-link to="/">
-                                  <div class="card">
-                                  <img src="/public/assets/img/logo/1.jpg" class="card-img-top" alt="..." style="min-height: 200px;max-height: 200px;">
-                                   
-                                </div>
-                                </router-link>
-                               
-                              </div>
-                               
-                            </div>
-                          </div>
-                        </div>
+                        .....
                       </div>
 
                       <div class="tab-pane fade" id="nav-Sénégal" role="tabpanel" aria-labelledby="nav-Sénégal-tab" tabindex="0">
-                        <div class="row mt-4">
-                          <div class="col-md-12">
-                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                              <div class="col">
-                                <router-link to="/">
-                                  <div class="card">
-                                  <img src="/public/assets/img/logo/1.jpg" class="card-img-top" alt="..." style="min-height: 200px;max-height: 200px;">
-                                   
-                                </div>
-                                </router-link>
-                               
-                              </div>
-                               
-                            </div>
-                          </div>
-                        </div>
+                        ....
                       </div>
                     </div>
                   </div>

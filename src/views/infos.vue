@@ -70,6 +70,7 @@ onMounted(() => {
                             <div class="col-md-12">
                                
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">A propos de l’application   </h2>
+                            <hr>
                                 <p>Hupe est un système composé de trois applications distinctes, chacune ayant un rôle spécifique</p>
                             </div>
                             
