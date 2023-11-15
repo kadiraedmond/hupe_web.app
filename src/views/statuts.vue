@@ -29,6 +29,7 @@ const locations = ref([])
 onBeforeMount(async () => {
   userStore.setUser(userId)
   locationStore.setUserLocations(userId)
+
   
   locationStore.userLocations.forEach(location => {
     if(param === 'en-attente' && location.status === 'En attente') {
