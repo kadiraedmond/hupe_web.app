@@ -163,9 +163,9 @@ const options = {
                     id="messages"
                     style="height: 500px; overflow-y: scroll; padding: 12px"
                   >
-                    <div class="row">
+                    <div class="row" v-for="(other_message, index) in receive_messages" :key="index">
                         <!-- Receiver -->
-                      <div class="col-md-6 mb-2" v-for="(other_message, index) in receive_messages" :key="index">
+                      <div class="col-md-6 mb-2">
                         <div
                           class="message incoming"
                           style="
@@ -188,10 +188,12 @@ const options = {
                       </div>
 
                       <div class="col-md-6"></div>
+                    </div>
+                    <div class="row" v-for="(message, index) in messages" :key="index">
                       <div class="col-md-6"></div>
 
                         <!-- Sender -->
-                      <div class="col-md-6 mb-2" v-for="(message, index) in messages" :key="index">
+                      <div class="col-md-6 mb-2">
                         <div
                           class="message outgoing"
                           style="

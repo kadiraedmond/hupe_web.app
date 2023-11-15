@@ -2,6 +2,7 @@
 import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
 import { onBeforeMount, onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 import { addDoc, updateDoc, collection, doc, getDoc, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
@@ -47,6 +48,16 @@ onBeforeMount(async () => {
     }
   })
 })
+
+const router = useRouter();
+const refresh = ()=>{
+
+  router.push({
+    name:'Raison'
+  })
+  
+ } 
+ 
 
 onMounted(() => {
   window.scrollTo(0, 0)
@@ -170,6 +181,10 @@ onMounted(() => {
   window.scrollTo(0, 0)
 })
 
+ 
+
+
+
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
@@ -268,18 +283,21 @@ onMounted(() => {
                                     {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }} <br />
                                      
                                     </p>
-                                </div>       
+                                </div> 
+                                <div class="col-6" >
+                                  <p
+                                  class="card-text"
+                                  style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                  >
+                                  N° |
+                                  <strong style="color: #219935"> {{ location.number }} </strong>
+                                  </p>
+                               
+                                </div>     
                             </div>
                             <br />
 
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            N° |
-                            <strong style="color: #219935"> {{ location.number }} </strong>
-                            </p>
-                            <br />
+                           
 
                             <p
                             class="card-text"
@@ -353,7 +371,7 @@ onMounted(() => {
                             <br />
 
                             <div class="row" v-if="location.status == 'Validé'">
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <button
                                 class="btn btn-primary"
                                 style="
@@ -366,7 +384,7 @@ onMounted(() => {
                                 Reporter
                                 </button>
 
-                                <!-- Modal -->
+                                
                                 <div
                                 class="modal fade"
                                 id="reportModal10"
@@ -398,9 +416,105 @@ onMounted(() => {
                                     </div>
                                 </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
+                                <button
+                                class="btn btn-primary"
+                                style="
+                                    background: white;
+                                    border-color: crimson;
+                                    color: crimson;
+                                    font-size: 12px; 
+                                "
+                                data-bs-toggle="modal"
+                                data-bs-target="#annulModal10"
+                                >
+                                Annuler
+                                </button>
+
+                                <!-- Modal -->
+                                <div
+                                class="modal fade"
+                                id="annulModal10"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel10"
+                                aria-hidden="true"
+                                >
+                                  <div class="modal-dialog">
+                                      <div class="modal-content" style="width: 75% !important">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                                              <img
+                                                src="/public/assets/img/avatars/1.png"
+                                                alt
+                                                class="w-px-40 h-auto rounded-circle"
+                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                              />
+                                            </h1>
+                                            <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                            ></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                          <div class="row">
+                                             
+                                            <div class="col-md-12 text-center">
+                                              <div class="row">
+                                                <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
+                                                  <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
+                                                </div>
+                                                <div class="col-12">
+                                                  <div class="row">
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-10">
+                                                      <div class="row">
+                                                        <div class="col-md-12 mb-3">
+                                                          <!-- <router-link to="/raison_d_annulation"> -->
+                                                            <button
+                                                            class="btn btn-primary w-100" @click="refresh()"
+                                                            style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
+                                                           
+                                                            >
+                                                            Annuler quand même
+                                                            </button>
+                                                          <!-- </router-link> -->
+                                                            
+
+                                                            
+                                                        </div>
+                                                        
+
+                                                        <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
+                                                          <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-3">
+                                                          <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              
+                                            </div>
+                                            
+                                            
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                  </div>
+                                </div>
+                                </div>
+
+                            <div class="col-md-7 text-center">
                                 <button
                                 class="btn btn-primary"
                                 style="background: #219935; border-color: #219935"
@@ -419,6 +533,7 @@ onMounted(() => {
                                     background: white;
                                     border-color: crimson;
                                     color: crimson;
+                                    font-size: 12px; 
                                 "
                                 data-bs-toggle="modal"
                                 data-bs-target="#annulModal10"
@@ -462,7 +577,7 @@ onMounted(() => {
                                     <button @click="annul(location)" class="btn btn-primary">Enregistrer</button>
                                     </div>
                                 </div>
-                                </div>
+                              </div>
                             </div>
                             </div>
                             </div>
@@ -492,6 +607,34 @@ onMounted(() => {
                                 </router-link>
                               </div>
                             </div>
+
+                            <div class="row mb-2" v-if="location.status == 'Utilisé'" style="margin: 4px; margin-top: -15px;">
+                               
+                              <div class="col-12 text-center">
+                                <router-link :to="`/messagerie/${location.companieInfos.uid}`">
+                                  <button
+                                  class="btn btn-primary w-75"
+                                  style="background: #219935; border-color: #219935 ;font-size: 12px; "
+                                  >
+                                  Recommander
+                                  </button>
+                                </router-link>
+                              </div>
+                            </div>
+
+                            <div class="row mb-2" v-if="location.status == 'annuler'" style="margin: 4px; margin-top: -15px;">
+                               
+                               <div class="col-12 text-center">
+                                 <router-link :to="`/messagerie/${location.companieInfos.uid}`">
+                                   <button
+                                   class="btn btn-primary w-75"
+                                   style="background: #219935; border-color: #219935 ;font-size: 12px; "
+                                   >
+                                   Recommander
+                                   </button>
+                                 </router-link>
+                               </div>
+                             </div>
                         </div>
                         </div>
                     </div>

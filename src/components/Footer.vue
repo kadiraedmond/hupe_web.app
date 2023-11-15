@@ -97,7 +97,7 @@ export default{
   </div>
 </div>
 
-<div class="container d-md-flex py-4">
+<div class="container d-md-flex py-4" style="padding-top: 0.8rem!important; padding-bottom: 0.8rem!important;">
 
   <div class="me-md-auto text-center text-md-start">
     <div class="copyright">

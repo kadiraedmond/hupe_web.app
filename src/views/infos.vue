@@ -390,6 +390,7 @@ onMounted(() => {
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">À propos de HUPE </h2>
+                                <hr>
                                 
                             </div>
                             
@@ -598,6 +599,7 @@ onMounted(() => {
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Comment ça marche </h2>
+                                <hr>
                                 <p>Pour chaque type de service sur "Hupe", voici comment le processus fonctionne, mettant en scène le client et le partenaire </p>
                             </div>
                             
