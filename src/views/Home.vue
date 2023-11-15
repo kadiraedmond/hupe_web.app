@@ -227,8 +227,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Évitez les files d'attente et réservez vos billets de bus en
-                  quelques instants.
+                  Explorez de nouveaux horizons avec notre flotte de véhicules de location adaptés à tous vos besoins. Confort, flexibilité, et aventure vous attendent
                 </p>
               </div>
             </div>
@@ -254,8 +253,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Évitez les files d'attente et réservez vos billets de bus en
-                  quelques instants.
+                  Réservez votre siège, embarquez pour l'aventure. Les billets de bus sont maintenant à portée de clic.
                 </p>
               </div>
             </div>
@@ -281,8 +279,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Évitez les files d'attente et réservez vos billets de bus en
-                  quelques instants.
+                  De la terre au chantier, nous avons les gros engins qu'il vous faut. Location professionnelle pour des résultats exceptionnels.
                 </p>
               </div>
             </div>
@@ -308,8 +305,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Évitez les files d'attente et réservez vos billets de bus en
-                  quelques instants.
+                  Le véhicule de vos rêves est à portée de main. Découvrez notre sélection exceptionnelle de voitures, prêtes à vous offrir le plaisir de conduire.
                 </p>
               </div>
             </div>
