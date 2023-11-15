@@ -219,9 +219,9 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #219935">
+              <div class="card-body" style="background: #62bfc4">
                 <router-link to="/location" class="mt-4" id="a">
-                  <h5 class="card-title text-white" style="font-size: 17px">
+                  <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Louer un véhicule
                   </h5>
                 </router-link>
@@ -246,9 +246,9 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #219935">
+              <div class="card-body" style="background: #bbded8">
                 <router-link to="/reservation" class="mt-4" id="a">
-                  <h5 class="card-title text-white" style="font-size: 17px">
+                  <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Réserver un ticket de bus
                   </h5>
                 </router-link>
@@ -273,9 +273,9 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #219935">
+              <div class="card-body" style="background: #f8e4dd">
                 <router-link to="/location_gros_engin" class="mt-4" id="a">
-                  <h5 class="card-title text-white" style="font-size: 17px">
+                  <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Louer un gros engin
                   </h5>
                 </router-link>
@@ -300,9 +300,9 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #219935">
+              <div class="card-body" style="background: #fdb7b9">
                 <router-link to="/reservation" class="mt-4" id="a">
-                  <h5 class="card-title text-white" style="font-size: 17px">
+                  <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Acheter un véhicule
                   </h5>
                 </router-link>
@@ -628,7 +628,11 @@ onMounted(() => {
                             <strong style="color:rgb(139 139 139) ;font-weight: 500;">Convocation | </strong
                             >{{ popularDestination.heure_convocation }}
                           </p>
-                          <p class="card-text" style="font-size: 13px">
+                          <p class="card-text" style="font-size: 13px" v-if="popularDestination.jours_voyage.length > 8">
+                            <strong style="color:rgb(139 139 139) ;font-weight: 500;">Jours du voyages |</strong>
+                            {{ popularDestination.jours_voyage.substr(0, 8) }}...
+                          </p>
+                          <p class="card-text" style="font-size: 13px" v-if="popularDestination.jours_voyage.length <= 8">
                             <strong style="color:rgb(139 139 139) ;font-weight: 500;">Jours du voyages |</strong>
                             {{ popularDestination.jours_voyage }}
                           </p>

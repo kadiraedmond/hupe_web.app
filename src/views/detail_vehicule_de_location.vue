@@ -20,10 +20,13 @@ const promotionStore = usePromotionStore()
 const authStore = useAuthStore()
 const carId = route.params.id
 
+let companieId 
+
 onBeforeMount(async () => {
   await promotionStore.setVehicule(carId)
 
-  const companieId = await promotionStore.vehicule.compagnie_id
+  companieId = promotionStore.vehicule.compagnie_uid
+  console.log(companieId)
 
   companieStore.setCompanieById(companieId)
   companieStore.setCompanieCars(companieId)
@@ -89,13 +92,13 @@ const reserver = async (car) => {
     chauffeur: avecChauffeur.value === true ? "Oui" : "Non",
     client_id: user.uid || "",
     client_profil_url: user.imageUrl || "",
-    compagnie_id: companieStore.companie.uid,
+    compagnie_id: companieId,
     created_at: new Date(),
     date_retour: new Date(dateRetour.value),
     date_retrait: new Date(dateRetrait.value),
     enPromo: car.enPromo || false,
     heure_retrait: heureRetrait.value,
-    identite_image_url: '' || permis.value,
+    identite_image_url: permis.value || '',
     interieurPays: interieurPays.value === true ? "Oui" : "Non",
     latitude: "",
     lieu_retrait: lieuRetrait.value,

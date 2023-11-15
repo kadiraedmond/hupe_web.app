@@ -40,7 +40,7 @@ const updateReservationsDashboard = (datas) => {
     }
     
     else if(data.status == 'Validé') {
-      utilisees.totalNumber++
+      valides.totalNumber++
       utilisees.totalPrice += Number(data.montant)
     }
     
