@@ -150,7 +150,7 @@ const retrait = async () => {
                 <div class="col-md-4">
                   <p>
                     <img src="/public/assets/img/icone/calendar.png" alt="" />
-                    {{ new Intl.DateTimeFormat(undefined, options).format(history.date_retrait) }}
+                    {{ new Intl.DateTimeFormat(undefined, options).format(history.datePayement) }} 
                   </p>
                 </div>
               </div>

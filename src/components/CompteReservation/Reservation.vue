@@ -1,7 +1,9 @@
 <script setup>
 import { useReservationStore } from '@/store/reservation.js'
 import { useAuthStore } from '@/store/auth.js'
-import { reactive, ref, onBeforeMount, onMounted } from "vue";
+import { reactive, ref, onBeforeMount, onMounted } from "vue"
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { firestoreDb, storage } from "@/firebase/firebase.js"
 
 const reservationStore = useReservationStore()
 const authStore = useAuthStore()
@@ -99,6 +101,43 @@ onBeforeMount(async () => {
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+const valider = async (reservation) => {
+  const docRef = doc(firestoreDb, 'location_vehicules', `${reservation.uid}`)
+
+  try {
+    await updateDoc(docRef, { status: 'Validé' })
+    Swal.fire({
+      title: "Succès",
+      text: "Validation effectuée",
+      icon: "success"
+    })
+
+    const userDocRef = doc(firestoreDb, 'users', `${reservation.client_id}`)
+    const snapshot = await getDoc(userDocRef)
+    let user
+    if(snapshot.exists()) user = snapshot.data()
+
+    const notificationColRef = collection(firestoreDb, 'notifications')
+    
+    const data = {
+      title: 'Validation de réservation', 
+      destinataire: reservation.client_id, 
+      message: `Votre demande de réservation de ticket pour le trajet « ${reservation.lieu_depart} - ${reservation.destination} » le « ${reservation.date_depart} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
+      lu: false, 
+      createdAt: new Date()
+    }
+
+    await addDoc(notificationColRef, data)
+  } catch (error) {
+    Swal.fire({
+      title: "Erreur",
+      text: "Erreur lors de la validation",
+      icon: "error"
+    })
+    console.log(error)
+  }
+} 
 
 </script>
 
@@ -580,6 +619,13 @@ onMounted(() => {
                                     >
                                     Jours de voyages | <strong>{{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</strong>
                                     </p>
+                                    <button 
+                                    class="btn btn-primary text-white mb-2" 
+                                    style="background: #219935; border: #219935; float: right" 
+                                    @click="valider(reservation)"
+                                    >
+                                      Valider
+                                    </button>
                                   </div>
                                 </div>
                               </div>

@@ -1,10 +1,13 @@
 <script setup>
-import { useCompanieStore } from "@/store/companie.js";
-import { useAuthStore } from "@/store/auth.js";
-import { reactive, ref, onBeforeMount, onMounted } from "vue";
+import { useCompanieStore } from "@/store/companie.js"
+import { useAuthStore } from "@/store/auth.js"
+import { reactive, ref, onBeforeMount, onMounted } from "vue"
+import Swal from 'sweetalert2'
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { firestoreDb, storage } from "@/firebase/firebase.js"
 
-const companieStore = useCompanieStore();
-const authStore = useAuthStore();
+const companieStore = useCompanieStore()
+const authStore = useAuthStore()
 
 let enAttente = reactive({
   totalNumber: 0,
@@ -87,7 +90,65 @@ onBeforeMount(async () => {
 
 onMounted(() => {
   window.scrollTo(0, 0);
-});
+})
+
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
+
+const valider = async (location) => {
+  const docRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)
+
+  try {
+    await updateDoc(docRef, { status: 'Validé' })
+    Swal.fire({
+      title: "Succès",
+      text: "Validation effectuée",
+      icon: "success"
+    })
+
+    const userDocRef = doc(firestoreDb, 'users', `${location.client_id}`)
+    const snapshot = await getDoc(userDocRef)
+    let user
+    if(snapshot.exists()) user = snapshot.data()
+
+    const notificationColRef = collection(firestoreDb, 'notifications')
+
+    const uneJournee = 24 * 60 * 60 * 1000
+
+    const dateRetrait = new Date(location.date_retrait)
+    const dateRetour = new Date(location.date_retour)
+
+    const differenceEnMs = Math.abs(dateRetour - dateRetrait) 
+
+    const differenceEnJours = Math.round(differenceEnMs / uneJournee)
+
+    const formatedDateRetrait = new Intl.DateTimeFormat(undefined, options).format(location.date_retrait)
+    const formatedDateRetour = new Intl.DateTimeFormat(undefined, options).format(location.date_retour)
+    
+    const data = {
+      title: 'Validation de réservation', 
+      destinataire: location.client_id, 
+      message: `Votre demande de réservation du véhicule « ${location.vehicule} ${location.modele} » pour une durée de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
+      lu: false, 
+      createdAt: new Date()
+    }
+
+    await addDoc(notificationColRef, data)
+  } catch (error) {
+    Swal.fire({
+      title: "Erreur",
+      text: "Erreur lors de la validation",
+      icon: "error"
+    })
+    console.log(error)
+  }
+} 
 </script>
 
 <template>
@@ -429,11 +490,7 @@ onMounted(() => {
                     <div class="row">
                       <div
                         class="col-md-4"
-                        v-for="(
-                          location, index
-                        ) in elements_en_attente"
-                        :key="index"
-                      >
+                        v-for="(location, index) in elements_en_attente" :key="index">
                         <div
                           class="accordion-item mb-3"
                           style="border: 1px solid #d2d2d2; border-radius: 5px"
@@ -682,6 +739,13 @@ onMounted(() => {
                                           Nombres de jours de location |
                                           <strong>5 jours</strong>
                                         </p>
+                                        <button 
+                                        class="btn btn-primary text-white mb-2" 
+                                        style="background: #219935; border: #219935; float: right" 
+                                        @click="valider(location)"
+                                        >
+                                          Valider
+                                        </button>
                                       </div>
                                     </div>
                                   </div>
