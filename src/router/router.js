@@ -43,6 +43,8 @@ import Pays from '@/views/pays.vue';
 import Confirmation from '@/views/attente.vue';
 import Raison from '@/views/raison.vue';
 import Notification from '@/views/notification.vue';
+import Tickets from '@/views/ticket_location.vue';
+import Ticketss from '@/views/ticket_reservation.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -332,7 +334,20 @@ const routes = [
     name: 'Notification',
     component: Notification,
     
-  }
+  },
+  {
+    path: '/ticket_location',
+    name: 'Tickets',
+    component: Tickets,
+    
+  },
+
+  {
+    path: '/ticket_reservation',
+    name: 'Ticketss',
+    component: Ticketss,
+    
+  },
 ];
 
 const router = createRouter({
