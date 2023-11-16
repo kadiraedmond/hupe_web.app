@@ -68,19 +68,35 @@ const date_report = ref()
 
 const reporter = async (location) => {
   const reportColRef = collection(firestoreDb, 'location_reporter')
+  const locationDocRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)
 
   const { status, ...extracted_location } = location
 
   const docRef = await addDoc(reportColRef, { extracted_location, status: 'En attente', report: new Date(date_report.value) })
-        .then(() => {
-          console.log('Document ajouté')
-          toast.info("Location reportée", {
-            autoClose: 3500,
-            position: toast.POSITION.TOP_CENTER,
-          })
-        }) 
+  
+  if(docRef) {
+    Swal.fire({
+      title: "Succès",
+      text: "Votre demande de report a été envoyé", 
+      icon: "success"
+    })
 
-  await updateDoc(docRef, { uid: `${docRef.id}` })
+    await updateDoc(locationDocRef, { status: 'En attente de report' }) 
+
+    const notificationColRef = collection(firestoreDb, 'notifications')
+
+    const data = {
+      title: 'Report de location', 
+      message: `Vous avez une demande de report de la location Numéro ${location.number}`, 
+      userId: location.compagnie_id, 
+      lu: false, 
+      createdAt: new Date() 
+    }
+
+    await addDoc(notificationColRef, data)
+    
+    await updateDoc(docRef, { uid: `${docRef.id}` })
+  }
 
   document.querySelector('#reportForm').reset()
   document.querySelector('.btn-close').click()

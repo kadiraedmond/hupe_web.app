@@ -25,7 +25,7 @@ let companieId
 onBeforeMount(async () => {
   await promotionStore.setVehicule(carId)
 
-  companieId = promotionStore.vehicule.compagnie_uid
+  companieId = promotionStore.vehicule.compagnie_id
   console.log(companieId)
 
   companieStore.setCompanieById(companieId)

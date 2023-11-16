@@ -1,7 +1,10 @@
 <script setup>
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount , onMounted } from "vue"
+import { onBeforeMount , onMounted, ref } from "vue"
+import Swal from 'sweetalert2'
+import { collection, query, doc, addDoc, updateDoc, where, getDoc, getDocs} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -18,6 +21,51 @@ onBeforeMount(() => {
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+const showWithdrawModal = ref(false)
+
+const checkAccount = () => {
+  if(Number(companieStore.totalAmount.solde) < 50000) {
+    Swal.fire({
+    title: "Erreur",
+    text: "Votre solde est insuffisant pour un retrait",
+    icon: "error"
+  })
+  } else if(Number(companieStore.totalAmount.solde) >= 50000) {
+    showWithdrawModal.value = true
+  }
+}
+
+const montant = ref()
+const retrait = async () => {
+  try {
+    const retraitColRef = collection(firestoreDb, 'retrait') 
+
+    const data = {
+      body: Number(montant.value), 
+      compagnieUID: userId, 
+      date: new Date(), 
+      solde: Number(companieStore.totalAmount.solde), 
+      status: 'En attente', 
+      title: 'Retrait'
+    }
+
+    await addDoc(retraitColRef, data)
+
+    Swal.fire({
+      title: "Succès",
+      text: "Votre demande a été effectuée",
+      icon: "success"
+    })
+  } catch (error) {
+    Swal.fire({
+      title: "Erreur",
+      text: "Erreur lors du traitement de la demande",
+      icon: "error"
+    })
+    console.log(error)
+  }
+}
 </script>
 
 <template>
@@ -33,7 +81,6 @@ onMounted(() => {
               <p><strong> Solde |</strong> {{ companieStore.totalAmount.solde }}</p>
             </div>
             <div class="col-md-6 text-end">
-              <router-link to="'/formulaire_reservation'" id="a_compagnie">
                 <button
                   class="btn btn-primary"
                   style="
@@ -41,6 +88,8 @@ onMounted(() => {
                     border-color: rgb(33 153 53);
                     margin-top: -8px;
                   "
+                  :data-bs-toggle="showWithdrawModal && 'modal'" :data-bs-target="showWithdrawModal && '#exampleModalr'" 
+                  @click="checkAccount"
                 >
                   <img
                     src="/public/assets/img/icone/plus.png"
@@ -49,7 +98,38 @@ onMounted(() => {
                   />
                   Demander un retrait
                 </button>
-              </router-link>
+
+                <!-- Modal -->
+                <div class="modal fade" :id="showWithdrawModal && 'exampleModalr'" tabindex="-1" aria-labelledby="exampleModalLabelr" aria-hidden="true" v-show="showWithdrawModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background: #219935">
+                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Demande de retrait</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-end">
+                        <div class="row">
+                          <div class="col-md-12"></div>
+                          <div class="col-md-12">
+                            <form @submit.prevent="retrait" class="row g-3 needs-validation" novalidate>
+                              <div class="col-md-12 text-start">
+                                <label for="validationCustom01" class="form-label">Entrez le montant</label>
+                                <input type="number" class="form-control" v-model="montant" required>
+                                
+                              </div>
+                              
+                              <div class="col-12">
+                                <button class="btn btn-primary" type="submit" style="background: #219935; border-color: #219935;">Valider</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
@@ -70,7 +150,7 @@ onMounted(() => {
                 <div class="col-md-4">
                   <p>
                     <img src="/public/assets/img/icone/calendar.png" alt="" />
-                    {{ history.date_retrait }}
+                    {{ new Intl.DateTimeFormat(undefined, options).format(history.datePayement) }} 
                   </p>
                 </div>
               </div>
