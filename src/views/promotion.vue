@@ -49,18 +49,18 @@ onBeforeMount(() => {
           </div>
            
         </div>
-        <div class="row">
+        <div class="row mt-4">
           <div class="col-12">
             <div class="d-flex align-items-start">
             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Location de véhicule</button>
-              <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Reservation de ticket</button>
-              <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false" >Locations de gros engin</button>
-              <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Vente de véhicule</button>
+              <button class="nav-link active text-start" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Location de véhicule</button>
+              <button class="nav-link text-start" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Reservation de ticket</button>
+              <button class="nav-link text-start" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false" >Locations de gros engin</button>
+              <button class="nav-link text-start" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Vente de véhicule</button>
             </div>
             <div class="tab-content" id="v-pills-tabContent">
               <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
-                <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
+                <div class="row row-cols-1 row-cols-md-3  g-2">
                 <div class="col" v-for="(offre, index) in promotionStore.offresVehicules" :key="index">
                   <div
                     class="card border-0"
@@ -143,13 +143,31 @@ onBeforeMount(() => {
       </div>
     </section>
   
-      
-
-     
-
-
-
+ 
 </template>
 
-<style>
+<style scoped>
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: #219935;
+}
+
+#badges012 {
+    background: #219935;
+    display: inline-block;
+    left: 207px;
+    /* width: 92px; */
+    /* padding: 1px 14px; */
+    font-weight: 700;
+    border-radius: 0;
+    text-align: center;
+    position: absolute;
+    text-transform: uppercase;
+    border-radius: 5px;
+    /* line-height: 24px; */
+    border: none;
+    margin-top: 177px;
+    font-size: 12px;
+    color: white;
+}
 </style>
