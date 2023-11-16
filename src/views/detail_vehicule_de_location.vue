@@ -5,6 +5,7 @@ import { useCompanieStore } from "@/store/companie.js"
 import { usePromotionStore } from "@/store/promotion.js"
 import Loader from "@/components/Loader.vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
+import Swal from 'sweetalert2'
 
 import { collection, doc, addDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
@@ -84,6 +85,15 @@ const locationColRef = collection(firestoreDb, "location_vehicules");
 
 const isLoading = ref(false)
 
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
+
 
 const reserver = async (car) => {
   isLoading.value = true
@@ -120,24 +130,52 @@ const reserver = async (car) => {
   if(Data)  isLoading.value = true
 
   try {
-    const docRef = await addDoc(locationColRef, Data);
+    await addDoc(locationColRef, Data)
 
-    if (docRef) {
-      console.log("Document ajouté avec success");
+    console.log("Document ajouté avec success")
 
-      isLoading.value = false;
+    isLoading.value = false
 
-      document.querySelector(".btn-close").click();
+    document.querySelector(".btn-close").click()
 
-      toast.success("Réservation effectuée avec succès", {
-        autoClose: 3500,
-        position: toast.POSITION.TOP_CENTER,
-      });
+    Swal.fire({
+      title: "Succès",
+      text: "Réservation effectuée avec succès",
+      icon: "success"
+    })
+
+    const notificationColRef = collection(firestoreDb, 'notifications')
+
+    const uneJournee = 24 * 60 * 60 * 1000
+
+    const dateRetrait = new Date(car.date_retrait)
+    const dateRetour = new Date(car.date_retour)
+
+    const differenceEnMs = Math.abs(dateRetour - dateRetrait) 
+
+    const differenceEnJours = Math.round(differenceEnMs / uneJournee)
+
+    const userDocRef = doc(firestoreDb, 'users', `${car.client_id}`)
+    const snapshot = await getDoc(userDocRef)
+    let user
+    if(snapshot.exists()) user = snapshot.data()
+
+    const formatedDateRetrait = new Intl.DateTimeFormat(undefined, options).format(car.date_retrait)
+    const formatedDateRetour = new Intl.DateTimeFormat(undefined, options).format(car.date_retour)
+    
+    const comp_notif = {
+      title: 'Location de véhicule', 
+      message: `Vous avez une réservation du véhicule « ${car.vehicule} ${car.modele} » en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} », veuillez valider ou annuler cette réservation.`, 
+      userId: car.compagnie_id,
+      lu: false, 
+      createdAt: new Date()
     }
 
-    document.querySelector("#reservationForm").reset();
+    await addDoc(notificationColRef, comp_notif)
+
+    document.querySelector("#reservationForm").reset()
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 };
 

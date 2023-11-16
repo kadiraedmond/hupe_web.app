@@ -7,7 +7,10 @@ import { useLocalisationStore } from '@/store/localisation.js'
 import axios from 'axios'
 import router from '@/router/router.js'
 
-import { onMounted, ref } from 'vue'
+import { onMounted, onBeforeMount, ref } from 'vue'
+
+import { firestoreDb } from "@/firebase/firebase.js"
+import { updateDoc, doc, getDocs, query, where, collection, getDoc } from "firebase/firestore"
 
 const authStore = useAuthStore()
 const localisationStore = useLocalisationStore()
@@ -15,6 +18,35 @@ const searchStore = useSearchStore()
 
 const user = authStore.user
 const savedUser = JSON.parse(localStorage.getItem('user'))
+let connectedUser 
+
+const notifications = ref([])
+
+const notificationColRef = collection(firestoreDb, 'notifications')
+
+const noneReadNotifications = ref([])
+
+onBeforeMount(async () => {
+  connectedUser = JSON.parse(localStorage.getItem('user')) || authStore.user 
+
+  if(connectedUser.raison_social) {
+      const q = query(notificationColRef, where('userId', '==', `${connectedUser.uid}`))
+
+      const snapshot = await getDocs(q)
+      snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+  } else {
+      const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
+
+      const snapshot = await getDocs(q)
+      snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+  }
+
+  notifications.value.forEach(notification => {
+    if(notification.lu === false) {
+        noneReadNotifications.value.push(notification)
+    }
+  })
+})
 
 const country = ref()
 
@@ -190,10 +222,11 @@ const logout = async () => {
             </ul>
           </li>
           <li>
-            <router-link class="nav-link scrollto" to="/notification" :class="{ active: $route.path === '/notification' }"
+            <router-link v-if="authStore.user.uid || savedUser" class="nav-link scrollto" :to="`/notification`" :class="{ active: $route.path === '/notification' }"
             ><i class="bx bxs-bell" id="icon_menu"></i>
+            {{ noneReadNotifications.length }}
             </router-link>
-           </li>
+          </li>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

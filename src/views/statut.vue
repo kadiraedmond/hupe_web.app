@@ -77,21 +77,39 @@ const annul = async (reservation) => {
 const date_report = ref()
 
 const reporter = async (reservation) => {
-  
   const reportColRef = collection(firestoreDb, 'reservation_reporter')
+  const reservationDocRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)
 
   const { status, ...extracted_reservation } = reservation
 
-  const docRef = await addDoc(reportColRef, { extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
-        .then(() => {
-          console.log('Document ajouté')
-          toast.info("Réservation reportée", {
-            autoClose: 3500,
-            position: toast.POSITION.TOP_RIGHT,
-          })
-        }) 
+  try {
+    const docRef = await addDoc(reportColRef, { extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
 
-  await updateDoc(docRef, { uid: `${docRef.id}` })
+    Swal.fire({
+      title: "Succès",
+      text: "Votre demande de report a été envoyé", 
+      icon: "success"
+    })
+
+    await updateDoc(reservationDocRef, { status: 'En attente de report' }) 
+  
+    const notificationColRef = collection(firestoreDb, 'notifications')
+  
+    const data = {
+      title: 'Report de réservation', 
+      message: `Vous avez une demande de report de la réservation N° ${reservation.number}`, 
+      userId: reservation.compagnie_id, 
+      lu: false, 
+      createdAt: new Date() 
+    }
+  
+    await addDoc(notificationColRef, data)
+
+    await updateDoc(docRef, { uid: `${docRef.id}` })
+    
+  } catch (error) {
+    console.log(error)
+  }
 
   document.querySelector('#reportForm').reset()
   document.querySelector('.btn-close').click()
@@ -115,28 +133,72 @@ const payer = async (reservation) => {
     })
   } else {
     const result = await Swal.fire({
-        title: 'Continuer le payement ?',
-        showCancelButton: true,
-        confirmButtonText: 'Oui',
-        cancelButtonText: 'Non',
+      title: 'Continuez le payement ?',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
     })
       
     if (result.isConfirmed) {
-        const data = {
-          solde: Number(amount.solde) - Number(reservation.montant), 
-        }
+    // Debiter le solde du client
+    const data = {
+      solde: Number(amount.solde) - Number(reservation.montant), 
+    }
     
-        try {
-            await updateDoc(accountDocRef, data)
-            Swal.fire({
-            title: "Succès",
-            text: "Payement effectué",
-            icon: "success"
-            })
-            console.log('Payement effectué')
-        } catch (error) {
-            console.log(error)
-        }
+    try {
+      await updateDoc(accountDocRef, data)
+
+      Swal.fire({
+        title: "Succès",
+        text: "Payement effectué",
+        icon: "success"
+      })
+
+      const notificationColRef = collection(firestoreDb, 'notifications')
+
+      const client_notif = {
+        title: 'Paiement pour réservation', 
+        message: `Vous avez effectué un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
+        destinataire: userId,
+        lu: false, 
+        createdAt: new Date()
+      }
+
+      await addDoc(notificationColRef, client_notif)
+  
+      // ajouter la somme sur le compte de la compagnie
+      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_id}`)
+      const comp_accountColRef = collection(comp_companieDocRef, 'myAccount')
+      const comp_accountDocRef = doc(comp_accountColRef, 'account')
+
+      const snapshot = await getDoc(comp_accountDocRef)
+      let companieAccount
+      if(snapshot.exists()) companieAccount = snapshot.data()
+
+      const comp_data = {
+        solde: Number(companieAccount.solde) + Number(reservation.montant)
+      }
+
+      await updateDoc(comp_accountDocRef, comp_data)
+
+      const comp_notif = {
+        title: 'Réception de paiement', 
+        message: `Vous avez reçu un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
+        userId: reservation.compagnie_id,
+        lu: false, 
+        createdAt: new Date()
+      }
+
+      await addDoc(notificationColRef, comp_notif)
+
+      // mise a jour du status de la réservation
+      const reservationDolRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)
+      await updateDoc(reservationDocRef, { status: 'Confirmé' })
+      
+      console.log('Payement effectué')
+    } catch (error) {
+      console.log(error)
+    }
     }
   }
 }
