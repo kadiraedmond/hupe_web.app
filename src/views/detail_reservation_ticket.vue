@@ -39,6 +39,15 @@ const user = JSON.parse(localStorage.getItem('user')) || authStore.user
 
 const isLoading = ref(false)
 
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
+
 const reserver = async (programme) => {
   isLoading.value = true
   const Data = {
@@ -65,20 +74,38 @@ const reserver = async (programme) => {
   if(Data)  isLoading.value = true
 
   try {
-    const docRef = await addDoc(reservationColRef, Data)
+    await addDoc(reservationColRef, Data)
 
-    if(docRef) {
-      console.log('Document ajouté avec success')
+    console.log('Document ajouté avec success')
 
-      isLoading.value = false
+    isLoading.value = false
 
-      document.querySelector('.btn-close').click()
+    document.querySelector('.btn-close').click()
 
-      toast.success("Réservation effectuée avec succès", { 
-        autoClose: 3500, 
-        position: toast.POSITION.TOP_CENTER
-      })
+    Swal.fire({
+      title: "Succès",
+      text: "Réservation effectuée avec succès",
+      icon: "success"
+    })
+
+    const notificationColRef = collection(firestoreDb, 'notifications')
+
+    const userDocRef = doc(firestoreDb, 'users', `${programme.client_id}`)
+    const snapshot = await getDoc(userDocRef)
+    let user
+    if(snapshot.exists()) user = snapshot.data()
+
+    const formatedDateDepart = new Intl.DateTimeFormat(undefined, options).format(programme.date_depart)
+    
+    const comp_notif = {
+      title: 'Réservation de ticket', 
+      message: `Vous avez une réservation de ticket N° ${programme.number} en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet « ${programme.lieu_depart} - ${programme.destination} » du « ${formatedDateDepart} », veuillez valider ou annuler cette réservation.`, 
+      userId: programme.compagnie_id,
+      lu: false, 
+      createdAt: new Date()
     }
+
+    await addDoc(notificationColRef, comp_notif)
 
     document.querySelector('#reservationForm').reset()
   } catch (error) {

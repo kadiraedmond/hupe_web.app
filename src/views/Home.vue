@@ -1474,7 +1474,7 @@ onMounted(() => {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #219935;
+  background-color: #EEE;
   border-left: 2px solid #cad1f8;
   animation: animate 4s steps(12) infinite;
 }

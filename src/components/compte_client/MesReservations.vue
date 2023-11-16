@@ -113,18 +113,69 @@ const payer = async (reservation) => {
       icon: "error"
     })
   } else {
+    const result = await Swal.fire({
+      title: 'Continuez le payement ?',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+    })
+      
+    if (result.isConfirmed) {
+    // Debiter le solde du client
     const data = {
       solde: Number(amount.solde) - Number(reservation.montant), 
     }
+    
+    try {
+      await updateDoc(accountDocRef, data)
 
-    const update = await updateDoc(accountDocRef, data)
-
-    if(update) {
       Swal.fire({
         title: "Succès",
         text: "Payement effectué",
         icon: "success"
       })
+
+      const notificationColRef = collection(firestoreDb, 'notifications')
+
+      const client_notif = {
+        title: 'Paiement pour réservation', 
+        message: `Vous avez effectué un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
+        destinataire: userId,
+        lu: false, 
+        createdAt: new Date()
+      }
+
+      await addDoc(notificationColRef, client_notif)
+  
+      // ajouter la somme sur le compte de la compagnie
+      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_id}`)
+      const comp_accountColRef = collection(comp_companieDocRef, 'myAccount')
+      const comp_accountDocRef = doc(comp_accountColRef, 'account')
+
+      const snapshot = await getDoc(comp_accountDocRef)
+      let companieAccount
+      if(snapshot.exists()) companieAccount = snapshot.data()
+
+      const comp_data = {
+        solde: Number(companieAccount.solde) + Number(reservation.montant)
+      }
+
+      await updateDoc(comp_accountDocRef, comp_data)
+
+      const comp_notif = {
+        title: 'Réception de paiement', 
+        message: `Vous avez reçu un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
+        userId: reservation.compagnie_id,
+        lu: false, 
+        createdAt: new Date()
+      }
+
+      await addDoc(notificationColRef, comp_notif)
+      
+      console.log('Payement effectué')
+    } catch (error) {
+      console.log(error)
+    }
     }
   }
 }

@@ -3,6 +3,7 @@ import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import { updateDoc, doc, collection, getDoc } from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
 
 const userStore = useUserStore()
 const authStore = useAuthStore()
@@ -105,6 +106,23 @@ const recharge = async () => {
             text: "Votre rechargement a été effectué avec succès",
             icon: "success"
           })
+
+          const notificationColRef = collection(firestoreDb, 'notifications')
+
+          const client_notif = {
+            title: 'Rechargement de compte', 
+            message: `Votre compte a été crédité de FCFA ${montant.value}. Profitez de ce solde pour vos prochaines commandes.`, 
+            destinataire: userId,
+            lu: false, 
+            createdAt: new Date()
+          }
+
+          try {
+            await addDoc(notificationColRef, client_notif)
+          } catch (error) {
+            console.log(error)
+          }
+
         }
     })
     CinetPay.onError((data) => {

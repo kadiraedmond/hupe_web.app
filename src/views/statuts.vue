@@ -72,30 +72,33 @@ const reporter = async (location) => {
 
   const { status, ...extracted_location } = location
 
-  const docRef = await addDoc(reportColRef, { extracted_location, status: 'En attente', report: new Date(date_report.value) })
-  
-  if(docRef) {
+  try {
+    const docRef = await addDoc(reportColRef, { extracted_location, status: 'En attente', report: new Date(date_report.value) })
+    
     Swal.fire({
       title: "Succès",
       text: "Votre demande de report a été envoyé", 
       icon: "success"
     })
-
+  
     await updateDoc(locationDocRef, { status: 'En attente de report' }) 
-
+  
     const notificationColRef = collection(firestoreDb, 'notifications')
-
+  
     const data = {
       title: 'Report de location', 
-      message: `Vous avez une demande de report de la location Numéro ${location.number}`, 
+      message: `Vous avez une demande de report de la location N° ${location.number}`, 
       userId: location.compagnie_id, 
       lu: false, 
       createdAt: new Date() 
     }
-
+  
     await addDoc(notificationColRef, data)
     
     await updateDoc(docRef, { uid: `${docRef.id}` })
+    
+  } catch (error) {
+    console.log(error)
   }
 
   document.querySelector('#reportForm').reset()
@@ -152,21 +155,74 @@ const payer = async (location) => {
     })
       
     if (result.isConfirmed) {
-      const data = {
-        solde: Number(amount.solde) - Number(location.montant), 
+    // Debiter le solde du client
+    const data = {
+      solde: Number(amount.solde) - Number(location.montant), 
+    }
+
+    try {
+      await updateDoc(accountDocRef, data)
+
+      Swal.fire({
+        title: "Succès",
+        text: "Payement effectué",
+        icon: "success"
+      })
+
+      const notificationColRef = collection(firestoreDb, 'notifications')
+
+      const uneJournee = 24 * 60 * 60 * 1000
+
+      const dateRetrait = new Date(location.date_retrait)
+      const dateRetour = new Date(location.date_retour)
+
+      const differenceEnMs = Math.abs(dateRetour - dateRetrait) 
+
+      const differenceEnJours = Math.round(differenceEnMs / uneJournee)
+
+      const client_notif = {
+        title: 'Paiement pour location', 
+        message: `Vous avez effectué un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
+        destinataire: userId,
+        lu: false, 
+        createdAt: new Date()
       }
+
+      await addDoc(notificationColRef, client_notif)
   
-      try {
-        await updateDoc(accountDocRef, data)
-        Swal.fire({
-          title: "Succès",
-          text: "Payement effectué",
-          icon: "success"
-        })
-        console.log('Payement effectué')
-      } catch (error) {
-        console.log(error)
+      // ajouter la somme sur le compte de la compagnie
+      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${location.compagnie_id}`)
+      const comp_accountColRef = collection(comp_companieDocRef, 'myAccount')
+      const comp_accountDocRef = doc(comp_accountColRef, 'account')
+
+      const snapshot = await getDoc(comp_accountDocRef)
+      let companieAccount
+      if(snapshot.exists()) companieAccount = snapshot.data()
+
+      const comp_data = {
+        solde: Number(companieAccount.solde) + Number(location.montant)
       }
+
+      await updateDoc(comp_accountDocRef, comp_data)
+
+      const comp_notif = {
+        title: 'Réception de paiement', 
+        message: `Vous avez reçu un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele}.`, 
+        userId: location.compagnie_id,
+        lu: false, 
+        createdAt: new Date()
+      }
+
+      await addDoc(notificationColRef, comp_notif)
+
+      // mise a jour du status de la location
+      const locationDolRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)
+      await updateDoc(locationDocRef, { status: 'Confirmé' })
+      
+      console.log('Payement effectué')
+    } catch (error) {
+      console.log(error)
+    }
     }
   }
 }
@@ -602,8 +658,8 @@ onMounted(() => {
                                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                       <div class="modal-content" style="width: 87%;">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <div class="modal-header text-white" style="background: #219935">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Détails du paiement</h1>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">

@@ -3,7 +3,7 @@ import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { collection, query, doc, where, setDoc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import { toast } from 'vue3-toastify'
 import { v4 as uuidv4 } from 'uuid'
@@ -66,14 +66,22 @@ const handleSubmit = async () => {
   const newDoc = await addDoc(collectionRef, data)
 
   if(newDoc) {
-    companieCars.value.push(data)
-    const updateNewDoc = await updateDoc(newDoc, { uid: `${newDoc.id}` })
-
-    if(updateDoc) {
+    console.log('Document ajouté')
+    try {
+      await updateDoc(newDoc, { uid: `${newDoc.id}` }) 
       console.log('ID ajouté')
+
+      const newData = { ...data, uid: `${newDoc.id}` }
+      companieCars.value.push(newData)
+
+      const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer')
+
+      await setDoc(vehiculeColRef.doc(`${newDoc.id}`), newData)
+      
+    } catch (error) {
+      console.log(error)
     }
 
-    console.log('Document ajouté')
     await document.querySelector('.btn-close').click()
     Swal.fire({
       title: "Succès",

@@ -103,7 +103,7 @@ onMounted(() => {
 })
 
 const valider = async (reservation) => {
-  const docRef = doc(firestoreDb, 'location_vehicules', `${reservation.uid}`)
+  const docRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)
 
   try {
     await updateDoc(docRef, { status: 'Validé' })
