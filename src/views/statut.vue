@@ -249,6 +249,65 @@ onMounted(() => {
                     <div class="row g-0" style="margin: -2px">
                         <div class="col-md-12">
                         <div class="card-body">
+                            
+                          <div class="row mb-2" v-if="reservation.status == 'Confirmé'" style=" margin-top: 0px; margin-bottom: 24px !important;">
+                              <div class="col-6 text-start">
+                                  <button
+                                  class="btn btn-primary w-75"
+                                  style="
+                                      color: white;
+                                      border-color: #219935;
+                                      background: #219935;
+                                      font-size: 12px; 
+                                  "
+                                  >
+                                  <i class='bx bxs-download'></i>
+                                  </button>
+                              </div>
+                              <div class="col-6 text-end">
+                                <!-- Button trigger modal -->
+                                  <button type="button" class="btn btn-primary" style="background: #219935; border-color: #219935 ;font-size: 12px; " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Reporter
+                                  </button>
+
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog text-start">
+                                      <div class="modal-content">
+                                        <div class="modal-header" style="background-color:#219935 !important; color: white ">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Demande de report</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <div class="row">
+                                            <div class="col-md-12 text-center">
+                                              <p>Pour reporter votre ticket , veuillez séléctionner une nouvelle date</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                              <form class="row g-3 needs-validation" novalidate @submit.prevent="reporter(reservation)">
+                                                <div class="col-md-12">
+                                                  <label for="validationCustom01" class="form-label">Nouvelle date</label>
+                                                  <input type="date" class="form-control" v-model="date_report" id="validationCustom01"  required>
+                                                  <div class="valid-feedback">
+                                                    Looks good!
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="col-12 text-center">
+                                                  <button class="btn btn-primary" type="submit" style="background-color:#219935; border-color :#219935">Confirmer</button>
+                                                </div>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                         
+                                      </div>
+                                    </div>
+                                  </div>
+                                 
+                              </div>
+                            </div>
+                          
                             <div class="row mt-2">
                             <div class="col-6">
                                 <p
@@ -265,6 +324,15 @@ onMounted(() => {
                                
                                 </p>
                             </div>
+                            <div class="col-6">
+                              <p
+                            class="card-text"
+                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                            >
+                            N° |  <strong> {{ reservation.number }} </strong>
+                             
+                            </p>
+                            </div>
 
                             
                             </div>
@@ -274,16 +342,7 @@ onMounted(() => {
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
-                            N° |  <strong> {{ reservation.number }} </strong>
-                             
-                            </p>
-                        <br />
-
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            <strong>{{ reservation.modele }} </strong> |
+                           Place à réserver | <strong>{{ reservation.nombre_personne }} </strong> 
                             <!-- <strong> Santafe 2022 </strong> -->
                             </p>
                         <br />
@@ -291,22 +350,16 @@ onMounted(() => {
                             class="card-text"
                             style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                             >
-                            {{ reservation.moteur }} | {{ reservation.boite }} | {{ reservation.plaque_vehicule }}
+                            Trajet | {{ reservation.lieu_depart }} - {{ reservation.destination }}
                             </p>
                         <br />
                             <p
                             class="card-text"
                             style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                             >
-                            chauffeur | <strong>{{ reservation.chauffeur }} </strong>
+                            Escale | <strong>{{ reservation.escale }} </strong>
                             </p>
-                        <br />
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            Intérieur | <strong>{{ reservation.interieurPays }} </strong>
-                            </p>
+                         
                         <br />
                         </div>
                         </div>
@@ -328,8 +381,8 @@ onMounted(() => {
                                 margin-bottom: -8px;
                             "
                             >
-                            Retrait | <strong>{{ reservation.date_retrait }} </strong> |
-                            <strong>{{ reservation.heure_retrait }}</strong>
+                            Départ | <strong>{{ reservation.date_depart }} </strong> |
+                            <strong>{{ reservation.heure_depart }}</strong>
                             </p>
 
                         <br />
@@ -337,110 +390,24 @@ onMounted(() => {
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
-                            Retour | <strong>{{ reservation.date_retour }} </strong>
+                            Convocation | <strong>{{ reservation.heure_convocation }} </strong>
                             </p>
                         <br />
 
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            Nombres de jours de reservation |
-                            <strong>{{ reservation.number }}</strong>
-                            </p>
-                        <br />
+                            
 
+                            
                             <div class="row" v-if="reservation.status == 'Validé'">
-                            <div class="col-md-6">
+                           
+
+                            <div class="col-md-5">
                                 <button
                                 class="btn btn-primary"
-                                style="
-                                    background: white;
-                                    border-color: #219935;
-                                    color: #219935;
-                                "
-                                data-bs-toggle="modal"
-                                data-bs-target="#reportModal10"
-                                >
-                                Reporter
-                                </button>
-
-                                <!-- Modal -->
-                                <div
-                                class="modal fade"
-                                id="reportModal10"
-                                tabindex="-1"
-                                aria-labelledby="exampleModalLabel10"
-                                aria-hidden="true"
-                                >
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                                        Donnez les informations du report
-                                        </h1>
-                                        <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    <form id="reportForm" @submit.prevent="reporter(reservation)">
-                                        <label>Nouvelle Date</label>
-                                        <input v-model="date_report" type="date" />
-
-                                        <button type="submit" class="btn btn-primary">
-                                        Enregistrer
-                                        </button>
-                                    </form>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <button
-                                class="btn btn-primary"
-                                style="background: #219935; border-color: #219935"
-                                @click="payer(reservation)"
-                                >
-                                Procéder au paiement
-                                </button>
-                            </div>
-                            </div>
-
-                            <div class="row" v-if="reservation.status == 'Confirmé'">
-                            <div class="col-md-6">
-                                <button
-                                class="btn btn-primary w-75"
-                                style="
-                                    background: white;
-                                    border-color: #219935;
-                                    color: #219935;
-                                "
-                                >
-                                Appel
-                                </button>
-                            </div>
-                            <div class="col-md-6">
-                                <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
-                                    <button
-                                    class="btn btn-primary w-75"
-                                    style="background: #219935; border-color: #219935"
-                                    >
-                                        Message
-                                    </button>
-                                </router-link>
-                            </div>
-                            <div class="row" v-if="reservation.status == 'validé'">
-                            <div class="col-md-6">
-                                <button
-                                class="btn btn-primary w-75"
                                 style="
                                     background: white;
                                     border-color: crimson;
                                     color: crimson;
+                                    font-size: 12px; 
                                 "
                                 data-bs-toggle="modal"
                                 data-bs-target="#annulModal10"
@@ -456,38 +423,202 @@ onMounted(() => {
                                 aria-labelledby="exampleModalLabel10"
                                 aria-hidden="true"
                                 >
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                                        Donnez la raison de l'annulation
-                                        </h1>
-                                        <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    
-                                    <div>
-                                        <select v-model="option" class="w-100 mb-2">
-                                        <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du ticket</option>
-                                        <option value="J'ai changé d'avis">J'ai changé d'avis</option>
-                                        <option value="J'ai une autre option">J'ai une autre option</option>
-                                        <option value="Autre">Autre</option>
-                                        </select>
-                                        <div class="mb-2">
-                                        <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
+                                  <div class="modal-dialog">
+                                      <div class="modal-content" style="width: 75% !important">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                                              <img
+                                                src="/public/assets/img/avatars/1.png"
+                                                alt
+                                                class="w-px-40 h-auto rounded-circle"
+                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                              />
+                                            </h1>
+                                            <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                            ></button>
                                         </div>
-                                    </div>
-                                    <button @click="annul(reservation)" class="btn btn-primary">Enregistrer</button>
-                                    </div>
+
+                                        <div class="modal-body">
+                                          <div class="row">
+                                             
+                                            <div class="col-md-12 text-center">
+                                              <div class="row">
+                                                <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
+                                                  <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
+                                                </div>
+                                                <div class="col-12">
+                                                  <div class="row">
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-10">
+                                                      <div class="row">
+                                                        <div class="col-md-12 mb-3">
+                                                          <!-- <router-link to="/raison_d_annulation"> -->
+                                                            <button
+                                                            class="btn btn-primary w-100" @click="refresh()"
+                                                            style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
+                                                           
+                                                            >
+                                                            Annuler quand même
+                                                            </button>
+                                                          <!-- </router-link> -->
+                                                            
+
+                                                            
+                                                        </div>
+                                                        
+
+                                                        <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
+                                                          <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-3">
+                                                          <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              
+                                            </div>
+                                            
+                                            
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                  </div>
                                 </div>
                                 </div>
+
+                            <div class="col-md-7 ">
+                              <!-- Button trigger modal -->
+                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: #219935; border-color: #219935 ;font-size: 12px;">
+                                    Procéder au paiement
+                                  </button>
+
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content" style="width: 87%;">
+                                        <div class="modal-header" style="background-color: #219935 ; color: white">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Details pour le paiement</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <div class="row">
+                                            <div class="col-md-12 mb-4">
+                                              <div class="card">
+                                                <img src="" class="card-img-top" alt="..." style="    height: 215px; object-fit: cover;">
+                                                
+                                              </div>
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                              <h5 style="font-size: 16px;color: black;">Compagnie {{ reservation.companieInfos.raison_social }} </h5>
+                                            </div>
+                                            <div class="col-md-12">
+                                              <p style=" font-size: 14px;">  Place à réserver <strong>{{ reservation.nombre_personne }} </strong> |</p>
+                                              <p style="margin-top: -15px; font-size: 14px;">Trajet | {{ reservation.lieu_depart }} - {{ reservation.destination }}</p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> chauffeur | <strong>{{ reservation.chauffeur }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;">  Escale | <strong>{{ reservation.escale }} </strong></p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Départ | <strong>{{ reservation.date_depart }} </strong> |  <strong>{{ reservation.heure_depart }}</strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Convocation | <strong>{{ reservation.heure_convocation }} </strong> </p>
+                                             </div>
+                                            <hr>
+                                            <div class="col-md-12">
+                                              <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ reservation.nom_client }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ reservation.solde }} </strong> </p>
+                                            </div>
+
+                                            <hr>
+                                            <div class="col-md-12">
+                                              <p style=" font-size: 14px;"> Prix de reservation | <strong>{{ reservation.montant }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Total | <strong>{{ reservation.montant }} </strong><strong>{{ reservation.montant }} </strong> </p>
+                                            </div>
+
+                                            <div class="col-md-12 text-center">
+                                              <button class="btn btn-primary"  @click="payer(reservation)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                <!-- <button
+                                class="btn btn-primary"
+                                style="background: #219935; border-color: #219935 ;font-size: 12px;"
+                                @click="payer(reservation)"
+                                >
+                                Procéder au paiement
+                                </button> -->
                             </div>
                             </div>
+
+                            <div class="row" v-if="reservation.status == 'Confirmé'">
+                              <div class="col-md-6">
+                                  <button
+                                  class="btn btn-primary w-75"
+                                  style="
+                                      background: white;
+                                      border-color: #219935;
+                                      color: #219935;
+                                      font-size: 12px; 
+                                  "
+                                  >
+                                  Appel
+                                  </button>
+                              </div>
+                              <div class="col-md-6">
+                                <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
+                                    <button
+                                    class="btn btn-primary w-75"
+                                    style="background: #219935; border-color: #219935 ; font-size: 12px; "
+                                    >
+                                        Message
+                                    </button>
+                                </router-link>
+                              </div>
+                             
                             </div>
+
+                            <div class="row" v-if="reservation.status == 'Annuler'">
+                               
+                              <div class="col-md-12 text-center">
+                                <router-link to="">
+                                    <button
+                                    class="btn btn-primary w-75"
+                                    style="background: #219935; border-color: #219935 ; font-size: 12px; "
+                                    >
+                                        Commander à nouveau
+                                    </button>
+                                </router-link>
+                              </div>
+                             
+                            </div>
+
+                            <div class="row" v-if="reservation.status == 'Utilisé'">
+                               
+                               <div class="col-md-12 text-center">
+                                 <router-link to="">
+                                     <button
+                                     class="btn btn-primary w-75"
+                                     style="background: #219935; border-color: #219935 ; font-size: 12px; "
+                                     >
+                                         Commander à nouveau
+                                     </button>
+                                 </router-link>
+                               </div>
+                              
+                             </div>
+
+                            
+
                         </div>
                         </div>
                     </div>

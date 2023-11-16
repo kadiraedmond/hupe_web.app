@@ -43,6 +43,49 @@ onMounted(() => {
      <!-- ======= Expertise et conseils en immobiliers Section ======= -->
     <section id="features" class="features mt-4">
       <div class="container">
+        <div class="row mb-4" style="margin-top: -51px;
+    margin-bottom: 33px !important;">
+          <div class="col-md-3"></div>
+          <div class="col-md-9">
+            <div class="row" style="background: rgb(249 249 249); padding: 10px; border-radius: 5px;">
+                <div class="col-md-12">
+                  <form class="row g-3 needs-validation" method="post" action="">
+                    
+                    <div class="col-md-3">
+                      
+                      <select id="defaultSelect" name="type" class="form-select" placeholder="type">
+                        <option> <b placeholder="type"></b> </option>
+                        <option value=""></option>
+                         
+                      </select>
+                      
+                    </div>
+                    <div class="col-md-3">
+                       
+                      <input type="text" name="adresse" class="form-control" id="validationCustom02" placeholder="Adresse">
+                    
+                    </div>
+                    <div class="col-md-3">
+                      
+                        <input type="text" name="prix" class="form-control" id="validationCustomUsername" placeholder="Prix" aria-describedby="inputGroupPrepend">
+                         
+                    </div>
+                   
+                    <div class="col-3">
+                      <div class="row g-1">
+                        <div class="col-md-12">
+                          <button class="btn btn-primary w-75" type="submit" style="background: #219935; border-color: #219935;">Filtrer</button>
+                        </div>
+                         
+                      </div>
+                      
+                    </div>
+                  </form>
+                 
+                </div>
+              </div>
+          </div>
+        </div>
         
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">

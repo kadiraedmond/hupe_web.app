@@ -268,6 +268,71 @@ onMounted(() => {
                     <div class="row g-0" style="margin: -2px">
                         <div class="col-md-12">
                         <div class="card-body">
+
+                            <div class="row mb-2" v-if="location.status == 'Confirmé'" style=" margin-top: 0px; margin-bottom: 24px !important;">
+                              <div class="col-6 text-start">
+                                  <button
+                                  class="btn btn-primary w-75"
+                                  style="
+                                      color: white;
+                                      border-color: #219935;
+                                      background: #219935;
+                                      font-size: 12px; 
+                                  "
+                                  >
+                                  <i class='bx bxs-download'></i>
+                                  </button>
+                              </div>
+                              <div class="col-6 text-end">
+                                <!-- Button trigger modal -->
+                                  <button type="button" class="btn btn-primary" style="background: #219935; border-color: #219935 ;font-size: 12px; " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Reporter
+                                  </button>
+
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog text-start">
+                                      <div class="modal-content">
+                                        <div class="modal-header" style="background-color:#219935 !important; color: white ">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Demande de report</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <div class="row">
+                                            <div class="col-md-12 text-center">
+                                              <p>Pour reporter votre ticket , veuillez séléctionner une nouvelle date</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                              <form class="row g-3 needs-validation" novalidate>
+                                              <div class="col-md-12">
+                                                <label for="validationCustom01" class="form-label">Date de retrait</label>
+                                                <input type="date" class="form-control" id="validationCustom01" value="Mark" required>
+                                                <div class="valid-feedback">
+                                                  Looks good!
+                                                </div>
+                                              </div>
+                                              <div class="col-md-12">
+                                                <label for="validationCustom02" class="form-label">Date de retour</label>
+                                                <input type="date" class="form-control" id="validationCustom02" value="Otto" required>
+                                                <div class="valid-feedback">
+                                                  Looks good!
+                                                </div>
+                                              </div>
+                                              
+                                              <div class="col-12 text-center">
+                                                <button class="btn btn-primary" type="submit" style="background-color:#219935; border-color :#219935">Confirmer</button>
+                                              </div>
+                                            </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                         
+                                      </div>
+                                    </div>
+                                  </div>
+                                 
+                              </div>
+                            </div>
                             <div class="row mt-2">
                                 <div class="col-6">
                                     <p
@@ -295,10 +360,7 @@ onMounted(() => {
                                
                                 </div>     
                             </div>
-                            <br />
-
-                           
-
+                            <br /> 
                             <p
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
@@ -514,14 +576,70 @@ onMounted(() => {
                                 </div>
                                 </div>
 
-                            <div class="col-md-7 text-center">
-                                <button
+                            <div class="col-md-7 ">
+                              <!-- Button trigger modal -->
+                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: #219935; border-color: #219935 ;font-size: 12px;">
+                                    Procéder au paiement
+                                  </button>
+
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content" style="width: 87%;">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <div class="row">
+                                            <div class="col-md-12 mb-4">
+                                              <div class="card">
+                                                <img :src="location.vehicule_image_url" class="card-img-top" alt="..." style="    height: 215px; object-fit: cover;">
+                                                
+                                              </div>
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                              <h5 style="font-size: 16px;color: black;">Compagnie {{ location.companieInfos.raison_social }} </h5>
+                                            </div>
+                                            <div class="col-md-12">
+                                              <p style=" font-size: 14px;"> {{ location.marque }} {{ location.modele }} {{ location.annee }}</p>
+                                              <p style="margin-top: -15px; font-size: 14px;">{{ location.moteur }} | {{ location.boite }} | {{ location.plaque_vehicule }} </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> chauffeur | <strong>{{ location.chauffeur }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Intérieur | <strong>{{ location.interieurPays }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;">Retrait | <strong>{{ location.date_retrait }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Retour | <strong>{{ location.date_retour }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Nombres de jours de location |<strong>{{  }}</strong></p>
+                                            </div>
+                                            <hr>
+                                            <div class="col-md-12">
+                                              <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ location.chauffeur }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ location.interieurPays }} </strong> </p>
+                                            </div>
+
+                                            <hr>
+                                            <div class="col-md-12">
+                                              <p style=" font-size: 14px;"> Prix de location | <strong>{{ location.montant }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Intérieur du pays | <strong>{{ location.interieurpaysprix}} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Chauffeur | <strong>{{location.avecchauffeurprix}} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ location.avecchauffeurprix + location.interieurpaysprix + location.montant }} </strong> </p>
+                                            </div>
+
+                                            <div class="col-md-12 text-center">
+                                              <button class="btn btn-primary"  @click="payer(location)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                <!-- <button
                                 class="btn btn-primary"
-                                style="background: #219935; border-color: #219935"
+                                style="background: #219935; border-color: #219935 ;font-size: 12px;"
                                 @click="payer(location)"
                                 >
                                 Procéder au paiement
-                                </button>
+                                </button> -->
                             </div>
                             </div>
 
@@ -616,13 +734,13 @@ onMounted(() => {
                                   class="btn btn-primary w-75"
                                   style="background: #219935; border-color: #219935 ;font-size: 12px; "
                                   >
-                                  Recommander
+                                  Commander à nouveau
                                   </button>
                                 </router-link>
                               </div>
                             </div>
 
-                            <div class="row mb-2" v-if="location.status == 'annuler'" style="margin: 4px; margin-top: -15px;">
+                            <div class="row mb-2" v-if="location.status == 'Annuler'" style="margin: 4px; margin-top: -15px;">
                                
                                <div class="col-12 text-center">
                                  <router-link :to="`/messagerie/${location.companieInfos.uid}`">
@@ -630,7 +748,7 @@ onMounted(() => {
                                    class="btn btn-primary w-75"
                                    style="background: #219935; border-color: #219935 ;font-size: 12px; "
                                    >
-                                   Recommander
+                                   Commander à nouveau
                                    </button>
                                  </router-link>
                                </div>

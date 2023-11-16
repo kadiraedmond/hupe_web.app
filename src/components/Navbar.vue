@@ -186,8 +186,15 @@ const logout = async () => {
                 </router-link>
               </li>
               <li><router-link v-if="authStore.user.uid || savedUser" to="/" @click="logout">Déconnexion</router-link></li>
+               
             </ul>
           </li>
+          <li>
+            <router-link class="nav-link scrollto" to="/notification" :class="{ active: $route.path === '/notification' }"
+            ><i class="bx bxs-bell" id="icon_menu"></i>
+            </router-link>
+           </li>
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
