@@ -105,6 +105,23 @@ const recharge = async () => {
             text: "Votre rechargement a été effectué avec succès",
             icon: "success"
           })
+
+          const notificationColRef = collection(firestoreDb, 'notifications')
+
+          const data = {
+            title: 'Rechargement de compte', 
+            message: `Votre compte a été crédité de FCFA ${montant.value}. Profitez de ce solde pour vos prochaines commandes.`, 
+            destinataire: userId,
+            lu: false, 
+            createdAt: new Date()
+          }
+
+          try {
+            await addDoc(notificationColRef, data)
+          } catch (error) {
+            console.log(error)
+          }
+
         }
     })
     CinetPay.onError((data) => {

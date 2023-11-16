@@ -4,7 +4,7 @@ import { useAuthStore } from "@/store/auth.js"
 import { onBeforeMount, onMounted, ref } from "vue"
 import router from '@/router/router.js'
 
-import { addDoc, updateDoc, collection, Timestamp } from 'firebase/firestore'
+import { addDoc, updateDoc, setDoc, getDoc, doc, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from "vue3-toastify"
 import Swal from 'sweetalert2'
@@ -103,21 +103,70 @@ const payer = async (location) => {
     })
       
     if (result.isConfirmed) {
-      const data = {
-        solde: Number(amount.solde) - Number(location.montant), 
+    // Debiter le solde du client
+    const data = {
+      solde: Number(amount.solde) - Number(location.montant), 
+    }
+
+    try {
+      await updateDoc(accountDocRef, data)
+
+      Swal.fire({
+        title: "Succès",
+        text: "Payement effectué",
+        icon: "success"
+      })
+
+      const notificationColRef = collection(firestoreDb, 'notifications')
+
+      const uneJournee = 24 * 60 * 60 * 1000
+
+      const dateRetrait = new Date(location.date_retrait)
+      const dateRetour = new Date(location.date_retour)
+
+      const differenceEnMs = Math.abs(dateRetour - dateRetrait) 
+
+      const differenceEnJours = Math.round(differenceEnMs / uneJournee)
+
+      const client_notif = {
+        title: 'Paiement pour location', 
+        message: `Vous avez effectué un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
+        destinataire: userId,
+        lu: false, 
+        createdAt: new Date()
       }
+
+      await addDoc(notificationColRef, client_notif)
   
-      try {
-        await updateDoc(accountDocRef, data)
-        Swal.fire({
-          title: "Succès",
-          text: "Payement effectué",
-          icon: "success"
-        })
-        console.log('Payement effectué')
-      } catch (error) {
-        console.log(error)
+      // ajouter la somme sur le compte de la compagnie
+      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${location.compagnie_id}`)
+      const comp_accountColRef = collection(comp_companieDocRef, 'myAccount')
+      const comp_accountDocRef = doc(comp_accountColRef, 'account')
+
+      const snapshot = await getDoc(comp_accountDocRef)
+      let companieAccount
+      if(snapshot.exists()) companieAccount = snapshot.data()
+
+      const comp_data = {
+        solde: Number(companieAccount.solde) + Number(location.montant)
       }
+
+      await updateDoc(comp_accountDocRef, comp_data)
+
+      const comp_notif = {
+        title: 'Réception de paiement', 
+        message: `Vous avez reçu un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele}.`, 
+        userId: location.compagnie_id,
+        lu: false, 
+        createdAt: new Date()
+      }
+
+      await addDoc(notificationColRef, comp_notif)
+      
+      console.log('Payement effectué')
+    } catch (error) {
+      console.log(error)
+    }
     }
   }
 }

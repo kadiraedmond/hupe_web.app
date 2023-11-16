@@ -3,7 +3,7 @@ import { useReservationStore } from '@/store/reservation.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { collection, query, setDoc, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import { toast } from 'vue3-toastify'
 import { v4 as uuidv4 } from 'uuid'
@@ -19,9 +19,13 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 // const userId = savedUser.uid || authStore.user.uid
 const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+
+const trajets = ref([])
 onBeforeMount(async () => {
   await reservationStore.setTrajets(userId)
   companieStore.setCompanieById(userId)
+
+  trajets.value = reservationStore.trajets
 })
 
 onMounted(() => {
@@ -66,10 +70,20 @@ const addNewTrajet = async () => {
       icon: "success"
     })
   }
-  const update = await updateDoc(addedDoc, { uid: `${addedDoc.id}` })
 
-  if(update) {
+  try {
+    await updateDoc(addedDoc, { uid: `${addedDoc.id}` })
     console.log('ID ajouté')
+
+    const newData = { ...data, uid: `${newDoc.id}` }
+    trajets.value.push(newData)
+
+    const programmeColRef = collection(firestoreDb, 'programme_des_voyages')
+
+    await setDoc(programmeColRef.doc(`${newDoc.id}`), newData)
+  
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -397,7 +411,7 @@ const remove = async (car) => {
     </div>
   </div>
   <div class="row mt-4">
-    <div class="col-md-6" v-for="(trajet, index) in reservationStore.trajets" :key="index">
+    <div class="col-md-6" v-for="(trajet, index) in trajets" :key="index">
       <div class="card h-100" style="max-width: 540px">
         <div class="card-body">
           <div class="row">
