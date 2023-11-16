@@ -33,11 +33,11 @@ onMounted(() => {
                   <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12 mb-2">
-                            <h3 style=" font-size: 20px; font-weight: 600;">Notifications</h3>
+                            <!-- <h3 style=" font-size: 20px; font-weight: 600;">Notifications</h3> -->
                             
                         </div>
-                        <div class="col-md-12 " style="background: rgb(249, 249, 249); padding: 24px; border-radius: 10px;">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <div class="col-md-12 " style="background: rgb(249, 249, 249); padding: 24px; border-radius: 10px; margin-top: 22px;">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="padding: 72px; margin-top: -149px;">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Toutes</button>
                             </li>
@@ -47,9 +47,9 @@ onMounted(() => {
                             
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <div class="card border-0">
                                             <div class="card-body">
                                                 <div class="row">
@@ -77,7 +77,7 @@ onMounted(() => {
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <div class="card border-0">
                                             <div class="card-body">
                                                 <div class="row">
@@ -105,7 +105,7 @@ onMounted(() => {
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <div class="card border-0">
                                             <div class="card-body">
                                                 <div class="row">
@@ -133,7 +133,7 @@ onMounted(() => {
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <div class="card border-0">
                                             <div class="card-body">
                                                 <div class="row">
@@ -161,7 +161,7 @@ onMounted(() => {
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <div class="card border-0">
                                             <div class="card-body">
                                                 <div class="row">
@@ -191,9 +191,9 @@ onMounted(() => {
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <div class="card border-0">
                                             <div class="card-body">
                                                 <div class="row">
@@ -221,7 +221,7 @@ onMounted(() => {
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <div class="card border-0">
                                             <div class="card-body">
                                                 <div class="row">

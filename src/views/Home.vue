@@ -81,12 +81,12 @@ onMounted(() => {
 <template>
   <!-- ========== Hero one =========== -->
   <section id="hero" class="d-flex">
-    <div class="container-fluid" style="background: #219935">
+    
+    <div class="container-fluid"  id="background">
       <div class="row g-3" style="padding: 93px !important">
         <div
-          class="col-lg-6 col-md-6 bg-white border-2"
+          class="col-lg-6 col-md-6 border-2"
           style="
-            background: #219935 !important;
             display: flex;
             flex-direction: column;
           "
@@ -114,9 +114,9 @@ onMounted(() => {
           </p> -->
         </div>
         <div
-          class="col-lg-6 col-md-6 bg-white border-2"
+          class="col-lg-6 col-md-6 border-2"
           id="heros_left_section"
-          style="background: #219935 !important"
+          style="background: transparent !important"
         >
           <div
             id="carouselExampleSlidesOnly"
@@ -1532,6 +1532,37 @@ onMounted(() => {
     border-radius: 50%;
     border: 1px solid #ffffff;
     object-fit: cover;
+}
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#background {
+  /* width: 100%;
+  height: 100vh; */
+  animation: changeColors 5s infinite alternate; /* Réglez la durée et le type d'animation selon vos besoins */
+}
+
+@keyframes changeColors {
+  0% {
+    background-color: #62bfc4;
+  }
+  25% {
+    background-color: #bbded8;
+  }
+  50% {
+    background-color: #f9f9f9;
+  }
+  75% {
+    background-color: #f8e4dd;
+  }
+  100% {
+    background-color: #62bfc4;
+  }
 }
 
 

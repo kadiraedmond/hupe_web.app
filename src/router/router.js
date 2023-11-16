@@ -45,6 +45,7 @@ import Raison from '@/views/raison.vue';
 import Notification from '@/views/notification.vue';
 import Tickets from '@/views/ticket_location.vue';
 import Ticketss from '@/views/ticket_reservation.vue';
+import Recherche from '@/views/recherche.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -346,6 +347,13 @@ const routes = [
     path: '/ticket_reservation',
     name: 'Ticketss',
     component: Ticketss,
+    
+  },
+
+  {
+    path: '/recherche',
+    name: 'Recherche',
+    component: Recherche,
     
   },
 ];
