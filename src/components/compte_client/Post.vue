@@ -69,7 +69,7 @@ const options = {
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header text-white" style="background-color: #219935;">
               <h1 class="modal-title fs-5" id="exampleModalLabel10">
                 Réponses des compagnies
               </h1>
@@ -83,11 +83,11 @@ const options = {
             <div class="modal-body">
               <div class="col-md-12 mb-3">
                 <div class="card w-100">
-                  <div class="card-header">
+                  <div class="card-header" style="padding: 0px;">
                     <div class="row w-100" style="background: transparent">
                       <div class="col-md-12">
                         <div
-                          class="card mb-3 border-0"
+                          class="card  border-0"
                           style="background: transparent"
                         >
                           <div class="row g-1">
@@ -96,16 +96,22 @@ const options = {
                                 :to="`/detail/${response.companyInfos.uid}`" 
                                 v-if="response.companyInfos.type_compagnie == 'Location'"
                               >
-                                <img
-                                  :src="response.companyInfos.imageLogoUrl"
-                                  alt
-                                  class="w-px-40 h-auto rounded-circle"
-                                  style="width: 50px"
-                                />
+                                
                                 <div class="card-body">
-                                  <h5 class="card-title" style="font-size: 12px">
+                                  <div class="row">
+                                    <div class="col-md-12 d-flex">
+                                      <img
+                                      :src="response.companyInfos.imageLogoUrl"
+                                      alt
+                                      class="w-px-40 h-auto rounded-circle"
+                                      style="width: 40px"
+                                    />
+                                    <h5 class="card-title" style="font-size: 12px ; margin-top: 10px;  margin-left: 10px;">
                                     {{ response.companyInfos.raison_social }}
-                                  </h5>
+                                    </h5>
+                                    </div>
+                                  </div>
+                                  
                                 </div>
                               </router-link>
                               
@@ -131,11 +137,24 @@ const options = {
                       </div>
                     </div>
                   </div>
-                  {{ " " }} Votre Demande : <p class="text-black">{{ post.demande }}</p>
-                  {{ " " }} Réponse : 
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ response.reponse }}</li>
-                  </ul>
+                  <div class="row" style="padding: 10px; font-size: 14px;">
+                    <div class="col-12">
+                      <p class="text-black"> <strong> {{ " " }} Votre Demande  </strong> <br> {{ post.demande }}</p>
+                    </div>
+                  </div>
+                  <div class="row" style="padding: 10px; font-size: 14px; margin-top: -24px;">
+                    <div class="col-12" style="margin-bottom: -10px;">
+                      <p class="text-black"> <strong>  {{ " " }} Réponse  </strong> </p>
+     
+                    </div>
+                    <hr>
+                    <div class="col-12">
+                      <p>{{ response.reponse }}</p>   
+                    </div>
+
+                  </div>
+                  
+                  
                 </div>
               </div>
             </div>
