@@ -53,7 +53,8 @@ const country = ref()
 const searchTerm = ref('')
 
 const handleSearch = () => {
-  searchStore.search(searchTerm)
+  searchStore.search(searchTerm) 
+  router.push('/recherche')
 }
 
 onMounted(async () => {

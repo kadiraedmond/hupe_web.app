@@ -1,5 +1,14 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, onBeforeMount, ref } from 'vue'
+import { useSearchStore } from '@/store/search.js'
+
+const searchStore = useSearchStore()
+
+const results = ref([])
+
+onBeforeMount(() => {
+    results.value = searchStore.results
+})
 
 onMounted(() => {
   window.scrollTo(0, 0)
