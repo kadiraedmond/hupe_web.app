@@ -148,16 +148,12 @@ const recharge = async () => {
             </div>
             <div class="col-md-6 text-end">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" style="
+              <button type="button" class="btn btn-primary text-white" style="
                     background-color: rgb(33 153 53);
                     border-color: rgb(33 153 53);
                     margin-top: -8px;
                   " data-bs-toggle="modal" data-bs-target="#exampleModalr">
-                  <img
-                    src="/public/assets/img/icone/plus.png"
-                    class="img-fluid"
-                    alt="..."
-                  />
+                 <i class='bx bx-plus' ></i>
                 Recharger
               </button>
 
@@ -165,13 +161,15 @@ const recharge = async () => {
               <div class="modal fade" id="exampleModalr" tabindex="-1" aria-labelledby="exampleModalLabelr" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header text-white" style="background-color: #219935">
                       <h1 class="modal-title fs-5" id="exampleModalLabel">Recharger</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-end">
                       <div class="row">
-                        <div class="col-md-12"></div>
+                        <div class="col-md-12 text-center">
+                          <img src="/public/assets/img/recharge.jpg" alt="" class="img-fluid w-75">
+                        </div>
                         <div class="col-md-12">
                           <form @submit.prevent="recharge" class="row g-3 needs-validation" novalidate>
                             <div class="col-md-12 text-start">
@@ -180,8 +178,8 @@ const recharge = async () => {
                               
                             </div>
                             
-                            <div class="col-12">
-                              <button class="btn btn-primary" type="submit" style="background: #219935; border-color: #219935;">Valider</button>
+                            <div class="col-12 text-center">
+                              <button class="btn btn-primary w-50" type="submit" style="background: #219935; border-color: #219935;">Valider</button>
                             </div>
                           </form>
                         </div>
@@ -197,38 +195,41 @@ const recharge = async () => {
           </div>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-md-6" v-for="(history, index) in userStore.userHistory" :key="index">
-          <div class="row">
-            <div
-              class="col-md-12 mb-4"
-              style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-            >
+      
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col" v-for="(history, index) in userStore.userHistory" :key="index">
+          <div class="card h-100">
+            
+            <div class="card-body">
               <div class="row">
-                <div class="col-md-8">
-                  <p style="font-size: 17px; font-weight: 600">
-                    {{ history.title }}
-                  </p>
-                </div>
-                <div class="col-md-4">
-                  <p>
-                    <img src="/public/assets/img/icone/calendar.png" alt="" />
-                    {{ new Intl.DateTimeFormat(undefined, options).format(history.date) }}
-                  </p>
+                  <div class="col-md-6">
+                    <p style="font-size: 17px; font-weight: 600">
+                      {{ history.title }}
+                    </p>
+                  </div>
+                  <div class="col-md-6 text-end">
+                    <p>
+                      <i class='bx bx-calendar'></i>
+                      {{ new Intl.DateTimeFormat(undefined, options).format(history.date) }}
+                    </p>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p>{{ history.title }}</p>
                 </div>
               </div>
-              <p>{{ history.title }}</p>
               <div class="row mb-2">
                 <div class="col-md-8">
                   <p>
                     Topic |
                     <strong>
-                      <img src="/public/assets/img/icone/circle.png" alt="" />
+                      <i class='bx bxs-plus-circle' style="color: #219935;" ></i>
                       {{ history.topic }}</strong
                     >
                   </p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 text-end">
                   <button
                     class="btn btn-primary"
                     style="background: #219935; border-color: #219935"
@@ -240,6 +241,7 @@ const recharge = async () => {
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>

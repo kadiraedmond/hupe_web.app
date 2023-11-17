@@ -121,9 +121,9 @@ onMounted(() => {
             <router-link :to="`/location_de_vehicule/${`en-attente`}`">
             <boutton
               class="btn btn-primary w-100"
-              style="background: #f77f00; border-color: #f77f00"
+              style="background: #62bfc4; border-color: #62bfc4"
             >
-              <div class="row">
+              <div class="row text-black">
                 <div class="col-2">
                   <i class="bx bx-time"></i>
                 </div>
@@ -137,9 +137,9 @@ onMounted(() => {
             <router-link :to="`/location_de_vehicule/${`valide`}`">
               <boutton
                 class="btn btn-primary w-100"
-                style="background: #219935; border-color: #219935"
+                style="background:  #bbded8; border-color: #bbded8"
               >
-                <div class="row">
+                <div class="row text-black">
                   <div class="col-2">
                     <i class="bx bx-check-circle"></i>
                   </div>
@@ -153,9 +153,9 @@ onMounted(() => {
             <router-link :to="`/location_de_vehicule/${`annule`}`">
               <boutton
                 class="btn btn-primary w-100"
-                style="background: red; border-color: red"
+                style="background: #f9f9f9; border-color: #f9f9f9"
               >
-                <div class="row">
+                <div class="row text-black">
                   <div class="col-2">
                     <i class="bx bx-x-circle"></i>
                   </div>
@@ -169,9 +169,9 @@ onMounted(() => {
             <router-link :to="`/location_de_vehicule/${`confirme`}`">
               <boutton
                 class="btn btn-primary w-100"
-                style="background: #3987fb; border-color: #3987fb"
+                style="background: #bbded8; border-color:#bbded8"
               >
-                <div class="row">
+                <div class="row text-black">
                   <div class="col-2">
                     <i class="bx bx-check-square"></i>
                   </div>
@@ -185,9 +185,9 @@ onMounted(() => {
             <router-link :to="`/location_de_vehicule/${`utilise`}`">
               <boutton
                 class="btn btn-primary w-100"
-                style="background: #931d96; border-color: #931d96"
+                style="background: #f9f9f9; border-color: #f9f9f9"
               >
-                <div class="row">
+                <div class="row text-black">
                   <div class="col-2">
                     <i class="bx bx-check-circle"></i>
                   </div>
@@ -201,9 +201,9 @@ onMounted(() => {
             <router-link :to="`/location_de_vehicule/${`reporte`}`">
               <boutton
                 class="btn btn-primary w-100"
-                style="background: #219935; border-color: #219935"
+                style="background:#bbded8; border-color:#bbded8"
               >
-                <div class="row">
+                <div class="row text-black">
                   <div class="col-2">
                     <i class="bx bx-reset"></i>
                   </div>
@@ -217,9 +217,9 @@ onMounted(() => {
           <div class="col-md-12 mt-2">
             <boutton
               class="btn btn-primary w-100"
-              style="background: #f77f00; border-color: #f77f00"
+              style="background: #f8e4dd; ; border-color:#f8e4dd; "
             >
-              <div class="row">
+              <div class="row text-black">
                 <div class="col-2">
                   <i class="bx bx-error-alt"></i>
                 </div>
