@@ -34,7 +34,7 @@ export const useCompanieStore = defineStore('companieStore', {
                 
                 return this.companies
                 } catch (error) {
-                console.log(error);
+                console.log(error)
             }
 
         },

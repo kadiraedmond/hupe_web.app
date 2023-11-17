@@ -91,7 +91,7 @@ const reporter = async (reservation) => {
       icon: "success"
     })
 
-    await updateDoc(reservationDocRef, { status: 'En attente de report' }) 
+    await updateDoc(reservationDocRef, { status: 'En report' }) 
   
     const notificationColRef = collection(firestoreDb, 'notifications')
   
@@ -166,8 +166,22 @@ const payer = async (reservation) => {
 
       await addDoc(notificationColRef, client_notif)
   
+      // Recherche de la compagnie dans la base
+      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_id}`) 
+
+      const comp_snapshot = await getDoc(comp_companieDocRef)
+      let companieInfos
+      if(comp_snapshot.exists()) companieInfos = comp_snapshot.data()
+
+      // calcul du montant suite a l'application de la commission selon l'offre de la compagnie
+      let montant_apres_commission
+      if(companieInfos.offre == 'basique') {
+        montant_apres_commission = Number(montant.value) - 0.15 * Number(montant.value)
+      } else if(companieInfos.offre == 'vip') {
+        montant_apres_commission = Number(montant.value) - 0.2 * Number(montant.value)
+      }
+
       // ajouter la somme sur le compte de la compagnie
-      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_id}`)
       const comp_accountColRef = collection(comp_companieDocRef, 'myAccount')
       const comp_accountDocRef = doc(comp_accountColRef, 'account')
 
@@ -176,14 +190,14 @@ const payer = async (reservation) => {
       if(snapshot.exists()) companieAccount = snapshot.data()
 
       const comp_data = {
-        solde: Number(companieAccount.solde) + Number(reservation.montant)
+        solde: Number(companieAccount.solde) + montant_apres_commission
       }
 
       await updateDoc(comp_accountDocRef, comp_data)
 
       const comp_notif = {
         title: 'Réception de paiement', 
-        message: `Vous avez reçu un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
+        message: `Vous avez reçu un paiement de FCFA ${montant_apres_commission} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
         userId: reservation.compagnie_id,
         lu: false, 
         createdAt: new Date()

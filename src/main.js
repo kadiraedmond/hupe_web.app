@@ -25,7 +25,7 @@ const pinia = createPinia()
 const app = createApp(App)
 
 const globalOptions = {
-    mode: 'international',
+    mode: 'national',
     autoDefaultCountry: true,
     dropdownOptions: {
         disable: false,
@@ -33,7 +33,7 @@ const globalOptions = {
     },
     inputOptions: {
         required: true,
-        type: 'number',
+        type: 'String', 
         autofocus: true,
         placeholder: 'Téléphone'
     }

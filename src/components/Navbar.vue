@@ -223,8 +223,7 @@ const logout = async () => {
           </li>
           <li>
             <router-link v-if="authStore.user.uid || savedUser" class="nav-link scrollto" :to="`/notification`" :class="{ active: $route.path === '/notification' }"
-            ><i class="bx bxs-bell" id="icon_menu"></i>
-            {{ noneReadNotifications.length }}
+            ><i class="bx bxs-bell" id="icon_menu" :style="`color: ${noneReadNotifications.length > 0 && '#E00'}`"></i>
             </router-link>
           </li>
 
