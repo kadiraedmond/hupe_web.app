@@ -11,7 +11,8 @@ export const useReservationStore = defineStore('reservationStore', {
         companieLocations: [],
         trajets: [],
         companieReservations: [],
-        userReservations: []
+        userReservations: [], 
+        reservation: {} 
     }),
     getters: {
         async getAllReservations() {
@@ -66,6 +67,11 @@ export const useReservationStore = defineStore('reservationStore', {
             } catch (error) {
                 console.log(error)
             }
+        }, 
+        async setReservationById(reservationId) {
+            const docRef = doc(firestoreDb, 'reservation', `${reservationId}`)
+            const snapshot = await getDoc(docRef)
+            if(snapshot.exists()) this.reservation = snapshot.data()
         }
     }
 })

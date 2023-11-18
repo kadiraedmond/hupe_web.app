@@ -357,6 +357,7 @@ onMounted(() => {
 
                             <div class="row mb-2" v-if="location.status == 'Confirmé'" style=" margin-top: 0px; margin-bottom: 24px !important;">
                               <div class="col-6 text-start">
+                                <router-link :to="`/ticket_location/${location.uid}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="
@@ -368,6 +369,7 @@ onMounted(() => {
                                   >
                                   <i class='bx bxs-download'></i>
                                   </button>
+                                </router-link>
                               </div>
                               <div class="col-6 text-end">
                                 <!-- Button trigger modal -->
