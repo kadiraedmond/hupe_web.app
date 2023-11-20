@@ -39,7 +39,7 @@ onMounted(() => {
         <div class="row mt-4">
           <div class="col-12">
             <div class="d-flex align-items-start">
-              <div class="row">
+              <div class="row w-100">
                 <div class="col-md-3">
                   <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link active text-start" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Location de véhicules</button>

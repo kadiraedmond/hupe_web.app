@@ -25,7 +25,7 @@ onMounted(() => {
   
               <div class="row no-gutters mt-4">
                   <div class="col-md-3"></div>
-                  <div class="col-md-6 justify-content-center" style="text-align: justify; margin-top: 160px; margin-bottom: 160px;">
+                  <div class="col-md-6 justify-content-center" style="text-align: justify; margin-top: 160px; margin-bottom: 160px;border: 1px solid #c4c4c4; border-radius: 10px; padding: 29px;">
 
                     <div class="text-center">
                         <div class="spinner-border" role="status" style="color: #219935;width: 3rem; height: 3rem;">
@@ -44,5 +44,16 @@ onMounted(() => {
       <!-- End Portfolio Details Section -->
 </template>
 
-<style>
+<style scoped>
+  .spinner-border {
+    --bs-spinner-width: 2rem;
+    --bs-spinner-height: 2rem;
+    --bs-spinner-vertical-align: -0.125em;
+    --bs-spinner-border-width: 0.25em;
+    --bs-spinner-animation-speed: 3.75s;
+    --bs-spinner-animation-name: spinner-border;
+    border: var(--bs-spinner-border-width) solid currentcolor;
+    border-right-color: #8b8b8b;
+    background-color: #8b8b8b;
+  }
 </style>

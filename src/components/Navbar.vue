@@ -99,6 +99,13 @@ const logout = async () => {
   }
 };
 
+const selectedValue = ref('');
+const options = [
+  { value: 'fr', label: 'France', imageUrl: 'public/assets/img/logo/benin.png' },
+  { value: 'us', label: 'United States', imageUrl: 'public/assets/img/logo/benin.png' },
+  // Ajoutez d'autres options selon vos besoins
+];
+
 
 </script>
 
@@ -122,7 +129,7 @@ const logout = async () => {
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
             <select v-model="country" @change="handleSelect" class="form-select1" style="padding: 8.6px ; width: 114px;" id="validationCustom04" required>
               <option value="BJ" selected>Bénin</option>
-              <option value="BF">Burkina Faso</option>
+              <option value="BF"><a> <i class="bx bx-category" id="icon_menu"></i> Burkina Faso</a></option>
               <option value="CI">Côte d'Ivoire</option>
               <option value="GN">Guinée Conakry</option>
               <option value="ML">Mali</option>
@@ -130,6 +137,12 @@ const logout = async () => {
               <option value="SN">Sénégal</option>
               <option value="TG">Togo</option>
             </select>
+            <!-- <select v-model="selectedValue">
+            <option v-for="option in options" :key="option.value" :value="option.value">
+              <img :src="option.imageUrl" alt="Country Flag" width="20" height="20">
+              {{ option.label }}
+            </option>
+          </select> -->
           </li>
         </ul>
       </nav>

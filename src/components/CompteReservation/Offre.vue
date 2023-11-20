@@ -64,13 +64,14 @@ const changeProfilHandler = async () => {
 
           <div
             class="card mb-4 rounded-1 shadow-sm border-primary"
-            style="border-color: #219935 !important"
+            style="border-color: #219935 !important ;   height: 88%;"
           >
             <div
               class="card-header py-3 text-bg-primary border-primary"
               style="
                 background: #219935 !important ;
                 border-color: #219935 !important;
+              
               "
             >
               <h4 class="my-0 fw-normal text-center">Vip</h4>
@@ -120,7 +121,7 @@ const changeProfilHandler = async () => {
                     class="img-fluid"
                     style="margin-top: -4px"
                   />
-                  Mise en avant d’un véhicule ou d’une destination
+                  Mise en avant d'une destination 
                 </li>
                 <li class="mt-3">
                   <img
@@ -129,7 +130,7 @@ const changeProfilHandler = async () => {
                     class="img-fluid"
                     style="margin-top: -4px"
                   />
-                  Promotion d’une destination ou d’un véhicule
+                  Promotion  d’un véhicule
                 </li>
               </ul>
               <h4 style="font-size: 18px; color: #219935; text-align: center">
@@ -150,7 +151,7 @@ const changeProfilHandler = async () => {
                     </h5>
                   </button>
                 </div>
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center" v-if="companieStore.companie.offre !=='vip'">
                   <button type="button" class="btn btn-primary text-center" style="background: #219935; border-color: #219935;" @click="changeProfilHandler">Sélectionner</button>
                 </div>
               </div>
@@ -161,7 +162,7 @@ const changeProfilHandler = async () => {
           <p><strong>Changer de Profile </strong></p>
           <div
             class="card mb-4 rounded-1 shadow-sm border-primary"
-            style="border-color: #219935 !important"
+            style="border-color: #219935 !important ;   height: 88%;"
           >
             <div
               class="card-header py-3 text-bg-primary border-primary"
@@ -217,7 +218,7 @@ const changeProfilHandler = async () => {
                     class="img-fluid"
                     style="margin-top: -4px"
                   />
-                  Mise en avant d’un véhicule ou d’une destination
+                  Mise en avant d’un véhicule  
                 </li>
                 <li class="mt-3">
                   <img
@@ -226,7 +227,7 @@ const changeProfilHandler = async () => {
                     class="img-fluid"
                     style="margin-top: -4px"
                   />
-                  Promotion d’une destination ou d’un véhicule
+                  Promotion   d’un véhicule
                 </li>
               </ul>
               <h4 style="font-size: 18px; color: #219935; text-align: center">
@@ -247,15 +248,8 @@ const changeProfilHandler = async () => {
                     </h5>
                   </button>
                 </div>
-                <div class="col-md-12 text-center">
-                  <button
-                    type="button"
-                    class="btn btn-primary text-center"
-                    style="background: #219935; border-color: #219935"
-                    @click="changeProfilHandler"
-                  >
-                    Sélectionner
-                  </button>
+                <div class="col-md-12 text-center" v-if="companieStore.companie.offre !=='basique'">
+                  <button type="button" class="btn btn-primary text-center" style="background: #219935; border-color: #219935;" @click="changeProfilHandler">Sélectionner</button>
                 </div>
               </div>
             </div>

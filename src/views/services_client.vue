@@ -15,7 +15,7 @@ onMounted(() => {
       <div class="container">
         <div class="row" style="margin-top: -20px;">
             <div class="col-md-3" style="border-right: 1px solid; border-color:#EAEAEA">
-                <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; ">
+                <ul class="nav nav-tabs fixe" id="myTab" role="tablist" style="border: none; width: 25%; ">
                     <div class="row">
                         <div class="col-md-12 mb-4">
                             <h2 style="font-size: 24px;">Services clients</h2>
@@ -55,76 +55,264 @@ onMounted(() => {
                             </div>
                             <div class="col-md-12 mt-4" style="font-size: 13px;">
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
-                                <div class="col">
-                                    <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/aide_.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Centre d'Aide</h5>
-                                        <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. Vous y trouverez des réponses à de nombreuses questions fréquentes, des guides détaillés, des tutoriels vidéo et bien plus encore. </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
+                                    <div class="col">
+                                        <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
+                                        <img src="/public/assets/img/aide_.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Centre d'Aide</h5>
+                                            <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. Vous y trouverez des réponses à de nombreuses questions fréquentes, des guides détaillés, des tutoriels vidéo et bien plus encore. </p>
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <router-link to="/">
+                                                        <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
+                                                    </router-link>
+                                                
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-75" style="   border-radius: 15px !important;    background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/messagerie-interne.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Messagerie interne </h5>
-                                        <p class="card-text">La messagerie interne pour le support HUPE est une fonctionnalité qui facilite la communication directe entre les utilisateurs de l'application et notre équipe de support client. </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
                                         </div>
                                     </div>
-                                    </div>
-                                </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style="   border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/chat-direct.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Chat en Direct</h5>
-                                        <p class="card-text">Pour une assistance immédiate, utilisez notre service de chat en direct. Notre équipe de support est là pour répondre à vos questions en temps réel. Cliquez sur l'icône du chat en bas de l'écran pour démarrer une conversation </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
+                                    <div class="col">
+                                        <div class="card h-75" style="   border-radius: 15px !important;    background: #EAEAEA !important;">
+                                        <img src="/public/assets/img/messagerie-interne.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Messagerie interne </h5>
+                                            <p class="card-text">La messagerie interne pour le support HUPE est une fonctionnalité qui facilite la communication directe entre les utilisateurs de l'application et notre équipe de support client. </p>
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#exampleModal" style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">
+                                                        Démarrer
+                                                    </button>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content" style="background: linear-gradient(rgb(33, 153, 53) 23.49%, rgb(255 255 255) 48.54%); width: 88% !important;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel"> <img
+                                                                src="/public/assets/img/avatars/1.png"
+                                                                alt
+                                                                class="w-px-40 h-auto rounded-circle"
+                                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                                                /></h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-start">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h1 style="font-size: 22px;color: white;">Bonjour <br> comment pouvons-nous vous aider ?</h1>
+                                                            </div>
+
+                                                            <div class="col-md-12 mt-3">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <router-link to="/support">
+                                                                            <div class="row">
+                                                                                <div class="col-md-10">
+                                                                                    <h5 class="card-title" style="font-size: 18px;">Conversations</h5>
+                                                                                </div>
+                                                                                <div class="col-md-2 text-end">
+                                                                                    <h5 class="card-title" style="color:#219935"> <i class='bx bxs-message-dots'></i></h5>
+                                                                                </div>
+                                                                            </div>
+                                                                        </router-link>
+                                                                        
+                                                                        <hr>
+                                                                        <router-link to="/">
+                                                                            <div class="row">
+                                                                                <div class="col-md-10">
+                                                                                    <h5 class="card-title" style="font-size: 18px;">Aide</h5>
+                                                                                </div>
+                                                                                <div class="col-md-2 text-end">
+                                                                                    <h5 class="card-title" style="color:#219935"><i class='bx bxs-help-circle'></i></h5>
+                                                                                </div>
+                                                                            </div>
+                                                                        </router-link>
+                                                                        
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12 mt-3">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-10">
+                                                                                <h5 class="card-title" style="font-size: 18px;">Envoyer nous un message</h5>
+                                                                                <p style="font-size: 16px; color: black; font-weight: 300;">Nous serons de retour en ligne demain</p>
+                                                                            </div>
+                                                                            <div class="col-md-2 text-end">
+                                                                                <div class="btn-group dropend">
+                                                                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent; border: none;">
+                                                                                        <h5 class="card-title" style="color:#219935 ; margin-top: 17px;"> <i class='bx bxs-send' ></i></h5>
+                                                                                    </button>
+                                                                                        <ul class="dropdown-menu">
+                                                                                            <li><a class="dropdown-item" href="#">Pour location de véhicule</a></li>
+                                                                                            <li><a class="dropdown-item" href="#">Pour reservation de ticket</a></li>
+                                                                                            <li><a class="dropdown-item" href="#">Pour location de gros engin</a></li>
+                                                                                            <li><a class="dropdown-item" href="#">Pour vente de véhicule</a></li>
+                                                                                        </ul>
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12 mt-3">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <div class="row mb-3">
+                                                                            <div class="col-md-12">
+                                                                                <h5 class="card-title" style="font-size: 18px;" >Conversations récentes</h5>
+                                                                            </div>
+                                                                        </div>
+                                                                        <router-link to="/support" class="text-black">
+                                                                            <div class="row">
+                                                                                <div class="col-2">
+                                                                                        <img
+                                                                                        src="/public/assets/img/avatars/1.png"
+                                                                                        alt
+                                                                                        class="w-px-40 h-auto rounded-circle"
+                                                                                        style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                                                                        />
+                                                                                    </div>
+                                                                                    <div class="col-8">
+                                                                                        <h6 style="font-size: 13px;">loren ipsun dalor</h6>
+                                                                                <p style="font-size: 13px;">loren ippsun dalor sit amet    </p>
+                                                                                    </div>
+                                                                                <div class="col-2 text-end">
+                                                                                <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
+                                                                                </div>
+                                                                        </div>
+                                                                        </router-link>
+                                                                        <hr>
+                                                                        <router-link to="/support" class="text-black">
+                                                                            <div class="row">
+                                                                                <div class="col-2">
+                                                                                        <img
+                                                                                        src="/public/assets/img/avatars/1.png"
+                                                                                        alt
+                                                                                        class="w-px-40 h-auto rounded-circle"
+                                                                                        style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                                                                        />
+                                                                                    </div>
+                                                                                    <div class="col-8">
+                                                                                        <h6 style="font-size: 13px;">loren ipsun dalor</h6>
+                                                                                <p style="font-size: 13px;">loren ippsun dalor sit amet    </p>
+                                                                                    </div>
+                                                                                <div class="col-2 text-end">
+                                                                                <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
+                                                                                </div>
+                                                                        </div>
+                                                                        </router-link>
+                                                                        <hr>
+
+                                                                        <router-link to="/support" class="text-black">
+                                                                            <div class="row">
+                                                                                <div class="col-2">
+                                                                                        <img
+                                                                                        src="/public/assets/img/avatars/1.png"
+                                                                                        alt
+                                                                                        class="w-px-40 h-auto rounded-circle"
+                                                                                        style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                                                                        />
+                                                                                    </div>
+                                                                                    <div class="col-8">
+                                                                                        <h6 style="font-size: 13px;">loren ipsun dalor</h6>
+                                                                                <p style="font-size: 13px;">loren ippsun dalor sit amet    </p>
+                                                                                    </div>
+                                                                                <div class="col-2 text-end">
+                                                                                <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
+                                                                                </div>
+                                                                        </div>
+                                                                        </router-link>
+                                                                                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style="  border-radius: 15px !important;  background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/email-assistance.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Assistance par E-mail</h5>
-                                        <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-2 g-4 ">
+                                
+                                    <div class="col">
+                                        <div class="card h-100" style="border-radius: 15px !important; background: #EAEAEA !important;">
+                                        <img src="/public/assets/img/chat-direct.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Chat en Direct</h5>
+                                            <p class="card-text">Pour une assistance immédiate, utilisez notre service de chat en direct. Notre équipe de support est là pour répondre à vos questions en temps réel. Cliquez sur l'icône du chat en bas de l'écran pour démarrer une conversation </p>
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <router-link to="/">
+                                                        <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
+                                                    </router-link>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card h-100" style="  border-radius: 15px !important;  background: #EAEAEA !important;">
+                                        <img src="/public/assets/img/email-assistance.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Assistance par E-mail</h5>
+                                            <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. </p>
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    
+                                                    <button type="button" class="btn btn-primary w-50" style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;" data-bs-toggle="modal" data-bs-target="#exampleModal25" data-bs-whatever="@mdo">Démarrer</button>
+                                                    
+
+                                                    <div class="modal fade" id="exampleModal25" tabindex="-1" aria-labelledby="exampleModalLabel25" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header text-white" style="background-color:#219935">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel25" style="font-size: 16px !important;">New message to support@hupe-africa.com</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-start">
+                                                            <form>
+                                                            <div class="mb-3">
+                                                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                                                <input type="text" class="form-control" id="recipient-name" placeholder="support@hupe-africa.com">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="message-text" class="col-form-label">Email</label>
+                                                                <input type="email" class="form-control" id="recipient-name">
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer text-center">
+                                                            <button type="button" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Envoyer</button>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                                <div class="row" style="margin-top: -90px;">
+                                <div class="row mt-4">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary w-100" id="services_client_btn">
                                             <div class="row">
@@ -141,25 +329,26 @@ onMounted(() => {
                                         <p style="font-size: 15px;">Si vous avez besoin d'une assistance téléphonique, vous pouvez nous appeler au +225 07 05 87 51 94 Nos agents sont disponibles pendant nos heures d'ouverture de 8h00 à 20h00. Nous sommes là pour répondre à vos questions et résoudre vos problèmes.</p>
                                     </div>
                                 </div>
+                                Wifihouse2023new2
                                 <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
-                                <div class="col">
-                                    <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/signal-problem.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Signalement de Problèmes</h5>
-                                        <p class="card-text">Si vous rencontrez un problème technique ou si vous avez des suggestions pour améliorer notre application, veuillez utiliser notre formulaire de signalement de problèmes. Cela nous permettra de recueillir des informations détaillées pour résoudre le problème plus efficacement. </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
+                                    <div class="col">
+                                        <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
+                                        <img src="/public/assets/img/signal-problem.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Signalement de Problèmes</h5>
+                                            <p class="card-text">Si vous rencontrez un problème technique ou si vous avez des suggestions pour améliorer notre application, veuillez utiliser notre formulaire de signalement de problèmes. Cela nous permettra de recueillir des informations détaillées pour résoudre le problème plus efficacement. </p>
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <router-link to="/">
+                                                        <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
+                                                    </router-link>
+                                                
+                                                </div>
                                             </div>
                                         </div>
+                                        </div>
                                     </div>
-                                    </div>
-                                </div>
-                                <div class="col">
+                                    <div class="col">
                                     <div class="card h-75" style="   border-radius: 15px !important;  background: #EAEAEA !important;">
                                     <img src="/public/assets/img/messagerie.png" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
                                     <div class="card-body">
@@ -710,6 +899,27 @@ onMounted(() => {
 #myTab {
     z-index: 1030;
     margin-top: 62px;
+}
+
+#search {
+    width: 300px;
+    height: 41px;
+    /* border-radius: 30px; */
+    font-size: 14px;
+    /* background-color: #219935; */
+    /* border-color: white; */
+    color: white !important;
+}
+
+.dropend .dropdown-toggle::after {
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid transparent;
+    border-right: 0;
+    border-bottom: .3em solid transparent;
+    border-left: .3em solid;
+    display: none;
 }
 
 </style>
