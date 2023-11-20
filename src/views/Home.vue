@@ -46,25 +46,24 @@ onMounted(() => {
   const text = document.querySelector(".sec-text");
   const textLoad = () => {
     setTimeout(() => {
-      text.textContent =
-        "Que vous cherchiez à louer une voiture pour une escapade, "
+      text.textContent = "Que vous cherchiez à louer une voiture pour une escapade, "
     }, 4000)
     setTimeout(() => {
-      text.textContent =
-        "Que vous cherchiez à acheter la voiture de vos rêves, "
+      text.textContent = "Que vous cherchiez à acheter la voiture de vos rêves, "
     }, 8000)
     setTimeout(() => {
-      text.textContent =
-        "Que vous cherchiez à trouver des gros engins pour vos projets, "
+      text.textContent = "Que vous cherchiez à trouver des gros engins pour vos projets, "
     }, 12000)
     setTimeout(() => {
-      text.textContent =
-        "Que vous cherchiez à réserver des billets de bus pour vos voyages, "
+      text.textContent = "Que vous cherchiez à réserver "
     }, 16000)
+    setTimeout(() => {
+      text.textContent = "des billets de bus pour vos voyages, "
+    }, 20000)
   }
 
   textLoad()
-  setInterval(textLoad, 20000)
+  setInterval(textLoad, 24000)
 })
 </script>
 
@@ -83,7 +82,7 @@ onMounted(() => {
         >
           <img
             src="/public/assets/img/accueil-car.png"
-            style="width: 260px; height: 260px; object-fit: cover; float: left"
+            style="width: 260px; height: 188px; object-fit: cover; float: left"
           />
           <div class="wrapper text-start" style="margin-top: 2rem">
             <span class="text first-text text-black"
@@ -95,7 +94,7 @@ onMounted(() => {
               pour répondre à tous vos besoins de déplacement.
             </span> 
             <br />
-            <span class="text sec-text" style="font-size: 1.26rem">
+            <span class="text sec-text" style="font-size: 1.20rem">
               Que vous cherchiez à louer une voiture pour une escapade, 
             </span> 
             <br />
@@ -1472,17 +1471,30 @@ onMounted(() => {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #EEE;
-  border-left: 2px solid #cad1f8;
-  animation: animate 4s steps(12) infinite;
-}
+  background-color: #62bfc4;
+  border-left: 2.6px solid #cad1f8;
+  animation: animate 8s steps(17) infinite alternate;
+} 
 @keyframes animate {
+  0% {
+    background-color: #62bfc4; 
+  }
+  25% {
+    background-color: #bbded8;
+  }
   40%,
+  50% {
+    background-color: #f9f9f9;
+  }
   60% {
     left: calc(100% + 5px);
   }
-  100% {
+  75% {
+    background-color: #f8e4dd;
+  }
+  100% { 
     left: 0%;
+    background-color: #62bfc4;
   }
 }
 #section-p {
@@ -1542,7 +1554,7 @@ body, html {
 #background {
   /* width: 100%;
   height: 100vh; */
-  animation: changeColors 5s infinite alternate; /* Réglez la durée et le type d'animation selon vos besoins */
+  animation: changeColors 8s infinite alternate; /* Réglez la durée et le type d'animation selon vos besoins */
 }
 
 @keyframes changeColors {

@@ -2,21 +2,26 @@
 import { onMounted, onBeforeMount, ref } from "vue"
 
 import Swal from 'sweetalert2'
-import { collection, query, doc, addDoc, updateDoc, where, getDoc, getDocs} from "firebase/firestore"
+import { collection, query, doc, addDoc, updateDoc, deleteDoc, where, getDoc, getDocs} from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 // const userId = savedUser.uid || authStore.user.uid
-const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid 
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid 
 
 const politiqueColRef = collection(firestoreDb, 'politiques') 
 const firebaseText = ref([])
+
+const Db_text = ref('')
 
 onBeforeMount(async () => {
   const q = query(politiqueColRef, where('compagnie_uid', '==', `${userId}`))
 
   const snapshot = await getDocs(q)
-  snapshot.docs.forEach(doc => firebaseText.value.push(doc.data))
+  console.log(snapshot.docs)
+  snapshot.docs.forEach(doc => firebaseText.value.push(doc.data()))
+
+  Db_text.value = firebaseText.value[0].text
 
 })
 
@@ -33,9 +38,16 @@ const savePolitique = async () => {
   }
 
   try {
-    const docRef = await addDoc(politiqueColRef, { data }) 
+    const docRef = await addDoc(politiqueColRef, data) 
 
-    await updateDoc(docRef, { uid: `${docRef.id}` })
+    await updateDoc(docRef, { uid: `${docRef.id}` }) 
+    Db_text.value = data.text
+
+    Swal.fire({
+      title: `Succès`, 
+      text: 'Politique ajoutée', 
+      icon: "success"
+    })
 
     document.querySelector('.btn-close').click()
   } catch (error) {
@@ -43,29 +55,49 @@ const savePolitique = async () => {
   }
 }
 
-const updatePolitique = async () => {
+const updatePolitique = async () => { 
+  const q = query(politiqueColRef, where('compagnie_uid', '==', `${userId}`))
+
+  const snapshot = await getDocs(q)
+
+  const snap_doc = snapshot.docs[0] 
+
   const data = {
-    text: text.value, 
+    text: Db_text.value, 
     compagnie_uid: userId
   }
 
   try {
-    await updateDoc(politiqueColRef, { data })
+    await updateDoc(snap_doc.ref, data)
 
+    Swal.fire({
+      title: `Succès`, 
+      text: 'Politique mis à jour', 
+      icon: "success"
+    })
     document.querySelector('.btn-close').click()
+
   } catch (error) {
     console.log(error)
   }
 } 
 
 const deletePolitique = async () => {
-  const data = {
-    text: '', 
-    compagnie_uid: userId
-  }
+  const q = query(politiqueColRef, where('compagnie_uid', '==', `${userId}`))
 
+  const snapshot = await getDocs(q)
+
+  const snap_doc = snapshot.docs[0]
+  
   try {
-    await addDoc(politiqueColRef, { data })
+    await deleteDoc(snap_doc.ref) 
+
+     Swal.fire({
+      title: `Succès`, 
+      text: 'Politique supprimée', 
+      icon: "success"
+    }) 
+    Db_text.value = ''
 
     document.querySelector('.btn-close').click()
   } catch (error) {
@@ -154,7 +186,7 @@ const deletePolitique = async () => {
       <div class="card h-100" id="card_compagnie">
         <div class="card-body">
           <p v-if="firebaseText.length > 0">
-            {{ firebaseText[0].text }}
+            {{ Db_text }}
           </p>
 
           <div class="row">
@@ -162,12 +194,66 @@ const deletePolitique = async () => {
               <div class="row">
                 <div class="col-md-12" v-if="firebaseText.length > 0">
                   <button
-                    class="btn btn-primary"
+                    class="btn btn-primary" 
+                    data-bs-toggle="modal"
+                    data-bs-target="#updateModal"
                     style="background: #219935; border-color: #219935" 
-                    @click="updatePolitique"
                   >
                     Modifier
                   </button>
+
+                  <!-- Modal  -->
+                  <div
+                    class="modal fade"
+                    id="updateModal"
+                    tabindex="-1"
+                    aria-labelledby="updateModal"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header" style="background: #219935; color: white;">
+                          <h1 class="modal-title fs-5" id="exampleModalLabelA">
+                           Modifier la politique
+                          </h1>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <form @submit.prevent="updatePolitique" class="row g-3 needs-validation text-start" novalidate>
+                            <div class="col-md-12">
+                              <div class="mb-3">
+                                      <label class="form-label" for="basic-default-message">Contenue</label>
+                                      <textarea
+                                        class="form-control"
+                                        name="message" 
+                                        v-model="Db_text"
+                                      ></textarea>
+                                
+                                  </div>
+                              
+                              
+                            </div>
+
+                            <div class="col-12 text-center">
+                              <button
+                                class="btn btn-primary"
+                                style="background-color: #219935; border-color: #219935"
+                                type="submit"
+                              >
+                                Enregistrer
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                   <button
                     class="btn btn-primary"
                     style="

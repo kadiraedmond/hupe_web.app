@@ -70,10 +70,10 @@ onBeforeMount(async () => {
       localisationStore.setCompaniesByLocalisation(data.country)
       companieStore.setCountry(data.country)
 
-      Swal.fire({
-        title: `Votre localisation est : \n ${data.city} - ${data.country}`, 
-        icon: "info"
-      })
+      // Swal.fire({
+      //   title: `Votre localisation est : \n ${data.city} - ${data.country}`, 
+      //   icon: "info"
+      // })
     })
     .catch(error => {
       console.error('Erreur lors de la récupération des informations de localisation :', error);
