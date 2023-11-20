@@ -176,7 +176,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50%"
+                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
                           >
                             {{ enAttente.totalNumber }}
                           </button>
@@ -264,7 +264,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50%"
+                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
                           >
                             {{ confirmees.totalNumber }}
                           </button>
@@ -308,7 +308,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50%"
+                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
                           >
                             {{ annulees.totalNumber }}
                           </button>
@@ -352,7 +352,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50%"
+                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
                           >
                             {{ reportees.totalNumber }}
                           </button>
@@ -396,7 +396,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50%"
+                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
                           >
                             {{ utilisees.totalNumber }}
                           </button>
@@ -1832,5 +1832,18 @@ const valider = async (reservation) => {
     background-color: var(--bs-nav-tabs-link-active-bg);
     border-color: #219935;
     background: #21993554;
+}
+
+.accordion-button::after {
+    flex-shrink: 0;
+    width: var(--bs-accordion-btn-icon-width);
+    height: var(--bs-accordion-btn-icon-width);
+    margin-left: auto;
+    content: "";
+    background-image: var(--bs-accordion-btn-icon);
+    background-repeat: no-repeat;
+    background-size: var(--bs-accordion-btn-icon-width);
+    transition: var(--bs-accordion-btn-icon-transition);
+    display: none;
 }
 </style>

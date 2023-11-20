@@ -428,6 +428,174 @@ onMounted(() => {
   
           </div>
       </section>
+
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">NomPartenaire</th>
+                      <th scope="col">AdressePartenaire</th>
+                      <th scope="col">Modele</th>
+                      <th scope="col">Année</th>
+                      <th scope="col">Moteur</th>
+                      <th scope="col">Transmission</th>
+                      <th scope="col">Immatriculation</th>
+                      <th scope="col">Chauffeur</th>
+                      <th scope="col">Intérieur</th>
+                      <th scope="col">D.retour</th>
+                      <th scope="col">D.retrait</th>
+                      <th scope="col">Prix</th>
+                      <th scope="col">Statut</th>
+                      <th scope="col">Action</th>
+                       
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">Validé</div></td>
+                      <td><div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 30px ; font-size: 12px;">
+                          Action
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Validé</a></li>
+                          <li><a class="dropdown-item" href="#">Annulé</a></li>
+                           
+                        </ul>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">Validé</div></td>
+                      <td><div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 30px ; font-size: 12px;">
+                          Action
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Validé</a></li>
+                          <li><a class="dropdown-item" href="#">Annulé</a></li>
+                           
+                        </ul>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">Validé</div></td>
+                      <td><div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 30px ; font-size: 12px;">
+                          Action
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Validé</a></li>
+                          <li><a class="dropdown-item" href="#">Annulé</a></li>
+                           
+                        </ul>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">Validé</div></td>
+                      <td><div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 30px ; font-size: 12px;">
+                          Action
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Validé</a></li>
+                          <li><a class="dropdown-item" href="#">Annulé</a></li>
+                           
+                        </ul>
+                      </div></td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">Validé</div></td>
+                      <td><div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 30px ; font-size: 12px;">
+                          Action
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Validé</a></li>
+                          <li><a class="dropdown-item" href="#">Annulé</a></li>
+                           
+                        </ul>
+                      </div></td>
+                    </tr>
+                    
+                  </tbody>
+              </table>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- End Portfolio Details Section -->
 </template>
 

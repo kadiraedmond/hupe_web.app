@@ -46,6 +46,7 @@ import Notification from '@/views/notification.vue';
 import Tickets from '@/views/ticket_location.vue';
 import Ticketss from '@/views/ticket_reservation.vue';
 import Recherche from '@/views/recherche.vue';
+import Support from '@/views/support.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -354,6 +355,13 @@ const routes = [
     path: '/recherche',
     name: 'Recherche',
     component: Recherche,
+    
+  },
+
+  {
+    path: '/support',
+    name: 'Support',
+    component: Support,
     
   },
 ];

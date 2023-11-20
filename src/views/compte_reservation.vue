@@ -3,7 +3,7 @@ import Vehicule from "@/components/CompteReservation/Vehicule.vue"
 import Promotion from "@/components/CompteReservation/Promotion.vue"
 import Reservation from "@/components/CompteReservation/Reservation.vue"
 import Demande from "@/components/CompteReservation/Demande.vue"
-import Offre from "@/components/CompteReservation/Offre.vue"
+import Offres from "@/components/CompteReservation/Offre.vue"
 import Collaborateur from "@/components/CompteReservation/Collaborateur.vue"
 import Apropos from "@/components/CompteReservation/Apropos.vue"
 import Compte from "@/components/CompteReservation/Compte.vue"
@@ -93,7 +93,7 @@ onMounted(() => {
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                  type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Réservations</button>
+                  type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Activités</button>
               </li>
 
               <li class="nav-item" role="presentation">
@@ -138,73 +138,8 @@ onMounted(() => {
               </div>
               <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab"
                 tabindex="0">
-                <div class="row mt-5">
-                  <div class="col-md-12">
- 
-                        <div class="row">
-                          <div class="col-md-6">
-                            <p> <strong> Profile actuel   | </strong>  <b style="color: #219935">Vip</b> </p>
-       
-                              <div class="card mb-4 rounded-1 shadow-sm border-primary" style="border-color:#219935 !important">
-                                <div class="card-header py-3 text-bg-primary border-primary" style="background:#219935 !important ; border-color:#219935 !important">
-                                  <h4 class="my-0 fw-normal text-center">Vip</h4>
-                                </div>
-                                <div class="card-body">
-                                 
-                                  <ul class="list-unstyled mt-3 mb-4">
-                                    <li> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Creation de compte</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
-                                  </ul>
-                                  <h4 style="font-size: 18px; color: #219935; text-align: center;">Commission sur le chiffre d'affaires</h4>
-                                  <div class="row">
-                                    <div class="col-md-12 text-center mb-3">
-                                      <button type="button" class=" btn btn-primary text-center" style="background: white; border-color: #219935;"> <h5 class="card-title pricing-card-title " style="color:#219935">20%</h5></button>
-                                    </div>
-                                    <!-- <div class="col-md-12 text-center">
-                                      <button type="button" class=" btn btn-primary text-center" style="background: #219935; border-color: #219935;">Sélectionner</button>
-                                    </div> -->
-                                  </div>
-                                  
-                                </div>
-                              </div>
-                                   
-                          </div>
-                          <div class="col-md-6">
-                            <p> <strong>Changer de Profile  </strong> </p>
-                              <div class="card mb-4 rounded-1 shadow-sm border-primary" style="border-color:#219935 !important">
-                                <div class="card-header py-3 text-bg-primary border-primary" style="background:rgb(62 66 63) !important ; border-color:#219935 !important">
-                                  <h4 class="my-0 fw-normal text-center">Basique</h4>
-                                </div>
-                                <div class="card-body">
-                                 
-                                  <ul class="list-unstyled mt-3 mb-4">
-                                    <li> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Creation de compte</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
-                                  </ul>
-                                  <h4 style="font-size: 18px; color: #219935; text-align: center;">Commission sur le chiffre d'affaires</h4>
-                                  <div class="row">
-                                    <div class="col-md-12 text-center mb-3">
-                                      <button type="button" class=" btn btn-primary text-center" style="background: white; border-color: #219935;"> <h5 class="card-title pricing-card-title " style="color:#219935">15%</h5></button>
-                                    </div>
-                                    <div class="col-md-12 text-center">
-                                      <button type="button" class=" btn btn-primary text-center" style="background: #219935; border-color: #219935;">Sélectionner</button>
-                                    </div>
-                                  </div>
-                                  
-                                </div>
-                              </div>
-                                   
-                          </div>
-                        </div>
- 
-                  </div>
-                </div>
+
+                <Offres />
               </div>
 
               <div class="tab-pane fade" id="demande-tab-pane" role="tabpanel" aria-labelledby="demande-tab"
@@ -253,7 +188,7 @@ onMounted(() => {
     /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
     margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
     border: var(--bs-nav-tabs-border-width) solid transparent;
-    border-color: #219935;
+    /* border-color: #219935; */
     border-radius: 0px !important;
 }
 </style>

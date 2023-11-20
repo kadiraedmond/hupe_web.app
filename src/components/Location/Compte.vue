@@ -122,7 +122,9 @@ const retrait = async () => {
                     </div>
                     <div class="modal-body text-end">
                       <div class="row">
-                        <div class="col-md-12"></div>
+                        <div class="col-md-12 text-center">
+                           <img src="/public/assets/img/reg.jpg" alt="" class="img-fluid w-75">
+                          </div>
                         <div class="col-md-12">
                           <form @submit.prevent="retrait" class="row g-3 needs-validation" novalidate>
                             <div class="col-md-12 text-start">
@@ -147,38 +149,41 @@ const retrait = async () => {
           </div>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-md-6" v-for="(history, index) in companieStore.companieHistory" :key="index">
-          <div class="row">
-            <div
-              class="col-md-12 mb-4"
-              style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-            >
+ 
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col" v-for="(history, index) in companieStore.companieHistory" :key="index">
+          <div class="card h-100">
+            
+            <div class="card-body">
               <div class="row">
-                <div class="col-md-8">
-                  <p style="font-size: 17px; font-weight: 600">
-                    {{ history.title }}
-                  </p>
-                </div>
-                <div class="col-md-4">
-                  <p>
-                    <img src="/public/assets/img/icone/calendar.png" alt="" />
-                    {{ new Intl.DateTimeFormat(undefined, options).format(history.datePayement) }}
-                  </p>
+                  <div class="col-md-8">
+                    <p style="font-size: 17px; font-weight: 600">
+                      {{ history.title }}
+                    </p>
+                  </div>
+                  <div class="col-md-4 text-end">
+                    <p>
+                      <i class='bx bx-calendar'></i>
+                      {{ new Intl.DateTimeFormat(undefined, options).format(history.datePayement) }}
+                    </p>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p>{{ history.title }}</p>
                 </div>
               </div>
-              <p>{{ history.title }}</p>
               <div class="row mb-2">
                 <div class="col-md-8">
                   <p>
                     Montant |
                     <strong>
-                      <img src="/public/assets/img/icone/circle.png" alt="" />
+                      <i class='bx bxs-plus-circle' style="color: #219935;" ></i>
                       {{ history.montantVerser }} FCFA</strong
                     >
                   </p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 text-end">
                   <button
                     class="btn btn-primary"
                     style="background: #219935; border-color: #219935"
@@ -190,6 +195,7 @@ const retrait = async () => {
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
