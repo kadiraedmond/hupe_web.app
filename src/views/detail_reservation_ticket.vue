@@ -24,7 +24,7 @@ const programmeId = route.params.id
 onBeforeMount(async () => {
   await promotionStore.setProgramme(programmeId)
 
-  const companieId = await promotionStore.programme.compagnie_id
+  const companieId = await promotionStore.programme.compagnie_uid
 
   companieStore.setCompanieById(companieId)
   companieStore.setProgrammesVoyages(companieId)
@@ -53,7 +53,7 @@ const reserver = async (programme) => {
   const Data = {
     client_id: user.uid,
     client_profil_url: user.imageUrl || '',
-    compagnie_id: programme.compagnie_id,
+    compagnie_uid: programme.compagnie_uid,
     createdAt: new Date(),
     date_depart: programme.date_depart || '',
     destination: programme.destination,
@@ -100,7 +100,7 @@ const reserver = async (programme) => {
     const comp_notif = {
       title: 'Réservation de ticket', 
       message: `Vous avez une réservation de ticket N° ${programme.number} en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet « ${programme.lieu_depart} - ${programme.destination} » du « ${formatedDateDepart} », veuillez valider ou annuler cette réservation.`, 
-      userId: programme.compagnie_id,
+      userId: programme.compagnie_uid,
       lu: false, 
       createdAt: new Date()
     }

@@ -338,14 +338,14 @@ const routes = [
     
   },
   {
-    path: '/ticket_location',
+    path: '/ticket_location/:id',
     name: 'Tickets',
     component: Tickets,
     
   },
 
   {
-    path: '/ticket_reservation',
+    path: '/ticket_reservation/:id',
     name: 'Ticketss',
     component: Ticketss,
     

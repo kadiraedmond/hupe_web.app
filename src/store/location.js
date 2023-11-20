@@ -7,7 +7,8 @@ const locationColRef = collection(firestoreDb, "location_vehicules")
 
 export const useLocationStore = defineStore('locationStore', {
     state: () => ({
-        userLocations: []
+        userLocations: [], 
+        location: {} 
     }),
     getters: {
     //    
@@ -19,7 +20,7 @@ export const useLocationStore = defineStore('locationStore', {
                 const snapshots = await getDocs(q)
                 for(let i = 0; i < snapshots.docs.length; i++) {
                     const programData = snapshots.docs[i].data()
-                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_id}`)
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
                     const snapshot = await getDoc(companieDocRef)
     
                     let company = {}
@@ -30,6 +31,11 @@ export const useLocationStore = defineStore('locationStore', {
             } catch (error) {
                 console.log(error)
             }
+        }, 
+        async setLocationById(locationId) {
+            const docRef = doc(firestoreDb, 'location_vehicules', `${locationId}`)
+            const snapshot = await getDoc(docRef)
+            if(snapshot.exists()) this.location = snapshot.data()
         }
     }
 })

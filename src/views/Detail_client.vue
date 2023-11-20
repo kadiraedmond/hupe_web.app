@@ -89,7 +89,7 @@ const reserver = async (car) => {
     chauffeur: avecChauffeur.value === true ? 'Oui' : 'Non',
     client_id: user.uid || '',
     client_profil_url: user.imageUrl || '',
-    compagnie_id: companieId || companieStore.companie.uid,
+    compagnie_uid: companieId || companieStore.companie.uid,
     created_at: new Date(),
     date_retour: dateRetour.value,
     date_retrait: dateRetrait.value,

@@ -16,13 +16,14 @@ const authStore = useAuthStore()
 const logInWithPhoneNumber = async () => {
   const phoneNum =  `+${countryCode.value}${phoneNumber.value}`
 
-  const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container')
+  const trimPhoneNum = phoneNum.replace(/\s/g, '')
 
+  const appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container')
   
-  authStore.authenticate(auth, phoneNum, appVerifier)
+  authStore.authenticate(auth, trimPhoneNum, appVerifier)
   await appVerifier.verify().then(response => {
     authStore.setAppVerifier(appVerifier)
-    authStore.setPhoneNum(phoneNum)
+    authStore.setPhoneNum(trimPhoneNum)
     if(response && authStore.errorMessage === '') {
       router.push('/otp')
     } else if(authStore.errorMessage !== '') {

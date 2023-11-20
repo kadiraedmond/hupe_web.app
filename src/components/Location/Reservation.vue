@@ -133,7 +133,7 @@ const valider = async (location) => {
     
     const data = {
       title: 'Validation de réservation', 
-      destinataire: location.client_id, 
+      destinataire: [location.client_id], 
       message: `Votre demande de réservation du véhicule « ${location.vehicule} ${location.modele} » pour une durée de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
       lu: false, 
       createdAt: new Date()

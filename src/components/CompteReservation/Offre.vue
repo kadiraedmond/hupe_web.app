@@ -12,8 +12,12 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 // const userId = savedUser.uid || authStore.user.uid
 const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
-onBeforeMount(() => {
-  companieStore.setCompanieById(userId) // authStore.user.uid
+
+const offre_actuelle = ref('')
+onBeforeMount(async () => {
+  await companieStore.setCompanieById(userId) 
+
+  offre_actuelle.value = companieStore.companie.offre
 
 })
 
@@ -29,14 +33,18 @@ const changeProfilHandler = async () => {
   if(companieStore.companie.offre == 'vip') {
     try {
       await updateDoc(companieColRef, { offre: 'basique' })
-      companieStore.companie.offre = 'basique'
+      companieStore.companie.offre = 'basique' 
+      
+      offre_actuelle.value = 'basique'
     } catch (error) {
       console.log(error)
     }
   } else if(companieStore.companie.offre == 'basique') {
     try {
       await updateDoc(companieColRef, { offre: 'vip' })
-      companieStore.companie.offre = 'vip'
+      companieStore.companie.offre = 'vip' 
+
+      offre_actuelle.value = 'vip' 
     } catch (error) {
       console.log(error)
     }
@@ -51,7 +59,7 @@ const changeProfilHandler = async () => {
         <div class="col-md-6">
           <p>
             <strong> Profile actuel | </strong>
-            <b style="color: #219935">{{ companieStore.companie.offre }}</b>
+            <b style="color: #219935">{{ offre_actuelle }}</b>
           </p>
 
           <div

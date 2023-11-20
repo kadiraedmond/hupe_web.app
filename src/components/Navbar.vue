@@ -4,8 +4,10 @@ import { signOut } from 'firebase/auth'
 import { useAuthStore } from '@/store/auth.js'
 import { useSearchStore } from '@/store/search.js'
 import { useLocalisationStore } from '@/store/localisation.js'
+import { useCompanieStore } from '@/store/companie.js'
 import axios from 'axios'
 import router from '@/router/router.js'
+import Swal from 'sweetalert2'
 
 import { onMounted, onBeforeMount, ref } from 'vue'
 
@@ -14,6 +16,7 @@ import { updateDoc, doc, getDocs, query, where, collection, getDoc } from "fireb
 
 const authStore = useAuthStore()
 const localisationStore = useLocalisationStore()
+const companieStore = useCompanieStore()
 const searchStore = useSearchStore()
 
 const user = authStore.user
@@ -53,25 +56,34 @@ const country = ref()
 const searchTerm = ref('')
 
 const handleSearch = () => {
-  searchStore.search(searchTerm)
+  searchStore.search(searchTerm) 
+  router.push('/recherche')
 }
 
-onMounted(async () => {
-  const response = await fetch('https://ipinfo.io/json')
+onBeforeMount(async () => {
+  const API_URL = 'https://ipinfo.io/json?token=4e774d02603f38'
+  fetch(API_URL)
+    .then(response => response.json())
+    .then(data => {
+      country.value = data.country
+      console.log(data)
+      localisationStore.setCompaniesByLocalisation(data.country)
+      companieStore.setCountry(data.country)
 
-  if(response.ok) {
-    const data = response.json()
-
-    country.value = data.country
-    localisationStore.setCompaniesByLocalisation(data.country)
-  } else {
-    console.log(response)
-  }
+      Swal.fire({
+        title: `Votre localisation est : \n ${data.city} - ${data.country}`, 
+        icon: "info"
+      })
+    })
+    .catch(error => {
+      console.error('Erreur lors de la récupération des informations de localisation :', error);
+    })
 })
 
 const handleSelect = () => {
   console.log(country.value)
   localisationStore.setCompaniesByLocalisation(country.value)
+  companieStore.setCountry(country.value)
 }
 
 const logout = async () => {
@@ -236,8 +248,7 @@ const options = [
           </li>
           <li>
             <router-link v-if="authStore.user.uid || savedUser" class="nav-link scrollto" :to="`/notification`" :class="{ active: $route.path === '/notification' }"
-            ><i class="bx bxs-bell" id="icon_menu"></i>
-            {{ noneReadNotifications.length }}
+            ><i class="bx bxs-bell" id="icon_menu" :style="`color: ${noneReadNotifications.length > 0 && '#E00'}`"></i>
             </router-link>
           </li>
 

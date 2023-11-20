@@ -51,7 +51,7 @@ const reserver = async (programme) => {
   const Data = {
     client_id: user.uid,
     client_profil_url: user.imageUrl || '',
-    compagnie_id: companieId || programme.compagnie_id,
+    compagnie_uid: companieId || programme.compagnie_uid,
     createdAt: new Date(),
     date_depart: dateDepart,
     destination: programme.destination,

@@ -131,7 +131,7 @@ const payer = async (location) => {
       const client_notif = {
         title: 'Paiement pour location', 
         message: `Vous avez effectué un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
-        destinataire: userId,
+        destinataire: [userId], 
         lu: false, 
         createdAt: new Date()
       }
@@ -139,7 +139,7 @@ const payer = async (location) => {
       await addDoc(notificationColRef, client_notif)
   
       // ajouter la somme sur le compte de la compagnie
-      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${location.compagnie_id}`)
+      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${location.compagnie_uid}`)
       const comp_accountColRef = collection(comp_companieDocRef, 'myAccount')
       const comp_accountDocRef = doc(comp_accountColRef, 'account')
 
@@ -156,7 +156,8 @@ const payer = async (location) => {
       const comp_notif = {
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele}.`, 
-        userId: location.compagnie_id,
+        destinataire: [location.compagnie_uid], 
+        type: 'compagnie', 
         lu: false, 
         createdAt: new Date()
       }
