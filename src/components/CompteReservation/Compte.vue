@@ -197,6 +197,5 @@ const retrait = async () => {
         
       </div>
     </div>
-  </div>
 </template>
 <style></style>
