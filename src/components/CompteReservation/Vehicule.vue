@@ -47,7 +47,7 @@ const addNewTrajet = async () => {
 
   const data = {
     uid: '', 
-    compagnie_id: userId, 
+    compagnie_uid: userId, 
     enAvant: false, 
     enPromo: false, 
     escale: escale_a_faire.value, 
@@ -177,7 +177,7 @@ const promote = async (trajet) => {
     const data = {
       uid: '', 
       ancien_montant: trajet.montant, 
-      compagnie_id: userId, 
+      compagnie_uid: userId, 
       country: companieStore.companie.country, 
       createdAt: new Date(), 
       debut_promo: debut_promo.value, 

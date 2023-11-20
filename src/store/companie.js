@@ -8,7 +8,8 @@ const companieRentedCarsColRef = collection(firestoreDb, "location_vehicules")
 
 export const useCompanieStore = defineStore('companieStore', {
     state: () => ({
-        companies: [],
+        companies: [], 
+        country: '', 
         locationCompanies: [],
         popularLocationCompanies: [],
         transportCompanies: [],
@@ -110,7 +111,7 @@ export const useCompanieStore = defineStore('companieStore', {
 
         async getCompanieRentedCars(companieId) {
             try {
-                const q = query(companieRentedCarsColRef, where('companie_id', '==', `${companieId}`))
+                const q = query(companieRentedCarsColRef, where('companie_uid', '==', `${companieId}`))
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => this.companieRentedCars.push(doc.data()))
 
@@ -173,7 +174,7 @@ export const useCompanieStore = defineStore('companieStore', {
         },
         async setCompanieLocations(companieId) {
             try {
-                const q = query(companieRentedCarsColRef, where('compagnie_id', "==", `${companieId}`));
+                const q = query(companieRentedCarsColRef, where('compagnie_uid', "==", `${companieId}`));
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => this.companieLocations.push({ ...doc.data() }))
             } catch (error) {
@@ -217,6 +218,9 @@ export const useCompanieStore = defineStore('companieStore', {
             } catch (error) {
                 console.log(error)
             }
+        }, 
+        setCountry(val) {
+            this.country = val
         }
     }
 })

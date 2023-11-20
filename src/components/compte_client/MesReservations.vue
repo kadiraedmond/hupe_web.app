@@ -140,7 +140,7 @@ const payer = async (reservation) => {
       const client_notif = {
         title: 'Paiement pour réservation', 
         message: `Vous avez effectué un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
-        destinataire: userId,
+        destinataire: [userId], 
         lu: false, 
         createdAt: new Date()
       }
@@ -148,7 +148,7 @@ const payer = async (reservation) => {
       await addDoc(notificationColRef, client_notif)
   
       // ajouter la somme sur le compte de la compagnie
-      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_id}`)
+      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_uid}`)
       const comp_accountColRef = collection(comp_companieDocRef, 'myAccount')
       const comp_accountDocRef = doc(comp_accountColRef, 'account')
 
@@ -165,7 +165,8 @@ const payer = async (reservation) => {
       const comp_notif = {
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
-        userId: reservation.compagnie_id,
+        destinataire: [reservation.compagnie_uid], 
+        type: 'compagnie', 
         lu: false, 
         createdAt: new Date()
       }

@@ -1,12 +1,13 @@
 <script setup>
-import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
+import { onBeforeMount, onMounted, computed, ref, reactive } from "vue"
 
-import Vehicule from "@/components/Home/location.vue";
-import Reservation from "@/components/Home/reservation.vue";
-import { useCompanieStore } from "@/store/companie.js";
-import { useSlide } from "@/store/slideImages.js";
-import { useReservationStore } from "@/store/reservation.js";
-import { usePromotionStore } from "@/store/promotion.js";
+import Vehicule from "@/components/Home/location.vue"
+import Reservation from "@/components/Home/reservation.vue"
+import { useCompanieStore } from "@/store/companie.js"
+import { useSlide } from "@/store/slideImages.js"
+import { useReservationStore } from "@/store/reservation.js"
+import { usePromotionStore } from "@/store/promotion.js"
+import { useLocalisationStore } from "@/store/localisation.js"
 
 import {
   collection,
@@ -15,13 +16,14 @@ import {
   where,
   getDoc,
   getDocs,
-} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
+} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
 
-const companieStore = useCompanieStore();
-const slideStore = useSlide();
-const reservationStore = useReservationStore();
-const promotionStore = usePromotionStore();
+const companieStore = useCompanieStore()
+const slideStore = useSlide()
+const reservationStore = useReservationStore()
+const promotionStore = usePromotionStore()
+const localisationStore = useLocalisationStore()
 
 onBeforeMount(() => {
   slideStore.getSlideImages;
@@ -45,37 +47,25 @@ onMounted(() => {
   const textLoad = () => {
     setTimeout(() => {
       text.textContent =
-        "Notre application vous ouvre les portes d'un monde de ";
-    }, 0);
+        "Que vous cherchiez à louer une voiture pour une escapade, "
+    }, 4000)
     setTimeout(() => {
       text.textContent =
-        "possibilités pour répondre à tous vos besoins de déplacement.";
-    }, 4000);
+        "Que vous cherchiez à acheter la voiture de vos rêves, "
+    }, 8000)
     setTimeout(() => {
       text.textContent =
-        "Que vous cherchiez à louer une voiture pour une escapade, ";
-    }, 8000);
+        "Que vous cherchiez à trouver des gros engins pour vos projets, "
+    }, 12000)
     setTimeout(() => {
       text.textContent =
-        "Que vous cherchiez à acheter la voiture de vos rêves, ";
-    }, 12000);
-    setTimeout(() => {
-      text.textContent =
-        "Que vous cherchiez à trouver des gros engins pour vos projets, ";
-    }, 16000);
-    setTimeout(() => {
-      text.textContent =
-        "Que vous cherchiez à réserver des billets de bus pour vos voyages, ";
-    }, 20000);
-    setTimeout(() => {
-      text.textContent =
-        "Nous sommes là pour simplifier chaque étape de votre parcours.";
-    }, 24000);
-  };
+        "Que vous cherchiez à réserver des billets de bus pour vos voyages, "
+    }, 16000)
+  }
 
-  textLoad();
-  setInterval(textLoad, 28000);
-});
+  textLoad()
+  setInterval(textLoad, 20000)
+})
 </script>
 
 <template>
@@ -96,13 +86,21 @@ onMounted(() => {
             style="width: 260px; height: 260px; object-fit: cover; float: left"
           />
           <div class="wrapper text-start" style="margin-top: 2rem">
-            <span class="text first-text"
+            <span class="text first-text text-black"
               >Quand la mobilité devient un jeu d'enfant !
             </span>
             <br />
-            <span class="text sec-text" style="font-size: 1rem">
+            <span class="text" style="font-size: 1rem; color: #218035">
               Notre application vous ouvre les portes d'un monde de possibilités
               pour répondre à tous vos besoins de déplacement.
+            </span> 
+            <br />
+            <span class="text sec-text" style="font-size: 1.26rem">
+              Que vous cherchiez à louer une voiture pour une escapade, 
+            </span> 
+            <br />
+            <span class="text" style="font-size: 1rem; color: #218035">
+              Nous sommes là pour simplifier chaque étape de votre parcours.
             </span>
           </div>
           <!-- <p class="text-white text-start" style="margin-top: 3.8%; font-size: 0.86rem">

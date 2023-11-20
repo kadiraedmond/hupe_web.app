@@ -14,17 +14,22 @@ const noneReadNotifications = ref([])
 onBeforeMount(async () => {
     connectedUser = JSON.parse(localStorage.getItem('user')) || authStore.user 
 
-    if(connectedUser.raison_social) {
-        const q = query(notificationColRef, where('userId', '==', `${connectedUser.uid}`))
+    // if(connectedUser.raison_social) {
+    //     const q = query(notificationColRef, where('userId', '==', `${connectedUser.uid}`))
 
-        const snapshot = await getDocs(q)
-        snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
-    } else {
-        const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
+    //     const snapshot = await getDocs(q)
+    //     snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+    // } else {
+    //     const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
 
-        const snapshot = await getDocs(q)
-        snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
-    }
+    //     const snapshot = await getDocs(q)
+    //     snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+    // }
+
+    const q = query(notificationColRef, where('destinataire', 'array-contains', `${connectedUser.uid}`))
+
+    const snapshot = await getDocs(q)
+    snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
 
     notifications.value.forEach(notification => {
         if(notification.lu === false) {

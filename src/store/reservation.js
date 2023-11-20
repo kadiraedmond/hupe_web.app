@@ -41,7 +41,7 @@ export const useReservationStore = defineStore('reservationStore', {
         },
         async setCompanieReservations(companieId) {
             try {
-                const q = query(reservationColRef, where('compagnie_id', "==", `${companieId}`));
+                const q = query(reservationColRef, where('compagnie_uid', "==", `${companieId}`));
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => this.companieReservations.push({ ...doc.data() }))
             } catch (error) {
@@ -54,7 +54,7 @@ export const useReservationStore = defineStore('reservationStore', {
                 const snapshots = await getDocs(q)
                 for(let i = 0; i < snapshots.docs.length; i++) {
                     const programData = snapshots.docs[i].data()
-                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_id}`)
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
                     const snapshot = await getDoc(companieDocRef)
     
                     let company = {}

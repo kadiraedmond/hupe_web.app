@@ -63,7 +63,8 @@ const retrait = async () => {
     const comp_notif = {
       title: 'Demande de retrait', 
       message: `Vous avez demandé un retrait de FCFA ${montant.value}, qui sera crédité sur votre compte après validation par l'administrateur.`, 
-      userId: userId, 
+      destinataire: [userId], 
+      type: 'compagnie', 
       lu: false, 
       createdAt: new Date() 
     }

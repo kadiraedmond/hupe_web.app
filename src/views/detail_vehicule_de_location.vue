@@ -26,7 +26,7 @@ let companieId
 onBeforeMount(async () => {
   await promotionStore.setVehicule(carId)
 
-  companieId = promotionStore.vehicule.compagnie_id
+  companieId = promotionStore.vehicule.compagnie_uid
   console.log(companieId)
 
   companieStore.setCompanieById(companieId)
@@ -102,7 +102,7 @@ const reserver = async (car) => {
     chauffeur: avecChauffeur.value === true ? "Oui" : "Non",
     client_id: user.uid || "",
     client_profil_url: user.imageUrl || "",
-    compagnie_id: companieId,
+    compagnie_uid: companieId,
     created_at: new Date(),
     date_retour: new Date(dateRetour.value),
     date_retrait: new Date(dateRetrait.value),
@@ -166,7 +166,7 @@ const reserver = async (car) => {
     const comp_notif = {
       title: 'Location de véhicule', 
       message: `Vous avez une réservation du véhicule « ${car.vehicule} ${car.modele} » en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} », veuillez valider ou annuler cette réservation.`, 
-      userId: car.compagnie_id,
+      userId: car.compagnie_uid,
       lu: false, 
       createdAt: new Date()
     }

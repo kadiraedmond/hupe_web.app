@@ -98,7 +98,7 @@ const reporter = async (reservation) => {
     const data = {
       title: 'Report de réservation', 
       message: `Vous avez une demande de report de la réservation N° ${reservation.number}`, 
-      userId: reservation.compagnie_id, 
+      userId: reservation.compagnie_uid, 
       lu: false, 
       createdAt: new Date() 
     }
@@ -167,7 +167,7 @@ const payer = async (reservation) => {
       await addDoc(notificationColRef, client_notif)
   
       // Recherche de la compagnie dans la base
-      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_id}`) 
+      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_uid}`) 
 
       const comp_snapshot = await getDoc(comp_companieDocRef)
       let companieInfos
@@ -198,7 +198,7 @@ const payer = async (reservation) => {
       const comp_notif = {
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de FCFA ${montant_apres_commission} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
-        userId: reservation.compagnie_id,
+        userId: reservation.compagnie_uid,
         lu: false, 
         createdAt: new Date()
       }

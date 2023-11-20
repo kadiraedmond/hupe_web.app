@@ -37,7 +37,7 @@ const handleSubmit = async (demande) => {
 
   const responseCol = collection(docRef, 'reponse')
 
-  // await addDoc(responseCol, { compagnie: `${userId}`, reponse: response.value })
+  await addDoc(responseCol, { compagnie: `${userId}`, reponse: response.value })
               .then(() => 'Document ajouté')
   
   const snapshot = await getDoc(docRef)

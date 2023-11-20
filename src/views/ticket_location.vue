@@ -19,7 +19,7 @@ onBeforeMount(async () => {
     await locationStore.setLocationById(locationId)
     location.value = locationStore.location 
 
-    const docRef = doc(firestoreDb, 'compagnies', `${locationStore.location.compagnie_id}`)
+    const docRef = doc(firestoreDb, 'compagnies', `${locationStore.location.compagnie_uid}`)
     const snapshot = await getDoc(docRef)
 
     if(snapshot.exists()) companie.value = snapshot.data()

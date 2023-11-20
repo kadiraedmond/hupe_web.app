@@ -19,7 +19,7 @@ onBeforeMount(async () => {
     await reservationStore.setReservationById(reservationId)
     reservation.value = reservationStore.reservation 
 
-    const docRef = doc(firestoreDb, 'compagnies', `${reservationStore.reservation.compagnie_id}`)
+    const docRef = doc(firestoreDb, 'compagnies', `${reservationStore.reservation.compagnie_uid}`)
     const snapshot = await getDoc(docRef)
 
     if(snapshot.exists()) companie.value = snapshot.data()

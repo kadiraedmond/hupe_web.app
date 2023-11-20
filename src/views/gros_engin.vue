@@ -1,12 +1,12 @@
 <script setup>
-import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
+import { onBeforeMount, onMounted, computed, ref, reactive } from "vue"
 
-import { useCompanieStore } from "@/store/companie.js";
+import { useCompanieStore } from "@/store/companie.js"
 
-import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
+import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
 
-const companieStore = useCompanieStore();
+const companieStore = useCompanieStore()
  
 
 onBeforeMount(() => {

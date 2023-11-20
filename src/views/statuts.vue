@@ -88,7 +88,7 @@ const reporter = async (location) => {
     const data = {
       title: 'Report de location', 
       message: `Vous avez une demande de report de la location N° ${location.number}`, 
-      userId: location.compagnie_id, 
+      userId: location.compagnie_uid, 
       lu: false, 
       createdAt: new Date() 
     }
@@ -191,7 +191,7 @@ const payer = async (location) => {
       await addDoc(notificationColRef, client_notif)
   
       // Recherche de la compagnie dans la base
-      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${location.compagnie_id}`)
+      const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${location.compagnie_uid}`)
 
       const comp_snapshot = await getDoc(comp_companieDocRef)
       let companieInfos
@@ -222,7 +222,7 @@ const payer = async (location) => {
       const comp_notif = {
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de caution de FCFA ${montant_apres_commission} pour la location de votre ${location.vehicule} ${location.modele}.`, 
-        userId: location.compagnie_id,
+        userId: location.compagnie_uid,
         lu: false, 
         createdAt: new Date()
       }
