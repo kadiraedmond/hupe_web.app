@@ -26,19 +26,19 @@ const promotionStore = usePromotionStore()
 const localisationStore = useLocalisationStore()
 
 onBeforeMount(() => {
-  slideStore.getSlideImages;
+  slideStore.getSlideImages
 
-  companieStore.getAllCompanies;
+  companieStore.getAllCompanies
 
-  companieStore.getLocationCompanies;
+  companieStore.getLocationCompanies
 
-  companieStore.getTransportCompanies;
+  companieStore.getTransportCompanies
 
-  reservationStore.getAllReservations;
-  promotionStore.getPromotionOffres;
-  promotionStore.getPopularDestinations;
-  promotionStore.getPopularCars;
-});
+  reservationStore.getAllReservations
+  promotionStore.getPromotionOffres
+  promotionStore.getPopularDestinations
+  promotionStore.getPopularCars
+})
 
 onMounted(() => {
   window.scrollTo(0, 0)
@@ -1044,7 +1044,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Vente populaires</h2>
+              <h2>Ventes populaires</h2>
               <p id="section-p">
                 Découvrez les véhicules les plus prisés pour votre prochain
                 voyage. Confort, style et fiabilité, nous avons tout ce dont

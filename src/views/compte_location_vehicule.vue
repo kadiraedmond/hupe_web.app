@@ -164,7 +164,7 @@ onMounted(() => {
                   aria-controls="politique-tab-pane"
                   aria-selected="false"
                 >
-                  Politique
+                  Politiques
                 </button>
               </li>
 

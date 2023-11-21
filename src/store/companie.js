@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia'
-import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
+import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js" 
+import axios from 'axios'
 
-// const reservationColRef = collection(firestoreDb, "reservation");
-const companiesColRef = collection(firestoreDb, "compagnies");
+// const reservationColRef = collection(firestoreDb, "reservation")
+const companiesColRef = collection(firestoreDb, "compagnies")
 const companieRentedCarsColRef = collection(firestoreDb, "location_vehicules")
+
+const API_URL = 'https://ipinfo.io/json?token=4e774d02603f38' 
 
 export const useCompanieStore = defineStore('companieStore', {
     state: () => ({
@@ -29,8 +32,13 @@ export const useCompanieStore = defineStore('companieStore', {
     }),
     getters: {
         async getAllCompanies() {
-            try {
-                const snapshot = await getDocs(companiesColRef);
+            try { 
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country 
+                
+                const q = query(companiesColRef, where('country', '==', `${this.country}`))
+                const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => this.companies.push(doc.data()))
                 
                 return this.companies
@@ -41,15 +49,21 @@ export const useCompanieStore = defineStore('companieStore', {
         },
 
         async getLocationCompanies() {
-            try {
-                const q = query(companiesColRef, where('type_compagnie', '==', 'Location'))
-                const snapshot = await getDocs(q);
+            try { 
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country
+                
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Location'), where('country', '==', `${this.country}`))
+                const snapshot = await getDocs(q)
                 snapshot.docs.forEach((doc) => {
                     const data = doc.data()
                     if(data.status == 'active') {
                         this.locationCompanies.push(data)
                     }
-                })
+                }) 
+
+                console.log(this.locationCompanies)
 
                 for(let i = 0; i < this.locationCompanies.length; i++) {
                     if(this.locationCompanies[i].offre == 'vip') {
@@ -57,13 +71,18 @@ export const useCompanieStore = defineStore('companieStore', {
                     }
                 }
             } catch (error) {
-                console.log(error);
+                console.log(error)
             }
+
         },
 
         async getPopularLocationCompanies() {
-            try {
-                const q = query(companiesColRef, where('type_compagnie', '==', 'Location'), where('offre', '==', 'vip'))
+            try { 
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country 
+
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Location'), where('offre', '==', 'vip'), where('country', '==', `${this.country}`))
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => this.popularLocationCompanies.push(doc.data()))
 
@@ -75,8 +94,12 @@ export const useCompanieStore = defineStore('companieStore', {
 
         
         async getTransportCompanies() {
-            try {
-                const q = query(companiesColRef, where('type_compagnie', '==', 'Tansport'))
+            try { 
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country 
+
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Tansport'), where('country', '==', `${this.country}`))
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => {
                     const data = doc.data()
@@ -96,8 +119,12 @@ export const useCompanieStore = defineStore('companieStore', {
         },
         
         async getPopularTransportCompanies() {
-            try {
-                const q = query(companiesColRef, where('type_compagnie', '==', 'Transport'), where('offre', '==', 'vip'))
+            try { 
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country 
+                
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Transport'), where('offre', '==', 'vip'), where('country', '==', `${this.country}`))
                 const snapshot = await getDocs(q);
                 console.log(snapshot.docs)
                 snapshot.docs.forEach((doc) => this.popularTransportCompanies.push(doc.data()))
@@ -220,7 +247,8 @@ export const useCompanieStore = defineStore('companieStore', {
             }
         }, 
         setCountry(val) {
-            this.country = val
+            this.country = val 
+            console.log(this.country)
         }
     }
 })

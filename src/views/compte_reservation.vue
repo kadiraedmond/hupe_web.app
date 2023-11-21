@@ -102,7 +102,7 @@ onMounted(() => {
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="politique-tab" data-bs-toggle="tab" data-bs-target="#politique-tab-pane"
-                  type="button" role="tab" aria-controls="politique-tab-pane" aria-selected="false">Politique</button>
+                  type="button" role="tab" aria-controls="politique-tab-pane" aria-selected="false">Politiques</button>
               </li>
 
              

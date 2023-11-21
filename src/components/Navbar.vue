@@ -59,25 +59,24 @@ const handleSearch = () => {
   searchStore.search(searchTerm) 
   router.push('/recherche')
 }
+const API_URL = 'https://ipinfo.io/json?token=4e774d02603f38'
 
 onBeforeMount(async () => {
-  const API_URL = 'https://ipinfo.io/json?token=4e774d02603f38'
-  fetch(API_URL)
-    .then(response => response.json())
-    .then(data => {
-      country.value = data.country
-      console.log(data)
-      localisationStore.setCompaniesByLocalisation(data.country)
-      companieStore.setCountry(data.country)
 
-      // Swal.fire({
-      //   title: `Votre localisation est : \n ${data.city} - ${data.country}`, 
-      //   icon: "info"
-      // })
-    })
-    .catch(error => {
-      console.error('Erreur lors de la récupération des informations de localisation :', error);
-    })
+  try {
+    const response = await fetch(API_URL)
+    const data = await response.json()
+
+    country.value = data.country
+
+    // Swal.fire({
+    //   title: `Votre localisation est : \n ${data.city} - ${data.country}`, 
+    //   icon: "info"
+    // })
+  } catch (error) {
+    console.error('Erreur lors de la récupération des informations de localisation :', error);
+  }
+
 })
 
 const handleSelect = () => {

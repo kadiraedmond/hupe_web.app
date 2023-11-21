@@ -1,17 +1,28 @@
 import { defineStore } from 'pinia'
-import { collection, doc, getDoc, getDocs} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
+import { collection, doc, getDoc, query, where, getDocs} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js" 
+import axios from 'axios'
 
-const imageSlideColRef = collection(firestoreDb, "slideAcceuilImages");
+const imageSlideColRef = collection(firestoreDb, "slideAcceuilImages") 
+
+const API_URL = 'https://ipinfo.io/json?token=4e774d02603f38' 
 
 export const useSlide = defineStore('slideStore', {
     state: () => ({
+        country: '',
         slideImages: []
     }),
     getters: {
         async getSlideImages() {
-            try {
-                const snapshots = await getDocs(imageSlideColRef)
+            try { 
+
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country 
+                
+                const q = query(imageSlideColRef, where('country', 'array-contains', `${this.country}`)) 
+
+                const snapshots = await getDocs(q)
                 for(let i = 0; i < snapshots.docs.length; i++) {
                     const programData = snapshots.docs[i].data()
                     const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnieUID}`)

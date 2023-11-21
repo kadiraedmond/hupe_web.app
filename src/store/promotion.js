@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { collection, doc, query, where, getDoc, getDocs } from 'firebase/firestore'
-import { firestoreDb } from '@/firebase/firebase.js'
+import { firestoreDb } from '@/firebase/firebase.js' 
+import axios from 'axios'
 
 const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
 const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
@@ -8,10 +9,13 @@ const vehiculeEnPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
 
 const miseEnAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
 const programmeEnAvantColRef = collection(miseEnAvantDocRef, 'programme_en_avant')
-const vehiculesEnAvantColRef = collection(miseEnAvantDocRef, 'vehicule_en_avant')
+const vehiculesEnAvantColRef = collection(miseEnAvantDocRef, 'vehicule_en_avant') 
+
+const API_URL = 'https://ipinfo.io/json?token=4e774d02603f38' 
 
 export const usePromotionStore = defineStore('promotionStore', {
-    state: () => ({
+    state: () => ({ 
+        country: '', 
         offresVehicules: [],
         popularDestinations: [],
         popularCars: [],
@@ -23,7 +27,14 @@ export const usePromotionStore = defineStore('promotionStore', {
     getters: {
         async getPromotionOffres() {
             try {
-                const snapshots = await getDocs(vehiculeEnPromoColRef)
+                
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country 
+                
+                const q = query(vehiculeEnPromoColRef, where('country', '==', `${this.country}`)) 
+
+                const snapshots = await getDocs(q)
                 for(let i = 0; i < snapshots.docs.length; i++) {
                     const programData = snapshots.docs[i].data()
                     const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
@@ -39,8 +50,15 @@ export const usePromotionStore = defineStore('promotionStore', {
             }
         },
         async getPopularDestinations() {
-            try {
-                const snapshots = await getDocs(programmeEnAvantColRef)
+            try { 
+
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country 
+                
+                const q = query(programmeEnAvantColRef, where('country', '==', `${this.country}`)) 
+
+                const snapshots = await getDocs(q)
                 for(let i = 0; i < snapshots.docs.length; i++) {
                     const programData = snapshots.docs[i].data()
                     const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
@@ -56,8 +74,15 @@ export const usePromotionStore = defineStore('promotionStore', {
             }
         },
         async getPopularCars() {
-            try {
-                const snapshots = await getDocs(vehiculesEnAvantColRef)
+            try { 
+
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country 
+                
+                const q = query(vehiculesEnAvantColRef, where('country', '==', `${this.country}`)) 
+                
+                const snapshots = await getDocs(q)
                 for(let i = 0; i < snapshots.docs.length; i++) {
                     const programData = snapshots.docs[i].data()
                     const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
