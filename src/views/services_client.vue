@@ -249,7 +249,7 @@ onMounted(() => {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row row-cols-1 row-cols-md-2 g-4 ">
+                                <div class="row row-cols-1 row-cols-md-2 g-4 " style="margin-top: -129px;">
                                 
                                     <div class="col">
                                         <div class="card h-100" style="border-radius: 15px !important; background: #EAEAEA !important;">
@@ -312,7 +312,7 @@ onMounted(() => {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mt-4">
+                                <div class="row mt-4" style="margin-top: 40px !important;">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary w-100" id="services_client_btn">
                                             <div class="row">
@@ -329,7 +329,7 @@ onMounted(() => {
                                         <p style="font-size: 15px;">Si vous avez besoin d'une assistance téléphonique, vous pouvez nous appeler au +225 07 05 87 51 94 Nos agents sont disponibles pendant nos heures d'ouverture de 8h00 à 20h00. Nous sommes là pour répondre à vos questions et résoudre vos problèmes.</p>
                                     </div>
                                 </div>
-                                Wifihouse2023new2
+                            
                                 <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
                                     <div class="col">
                                         <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">

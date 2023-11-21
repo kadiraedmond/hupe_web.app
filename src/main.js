@@ -9,6 +9,7 @@
 
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import '../node_modules/flag-icon-css/css/flag-icons.min.css'
 
 import VueTelInput from 'vue-tel-input'
 import 'vue-tel-input/vue-tel-input.css'

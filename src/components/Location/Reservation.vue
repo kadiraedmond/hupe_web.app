@@ -479,273 +479,291 @@ const valider = async (location) => {
           aria-labelledby="attente-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
-            <div class="col-md-12">
-              <div class="row g-1">
-                <div class="col-md-12">
-                  <div
-                    class="accordion accordion-flush"
-                    id="accordionFlushExample"
-                  >
-                    <div class="row">
-                      <div
-                        class="col-md-4"
-                        v-for="(location, index) in elements_en_attente" :key="index">
+          <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+              <div class="row mt-5">
+              <div class="col-md-12">
+                <div class="row g-1">
+                  <div class="col-md-12">
+                    <div
+                      class="accordion accordion-flush"
+                      id="accordionFlushExample"
+                    >
+                      <div class="row">
                         <div
-                          class="accordion-item mb-3"
-                          style="border: 1px solid #d2d2d2; border-radius: 5px"
-                        >
-                          <h2
-                            class="accordion-header"
-                            :id="'flush-headingOne' + index"
-                          >
-                            <button
-                              class="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              :data-bs-target="'#flush-collapseOne' + index"
-                              aria-expanded="false"
-                              :aria-controls="'flush-collapseOne' + index"
-                              id="reser"
-                            >
-                              <div
-                                class="row g-1 d-flex mt-1"
-                                style="width: 100%"
-                              >
-                                <div class="col-md-6 d-flex">
-                                  <img
-                                    :src="location.client_profil_url"
-                                    alt
-                                    class="w-px-40 h-auto rounded-circle"
-                                    style="
-                                      max-width: 50px;
-                                      max-height: 50px;
-                                      border: 1px solid rgb(214, 214, 214);
-                                    "
-                                  />
-                                  <div>
-                                    <div
-                                      class="card-body"
-                                      style="
-                                        margin-left: 10px;
-                                        margin-top: 10px;
-                                      "
-                                    >
-                                      <h5
-                                        class="card-title"
-                                        style="
-                                          font-size: 12px;
-                                          margin-bottom: 6px;
-                                        "
-                                      >
-                                        {{ location.nom_client }}
-                                      </h5>
-                                      <p
-                                        class="card-text"
-                                        style="font-size: 12px"
-                                      >
-                                        <i
-                                          class="bx bx-map"
-                                          style="color: rgb(139 139 139)"
-                                        ></i>
-                                        CI,rue 250
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 text-end">
-                                  <strong
-                                    style="
-                                      color: rgb(247 127 0);
-                                      font-size: 12px;
-                                      margin-right: 10px;
-                                      font-weight: 500;
-                                    "
-                                    >{{ location.status }}
-                                  </strong>
-                                  <button
-                                    class="btn btn-primary"
-                                    style="
-                                      background: #219935;
-                                      border-color: #219935;
-                                      margin-top: 5px;
-                                      font-size: 12px;
-                                    "
-                                  >
-                                    {{ location.montant }} FCFA
-                                  </button>
-                                </div>
-                              </div>
-                            </button>
-                          </h2>
+                          class="col-md-4"
+                          v-for="(location, index) in elements_en_attente" :key="index">
                           <div
-                            :id="'flush-collapseOne' + index"
-                            class="accordion-collapse collapse"
-                            :aria-labelledby="'flush-headingOne' + index"
-                            data-bs-parent="#accordionFlushExample"
+                            class="accordion-item mb-3"
+                            style="border: 1px solid #d2d2d2; border-radius: 5px"
                           >
-                            <div
-                              class="accordion-body"
-                              style="margin-top: 8px; padding: 7px"
+                            <h2
+                              class="accordion-header"
+                              :id="'flush-headingOne' + index"
                             >
-                              <div
-                                class="card h-100 border-0"
-                                id="card_compagnie"
-                                style="box-shadow: none; background: none"
+                              <button
+                                class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                :data-bs-target="'#flush-collapseOne' + index"
+                                aria-expanded="false"
+                                :aria-controls="'flush-collapseOne' + index"
+                                id="reser"
                               >
                                 <div
-                                  class="card mt-4"
-                                  style="
-                                    margin-top: -10px !important;
-                                    width: 100%;
-                                  "
+                                  class="row g-1 d-flex mt-1"
+                                  style="width: 100%"
                                 >
-                                  <div class="row g-0" style="margin: -2px">
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <div class="row mt-2">
-                                          <div class="col-6">
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                background: #efefef;
-                                                padding: 4px;
-                                                border-radius: 5px;
-                                                font-size: 12px;
-                                                margin-top: -15px;
-                                              "
-                                            >
-                                              {{
-                                                new Intl.DateTimeFormat(
-                                                  undefined,
-                                                  options
-                                                ).format(location.createdAt)
-                                              }}
-                                              <br />
-                                            </p>
-                                          </div>
-                                        </div>
-                                        <br />
-
-                                        <p
-                                          class="card-text"
+                                  <div class="col-md-6 d-flex">
+                                    <img
+                                      :src="location.client_profil_url"
+                                      alt
+                                      class="w-px-40 h-auto rounded-circle"
+                                      style="
+                                        max-width: 50px;
+                                        max-height: 50px;
+                                        border: 1px solid rgb(214, 214, 214);
+                                      "
+                                    />
+                                    <div>
+                                      <div
+                                        class="card-body"
+                                        style="
+                                          margin-left: 10px;
+                                          margin-top: 10px;
+                                        "
+                                      >
+                                        <h5
+                                          class="card-title"
                                           style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
+                                            font-size: 12px;
+                                            margin-bottom: 6px;
                                           "
                                         >
-                                          <strong
-                                            >{{ location.vehicule }}
-                                          </strong>
-                                          |
-                                          <strong>
-                                            {{ location.modele }}
-                                          </strong>
-                                        </p>
-
+                                          {{ location.nom_client }}
+                                        </h5>
                                         <p
                                           class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
+                                          style="font-size: 12px"
                                         >
-                                          {{ location.moteur }} |
-                                          {{ location.boite }} |
-                                          {{ location.plaque_vehicule }}
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          chauffeur |
-                                          <strong
-                                            >{{ location.chauffeur }}
-                                          </strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Intérieur |
-                                          <strong
-                                            >{{ location.interieurPays }}
-                                          </strong>
+                                          <i
+                                            class="bx bx-map"
+                                            style="color: rgb(139 139 139)"
+                                          ></i>
+                                          CI,rue 250
                                         </p>
                                       </div>
                                     </div>
-                                    <!-- <div class="col-md-6">
-                                  <img
-                                    :src="location.vehicule_image_url"
-                                    class="img-fluid rounded-start h-100"
-                                    alt="..."
-                                    style="height: 85% !important"
-                                  />
-                                </div> -->
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -32px;
-                                            margin-bottom: -8px;
-                                          "
-                                        >
-                                          Retrait |
-                                          <strong
-                                            >{{ location.date_retrait }}
-                                          </strong>
-                                          |
-                                          <strong>{{
-                                            location.heure_retrait
-                                          }}</strong>
-                                        </p>
+                                  </div>
+                                  <div class="col-md-6 text-end">
+                                    <strong
+                                      style="
+                                        color: rgb(247 127 0);
+                                        font-size: 12px;
+                                        margin-right: 10px;
+                                        font-weight: 500;
+                                      "
+                                      >{{ location.status }}
+                                    </strong>
+                                    <button
+                                      class="btn btn-primary"
+                                      style="
+                                        background: #219935;
+                                        border-color: #219935;
+                                        margin-top: 5px;
+                                        font-size: 12px;
+                                      "
+                                    >
+                                      {{ location.montant }} FCFA
+                                    </button>
+                                  </div>
+                                </div>
+                              </button>
+                            </h2>
+                            <div
+                              :id="'flush-collapseOne' + index"
+                              class="accordion-collapse collapse"
+                              :aria-labelledby="'flush-headingOne' + index"
+                              data-bs-parent="#accordionFlushExample"
+                            >
+                              <div
+                                class="accordion-body"
+                                style="margin-top: 8px; padding: 7px"
+                              >
+                                <div
+                                  class="card h-100 border-0"
+                                  id="card_compagnie"
+                                  style="box-shadow: none; background: none"
+                                >
+                                  <div
+                                    class="card mt-4"
+                                    style="
+                                      margin-top: -10px !important;
+                                      width: 100%;
+                                    "
+                                  >
+                                    <div class="row g-0" style="margin: -2px">
+                                      <div class="col-md-12">
+                                        <div class="card-body">
+                                          <div class="row mt-2">
+                                            <div class="col-6">
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  background: #efefef;
+                                                  padding: 4px;
+                                                  border-radius: 5px;
+                                                  font-size: 12px;
+                                                  margin-top: -15px;
+                                                "
+                                              >
+                                                {{
+                                                  new Intl.DateTimeFormat(
+                                                    undefined,
+                                                    options
+                                                  ).format(location.createdAt)
+                                                }}
+                                                <br />
+                                              </p>
+                                            </div>
+                                          </div>
+                                          <br />
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 20px;
-                                            margin-bottom: 20px;
-                                          "
-                                        >
-                                          Retour |
-                                          <strong
-                                            >{{ location.date_retour }}
-                                          </strong>
-                                        </p>
+                                          <p
+                                            class="card-text"
+                                            style="
+                                              font-size: 13px;
+                                              margin-top: -11px;
+                                              margin-bottom: 11px;
+                                            "
+                                          >
+                                            <strong
+                                              >{{ location.vehicule }}
+                                            </strong>
+                                            |
+                                            <strong>
+                                              {{ location.modele }}
+                                            </strong>
+                                          </p>
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Nombres de jours de location |
-                                          <strong>5 jours</strong>
-                                        </p>
-                                        <button 
-                                        class="btn btn-primary text-white mb-2" 
-                                        style="background: #219935; border: #219935; float: right" 
-                                        @click="valider(location)"
-                                        >
-                                          Valider
-                                        </button>
+                                          <p
+                                            class="card-text"
+                                            style="
+                                              font-size: 13px;
+                                              margin-top: 0px;
+                                              margin-bottom: 11px;
+                                            "
+                                          >
+                                            {{ location.moteur }} |
+                                            {{ location.boite }} |
+                                            {{ location.plaque_vehicule }}
+                                          </p>
+
+                                          <p
+                                            class="card-text"
+                                            style="
+                                              font-size: 13px;
+                                              margin-top: 0px;
+                                              margin-bottom: 11px;
+                                            "
+                                          >
+                                            chauffeur |
+                                            <strong
+                                              >{{ location.chauffeur }}
+                                            </strong>
+                                          </p>
+
+                                          <p
+                                            class="card-text"
+                                            style="
+                                              font-size: 13px;
+                                              margin-top: 0px;
+                                              margin-bottom: 11px;
+                                            "
+                                          >
+                                            Intérieur |
+                                            <strong
+                                              >{{ location.interieurPays }}
+                                            </strong>
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <!-- <div class="col-md-6">
+                                    <img
+                                      :src="location.vehicule_image_url"
+                                      class="img-fluid rounded-start h-100"
+                                      alt="..."
+                                      style="height: 85% !important"
+                                    />
+                                  </div> -->
+                                      <div class="col-md-12">
+                                        <div class="card-body">
+                                          <p
+                                            class="card-text"
+                                            style="
+                                              font-size: 13px;
+                                              margin-top: -32px;
+                                              margin-bottom: -8px;
+                                            "
+                                          >
+                                            Retrait |
+                                            <strong
+                                              >{{ location.date_retrait }}
+                                            </strong>
+                                            |
+                                            <strong>{{
+                                              location.heure_retrait
+                                            }}</strong>
+                                          </p>
+
+                                          <p
+                                            class="card-text"
+                                            style="
+                                              font-size: 13px;
+                                              margin-top: 20px;
+                                              margin-bottom: 20px;
+                                            "
+                                          >
+                                            Retour |
+                                            <strong
+                                              >{{ location.date_retour }}
+                                            </strong>
+                                          </p>
+
+                                          <p
+                                            class="card-text"
+                                            style="
+                                              font-size: 13px;
+                                              margin-top: -11px;
+                                              margin-bottom: 11px;
+                                            "
+                                          >
+                                            Nombres de jours de location |
+                                            <strong>5 jours</strong>
+                                          </p>
+                                          <button 
+                                          class="btn btn-primary text-white mb-2" 
+                                          style="background: #219935; border: #219935; float: right" 
+                                          @click="valider(location)"
+                                          >
+                                            Valider
+                                          </button>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -760,7 +778,84 @@ const valider = async (location) => {
                 </div>
               </div>
             </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Marque</th>
+                        <th scope="col">Modele</th>
+                        <th scope="col">Année</th>
+                        <th scope="col">Moteur</th>
+                        <th scope="col">Transmission</th>
+                        <th scope="col">Immatriculation</th>
+                        <th scope="col">Chauffeur</th>
+                        <th scope="col">Intérieur</th>
+                        <th scope="col">D.retrait</th>
+                        <th scope="col">H.retrait</th>
+                        <th scope="col">D.retour</th>
+                        <th scope="col">H.retour</th>
+                        <th scope="col">N.jours</th>
+                        
+                        <th scope="col">Prix</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(location, index) in elements_en_attente" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ location.nom_client }}</td>
+                        
+                        <td> {{ location.vehicule }}</td>
+                        <td> {{ location.modele }}</td>
+                        <td> {{ location.année }}</td>
+                        <td>{{ location.moteur }}</td>
+                        <td> {{ location.boite }}</td>
+                        <td>{{ location.plaque_vehicule }}</td>
+                        <td>{{ location.chauffeur }}</td>
+                        <td>{{ location.interieurPays }}</td>
+                        <td>{{ location.date_retrait }}</td>
+                        <td>{{ location.heure_retrait }}</td>
+                        <td> {{ location.date_retour }}</td>
+                        <td> {{ location.heure_retour }}</td>
+                        <td> {{ location.montant }}</td>
+                        <td></td>
+                      
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ location.status }}</div></td>
+                        
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
           </div>
+         
         </div>
 
         <div
@@ -770,270 +865,289 @@ const valider = async (location) => {
           aria-labelledby="valid-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
-            <div class="col-md-12">
-              <div class="row g-1">
+        <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab2" data-bs-toggle="pill" data-bs-target="#pills-home2" type="button" role="tab" aria-controls="pills-home2" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab2" data-bs-toggle="pill" data-bs-target="#pills-profile2" type="button" role="tab" aria-controls="pills-profile2" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home2" role="tabpanel" aria-labelledby="pills-home-tab2" tabindex="0">
+              <div class="row mt-5">
                 <div class="col-md-12">
-                  <div
-                    class="accordion accordion-flush"
-                    id="accordionFlushExample"
-                  >
-                    <div class="row">
+                  <div class="row g-1">
+                    <div class="col-md-12">
                       <div
-                        class="col-md-4"
-                        v-for="(
-                          location, index
-                        ) in elements_valide"
-                        :key="index"
+                        class="accordion accordion-flush"
+                        id="accordionFlushExample"
                       >
-                        <div
-                          class="accordion-item mb-3"
-                          style="border: 1px solid #d2d2d2; border-radius: 5px" 
-                        >
-                          <h2
-                            class="accordion-header"
-                            :id="'flush-headingOne' + index"
-                          >
-                            <button
-                              class="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              :data-bs-target="'#flush-collapseOne' + index"
-                              aria-expanded="false"
-                              :aria-controls="'flush-collapseOne' + index"
-                              id="reser"
-                            >
-                              <div
-                                class="row g-1 d-flex mt-1"
-                                style="width: 100%"
-                              >
-                                <div class="col-md-6 d-flex">
-                                  <img
-                                    :src="location.client_profil_url"
-                                    alt
-                                    class="w-px-40 h-auto rounded-circle"
-                                    style="
-                                      max-width: 50px;
-                                      max-height: 50px;
-                                      border: 1px solid rgb(214, 214, 214);
-                                    "
-                                  />
-                                  <div>
-                                    <div
-                                      class="card-body"
-                                      style="
-                                        margin-left: 10px;
-                                        margin-top: 10px;
-                                      "
-                                    >
-                                      <h5
-                                        class="card-title"
-                                        style="
-                                          font-size: 12px;
-                                          margin-bottom: 6px;
-                                        "
-                                      >
-                                        {{ location.nom_client }}
-                                      </h5>
-                                      <p
-                                        class="card-text"
-                                        style="font-size: 12px"
-                                      >
-                                        <i
-                                          class="bx bx-map"
-                                          style="color: rgb(139 139 139)"
-                                        ></i>
-                                        CI,rue 250
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 text-end">
-                                  <strong
-                                    style="
-                                      color: rgb(247 127 0);
-                                      font-size: 12px;
-                                      margin-right: 10px;
-                                      font-weight: 500;
-                                    "
-                                    >{{ location.status }}
-                                  </strong>
-                                  <button
-                                    class="btn btn-primary"
-                                    style="
-                                      background: #219935;
-                                      border-color: #219935;
-                                      margin-top: 5px;
-                                      font-size: 12px;
-                                    "
-                                  >
-                                    {{ location.montant }} FCFA
-                                  </button>
-                                </div>
-                              </div>
-                            </button>
-                          </h2>
+                        <div class="row">
                           <div
-                            :id="'flush-collapseOne' + index"
-                            class="accordion-collapse collapse"
-                            :aria-labelledby="'flush-headingOne' + index"
-                            data-bs-parent="#accordionFlushExample"
+                            class="col-md-4"
+                            v-for="(
+                              location, index
+                            ) in elements_valide"
+                            :key="index"
                           >
                             <div
-                              class="accordion-body"
-                              style="margin-top: 8px; padding: 7px"
+                              class="accordion-item mb-3"
+                              style="border: 1px solid #d2d2d2; border-radius: 5px" 
                             >
+                              <h2
+                                class="accordion-header"
+                                :id="'flush-headingOne' + index"
+                              >
+                                <button
+                                  class="accordion-button collapsed"
+                                  type="button"
+                                  data-bs-toggle="collapse"
+                                  :data-bs-target="'#flush-collapseOne' + index"
+                                  aria-expanded="false"
+                                  :aria-controls="'flush-collapseOne' + index"
+                                  id="reser"
+                                >
+                                  <div
+                                    class="row g-1 d-flex mt-1"
+                                    style="width: 100%"
+                                  >
+                                    <div class="col-md-6 d-flex">
+                                      <img
+                                        :src="location.client_profil_url"
+                                        alt
+                                        class="w-px-40 h-auto rounded-circle"
+                                        style="
+                                          max-width: 50px;
+                                          max-height: 50px;
+                                          border: 1px solid rgb(214, 214, 214);
+                                        "
+                                      />
+                                      <div>
+                                        <div
+                                          class="card-body"
+                                          style="
+                                            margin-left: 10px;
+                                            margin-top: 10px;
+                                          "
+                                        >
+                                          <h5
+                                            class="card-title"
+                                            style="
+                                              font-size: 12px;
+                                              margin-bottom: 6px;
+                                            "
+                                          >
+                                            {{ location.nom_client }}
+                                          </h5>
+                                          <p
+                                            class="card-text"
+                                            style="font-size: 12px"
+                                          >
+                                            <i
+                                              class="bx bx-map"
+                                              style="color: rgb(139 139 139)"
+                                            ></i>
+                                            CI,rue 250
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 text-end">
+                                      <strong
+                                        style="
+                                          color: rgb(247 127 0);
+                                          font-size: 12px;
+                                          margin-right: 10px;
+                                          font-weight: 500;
+                                        "
+                                        >{{ location.status }}
+                                      </strong>
+                                      <button
+                                        class="btn btn-primary"
+                                        style="
+                                          background: #219935;
+                                          border-color: #219935;
+                                          margin-top: 5px;
+                                          font-size: 12px;
+                                        "
+                                      >
+                                        {{ location.montant }} FCFA
+                                      </button>
+                                    </div>
+                                  </div>
+                                </button>
+                              </h2>
                               <div
-                                class="card h-100 border-0"
-                                id="card_compagnie"
-                                style="box-shadow: none; background: none"
+                                :id="'flush-collapseOne' + index"
+                                class="accordion-collapse collapse"
+                                :aria-labelledby="'flush-headingOne' + index"
+                                data-bs-parent="#accordionFlushExample"
                               >
                                 <div
-                                  class="card mt-4"
-                                  style="
-                                    margin-top: -10px !important;
-                                    width: 100%;
-                                  "
+                                  class="accordion-body"
+                                  style="margin-top: 8px; padding: 7px"
                                 >
-                                  <div class="row g-0" style="margin: -2px">
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <div class="row mt-2">
-                                          <div class="col-6">
+                                  <div
+                                    class="card h-100 border-0"
+                                    id="card_compagnie"
+                                    style="box-shadow: none; background: none"
+                                  >
+                                    <div
+                                      class="card mt-4"
+                                      style="
+                                        margin-top: -10px !important;
+                                        width: 100%;
+                                      "
+                                    >
+                                      <div class="row g-0" style="margin: -2px">
+                                        <div class="col-md-12">
+                                          <div class="card-body">
+                                            <div class="row mt-2">
+                                              <div class="col-6">
+                                                <p
+                                                  class="card-text"
+                                                  style="
+                                                    background: #efefef;
+                                                    padding: 4px;
+                                                    border-radius: 5px;
+                                                    font-size: 12px;
+                                                    margin-top: -15px;
+                                                  "
+                                                >
+                                                  {{
+                                                    new Intl.DateTimeFormat(
+                                                      undefined,
+                                                      options
+                                                    ).format(location.createdAt)
+                                                  }}
+                                                  <br />
+                                                </p>
+                                              </div>
+                                            </div>
+                                            <br />
+
                                             <p
                                               class="card-text"
                                               style="
-                                                background: #efefef;
-                                                padding: 4px;
-                                                border-radius: 5px;
-                                                font-size: 12px;
-                                                margin-top: -15px;
+                                                font-size: 13px;
+                                                margin-top: -11px;
+                                                margin-bottom: 11px;
                                               "
                                             >
-                                              {{
-                                                new Intl.DateTimeFormat(
-                                                  undefined,
-                                                  options
-                                                ).format(location.createdAt)
-                                              }}
-                                              <br />
+                                              <strong
+                                                >{{ location.vehicule }}
+                                              </strong>
+                                              |
+                                              <strong>
+                                                {{ location.modele }}
+                                              </strong>
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              {{ location.moteur }} |
+                                              {{ location.boite }} |
+                                              {{ location.plaque_vehicule }}
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              chauffeur |
+                                              <strong
+                                                >{{ location.chauffeur }}
+                                              </strong>
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              Intérieur |
+                                              <strong
+                                                >{{ location.interieurPays }}
+                                              </strong>
                                             </p>
                                           </div>
                                         </div>
-                                        <br />
+                                        <!-- <div class="col-md-6">
+                                      <img
+                                        :src="location.vehicule_image_url"
+                                        class="img-fluid rounded-start h-100"
+                                        alt="..."
+                                        style="height: 85% !important"
+                                      />
+                                    </div> -->
+                                        <div class="col-md-12">
+                                          <div class="card-body">
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: -32px;
+                                                margin-bottom: -8px;
+                                              "
+                                            >
+                                              Retrait |
+                                              <strong
+                                                >{{ location.date_retrait }}
+                                              </strong>
+                                              |
+                                              <strong>{{
+                                                location.heure_retrait
+                                              }}</strong>
+                                            </p>
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          <strong
-                                            >{{ location.vehicule }}
-                                          </strong>
-                                          |
-                                          <strong>
-                                            {{ location.modele }}
-                                          </strong>
-                                        </p>
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 20px;
+                                                margin-bottom: 20px;
+                                              "
+                                            >
+                                              Retour |
+                                              <strong
+                                                >{{ location.date_retour }}
+                                              </strong>
+                                            </p>
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          {{ location.moteur }} |
-                                          {{ location.boite }} |
-                                          {{ location.plaque_vehicule }}
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          chauffeur |
-                                          <strong
-                                            >{{ location.chauffeur }}
-                                          </strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Intérieur |
-                                          <strong
-                                            >{{ location.interieurPays }}
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <!-- <div class="col-md-6">
-                                  <img
-                                    :src="location.vehicule_image_url"
-                                    class="img-fluid rounded-start h-100"
-                                    alt="..."
-                                    style="height: 85% !important"
-                                  />
-                                </div> -->
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -32px;
-                                            margin-bottom: -8px;
-                                          "
-                                        >
-                                          Retrait |
-                                          <strong
-                                            >{{ location.date_retrait }}
-                                          </strong>
-                                          |
-                                          <strong>{{
-                                            location.heure_retrait
-                                          }}</strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 20px;
-                                            margin-bottom: 20px;
-                                          "
-                                        >
-                                          Retour |
-                                          <strong
-                                            >{{ location.date_retour }}
-                                          </strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Nombres de jours de location |
-                                          <strong>5 jours</strong>
-                                        </p>
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: -11px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              Nombres de jours de location |
+                                              <strong>5 jours</strong>
+                                            </p>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -1048,284 +1162,383 @@ const valider = async (location) => {
                 </div>
               </div>
             </div>
+            <div class="tab-pane fade" id="pills-profile2" role="tabpanel" aria-labelledby="pills-profile-tab2" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Marque</th>
+                        <th scope="col">Modele</th>
+                        <th scope="col">Année</th>
+                        <th scope="col">Moteur</th>
+                        <th scope="col">Transmission</th>
+                        <th scope="col">Immatriculation</th>
+                        <th scope="col">Chauffeur</th>
+                        <th scope="col">Intérieur</th>
+                        <th scope="col">D.retrait</th>
+                        <th scope="col">H.retrait</th>
+                        <th scope="col">D.retour</th>
+                        <th scope="col">H.retour</th>
+                        <th scope="col">N.jours</th>
+                        
+                        <th scope="col">Prix</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr  v-for="(
+                          location, index
+                        ) in elements_valide"
+                        :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ location.nom_client }}</td>
+                        
+                        <td> {{ location.vehicule }}</td>
+                        <td> {{ location.modele }}</td>
+                        <td> {{ location.année }}</td>
+                        <td>{{ location.moteur }}</td>
+                        <td> {{ location.boite }}</td>
+                        <td>{{ location.plaque_vehicule }}</td>
+                        <td>{{ location.chauffeur }}</td>
+                        <td>{{ location.interieurPays }}</td>
+                        <td>{{ location.date_retrait }}</td>
+                        <td>{{ location.heure_retrait }}</td>
+                        <td> {{ location.date_retour }}</td>
+                        <td> {{ location.heure_retour }}</td>
+                        <td> {{ location.montant }}</td>
+                        <td></td>
+                      
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ location.status }}</div></td>
+                        
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
           </div>
+          
         </div>
 
         <div
-          class="tab-pane fade show"
-          id="confirm-tab-pane"
-          role="tabpanel"
-          aria-labelledby="confirm-tab"
-          tabindex="0"
-        >
-          <div class="row mt-5">
-            <div class="col-md-12">
-              <div class="row g-1">
+              class="tab-pane fade show"
+              id="confirm-tab-pane"
+              role="tabpanel"
+              aria-labelledby="confirm-tab"
+              tabindex="0"
+            >
+
+          <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+              <div class="row w-100">
+                <div class="col-9"></div>
+                <div class="col-3 text-end d-flex">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab3" data-bs-toggle="pill" data-bs-target="#pills-home3" type="button" role="tab" aria-controls="pills-home3" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-profile-tab3" data-bs-toggle="pill" data-bs-target="#pills-profile3" type="button" role="tab" aria-controls="pills-profile3" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                  </li>
+                </div>
+              </div>
+          
+            
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home3" role="tabpanel" aria-labelledby="pills-home-tab3" tabindex="0">
+              <div class="row mt-5">
                 <div class="col-md-12">
-                  <div
-                    class="accordion accordion-flush"
-                    id="accordionFlushExample"
-                  >
-                    <div class="row">
+                  <div class="row g-1">
+                    <div class="col-md-12">
                       <div
-                        class="col-md-4"
-                        v-for="(
-                          location, index
-                        ) in elements_confirme"
-                        :key="index"
+                        class="accordion accordion-flush"
+                        id="accordionFlushExample"
                       >
-                        <div
-                          class="accordion-item mb-3"
-                          style="border: 1px solid #d2d2d2; border-radius: 5px"
-                        >
-                          <h2
-                            class="accordion-header"
-                            :id="'flush-headingOne' + index"
-                          >
-                            <button
-                              class="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              :data-bs-target="'#flush-collapseOne' + index"
-                              aria-expanded="false"
-                              :aria-controls="'flush-collapseOne' + index"
-                              id="reser"
-                            >
-                              <div
-                                class="row g-1 d-flex mt-1"
-                                style="width: 100%"
-                              >
-                                <div class="col-md-6 d-flex">
-                                  <img
-                                    :src="location.client_profil_url"
-                                    alt
-                                    class="w-px-40 h-auto rounded-circle"
-                                    style="
-                                      max-width: 50px;
-                                      max-height: 50px;
-                                      border: 1px solid rgb(214, 214, 214);
-                                    "
-                                  />
-                                  <div>
-                                    <div
-                                      class="card-body"
-                                      style="
-                                        margin-left: 10px;
-                                        margin-top: 10px;
-                                      "
-                                    >
-                                      <h5
-                                        class="card-title"
-                                        style="
-                                          font-size: 12px;
-                                          margin-bottom: 6px;
-                                        "
-                                      >
-                                        {{ location.nom_client }}
-                                      </h5>
-                                      <p
-                                        class="card-text"
-                                        style="font-size: 12px"
-                                      >
-                                        <i
-                                          class="bx bx-map"
-                                          style="color: rgb(139 139 139)"
-                                        ></i>
-                                        CI,rue 250
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 text-end">
-                                  <strong
-                                    style="
-                                      color: rgb(247 127 0);
-                                      font-size: 12px;
-                                      margin-right: 10px;
-                                      font-weight: 500;
-                                    "
-                                    >{{ location.status }}
-                                  </strong>
-                                  <button
-                                    class="btn btn-primary"
-                                    style="
-                                      background: #219935;
-                                      border-color: #219935;
-                                      margin-top: 5px;
-                                      font-size: 12px;
-                                    "
-                                  >
-                                    {{ location.montant }} FCFA
-                                  </button>
-                                </div>
-                              </div>
-                            </button>
-                          </h2>
+                        <div class="row">
                           <div
-                            :id="'flush-collapseOne' + index"
-                            class="accordion-collapse collapse"
-                            :aria-labelledby="'flush-headingOne' + index"
-                            data-bs-parent="#accordionFlushExample"
+                            class="col-md-4"
+                            v-for="(
+                              location, index
+                            ) in elements_confirme"
+                            :key="index"
                           >
                             <div
-                              class="accordion-body"
-                              style="margin-top: 8px; padding: 7px"
+                              class="accordion-item mb-3"
+                              style="border: 1px solid #d2d2d2; border-radius: 5px"
                             >
+                              <h2
+                                class="accordion-header"
+                                :id="'flush-headingOne' + index"
+                              >
+                                <button
+                                  class="accordion-button collapsed"
+                                  type="button"
+                                  data-bs-toggle="collapse"
+                                  :data-bs-target="'#flush-collapseOne' + index"
+                                  aria-expanded="false"
+                                  :aria-controls="'flush-collapseOne' + index"
+                                  id="reser"
+                                >
+                                  <div
+                                    class="row g-1 d-flex mt-1"
+                                    style="width: 100%"
+                                  >
+                                    <div class="col-md-6 d-flex">
+                                      <img
+                                        :src="location.client_profil_url"
+                                        alt
+                                        class="w-px-40 h-auto rounded-circle"
+                                        style="
+                                          max-width: 50px;
+                                          max-height: 50px;
+                                          border: 1px solid rgb(214, 214, 214);
+                                        "
+                                      />
+                                      <div>
+                                        <div
+                                          class="card-body"
+                                          style="
+                                            margin-left: 10px;
+                                            margin-top: 10px;
+                                          "
+                                        >
+                                          <h5
+                                            class="card-title"
+                                            style="
+                                              font-size: 12px;
+                                              margin-bottom: 6px;
+                                            "
+                                          >
+                                            {{ location.nom_client }}
+                                          </h5>
+                                          <p
+                                            class="card-text"
+                                            style="font-size: 12px"
+                                          >
+                                            <i
+                                              class="bx bx-map"
+                                              style="color: rgb(139 139 139)"
+                                            ></i>
+                                            CI,rue 250
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 text-end">
+                                      <strong
+                                        style="
+                                          color: rgb(247 127 0);
+                                          font-size: 12px;
+                                          margin-right: 10px;
+                                          font-weight: 500;
+                                        "
+                                        >{{ location.status }}
+                                      </strong>
+                                      <button
+                                        class="btn btn-primary"
+                                        style="
+                                          background: #219935;
+                                          border-color: #219935;
+                                          margin-top: 5px;
+                                          font-size: 12px;
+                                        "
+                                      >
+                                        {{ location.montant }} FCFA
+                                      </button>
+                                    </div>
+                                  </div>
+                                </button>
+                              </h2>
                               <div
-                                class="card h-100 border-0"
-                                id="card_compagnie"
-                                style="box-shadow: none; background: none"
+                                :id="'flush-collapseOne' + index"
+                                class="accordion-collapse collapse"
+                                :aria-labelledby="'flush-headingOne' + index"
+                                data-bs-parent="#accordionFlushExample"
                               >
                                 <div
-                                  class="card mt-4"
-                                  style="
-                                    margin-top: -10px !important;
-                                    width: 100%;
-                                  "
+                                  class="accordion-body"
+                                  style="margin-top: 8px; padding: 7px"
                                 >
-                                  <div class="row g-0" style="margin: -2px">
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <div class="row mt-2">
-                                          <div class="col-6">
+                                  <div
+                                    class="card h-100 border-0"
+                                    id="card_compagnie"
+                                    style="box-shadow: none; background: none"
+                                  >
+                                    <div
+                                      class="card mt-4"
+                                      style="
+                                        margin-top: -10px !important;
+                                        width: 100%;
+                                      "
+                                    >
+                                      <div class="row g-0" style="margin: -2px">
+                                        <div class="col-md-12">
+                                          <div class="card-body">
+                                            <div class="row mt-2">
+                                              <div class="col-6">
+                                                <p
+                                                  class="card-text"
+                                                  style="
+                                                    background: #efefef;
+                                                    padding: 4px;
+                                                    border-radius: 5px;
+                                                    font-size: 12px;
+                                                    margin-top: -15px;
+                                                  "
+                                                >
+                                                  {{
+                                                    new Intl.DateTimeFormat(
+                                                      undefined,
+                                                      options
+                                                    ).format(location.createdAt)
+                                                  }}
+                                                  <br />
+                                                </p>
+                                              </div>
+                                            </div>
+                                            <br />
+
                                             <p
                                               class="card-text"
                                               style="
-                                                background: #efefef;
-                                                padding: 4px;
-                                                border-radius: 5px;
-                                                font-size: 12px;
-                                                margin-top: -15px;
+                                                font-size: 13px;
+                                                margin-top: -11px;
+                                                margin-bottom: 11px;
                                               "
                                             >
-                                              {{
-                                                new Intl.DateTimeFormat(
-                                                  undefined,
-                                                  options
-                                                ).format(location.createdAt)
-                                              }}
-                                              <br />
+                                              <strong
+                                                >{{ location.vehicule }}
+                                              </strong>
+                                              |
+                                              <strong>
+                                                {{ location.modele }}
+                                              </strong>
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              {{ location.moteur }} |
+                                              {{ location.boite }} |
+                                              {{ location.plaque_vehicule }}
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              chauffeur |
+                                              <strong
+                                                >{{ location.chauffeur }}
+                                              </strong>
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              Intérieur |
+                                              <strong
+                                                >{{ location.interieurPays }}
+                                              </strong>
                                             </p>
                                           </div>
                                         </div>
-                                        <br />
+                                      
+                                        <div class="col-md-12">
+                                          <div class="card-body">
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: -32px;
+                                                margin-bottom: -8px;
+                                              "
+                                            >
+                                              Retrait |
+                                              <strong
+                                                >{{ location.date_retrait }}
+                                              </strong>
+                                              |
+                                              <strong>{{
+                                                location.heure_retrait
+                                              }}</strong>
+                                            </p>
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          <strong
-                                            >{{ location.vehicule }}
-                                          </strong>
-                                          |
-                                          <strong>
-                                            {{ location.modele }}
-                                          </strong>
-                                        </p>
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 20px;
+                                                margin-bottom: 20px;
+                                              "
+                                            >
+                                              Retour |
+                                              <strong
+                                                >{{ location.date_retour }}
+                                              </strong>
+                                            </p>
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          {{ location.moteur }} |
-                                          {{ location.boite }} |
-                                          {{ location.plaque_vehicule }}
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          chauffeur |
-                                          <strong
-                                            >{{ location.chauffeur }}
-                                          </strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Intérieur |
-                                          <strong
-                                            >{{ location.interieurPays }}
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                   
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -32px;
-                                            margin-bottom: -8px;
-                                          "
-                                        >
-                                          Retrait |
-                                          <strong
-                                            >{{ location.date_retrait }}
-                                          </strong>
-                                          |
-                                          <strong>{{
-                                            location.heure_retrait
-                                          }}</strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 20px;
-                                            margin-bottom: 20px;
-                                          "
-                                        >
-                                          Retour |
-                                          <strong
-                                            >{{ location.date_retour }}
-                                          </strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Nombres de jours de location |
-                                          <strong>5 jours</strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                      <div class="row" style="    padding: 10px;top: -19px;">
-                                        <div class="col-md-6 text-start">
-                                          <button class="btn " style="background:white ; color:#219935 ; border-color:#219935 ; font-size: 12px;">Appel</button>
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: -11px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              Nombres de jours de location |
+                                              <strong>5 jours</strong>
+                                            </p>
+                                          </div>
                                         </div>
-                                        <div class="col-md-6 text-end">
-                                          <router-link :to="`/messagerie-compagnie/${location.client_id}`">
-                                            <button class="btn " style="background:#219935 ; color:white; font-size: 12px; ">Message</button>
-                                          </router-link>
+                                        <div class="col-md-12">
+                                          <div class="row" style="    padding: 10px;top: -19px;">
+                                            <div class="col-md-6 text-start">
+                                              <button class="btn " style="background:white ; color:#219935 ; border-color:#219935 ; font-size: 12px;">Appel</button>
+                                            </div>
+                                            <div class="col-md-6 text-end">
+                                              <router-link :to="`/messagerie-compagnie/${location.client_id}`">
+                                                <button class="btn " style="background:#219935 ; color:white; font-size: 12px; ">Message</button>
+                                              </router-link>
+                                            </div>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
@@ -1341,7 +1554,86 @@ const valider = async (location) => {
                 </div>
               </div>
             </div>
+            <div class="tab-pane fade" id="pills-profile3" role="tabpanel" aria-labelledby="pills-profile-tab3" tabindex="0">
+
+            <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+              
+                <div class="col-6 text-start">
+                  <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                </div>
+                <div class="col-6"></div>
+              </div>
+            </div>
+            <div class="col-md-12 mt-2">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">N°</th>
+                      <th scope="col">NomClient</th>
+                      <th scope="col">Marque</th>
+                      <th scope="col">Modele</th>
+                      <th scope="col">Année</th>
+                      <th scope="col">Moteur</th>
+                      <th scope="col">Transmission</th>
+                      <th scope="col">Immatriculation</th>
+                      <th scope="col">Chauffeur</th>
+                      <th scope="col">Intérieur</th>
+                      <th scope="col">D.retrait</th>
+                      <th scope="col">H.retrait</th>
+                      <th scope="col">D.retour</th>
+                      <th scope="col">H.retour</th>
+                      <th scope="col">N.jours</th>
+                      
+                      <th scope="col">Prix</th>
+                      <th scope="col">Statut</th>
+                    
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr  v-for="(
+                        location, index
+                      ) in elements_confirme"
+                      :key="index">
+                      <th scope="row">1</th>
+                      <td></td>
+                      <td>{{ location.nom_client }}</td>
+                      
+                      <td> {{ location.vehicule }}</td>
+                      <td> {{ location.modele }}</td>
+                      <td> {{ location.année }}</td>
+                      <td>{{ location.moteur }}</td>
+                      <td> {{ location.boite }}</td>
+                      <td>{{ location.plaque_vehicule }}</td>
+                      <td>{{ location.chauffeur }}</td>
+                      <td>{{ location.interieurPays }}</td>
+                      <td>{{ location.date_retrait }}</td>
+                      <td>{{ location.heure_retrait }}</td>
+                      <td> {{ location.date_retour }}</td>
+                      <td> {{ location.heure_retour }}</td>
+                      <td> </td>
+                      <td> {{ location.montant }}</td>
+                      <td></td>
+                    
+                      <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ location.status }}</div></td>
+                      
+                    </tr>
+                  
+                    
+                    
+                  </tbody>
+              </table>
+              </div>
+              
+            </div>
+            </div>
           </div>
+          </div>
+          
         </div>
 
         <div
@@ -1351,7 +1643,25 @@ const valider = async (location) => {
           aria-labelledby="annul-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
+
+          <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab4" data-bs-toggle="pill" data-bs-target="#pills-home4" type="button" role="tab" aria-controls="pills-home4" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab4" data-bs-toggle="pill" data-bs-target="#pills-profile4" type="button" role="tab" aria-controls="pills-profile4" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home4" role="tabpanel" aria-labelledby="pills-home-tab4" tabindex="0">
+              <div class="row mt-5">
             <div class="col-md-12">
               <div class="row g-1">
                 <div class="col-md-12">
@@ -1630,6 +1940,84 @@ const valider = async (location) => {
               </div>
             </div>
           </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile4" role="tabpanel" aria-labelledby="pills-profile-tab4" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Marque</th>
+                        <th scope="col">Modele</th>
+                        <th scope="col">Année</th>
+                        <th scope="col">Moteur</th>
+                        <th scope="col">Transmission</th>
+                        <th scope="col">Immatriculation</th>
+                        <th scope="col">Chauffeur</th>
+                        <th scope="col">Intérieur</th>
+                        <th scope="col">D.retrait</th>
+                        <th scope="col">H.retrait</th>
+                        <th scope="col">D.retour</th>
+                        <th scope="col">H.retour</th>
+                        <th scope="col">N.jours</th>
+                        
+                        <th scope="col">Prix</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(location, index) in elements_annule" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ location.nom_client }}</td>
+                        
+                        <td> {{ location.vehicule }}</td>
+                        <td> {{ location.modele }}</td>
+                        <td> {{ location.année }}</td>
+                        <td>{{ location.moteur }}</td>
+                        <td> {{ location.boite }}</td>
+                        <td>{{ location.plaque_vehicule }}</td>
+                        <td>{{ location.chauffeur }}</td>
+                        <td>{{ location.interieurPays }}</td>
+                        <td>{{ location.date_retrait }}</td>
+                        <td>{{ location.heure_retrait }}</td>
+                        <td> {{ location.date_retour }}</td>
+                        <td> {{ location.heure_retour }}</td>
+                        <td> {{ location.montant }}</td>
+                        <td></td>
+                      
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ location.status }}</div></td>
+                        
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
+          </div>
+          
         </div>
 
         <div
@@ -1639,270 +2027,289 @@ const valider = async (location) => {
           aria-labelledby="report-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
-            <div class="col-md-12">
-              <div class="row g-1">
+          <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab5" data-bs-toggle="pill" data-bs-target="#pills-home5" type="button" role="tab" aria-controls="pills-home5" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab5" data-bs-toggle="pill" data-bs-target="#pills-profile5" type="button" role="tab" aria-controls="pills-profile5" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home5" role="tabpanel" aria-labelledby="pills-home-tab5" tabindex="0">
+              <div class="row mt-5">
                 <div class="col-md-12">
-                  <div
-                    class="accordion accordion-flush"
-                    id="accordionFlushExample"
-                  >
-                    <div class="row">
+                  <div class="row g-1">
+                    <div class="col-md-12">
                       <div
-                        class="col-md-4"
-                        v-for="(
-                          location, index
-                        ) in elements_reporte"
-                        :key="index"
+                        class="accordion accordion-flush"
+                        id="accordionFlushExample"
                       >
-                        <div
-                          class="accordion-item mb-3"
-                          style="border: 1px solid #d2d2d2; border-radius: 5px"
-                        >
-                          <h2
-                            class="accordion-header"
-                            :id="'flush-headingOner' + index"
-                          >
-                            <button
-                              class="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              :data-bs-target="'#flush-collapseOner' + index"
-                              aria-expanded="false"
-                              :aria-controls="'flush-collapseOner' + index"
-                              id="reser"
-                            >
-                              <div
-                                class="row g-1 d-flex mt-1"
-                                style="width: 100%"
-                              >
-                                <div class="col-md-6 d-flex">
-                                  <img
-                                    :src="location.client_profil_url"
-                                    alt
-                                    class="w-px-40 h-auto rounded-circle"
-                                    style="
-                                      max-width: 50px;
-                                      max-height: 50px;
-                                      border: 1px solid rgb(214, 214, 214);
-                                    "
-                                  />
-                                  <div>
-                                    <div
-                                      class="card-body"
-                                      style="
-                                        margin-left: 10px;
-                                        margin-top: 10px;
-                                      "
-                                    >
-                                      <h5
-                                        class="card-title"
-                                        style="
-                                          font-size: 12px;
-                                          margin-bottom: 6px;
-                                        "
-                                      >
-                                        {{ location.nom_client }}
-                                      </h5>
-                                      <p
-                                        class="card-text"
-                                        style="font-size: 12px"
-                                      >
-                                        <i
-                                          class="bx bx-map"
-                                          style="color: rgb(139 139 139)"
-                                        ></i>
-                                        CI,rue 250
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 text-end">
-                                  <strong
-                                    style="
-                                      color: rgb(247 127 0);
-                                      font-size: 12px;
-                                      margin-right: 10px;
-                                      font-weight: 500;
-                                    "
-                                    >{{ location.status }}
-                                  </strong>
-                                  <button
-                                    class="btn btn-primary"
-                                    style="
-                                      background: #219935;
-                                      border-color: #219935;
-                                      margin-top: 5px;
-                                      font-size: 12px;
-                                    "
-                                  >
-                                    {{ location.montant }} FCFA
-                                  </button>
-                                </div>
-                              </div>
-                            </button>
-                          </h2>
+                        <div class="row">
                           <div
-                            :id="'flush-collapseOner' + index"
-                            class="accordion-collapse collapse"
-                            :aria-labelledby="'flush-headingOner' + index"
-                            data-bs-parent="#accordionFlushExample"
+                            class="col-md-4"
+                            v-for="(
+                              location, index
+                            ) in elements_reporte"
+                            :key="index"
                           >
                             <div
-                              class="accordion-body"
-                              style="margin-top: 8px; padding: 7px"
+                              class="accordion-item mb-3"
+                              style="border: 1px solid #d2d2d2; border-radius: 5px"
                             >
+                              <h2
+                                class="accordion-header"
+                                :id="'flush-headingOner' + index"
+                              >
+                                <button
+                                  class="accordion-button collapsed"
+                                  type="button"
+                                  data-bs-toggle="collapse"
+                                  :data-bs-target="'#flush-collapseOner' + index"
+                                  aria-expanded="false"
+                                  :aria-controls="'flush-collapseOner' + index"
+                                  id="reser"
+                                >
+                                  <div
+                                    class="row g-1 d-flex mt-1"
+                                    style="width: 100%"
+                                  >
+                                    <div class="col-md-6 d-flex">
+                                      <img
+                                        :src="location.client_profil_url"
+                                        alt
+                                        class="w-px-40 h-auto rounded-circle"
+                                        style="
+                                          max-width: 50px;
+                                          max-height: 50px;
+                                          border: 1px solid rgb(214, 214, 214);
+                                        "
+                                      />
+                                      <div>
+                                        <div
+                                          class="card-body"
+                                          style="
+                                            margin-left: 10px;
+                                            margin-top: 10px;
+                                          "
+                                        >
+                                          <h5
+                                            class="card-title"
+                                            style="
+                                              font-size: 12px;
+                                              margin-bottom: 6px;
+                                            "
+                                          >
+                                            {{ location.nom_client }}
+                                          </h5>
+                                          <p
+                                            class="card-text"
+                                            style="font-size: 12px"
+                                          >
+                                            <i
+                                              class="bx bx-map"
+                                              style="color: rgb(139 139 139)"
+                                            ></i>
+                                            CI,rue 250
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 text-end">
+                                      <strong
+                                        style="
+                                          color: rgb(247 127 0);
+                                          font-size: 12px;
+                                          margin-right: 10px;
+                                          font-weight: 500;
+                                        "
+                                        >{{ location.status }}
+                                      </strong>
+                                      <button
+                                        class="btn btn-primary"
+                                        style="
+                                          background: #219935;
+                                          border-color: #219935;
+                                          margin-top: 5px;
+                                          font-size: 12px;
+                                        "
+                                      >
+                                        {{ location.montant }} FCFA
+                                      </button>
+                                    </div>
+                                  </div>
+                                </button>
+                              </h2>
                               <div
-                                class="card h-100 border-0"
-                                id="card_compagnie"
-                                style="box-shadow: none; background: none"
+                                :id="'flush-collapseOner' + index"
+                                class="accordion-collapse collapse"
+                                :aria-labelledby="'flush-headingOner' + index"
+                                data-bs-parent="#accordionFlushExample"
                               >
                                 <div
-                                  class="card mt-4"
-                                  style="
-                                    margin-top: -10px !important;
-                                    width: 100%;
-                                  "
+                                  class="accordion-body"
+                                  style="margin-top: 8px; padding: 7px"
                                 >
-                                  <div class="row g-0" style="margin: -2px">
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <div class="row mt-2">
-                                          <div class="col-6">
+                                  <div
+                                    class="card h-100 border-0"
+                                    id="card_compagnie"
+                                    style="box-shadow: none; background: none"
+                                  >
+                                    <div
+                                      class="card mt-4"
+                                      style="
+                                        margin-top: -10px !important;
+                                        width: 100%;
+                                      "
+                                    >
+                                      <div class="row g-0" style="margin: -2px">
+                                        <div class="col-md-12">
+                                          <div class="card-body">
+                                            <div class="row mt-2">
+                                              <div class="col-6">
+                                                <p
+                                                  class="card-text"
+                                                  style="
+                                                    background: #efefef;
+                                                    padding: 4px;
+                                                    border-radius: 5px;
+                                                    font-size: 12px;
+                                                    margin-top: -15px;
+                                                  "
+                                                >
+                                                  {{
+                                                    new Intl.DateTimeFormat(
+                                                      undefined,
+                                                      options
+                                                    ).format(location.createdAt)
+                                                  }}
+                                                  <br />
+                                                </p>
+                                              </div>
+                                            </div>
+                                            <br />
+
                                             <p
                                               class="card-text"
                                               style="
-                                                background: #efefef;
-                                                padding: 4px;
-                                                border-radius: 5px;
-                                                font-size: 12px;
-                                                margin-top: -15px;
+                                                font-size: 13px;
+                                                margin-top: -11px;
+                                                margin-bottom: 11px;
                                               "
                                             >
-                                              {{
-                                                new Intl.DateTimeFormat(
-                                                  undefined,
-                                                  options
-                                                ).format(location.createdAt)
-                                              }}
-                                              <br />
+                                              <strong
+                                                >{{ location.vehicule }}
+                                              </strong>
+                                              |
+                                              <strong>
+                                                {{ location.modele }}
+                                              </strong>
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              {{ location.moteur }} |
+                                              {{ location.boite }} |
+                                              {{ location.plaque_vehicule }}
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              chauffeur |
+                                              <strong
+                                                >{{ location.chauffeur }}
+                                              </strong>
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              Intérieur |
+                                              <strong
+                                                >{{ location.interieurPays }}
+                                              </strong>
                                             </p>
                                           </div>
                                         </div>
-                                        <br />
+                                        <!-- <div class="col-md-6">
+                                      <img
+                                        :src="location.vehicule_image_url"
+                                        class="img-fluid rounded-start h-100"
+                                        alt="..."
+                                        style="height: 85% !important"
+                                      />
+                                    </div> -->
+                                        <div class="col-md-12">
+                                          <div class="card-body">
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: -32px;
+                                                margin-bottom: -8px;
+                                              "
+                                            >
+                                              Retrait |
+                                              <strong
+                                                >{{ location.date_retrait }}
+                                              </strong>
+                                              |
+                                              <strong>{{
+                                                location.heure_retrait
+                                              }}</strong>
+                                            </p>
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          <strong
-                                            >{{ location.vehicule }}
-                                          </strong>
-                                          |
-                                          <strong>
-                                            {{ location.modele }}
-                                          </strong>
-                                        </p>
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 20px;
+                                                margin-bottom: 20px;
+                                              "
+                                            >
+                                              Retour |
+                                              <strong
+                                                >{{ location.date_retour }}
+                                              </strong>
+                                            </p>
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          {{ location.moteur }} |
-                                          {{ location.boite }} |
-                                          {{ location.plaque_vehicule }}
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          chauffeur |
-                                          <strong
-                                            >{{ location.chauffeur }}
-                                          </strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Intérieur |
-                                          <strong
-                                            >{{ location.interieurPays }}
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <!-- <div class="col-md-6">
-                                  <img
-                                    :src="location.vehicule_image_url"
-                                    class="img-fluid rounded-start h-100"
-                                    alt="..."
-                                    style="height: 85% !important"
-                                  />
-                                </div> -->
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -32px;
-                                            margin-bottom: -8px;
-                                          "
-                                        >
-                                          Retrait |
-                                          <strong
-                                            >{{ location.date_retrait }}
-                                          </strong>
-                                          |
-                                          <strong>{{
-                                            location.heure_retrait
-                                          }}</strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 20px;
-                                            margin-bottom: 20px;
-                                          "
-                                        >
-                                          Retour |
-                                          <strong
-                                            >{{ location.date_retour }}
-                                          </strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Nombres de jours de location |
-                                          <strong>5 jours</strong>
-                                        </p>
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: -11px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              Nombres de jours de location |
+                                              <strong>5 jours</strong>
+                                            </p>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -1917,7 +2324,83 @@ const valider = async (location) => {
                 </div>
               </div>
             </div>
+            <div class="tab-pane fade" id="pills-profile5" role="tabpanel" aria-labelledby="pills-profile-tab5" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Marque</th>
+                        <th scope="col">Modele</th>
+                        <th scope="col">Année</th>
+                        <th scope="col">Moteur</th>
+                        <th scope="col">Transmission</th>
+                        <th scope="col">Immatriculation</th>
+                        <th scope="col">Chauffeur</th>
+                        <th scope="col">Intérieur</th>
+                        <th scope="col">D.retrait</th>
+                        <th scope="col">H.retrait</th>
+                        <th scope="col">D.retour</th>
+                        <th scope="col">H.retour</th>
+                        <th scope="col">N.jours</th>
+                        
+                        <th scope="col">Prix</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(location, index) in elements_reporte" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ location.nom_client }}</td>
+                        
+                        <td> {{ location.vehicule }}</td>
+                        <td> {{ location.modele }}</td>
+                        <td> {{ location.année }}</td>
+                        <td>{{ location.moteur }}</td>
+                        <td> {{ location.boite }}</td>
+                        <td>{{ location.plaque_vehicule }}</td>
+                        <td>{{ location.chauffeur }}</td>
+                        <td>{{ location.interieurPays }}</td>
+                        <td>{{ location.date_retrait }}</td>
+                        <td>{{ location.heure_retrait }}</td>
+                        <td> {{ location.date_retour }}</td>
+                        <td> {{ location.heure_retour }}</td>
+                        <td> {{ location.montant }}</td>
+                        <td></td>
+                      
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ location.status }}</div></td>
+                        
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
           </div>
+          
         </div>
 
         <div
@@ -1927,270 +2410,289 @@ const valider = async (location) => {
           aria-labelledby="use-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
-            <div class="col-md-12">
-              <div class="row g-1">
+        <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab6" data-bs-toggle="pill" data-bs-target="#pills-home6" type="button" role="tab" aria-controls="pills-home6" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab6" data-bs-toggle="pill" data-bs-target="#pills-profile6" type="button" role="tab" aria-controls="pills-profile6" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home6" role="tabpanel" aria-labelledby="pills-home-tab6" tabindex="0">
+               <div class="row mt-5">
                 <div class="col-md-12">
-                  <div
-                    class="accordion accordion-flush"
-                    id="accordionFlushExample"
-                  >
-                    <div class="row">
+                  <div class="row g-1">
+                    <div class="col-md-12">
                       <div
-                        class="col-md-4"
-                        v-for="(
-                          location, index
-                        ) in elements_utilise"
-                        :key="index"
+                        class="accordion accordion-flush"
+                        id="accordionFlushExample"
                       >
-                        <div
-                          class="accordion-item mb-3"
-                          style="border: 1px solid #d2d2d2; border-radius: 5px"
-                        >
-                          <h2
-                            class="accordion-header"
-                            :id="'flush-headingOne' + index"
-                          >
-                            <button
-                              class="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              :data-bs-target="'#flush-collapseOne' + index"
-                              aria-expanded="false"
-                              :aria-controls="'flush-collapseOne' + index"
-                              id="reser"
-                            >
-                              <div
-                                class="row g-1 d-flex mt-1"
-                                style="width: 100%"
-                              >
-                                <div class="col-md-6 d-flex">
-                                  <img
-                                    :src="location.client_profil_url"
-                                    alt
-                                    class="w-px-40 h-auto rounded-circle"
-                                    style="
-                                      max-width: 50px;
-                                      max-height: 50px;
-                                      border: 1px solid rgb(214, 214, 214);
-                                    "
-                                  />
-                                  <div>
-                                    <div
-                                      class="card-body"
-                                      style="
-                                        margin-left: 10px;
-                                        margin-top: 10px;
-                                      "
-                                    >
-                                      <h5
-                                        class="card-title"
-                                        style="
-                                          font-size: 12px;
-                                          margin-bottom: 6px;
-                                        "
-                                      >
-                                        {{ location.nom_client }}
-                                      </h5>
-                                      <p
-                                        class="card-text"
-                                        style="font-size: 12px"
-                                      >
-                                        <i
-                                          class="bx bx-map"
-                                          style="color: rgb(139 139 139)"
-                                        ></i>
-                                        CI,rue 250
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 text-end">
-                                  <strong
-                                    style="
-                                      color: rgb(247 127 0);
-                                      font-size: 12px;
-                                      margin-right: 10px;
-                                      font-weight: 500;
-                                    "
-                                    >{{ location.status }}
-                                  </strong>
-                                  <button
-                                    class="btn btn-primary"
-                                    style="
-                                      background: #219935;
-                                      border-color: #219935;
-                                      margin-top: 5px;
-                                      font-size: 12px;
-                                    "
-                                  >
-                                    {{ location.montant }} FCFA
-                                  </button>
-                                </div>
-                              </div>
-                            </button>
-                          </h2>
+                        <div class="row">
                           <div
-                            :id="'flush-collapseOne' + index"
-                            class="accordion-collapse collapse"
-                            :aria-labelledby="'flush-headingOne' + index"
-                            data-bs-parent="#accordionFlushExample"
+                            class="col-md-4"
+                            v-for="(
+                              location, index
+                            ) in elements_utilise"
+                            :key="index"
                           >
                             <div
-                              class="accordion-body"
-                              style="margin-top: 8px; padding: 7px"
+                              class="accordion-item mb-3"
+                              style="border: 1px solid #d2d2d2; border-radius: 5px"
                             >
+                              <h2
+                                class="accordion-header"
+                                :id="'flush-headingOne' + index"
+                              >
+                                <button
+                                  class="accordion-button collapsed"
+                                  type="button"
+                                  data-bs-toggle="collapse"
+                                  :data-bs-target="'#flush-collapseOne' + index"
+                                  aria-expanded="false"
+                                  :aria-controls="'flush-collapseOne' + index"
+                                  id="reser"
+                                >
+                                  <div
+                                    class="row g-1 d-flex mt-1"
+                                    style="width: 100%"
+                                  >
+                                    <div class="col-md-6 d-flex">
+                                      <img
+                                        :src="location.client_profil_url"
+                                        alt
+                                        class="w-px-40 h-auto rounded-circle"
+                                        style="
+                                          max-width: 50px;
+                                          max-height: 50px;
+                                          border: 1px solid rgb(214, 214, 214);
+                                        "
+                                      />
+                                      <div>
+                                        <div
+                                          class="card-body"
+                                          style="
+                                            margin-left: 10px;
+                                            margin-top: 10px;
+                                          "
+                                        >
+                                          <h5
+                                            class="card-title"
+                                            style="
+                                              font-size: 12px;
+                                              margin-bottom: 6px;
+                                            "
+                                          >
+                                            {{ location.nom_client }}
+                                          </h5>
+                                          <p
+                                            class="card-text"
+                                            style="font-size: 12px"
+                                          >
+                                            <i
+                                              class="bx bx-map"
+                                              style="color: rgb(139 139 139)"
+                                            ></i>
+                                            CI,rue 250
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 text-end">
+                                      <strong
+                                        style="
+                                          color: rgb(247 127 0);
+                                          font-size: 12px;
+                                          margin-right: 10px;
+                                          font-weight: 500;
+                                        "
+                                        >{{ location.status }}
+                                      </strong>
+                                      <button
+                                        class="btn btn-primary"
+                                        style="
+                                          background: #219935;
+                                          border-color: #219935;
+                                          margin-top: 5px;
+                                          font-size: 12px;
+                                        "
+                                      >
+                                        {{ location.montant }} FCFA
+                                      </button>
+                                    </div>
+                                  </div>
+                                </button>
+                              </h2>
                               <div
-                                class="card h-100 border-0"
-                                id="card_compagnie"
-                                style="box-shadow: none; background: none"
+                                :id="'flush-collapseOne' + index"
+                                class="accordion-collapse collapse"
+                                :aria-labelledby="'flush-headingOne' + index"
+                                data-bs-parent="#accordionFlushExample"
                               >
                                 <div
-                                  class="card mt-4"
-                                  style="
-                                    margin-top: -10px !important;
-                                    width: 100%;
-                                  "
+                                  class="accordion-body"
+                                  style="margin-top: 8px; padding: 7px"
                                 >
-                                  <div class="row g-0" style="margin: -2px">
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <div class="row mt-2">
-                                          <div class="col-6">
+                                  <div
+                                    class="card h-100 border-0"
+                                    id="card_compagnie"
+                                    style="box-shadow: none; background: none"
+                                  >
+                                    <div
+                                      class="card mt-4"
+                                      style="
+                                        margin-top: -10px !important;
+                                        width: 100%;
+                                      "
+                                    >
+                                      <div class="row g-0" style="margin: -2px">
+                                        <div class="col-md-12">
+                                          <div class="card-body">
+                                            <div class="row mt-2">
+                                              <div class="col-6">
+                                                <p
+                                                  class="card-text"
+                                                  style="
+                                                    background: #efefef;
+                                                    padding: 4px;
+                                                    border-radius: 5px;
+                                                    font-size: 12px;
+                                                    margin-top: -15px;
+                                                  "
+                                                >
+                                                  {{
+                                                    new Intl.DateTimeFormat(
+                                                      undefined,
+                                                      options
+                                                    ).format(location.createdAt)
+                                                  }}
+                                                  <br />
+                                                </p>
+                                              </div>
+                                            </div>
+                                            <br />
+
                                             <p
                                               class="card-text"
                                               style="
-                                                background: #efefef;
-                                                padding: 4px;
-                                                border-radius: 5px;
-                                                font-size: 12px;
-                                                margin-top: -15px;
+                                                font-size: 13px;
+                                                margin-top: -11px;
+                                                margin-bottom: 11px;
                                               "
                                             >
-                                              {{
-                                                new Intl.DateTimeFormat(
-                                                  undefined,
-                                                  options
-                                                ).format(location.createdAt)
-                                              }}
-                                              <br />
+                                              <strong
+                                                >{{ location.vehicule }}
+                                              </strong>
+                                              |
+                                              <strong>
+                                                {{ location.modele }}
+                                              </strong>
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              {{ location.moteur }} |
+                                              {{ location.boite }} |
+                                              {{ location.plaque_vehicule }}
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              chauffeur |
+                                              <strong
+                                                >{{ location.chauffeur }}
+                                              </strong>
+                                            </p>
+
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 0px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              Intérieur |
+                                              <strong
+                                                >{{ location.interieurPays }}
+                                              </strong>
                                             </p>
                                           </div>
                                         </div>
-                                        <br />
+                                        <!-- <div class="col-md-6">
+                                      <img
+                                        :src="location.vehicule_image_url"
+                                        class="img-fluid rounded-start h-100"
+                                        alt="..."
+                                        style="height: 85% !important"
+                                      />
+                                    </div> -->
+                                        <div class="col-md-12">
+                                          <div class="card-body">
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: -32px;
+                                                margin-bottom: -8px;
+                                              "
+                                            >
+                                              Retrait |
+                                              <strong
+                                                >{{ location.date_retrait }}
+                                              </strong>
+                                              |
+                                              <strong>{{
+                                                location.heure_retrait
+                                              }}</strong>
+                                            </p>
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          <strong
-                                            >{{ location.vehicule }}
-                                          </strong>
-                                          |
-                                          <strong>
-                                            {{ location.modele }}
-                                          </strong>
-                                        </p>
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: 20px;
+                                                margin-bottom: 20px;
+                                              "
+                                            >
+                                              Retour |
+                                              <strong
+                                                >{{ location.date_retour }}
+                                              </strong>
+                                            </p>
 
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          {{ location.moteur }} |
-                                          {{ location.boite }} |
-                                          {{ location.plaque_vehicule }}
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          chauffeur |
-                                          <strong
-                                            >{{ location.chauffeur }}
-                                          </strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 0px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Intérieur |
-                                          <strong
-                                            >{{ location.interieurPays }}
-                                          </strong>
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <!-- <div class="col-md-6">
-                                  <img
-                                    :src="location.vehicule_image_url"
-                                    class="img-fluid rounded-start h-100"
-                                    alt="..."
-                                    style="height: 85% !important"
-                                  />
-                                </div> -->
-                                    <div class="col-md-12">
-                                      <div class="card-body">
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -32px;
-                                            margin-bottom: -8px;
-                                          "
-                                        >
-                                          Retrait |
-                                          <strong
-                                            >{{ location.date_retrait }}
-                                          </strong>
-                                          |
-                                          <strong>{{
-                                            location.heure_retrait
-                                          }}</strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: 20px;
-                                            margin-bottom: 20px;
-                                          "
-                                        >
-                                          Retour |
-                                          <strong
-                                            >{{ location.date_retour }}
-                                          </strong>
-                                        </p>
-
-                                        <p
-                                          class="card-text"
-                                          style="
-                                            font-size: 13px;
-                                            margin-top: -11px;
-                                            margin-bottom: 11px;
-                                          "
-                                        >
-                                          Nombres de jours de location |
-                                          <strong>5 jours</strong>
-                                        </p>
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                font-size: 13px;
+                                                margin-top: -11px;
+                                                margin-bottom: 11px;
+                                              "
+                                            >
+                                              Nombres de jours de location |
+                                              <strong>5 jours</strong>
+                                            </p>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -2205,7 +2707,83 @@ const valider = async (location) => {
                 </div>
               </div>
             </div>
+            <div class="tab-pane fade" id="pills-profile6" role="tabpanel" aria-labelledby="pills-profile-tab6" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Marque</th>
+                        <th scope="col">Modele</th>
+                        <th scope="col">Année</th>
+                        <th scope="col">Moteur</th>
+                        <th scope="col">Transmission</th>
+                        <th scope="col">Immatriculation</th>
+                        <th scope="col">Chauffeur</th>
+                        <th scope="col">Intérieur</th>
+                        <th scope="col">D.retrait</th>
+                        <th scope="col">H.retrait</th>
+                        <th scope="col">D.retour</th>
+                        <th scope="col">H.retour</th>
+                        <th scope="col">N.jours</th>
+                        
+                        <th scope="col">Prix</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(location, index) in elements_utilise" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ location.nom_client }}</td>
+                        
+                        <td> {{ location.vehicule }}</td>
+                        <td> {{ location.modele }}</td>
+                        <td> {{ location.année }}</td>
+                        <td>{{ location.moteur }}</td>
+                        <td> {{ location.boite }}</td>
+                        <td>{{ location.plaque_vehicule }}</td>
+                        <td>{{ location.chauffeur }}</td>
+                        <td>{{ location.interieurPays }}</td>
+                        <td>{{ location.date_retrait }}</td>
+                        <td>{{ location.heure_retrait }}</td>
+                        <td> {{ location.date_retour }}</td>
+                        <td> {{ location.heure_retour }}</td>
+                        <td> {{ location.montant }}</td>
+                        <td></td>
+                      
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ location.status }}</div></td>
+                        
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
           </div>
+         
         </div>
       </div>
     </div>
@@ -2223,6 +2801,13 @@ const valider = async (location) => {
   border-color: #219935;
   color: black;
   border-radius: 5px;
+}
+
+.nav-pills .nav-link {
+    background: 0 0;
+    border: 0;
+    border-radius: var(--bs-nav-pills-border-radius);
+    color: black;
 }
 
 .nav-tabs .nav-item.show .nav-link,
@@ -2244,5 +2829,10 @@ const valider = async (location) => {
     background-size: var(--bs-accordion-btn-icon-width);
     transition: var(--bs-accordion-btn-icon-transition);
     display: none;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: #219935;
 }
 </style>

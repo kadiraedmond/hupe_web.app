@@ -176,7 +176,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
+                            style="background: #0000008f; border-radius: 50%"
                           >
                             {{ enAttente.totalNumber }}
                           </button>
@@ -264,7 +264,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
+                            style="background: #0000008f; border-radius: 50%"
                           >
                             {{ confirmees.totalNumber }}
                           </button>
@@ -308,7 +308,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
+                            style="background: #0000008f; border-radius: 50%"
                           >
                             {{ annulees.totalNumber }}
                           </button>
@@ -352,7 +352,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
+                            style="background: #0000008f; border-radius: 50%"
                           >
                             {{ reportees.totalNumber }}
                           </button>
@@ -396,7 +396,7 @@ const valider = async (reservation) => {
                         <p class="text-white">
                           <button
                             class="btn btn-primary border-0 text-white"
-                            style="background: #0000008f; border-radius: 50% ; width: 35px; height: 35px;"
+                            style="background: #0000008f; border-radius: 50%"
                           >
                             {{ utilisees.totalNumber }}
                           </button>
@@ -420,7 +420,24 @@ const valider = async (reservation) => {
           aria-labelledby="attente-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
+        <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+              <div class="row mt-5">
             <div class="col-md-12">
               <div class="row g-1">
                 <div class="col-md-12">
@@ -644,226 +661,307 @@ const valider = async (reservation) => {
               
             </div>
           </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Lieu de départ</th>
+                        <th scope="col">Heure de depart</th>
+                        <th scope="col">Convocation</th>
+                        <th scope="col">Escale</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Jours de voyages</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(reservation, index) in elements_en_attente" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ reservation.nom_client }}</td>
+                        <td> {{ reservation.lieu_depart }} </td>
+                        <td> {{ reservation.heure_depart }}</td>
+                        <td>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</td>
+                        <td> {{ reservation.escale }}</td>
+                        <td> {{ reservation.destination }} </td>
+                        <td> {{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</td>
+                        <td> {{ reservation.montant }}</td>
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ reservation.status }}</div></td>
+                         
+
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
+          </div>
+         
         </div>
 
         <div
-          class="tab-pane fade show active"
+          class="tab-pane fade show"
           id="valid-tab-pane"
           role="tabpanel"
           aria-labelledby="valid-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-6" v-for="(reservation, index) in elements_valide" :key="index">
-                  <div
-                    class="accordion accordion-flush"
-                    id="accordionFlushExample"
-                  >
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="flush-headingOne">
-                        <button
-                          class="accordion-button collapsed"
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#flush-collapseOne"
-                          aria-expanded="false"
-                          aria-controls="flush-collapseOne"
-                          id="reser"
-                        >
-                          <div class="row" style="margin: 10px; width: 100%">
-                            <div class="col-md-6">
-                              <div
-                                class="card mb-3 border-0"
-                                style="max-width: 540px; background: #fafafa"
-                              >
-                                <div class="row g-1">
-                                  <div class="col-md-4">
-                                    <img
-                                      :src="reservation.client_profil_url"
-                                      alt
-                                      class="w-px-40 h-auto rounded-circle"
-                                      style="width: 50px"
-                                    />
+        <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab21" data-bs-toggle="pill" data-bs-target="#pills-home21" type="button" role="tab" aria-controls="pills-home21" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab21" data-bs-toggle="pill" data-bs-target="#pills-profile21" type="button" role="tab" aria-controls="pills-profile21" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home21" role="tabpanel" aria-labelledby="pills-home-tab21" tabindex="0">
+              <div class="row mt-5">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-6" v-for="(reservation, index) in elements_valide" :key="index">
+                      <div
+                        class="accordion accordion-flush"
+                        id="accordionFlushExample"
+                      >
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-headingOne">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#flush-collapseOne"
+                              aria-expanded="false"
+                              aria-controls="flush-collapseOne"
+                              id="reser"
+                            >
+                              <div class="row" style="margin: 10px; width: 100%">
+                                <div class="col-md-6">
+                                  <div
+                                    class="card mb-3 border-0"
+                                    style="max-width: 540px; background: #fafafa"
+                                  >
+                                    <div class="row g-1">
+                                      <div class="col-md-4">
+                                        <img
+                                          :src="reservation.client_profil_url"
+                                          alt
+                                          class="w-px-40 h-auto rounded-circle"
+                                          style="width: 50px"
+                                        />
+                                      </div>
+                                      <div class="col-md-8">
+                                        <div class="card-body">
+                                          <h5
+                                            class="card-title"
+                                            style="font-size: 12px"
+                                          >
+                                            {{ reservation.nom_client }}
+                                          </h5>
+                                          <p
+                                            class="card-text mt-2"
+                                            style="font-size: 10px"
+                                          >
+                                            <i
+                                              class="bx bx-map"
+                                              id="icon_menu"
+                                              style="color: #219935"
+                                            ></i>
+                                            CI,rue 250
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
-                                  <div class="col-md-8">
-                                    <div class="card-body">
-                                      <h5
-                                        class="card-title"
-                                        style="font-size: 12px"
+                                </div>
+                                <div class="col-md-6 text-end">
+                                  <div class="row">
+                                    <div class="col-4 text-end">
+                                      <h6
+                                        style="
+                                          margin-top: 28px;
+                                          font-size: 13px;
+                                          color: rgb(247 127 0);
+                                        "
                                       >
-                                        {{ reservation.nom_client }}
-                                      </h5>
-                                      <p
-                                        class="card-text mt-2"
-                                        style="font-size: 10px"
+                                        {{ reservation.status }}
+                                      </h6>
+                                    </div>
+                                    <div class="col-8">
+                                      <button
+                                        class="btn btn-primary"
+                                        style="
+                                          background: #219935;
+                                          border-color: #219935;
+                                          margin-top: 15px;
+                                          font-size: 13px;
+                                        "
                                       >
-                                        <i
-                                          class="bx bx-map"
-                                          id="icon_menu"
-                                          style="color: #219935"
-                                        ></i>
-                                        CI,rue 250
-                                      </p>
+                                        {{ reservation.montant }} FCFA
+                                      </button>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-md-6 text-end">
-                              <div class="row">
-                                <div class="col-4 text-end">
-                                  <h6
-                                    style="
-                                      margin-top: 28px;
-                                      font-size: 13px;
-                                      color: rgb(247 127 0);
-                                    "
-                                  >
-                                    {{ reservation.status }}
-                                  </h6>
-                                </div>
-                                <div class="col-8">
-                                  <button
-                                    class="btn btn-primary"
-                                    style="
-                                      background: #219935;
-                                      border-color: #219935;
-                                      margin-top: 15px;
-                                      font-size: 13px;
-                                    "
-                                  >
-                                    {{ reservation.montant }} FCFA
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </button>
-                      </h2>
-                      <div
-                        id="flush-collapseOne"
-                        class="accordion-collapse collapse"
-                        aria-labelledby="flush-headingOne"
-                        data-bs-parent="#accordionFlushExample"
-                      >
-                        <div class="accordion-body" style="margin-top: -40px">
+                            </button>
+                          </h2>
                           <div
-                            class="card h-100 border-0"
-                            id="card_compagnie"
-                            style="box-shadow: none; background: none"
+                            id="flush-collapseOne"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne"
+                            data-bs-parent="#accordionFlushExample"
                           >
-                            <div
-                              class="card mb-3 mt-4"
-                              style="
-                                margin: 10px;
-                                margin-top: -10px !important;
-                                width: 98%;
-                              "
-                            >
-                              <div class="row g-0" style="margin: 10px">
-                                <div class="col-md-6">
-                                  <div class="card-body">
-                                    <!-- <boutton class="btn btn-primary">
-                                                  Il y'a environ un jour  
-                                                  T2135558_12522
-                                                </boutton> -->
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        background: #efefef;
-                                        padding: 4px;
-                                        border-radius: 5px;
-                                        font-size: 12px;
-                                        margin-top: -15px;
-                                      "
-                                    >
-                                      Il y a environ un jour <br />
-                                      <strong> T22356_1253523 </strong>
-                                    </p>
-                                    <hr />
+                            <div class="accordion-body" style="margin-top: -40px">
+                              <div
+                                class="card h-100 border-0"
+                                id="card_compagnie"
+                                style="box-shadow: none; background: none"
+                              >
+                                <div
+                                  class="card mb-3 mt-4"
+                                  style="
+                                    margin: 10px;
+                                    margin-top: -10px !important;
+                                    width: 98%;
+                                  "
+                                >
+                                  <div class="row g-0" style="margin: 10px">
+                                    <div class="col-md-6">
+                                      <div class="card-body">
+                                        <!-- <boutton class="btn btn-primary">
+                                                      Il y'a environ un jour  
+                                                      T2135558_12522
+                                                    </boutton> -->
+                                        <p
+                                          class="card-text"
+                                          style="
+                                            background: #efefef;
+                                            padding: 4px;
+                                            border-radius: 5px;
+                                            font-size: 12px;
+                                            margin-top: -15px;
+                                          "
+                                        >
+                                          Il y a environ un jour <br />
+                                          <strong> T22356_1253523 </strong>
+                                        </p>
+                                        <hr />
 
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
-                                      "
-                                    >
-                                      Lieu de départ | <strong> {{ reservation.lieu_depart }} </strong>
-                                    </p>
-                                    <hr />
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
-                                      "
-                                    >
-                                      Déstinations | <strong>{{ reservation.destination }} </strong>
-                                    </p>
-                                    <hr />
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
-                                      "
-                                    >
-                                      Heure de départ |
-                                      <strong>{{ reservation.heure_depart }} </strong>
-                                    </p>
-                                    <hr />
-                                  </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <img
-                                    src="/public/assets/img/car2.jpg"
-                                    class="img-fluid rounded-start h-100"
-                                    alt="..."
-                                    style="height: 85% !important"
-                                  />
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="card-body">
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        font-size: 13px;
-                                        margin-top: -32px;
-                                        margin-bottom: -8px;
-                                      "
-                                    >
-                                      Convocation | <strong>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</strong>
-                                    </p>
+                                        <p
+                                          class="card-text"
+                                          style="
+                                            font-size: 13px;
+                                            margin-top: -8px;
+                                            margin-bottom: -8px;
+                                          "
+                                        >
+                                          Lieu de départ | <strong> {{ reservation.lieu_depart }} </strong>
+                                        </p>
+                                        <hr />
+                                        <p
+                                          class="card-text"
+                                          style="
+                                            font-size: 13px;
+                                            margin-top: -8px;
+                                            margin-bottom: -8px;
+                                          "
+                                        >
+                                          Déstinations | <strong>{{ reservation.destination }} </strong>
+                                        </p>
+                                        <hr />
+                                        <p
+                                          class="card-text"
+                                          style="
+                                            font-size: 13px;
+                                            margin-top: -8px;
+                                            margin-bottom: -8px;
+                                          "
+                                        >
+                                          Heure de départ |
+                                          <strong>{{ reservation.heure_depart }} </strong>
+                                        </p>
+                                        <hr />
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <img
+                                        src="/public/assets/img/car2.jpg"
+                                        class="img-fluid rounded-start h-100"
+                                        alt="..."
+                                        style="height: 85% !important"
+                                      />
+                                    </div>
+                                    <div class="col-md-12">
+                                      <div class="card-body">
+                                        <p
+                                          class="card-text"
+                                          style="
+                                            font-size: 13px;
+                                            margin-top: -32px;
+                                            margin-bottom: -8px;
+                                          "
+                                        >
+                                          Convocation | <strong>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</strong>
+                                        </p>
 
-                                    <hr />
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
-                                      "
-                                    >
-                                      Escale | <strong>{{ reservation.escale }} </strong>
-                                    </p>
-                                    <hr />
+                                        <hr />
+                                        <p
+                                          class="card-text"
+                                          style="
+                                            font-size: 13px;
+                                            margin-top: -8px;
+                                            margin-bottom: -8px;
+                                          "
+                                        >
+                                          Escale | <strong>{{ reservation.escale }} </strong>
+                                        </p>
+                                        <hr />
 
-                                    <p
-                                      class="card-text"
-                                      style="
-                                        font-size: 13px;
-                                        margin-top: -8px;
-                                        margin-bottom: -8px;
-                                      "
-                                    >
-                                      Jours de voyages | <strong>{{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</strong>
-                                    </p>
+                                        <p
+                                          class="card-text"
+                                          style="
+                                            font-size: 13px;
+                                            margin-top: -8px;
+                                            margin-bottom: -8px;
+                                          "
+                                        >
+                                          Jours de voyages | <strong>{{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</strong>
+                                        </p>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -876,16 +974,93 @@ const valider = async (reservation) => {
                 </div>
               </div>
             </div>
+            <div class="tab-pane fade" id="pills-profile21" role="tabpanel" aria-labelledby="pills-profile-tab21" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Lieu de départ</th>
+                        <th scope="col">Heure de depart</th>
+                        <th scope="col">Convocation</th>
+                        <th scope="col">Escale</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Jours de voyages</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(reservation, index) in elements_valide" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ reservation.nom_client }}</td>
+                        <td> {{ reservation.lieu_depart }} </td>
+                        <td> {{ reservation.heure_depart }}</td>
+                        <td>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</td>
+                        <td> {{ reservation.escale }}</td>
+                        <td> {{ reservation.destination }} </td>
+                        <td> {{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</td>
+                        <td> {{ reservation.montant }}</td>
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ reservation.status }}</div></td>
+                         
+
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
           </div>
+          
         </div>
         <div
-          class="tab-pane fade show active"
+          class="tab-pane fade show"
           id="confirm-tab-pane"
           role="tabpanel"
           aria-labelledby="confirm-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
+        <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab22" data-bs-toggle="pill" data-bs-target="#pills-home22" type="button" role="tab" aria-controls="pills-home22" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab22" data-bs-toggle="pill" data-bs-target="#pills-profile22" type="button" role="tab" aria-controls="pills-profile22" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home22" role="tabpanel" aria-labelledby="pills-home-tab22" tabindex="0">
+              <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-6" v-for="(reservation, index) in elements_confirme" :key="index">
@@ -1109,16 +1284,95 @@ const valider = async (reservation) => {
               </div>
             </div>
           </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile22" role="tabpanel" aria-labelledby="pills-profile-tab22" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Lieu de départ</th>
+                        <th scope="col">Heure de depart</th>
+                        <th scope="col">Convocation</th>
+                        <th scope="col">Escale</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Jours de voyages</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(reservation, index) in elements_confirme" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ reservation.nom_client }}</td>
+                        <td> {{ reservation.lieu_depart }} </td>
+                        <td> {{ reservation.heure_depart }}</td>
+                        <td>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</td>
+                        <td> {{ reservation.escale }}</td>
+                        <td> {{ reservation.destination }} </td>
+                        <td> {{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</td>
+                        <td> {{ reservation.montant }}</td>
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ reservation.status }}</div></td>
+                         
+
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
+          </div>
+          
         </div>
 
         <div
-          class="tab-pane fade show active"
+          class="tab-pane fade show "
           id="annul-tab-pane"
           role="tabpanel"
           aria-labelledby="annul-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
+        <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab23" data-bs-toggle="pill" data-bs-target="#pills-home23" type="button" role="tab" aria-controls="pills-home23" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab23" data-bs-toggle="pill" data-bs-target="#pills-profile23" type="button" role="tab" aria-controls="pills-profile23" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home23" role="tabpanel" aria-labelledby="pills-home-tab23" tabindex="0">
+              <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-6" v-for="(reservation, index) in elements_annule" :key="index">
@@ -1342,16 +1596,95 @@ const valider = async (reservation) => {
               </div>
             </div>
           </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile23" role="tabpanel" aria-labelledby="pills-profile-tab23" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Lieu de départ</th>
+                        <th scope="col">Heure de depart</th>
+                        <th scope="col">Convocation</th>
+                        <th scope="col">Escale</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Jours de voyages</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(reservation, index) in elements_annule" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ reservation.nom_client }}</td>
+                        <td> {{ reservation.lieu_depart }} </td>
+                        <td> {{ reservation.heure_depart }}</td>
+                        <td>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</td>
+                        <td> {{ reservation.escale }}</td>
+                        <td> {{ reservation.destination }} </td>
+                        <td> {{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</td>
+                        <td> {{ reservation.montant }}</td>
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ reservation.status }}</div></td>
+                         
+
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
+          </div>
+          
         </div>
 
         <div
-          class="tab-pane fade show active"
+          class="tab-pane fade show  "
           id="report-tab-pane"
           role="tabpanel"
           aria-labelledby="report-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
+        <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab24" data-bs-toggle="pill" data-bs-target="#pills-home24" type="button" role="tab" aria-controls="pills-home24" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab24" data-bs-toggle="pill" data-bs-target="#pills-profile24" type="button" role="tab" aria-controls="pills-profile24" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home24" role="tabpanel" aria-labelledby="pills-home-tab24" tabindex="0">
+              <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-6" v-for="(reservation, index) in elements_reporte" :key="index">
@@ -1575,16 +1908,95 @@ const valider = async (reservation) => {
               </div>
             </div>
           </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile24" role="tabpanel" aria-labelledby="pills-profile-tab24" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Lieu de départ</th>
+                        <th scope="col">Heure de depart</th>
+                        <th scope="col">Convocation</th>
+                        <th scope="col">Escale</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Jours de voyages</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(reservation, index) in elements_reporte" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ reservation.nom_client }}</td>
+                        <td> {{ reservation.lieu_depart }} </td>
+                        <td> {{ reservation.heure_depart }}</td>
+                        <td>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</td>
+                        <td> {{ reservation.escale }}</td>
+                        <td> {{ reservation.destination }} </td>
+                        <td> {{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</td>
+                        <td> {{ reservation.montant }}</td>
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ reservation.status }}</div></td>
+                         
+
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
+          </div>
+         
         </div>
 
         <div
-          class="tab-pane fade show active"
+          class="tab-pane fade show  "
           id="use-tab-pane"
           role="tabpanel"
           aria-labelledby="use-tab"
           tabindex="0"
         >
-          <div class="row mt-5">
+        <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+            <div class="row w-100">
+              <div class="col-9"></div>
+              <div class="col-3 text-end d-flex">
+                <li class="nav-item" role="presentation" style="margin-left: 176px;">
+                  <button class="nav-link active" id="pills-home-tab25" data-bs-toggle="pill" data-bs-target="#pills-home25" type="button" role="tab" aria-controls="pills-home25" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab25" data-bs-toggle="pill" data-bs-target="#pills-profile25" type="button" role="tab" aria-controls="pills-profile25" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                </li>
+              </div>
+            </div>
+        
+          
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home25" role="tabpanel" aria-labelledby="pills-home-tab25" tabindex="0">
+              <div class="row mt-5">
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-6" v-for="(reservation, index) in elements_utilise" :key="index">
@@ -1808,6 +2220,68 @@ const valider = async (reservation) => {
               </div>
             </div>
           </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile25" role="tabpanel" aria-labelledby="pills-profile-tab25" tabindex="0">
+
+              <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                
+                  <div class="col-6 text-start">
+                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">NomClient</th>
+                        <th scope="col">Lieu de départ</th>
+                        <th scope="col">Heure de depart</th>
+                        <th scope="col">Convocation</th>
+                        <th scope="col">Escale</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Jours de voyages</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Statut</th>
+                      
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(reservation, index) in elements_utilise" :key="index">
+                        <th scope="row">1</th>
+                        <td></td>
+                        <td>{{ reservation.nom_client }}</td>
+                        <td> {{ reservation.lieu_depart }} </td>
+                        <td> {{ reservation.heure_depart }}</td>
+                        <td>{{ reservation.convocation ? reservation.convocation : 'NaN' }}</td>
+                        <td> {{ reservation.escale }}</td>
+                        <td> {{ reservation.destination }} </td>
+                        <td> {{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</td>
+                        <td> {{ reservation.montant }}</td>
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ reservation.status }}</div></td>
+                         
+
+                      </tr>
+                    
+                      
+                      
+                    </tbody>
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            </div>
+            
+          </div>
+          
         </div>
       </div>
     </div>
@@ -1833,17 +2307,16 @@ const valider = async (reservation) => {
     border-color: #219935;
     background: #21993554;
 }
-
-.accordion-button::after {
-    flex-shrink: 0;
-    width: var(--bs-accordion-btn-icon-width);
-    height: var(--bs-accordion-btn-icon-width);
-    margin-left: auto;
-    content: "";
-    background-image: var(--bs-accordion-btn-icon);
-    background-repeat: no-repeat;
-    background-size: var(--bs-accordion-btn-icon-width);
-    transition: var(--bs-accordion-btn-icon-transition);
-    display: none;
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: #219935;
 }
+
+.nav-pills .nav-link {
+    background: 0 0;
+    border: 0;
+    border-radius: var(--bs-nav-pills-border-radius);
+    color: black;
+}
+
 </style>

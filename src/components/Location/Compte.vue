@@ -92,7 +92,8 @@ const retrait = async () => {
         <div class="col-md-6">
           <div class="row mb-4">
             <div class="col-md-6">
-              <p><strong> Solde |</strong> {{ companieStore.totalAmount.solde }}</p>
+              <p style="color: #219935;">  Solde |<strong> {{ companieStore.totalAmount.solde }} </strong></p>
+              
             </div>
             <div class="col-md-6 text-end">
               <button
