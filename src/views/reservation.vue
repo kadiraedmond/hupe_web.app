@@ -37,6 +37,30 @@ onMounted(() => {
      <!-- ======= Expertise et conseils en immobiliers Section ======= -->
     <section id="features" class="features mt-4">
       <div class="container">
+        <div class="row mb-4" style="margin-top: -51px;
+    margin-bottom: 33px !important;">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <div class="row" style="padding: 10px; border-radius: 5px;">
+                <div class="col-md-12">
+                  <form class="d-flex" role="search" @submit.prevent="handleSearch">
+                    <input
+                      class="form-control me-2 text-white"
+                      type="search"
+                      placeholder="Rechercher"
+                      v-model="searchTerm"
+                      aria-label="Search"
+                      id="search"
+                    />
+                    <i class="bx bx-search" type="submit" id="icon_search"></i>
+                    <!-- <button class="btn btn-outline-success" type="submit" style="margin-left: -90px;">Search</button> -->
+                  </form>
+
+                 
+                </div>
+              </div>
+          </div>
+        </div>
         
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div class="col" v-for="(companie, index) in companieStore.transportCompanies" :key="index">
@@ -120,5 +144,23 @@ onMounted(() => {
     border-radius: 50%;
     border: 1px solid #ffffff;
     object-fit: cover;
+}
+
+#search {
+    width: 491px !important;
+    height: 54px;
+    /* border-radius: 30px; */
+    font-size: 14px;
+    background-color: white;
+    border-color: #219935;
+    color: white !important;
+    border-radius: 10px;
+}
+
+#icon_search {
+    margin-left: -51px;
+    font-size: 25px;
+    margin-top: 16px;
+    color: #019934;
 }
 </style>
