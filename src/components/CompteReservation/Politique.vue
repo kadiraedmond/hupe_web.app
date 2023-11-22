@@ -151,9 +151,31 @@ const deletePolitique = async () => {
     <div class="col-md-12 mt-4">
       <div class="card h-100" id="card_compagnie">
         <div class="card-body">
-          <p v-if="firebaseText.length > 0">
+          <div v-if="firebaseText.length > 0">
+            <p>
             {{ firebaseText[0].text }}
           </p>
+        </div>
+        <div class="w-100" v-else>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="card text-center">
+                <div class="text-center">
+                  <img src="/public/assets/img/icone/poli.png" alt="" class="img-fluid w-25">
+                </div>
+                
+                <div class="card-body">
+                  <p class="card-text">Aucune politique disponible.</p>
+                </div>
+              </div>
+            
+              
+            </div>
+            <div class="col-md-3"></div>
+          </div>
+        </div>
+          
 
           <div class="row">
             <div class="col-md-6">

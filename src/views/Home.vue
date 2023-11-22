@@ -147,7 +147,7 @@ onMounted(() => {
                     :src="slideImage.downloadURL"
                     class="d-block w-100"
                     alt="..."
-                    style="max-height: 350px; height: 350px; object-fit: cover"
+                    style="max-height: 350px; height: 350px; border-radius: 5px;"
                   />
                 </router-link>
               </div>
@@ -185,7 +185,7 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #62bfc4">
+              <div class="card-body" style="background: #62bfc4 ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/location" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Louer un véhicule
@@ -211,7 +211,7 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #bbded8">
+              <div class="card-body" style="background: #bbded8 ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Réserver un ticket de bus
@@ -237,7 +237,7 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #f8e4dd">
+              <div class="card-body" style="background: #f8e4dd ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/location_gros_engin" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Louer un gros engin
@@ -263,7 +263,7 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #fdb7b9">
+              <div class="card-body" style="background: #fdb7b9 ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Acheter un véhicule

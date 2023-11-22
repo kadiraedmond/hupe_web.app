@@ -21,7 +21,8 @@ onMounted(() => {
 
 <template>
   <div class="row mt-5">
-    <div class="col-md-6" v-for="(scanner, index) in scannerStore.companyScanners" :key="index">
+    <div v-if="scannerStore.companyScanners.length > 0">
+      <div class="col-md-6" v-for="(scanner, index) in scannerStore.companyScanners" :key="index">
       <div
         class="card mb-3 border-0"
         style="
@@ -51,6 +52,27 @@ onMounted(() => {
           </div>
         </div>
       </div>
+      </div>
     </div>
+    <div class="w-100" v-else>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="card text-center">
+            <div class="text-center">
+              <img src="/public/assets/img/icone/col.png" alt="" class="img-fluid w-25">
+            </div>
+            
+            <div class="card-body">
+              <p class="card-text">Aucun collaborateur disponible</p>
+            </div>
+          </div>
+         
+          
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+    
   </div>
 </template>

@@ -411,7 +411,8 @@ const remove = async (car) => {
     </div>
   </div>
   <div class="row mt-4">
-    <div class="col-md-6" v-for="(trajet, index) in trajets" :key="index">
+    <div v-if="trajets.length > 0">
+      <div class="col-md-6" v-for="(trajet, index) in trajets" :key="index">
       <div class="card h-100" style="max-width: 540px">
         <div class="card-body">
           <div class="row">
@@ -779,7 +780,28 @@ const remove = async (car) => {
           </div>
         </div>
       </div>
+      </div>
     </div>
+    <div class="w-100" v-else>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="card text-center">
+            <div class="text-center">
+              <img src="/public/assets/img/icone/trajet.png" alt="" class="img-fluid w-25">
+            </div>
+            
+            <div class="card-body">
+              <p class="card-text">Aucun trajet disponible</p>
+            </div>
+          </div>
+         
+          
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+    
   </div>
 </template>
 <style></style>

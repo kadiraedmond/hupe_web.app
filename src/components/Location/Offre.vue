@@ -64,7 +64,7 @@ const changeProfilHandler = async () => {
 
           <div
             class="card mb-4 rounded-1 shadow-sm border-primary"
-            style="border-color: #219935 !important"
+            style="border-color: #219935 !important ;  height: 88%;"
           >
             <div
               class="card-header py-3 text-bg-primary border-primary"
@@ -77,58 +77,28 @@ const changeProfilHandler = async () => {
             </div>
             <div class="card-body">
               <ul class="list-unstyled mt-3 mb-4">
-                <li>
-                  <img
-                    src="/public/assets/img/icone/yes.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   Creation de compte
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/yes.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   Présence sur la liste des prestataires
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/yes.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   En vedette sur la pages d'accueil
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/yes.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   Une espace publicitaire
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/yes.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   Mise en avant d’un véhicule  
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/yes.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   Promotion  d’un véhicule
                 </li>
               </ul>
@@ -174,58 +144,28 @@ const changeProfilHandler = async () => {
             </div>
             <div class="card-body">
               <ul class="list-unstyled mt-3 mb-4">
-                <li>
-                  <img
-                    src="/public/assets/img/icone/yes.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="" style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   Creation de compte
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/yes.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   Présence sur la liste des prestataires
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/no.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-x-circle'  style="color:red;"></i>
                   En vedette sur la pages d'accueil
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/no.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-x-circle'  style="color:red;"></i>
                   Une espace publicitaire
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/no.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-x-circle'  style="color:red;"></i>
                   Mise en avant d’un véhicule  
                 </li>
-                <li class="mt-3">
-                  <img
-                    src="/public/assets/img/icone/no.png"
-                    alt=""
-                    class="img-fluid"
-                    style="margin-top: -4px"
-                  />
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-x-circle'  style="color:red;"></i>
                   Promotion d’un véhicule
                 </li>
               </ul>
