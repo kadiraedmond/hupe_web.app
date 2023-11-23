@@ -937,7 +937,7 @@ onMounted(() => {
             class="col"
             v-for="(companie, index) in companieStore.vipLocationCompanies"
             :key="index"
-          >
+          > 
             <div
               class="card h-100"
               id="compagnie_card"
