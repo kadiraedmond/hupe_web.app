@@ -11,8 +11,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieHistory(userId)
   companieStore.setTotalAmount(userId)
@@ -92,7 +92,8 @@ const retrait = async () => {
         <div class="col-md-6">
           <div class="row mb-4">
             <div class="col-md-6">
-              <p style="color: #219935;" ><strong style="color: black;" > Solde |</strong> {{ companieStore.totalAmount.solde }}</p>
+              <p style="color: #219935;">  Solde |<strong> {{ companieStore.totalAmount.solde }} </strong></p>
+              
             </div>
             <div class="col-md-6 text-end">
                 <button

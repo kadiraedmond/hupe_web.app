@@ -18,16 +18,26 @@ const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const programmeId = route.params.id
+const programmeId = route.params.id 
 
+const programmes = ref([]) 
+const autresProgrammes = ref([])
 
 onBeforeMount(async () => {
-  await promotionStore.setProgramme(programmeId)
+  await promotionStore.setProgramme(programmeId) 
 
   const companieId = await promotionStore.programme.compagnie_uid
 
   companieStore.setCompanieById(companieId)
-  companieStore.setProgrammesVoyages(companieId)
+  companieStore.setProgrammesVoyages(companieId) 
+
+  programmes.value = companieStore.programmeVoyages 
+
+  programmes.value.forEach(programme => {
+    if(programme.uid !== programmeId) {
+      autresProgrammes.value.push(programme)
+    }
+  })
 })
 
 const name = ref('')
@@ -477,13 +487,13 @@ onMounted(() => {
       </div>
 
       <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" v-for="(programme, i) in companieStore.programmeVoyages" :key="i">
+        <div class="col" v-for="(programme, i) in autresProgrammes" :key="i">
           <div
             class="card h-100"
             id="compagnie_card"
             style="background: #f3f4f6; box-shadow: none"
           >
-            <router-link to="/details_vente_engin">
+            <router-link :to="`/detail_reservation_ticket/${programme.uid}`"> 
               <img
                 src="/public/assets/img/rb.jpg"
                 class="card-img-top"

@@ -202,8 +202,8 @@ const options = [
               ><i class="bx bx-user" id="icon_menu"></i>
               <span>
                 {{ 
-                  authStore.user.raison_social ? authStore.user.raison_social : authStore.user.username 
-                  || savedUser.raison_social ? savedUser.raison_social : savedUser.username
+                  savedUser.raison_social !== '' ? savedUser.raison_social : savedUser.username !== '' && savedUser.username
+                  || authStore.user.raison_social !== '' ? authStore.user.raison_social : authStore.user.username !== '' && authStore.user.username
                 }} 
               </span> <i class="bi bi-chevron-down"></i
             ></router-link>
@@ -211,17 +211,17 @@ const options = [
               <li>
                 <router-link 
                   to="/compte_vehicule" 
-                  v-if="(authStore.isConnected && authStore.isLocationCompany) 
+                  v-if="(savedUser && savedUser.type_compagnie == 'Location') 
                         || (user.raison_social && user.type_compagnie == 'Location') 
-                        || (savedUser && savedUser.type_compagnie == 'Location')"
+                        || (authStore.isConnected && authStore.isLocationCompany)"
                   >Compte location de vehicules</router-link
                 >
               </li>
               <li>
                 <router-link to="/compte_reservation" 
-                v-if="(authStore.isConnected && authStore.isReservationCompany) 
+                v-if="(savedUser && savedUser.type_compagnie == 'Transport') 
                       || (user.raison_social && user.type_compagnie == 'Transport') 
-                      || (savedUser && savedUser.type_compagnie == 'Transport')"
+                      || (authStore.isConnected && authStore.isReservationCompany)"
                   >Compte reservation de ticket de bus</router-link
                 >
               </li>
@@ -247,7 +247,10 @@ const options = [
           </li>
           <li>
             <router-link v-if="authStore.user.uid || savedUser" class="nav-link scrollto" :to="`/notification`" :class="{ active: $route.path === '/notification' }"
-            ><i class="bx bxs-bell" id="icon_menu" :style="`color: ${noneReadNotifications.length > 0 && '#E00'}`"></i>
+            ><i class="bx bxs-bell" id="icon_menu"></i> 
+              <p style="position: absolute; right: -8px; top: -10px; color: white; background: #E00; border-radius: 100%; padding: 0 2px">
+                {{ noneReadNotifications.length > 0 ? `+${noneReadNotifications.length}` : '' }} 
+              </p>
             </router-link>
           </li>
 

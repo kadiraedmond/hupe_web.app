@@ -176,7 +176,7 @@ onMounted(() => {
           <div class="col-12">
             <div class="section-title">
               <h2 style="    font-size: 22px;
-    color: black;">Véhicule de la même compagnie </h2>
+    color: black;">Véhicules de la même compagnie </h2>
               
 
             </div>

@@ -119,55 +119,22 @@ onMounted(() => {
             id="carouselExampleSlidesOnly"
             class="carousel slide"
             data-bs-ride="carousel"
+            data-bs-interval="3000"
             style="height: 400px"
           >
-            <div class="carousel-indicators">
+          <div class="carousel-indicators">
               <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                :data-bs-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-                style="border-radius: 50%; width: 10px; height: 10px"
+                  v-for="(slide, index) in slideStore.slideImages"
+                  :key="index"
+                  type="button"
+                  :data-bs-target="carouselExampleIndicators"
+                  :data-bs-slide-to="index"
+                  :class="{ 'active': index === 0 }"
+                  aria-current="true"
+                  :aria-label="`Slide ${index + 1}`"
+                  id="carousel-indicators"
               ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                :data-bs-slide-to="1"
-                class=""
-                aria-current="true"
-                aria-label="Slide 2"
-                style="border-radius: 50%; width: 10px; height: 10px"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                :data-bs-slide-to="2"
-                class=""
-                aria-current="true"
-                aria-label="Slide 3"
-                style="border-radius: 50%; width: 10px; height: 10px"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                :data-bs-slide-to="3"
-                class=""
-                aria-current="true"
-                aria-label="Slide 4"
-                style="border-radius: 50%; width: 10px; height: 10px"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                :data-bs-slide-to="4"
-                class=""
-                aria-current="true"
-                aria-label="Slide 5"
-                style="border-radius: 50%; width: 10px; height: 10px"
-              ></button>
-            </div>
+          </div>
             <div class="carousel-inner overflow-hidden">
               <div
                 v-for="(slideImage, index) in slideStore.slideImages"
@@ -185,6 +152,7 @@ onMounted(() => {
               </div>
             </div>
           </div>
+         
         </div>
       </div>
     </div>
@@ -1451,6 +1419,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
+
 .wrapper {
   overflow: hidden;
   overflow-wrap: break-word;
@@ -1573,6 +1542,52 @@ body, html {
   100% {
     background-color: #62bfc4;
   }
+}
+
+.carousel-indicators [data-bs-target] {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 30px;
+    height: 3px;
+    padding: 0;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #001618;
+    background-clip: padding-box;
+    border: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: .5;
+    transition: opacity .6s ease;
+}
+
+#carousel-indicators  {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    /* width: 30px;
+    height: 3px;
+    padding: 0; */
+    margin-right: 2px;
+    margin-left: 2px;
+    
+    cursor: pointer;
+    background: black;
+    border: 0;
+    /* border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: .5; */
+    transition: opacity .6s ease;
+    border-radius: 50%;
+     /* width: px; */
+     height: 10px
+}
+
+.carousel-indicators .active {
+    opacity: 1;
+    /* color: red; */
+    background: #219935 !important;
 }
 
 

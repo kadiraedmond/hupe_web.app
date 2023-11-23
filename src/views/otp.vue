@@ -28,37 +28,67 @@ onMounted(() => {
 })
 
 const handleOnComplete = async (value) => {
-  isLoading.value = true
-  const verificationCode = `${value}`
+  isLoading.value = true 
+  const verificationCode = `${value}` 
 
   const confirmationResult = authStore.confirmationResult
   
   const userCredential = await confirmationResult.confirm(verificationCode)
-  const user = userCredential.user
+  const user = userCredential.user 
 
-  if(user) {
-    authStore.setUser(user)
-    localStorage.setItem('user', JSON.stringify(user))
+  if(user) { 
 
-    // console.log(authStore.user.stsTokenManager.accessToken)
+    if(authStore.isNew) {
+      localStorage.setItem('user', JSON.stringify(user)) 
+      authStore.setUser(user) 
+    } 
 
-    if(isNew.value && isCompanie.value) {
-      router.push('/choix_services')
-    } else if(!isNew.value && isCompanie.value) {
-      if(user.raison_social || user.type_compagnie) {
-        if(user.type_compagnie == 'Location') {
-          router.push('/compte_vehicule')
-        } else if(user.type_compagnie == 'Transport') {
-          router.push('/compte_reservation')
+    if(!authStore.isNew && authStore.user !== {}) {
+      localStorage.setItem('user', JSON.stringify(authStore.user)) 
+    }
+
+    // console.log(authStore.user.stsTokenManager.accessToken) 
+    const savedUser = JSON.parse(localStorage.getItem('user'))
+
+    if(authStore.isNew && authStore.isCompanie) {
+      router.push('/choix_services') 
+      return 
+
+    } 
+    
+    if(!authStore.isNew && authStore.isCompanie) { 
+      if((savedUser.raison_social || savedUser.type_compagnie) && savedUser.status == 'active') { 
+
+        if(savedUser.type_compagnie == 'Location') {
+          router.push('/compte_vehicule') 
+          return 
+        } 
+        
+        if(savedUser.type_compagnie == 'Transport') {
+          router.push('/compte_reservation') 
+          return 
         }
+        
       } 
-    } else if(!isCompanie.value && isNew) {
+      
+      if((savedUser.raison_social || savedUser.type_compagnie) && savedUser.status == 'padding') {
+        router.push('/confirmation') 
+        return 
+      }
+
+    } 
+    
+    if(!authStore.isCompanie && authStore.isNew) { 
       const docRef = doc(firestoreDb, 'users', user.uid)
       await updateDoc(docRef, { token: user.stsTokenManager.accessToken })
-      console.log('We are here')
-      router.push('/compte_client')
-    } else if(!isCompanie.value && !isNew) {
-      router.push('/compte_client')
+      router.push('/compte_client') 
+      return 
+
+    } 
+    
+    if(!authStore.isCompanie && !authStore.isNew) {
+      router.push('/compte_client') 
+      return 
     }
   
   }

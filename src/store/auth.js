@@ -39,8 +39,10 @@ export const useAuthStore = defineStore('authStore', {
                     const snapshot = await getDocs(q)
     
                     if(snapshot.docs.length > 0) {
-                        this.isNew = false
-                        this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
+                        this.isNew = false 
+                        
+                        this.user = snapshot.docs[0].data()
+                        this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier) 
                     } else {
 
                         // au cas ou le numéro n'est pas trouvé dans la table des compagnies vérifier s'il n'est pas utilisé pour un compte client
@@ -99,8 +101,10 @@ export const useAuthStore = defineStore('authStore', {
                     const snapshot = await getDocs(q)
     
                     if(snapshot.docs.length > 0) {
-                        this.isNew = false
-                        this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
+                        this.isNew = false 
+
+                        this.user = snapshot.docs[0].data()
+                        this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier) 
                     } else {
 
                         // au cas ou le numéro n'est pas trouvé dans la table des clients vérifier s'il n'est pas utilisé pour un compte compagnies

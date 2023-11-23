@@ -25,8 +25,8 @@ onBeforeMount(() => {
   companieService = authStore.companieService
   offre = authStore.offre
   offre2 = authStore.offre2
-  new_uid = authStore.user.uid || savedUser.uid
-  userToken = authStore.user.stsTokenManager.accessToken || savedUser.stsTokenManager.accessToken
+  new_uid = savedUser.uid || authStore.user.uid 
+  userToken = savedUser.stsTokenManager.accessToken || authStore.user.stsTokenManager.accessToken
   // console.log(authStore.user.stsTokenManager.accessToken)
 })
 
@@ -93,25 +93,27 @@ const handleSubmit = async () => {
   let user
   if(snapshot.exists()) user = snapshot.data()
   authStore.setUser(user)
-  localStorage.setItem('user', JSON.stringify(user))
+  localStorage.setItem('user', JSON.stringify(user)) 
 
-  switch(companieService) {
-    case 'Location':
-      router.push('/compte_vehicule')
-      break
-    case 'Transport': 
-      router.push('/compte_reservation')
-      break
-    case 'Gros Engins': 
-      router.push('/compte_gros_engin')
-      break
-    case 'Vente Véhicules': 
-      router.push('/compte_achat_engin')
-      break
-    default: 
-      router.push('/')
-      break
-  }
+  router.push('/confirmation') 
+
+  // switch(companieService) {
+  //   case 'Location':
+  //     router.push('/compte_vehicule')
+  //     break
+  //   case 'Transport': 
+  //     router.push('/compte_reservation')
+  //     break
+  //   case 'Gros Engins': 
+  //     router.push('/compte_gros_engin')
+  //     break
+  //   case 'Vente Véhicules': 
+  //     router.push('/compte_achat_engin')
+  //     break
+  //   default: 
+  //     router.push('/')
+  //     break
+  // }
   
   // if(authStore.companieService == 'Location') {
   //   router.push('/compte_vehicule')

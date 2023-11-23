@@ -23,14 +23,25 @@ const carId = route.params.id
 
 let companieId 
 
+const vehicules = ref([]) 
+const autresVehicules = ref([])
+
 onBeforeMount(async () => {
   await promotionStore.setVehicule(carId)
 
   companieId = promotionStore.vehicule.compagnie_uid
   console.log(companieId)
 
-  companieStore.setCompanieById(companieId)
-  companieStore.setCompanieCars(companieId)
+  await companieStore.setCompanieById(companieId)
+  await companieStore.setCompanieCars(companieId) 
+
+  vehicules.value = companieStore.companieCars 
+
+  vehicules.value.forEach(vehicule => {
+    if(vehicule.uid !== carId) {
+      autresVehicules.value.push(vehicule)
+    }
+  })
 });
 
 onMounted(() => {
@@ -776,13 +787,13 @@ onMounted(() => {
       </div>
 
       <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" v-for="(car, i) in companieStore.companieCars" :key="i">
+        <div class="col" v-for="(car, i) in autresVehicules" :key="i">
           <div
             class="card h-100"
             id="compagnie_card"
             style="background: #f3f4f6; box-shadow: none"
           >
-            <router-link to="/detail_vehicule_location">
+            <router-link :to="`/detail_vehicule_location/${car.uid}`">
               <img
                 :src="car.vehicule_image_url"
                 class="card-img-top"

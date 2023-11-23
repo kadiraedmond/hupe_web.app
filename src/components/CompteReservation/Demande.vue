@@ -13,8 +13,8 @@ const companieStore = useCompanieStore()
 
 const usersColRef = collection(firestoreDb, 'users')
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
 
 
 const userInformations = ref({})

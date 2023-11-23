@@ -11,8 +11,8 @@ import Swal from 'sweetalert2'
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   userStore.setUser(userId)
   userStore.setUserHistory(userId)
@@ -144,7 +144,7 @@ const recharge = async () => {
         <div class="col-md-6">
           <div class="row mb-4">
             <div class="col-md-6">
-              <p><strong> Solde |</strong> {{ userStore.totalAmount.solde }}</p>
+              <p style="color: #219935;">  Solde |<strong> {{ userStore.totalAmount.solde }} </strong></p>
             </div>
             <div class="col-md-6 text-end">
               <!-- Button trigger modal -->

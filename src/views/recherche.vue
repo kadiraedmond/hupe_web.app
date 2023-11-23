@@ -21,7 +21,7 @@ onMounted(() => {
         <div class="container">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Résultats</button>
+                    <button class="nav-link active mb-3" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Résultats</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Location de véhicule</button>
@@ -45,7 +45,7 @@ onMounted(() => {
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false">Gros engin en location </button>
+                    <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false"> Gros engin en location</button>
                 </li>
 
                 <li class="nav-item" role="presentation">
@@ -59,20 +59,267 @@ onMounted(() => {
                         <div class="card">
                          
                         <ul class="">
-                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">Résultats</li>
+                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;"> <router-link to="#resultat">Résultats</router-link></li>
                             <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">Location de véhicule</li>
-                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">Reservation de ticket</li>
+                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;"><a href="#resultat">Reservation de ticket</a> </li>
                             <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">Location de gros engin</li>
                             <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">Achat de véhicule</li>
                             <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">Véhicule en location</li>
-                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">An item</li>
-                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">A second item</li>
-                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">A third item</li>
+                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">Trajet</li>
+                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">Gros engin en location</li>
+                            <li class="list-group-item" style="font-size: 14px; margin-top: 10px;">Véhicule en vente</li>
                         </ul>
                         </div>
                     </div>
                     <div class="col-9">
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="row row-cols-1 row-cols-md-3 g-4 mb-3" id="">
+                            <div
+                                class="col"
+                                
+                            >
+                                <div
+                                class="card h-100"
+                                id="compagnie_card"
+                                style="background: #f9f9f9; box-shadow: none"
+                                >
+                                <router-link to="/details_location_engin" style="color: #000">
+                                    <img
+                                    src="/public/assets/img/car2.jpg"
+                                    class="card-img-top"
+                                    alt="..."
+                                    style="
+                                        border-radius: 10px 10px 0px 0px;
+                                        max-height: 174px;
+                                        object-fit: cover;
+                                    "
+                                    />
+                                </router-link>
+                                <img src="/public/assets/img/avatars/5.png" alt="" id="badgesLogo">
+
+                                <div class="card-body">
+                                    <router-link to="/detail" style="color: #000">
+                                    <div class="row mt-2">
+                                        <div class="col-md-7">
+                                        <h5
+                                            class="card-title"
+                                            style="font-size: 15px; color: black"
+                                        >
+                                            ENGIN corp
+                                        </h5>
+                                        </div>
+                                        <div class="col-md-5 text-end">
+                                        <boutton
+                                            class="btn btn-primary"
+                                            style="
+                                            background: white;
+                                            border-color: white;
+                                            border-radius: 30px;
+                                            color: #219935;
+                                            margin-top: -9px;
+                                            "
+                                        >
+                                            <i class="bx bx-like" style="color: #219935"></i> 30%
+                                        </boutton>
+                                        </div>
+                                    </div>
+                                    </router-link>
+                                    <div class="row">
+                                    <div class="col-md-8">
+                                        <p class="card-text mt-2" style="font-size: 14px">
+                                        <i class="bx bx-map" style="color: #8b8b8b"></i> Lome
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 text-center mt-2">
+                                        <i
+                                        class="bx bx-car"
+                                        style="color: #8b8b8b; font-size: 21px"
+                                        ></i>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="col"
+                                
+                            >
+                                <div
+                                class="card h-100"
+                                id="compagnie_card"
+                                style="background: #f9f9f9; box-shadow: none"
+                                >
+                                <router-link to="/details_location_engin" style="color: #000">
+                                    <img
+                                    src="/public/assets/img/car2.jpg"
+                                    class="card-img-top"
+                                    alt="..."
+                                    style="
+                                        border-radius: 10px 10px 0px 0px;
+                                        max-height: 174px;
+                                        object-fit: cover;
+                                    "
+                                    />
+                                </router-link>
+                                
+
+                                <div class="card-body">
+                                    <router-link to="/detail" style="color: #000">
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                        <h5
+                                            class="card-title"
+                                            style="font-size: 15px; color: black"
+                                        >
+                                        Toyota yaris 2000
+                                        </h5>
+                                        </div>
+                                        
+                                    </div>
+                                    </router-link>
+                                    <div class="row">
+                                    <div class="col-md-8">
+                                        <p class="card-text mt-2" style="font-size: 14px">
+                                        <i class="bx bx-map" style="color: #8b8b8b"></i> Lome
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 text-center mt-2">
+                                        <i
+                                        class="bx bx-car"
+                                        style="color: #8b8b8b; font-size: 21px"
+                                        ></i>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-3 g-4 mb-3" id="">
+                            <div
+                                class="col"
+                                
+                            >
+                                <div
+                                class="card h-100"
+                                id="compagnie_card"
+                                style="background: #f9f9f9; box-shadow: none"
+                                >
+                                <router-link to="/details_location_engin" style="color: #000">
+                                    <img
+                                    src="/public/assets/img/car2.jpg"
+                                    class="card-img-top"
+                                    alt="..."
+                                    style="
+                                        border-radius: 10px 10px 0px 0px;
+                                        max-height: 174px;
+                                        object-fit: cover;
+                                    "
+                                    />
+                                </router-link>
+                                <img src="/public/assets/img/avatars/5.png" alt="" id="badgesLogo">
+
+                                <div class="card-body">
+                                    <router-link to="/detail" style="color: #000">
+                                    <div class="row mt-2">
+                                        <div class="col-md-7">
+                                        <h5
+                                            class="card-title"
+                                            style="font-size: 15px; color: black"
+                                        >
+                                            ENGIN corp
+                                        </h5>
+                                        </div>
+                                        <div class="col-md-5 text-end">
+                                        <boutton
+                                            class="btn btn-primary"
+                                            style="
+                                            background: white;
+                                            border-color: white;
+                                            border-radius: 30px;
+                                            color: #219935;
+                                            margin-top: -9px;
+                                            "
+                                        >
+                                            <i class="bx bx-like" style="color: #219935"></i> 30%
+                                        </boutton>
+                                        </div>
+                                    </div>
+                                    </router-link>
+                                    <div class="row">
+                                    <div class="col-md-8">
+                                        <p class="card-text mt-2" style="font-size: 14px">
+                                        <i class="bx bx-map" style="color: #8b8b8b"></i> Lome
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 text-center mt-2">
+                                        <i
+                                        class="bx bx-car"
+                                        style="color: #8b8b8b; font-size: 21px"
+                                        ></i>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="col"
+                                
+                            >
+                                <div
+                                class="card h-100"
+                                id="compagnie_card"
+                                style="background: #f9f9f9; box-shadow: none"
+                                >
+                                <router-link to="/details_location_engin" style="color: #000">
+                                    <img
+                                    src="/public/assets/img/car2.jpg"
+                                    class="card-img-top"
+                                    alt="..."
+                                    style="
+                                        border-radius: 10px 10px 0px 0px;
+                                        max-height: 174px;
+                                        object-fit: cover;
+                                    "
+                                    />
+                                </router-link>
+                                
+
+                                <div class="card-body">
+                                    <router-link to="/detail" style="color: #000">
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                        <h5
+                                            class="card-title"
+                                            style="font-size: 15px; color: black"
+                                        >
+                                        Toyota yaris 2000
+                                        </h5>
+                                        </div>
+                                        
+                                    </div>
+                                    </router-link>
+                                    <div class="row">
+                                    <div class="col-md-8">
+                                        <p class="card-text mt-2" style="font-size: 14px">
+                                        <i class="bx bx-map" style="color: #8b8b8b"></i> Lome
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 text-center mt-2">
+                                        <i
+                                        class="bx bx-car"
+                                        style="color: #8b8b8b; font-size: 21px"
+                                        ></i>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-3 g-4 mb-3" id="resultat">
                             <div
                                 class="col"
                                 
@@ -220,6 +467,14 @@ onMounted(() => {
     color: #8b8b8b;
     margin-left: 10px;
     border-radius: 20px;
+    font-size: 14px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: var(--bs-nav-pills-link-active-bg);
+    background: #219935 !important;
+    color: white !important;
 }
 
 #badgesLogo {

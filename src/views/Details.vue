@@ -686,7 +686,7 @@ onMounted(() => {
       /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
       margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
       border: var(--bs-nav-tabs-border-width) solid transparent;
-      border-color: #219935;
+      /* border-color: #219935; */
       border-radius: 0px !important;
   }
 </style>
