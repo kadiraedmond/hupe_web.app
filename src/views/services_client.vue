@@ -896,10 +896,10 @@ onMounted(() => {
     border-color: var(--bs-nav-tabs-link-active-border-color);
 }
 
-#myTab {
+/* #myTab {
     z-index: 1030;
     margin-top: 62px;
-}
+} */
 
 #search {
     width: 300px;

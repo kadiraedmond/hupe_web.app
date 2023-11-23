@@ -243,7 +243,7 @@
 //         var footerTop = footer.getBoundingClientRect().top;
 //         var windowHeight = window.innerHeight;
 
-       
+//         // La hauteur (en pixels) à laquelle l'élément devrait devenir statique
 //         var heightToSwitchToStatic = 50000;
         
 //         if (window.scrollY >= navbarHeight && window.scrollY + windowHeight <= footerTop) {
@@ -260,7 +260,9 @@
 // });
 
 
-  
+//   /**
+//    * Animation on scroll
+//    */
 //   window.addEventListener('load', () => {
 //     AOS.init({
 //       duration: 1000,

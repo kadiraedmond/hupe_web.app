@@ -1008,9 +1008,9 @@ document.addEventListener("DOMContentLoaded", function() {
     border: none !important;
 }
 
-#myTab {
+/* #myTab {
     z-index: 1030;
     margin-top: 62px;
-}
+} */
 
 </style>

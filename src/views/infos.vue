@@ -5,43 +5,6 @@ import { onMounted } from 'vue'
 onMounted(() => {
   window.scrollTo(0, 0)
 })
-
-document.addEventListener("scroll", function() {
-    var navbar = document.querySelector(".navbar");
-    var stickyDiv = document.querySelector(".fixe");
-    var footer = document.querySelector("footer");
-    
-    if (navbar && stickyDiv && footer) {
-        var navbarHeight = navbar.offsetHeight;
-        var footerTop = footer.getBoundingClientRect().top;
-        var windowHeight = window.innerHeight;
-
-       
-        var heightToSwitchToStatic = 50000;
-        
-        if (window.scrollY >= navbarHeight && window.scrollY + windowHeight <= footerTop) {
-          if (window.scrollY < heightToSwitchToStatic) {
-            stickyDiv.style.position = "fixed";
-            stickyDiv.style.top = navbarHeight + "px";
-        } else {
-            stickyDiv.style.position = "static";
-        }
-    } else {
-        stickyDiv.style.position = "static";
-        }
-    }
-});
-
-
-  
-  window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    })
-  });
 </script>
 
 <template>
@@ -75,7 +38,7 @@ document.addEventListener("scroll", function() {
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button :class="['nav-link','text-start', { 'active': activeTab === 'profile-tab' }]"  id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" style="width: 245px !important;"> <i class="bx bx-info-circle"></i> Qui sommes nous</button>
+                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" style="width: 245px !important;"> <i class="bx bx-info-circle"></i> Qui sommes nous</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
@@ -423,7 +386,7 @@ document.addEventListener("scroll", function() {
                             </div>
                         </section>
                     </div>
-                    <div :class="['tab-pane', 'fade', { 'show active': activeTab === 'profile-tab-pane' }]"  id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">À propos de HUPE </h2>
@@ -757,12 +720,12 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/paie.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important;  border-radius: 0px 0px 5px 5px;">
                                                         
-                                                        <p class="card-text" style="font-size: 14px;">Le client choisit le trajet qui lui convient, remplit le formulaire de réservation, puis lance la réservation.</p>
+                                                        <p class="card-text" style="font-size: 14px;"> Une fois la réservation validée, le client peut passer au paiement ou annuler la réservation s'il change d'avis. Le client doit justifier l'annulation de la réservation. </p>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -778,12 +741,12 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/valide.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
                                                          
-                                                        <p class="card-text" style="font-size: 14px;">Une fois la réservation validée, le client peut passer au paiement ou annuler la réservation s'il change d'avis. Le client doit justifier l'annulation de la réservation.</p>
+                                                        <p class="card-text" style="font-size: 14px;">Une fois la réservation validée par le partenaire</p>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -806,12 +769,12 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
                                                          
-                                                        <p class="card-text" style="font-size: 14px;">Le client choisit le trajet qui lui convient, remplit le formulaire de réservation, puis lance la réservation.</p>
+                                                        <p class="card-text" style="font-size: 14px;">Après la confirmation de la réservation via le paiement, le client peut ouvrir une messagerie pour communiquer avec la compagnie et obtenir plus d'informations</p>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -825,12 +788,12 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
                                                              
-                                                            <p class="card-text" style="font-size: 14px;">Le partenaire reçoit une notification de réservation, valide ou annule la réservation. En cas d'annulation, le partenaire doit fournir une justification.</p>
+                                                            <p class="card-text" style="font-size: 14px;">Le partenaire peut répondre aux messages du client et poser ses propres questions</p>
                                                         </div>
                                                         </div>
                                                     </div>
@@ -844,7 +807,7 @@ document.addEventListener("scroll", function() {
                                                    
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Jour du départ </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Transmission du véhicule </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -854,12 +817,12 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/car.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
                                                        
-                                                        <p class="card-text" style="font-size: 14px;">Le jour du départ, le client se rend au lieu de départ pour embarquement en présentant son téléphone comme preuve de réservation.</p>
+                                                        <p class="card-text" style="font-size: 14px;">Le client se rend au lieu de rendez-vous pour récupérer le véhicule et présente son téléphone comme preuve de réservation</p>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -875,7 +838,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -987,7 +950,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/choix.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;" >
@@ -1006,7 +969,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1035,7 +998,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                      <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                          <a href="" class="mt-4">
-                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                             <img src="/public/assets/img/paie.png" class="img-fluid w-25" alt="...">
                                                          </a>
                                                          
                                                          <div class="card-body"  style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1056,7 +1019,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/valide.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1084,7 +1047,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1103,7 +1066,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1120,9 +1083,9 @@ document.addEventListener("scroll", function() {
                                             <div class="col-md-12 mt-4">
                                                 <div class="row">
                                                    
-                                                    <div class="col-md-6 mb-3 text-center">
+                                                    <div class="col-md-6 mb-3">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Transmission du gros engins </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px;">Transmission du gros engins </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -1132,7 +1095,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/engin.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1153,7 +1116,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1266,7 +1229,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/trajet.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;" >
@@ -1285,7 +1248,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1314,7 +1277,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                      <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                          <a href="" class="mt-4">
-                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                             <img src="/public/assets/img/paie.png" class="img-fluid w-25" alt="...">
                                                          </a>
                                                          
                                                          <div class="card-body"  style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1335,12 +1298,12 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/valide.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
                                                          
-                                                        <p class="card-text" style="font-size: 14px;">Une fois la réservation validée, le client peut passer au paiement ou annuler la réservation s'il change d'avis. Le client doit justifier l'annulation de la réservation.</p>
+                                                        <p class="card-text" style="font-size: 14px;">Le partenaire valide  réservation du client .</p>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -1363,7 +1326,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1382,7 +1345,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1411,7 +1374,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/depart.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1432,7 +1395,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1460,31 +1423,31 @@ document.addEventListener("scroll", function() {
                                                   </thead>
                                                   <tbody>
                                                     <tr>
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px; background-color: #62bfc4; border-color: #62bfc4;"> En attente </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px; background-color: #62bfc4; border-color: #62bfc4;"> En attente </boutton></td>
                                                         <td>Réservation en attente de validation </td> 
                                                     </tr>
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #bbded8; border-color: #bbded8;"> Validée  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #bbded8; border-color: #bbded8;"> Validée  </boutton></td>
                                                         <td>Réservation validée et en attente de paiement </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #f9f9f9; border-color: #f9f9f9;"> Confirmée    </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f9f9f9; border-color: #f9f9f9;"> Confirmée    </boutton></td>
                                                         <td>Ticket payé par le client  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ;  background: #f8e4dd; border-color: #f8e4dd;">En attente de report </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ;  background: #f8e4dd; border-color: #f8e4dd;">En attente de report </boutton></td>
                                                         <td>Ticket reporté et en attente de validation par le partenaire  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #62bfc4; border-color: #62bfc4;">Reportée </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #62bfc4; border-color: #62bfc4;">Reportée </boutton></td>
                                                         <td>Report de date accepté par le partenaire  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #f8e4dd; border-color: #f8e4dd;">Utilisé  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f8e4dd; border-color: #f8e4dd;">Utilisé  </boutton></td>
                                                         <td>Ticket utilisé   </td>    
                                                     </tr>
                                                     
@@ -1538,14 +1501,14 @@ document.addEventListener("scroll", function() {
                                                     <div class="col-md-6"></div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Choix de véhicule </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 52px;"> Choix de véhicule </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/choix.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;" >
@@ -1564,7 +1527,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1593,7 +1556,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                      <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                          <a href="" class="mt-4">
-                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                             <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                          </a>
                                                          
                                                          <div class="card-body"  style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1614,7 +1577,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1635,14 +1598,14 @@ document.addEventListener("scroll", function() {
                                                     </div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Prise de rendez-vous </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 83px; "> Prise de rendez-vous </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/rdv.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1661,7 +1624,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/question.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1678,9 +1641,9 @@ document.addEventListener("scroll", function() {
                                             <div class="col-md-12 mt-4">
                                                 <div class="row">
                                                    
-                                                    <div class="col-md-6 mb-3 text-center">
+                                                    <div class="col-md-6 mb-3">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Rendez-vous pour les essais </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px;">Rendez-vous pour les essais </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -1690,7 +1653,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/car.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1711,7 +1674,7 @@ document.addEventListener("scroll", function() {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1739,28 +1702,28 @@ document.addEventListener("scroll", function() {
                                                   </thead>
                                                   <tbody>
                                                     <tr>
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px; background-color: #62bfc4; border-color: #62bfc4;">Contact </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px; background-color: #62bfc4; border-color: #62bfc4;">Contact </boutton></td>
                                                         <td>Demande de contact des clients potentiels </td> 
                                                     </tr>
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #bbded8; border-color: #bbded8;">Discussion   </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #bbded8; border-color: #bbded8;">Discussion   </boutton></td>
                                                         <td>En discussion ou en négociation  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #f9f9f9; border-color: #f9f9f9;">Rendez vous    </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f9f9f9; border-color: #f9f9f9;">Rendez vous    </boutton></td>
                                                         <td>Ticket payé par le client  </td>    
                                                     </tr>
 
                                                     
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #f8e4dd; border-color: #f8e4dd;">Essai  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f8e4dd; border-color: #f8e4dd;">Essai  </boutton></td>
                                                         <td>Réservation annulée par le client  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #62bfc4; border-color: #62bfc4;">Utilisé  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #62bfc4; border-color: #62bfc4;">Utilisé  </boutton></td>
                                                         <td>Ticket utilisé   </td>    
                                                     </tr>
                                                     
@@ -2172,5 +2135,7 @@ document.addEventListener("scroll", function() {
     background-color: black;
     opacity: 1.25;
 }
+
+ 
 
 </style>
