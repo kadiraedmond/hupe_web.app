@@ -5,6 +5,43 @@ import { onMounted } from 'vue'
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+document.addEventListener("scroll", function() {
+    var navbar = document.querySelector(".navbar");
+    var stickyDiv = document.querySelector(".fixe");
+    var footer = document.querySelector("footer");
+    
+    if (navbar && stickyDiv && footer) {
+        var navbarHeight = navbar.offsetHeight;
+        var footerTop = footer.getBoundingClientRect().top;
+        var windowHeight = window.innerHeight;
+
+       
+        var heightToSwitchToStatic = 50000;
+        
+        if (window.scrollY >= navbarHeight && window.scrollY + windowHeight <= footerTop) {
+          if (window.scrollY < heightToSwitchToStatic) {
+            stickyDiv.style.position = "fixed";
+            stickyDiv.style.top = navbarHeight + "px";
+        } else {
+            stickyDiv.style.position = "static";
+        }
+    } else {
+        stickyDiv.style.position = "static";
+        }
+    }
+});
+
+
+  
+  window.addEventListener('load', () => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    })
+  });
 </script>
 
 <template>
@@ -38,7 +75,7 @@ onMounted(() => {
                         </div>
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link  text-start" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" style="width: 245px !important;"> <i class="bx bx-info-circle"></i> Qui sommes nous</button>
+                                <button :class="['nav-link','text-start', { 'active': activeTab === 'profile-tab' }]"  id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" style="width: 245px !important;"> <i class="bx bx-info-circle"></i> Qui sommes nous</button>
                             </li>
                         </div>
                         <div class="col-md-12 mb-2">
@@ -386,7 +423,7 @@ onMounted(() => {
                             </div>
                         </section>
                     </div>
-                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    <div :class="['tab-pane', 'fade', { 'show active': activeTab === 'profile-tab-pane' }]"  id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">À propos de HUPE </h2>
