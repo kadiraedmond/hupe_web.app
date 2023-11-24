@@ -246,9 +246,55 @@ export const useCompanieStore = defineStore('companieStore', {
                 console.log(error)
             }
         }, 
-        setCountry(val) {
+        async setCountry(val) {
             this.country = val 
-            console.log(this.country)
+            console.log(this.country) 
+
+            // mettre a jour les compagnies de location
+            try { 
+
+                this.locationCompanies = [] 
+                this.vipLocationCompanies = []
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Location'), where('country', '==', `${this.country}`))
+                const snapshot = await getDocs(q)
+                snapshot.docs.forEach((doc) => {
+                    const data = doc.data()
+                    if(data.status == 'active') {
+                        this.locationCompanies.push(data)
+                    }
+                }) 
+
+                console.log(this.locationCompanies)
+
+                for(let i = 0; i < this.locationCompanies.length; i++) {
+                    if(this.locationCompanies[i].offre == 'vip') {
+                        this.vipLocationCompanies.push(this.locationCompanies[i])
+                    }
+                }
+            } catch (error) {
+                console.log(error)
+            } 
+
+            // mettre a jour les compagnies de reservation
+            try { 
+
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Tansport'), where('country', '==', `${this.country}`))
+                const snapshot = await getDocs(q);
+                snapshot.docs.forEach((doc) => {
+                    const data = doc.data()
+                    if(data.status == 'active') {
+                        this.transportCompanies.push(data)
+                    }
+                })
+                
+                for(let i = 0; i < this.transportCompanies.length; i++) {
+                    if(this.transportCompanies[i].offre == 'vip') {
+                        this.vipTransportCompanies.push(this.transportCompanies[i])
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 })

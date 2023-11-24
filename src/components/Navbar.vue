@@ -4,7 +4,9 @@ import { signOut } from 'firebase/auth'
 import { useAuthStore } from '@/store/auth.js'
 import { useSearchStore } from '@/store/search.js'
 import { useLocalisationStore } from '@/store/localisation.js'
-import { useCompanieStore } from '@/store/companie.js'
+import { useCompanieStore } from '@/store/companie.js' 
+import { useSlide } from '@/store/slideImages.js' 
+import { usePromotionStore } from '@/store/promotion.js' 
 import axios from 'axios'
 import router from '@/router/router.js'
 import Swal from 'sweetalert2'
@@ -17,7 +19,9 @@ import { updateDoc, doc, getDocs, query, where, collection, getDoc } from "fireb
 const authStore = useAuthStore()
 const localisationStore = useLocalisationStore()
 const companieStore = useCompanieStore()
-const searchStore = useSearchStore()
+const searchStore = useSearchStore() 
+const slideStore = useSlide() 
+const promotionStore = usePromotionStore() 
 
 const user = authStore.user
 const savedUser = JSON.parse(localStorage.getItem('user'))
@@ -49,7 +53,9 @@ onBeforeMount(async () => {
         noneReadNotifications.value.push(notification)
     }
   })
-})
+}) 
+
+const collected_country = ['BJ', 'BF', 'CI', 'GN', 'ML', 'NE', 'SN', 'TG'] 
 
 const country = ref()
 
@@ -67,7 +73,14 @@ onBeforeMount(async () => {
     const response = await fetch(API_URL)
     const data = await response.json()
 
-    country.value = data.country
+    country.value = data.country 
+
+    if(!collected_country.includes(data.country)) {
+      Swal.fire({
+        text: `Votre pays ne propose pas de compagnies. Sélectionnez un autre pays dans la zone en haut à gauche de l'écran pour voir des compagnies`, 
+        icon: "info"
+      })
+    } 
 
     // Swal.fire({
     //   title: `Votre localisation est : \n ${data.city} - ${data.country}`, 
@@ -82,7 +95,9 @@ onBeforeMount(async () => {
 const handleSelect = () => {
   console.log(country.value)
   localisationStore.setCompaniesByLocalisation(country.value)
-  companieStore.setCountry(country.value)
+  companieStore.setCountry(country.value) 
+  slideStore.setCountry(country.value) 
+  promotionStore.setCountry(country.value) 
 }
 
 const logout = async () => {

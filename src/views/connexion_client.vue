@@ -139,6 +139,7 @@ onBeforeMount(() => {
 </template>
 <style>
 ::placeholder {
-  float: left;
+  float: left; 
+  color: #EEE;
 }
 </style>

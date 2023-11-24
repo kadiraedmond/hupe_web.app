@@ -14,6 +14,7 @@ const userId = 'lk1kQSCZDqeYK1cpu2uo2LSnN7u2' || savedUser.uid || authStore.user
 const message = ref('')
 const messages = ref([])
 const receive_messages = ref([]) 
+const show_input = ref(true)
 
 const conversationUID = ref('') 
 
@@ -60,6 +61,13 @@ const handleConversationClick = (uid) => {
         receive_messages.value.push(message)
       }
     }) 
+
+
+    if(conversation.etat === 'Termine') {
+      show_input.value = false
+    } else {
+      show_input.value = true
+    }
     
   } else {
     // Gérer le cas où aucune conversation correspondante n'est trouvée
@@ -74,10 +82,10 @@ const sendMessage = async () => {
 
   if(message.value === '') {
     Swal.fire({
-    title: "Erreur", 
-    text: "Entrez un message",
-    icon: "error"
-  })
+      title: "Erreur", 
+      text: "Entrez un message",
+      icon: "error"
+    })
   } else {
     const data = {
       dateSend: Timestamp.now(), 
@@ -94,6 +102,36 @@ const sendMessage = async () => {
     } catch (error) {
       console.log(error) 
     } 
+  } 
+} 
+
+const createNewConversation = async () => { 
+  const data = { 
+    uid: '', 
+    clientNom: (!savedUser.raison_social || !!savedUser.raison_social) ? `${savedUser.lastName} ${savedUser.firstName}` : `${savedUser.raison_social}`, 
+    clientNumber: `${savedUser.telephone}`, 
+    createdAt: Timestamp.now(), 
+    etat: 'Encour', 
+    typeUser: (!savedUser.raison_social || !!savedUser.raison_social) ? 'client' : 'partenaire', 
+    userId: userId
+  } 
+
+  try {
+    const docRef = await addDoc(internalMessageColRef, data) 
+
+    if(docRef) {
+      await updateDoc(docRef, { uid: `${docRef.id}` }) 
+
+      conversations.value.push(data) 
+
+      Swal.fire({
+        title: "Succès", 
+        text: "Votre conversation a été créée",
+        icon: "success"
+      })
+    }
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -223,10 +261,14 @@ const options = {
                     <!-- Ajoutez d'autres messages ici -->
                   </div>
                   <!-- Formulaire de saisie de messages -->
-                  <form @submit.prevent="sendMessage" class="input-group mb-3" style="height: 43px;">
+                  <form @submit.prevent="sendMessage" class="input-group mb-3" style="height: 43px;" v-if="show_input">
                     <input type="text" v-model="message" class="form-control" id="message-input" placeholder="Tapez votre message">
                     <button type="submit" class="btn btn-primary" id="send-button" style=" background: #219935; border-color: #219935;"> <i class='bx bx-send' style=" font-size: 33px; color: white; width: 95px;"></i></button>
                   </form>
+                </div> 
+
+                <div class="text-end">
+                  <button @click="createNewConversation" class="btn btn-primary" style="background: #219935; border: #219935">Démarrer une nouvelle conversation</button>
                 </div>
               </div>
            </div>

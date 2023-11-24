@@ -123,6 +123,74 @@ export const usePromotionStore = defineStore('promotionStore', {
             const snapshot = await getDoc(vehiculeDocRef)
 
             if(snapshot.exists()) this.vehicule = snapshot.data()
+        }, 
+        async setCountry(val) {
+            this.country = val 
+            console.log(this.country) 
+
+            // mettre a jour les offres de vehicules
+            try {
+                this.offresVehicules = []
+                const q = query(vehiculeEnPromoColRef, where('country', '==', `${this.country}`)) 
+
+                const snapshots = await getDocs(q)
+                for(let i = 0; i < snapshots.docs.length; i++) {
+                    const programData = snapshots.docs[i].data()
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let company = {}
+                    if(snapshot.exists()) company = snapshot.data()
+                    this.offresVehicules.push({ ...programData, companieInfos: company })
+
+                }
+            } catch (error) {
+                console.log(error)
+            } 
+
+
+            // mettre a jour les Destinations Populaires
+            try { 
+
+                this.popularDestinations = []
+                const q = query(programmeEnAvantColRef, where('country', '==', `${this.country}`)) 
+
+                const snapshots = await getDocs(q)
+                for(let i = 0; i < snapshots.docs.length; i++) {
+                    const programData = snapshots.docs[i].data()
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let company = {}
+                    if(snapshot.exists()) company = snapshot.data()
+                    this.popularDestinations.push({ ...programData, companieInfos: company })
+
+                }
+            } catch (error) {
+                console.log(error)
+            } 
+
+
+            // mettre a jour les Vehicules Populaires
+            try { 
+
+                this.popularCars = []
+                const q = query(vehiculesEnAvantColRef, where('country', '==', `${this.country}`)) 
+                
+                const snapshots = await getDocs(q)
+                for(let i = 0; i < snapshots.docs.length; i++) {
+                    const programData = snapshots.docs[i].data()
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let company = {}
+                    if(snapshot.exists()) company = snapshot.data()
+                    this.popularCars.push({ ...programData, companieInfos: company })
+
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 })

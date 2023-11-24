@@ -40,7 +40,30 @@ export const useSlide = defineStore('slideStore', {
             return this.slideImages
         }
     },
-    action: {
-        // 
+    actions: {
+        async setCountry(val) {
+            this.country = val 
+            console.log(this.country) 
+
+            try { 
+
+                this.slideImages = []
+                const q = query(imageSlideColRef, where('country', 'array-contains', `${this.country}`)) 
+
+                const snapshots = await getDocs(q)
+                for(let i = 0; i < snapshots.docs.length; i++) {
+                    const programData = snapshots.docs[i].data()
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnieUID}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let company = {}
+                    if(snapshot.exists()) company = snapshot.data()
+                    this.slideImages.push({ ...programData, companieInfos: company })
+
+                }
+              } catch (err) {
+                console.log(err);
+            }
+        }
     }
 })
