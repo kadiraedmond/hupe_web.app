@@ -38,9 +38,8 @@ const handleOnComplete = async (value) => {
 
   if(user) { 
 
-    if(authStore.isNew) {
-      localStorage.setItem('user', JSON.stringify(user)) 
-      authStore.setUser(user) 
+    if(authStore.isNew && authStore.user !== {}) {
+      localStorage.setItem('user', JSON.stringify(authStore.user)) 
     } 
 
     if(!authStore.isNew && authStore.user !== {}) {

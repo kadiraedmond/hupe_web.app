@@ -3,7 +3,9 @@ import { onBeforeMount, onMounted, ref } from "vue"
 import { useRoute } from 'vue-router'
 import { useCompanieStore } from '@/store/companie.js'
 import { usePromotionStore } from '@/store/promotion.js'
-import Loader from '@/components/Loader.vue'
+import Loader from '@/components/Loader.vue' 
+
+import router from '@/router/router.js' 
 
 import { collection, doc, getDoc, addDoc } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
@@ -21,12 +23,14 @@ const authStore = useAuthStore()
 const programmeId = route.params.id 
 
 const programmes = ref([]) 
-const autresProgrammes = ref([])
+const autresProgrammes = ref([]) 
+
+let companieId
 
 onBeforeMount(async () => {
   await promotionStore.setProgramme(programmeId) 
 
-  const companieId = await promotionStore.programme.compagnie_uid
+  companieId = await promotionStore.programme.compagnie_uid
 
   companieStore.setCompanieById(companieId)
   companieStore.setProgrammesVoyages(companieId) 
@@ -77,7 +81,7 @@ const reserver = async (programme) => {
     number: programme.number || '',
     payement: 'En attente',
     status: 'En attente',
-    telephone_client: user.phoneNumber,
+    telephone_client: user.telephone,
     ticket_id: uuidv4()
   }
 
@@ -117,7 +121,8 @@ const reserver = async (programme) => {
 
     await addDoc(notificationColRef, comp_notif)
 
-    document.querySelector('#reservationForm').reset()
+    document.querySelector('#reservationForm').reset() 
+    router.push(`/notation/${companieId}`)
   } catch (error) {
     console.log(error)
   }

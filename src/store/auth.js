@@ -88,7 +88,9 @@ export const useAuthStore = defineStore('authStore', {
         
                             const companieDocRef = doc(companiesColRef, docRef.id)
         
-                            await updateDoc(companieDocRef, { uid: `${docRef.id}` })
+                            await updateDoc(companieDocRef, { uid: `${docRef.id}` }) 
+
+                            this.user = { ...newCompanie, uid: `${docRef.id}` }
         
                             this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
                         }
@@ -140,7 +142,9 @@ export const useAuthStore = defineStore('authStore', {
         
                             const userDocRef = doc(usersColRef, docRef.id)
         
-                            await updateDoc(userDocRef, { uid: `${docRef.id}` })
+                            await updateDoc(userDocRef, { uid: `${docRef.id}` }) 
+
+                            this.user = { ...newUser, uid: `${docRef.id}` }
     
                             this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
                         }

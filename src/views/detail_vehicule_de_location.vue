@@ -5,7 +5,9 @@ import { useCompanieStore } from "@/store/companie.js"
 import { usePromotionStore } from "@/store/promotion.js"
 import Loader from "@/components/Loader.vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2' 
+
+import router from '@/router/router.js' 
 
 import { collection, doc, addDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
@@ -45,10 +47,10 @@ onBeforeMount(async () => {
 });
 
 onMounted(() => {
-  window.scrollTo(0, 0);
-});
+  window.scrollTo(0, 0)
+})
 
-const user = JSON.parse(localStorage.getItem("user")) || authStore.user;
+const user = JSON.parse(localStorage.getItem("user")) || authStore.user
 
 const name = ref('')
 const avecChauffeur = ref(false)
@@ -128,11 +130,11 @@ const reserver = async (car) => {
     montant: car.montant,
     moteur: car.moteur,
     nom_client: name.value,
-    number: "",
+    number: `T_${Date.now()}`, 
     payement: "En attente",
     plaque_vehicule: car.serie_vehicule,
     status: "En attente",
-    telephone_client: user.phoneNumber,
+    telephone_client: user.telephone,
     ticket_id: uuidv4(),
     vehicule: car.vehicule,
     vehicule_image_url: car.vehicule_image_url,
@@ -184,15 +186,16 @@ const reserver = async (car) => {
 
     await addDoc(notificationColRef, comp_notif)
 
-    document.querySelector("#reservationForm").reset()
+    document.querySelector("#reservationForm").reset() 
+    router.push(`/notation/${companieId}`)
   } catch (error) {
     console.log(error)
   }
-};
+}
 
 onMounted(() => {
-  window.scrollTo(0, 0);
-});
+  window.scrollTo(0, 0)
+})
 </script>
 <template>
   <!-- ======= Breadcrumbs ======= -->
