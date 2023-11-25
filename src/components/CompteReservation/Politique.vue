@@ -108,7 +108,7 @@ const deletePolitique = async () => {
 </script>
 
 <template>
- <div class="row mt-5">
+  <div class="row mt-5">
     <div class="col-md-6"></div>
     <div class="col-md-6 text-end">
       <!-- Button trigger modal -->
@@ -185,9 +185,32 @@ const deletePolitique = async () => {
     <div class="col-md-12">
       <div class="card h-100" id="card_compagnie">
         <div class="card-body">
-          <p v-if="firebaseText.length > 0">
-            {{ Db_text }}
-          </p>
+          <div v-if="firebaseText.length > 0">
+            <p>
+              {{ Db_text }}
+            </p>
+          </div>
+          <div class="w-100" v-else>
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+                <div class="card text-center">
+                  <div class="text-center">
+                    <img src="/public/assets/img/icone/poli.png" alt="" class="img-fluid w-25">
+                  </div>
+                  
+                  <div class="card-body">
+                    <p class="card-text">Aucune politique disponible.</p>
+                  </div>
+                </div>
+              
+                
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+        </div>
+          
 
           <div class="row">
             <div class="col-md-6">
@@ -272,8 +295,7 @@ const deletePolitique = async () => {
 
           <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
         </div>
-      </div>
+      </div> 
     </div>
-  </div>
 </template>
 <style></style>

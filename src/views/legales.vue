@@ -507,10 +507,10 @@ onMounted(() => {
     background-color: var(--bs-nav-tabs-link-active-bg);
     border-color: var(--bs-nav-tabs-link-active-border-color);
 }
-#myTab {
+/* #myTab {
     z-index: 1030;
     margin-top: 62px;
-}
+} */
 
 .nav-tabs .nav-link {
     border: none !important;

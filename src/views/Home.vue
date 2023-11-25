@@ -146,7 +146,7 @@ onMounted(() => {
                     :src="slideImage.downloadURL"
                     class="d-block w-100"
                     alt="..."
-                    style="max-height: 350px; height: 350px; object-fit: cover"
+                    style="max-height: 350px; height: 350px; border-radius: 5px;"
                   />
                 </router-link>
               </div>
@@ -184,7 +184,7 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #62bfc4">
+              <div class="card-body" style="background: #62bfc4 ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/location" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Louer un véhicule
@@ -192,7 +192,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Explorez de nouveaux horizons avec notre flotte de véhicules de location adaptés à tous vos besoins. Confort, flexibilité, et aventure vous attendent
+                  Découvrez le confort, la flexibilité et l'aventure avec notre flotte.
                 </p>
               </div>
             </div>
@@ -210,7 +210,7 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #bbded8">
+              <div class="card-body" style="background: #bbded8 ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Réserver un ticket de bus
@@ -218,7 +218,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Réservez votre siège, embarquez pour l'aventure. Les billets de bus sont maintenant à portée de clic.
+                  Embarquez pour l'aventure en un clic avec nos réservations de bus.
                 </p>
               </div>
             </div>
@@ -236,7 +236,7 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #f8e4dd">
+              <div class="card-body" style="background: #f8e4dd ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/location_gros_engin" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Louer un gros engin
@@ -244,7 +244,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  De la terre au chantier, nous avons les gros engins qu'il vous faut. Location professionnelle pour des résultats exceptionnels.
+                 Des engins puissants pour des résultats exceptionnels sur chaque chantier.
                 </p>
               </div>
             </div>
@@ -262,7 +262,7 @@ onMounted(() => {
                 />
               </router-link>
 
-              <div class="card-body" style="background: #fdb7b9">
+              <div class="card-body" style="background: #fdb7b9 ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
                     Acheter un véhicule
@@ -270,7 +270,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Le véhicule de vos rêves est à portée de main. Découvrez notre sélection exceptionnelle de voitures, prêtes à vous offrir le plaisir de conduire.
+                 Le plaisir de conduire commence avec notre sélection exceptionnelle.
                 </p>
               </div>
             </div>
@@ -323,7 +323,7 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/location">
+            <router-link to="/vehicule-populaire">
               <boutton
                 class="btn btn-primary" id="btn-end"
               >
@@ -490,7 +490,7 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/reservation">
+            <router-link to="/destination-populaire">
               <boutton
                 class="btn btn-primary"
                id="btn-end"
@@ -786,7 +786,7 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/location_gros_engin">
+            <router-link to="/gros-engin-populaire">
               <boutton
                 class="btn btn-primary" id="btn-end"
               >
@@ -1021,7 +1021,7 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/vente_vehicule">
+            <router-link to="/vente-populaire">
               <boutton
                 class="btn btn-primary" id="btn-end"
               >
@@ -1174,14 +1174,14 @@ onMounted(() => {
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
               <img
-                src="/public/assets/img/blog.jpg"
-                class="card-img-top"
+                src="/public/assets/img/blog/1.jpg"
+                class="card-img-top h-50"
                 alt="..."
               />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">Card title</h5>
+                    <h5 class="card-title" id="blog_title">Comment Hupe Simplifie Vos Voyages Quotidiens</h5>
                   </div>
                 </div>
 
@@ -1198,17 +1198,19 @@ onMounted(() => {
                 </div>
 
                 <p class="card-text" style="font-size: 13px">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content.
+                  Dans le tourbillon quotidien de la vie urbaine, chaque instant compte... 
                 </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <button
+                    <router-link to="/blog">
+                      <button
                       class="btn btn-primary"
                       style="background-color: #219935 !important; border: none"
                     >
                       Voir plus
                     </button>
+                    </router-link>
+                    
                   </div>
                 </div>
               </div>
@@ -1220,14 +1222,14 @@ onMounted(() => {
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
               <img
-                src="/public/assets/img/blog-1.jpg"
-                class="card-img-top"
+                src="/public/assets/img/blog/2.jpg"
+                class="card-img-top h-50"
                 alt="..."
               />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">Card title</h5>
+                    <h5 class="card-title" id="blog_title">Les Avantages de Louer un Véhicule avec Hupe</h5>
                   </div>
                 </div>
 
@@ -1244,17 +1246,18 @@ onMounted(() => {
                 </div>
 
                 <p class="card-text" style="font-size: 13px">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content.
+                  Louer un véhicule avec Hupe va bien au-delà d'une simple transaction ...
                 </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <button
+                    <router-link to="/blog/article2">
+                      <button
                       class="btn btn-primary"
                       style="background-color: #219935 !important; border: none"
                     >
                       Voir plus
                     </button>
+                    </router-link>
                   </div>
                 </div>
               </div>
@@ -1266,14 +1269,14 @@ onMounted(() => {
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
               <img
-                src="/public/assets/img/blog-2.jpg"
-                class="card-img-top"
+                src="/public/assets/img/blog/3.jpg"
+                class="card-img-top h-50"
                 alt="..."
               />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">Card title</h5>
+                    <h5 class="card-title" id="blog_title">Top 10 Destinations Incontournables à Explorer avec Hupe dans l'UEMOA</h5>
                   </div>
                 </div>
 
@@ -1290,16 +1293,18 @@ onMounted(() => {
                 </div>
 
                 <p class="card-text" style="font-size: 13px">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content.
+                  À travers les huit joyaux de l'UEMOA, Hupe vous invite à découvrir des destinations inoubliables.
                 </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <button
-                      class="btn btn-primary"  style="background-color: #219935 !important; border: none"
+                    <router-link to="/blog/article3">
+                      <button
+                      class="btn btn-primary"
+                      style="background-color: #219935 !important; border: none"
                     >
                       Voir plus
                     </button>
+                    </router-link>
                   </div>
                 </div>
               </div>
@@ -1311,14 +1316,14 @@ onMounted(() => {
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
               <img
-                src="/public/assets/img/blog-2.jpg"
-                class="card-img-top"
+                src="/public/assets/img/blog/4.jpg"
+                class="card-img-top h-50"
                 alt="..."
               />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">Card title</h5>
+                    <h5 class="card-title" id="blog_title">L'Impact de Hupe sur l'Industrie de la Location de Véhicules</h5>
                   </div>
                 </div>
 
@@ -1335,17 +1340,18 @@ onMounted(() => {
                 </div>
 
                 <p class="card-text" style="font-size: 13px">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content.
+                  L'évolution rapide de l'industrie de la location de véhicules a trouvé un nouveau protagoniste en Hupe...
                 </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <button
+                    <router-link to="/blog/article4">
+                      <button
                       class="btn btn-primary"
                       style="background-color: #219935 !important; border: none"
                     >
                       Voir plus
                     </button>
+                    </router-link>
                   </div>
                 </div>
               </div>

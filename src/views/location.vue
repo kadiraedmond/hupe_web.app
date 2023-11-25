@@ -46,41 +46,22 @@ onMounted(() => {
         <div class="row mb-4" style="margin-top: -51px;
     margin-bottom: 33px !important;">
           <div class="col-md-3"></div>
-          <div class="col-md-9">
-            <div class="row" style="background: rgb(249 249 249); padding: 10px; border-radius: 5px;">
+          <div class="col-md-6">
+            <div class="row" style="padding: 10px; border-radius: 5px;">
                 <div class="col-md-12">
-                  <form class="row g-3 needs-validation" method="post" action="">
-                    
-                    <div class="col-md-3">
-                      
-                      <select id="defaultSelect" name="type" class="form-select" placeholder="type">
-                        <option> <b placeholder="type"></b> </option>
-                        <option value=""></option>
-                         
-                      </select>
-                      
-                    </div>
-                    <div class="col-md-3">
-                       
-                      <input type="text" name="adresse" class="form-control" id="validationCustom02" placeholder="Adresse">
-                    
-                    </div>
-                    <div class="col-md-3">
-                      
-                        <input type="text" name="prix" class="form-control" id="validationCustomUsername" placeholder="Prix" aria-describedby="inputGroupPrepend">
-                         
-                    </div>
-                   
-                    <div class="col-3">
-                      <div class="row g-1">
-                        <div class="col-md-12">
-                          <button class="btn btn-primary w-75" type="submit" style="background: #219935; border-color: #219935;">Filtrer</button>
-                        </div>
-                         
-                      </div>
-                      
-                    </div>
+                  <form class="d-flex" role="search" @submit.prevent="handleSearch">
+                    <input
+                      class="form-control me-2 text-white"
+                      type="search"
+                      placeholder="Rechercher"
+                      v-model="searchTerm"
+                      aria-label="Search"
+                      id="search"
+                    />
+                    <i class="bx bx-search" type="submit" id="icon_search"></i>
+                    <!-- <button class="btn btn-outline-success" type="submit" style="margin-left: -90px;">Search</button> -->
                   </form>
+
                  
                 </div>
               </div>
@@ -169,5 +150,23 @@ onMounted(() => {
     border-radius: 50%;
     border: 1px solid #ffffff;
     object-fit: cover;
+}
+
+#search {
+    width: 491px !important;
+    height: 54px;
+    /* border-radius: 30px; */
+    font-size: 14px;
+    background-color: white;
+    border-color: #219935;
+    color: white !important;
+    border-radius: 10px;
+}
+
+#icon_search {
+    margin-left: -51px;
+    font-size: 25px;
+    margin-top: 16px;
+    color: #019934;
 }
 </style>

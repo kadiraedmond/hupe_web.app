@@ -15,7 +15,7 @@ onMounted(() => {
       <div class="container">
         <div class="row" style="margin-top: 42px;">
             <div class="col-md-3" style="border-right: 1px solid; border-color:#EAEAEA;">
-                <div class="row fixe">
+                <div class="row fixe" style="width: 20% !important;"> 
                     <ul class="nav nav-tabs " id="myTab" role="tablist" style="border: none; ">
                     <div class="row " style="width:30%">
                         
@@ -624,13 +624,9 @@ onMounted(() => {
                                 <div class="tab-content" id="pills-tabContent">
                                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                                         <div class="row mt-4">
+
                                             <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">1</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Réservation </h1>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -638,14 +634,14 @@ onMounted(() => {
                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body"  style="background: #62bfc4!important;">
                                                         <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                        <p class="card-text" style="font-size: 14px;">Le client choisit le trajet qui lui convient, remplit le formulaire de réservation, puis lance la réservation.</p>
+                                                        
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col">
+                                                                  
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -653,8 +649,56 @@ onMounted(() => {
                                                             <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body" style="background: #f8e4dd !important;">
                                                             <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
+                                                             
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                     
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12 mt-4">
+                                                <div class="row">
+                                                    <div class="col-md-6"></div>
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                    <div class="col">
+                                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/trajet.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body"  style="background: #62bfc4!important;border-radius: 0px 0px 5px 5px;">
+                                                         
+                                                        <p class="card-text" style="font-size: 14px;">Le client choisit le trajet qui lui convient, remplit le formulaire de réservation, puis lance la réservation.</p>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col text-center d-flex">
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:24px"></div>
+                                                        </div>  
+                                                        <div class="d-flex" style="margin-left: 125px; margin-top: -38px; position: absolute;"> 
+                                                            <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
+                                                        </div>            
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #f8e4dd !important;     border-radius: 0px 0px 5px 5px;">
+                                                             
                                                             <p class="card-text" style="font-size: 14px;">Le partenaire reçoit une notification de réservation, valide ou annule la réservation. En cas d'annulation, le partenaire doit fournir une justification.</p>
                                                         </div>
                                                         </div>
@@ -665,115 +709,163 @@ onMounted(() => {
                                             </div>
 
                                             <div class="col-md-12 mt-4">
-                                                 
-                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
-                                                    <div class="col mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn" style="margin-top: 72px;">2</button>
-                                                        <h1 style="font-size: 20px; margin-top: 86px; margin-left: 10px;"> Paiement </h1>
+                                                <div class="row">
+                                                   
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
-                                                    
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col-md-6 text-center">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
                                                     </div>
-
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/paie.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                        <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                        <p class="card-text" style="font-size: 14px;">Une fois la réservation validée, le client peut passer au paiement ou annuler la réservation s'il change d'avis. Le client doit justifier l'annulation de la réservation.</p>
+                                                        <div class="card-body" style="background: #62bfc4!important;  border-radius: 0px 0px 5px 5px;">
+                                                        
+                                                        <p class="card-text" style="font-size: 14px;"> Une fois la réservation validée, le client peut passer au paiement ou annuler la réservation s'il change d'avis. Le client doit justifier l'annulation de la réservation. </p>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    
+                                                    <div class="col text-center d-flex">
+                                                        <div class="d-flex" style="margin-left: 135px;  position: absolute;">
+                                                            
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Paiement </h1>
+                                                        </div>  
+                                                       
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left: 135px;z-index: -1;"></div>
+                                                        </div>  
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
+                                                                
+                                                    </div>
+                                                    <div class="col">
+                                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/valide.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                         
+                                                        <p class="card-text" style="font-size: 14px;">Une fois la réservation validée par le partenaire</p>
+                                                        </div>
+                                                    </div>
+                                                    </div>
                                                      
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="col-md-12 mt-4">
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">3</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Messagerie </h1>
+                                                    <div class="col-md-6">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 20%; margin-top: 30px;"></i> </h1> 
+                                                    </div>
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
                                                 </div>
-                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                        <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                        <p class="card-text" style="font-size: 14px;">Le client choisit le trajet qui lui convient, remplit le formulaire de réservation, puis lance la réservation.</p>
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                         
+                                                        <p class="card-text" style="font-size: 14px;">Après la confirmation de la réservation via le paiement, le client peut ouvrir une messagerie pour communiquer avec la compagnie et obtenir plus d'informations</p>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col text-center d-flex">
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:34px"></div>
+                                                        </div>  
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        </div>             
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                            <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
-                                                            <p class="card-text" style="font-size: 14px;">Le partenaire reçoit une notification de réservation, valide ou annule la réservation. En cas d'annulation, le partenaire doit fournir une justification.</p>
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                             
+                                                            <p class="card-text" style="font-size: 14px;">Le partenaire peut répondre aux messages du client et poser ses propres questions</p>
                                                         </div>
                                                         </div>
                                                     </div>
                                                      
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="col-md-12 mt-4">
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">4</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Jour du départ</h1>
+                                                   
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">  </h1>
+                                                    </div>
+                                                    <div class="col-md-6 text-center">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
                                                     </div>
                                                 </div>
-                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                <div class="row row-cols-3 row-cols-md-3 g-4" style="margin-top: -50px;">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/car.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                        <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                        <p class="card-text" style="font-size: 14px;">Le jour du départ, le client se rend au lieu de départ pour embarquement en présentant son téléphone comme preuve de réservation.</p>
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                       
+                                                        <p class="card-text" style="font-size: 14px;">Le client se rend au lieu de rendez-vous pour récupérer le véhicule et présente son téléphone comme preuve de réservation</p>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col text-center d-flex">
+                                                        <div class="d-flex" style="margin-left: 135px;  position: absolute; margin-top: -72px;">
+                                                            
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Transmission </h1>
+                                                        </div>  
+                                                       
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:126px;z-index: -1; min-height: 17em !important;"></div>
+                                                        </div>  
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
+                                                               
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                            <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                            
                                                             <p class="card-text" style="font-size: 14px;">À l'aide de l'application "Hupe Scan", le partenaire scanne le code QR présent sur le ticket de réservation du client, accessible sous forme de fichier PDF ou directement depuis l'application</p>
                                                         </div>
                                                         </div>
                                                     </div>
                                                      
                                                 </div>
-                                                
-                                            </div>
 
+                                            </div>
+ 
                                             <div class="col-md-12 mt-4">
                                                 <p> <strong>N.B. </strong> Le client peut demander un report de la date de voyage, mais cette nouvelle date doit être validée par le partenaire avant d'être acceptée. </p>
                                                 <p> Nous aurons donc les statuts suivants chez le client et chez le partenaire </p> 
@@ -788,31 +880,31 @@ onMounted(() => {
                                                   </thead>
                                                   <tbody>
                                                     <tr>
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px; background-color: #F77F00; border-color: #F77F00;"> En attente </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px; background-color: #62bfc4; border-color: #62bfc4;"> En attente </boutton></td>
                                                         <td>Réservation en attente de validation </td> 
                                                     </tr>
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #219935; border-color: #219935;"> Validée  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #bbded8; border-color: #bbded8;"> Validée  </boutton></td>
                                                         <td>Réservation validée et en attente de paiement </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #3987FB; border-color: #3987FB;"> Confirmée    </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f9f9f9; border-color: #f9f9f9;"> Confirmée    </boutton></td>
                                                         <td>Ticket payé par le client  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ;  background: linear-gradient(90deg, #F77F00 5.78%, #9747FF 97.11%); border-color: #931D96;">En attente de report </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ;  background:  #f8e4dd; border-color: #f8e4dd;">En attente de report </boutton></td>
                                                         <td>Ticket reporté et en attente de validation par le partenaire  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #9747FF;; border-color: #9747FF;">Reportée </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color:  #62bfc4; border-color: #62bfc4;">Reportée </boutton></td>
                                                         <td>Report de date accepté par le partenaire  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #931D96; border-color: #931D96;">Utilisé  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #62bfc4; border-color: #62bfc4;">Utilisé  </boutton></td>
                                                         <td>Ticket utilisé   </td>    
                                                     </tr>
                                                     
@@ -824,13 +916,9 @@ onMounted(() => {
                                     </div>
                                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                                         <div class="row mt-4">
+  
                                             <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">1</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Réservation </h1>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -838,14 +926,14 @@ onMounted(() => {
                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body"  style="background: #62bfc4!important;">
                                                         <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                        <p class="card-text" style="font-size: 14px;">Le client choisit le gros engin qui lui convient, remplit le formulaire de réservation, puis lance la réservation.</p>
+                                                        
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col">
+                                                                  
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -853,8 +941,57 @@ onMounted(() => {
                                                             <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body" style="background: #f8e4dd !important;">
                                                             <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
+                                                             
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                     
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12 mt-4">
+                                                <div class="row">
+                                                    <div class="col-md-6"></div>
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                    <div class="col">
+                                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/choix.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;" >
+                                                         
+                                                        <p class="card-text" style="font-size: 14px;">Le client choisit le gros engin qui lui convient, remplit le formulaire de réservation, puis lance la réservation.</p>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col text-center d-flex">
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:34px"></div>
+                                                        </div>  
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                        </div>
+                                                                  
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                             
                                                             <p class="card-text" style="font-size: 14px;">Le partenaire reçoit une notification de réservation, valide ou annule la réservation. En cas d'annulation, le partenaire doit fournir une justification.</p>
                                                         </div>
                                                         </div>
@@ -865,105 +1002,151 @@ onMounted(() => {
                                             </div>
 
                                             <div class="col-md-12 mt-4">
-                                                 
-                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
-                                                     <div class="col mb-3 d-flex">
-                                                         <button class="btn btn-primary" id="circle_btn" style="margin-top: 72px;">2</button>
-                                                         <h1 style="font-size: 20px; margin-top: 86px; margin-left: 10px;"> Confirmation </h1>
-                                                     </div>
-                                                     
-                                                     <div class="col text-center">
-                                                         <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
-                                                     </div>
- 
-                                                     <div class="col">
+                                                <div class="row">
+                                                   
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> </h1>
+                                                    </div>
+                                                    <div class="col-md-6 text-center">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
+                                                    </div>
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
+                                                    <div class="col">
                                                      <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                          <a href="" class="mt-4">
-                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                             <img src="/public/assets/img/paie.png" class="img-fluid w-25" alt="...">
                                                          </a>
                                                          
-                                                         <div class="card-body">
-                                                         <h5 class="card-title" style="font-size: 17px;">Client</h5>
+                                                         <div class="card-body"  style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                         
                                                          <p class="card-text" style="font-size: 14px;">Une fois la réservation validée, le client doit confirmer en effectuant un dépôt ou se rendre sur place pour confirmer ou annuler la réservation s'il change d'avis. Le client doit justifier l'annulation de la réservation.</p>
                                                          </div>
                                                      </div>
                                                      </div>
-                                                     
-                                                      
-                                                 </div>
-                                                 
-                                             </div>
-
-                                            <div class="col-md-12 mt-4">
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">3</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Messagerie </h1>
+                                                    <div class="col text-center d-flex">
+                                                        <div class="d-flex" style="margin-left: -7px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Confirmation </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        </div>  
+                                                       
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1;"></div>
+                                                        </div>  
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
+                                                                
                                                     </div>
-                                                </div>
-                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/valide.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                        <h5 class="card-title" style="font-size: 17px;">Client</h5>
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                         
+                                                        <p class="card-text" style="font-size: 14px;">Une fois la réservation validée, le client peut passer au paiement ou annuler la réservation s'il change d'avis. Le client doit justifier l'annulation de la réservation.</p>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                     
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12 mt-4">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 20%; margin-top: 30px;"></i> </h1> 
+                                                    </div>
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> </h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
+                                                    <div class="col">
+                                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                        
                                                         <p class="card-text" style="font-size: 14px;">Après la confirmation de la réservation, le client peut ouvrir une messagerie pour communiquer avec la compagnie et obtenir plus d'informations.</p>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col text-center d-flex">
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:34px"></div>
+                                                        </div>  
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        </div>            
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                            <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                            
                                                             <p class="card-text" style="font-size: 14px;">Le partenaire peut répondre aux messages du client et poser ses propres questions.</p>
                                                         </div>
                                                         </div>
                                                     </div>
                                                      
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="col-md-12 mt-4">
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">4</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Transmission du gros engins</h1>
+                                                   
+                                                    <div class="col-md-6 mb-3">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px;">  </h1>
+                                                    </div>
+                                                    <div class="col-md-6 text-center">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
                                                     </div>
                                                 </div>
-                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                <div class="row row-cols-3 row-cols-md-3 g-4" style="margin-top: -50px;">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/engin.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                        <h5 class="card-title" style="font-size: 17px;">Client</h5>
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                        
                                                         <p class="card-text" style="font-size: 14px;">Le client se rend au lieu de rendez-vous pour récupérer le gros engin et présente son téléphone comme preuve de réservation.</p>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col text-center d-flex">
+                                                        <div class="d-flex" style="margin-left: -12px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Transmission </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        </div>  
+                                                       
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1; min-height: 17em !important;"></div>
+                                                        </div>  
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
+                                                                 
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
                                                             <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
                                                             <p class="card-text" style="font-size: 14px;">À l'aide de l'application "Hupe Scan", le partenaire scanne le code QR présent sur le ticket de réservation du client, accessible sous forme de fichier PDF ou directement depuis l'application.</p>
                                                         </div>
@@ -971,7 +1154,7 @@ onMounted(() => {
                                                     </div>
                                                      
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="col-md-12 mt-4">
@@ -988,31 +1171,31 @@ onMounted(() => {
                                                   </thead>
                                                   <tbody>
                                                     <tr>
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px; background-color: #F77F00; border-color: #F77F00;"> En attente </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px; background-color: #62bfc4; border-color: #62bfc4;"> En attente </boutton></td>
                                                         <td>Réservation en attente de validation </td> 
                                                     </tr>
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #219935; border-color: #219935;"> Validée  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #bbded8; border-color: #bbded8;"> Validée  </boutton></td>
                                                         <td>Réservation validée et en attente de paiement </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #3987FB; border-color: #3987FB;"> Confirmée    </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f9f9f9; border-color: #f9f9f9;"> Confirmée    </boutton></td>
                                                         <td>Ticket payé par le client  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ;  background: linear-gradient(90deg, #F77F00 5.78%, #9747FF 97.11%); border-color: #931D96;">En attente de report </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ;  background: #f8e4dd; border-color: #f8e4dd;">En attente de report </boutton></td>
                                                         <td>Ticket reporté et en attente de validation par le partenaire  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #9747FF;; border-color: #9747FF;">Reportée </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #62bfc4; border-color: #62bfc4;">Reportée </boutton></td>
                                                         <td>Report de date accepté par le partenaire  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #931D96; border-color: #931D96;">Utilisé  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f8e4dd; border-color: #f8e4dd;">Utilisé  </boutton></td>
                                                         <td>Ticket utilisé   </td>    
                                                     </tr>
                                                     
@@ -1024,13 +1207,10 @@ onMounted(() => {
                                     </div>
                                     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
                                         <div class="row mt-4">
+                                         
+
                                             <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">1</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Réservation </h1>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1038,14 +1218,14 @@ onMounted(() => {
                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body"  style="background: #62bfc4!important;">
                                                         <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                        <p class="card-text" style="font-size: 14px;">Le client choisit le trajet qui lui convient, remplit le formulaire de réservation, puis lance la réservation.</p>
+                                                        
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col">
+                                                                  
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1053,8 +1233,56 @@ onMounted(() => {
                                                             <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body" style="background: #f8e4dd !important;">
                                                             <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
+                                                             
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                     
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12 mt-4">
+                                                <div class="row">
+                                                    <div class="col-md-6"></div>
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                    <div class="col">
+                                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/trajet.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;" >
+                                                         
+                                                        <p class="card-text" style="font-size: 14px;">Le client choisit le trajet qui lui convient, remplit le formulaire de réservation, puis lance la réservation.</p>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col text-center d-flex">
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:34px"></div>
+                                                        </div>  
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                        </div>           
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                             
                                                             <p class="card-text" style="font-size: 14px;">Le partenaire reçoit une notification de réservation, valide ou annule la réservation. En cas d'annulation, le partenaire doit fournir une justification.</p>
                                                         </div>
                                                         </div>
@@ -1065,95 +1293,150 @@ onMounted(() => {
                                             </div>
 
                                             <div class="col-md-12 mt-4">
-                                                 
-                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
-                                                     <div class="col mb-3 d-flex">
-                                                         <button class="btn btn-primary" id="circle_btn" style="margin-top: 72px;">2</button>
-                                                         <h1 style="font-size: 20px; margin-top: 86px; margin-left: 10px;"> Paiement </h1>
-                                                     </div>
-                                                     
-                                                     <div class="col text-center">
-                                                         <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
-                                                     </div>
- 
-                                                     <div class="col">
+                                                <div class="row">
+                                                   
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
+                                                    </div>
+                                                    <div class="col-md-6 text-center">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
+                                                    </div>
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
+                                                    <div class="col">
                                                      <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                          <a href="" class="mt-4">
-                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                             <img src="/public/assets/img/paie.png" class="img-fluid w-25" alt="...">
                                                          </a>
                                                          
-                                                         <div class="card-body">
-                                                         <h5 class="card-title" style="font-size: 17px;">Client</h5>
+                                                         <div class="card-body"  style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                         
                                                          <p class="card-text" style="font-size: 14px;">Une fois la réservation validée, le client peut passer au paiement ou annuler la réservation s'il change d'avis. Le client doit justifier l'annulation de la réservation.</p>
                                                          </div>
                                                      </div>
                                                      </div>
-                                                     
-                                                      
-                                                 </div>
-                                                 
-                                             </div>
-
-                                             <div class="col-md-12 mt-4">
-                                                 
-                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
-                                                     <div class="col mb-3 d-flex">
-                                                         <button class="btn btn-primary" id="circle_btn" style="margin-top: 72px;">3</button>
-                                                         <h1 style="font-size: 20px; margin-top: 86px; margin-left: 10px;"> Messagerie </h1>
-                                                     </div>
-                                                     
-                                                     <div class="col text-center">
-                                                         <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
-                                                     </div>
- 
-                                                     <div class="col">
-                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
-                                                         <a href="" class="mt-4">
-                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
-                                                         </a>
-                                                         
-                                                         <div class="card-body">
-                                                         <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                         <p class="card-text" style="font-size: 14px;">Après la confirmation de la réservation via le paiement, le client peut ouvrir une messagerie pour communiquer avec la compagnie et obtenir plus d'informations.</p>
-                                                         </div>
-                                                     </div>
-                                                     </div>
-                                                     
-                                                      
-                                                 </div>
-                                                 
-                                             </div>
-
-                                            <div class="col-md-12 mt-4">
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">4</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Jour du départ</h1>
+                                                    <div class="col text-center d-flex">
+                                                        <div class="d-flex" style="margin-left: -7px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Paiement </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        </div>  
+                                                       
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1;"></div>
+                                                        </div>  
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                     </div>
-                                                </div>
-                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/valide.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                        <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                        <p class="card-text" style="font-size: 14px;">Le jour du départ, le client se rend au lieu de départ pour embarquement en présentant son téléphone comme preuve de réservation.</p>
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                         
+                                                        <p class="card-text" style="font-size: 14px;">Le partenaire valide  réservation du client .</p>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                     
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12 mt-4">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 20%; margin-top: 30px;"></i> </h1> 
+                                                    </div>
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
+                                                    <div class="col">
+                                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                        
+                                                        <p class="card-text" style="font-size: 14px;">Après la confirmation de la réservation via le paiement, le client peut ouvrir une messagerie pour communiquer avec la compagnie et obtenir plus d'informations.</p>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col text-center d-flex">
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:34px"></div>
+                                                        </div>  
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        </div>               
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                            
+                                                            <p class="card-text" style="font-size: 14px;">Le partenaire peut répondre aux messages du client et poser ses propres questions.</p>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                     
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12 mt-4">
+                                                <div class="row">
+                                                   
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> </h1>
+                                                    </div>
+                                                    <div class="col-md-6 text-center">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
+                                                    </div>
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4" style="margin-top: -50px;">
+                                                    <div class="col">
+                                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/depart.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                        
+                                                        <p class="card-text" style="font-size: 14px;">Le jour du départ, le client se rend au lieu de départ pour embarquement en présentant son téléphone comme preuve de réservation.</p>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col text-center d-flex">
+                                                        <div class="d-flex" style="margin-left: -12px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Jour du départ </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">4</button>  
+                                                        </div>  
+                                                       
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1; min-height: 17em !important;"></div>
+                                                        </div>  
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
+                                                                 
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
                                                             <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
                                                             <p class="card-text" style="font-size: 14px;">À l'aide de l'application "Hupe Scan", le partenaire scanne le code QR présent sur le ticket de réservation du client, accessible sous forme de fichier PDF ou directement depuis l'application.</p>
                                                         </div>
@@ -1161,7 +1444,7 @@ onMounted(() => {
                                                     </div>
                                                      
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="col-md-12 mt-4">
@@ -1178,31 +1461,31 @@ onMounted(() => {
                                                   </thead>
                                                   <tbody>
                                                     <tr>
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px; background-color: #F77F00; border-color: #F77F00;"> En attente </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px; background-color: #62bfc4; border-color: #62bfc4;"> En attente </boutton></td>
                                                         <td>Réservation en attente de validation </td> 
                                                     </tr>
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #219935; border-color: #219935;"> Validée  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #bbded8; border-color: #bbded8;"> Validée  </boutton></td>
                                                         <td>Réservation validée et en attente de paiement </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #3987FB; border-color: #3987FB;"> Confirmée    </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f9f9f9; border-color: #f9f9f9;"> Confirmée    </boutton></td>
                                                         <td>Ticket payé par le client  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ;  background: linear-gradient(90deg, #F77F00 5.78%, #9747FF 97.11%); border-color: #931D96;">En attente de report </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ;  background: #f8e4dd; border-color: #f8e4dd;">En attente de report </boutton></td>
                                                         <td>Ticket reporté et en attente de validation par le partenaire  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #9747FF;; border-color: #9747FF;">Reportée </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #62bfc4; border-color: #62bfc4;">Reportée </boutton></td>
                                                         <td>Report de date accepté par le partenaire  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #931D96; border-color: #931D96;">Utilisé  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f8e4dd; border-color: #f8e4dd;">Utilisé  </boutton></td>
                                                         <td>Ticket utilisé   </td>    
                                                     </tr>
                                                     
@@ -1214,13 +1497,10 @@ onMounted(() => {
                                     </div>
                                     <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">
                                         <div class="row mt-4">
+   
+                                            
                                             <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">1</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Choix d'un véhicule </h1>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1228,14 +1508,14 @@ onMounted(() => {
                                                             <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body"  style="background: #62bfc4!important;">
                                                         <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                        <p class="card-text" style="font-size: 14px;">Le client choisit un véhicule qui l'intéresse, remplit le formulaire d'intérêt, puis lance le contact.</p>
+                                                        
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col">
+                                                                  
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1243,8 +1523,56 @@ onMounted(() => {
                                                             <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body" style="background: #f8e4dd !important;">
                                                             <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
+                                                             
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                     
+                                                </div>
+
+                                            </div>
+ 
+                                            <div class="col-md-12 mt-4">
+                                                <div class="row">
+                                                    <div class="col-md-6"></div>
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 52px;">  </h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                    <div class="col">
+                                                    <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/choix.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;" >
+                                                         
+                                                        <p class="card-text" style="font-size: 14px;">Le client choisit un véhicule qui l'intéresse, remplit le formulaire d'intérêt, puis lance le contact.</p>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col text-center d-flex">
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:34px"></div>
+                                                        </div>  
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Choix de véhicule </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                        </div>         
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                        <a href="" class="mt-4">
+                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
+                                                        </a>
+                                                        
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                             
                                                             <p class="card-text" style="font-size: 14px;">Le partenaire reçoit une notification de contact, valide et entre en contact avec le client potentiel..</p>
                                                         </div>
                                                         </div>
@@ -1256,114 +1584,149 @@ onMounted(() => {
 
                                             <div class="col-md-12 mt-4">
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">2</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Messagerie </h1>
+                                                   
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
+                                                    </div>
+                                                    <div class="col-md-6 text-center">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
                                                     </div>
                                                 </div>
-                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
+                                                    <div class="col">
+                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
+                                                         <a href="" class="mt-4">
+                                                             <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                         </a>
+                                                         
+                                                         <div class="card-body"  style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                         
+                                                         <p class="card-text" style="font-size: 14px;">Après la prise de contact, le client peut ouvrir une messagerie pour communiquer avec la compagnie et obtenir plus d'informations.</p>
+                                                         </div>
+                                                     </div>
+                                                     </div>
+                                                    <div class="col text-center d-flex">
+                                                        <div class="d-flex" style="margin-left: -7px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        </div>  
+                                                       
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1;"></div>
+                                                        </div>  
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>     
+                                                    </div>
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                        <h5 class="card-title" style="font-size: 17px;">Client</h5>
-                                                        <p class="card-text" style="font-size: 14px;">Après la prise de contact, le client peut ouvrir une messagerie pour communiquer avec la compagnie et obtenir plus d'informations.</p>
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                         
+                                                        <p class="card-text" style="font-size: 14px;">Le partenaire peut répondre aux messages du client et poser ses propres questions.</p>
                                                         </div>
                                                     </div>
-                                                    </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
-                                                        <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
-                                                        </a>
-                                                        
-                                                        <div class="card-body">
-                                                            <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
-                                                            <p class="card-text" style="font-size: 14px;">Le partenaire peut répondre aux messages du client et poser ses propres questions.</p>
-                                                        </div>
-                                                        </div>
                                                     </div>
                                                      
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="col-md-12 mt-4">
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">3</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Prise de rendez-vous </h1>
+                                                    <div class="col-md-6">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 20%; margin-top: 30px;"></i> </h1> 
+                                                    </div>
+                                                    <div class="col-md-6 mb-3 text-center">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 83px; "> </h1>
                                                     </div>
                                                 </div>
-                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/rdv.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                        <h5 class="card-title" style="font-size: 17px;">Client</h5>
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                        
                                                         <p class="card-text" style="font-size: 14px;">Une fois les discussions terminées, le client peut prendre rendez-vous pour essayer le véhicule.</p>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col text-center d-flex">
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:34px"></div>
+                                                        </div>  
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Prise de rendez-vous  </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        </div>             
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/question.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                            <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
+                                                            
                                                             <p class="card-text" style="font-size: 14px;">Le partenaire peut répondre aux messages du client et poser ses propres questions.</p>
                                                         </div>
                                                         </div>
                                                     </div>
                                                      
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="col-md-12 mt-4">
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-3 d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn">4</button>
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Rendez-vous pour les essais</h1>
+                                                   
+                                                    <div class="col-md-6 mb-3">
+                                                        
+                                                        <h1 style="font-size: 20px; margin-top: 12px;"> </h1>
+                                                    </div>
+                                                    <div class="col-md-6 text-center">
+                                                        <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
                                                     </div>
                                                 </div>
-                                                <div class="row row-cols-3 row-cols-md-3 g-4 ">
+                                                <div class="row row-cols-3 row-cols-md-3 g-4" style="margin-top: -50px;">
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/car.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
-                                                        <h5 class="card-title" style="font-size: 17px;">Client</h5>
+                                                        <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
+                                                        
                                                         <p class="card-text" style="font-size: 14px;">Le jour du rendez-vous, le client se rend au lieu convenu pour essayer le véhicule en présentant son téléphone comme preuve de rendez-vous.</p>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="col text-center">
-                                                        <h1 style="font-size: 100px; margin-top: 50px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>                
+                                                    <div class="col text-center d-flex">
+                                                        <div class="d-flex" style="margin-left: -12px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Rendez-vous pour les essais </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">4</button>  
+                                                        </div>  
+                                                       
+                                                        <div class="d-flex" style="height: 200px;">
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1; min-height: 17em !important;"></div>
+                                                        </div>  
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
+                                                                
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
-                                                        <div class="card-body">
+                                                        <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
                                                             <h5 class="card-title" style="font-size: 17px;">Partenaire </h5>
                                                             <p class="card-text" style="font-size: 14px;">À l'aide de l'application "Hupe Scan", le partenaire scanne le code QR présent sur le ticket de rendez-vous du client, accessible sous forme de fichier PDF ou directement depuis l'application.</p>
                                                         </div>
@@ -1371,7 +1734,7 @@ onMounted(() => {
                                                     </div>
                                                      
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="col-md-12 mt-4">
@@ -1388,28 +1751,28 @@ onMounted(() => {
                                                   </thead>
                                                   <tbody>
                                                     <tr>
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px; background-color: #F77F00; border-color: #F77F00;">Contact </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px; background-color: #62bfc4; border-color: #62bfc4;">Contact </boutton></td>
                                                         <td>Demande de contact des clients potentiels </td> 
                                                     </tr>
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #219935; border-color: #219935;">Discussion   </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #bbded8; border-color: #bbded8;">Discussion   </boutton></td>
                                                         <td>En discussion ou en négociation  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #3987FB; border-color: #3987FB;">Rendez vous    </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f9f9f9; border-color: #f9f9f9;">Rendez vous    </boutton></td>
                                                         <td>Ticket payé par le client  </td>    
                                                     </tr>
 
                                                     
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #9747FF;; border-color: #9747FF;">Essai  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #f8e4dd; border-color: #f8e4dd;">Essai  </boutton></td>
                                                         <td>Réservation annulée par le client  </td>    
                                                     </tr>
 
                                                     <tr>       
-                                                        <td> <boutton class="btn btn-primary" style="border-radius:30px ; background-color: #931D96; border-color: #931D96;">Utilisé  </boutton></td>
+                                                        <td> <boutton class="btn btn-primary text-black" style="border-radius:30px ; background-color: #62bfc4; border-color: #62bfc4;">Utilisé  </boutton></td>
                                                         <td>Ticket utilisé   </td>    
                                                     </tr>
                                                     
@@ -1548,176 +1911,199 @@ onMounted(() => {
 
                         <section id="features" class="features"  style="margin-top: -30px;">
                     <div class="container">
-
-                         
-                
+ 
                         <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                            <div class="col">
+                                <div
+                                class="card h-100 border-0"
+                                style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                                >
+                                <img
+                                    src="/public/assets/img/blog/1.jpg"
+                                    class="card-img-top h-50"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <div class="row" id="blog_row">
+                                    <div class="col-md-12">
+                                        <h5 class="card-title" id="blog_title">Comment Hupe Simplifie Vos Voyages Quotidiens</h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
-                                </div>
-                                </div>
-                            </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-1.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                                    <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <h5 class="" style="font-size: 15px">
+                                        <i
+                                            class="bx bxs-circle mr-2"
+                                            style="margin-right: 2px"
+                                        ></i>
+                                        8 mars 2023
+                                        </h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                    <p class="card-text" style="font-size: 13px">
+                                    Dans le tourbillon quotidien de la vie urbaine, chaque instant compte... 
+                                    </p>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <router-link to="/blog">
+                                        <button
+                                        class="btn btn-primary"
+                                        style="background-color: #219935 !important; border: none"
+                                        >
+                                        Voir plus
+                                        </button>
+                                        </router-link>
+                                        
+                                    </div>
+                                    </div>
                                 </div>
                                 </div>
                             </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                            <div class="col">
+                                <div
+                                class="card h-100 border-0"
+                                style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                                >
+                                <img
+                                    src="/public/assets/img/blog/2.jpg"
+                                    class="card-img-top h-50"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <div class="row" id="blog_row">
+                                    <div class="col-md-12">
+                                        <h5 class="card-title" id="blog_title">Les Avantages de Louer un Véhicule avec Hupe</h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
-                                </div>
-                                </div>
-                            </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                                    <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <h5 class="" style="font-size: 15px">
+                                        <i
+                                            class="bx bxs-circle mr-2"
+                                            style="margin-right: 2px"
+                                        ></i>
+                                        8 mars 2023
+                                        </h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                    <p class="card-text" style="font-size: 13px">
+                                    Louer un véhicule avec Hupe va bien au-delà d'une simple transaction ...
+                                    </p>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <router-link to="/blog/article2">
+                                        <button
+                                        class="btn btn-primary"
+                                        style="background-color: #219935 !important; border: none"
+                                        >
+                                        Voir plus
+                                        </button>
+                                        </router-link>
+                                    </div>
+                                    </div>
                                 </div>
                                 </div>
                             </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                            <div class="col">
+                                <div
+                                class="card h-100 border-0"
+                                style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                                >
+                                <img
+                                    src="/public/assets/img/blog/3.jpg"
+                                    class="card-img-top h-50"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <div class="row" id="blog_row">
+                                    <div class="col-md-12">
+                                        <h5 class="card-title" id="blog_title">Top 10 Destinations Incontournables à Explorer avec Hupe dans l'UEMOA</h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
-                                </div>
-                                </div>
-                            </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                                    <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <h5 class="" style="font-size: 15px">
+                                        <i
+                                            class="bx bxs-circle mr-2"
+                                            style="margin-right: 2px"
+                                        ></i>
+                                        8 mars 2023
+                                        </h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                    <p class="card-text" style="font-size: 13px">
+                                    À travers les huit joyaux de l'UEMOA, Hupe vous invite à découvrir des destinations inoubliables.
+                                    </p>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <router-link to="/blog/article3">
+                                        <button
+                                        class="btn btn-primary"
+                                        style="background-color: #219935 !important; border: none"
+                                        >
+                                        Voir plus
+                                        </button>
+                                        </router-link>
+                                    </div>
+                                    </div>
                                 </div>
                                 </div>
                             </div>
-                            
+                            <div class="col">
+                                <div
+                                class="card h-100 border-0"
+                                style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                                >
+                                <img
+                                    src="/public/assets/img/blog/4.jpg"
+                                    class="card-img-top h-50"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <div class="row" id="blog_row">
+                                    <div class="col-md-12">
+                                        <h5 class="card-title" id="blog_title">L'Impact de Hupe sur l'Industrie de la Location de Véhicules</h5>
+                                    </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <h5 class="" style="font-size: 15px">
+                                        <i
+                                            class="bx bxs-circle mr-2"
+                                            style="margin-right: 2px"
+                                        ></i>
+                                        8 mars 2023
+                                        </h5>
+                                    </div>
+                                    </div>
+
+                                    <p class="card-text" style="font-size: 13px">
+                                    L'évolution rapide de l'industrie de la location de véhicules a trouvé un nouveau protagoniste en Hupe...
+                                    </p>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <router-link to="/blog/article4">
+                                        <button
+                                        class="btn btn-primary"
+                                        style="background-color: #219935 !important; border: none"
+                                        >
+                                        Voir plus
+                                        </button>
+                                        </router-link>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     
-
-                        
                     </div>
                     </section>
                         
@@ -1786,12 +2172,13 @@ onMounted(() => {
     height: 36px;
     transition: 0.3s;
 }
-#circle_btn{
+#circle_btn[data-v-61c1d14d] {
     width: 50px;
     border-radius: 50%;
     height: 50px;
     background: #219935;
     border-color: #219935;
+    margin-left: -25px;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -1811,5 +2198,16 @@ onMounted(() => {
     border: 0;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
+
+.vr {
+    display: inline-block;
+    align-self: stretch;
+    width: 2px;
+    min-height: 24em;
+    background-color: #eaeaea;
+    opacity: 1.25;
+}
+
+ 
 
 </style>

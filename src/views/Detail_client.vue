@@ -266,6 +266,7 @@ const reserver = async (car) => {
                 aria-labelledby="home-tab"
                 tabindex="0"
               >
+              <div v-if="companieStore.companieCars.length > 0">
                 <div class="row mt-4">
                   <div class="col-md-6 mb-2" v-for="(car, i) in companieStore.companieCars" :key="i">
                     <div class="card mb-3" style="max-width: 540px">
@@ -666,6 +667,27 @@ const reserver = async (car) => {
                   </div>
                 </div>
               </div>
+              <div class="w-100" v-else>
+                <div class="row mt-4">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <div class="card text-center">
+                      <div class="text-center">
+                        <img src="/public/assets/img/car.png" alt="" class="img-fluid w-25">
+                      </div>
+                      
+                      <div class="card-body">
+                        <p class="card-text">Aucun véhicule disponible</p>
+                      </div>
+                    </div>
+                  
+                    
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+              </div>
+                
+              </div>
 
               <div
                 class="tab-pane fade"
@@ -674,7 +696,8 @@ const reserver = async (car) => {
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-                <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
+                <div  v-if="promotionStore.companiePromotionCars.length > 0">
+                  <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
                   <div class="col" v-for="(promoCar, i) in promotionStore.companiePromotionCars" :key="i">
                     
                     <div
@@ -759,6 +782,27 @@ const reserver = async (car) => {
                     </div>
                   </div>
                 </div>
+                </div>
+                <div class="w-100" v-else>
+                  <div class="row mt-4">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                      <div class="card text-center">
+                        <div class="text-center">
+                          <img src="/public/assets/img/icone/promo.png" alt="" class="img-fluid w-25">
+                        </div>
+                        
+                        <div class="card-body">
+                          <p class="card-text">Aucune promotion disponible.</p>
+                        </div>
+                      </div>
+                    
+                      
+                    </div>
+                    <div class="col-md-3"></div>
+                  </div>
+                </div>
+                
               </div>
 
               <div

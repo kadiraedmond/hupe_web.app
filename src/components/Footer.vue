@@ -1,9 +1,22 @@
-<script>
-export default{
-        name:"Footer"
-    };
-    
- 
+<script setup>
+
+import { useRoute } from "vue-router"
+
+const route = useRoute()
+
+route.params.activeTab || 'home-tab'
+const lien = route.params.activeTab
+// export default {
+//   name: "Footer",  
+//   data() {
+//     return {
+//       activeTab: route.params.activeTab || 'home-tab',
+      
+//     };
+//   },
+  
+// };
+
 </script>
 <template>
      <!-- ======= Footer ======= -->
@@ -19,6 +32,9 @@ export default{
           <li><router-link to="/informations">Foire aux questions</router-link></li>
           <li><router-link to="/informations">Qui sommes nous</router-link></li>
           <li><router-link to="/informations">Comment ça marche</router-link></li>
+          
+          <li><router-link :to="`/informations/${`profile-tab`}`"> Blog</router-link></li>
+          <!-- <li><router-link :to="{ name: 'Informations', params: { activeTab: 'profile-tab' } }"> Blog</router-link></li> -->
           <li><router-link to="/informations">Blog</router-link></li>
           <li><router-link to="/informations">Accessibilité</router-link></li>
         </ul>

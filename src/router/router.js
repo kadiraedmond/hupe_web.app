@@ -47,6 +47,14 @@ import Tickets from '@/views/ticket_location.vue';
 import Ticketss from '@/views/ticket_reservation.vue';
 import Recherche from '@/views/recherche.vue';
 import Support from '@/views/support.vue';
+import Blog from '@/views/blog/blog.vue';
+import Blog1 from '@/views/blog/blog1.vue';
+import Blog2 from '@/views/blog/blog2.vue';
+import Blog3 from '@/views/blog/blog3.vue';
+import VehiculeP from '@/views/vehicule.vue';
+import ReservationP from '@/views/reservation_populaire.vue';
+import EnginP from '@/views/engin_populaire.vue';
+import VenteP from '@/views/vente_populaire.vue';
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -204,12 +212,20 @@ const routes = [
     
   },
 
+  // {
+  //   path: '/information',
+  //   name: 'Imformaton',
+  //   component: Information,
+    
+  // },
+
   {
-    path: '/information',
+    path: '/information/:activeTab',
     name: 'Imformaton',
     component: Information,
     
   },
+
   {
     path: '/informations',
     name: 'Info',
@@ -362,6 +378,62 @@ const routes = [
     path: '/support',
     name: 'Support',
     component: Support,
+    
+  },
+
+  {
+    path: '/blog',
+    name: 'Blog',
+    component: Blog,
+    
+  },
+
+  {
+    path: '/blog/article2',
+    name: 'Blog1',
+    component: Blog1,
+    
+  },
+
+  {
+    path: '/blog/article3',
+    name: 'Blog2',
+    component: Blog2,
+    
+  },
+
+  {
+    path: '/blog/article4',
+    name: 'Blog3',
+    component: Blog3,
+    
+  },
+
+  {
+    path: '/vehicule-populaire',
+    name: 'VehiculeP',
+    component: VehiculeP,
+    
+  },
+
+  {
+    path: '/destination-populaire',
+    name: 'ReservationP',
+    component: ReservationP,
+    
+  },
+
+  {
+    path: '/gros-engin-populaire',
+    name: 'EnginP',
+    component: EnginP,
+    
+  },
+
+  {
+    path: '/vente-populaire',
+    name: 'VenteP',
+    component: VenteP,
     
   },
 ];

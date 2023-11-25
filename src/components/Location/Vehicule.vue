@@ -962,5 +962,24 @@ const handleInterieurPaysPrix = (e) => {
       </div>
     </div>
   </div>
+  <div class="w-100" v-else>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="card text-center">
+            <div class="text-center">
+              <img src="/public/assets/img/icone/trajet.png" alt="" class="img-fluid w-25">
+            </div>
+            
+            <div class="card-body">
+              <p class="card-text">Aucun véhicule disponible</p>
+            </div>
+          </div>
+         
+          
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+  </div>
 </template>
 <style></style>

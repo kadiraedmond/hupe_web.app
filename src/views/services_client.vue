@@ -83,33 +83,15 @@ const goToConversation = () => {
                             <div class="col-md-12 mt-4" style="font-size: 13px;">
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                     <div class="col">
-                                        <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
-                                        <img src="/public/assets/img/aide_.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Centre d'Aide</h5>
-                                            <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. Vous y trouverez des réponses à de nombreuses questions fréquentes, des guides détaillés, des tutoriels vidéo et bien plus encore. </p>
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <router-link to="/">
-                                                        <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                    </router-link>
-                                                
-                                                </div>
-                                            </div>
+                                        <div class="card h-100">
+                                        <img src="/public/assets/img/messagerie-interne.jpg" class="card-img-top" alt="..." id="card-image">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Messagerie interne</h5>
+                                            <p class="card-text">La messagerie interne pour le support HUPE est une fonctionnalité qui facilite la communication directe entre les utilisateurs de l'application et notre équipe de support client.</p>
                                         </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card h-75" style="   border-radius: 15px !important;    background: #EAEAEA !important;">
-                                        <img src="/public/assets/img/messagerie-interne.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Messagerie interne </h5>
-                                            <p class="card-text">La messagerie interne pour le support HUPE est une fonctionnalité qui facilite la communication directe entre les utilisateurs de l'application et notre équipe de support client. </p>
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#exampleModal" style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">
+                                        <div class="card-footer text-center">
+                                             <!-- Button trigger modal -->
+                                             <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#exampleModal" style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">
                                                         Démarrer
                                                     </button>
 
@@ -231,76 +213,55 @@ const goToConversation = () => {
                                                         </div>
                                                     </div>
                                                     </div>
-                                                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row row-cols-1 row-cols-md-2 g-4 " style="margin-top: -129px;">
-                                
-                                    <div class="col">
-                                        <div class="card h-100" style="border-radius: 15px !important; background: #EAEAEA !important;">
-                                        <img src="/public/assets/img/chat-direct.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Chat en Direct</h5>
-                                            <p class="card-text">Pour une assistance immédiate, utilisez notre service de chat en direct. Notre équipe de support est là pour répondre à vos questions en temps réel. Cliquez sur l'icône du chat en bas de l'écran pour démarrer une conversation </p>
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <router-link to="/">
-                                                        <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                    </router-link>
-                                                
-                                                </div>
-                                            </div>
                                         </div>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="card h-100" style="  border-radius: 15px !important;  background: #EAEAEA !important;">
-                                        <img src="/public/assets/img/email-assistance.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Assistance par E-mail</h5>
-                                            <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. </p>
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    
-                                                    <button type="button" class="btn btn-primary w-50" style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;" data-bs-toggle="modal" data-bs-target="#exampleModal25" data-bs-whatever="@mdo">Démarrer</button>
-                                                    
+                                        <div class="card h-100">
+                                            <img src="/public/assets/img/signal-problem.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Signalement de Problèmes</h5>
+                                                <p class="card-text">Si vous rencontrez un problème technique ou si vous avez des suggestions pour améliorer notre application, veuillez utiliser notre formulaire de signalement de problèmes. Cela nous permettra de recueillir des informations détaillées pour résoudre le problème plus efficacement.</p>
+                                            </div>
+                                            <div class="card-footer text-center">
+                                                <router-link to="/">
+                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
+                                                </router-link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <img src="/public/assets/img/chat-direct.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Chat en Direct</h5>
+                                                <p class="card-text">Pour une assistance immédiate, utilisez notre service de chat en direct. Notre équipe de support est là pour répondre à vos questions en temps réel. Cliquez sur l'icône du chat en bas de l'écran pour démarrer une conversation</p>
+                                            </div>
+                                            <div class="card-footer text-center">
+                                                <router-link to="/">
+                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
+                                                </router-link>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                                    <div class="modal fade" id="exampleModal25" tabindex="-1" aria-labelledby="exampleModalLabel25" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                        <div class="modal-header text-white" style="background-color:#219935">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel25" style="font-size: 16px !important;">New message to support@hupe-africa.com</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body text-start">
-                                                            <form>
-                                                            <div class="mb-3">
-                                                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                                                <input type="text" class="form-control" id="recipient-name" placeholder="support@hupe-africa.com">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="message-text" class="col-form-label">Email</label>
-                                                                <input type="email" class="form-control" id="recipient-name">
-                                                            </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="modal-footer text-center">
-                                                            <button type="button" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Envoyer</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                
-                                                </div>
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <img src="/public/assets/img/email-assistance.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Assistance par E-mail</h5>
+                                                <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles.</p>
                                             </div>
-                                        </div>
+                                            <div class="card-footer text-center">
+                                                <router-link to="/">
+                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
+                                                </router-link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                
+                                 
                                 <div class="row mt-4" style="margin-top: 40px !important;">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary w-100" id="services_client_btn">
@@ -319,44 +280,8 @@ const goToConversation = () => {
                                     </div>
                                 </div>
                             
-                                <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
-                                    <div class="col">
-                                        <div class="card h-75" style=" border-radius: 15px !important; background: #EAEAEA !important;">
-                                        <img src="/public/assets/img/signal-problem.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Signalement de Problèmes</h5>
-                                            <p class="card-text">Si vous rencontrez un problème technique ou si vous avez des suggestions pour améliorer notre application, veuillez utiliser notre formulaire de signalement de problèmes. Cela nous permettra de recueillir des informations détaillées pour résoudre le problème plus efficacement. </p>
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <router-link to="/">
-                                                        <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                    </router-link>
-                                                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                    <div class="card h-75" style="   border-radius: 15px !important;  background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/messagerie.png" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Assistance pour l'Accessibilité </h5>
-                                        <p class="card-text">Nous sommes déterminés à rendre notre application accessible à tous. Si vous avez des besoins spéciaux en matière d'accessibilité, veuillez nous contacter à support@hupe-africa.com Notre équipe est là pour répondre à toutes vos questions.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                
-                                </div>
-                                <div class="row" style="margin-top: -90px;">
+                                 
+                                <div class="row" style="margin-top: 0px;">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary w-100" id="services_client_btn">
                                             <div class="row">
@@ -370,33 +295,7 @@ const goToConversation = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <div class="row mt-4" style="background: white; border-radius: 10px;">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-primary w-100" id="services_client_btn" style="border:none !important">
-                                            <div class="row">
-                                                <div class="col-md-6 text-start">
-                                                    Twitter
-                                                </div>
-                                                <div class="col-md-6 text-end">
-                                                    <i class="bx bxl-twitter"></i>   <i class='bx bx-chevron-right'></i>
-                                                </div>
-                                            </div>
-                                        </button>
-                                    </div>
-                                    <hr>
-                                    <div class="col-md-12">
-                                        <button class="btn btn-primary w-100" id="services_client_btn" style="border: none">
-                                            <div class="row">
-                                                <div class="col-md-6 text-start">
-                                                    Facebook 
-                                                </div>
-                                                <div class="col-md-6 text-end">
-                                                    <i class="bx bxl-facebook"></i>    <i class='bx bx-chevron-right'></i>
-                                                </div>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
+                                 
 
                             </div>
                         </div>
@@ -411,76 +310,66 @@ const goToConversation = () => {
                             </div>
                             <div class="col-md-12 mt-4" style="font-size: 13px;">
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
-                                <div class="col">
-                                    <div class="card h-75" style="  border-radius: 15px !important;  background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/faq.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Foire Aux Questions (FAQ)</h5>
-                                        <p class="card-text">Consultez notre FAQ pour trouver des réponses aux questions les plus courantes sur l'utilisation de l'application, les fonctionnalités, les paiements, la sécurité et bien d'autres sujets.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/informations">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
+                                    <div class="col">
+                                        <div class="card h-100">
+                                        <img src="/public/assets/img/faq.jpg" class="card-img-top" alt="..." id="card-image">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Foire Aux Questions (FAQ)</h5>
+                                            <p class="card-text">Consultez notre FAQ pour trouver des réponses aux questions les plus courantes sur l'utilisation de l'application, les fonctionnalités, les paiements, la sécurité et bien d'autres sujets.</p>
+                                        </div>
+                                            <div class="card-footer text-center">
+                                                    <router-link to="/informations">
+                                                        <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
+                                                    </router-link>
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-75" style="  border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/guide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Guides d'Utilisation </h5>
-                                        <p class="card-text">Nous avons créé des guides d'utilisation détaillés qui vous expliquent étape par étape comment utiliser chaque aspect de l'application. Que vous souhaitiez réserver un véhicule, acheter un billet de bus ou utiliser notre service de location de gros engins, vous trouverez un guide correspondant.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <img src="/public/assets/img/guide.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Guides d'Utilisation</h5>
+                                                <p class="card-text">Nous avons créé des guides d'utilisation détaillés qui vous expliquent étape par étape comment utiliser chaque aspect de l'application. Que vous souhaitiez réserver un véhicule, acheter un billet de bus ou utiliser notre service de location de gros engins, vous trouverez un guide correspondant.</p>
+                                            </div>
+                                            <div class="card-footer text-center">
                                                 <router-link to="/">
                                                     <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
                                                 </router-link>
-                                               
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style="  border-radius: 15px !important; background: #EAEAEA !important;">
-                                    <img src="/public/assets/img/video.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title"> Tutoriels Vidéo</h5>
-                                        <p class="card-text"> Certaines personnes préfèrent apprendre en visualisant. Notre collection de tutoriels vidéo vous guide à travers les processus les plus importants de l'application, en vous montrant exactement comment effectuer différentes tâches.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <img src="/public/assets/img/video.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title"> Tutoriels Vidéo</h5>
+                                                <p class="card-text"> Certaines personnes préfèrent apprendre en visualisant. Notre collection de tutoriels vidéo vous guide à travers les processus les plus importants de l'application, en vous montrant exactement comment effectuer différentes tâches.</p>
+                                            </div>
+                                            <div class="card-footer text-center">
                                                 <router-link to="/">
                                                     <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
                                                 </router-link>
-                                               
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/blog1.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Articles Informatifs</h5>
-                                        <p class="card-text">Trouvez des articles informatifs sur divers sujets liés à la mobilité, à l'industrie automobile, aux voyages en bus, aux conseils de sécurité et plus encore. Nous vous tenons informés sur les dernières tendances et les informations utiles. </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
+
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <img src="/public/assets/img/blog1.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Articles Informatifs</h5>
+                                                <p class="card-text">Trouvez des articles informatifs sur divers sujets liés à la mobilité, à l'industrie automobile, aux voyages en bus, aux conseils de sécurité et plus encore. Nous vous tenons informés sur les dernières tendances et les informations utiles. </p>
+                                            </div>
+                                            <div class="card-footer text-center">
                                                 <router-link to="/informations">
                                                     <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
                                                 </router-link>
-                                               
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
-                                </div>
-                                <div class="row" style="margin-top: -90px;">
+
+                                <div class="row mt-4">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary w-100" id="services_client_btn">
                                             <div class="row">
@@ -494,77 +383,8 @@ const goToConversation = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
-                                <div class="col">
-                                    <div class="card h-75" style="background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Personnalisation</h5>
-                                        <p class="card-text">Certains utilisateurs ont des besoins spécifiques, c'est pourquoi nous offrons des options de personnalisation, notamment la possibilité d'ajuster la taille du texte, les couleurs de l'interface et le contraste.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-75" style=" background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/mise.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Mises à Jour et Nouveautés</h5>
-                                        <p class="card-text">Restez à jour avec les dernières améliorations et les nouvelles fonctionnalités de l'application. Nous publions régulièrement des informations sur les mises à jour pour que vous soyez toujours informé.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style="  background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Ressources d'Accessibilité</h5>
-                                        <p class="card-text">Si vous avez des besoins spéciaux en matière d'accessibilité, consultez notre section dédiée aux ressources d'accessibilité pour obtenir des informations sur la manière d'utiliser l'application de manière plus conviviale.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style="  background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Assistance par E-mail</h5>
-                                        <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles. </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="row" style="margin-top: -90px;">
+
+                                <div class="row mt-4">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary w-100" id="services_client_btn">
                                             <div class="row">
@@ -597,114 +417,38 @@ const goToConversation = () => {
                             </div>
                             <div class="col-md-12 mt-4" style="font-size: 13px;">
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
-                                <div class="col">
-                                    <div class="card h-75" style="background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Assistance par E-mail</h5>
-                                        <p class="card-text">Vous pouvez nous contacter par e-mail à support@hupe-africa.com. Envoyez-nous un e-mail à tout moment, et notre équipe de support client vous répondra dans les plus brefs délais.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
+                                    <div class="col">
+                                        <div class="card h-100">
+                                        <img src="/public/assets/img/aide.jpg" class="card-img-top" alt="..." id="card-image">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Assistance par E-mail</h5>
+                                            <p class="card-text">Vous pouvez nous contacter par e-mail à support@hupe-africa.com. Envoyez-nous un e-mail à tout moment, et notre équipe de support client vous répondra dans les plus brefs délais.</p>
+                                        </div>
+                                            <div class="card-footer text-center">
+                                                    <router-link to="/informations">
+                                                        <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
+                                                    </router-link>
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-75" style=" background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Messagerie Interne </h5>
-                                        <p class="card-text">Si vous êtes un utilisateur de notre application, vous pouvez utiliser la messagerie interne pour communiquer directement avec notre équipe de support. C'est un moyen rapide d'obtenir de l'assistance en temps réel.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <img src="/public/assets/img/guide.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Numéro de Téléphone</h5>
+                                                <p class="card-text">Si vous préférez parler à un membre de notre équipe, vous pouvez nous appeler au [numéro de téléphone de contact]. Nos agents sont disponibles pendant nos heures d'ouverture [heures d'ouverture du support] pour répondre à vos questions et vous aider.</p>
+                                            </div>
+                                            <div class="card-footer text-center">
                                                 <router-link to="/">
                                                     <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
                                                 </router-link>
-                                               
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
+                                    
                                 </div>
-                                <!-- <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title"> Assistance pour l'Accessibilité</h5>
-                                        <p class="card-text">Si vous avez des besoins spéciaux en matière d'accessibilité, veuillez nous contacter à support@hupe-africa.com Notre équipe est là pour répondre à toutes vos questions liées à l'accessibilité.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col" style=" margin-top: -90px;">
-                                    <div class="card h-75" style=" border: none; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Articles Informatifs</h5>
-                                        <p class="card-text">Trouvez des articles informatifs sur divers sujets liés à la mobilité, à l'industrie automobile, aux voyages en bus, aux conseils de sécurité et plus encore. Nous vous tenons informés sur les dernières tendances et les informations utiles. </p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div> -->
-                                </div>
-                                 
-                                <div class="row row-cols-1 row-cols-md-2 g-4 mt-4" style="margin-top: -128px !important;">
-                                <div class="col">
-                                    <div class="card h-75" style="background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Assistance pour l'Accessibilité</h5>
-                                        <p class="card-text">Si vous avez des besoins spéciaux en matière d'accessibilité, veuillez nous contacter à support@hupe-africa.com Notre équipe est là pour répondre à toutes vos questions liées à l'accessibilité.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-75" style="    background: #EAEAEA !important; border-radius: 15px !important;">
-                                    <img src="/public/assets/img/aide.jpg" class="img-fluid" alt="..." style="    height: 50%; object-fit: cover;border-radius: 15px 15px 0px 0px !important;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Numéro de Téléphone</h5>
-                                        <p class="card-text">Si vous préférez parler à un membre de notre équipe, vous pouvez nous appeler au [numéro de téléphone de contact]. Nos agents sont disponibles pendant nos heures d'ouverture [heures d'ouverture du support] pour répondre à vos questions et vous aider.</p>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <router-link to="/">
-                                                    <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                 
-                                </div>
-                                <div class="row" style="margin-top: -90px;">
+
+                                <div class="row mt-4">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary w-100" id="services_client_btn">
                                             <div class="row">
@@ -885,10 +629,10 @@ const goToConversation = () => {
     border-color: var(--bs-nav-tabs-link-active-border-color);
 }
 
-#myTab {
+/* #myTab {
     z-index: 1030;
     margin-top: 62px;
-}
+} */
 
 #search {
     width: 300px;
@@ -909,6 +653,24 @@ const goToConversation = () => {
     border-bottom: .3em solid transparent;
     border-left: .3em solid;
     display: none;
+}
+
+#card-image{
+    height: 235.13px;
+    /* background-size: cover; */
+    object-fit: cover;
+    border-radius: 15px 15px 0px 0px !important;
+}
+
+.card-footer{
+    border: none;
+    background-color: #f9f9f9;
+    border-radius: 15px 15px 15px 15px !important;
+}
+
+.card{
+    border-radius: 15px !important;
+    background-color: #f9f9f9;
 }
 
 </style>
