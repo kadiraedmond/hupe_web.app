@@ -7,7 +7,7 @@ import { ref, onMounted } from 'vue'
 
 const shwo = ref(true)
 onMounted(() => {
-  if(location.pathname == '/support') {
+  if(location.pathname === '/support') {
     shwo.value = false
   } else {
     shwo.value = true
@@ -28,7 +28,7 @@ onMounted(() => {
     <router-view />
   </div>
 
-    <Footer v-show="shwo" />
+  <Footer v-show="shwo" />
 </template>
 
 <style scoped>

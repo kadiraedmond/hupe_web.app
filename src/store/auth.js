@@ -138,7 +138,7 @@ export const useAuthStore = defineStore('authStore', {
         
                             const docRef = await addDoc(usersColRef, newUser)
         
-                            const userDocRef = doc(companiesColRef, docRef.id)
+                            const userDocRef = doc(usersColRef, docRef.id)
         
                             await updateDoc(userDocRef, { uid: `${docRef.id}` })
     

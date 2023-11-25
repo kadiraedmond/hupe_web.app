@@ -20,7 +20,7 @@ const conversationUID = ref('')
 
 const conversations = ref([]) 
 
-const internalMessageColRef = collection(firestoreDb, 'support_messages_admin')
+const internalMessageColRef = collection(firestoreDb, 'support_messages_admin') 
 
 onBeforeMount(async () => {
 
@@ -165,27 +165,27 @@ const options = {
               <div class="row" style="height: 500px; overflow-y: scroll;">
                   
                   <div class="col-md-12 mt-3" v-for="(conversation, i) in conversations" :key="conversation.uid">
-                      <router-link @click="() => handleConversationClick(conversation.uid)" to="/support">
-                          <div class="row">
-                           
-                              <div class="col-2">
-                                  <img
-                                      src="/public/assets/img/avatars/1.png"
-                                      alt
-                                      class="w-px-40 h-auto rounded-circle"
-                                      style="max-width: 50px; max-height: 50px; border: 1px solid rgb(214, 214, 214);"
-                                  />
-                              </div>
-                              <div class="col-8">
-                                  <h6 style="font-size: 13px;">{{ conversation.objet }}</h6>
-                                  <p style="font-size: 13px;">{{ conversation.etat }}</p>
-                              </div>
-                              <div class="col-2 text-end">
-                                  <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
-                              </div>
-                           
-                          </div>
-                       </router-link>
+                    <router-link @click="() => handleConversationClick(conversation.uid)" to="/support">
+                      <div class="row">
+                        
+                        <div class="col-2">
+                            <img
+                                src="/public/assets/img/avatars/1.png"
+                                alt
+                                class="w-px-40 h-auto rounded-circle"
+                                style="max-width: 50px; max-height: 50px; border: 1px solid rgb(214, 214, 214);"
+                            />
+                        </div>
+                        <div class="col-8">
+                          <h6 style="font-size: 13px;">{{ conversation.objet }}</h6>
+                          <p style="font-size: 13px;">{{ conversation.etat }}</p>
+                        </div>
+                        <div class="col-2 text-end">
+                          <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
+                        </div>
+                        
+                      </div>
+                    </router-link>
                     <hr>
                   </div>
   

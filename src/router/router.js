@@ -289,7 +289,7 @@ const routes = [
   },
 
   {
-    path: '/notation',
+    path: '/notation/:id',
     name: 'Notation',
     component: Notation,
     

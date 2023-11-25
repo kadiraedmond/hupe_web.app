@@ -79,7 +79,11 @@ onBeforeMount(async () => {
       Swal.fire({
         text: `Votre pays ne propose pas de compagnies. Sélectionnez un autre pays dans la zone en haut à gauche de l'écran pour voir des compagnies`, 
         icon: "info"
-      })
+      }) 
+
+      companieStore.setCountry('CI') 
+      slideStore.setCountry('CI') 
+      promotionStore.setCountry('CI') 
     } 
 
     // Swal.fire({

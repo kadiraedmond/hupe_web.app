@@ -1,9 +1,90 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, onBeforeMount, ref } from 'vue' 
+import { useRoute } from 'vue-router' 
+import { collection, query, doc, where, getDoc, getDocs, addDoc, Timestamp } from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js" 
+import Swal from 'sweetalert2'
 
-onMounted(() => {
-  window.scrollTo(0, 0)
-})
+const route = useRoute() 
+
+const companieId = route.params.id 
+
+const savedUser = JSON.parse(localStorage.getItem('user'))
+
+let companieDocRef 
+let totalStars = 0 
+
+const commentaires = ref('') 
+const companieInfos = ref() 
+
+onBeforeMount(async () => {
+  window.scrollTo(0, 0) 
+  companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`) 
+
+  const snapshot = await getDoc(companieDocRef) 
+
+  if(snapshot.exists()) companieInfos.value = snapshot.data() 
+  
+  const stars = document.querySelectorAll('#flexCheckChecked') 
+
+  stars.forEach(star => { 
+    star.addEventListener('click', () => { 
+      for(let i = 0; i < Number(star.value); i++) {
+        stars[i].checked = true 
+      } 
+      for(let i = stars.length - 1; i > Number(star.value) - 1; i--) {
+        stars[i].checked = false 
+      } 
+
+      star.addEventListener('click', () => { 
+        if(Number(star.value) === 1) { 
+          if(star.checked = true) { 
+            star.checked = false 
+          } else {
+            star.checked = true
+          }
+        }
+      })
+    }) 
+  }) 
+}) 
+
+const sendNotations = async () => {
+  const stars = document.querySelectorAll('#flexCheckChecked') 
+
+  stars.forEach(star => {
+    if(star.checked) {
+      totalStars++ 
+    }
+  }) 
+
+  const docRef = doc(firestoreDb, 'compagnies', `${companieId}`) 
+
+  const notationsColRef = collection(docRef, 'client_avis') 
+
+  const data = {
+    client_telephone: savedUser.telephone, 
+    commentaire: commentaires.value, 
+    createdAt: Timestamp.now(), 
+    nombre_etoile: totalStars 
+  } 
+
+  try {
+    await addDoc(notationsColRef, data) 
+
+    Swal.fire({
+      title: "Succès",
+      text: "Votre notation a été envoyée",
+      icon: "success"
+    }) 
+
+    commentaires.value = ''
+  } catch (error) {
+    console.log(error) 
+  } 
+  totalStars = 0
+} 
+
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
@@ -118,27 +199,27 @@ onMounted(() => {
                               
                             </div>
                             <div class="col-md-12 mb-4">
-                              <h6>Êtes-vous satisfait(e) du service de location de la compagnie Nom compagnie</h6>
-                              <form class="row g-3 needs-validation mt-4" novalidate>
+                              <h6>Êtes-vous satisfait(e) du service de {{ companieInfos.type_compagnie.toLowerCase() }} de la compagnie {{ companieInfos.raison_social }}</h6>
+                            <form @submit.prevent="sendNotations" class="row g-3 needs-validation mt-4" novalidate>
                               <div class="col-md-12 mb-4">
                                 <div class="row">
                                   <div class="col-md-3"></div>
                                   <div class="col-md-6 d-flex" style="margin-left: -24px;">
                                     <div class="form-check" style="margin-left: 6px;">
-                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                     <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" >
                                     </div>
 
                                     <div class="form-check" style="margin-left: 6px;">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <input class="form-check-input" type="checkbox" value="2" id="flexCheckChecked" >
                                     </div>
                                     <div class="form-check" style="margin-left: 6px;">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <input class="form-check-input" type="checkbox" value="3" id="flexCheckChecked" >
                                     </div>
                                     <div class="form-check" style="margin-left: 6px;">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <input class="form-check-input" type="checkbox" value="4" id="flexCheckChecked" >
                                     </div>
                                     <div class="form-check" style="margin-left: 6px;">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <input class="form-check-input" type="checkbox" value="5" id="flexCheckChecked" >
                                     </div>
                                   </div>
                                   <div class="col-md-3"></div>
@@ -148,8 +229,8 @@ onMounted(() => {
                               </div>
                               <div class="col-md-12">
                                 <div class="form-floating">
-                                  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                                  <label for="floatingTextarea2">Comments</label>
+                                  <textarea v-model="commentaires" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                  <label for="floatingTextarea2">Commentaires</label>
                                 </div>
                                  
                               </div>

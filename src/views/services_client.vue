@@ -1,9 +1,36 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, onBeforeMount, ref } from 'vue' 
+import { addDoc, updateDoc, query, where, doc, getDocs, collection, Timestamp } from 'firebase/firestore'
+import { firestoreDb } from '@/firebase/firebase.js' 
+import Swal from 'sweetalert2' 
+import router from '@/router/router.js'
+
+
+const savedUser = JSON.parse(localStorage.getItem('user')) 
+
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'lk1kQSCZDqeYK1cpu2uo2LSnN7u2' || savedUser.uid || authStore.user.uid 
+
+const conversations = ref([]) 
+
+const internalMessageColRef = collection(firestoreDb, 'support_messages_admin')
+
+onBeforeMount(async () => {
+
+  const q = query(internalMessageColRef, where('userId', '==', `${userId}`))
+  const snapshot = await getDocs(q) 
+
+  snapshot.docs.forEach(doc => conversations.value.push(doc.data())) 
+}) 
 
 onMounted(() => {
-  window.scrollTo(0, 0)
-})
+  window.scrollTo(0, 0) 
+}) 
+
+const goToConversation = () => {
+    document.querySelector('.btn-close').click() 
+    router.push('/support') 
+}
 </script>
 
 <template>
@@ -108,7 +135,7 @@ onMounted(() => {
                                                             <div class="col-md-12 mt-3">
                                                                 <div class="card">
                                                                     <div class="card-body">
-                                                                        <router-link to="/support">
+                                                                        <router-link @click="goToConversation" to="">
                                                                             <div class="row">
                                                                                 <div class="col-md-10">
                                                                                     <h5 class="card-title" style="font-size: 18px;">Conversations</h5>
@@ -149,12 +176,12 @@ onMounted(() => {
                                                                                     <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent; border: none;">
                                                                                         <h5 class="card-title" style="color:#219935 ; margin-top: 17px;"> <i class='bx bxs-send' ></i></h5>
                                                                                     </button>
-                                                                                        <ul class="dropdown-menu">
-                                                                                            <li><a class="dropdown-item" href="#">Pour location de véhicule</a></li>
-                                                                                            <li><a class="dropdown-item" href="#">Pour reservation de ticket</a></li>
-                                                                                            <li><a class="dropdown-item" href="#">Pour location de gros engin</a></li>
-                                                                                            <li><a class="dropdown-item" href="#">Pour vente de véhicule</a></li>
-                                                                                        </ul>
+                                                                                    <ul @click="goToConversation" class="dropdown-menu">
+                                                                                        <li><router-link class="dropdown-item" to="">Pour location de véhicule</router-link></li>
+                                                                                        <li><router-link class="dropdown-item" to="">Pour reservation de ticket</router-link></li>
+                                                                                        <li><router-link class="dropdown-item" to="">Pour location de gros engin</router-link></li>
+                                                                                        <li><router-link class="dropdown-item" to="">Pour vente de véhicule</router-link></li>
+                                                                                    </ul>
                                                                                 </div>
                                                                                 
                                                                             </div>
@@ -171,67 +198,29 @@ onMounted(() => {
                                                                             <div class="col-md-12">
                                                                                 <h5 class="card-title" style="font-size: 18px;" >Conversations récentes</h5>
                                                                             </div>
-                                                                        </div>
-                                                                        <router-link to="/support" class="text-black">
-                                                                            <div class="row">
-                                                                                <div class="col-2">
-                                                                                        <img
-                                                                                        src="/public/assets/img/avatars/1.png"
-                                                                                        alt
-                                                                                        class="w-px-40 h-auto rounded-circle"
-                                                                                        style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                                                                        />
+                                                                        </div> 
+                                                                        <div @click="goToConversation" v-for="(conversation, i) in conversations" :key="i">
+                                                                            <router-link to="" class="text-black">
+                                                                                <div class="row">
+                                                                                    <div class="col-2">
+                                                                                            <img
+                                                                                            src="/public/assets/img/avatars/1.png"
+                                                                                            alt
+                                                                                            class="w-px-40 h-auto rounded-circle"
+                                                                                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                                                                            />
+                                                                                        </div>
+                                                                                        <div class="col-8">
+                                                                                            <h6 style="font-size: 13px;">{{ conversation.objet }}</h6>
+                                                                                    <p style="font-size: 13px;">{{ conversation.etat }}</p>
+                                                                                        </div>
+                                                                                    <div class="col-2 text-end">
+                                                                                    <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
                                                                                     </div>
-                                                                                    <div class="col-8">
-                                                                                        <h6 style="font-size: 13px;">loren ipsun dalor</h6>
-                                                                                <p style="font-size: 13px;">loren ippsun dalor sit amet    </p>
-                                                                                    </div>
-                                                                                <div class="col-2 text-end">
-                                                                                <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
                                                                                 </div>
+                                                                            </router-link>
+                                                                            <hr>
                                                                         </div>
-                                                                        </router-link>
-                                                                        <hr>
-                                                                        <router-link to="/support" class="text-black">
-                                                                            <div class="row">
-                                                                                <div class="col-2">
-                                                                                        <img
-                                                                                        src="/public/assets/img/avatars/1.png"
-                                                                                        alt
-                                                                                        class="w-px-40 h-auto rounded-circle"
-                                                                                        style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                                                                        />
-                                                                                    </div>
-                                                                                    <div class="col-8">
-                                                                                        <h6 style="font-size: 13px;">loren ipsun dalor</h6>
-                                                                                <p style="font-size: 13px;">loren ippsun dalor sit amet    </p>
-                                                                                    </div>
-                                                                                <div class="col-2 text-end">
-                                                                                <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
-                                                                                </div>
-                                                                        </div>
-                                                                        </router-link>
-                                                                        <hr>
-
-                                                                        <router-link to="/support" class="text-black">
-                                                                            <div class="row">
-                                                                                <div class="col-2">
-                                                                                        <img
-                                                                                        src="/public/assets/img/avatars/1.png"
-                                                                                        alt
-                                                                                        class="w-px-40 h-auto rounded-circle"
-                                                                                        style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                                                                        />
-                                                                                    </div>
-                                                                                    <div class="col-8">
-                                                                                        <h6 style="font-size: 13px;">loren ipsun dalor</h6>
-                                                                                <p style="font-size: 13px;">loren ippsun dalor sit amet    </p>
-                                                                                    </div>
-                                                                                <div class="col-2 text-end">
-                                                                                <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
-                                                                                </div>
-                                                                        </div>
-                                                                        </router-link>
                                                                                                                                         
                                                                     </div>
                                                                 </div>

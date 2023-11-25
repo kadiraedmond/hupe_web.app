@@ -222,7 +222,7 @@ const reserver = async (car) => {
                   aria-controls="profile-tab-pane"
                   aria-selected="false"
                 >
-                  Promotion
+                  Promotions
                 </button>
               </li>
               <!-- <li class="nav-item" role="presentation">
@@ -239,7 +239,7 @@ const reserver = async (car) => {
                   aria-controls="politique-tab-pane"
                   aria-selected="false"
                 >
-                  Politique
+                  Politiques
                 </button>
               </li>
               <li class="nav-item" role="presentation">
