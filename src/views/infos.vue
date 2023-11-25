@@ -54,7 +54,7 @@ onMounted(() => {
 
                         <div class="col-md-12 mb-2">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link text-start" id="blog_tab" data-bs-toggle="tab" data-bs-target="#blog_tab-pane" type="button" role="tab" aria-controls="blog_tab-pane" aria-selected="false"  style="width: 245px !important;"> <i class="bx bx-news"></i> Blog </button>
+                                <button class="nav-link text-start" id="blog-tab" data-bs-toggle="tab" data-bs-target="#blog-tab-pane" type="button" role="tab" aria-controls="blog-tab-pane" aria-selected="false"  style="width: 245px !important;"> <i class="bx bx-news"></i> Blog </button>
                             </li>
                         </div>
                     </div>
@@ -665,7 +665,7 @@ onMounted(() => {
                                                     <div class="col-md-6"></div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Réservation </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
@@ -684,9 +684,12 @@ onMounted(() => {
                                                     <div class="col text-center d-flex">
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:34px"></div>
+                                                            <div class="vr" style="margin-left:24px"></div>
                                                         </div>  
-                                                        <button class="btn btn-primary" id="circle_btn">1</button>            
+                                                        <div class="d-flex" style="margin-left: 125px; margin-top: -38px; position: absolute;"> 
+                                                            <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
+                                                        </div>            
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -710,7 +713,7 @@ onMounted(() => {
                                                    
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Paiement </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -730,10 +733,14 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn" style=" position: absolute; margin-left: 110px;">2</button>   
+                                                        <div class="d-flex" style="margin-left: 135px;  position: absolute;">
+                                                            
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Paiement </h1>
+                                                        </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:132px"></div>
+                                                            <div class="vr" style="margin-left: 135px;z-index: -1;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                                 
@@ -762,7 +769,7 @@ onMounted(() => {
                                                     </div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Messagerie </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
@@ -783,7 +790,10 @@ onMounted(() => {
                                                         <div class="d-flex" style="height: 200px;">
                                                             <div class="vr" style="margin-left:34px"></div>
                                                         </div>  
-                                                        <button class="btn btn-primary" id="circle_btn">3</button>            
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        </div>             
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -807,7 +817,7 @@ onMounted(() => {
                                                    
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Transmission du véhicule </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">  </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -827,13 +837,17 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn" style=" position: absolute; margin-left: 110px;">4</button>   
+                                                        <div class="d-flex" style="margin-left: 135px;  position: absolute; margin-top: -72px;">
+                                                            
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Transmission </h1>
+                                                        </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:132px; min-height: 17em !important;"></div>
+                                                            <div class="vr" style="margin-left:126px;z-index: -1; min-height: 17em !important;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
-                                                                
+                                                               
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -943,7 +957,7 @@ onMounted(() => {
                                                     <div class="col-md-6"></div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Réservation </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
@@ -964,7 +978,11 @@ onMounted(() => {
                                                         <div class="d-flex" style="height: 200px;">
                                                             <div class="vr" style="margin-left:34px"></div>
                                                         </div>  
-                                                        <button class="btn btn-primary" id="circle_btn">1</button>            
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                        </div>
+                                                                  
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -988,7 +1006,7 @@ onMounted(() => {
                                                    
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Confirmation </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -1008,10 +1026,13 @@ onMounted(() => {
                                                      </div>
                                                      </div>
                                                     <div class="col text-center d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn" style=" position: absolute; margin-left: 110px;">2</button>   
+                                                        <div class="d-flex" style="margin-left: -7px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Confirmation </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:132px"></div>
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                                 
@@ -1040,7 +1061,7 @@ onMounted(() => {
                                                     </div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Messagerie </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
@@ -1061,7 +1082,10 @@ onMounted(() => {
                                                         <div class="d-flex" style="height: 200px;">
                                                             <div class="vr" style="margin-left:34px"></div>
                                                         </div>  
-                                                        <button class="btn btn-primary" id="circle_btn">3</button>            
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        </div>            
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1085,7 +1109,7 @@ onMounted(() => {
                                                    
                                                     <div class="col-md-6 mb-3">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px;">Transmission du gros engins </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px;">  </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -1105,13 +1129,16 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn" style=" position: absolute; margin-left: 110px;">4</button>   
+                                                        <div class="d-flex" style="margin-left: -12px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Transmission </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:132px; min-height: 17em !important;"></div>
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1; min-height: 17em !important;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
-                                                                
+                                                                 
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1222,7 +1249,7 @@ onMounted(() => {
                                                     <div class="col-md-6"></div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Réservation </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
@@ -1243,7 +1270,10 @@ onMounted(() => {
                                                         <div class="d-flex" style="height: 200px;">
                                                             <div class="vr" style="margin-left:34px"></div>
                                                         </div>  
-                                                        <button class="btn btn-primary" id="circle_btn">1</button>            
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                        </div>           
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1267,7 +1297,7 @@ onMounted(() => {
                                                    
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Paiement </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -1287,13 +1317,15 @@ onMounted(() => {
                                                      </div>
                                                      </div>
                                                     <div class="col text-center d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn" style=" position: absolute; margin-left: 110px;">2</button>   
+                                                        <div class="d-flex" style="margin-left: -7px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Paiement </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:132px"></div>
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
-                                                                
                                                     </div>
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1319,7 +1351,7 @@ onMounted(() => {
                                                     </div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Messagerie </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
@@ -1340,7 +1372,10 @@ onMounted(() => {
                                                         <div class="d-flex" style="height: 200px;">
                                                             <div class="vr" style="margin-left:34px"></div>
                                                         </div>  
-                                                        <button class="btn btn-primary" id="circle_btn">3</button>            
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        </div>               
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1364,7 +1399,7 @@ onMounted(() => {
                                                    
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">Jour du départ </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -1384,13 +1419,16 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn" style=" position: absolute; margin-left: 110px;">4</button>   
+                                                        <div class="d-flex" style="margin-left: -12px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Jour du départ </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">4</button>  
+                                                        </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:132px; min-height: 17em !important;"></div>
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1; min-height: 17em !important;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
-                                                                
+                                                                 
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1501,7 +1539,7 @@ onMounted(() => {
                                                     <div class="col-md-6"></div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 52px;"> Choix de véhicule </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 52px;">  </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 ">
@@ -1522,7 +1560,10 @@ onMounted(() => {
                                                         <div class="d-flex" style="height: 200px;">
                                                             <div class="vr" style="margin-left:34px"></div>
                                                         </div>  
-                                                        <button class="btn btn-primary" id="circle_btn">1</button>            
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Choix de véhicule </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                        </div>         
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1546,7 +1587,7 @@ onMounted(() => {
                                                    
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;"> Messagerie </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 10px;">   </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -1566,13 +1607,15 @@ onMounted(() => {
                                                      </div>
                                                      </div>
                                                     <div class="col text-center d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn" style=" position: absolute; margin-left: 110px;">2</button>   
+                                                        <div class="d-flex" style="margin-left: -7px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:132px"></div>
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1;"></div>
                                                         </div>  
-                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
-                                                                
+                                                        <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>     
                                                     </div>
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1598,7 +1641,7 @@ onMounted(() => {
                                                     </div>
                                                     <div class="col-md-6 mb-3 text-center">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 83px; "> Prise de rendez-vous </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px; margin-left: 83px; "> </h1>
                                                     </div>
                                                 </div>
                                                 <div class="row row-cols-3 row-cols-md-3 g-4 " style="margin-top: -50px;">
@@ -1619,7 +1662,10 @@ onMounted(() => {
                                                         <div class="d-flex" style="height: 200px;">
                                                             <div class="vr" style="margin-left:34px"></div>
                                                         </div>  
-                                                        <button class="btn btn-primary" id="circle_btn">3</button>            
+                                                        <div class="d-flex" style="margin-left: -135px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Prise de rendez-vous  </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        </div>             
                                                     </div>
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
@@ -1643,7 +1689,7 @@ onMounted(() => {
                                                    
                                                     <div class="col-md-6 mb-3">
                                                         
-                                                        <h1 style="font-size: 20px; margin-top: 12px;">Rendez-vous pour les essais </h1>
+                                                        <h1 style="font-size: 20px; margin-top: 12px;"> </h1>
                                                     </div>
                                                     <div class="col-md-6 text-center">
                                                         <h1 style="font-size: 100px; margin-top: -58px;  color: #219935;"><i class='bx bx-down-arrow-alt' style="margin-left: 32%; margin-top: 30px;"></i> </h1>  
@@ -1663,10 +1709,13 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <button class="btn btn-primary" id="circle_btn" style=" position: absolute; margin-left: 110px;">4</button>   
+                                                        <div class="d-flex" style="margin-left: -12px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Rendez-vous pour les essais </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">4</button>  
+                                                        </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:132px; min-height: 17em !important;"></div>
+                                                            <div class="vr" style="margin-left:-27px;z-index: -1; min-height: 17em !important;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                                 
@@ -1850,7 +1899,7 @@ onMounted(() => {
                         </div>
                         
                     </div>
-                    <div class="tab-pane fade" id="blog_tab_pane" role="tabpanel" aria-labelledby="blog_tab" tabindex="0"> 
+                    <div class="tab-pane fade" id="blog-tab-pane" role="tabpanel" aria-labelledby="blog-tab" tabindex="0"> 
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Actualités </h2>
@@ -1862,176 +1911,199 @@ onMounted(() => {
 
                         <section id="features" class="features"  style="margin-top: -30px;">
                     <div class="container">
-
-                         
-                
+ 
                         <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                            <div class="col">
+                                <div
+                                class="card h-100 border-0"
+                                style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                                >
+                                <img
+                                    src="/public/assets/img/blog/1.jpg"
+                                    class="card-img-top h-50"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <div class="row" id="blog_row">
+                                    <div class="col-md-12">
+                                        <h5 class="card-title" id="blog_title">Comment Hupe Simplifie Vos Voyages Quotidiens</h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
-                                </div>
-                                </div>
-                            </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-1.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                                    <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <h5 class="" style="font-size: 15px">
+                                        <i
+                                            class="bx bxs-circle mr-2"
+                                            style="margin-right: 2px"
+                                        ></i>
+                                        8 mars 2023
+                                        </h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                    <p class="card-text" style="font-size: 13px">
+                                    Dans le tourbillon quotidien de la vie urbaine, chaque instant compte... 
+                                    </p>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <router-link to="/blog">
+                                        <button
+                                        class="btn btn-primary"
+                                        style="background-color: #219935 !important; border: none"
+                                        >
+                                        Voir plus
+                                        </button>
+                                        </router-link>
+                                        
+                                    </div>
+                                    </div>
                                 </div>
                                 </div>
                             </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                            <div class="col">
+                                <div
+                                class="card h-100 border-0"
+                                style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                                >
+                                <img
+                                    src="/public/assets/img/blog/2.jpg"
+                                    class="card-img-top h-50"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <div class="row" id="blog_row">
+                                    <div class="col-md-12">
+                                        <h5 class="card-title" id="blog_title">Les Avantages de Louer un Véhicule avec Hupe</h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
-                                </div>
-                                </div>
-                            </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                                    <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <h5 class="" style="font-size: 15px">
+                                        <i
+                                            class="bx bxs-circle mr-2"
+                                            style="margin-right: 2px"
+                                        ></i>
+                                        8 mars 2023
+                                        </h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                    <p class="card-text" style="font-size: 13px">
+                                    Louer un véhicule avec Hupe va bien au-delà d'une simple transaction ...
+                                    </p>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <router-link to="/blog/article2">
+                                        <button
+                                        class="btn btn-primary"
+                                        style="background-color: #219935 !important; border: none"
+                                        >
+                                        Voir plus
+                                        </button>
+                                        </router-link>
+                                    </div>
+                                    </div>
                                 </div>
                                 </div>
                             </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                            <div class="col">
+                                <div
+                                class="card h-100 border-0"
+                                style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                                >
+                                <img
+                                    src="/public/assets/img/blog/3.jpg"
+                                    class="card-img-top h-50"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <div class="row" id="blog_row">
+                                    <div class="col-md-12">
+                                        <h5 class="card-title" id="blog_title">Top 10 Destinations Incontournables à Explorer avec Hupe dans l'UEMOA</h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
-                                </div>
-                                </div>
-                            </div>
-                            
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100 border-0" style="box-shadow: 5px 5px 10px rgba(0,0,0,.2);">
-                            <img src="/public/assets/img/blog-2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="row" id="blog_row">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" id="blog_title">Card title</h5>
-                                </div>
-                                </div>
+                                    <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <h5 class="" style="font-size: 15px">
+                                        <i
+                                            class="bx bxs-circle mr-2"
+                                            style="margin-right: 2px"
+                                        ></i>
+                                        8 mars 2023
+                                        </h5>
+                                    </div>
+                                    </div>
 
-                                <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h5 class="" style="font-size: 15px;"> <i class='bx bxs-circle mr-2' style="margin-right: 2px;"></i> 8 mars 2023</h5>
-                                </div>
-                                
-                                </div>
-                                
-                                <p class="card-text" style="font-size: 13px;">This is a wider card with supporting text below as a natural lead-in to additional content.  </p>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary" style=" background-color: #219935 !important;border: none;"> Voir plus</button>
+                                    <p class="card-text" style="font-size: 13px">
+                                    À travers les huit joyaux de l'UEMOA, Hupe vous invite à découvrir des destinations inoubliables.
+                                    </p>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <router-link to="/blog/article3">
+                                        <button
+                                        class="btn btn-primary"
+                                        style="background-color: #219935 !important; border: none"
+                                        >
+                                        Voir plus
+                                        </button>
+                                        </router-link>
+                                    </div>
+                                    </div>
                                 </div>
                                 </div>
                             </div>
-                            
+                            <div class="col">
+                                <div
+                                class="card h-100 border-0"
+                                style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                                >
+                                <img
+                                    src="/public/assets/img/blog/4.jpg"
+                                    class="card-img-top h-50"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <div class="row" id="blog_row">
+                                    <div class="col-md-12">
+                                        <h5 class="card-title" id="blog_title">L'Impact de Hupe sur l'Industrie de la Location de Véhicules</h5>
+                                    </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <h5 class="" style="font-size: 15px">
+                                        <i
+                                            class="bx bxs-circle mr-2"
+                                            style="margin-right: 2px"
+                                        ></i>
+                                        8 mars 2023
+                                        </h5>
+                                    </div>
+                                    </div>
+
+                                    <p class="card-text" style="font-size: 13px">
+                                    L'évolution rapide de l'industrie de la location de véhicules a trouvé un nouveau protagoniste en Hupe...
+                                    </p>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <router-link to="/blog/article4">
+                                        <button
+                                        class="btn btn-primary"
+                                        style="background-color: #219935 !important; border: none"
+                                        >
+                                        Voir plus
+                                        </button>
+                                        </router-link>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     
-
-                        
                     </div>
                     </section>
                         
@@ -2132,7 +2204,7 @@ onMounted(() => {
     align-self: stretch;
     width: 2px;
     min-height: 24em;
-    background-color: black;
+    background-color: #eaeaea;
     opacity: 1.25;
 }
 

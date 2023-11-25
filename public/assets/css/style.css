@@ -1128,8 +1128,8 @@ section {
 }
 
 #blog_title{
-  font-size: 19px;
-    font-weight: 800;
+  font-size: 14px;
+    /* font-weight: 800; */
     color: white;
 }
 .portfolio .portfolio-item {

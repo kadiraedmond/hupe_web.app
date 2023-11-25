@@ -185,6 +185,7 @@ const retrait = async () => {
                     >
                   </p>
                 </div>
+                <div class="col-md-6 text-end">
                   <button
                     class="btn btn-primary"
                     style="background: #219935; border-color: #219935"
@@ -192,6 +193,7 @@ const retrait = async () => {
                     Solde : {{ history.solde }} F
                   </button>
                 </div>
+              </div>
               </div>
             </div>
           </div>

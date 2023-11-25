@@ -254,7 +254,7 @@ const handleSubmit = async () => {
               </div>
 
               <div class="col-12 text-end">
-                <button class="btn btn-primary" type="submit" :disabled="isUploading">Enregistrer</button>
+                <button class="btn btn-primary" type="submit" :disabled="isUploading" style="background-color: #219935; border-color: #219935;">Enregistrer</button>
               </div>
             </form>
             </div>

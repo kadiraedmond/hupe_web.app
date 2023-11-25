@@ -101,8 +101,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 17px;">Large Gamme de Véhicules  </h5>
+                                    <div class="card-body" style="background: #62bfc4 !important;">
+                                    <h5 class="card-title text-black" style="font-size: 17px;">Large Gamme de Véhicules  </h5>
                                     <p class="card-text" style="font-size: 14px;">Chez HUPE, vous avez accès à une large gamme de véhicules, des voitures compactes aux SUV spacieux, adaptés à tous vos besoins de déplacement.</p>
                                     </div>
                                 </div>
@@ -113,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Options de Durée de Location </h5>
+                                    <div class="card-body" style="background: #f9f9f9 !important;" >
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Options de Durée de Location </h5>
                                         <p class="card-text" style="font-size: 14px;"> Vous pouvez louer un véhicule pour quelques heures, une journée entière ou même pour une semaine entière, offrant une grande flexibilité.</p>
                                     </div>
                                     </div>
@@ -125,8 +125,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Tarification Transparente  </h5>
+                                    <div class="card-body" style="background: #bbded8 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Tarification Transparente  </h5>
                                         <p class="card-text" style="font-size: 14px;">Notre tarification est transparente et compétitive. Vous saurez exactement ce que vous paierez dès le départ, sans frais cachés.</p>
                                     </div>
                                     </div>
@@ -137,8 +137,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Réservation Facile </h5>
+                                    <div class="card-body" style="background: #f8e4dd !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Réservation Facile </h5>
                                         <p class="card-text" style="font-size: 14px;">La réservation d'un véhicule est simple et rapide. Vous pouvez le faire en quelques étapes via notre application mobile ou notre site web.</p>
                                     </div>
                                     </div>
@@ -149,8 +149,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Assurance et Assistance </h5>
+                                    <div class="card-body" style="background: #fdb7b9 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Assurance et Assistance </h5>
                                         <p class="card-text" style="font-size: 14px;">Tous les véhicules sont assurés, et nous offrons une assistance en cas de panne pour une expérience de location en toute tranquillité.</p>
                                     </div>
                                     </div>
@@ -315,8 +315,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/reservation/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 17px;"> Large Réseau de Transport   </h5>
+                                    <div class="card-body" style="background: #62bfc4 !important;">
+                                    <h5 class="card-title text-black" style="font-size: 17px;"> Large Réseau de Transport   </h5>
                                     <p class="card-text" style="font-size: 14px;">HUPE collabore avec un réseau étendu de compagnies de bus, offrant une variété de destinations pour répondre à vos besoins de voyage.</p>
                                     </div>
                                 </div>
@@ -327,8 +327,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/reservation/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Réservation en Ligne Facile </h5>
+                                    <div class="card-body" style="background: #f9f9f9 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Réservation en Ligne Facile </h5>
                                         <p class="card-text" style="font-size: 14px;"> Notre plateforme conviviale vous permet de parcourir les horaires, les tarifs et de réserver vos billets en quelques étapes simples.</p>
                                     </div>
                                     </div>
@@ -339,8 +339,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/reservation/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Tarification Transparente  </h5>
+                                    <div class="card-body" style="background: #bbded8 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Tarification Transparente  </h5>
                                         <p class="card-text" style="font-size: 14px;">Les tarifs des billets sont clairement affichés, vous permettant de comparer et de choisir l'option qui vous convient le mieux.</p>
                                     </div>
                                     </div>
@@ -351,8 +351,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/reservation/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Billets Électroniques  </h5>
+                                    <div class="card-body" style="background: #bbded8 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Billets Électroniques  </h5>
                                         <p class="card-text" style="font-size: 14px;">Fini les soucis liés à la perte de billets papier. Avec HUPE, vos billets sont électroniques, stockés en toute sécurité dans l'application.</p>
                                     </div>
                                     </div>
@@ -363,8 +363,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/reservation/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">	Assistance Clientèle  </h5>
+                                    <div class="card-body" style="background: #fdb7b9!important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">	Assistance Clientèle  </h5>
                                         <p class="card-text" style="font-size: 14px;">Notre équipe de support est disponible pour répondre à vos questions et vous fournir une assistance en cas de besoin.</p>
                                     </div>
                                     </div>
@@ -531,8 +531,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 17px;"> Large Flotte d'Engins </h5>
+                                    <div class="card-body" style="background: #62bfc4 !important;">
+                                    <h5 class="card-title text-black" style="font-size: 17px;"> Large Flotte d'Engins </h5>
                                     <p class="card-text" style="font-size: 14px;">HUPE propose une large gamme d'engins, du bulldozer à la grue, pour répondre à tous les besoins de votre projet.</p>
                                     </div>
                                 </div>
@@ -543,8 +543,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Options de Durée de Location  </h5>
+                                    <div class="card-body" style="background: #f9f9f9 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Options de Durée de Location  </h5>
                                         <p class="card-text" style="font-size: 14px;">Vous pouvez louer un engin pour quelques heures, une journée, une semaine ou plus, offrant une grande flexibilité.</p>
                                     </div>
                                     </div>
@@ -555,8 +555,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Tarification Transparente  </h5>
+                                    <div class="card-body" style="background: #bbded8 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Tarification Transparente  </h5>
                                         <p class="card-text" style="font-size: 14px;">: Notre tarification est transparente et compétitive. Vous saurez exactement ce que vous paierez dès le départ, sans frais cachés.</p>
                                     </div>
                                     </div>
@@ -567,8 +567,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Réservation Facile   </h5>
+                                    <div class="card-body" style="background: #bbded8 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Réservation Facile   </h5>
                                         <p class="card-text" style="font-size: 14px;">La réservation d'un engin est simple et rapide. Vous pouvez le faire en quelques étapes via notre application mobile ou notre site web.</p>
                                     </div>
                                     </div>
@@ -579,8 +579,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/location/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Assurance et Entretien  </h5>
+                                    <div class="card-body" style="background: #fdb7b9 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Assurance et Entretien  </h5>
                                         <p class="card-text" style="font-size: 14px;">Tous nos engins sont assurés, entretenus et inspectés régulièrement pour garantir leur bon fonctionnement.</p>
                                     </div>
                                     </div>
@@ -747,8 +747,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/service/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 17px;"> Sélection de Véhicules de Qualité  </h5>
+                                    <div class="card-body" style="background: #62bfc4 !important;">
+                                    <h5 class="card-title  text-black" style="font-size: 17px;"> Sélection de Véhicules de Qualité  </h5>
                                     <p class="card-text" style="font-size: 14px;">HUPE propose une sélection de véhicules de qualité, y compris des voitures neuves, des véhicules d'occasion certifiés et des modèles populaires.</p>
                                     </div>
                                 </div>
@@ -759,8 +759,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/service/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Tarification Transparente  </h5>
+                                    <div class="card-body" style="background: #f9f9f9 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Tarification Transparente  </h5>
                                         <p class="card-text" style="font-size: 14px;"> Nos véhicules sont proposés à des prix transparents et compétitifs, et nous fournissons des informations détaillées sur chaque véhicule.</p>
                                     </div>
                                     </div>
@@ -771,8 +771,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/service/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Processus d'Achat Facile </h5>
+                                    <div class="card-body" style="background: #bbded8  !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Processus d'Achat Facile </h5>
                                         <p class="card-text" style="font-size: 14px;">: L'ensemble du processus d'achat, de la recherche du véhicule à la signature du contrat, peut être effectué en ligne via notre application ou notre site web.</p>
                                     </div>
                                     </div>
@@ -783,8 +783,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/service/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Inspection et Historique </h5>
+                                    <div class="card-body" style="background: #bbded8 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Inspection et Historique </h5>
                                         <p class="card-text" style="font-size: 14px;">Chaque véhicule est inspecté et dispose d'un historique complet, vous permettant de prendre une décision éclairée.</p>
                                     </div>
                                     </div>
@@ -795,8 +795,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <img src="/public/assets/img/service/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 17px;">Financement Facilité  </h5>
+                                    <div class="card-body" style="background: #fdb7b9 !important;">
+                                        <h5 class="card-title text-black" style="font-size: 17px;">Financement Facilité  </h5>
                                         <p class="card-text" style="font-size: 14px;">Si vous avez besoin de financement pour votre achat, HUPE propose des options de financement flexibles et abordables.</p>
                                     </div>
                                     </div>

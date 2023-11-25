@@ -32,7 +32,7 @@ onMounted(() => {
               <p><strong> Responsable |</strong>  {{ companieStore.companie.responsable }}</p>
             </div>
 
-            <div
+            <!-- <div
               class="row row-cols-1 row-cols-md-4 mb-4 g-4"
               style="margin-top: -5px"
             >
@@ -111,6 +111,80 @@ onMounted(() => {
                   </div>
                 </div>
               </div>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
+              <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Nom </label>
+                <input type="text" class="form-control" id="validationCustom01" v-model="responsable" >
+                
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Prénoms</label>
+                <input type="text" class="form-control" id="validationCustom02" v-model="prenom" >
+                 
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Photo de profil</label>
+                <div class="input-group has-validation">
+                  <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                   
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Date de naissance </label>
+                <input type="date" class="form-control" id="validationCustom01" v-model="date_nais" >
+                
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Profession</label>
+                <input type="text" class="form-control" id="validationCustom01" v-model="profess" >
+                
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Email</label>
+                <input type="email" class="form-control" id="validationCustom02" v-model="mail" >
+                 
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Téléphone</label>
+                <div class="input-group has-validation">
+                  <input v-model="phone" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                   
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Pays</label>
+                <div class="input-group has-validation">
+                  <input v-model="pays" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"> 
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Adresse</label>
+                <div class="input-group has-validation">
+                  <input v-model="lieu" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                   
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Nom d'utilisateur</label>
+                <div class="input-group has-validation">
+                  <input v-model="nom_utilisteur" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                   
+                </div>
+              </div>
+
+              <div class="col-12 text-end">
+                <button class="btn btn-primary" type="submit" :disabled="isUploading" style="background-color: #219935; border-color: #219935;">Enregistrer</button>
+              </div>
+            </form>
             </div>
           </div>
 
