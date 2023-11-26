@@ -35,7 +35,7 @@ onMounted(() => {
         <div class="row g-0">
           <div class="col-md-4">
             <img
-              src="/public/assets/img/avatars/1.png"
+              src="/assets/img/avatars/1.png"
               alt=""
               class="w-px-40 h-auto rounded-circle"
               style="width: 140px"
@@ -60,7 +60,7 @@ onMounted(() => {
         <div class="col-md-6">
           <div class="card text-center">
             <div class="text-center">
-              <img src="/public/assets/img/icone/col.png" alt="" class="img-fluid w-25">
+              <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-25">
             </div>
             
             <div class="card-body">

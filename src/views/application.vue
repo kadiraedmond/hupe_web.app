@@ -29,14 +29,14 @@ onMounted(() => {
                <div class="col-md-3">
                   <p class="mb-0">
                     <a href="https://play.google.com/store/apps/details?id=votre_application" target="_blank" >
-                        <img src="/public/assets/img/1.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
+                        <img src="/assets/img/1.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
                     </a>
                 </p>
                </div>
                <div class="col-md-3">
                   <p class="mb-4">
                     <a href="https://play.google.com/store/apps/details?id=votre_application" target="_blank">
-                        <img src="/public/assets/img/2.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
+                        <img src="/assets/img/2.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
                     </a>
                 </p>
                </div>
@@ -59,14 +59,14 @@ onMounted(() => {
                <div class="col-md-3">
                   <p class="mb-0">
                     <a href="https://play.google.com/store/apps/details?id=votre_application" target="_blank" >
-                        <img src="/public/assets/img/1.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
+                        <img src="/assets/img/1.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
                     </a>
                 </p>
                </div>
                <div class="col-md-3">
                   <p class="mb-4">
                     <a href="https://play.google.com/store/apps/details?id=votre_application" target="_blank">
-                        <img src="/public/assets/img/2.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
+                        <img src="/assets/img/2.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
                     </a>
                 </p>
                </div>
@@ -86,14 +86,14 @@ onMounted(() => {
                <div class="col-md-3">
                   <p class="mb-0">
                     <a href="https://play.google.com/store/apps/details?id=votre_application" target="_blank" >
-                        <img src="/public/assets/img/1.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
+                        <img src="/assets/img/1.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
                     </a>
                 </p>
                </div>
                <div class="col-md-3">
                   <p class="mb-4">
                     <a href="https://play.google.com/store/apps/details?id=votre_application" target="_blank">
-                        <img src="/public/assets/img/2.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
+                        <img src="/assets/img/2.png" alt="Google Play Store" width="120" height="40" class="w-100" style=" height: 105px !important;">
                     </a>
                 </p>
                </div>

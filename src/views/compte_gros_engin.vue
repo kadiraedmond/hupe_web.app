@@ -10,7 +10,7 @@ onMounted(() => {
   <main id="main">
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details" style="margin-top: 0px;">
-      <img src="/public/assets/img/car2.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
+      <img src="/assets/img/car2.jpg" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
     </section>
     <!-- End Portfolio Details Section -->
 
@@ -21,7 +21,7 @@ onMounted(() => {
             <div class="card mb-3 border-0" style="max-width: 540px;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 160px;" />
+                  <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" style="width: 160px;" />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
@@ -97,7 +97,7 @@ onMounted(() => {
                     <!-- Button trigger modal -->
                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style=" background-color: #219935; border-color: #219935;">
                         <img
-                          src="/public/assets/img/icone/plus.png" class="img-fluid " alt="..."> Ajouter
+                          src="/assets/img/icone/plus.png" class="img-fluid " alt="..."> Ajouter
                       </button>
 
                       <!-- Modal -->
@@ -184,7 +184,7 @@ onMounted(() => {
                     <div class="card mb-3" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
-                          <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..."
+                          <img src="/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..."
                             style="height: 100%; object-fit: cover;">
                         </div>
                         <div class="col-md-8">
@@ -223,21 +223,21 @@ onMounted(() => {
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
                                       <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
-                                      border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
+                                      border-color: rgb(33 153 53 / 58%);"><img src="/assets/img/icone/edit.png"
                                           class="img-fluid " alt="..."> </button>
                                     </a>
                                   </div>
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
                                       <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/star.png" class="img-fluid "
+                                      border-color: #219935;"><img src="/assets/img/icone/star.png" class="img-fluid "
                                           alt="..."> </button>
                                     </a>
                                   </div>
                                   <div class="col">
                                      <!-- Button trigger modal -->
                                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style=" background-color: #219935; border-color: #219935;">
-                                        <img src="/public/assets/img/icone/promotion.png"
+                                        <img src="/assets/img/icone/promotion.png"
                                           class="img-fluid " alt="..."> 
                                       </button>
 
@@ -287,14 +287,14 @@ onMounted(() => {
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
                                       <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/unlock.png" class="img-fluid "
+                                      border-color: #219935;"><img src="/assets/img/icone/unlock.png" class="img-fluid "
                                           alt="..."> </button>
                                     </a>
                                   </div>
                                   <div class="col text-center">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
                                       <button class="btn btn-primary" style="    background-color: #ff000087;
-                                      border-color: #ff000087;"><img src="/public/assets/img/icone/delete.png"
+                                      border-color: #ff000087;"><img src="/assets/img/icone/delete.png"
                                           class="img-fluid " alt="..."> </button>
                                     </a>
                                   </div>
@@ -313,7 +313,7 @@ onMounted(() => {
                     <div class="card mb-3" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
-                          <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..."
+                          <img src="/assets/img/car2.jpg" class="img-fluid rounded-start" alt="..."
                             style="height: 100%; object-fit: cover;">
                         </div>
                         <div class="col-md-8">
@@ -352,21 +352,21 @@ onMounted(() => {
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
                                       <button class="btn btn-primary" style="    background-color:rgb(33 153 53 / 58%);
-                                      border-color: rgb(33 153 53 / 58%);"><img src="/public/assets/img/icone/edit.png"
+                                      border-color: rgb(33 153 53 / 58%);"><img src="/assets/img/icone/edit.png"
                                           class="img-fluid " alt="..."> </button>
                                     </a>
                                   </div>
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
                                       <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/star.png" class="img-fluid "
+                                      border-color: #219935;"><img src="/assets/img/icone/star.png" class="img-fluid "
                                           alt="..."> </button>
                                     </a>
                                   </div>
                                   <div class="col">
                                      <!-- Button trigger modal -->
                                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style=" background-color: #219935; border-color: #219935;">
-                                        <img src="/public/assets/img/icone/promotion.png"
+                                        <img src="/assets/img/icone/promotion.png"
                                           class="img-fluid " alt="..."> 
                                       </button>
 
@@ -416,14 +416,14 @@ onMounted(() => {
                                   <div class="col">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
                                       <button class="btn btn-primary" style="    background-color: #219935;
-                                      border-color: #219935;"><img src="/public/assets/img/icone/unlock.png" class="img-fluid "
+                                      border-color: #219935;"><img src="/assets/img/icone/unlock.png" class="img-fluid "
                                           alt="..."> </button>
                                     </a>
                                   </div>
                                   <div class="col text-center">
                                     <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
                                       <button class="btn btn-primary" style="    background-color: #ff000087;
-                                      border-color: #ff000087;"><img src="/public/assets/img/icone/delete.png"
+                                      border-color: #ff000087;"><img src="/assets/img/icone/delete.png"
                                           class="img-fluid " alt="..."> </button>
                                     </a>
                                   </div>
@@ -447,17 +447,17 @@ onMounted(() => {
                     <div class="card" style="background:#a6a6a621;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                          <img src="/assets/img/icone/car.png" class="img-fluid" alt="..."
                             style=" width: 25px; height: 25px; margin-top: 6px;">
                           <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
                           <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                              src="/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
 
                         </div>
                       </div>
                       <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
+                          <img src="/assets/img/car3.jpg" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
                         </a>
                         <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
@@ -471,17 +471,17 @@ onMounted(() => {
                     <div class="card" style="background:#a6a6a621;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                          <img src="/assets/img/icone/car.png" class="img-fluid" alt="..."
                             style=" width: 25px; height: 25px; margin-top: 6px;">
                           <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
                           <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                              src="/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
 
                         </div>
                       </div>
                       <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
+                          <img src="/assets/img/car3.jpg" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
                         </a>
                         <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
@@ -495,17 +495,17 @@ onMounted(() => {
                     <div class="card" style="background:#a6a6a621;">
                       <div class="row" style="padding: 6px;">
                         <div class="col-md-12 d-flex">
-                          <img src="/public/assets/img/icone/car.png" class="img-fluid" alt="..."
+                          <img src="/assets/img/icone/car.png" class="img-fluid" alt="..."
                             style=" width: 25px; height: 25px; margin-top: 6px;">
                           <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px;"> Compagagnie test</h6>
                           <p style="font-size: 12px;  margin-left: 5px;  margin-top: 6px;"><img
-                              src="/public/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
+                              src="/assets/img/icone/map.png" class="img-fluid" alt="..."> logone</p>
 
                         </div>
                       </div>
                       <div class="card h-100" id="compagnie_card" style="padding: 6px; background:#a6a6a621;">
                         <a v-bind:href="'/detail'" style="border: 1px solid; border-radius: 5px;  border-color: #a6a6a6;">
-                          <img src="/public/assets/img/car3.jpg" class="card-img-top" alt="..."
+                          <img src="/assets/img/car3.jpg" class="card-img-top" alt="..."
                             style="border-radius: 5px 5px 5px 5px; height: 215px !important; object-fit: cover;">
                         </a>
                         <button class="btn btn-primary" id="badges"> <s> 5000 FCFA </s></button>
@@ -734,7 +734,7 @@ onMounted(() => {
                                                 style="max-width: 540px; background: #fafafa;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -807,7 +807,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -847,7 +847,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -918,7 +918,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -956,7 +956,7 @@ onMounted(() => {
                                                 style="max-width: 540px; background: #fafafa;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -1027,7 +1027,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -1070,7 +1070,7 @@ onMounted(() => {
                                                 style="max-width: 540px; background: #fafafa;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -1141,7 +1141,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -1179,7 +1179,7 @@ onMounted(() => {
                                                 style="max-width: 540px; background: #fafafa;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -1250,7 +1250,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -1288,7 +1288,7 @@ onMounted(() => {
                                                 style="max-width: 540px; background: #fafafa;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -1359,7 +1359,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -1411,7 +1411,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -1484,7 +1484,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -1524,7 +1524,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -1595,7 +1595,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -1633,7 +1633,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -1704,7 +1704,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -1747,7 +1747,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -1818,7 +1818,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -1856,7 +1856,7 @@ onMounted(() => {
                                                 style="max-width: 540px; background: #fafafa;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -1927,7 +1927,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -1965,7 +1965,7 @@ onMounted(() => {
                                                 style="max-width: 540px; background: #fafafa;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -2036,7 +2036,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -2088,7 +2088,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -2161,7 +2161,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -2201,7 +2201,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -2272,7 +2272,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -2310,7 +2310,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -2381,7 +2381,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -2424,7 +2424,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -2495,7 +2495,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -2533,7 +2533,7 @@ onMounted(() => {
                                                 style="max-width: 540px; ">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -2604,7 +2604,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -2642,7 +2642,7 @@ onMounted(() => {
                                                 style="max-width: 540px; ">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -2713,7 +2713,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -2765,7 +2765,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -2838,7 +2838,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -2878,7 +2878,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -2949,7 +2949,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -2987,7 +2987,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -3058,7 +3058,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -3101,7 +3101,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -3172,7 +3172,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -3210,7 +3210,7 @@ onMounted(() => {
                                                 style="max-width: 540px; ">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -3281,7 +3281,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -3319,7 +3319,7 @@ onMounted(() => {
                                                 style="max-width: 540px; ">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -3390,7 +3390,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -3443,7 +3443,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -3516,7 +3516,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -3556,7 +3556,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -3627,7 +3627,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -3665,7 +3665,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -3736,7 +3736,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -3779,7 +3779,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -3850,7 +3850,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -3888,7 +3888,7 @@ onMounted(() => {
                                                 style="max-width: 540px; ">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -3959,7 +3959,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -3997,7 +3997,7 @@ onMounted(() => {
                                                 style="max-width: 540px; ">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -4068,7 +4068,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -4121,7 +4121,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -4194,7 +4194,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -4234,7 +4234,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -4305,7 +4305,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -4343,7 +4343,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -4414,7 +4414,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -4457,7 +4457,7 @@ onMounted(() => {
                                                 style="max-width: 540px;">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -4528,7 +4528,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -4566,7 +4566,7 @@ onMounted(() => {
                                                 style="max-width: 540px; ">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -4637,7 +4637,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -4675,7 +4675,7 @@ onMounted(() => {
                                                 style="max-width: 540px; ">
                                                 <div class="row g-1">
                                                   <div class="col-md-4">
-                                                    <img src="/public/assets/img/avatars/1.png" alt
+                                                    <img src="/assets/img/avatars/1.png" alt
                                                       class="w-px-40 h-auto rounded-circle" style="width: 50px;" />
                                                   </div>
                                                   <div class="col-md-8">
@@ -4746,7 +4746,7 @@ onMounted(() => {
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
+                                                <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100"
                                                   alt="..." style="height: 85% !important;">
                                               </div>
                                               <div class="col-md-12">
@@ -4825,11 +4825,11 @@ onMounted(() => {
                                 <div class="card-body">
                                  
                                   <ul class="list-unstyled mt-3 mb-4">
-                                    <li> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Creation de compte</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
+                                    <li> <img src="/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Creation de compte</li>
+                                    <li class="mt-3"> <img src="/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
+                                    <li class="mt-3"> <img src="/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
+                                    <li class="mt-3"> <img src="/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
+                                    <li class="mt-3"> <img src="/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
                                   </ul>
                                   <h4 style="font-size: 18px; color: #219935; text-align: center;">Commission sur le chiffre d'affaires</h4>
                                   <div class="row">
@@ -4854,11 +4854,11 @@ onMounted(() => {
                                 <div class="card-body">
                                  
                                   <ul class="list-unstyled mt-3 mb-4">
-                                    <li> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Creation de compte</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
-                                    <li class="mt-3"> <img src="/public/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
+                                    <li> <img src="/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Creation de compte</li>
+                                    <li class="mt-3"> <img src="/assets/img/icone/yes.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Présence sur la liste des prestataires</li>
+                                    <li class="mt-3"> <img src="/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> En vedette sur la pages d'accueil</li>
+                                    <li class="mt-3"> <img src="/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;"> Une espace publicitaire </li>
+                                    <li class="mt-3"> <img src="/assets/img/icone/no.png" alt="" class="img-fluid" style=" margin-top: -4px;">  Mise en avanr d'une destination ou d'un véhicule en location sur la page d'accueil</li>
                                   </ul>
                                   <h4 style="font-size: 18px; color: #219935; text-align: center;">Commission sur le chiffre d'affaires</h4>
                                   <div class="row">
@@ -4945,7 +4945,7 @@ onMounted(() => {
                               <div class="col">
                                 <div class="card h-100 text-center border-0">
                                   <div class="row mt-4" style="justify-content: center;">
-                                    <img src="/public/assets/img/icone/mail.png" class="img-fluid" alt="..." style="width: 64px">
+                                    <img src="/assets/img/icone/mail.png" class="img-fluid" alt="..." style="width: 64px">
                                   </div>
                                   
                                   <div class="card-body">
@@ -4956,7 +4956,7 @@ onMounted(() => {
                               <div class="col">
                                 <div class="card h-100 text-center border-0">
                                   <div class="row mt-4" style="justify-content: center;">
-                                    <img src="/public/assets/img/icone/web.png" class="img-fluid" alt="..." style="width: 64px">
+                                    <img src="/assets/img/icone/web.png" class="img-fluid" alt="..." style="width: 64px">
                                   </div>
                                   
                                   <div class="card-body">
@@ -4968,7 +4968,7 @@ onMounted(() => {
                               <div class="col">
                                 <div class="card h-100 text-center border-0">
                                   <div class="row mt-4" style="justify-content: center;">
-                                    <img src="/public/assets/img/icone/maps.png" class="img-fluid" alt="..." style="width: 64px">
+                                    <img src="/assets/img/icone/maps.png" class="img-fluid" alt="..." style="width: 64px">
                                   </div>
                                   
                                   <div class="card-body">
@@ -4979,7 +4979,7 @@ onMounted(() => {
                               <div class="col">
                                 <div class="card h-100 text-center border-0">
                                   <div class="row mt-4" style="justify-content: center;">
-                                    <img src="/public/assets/img/icone/location.png" class="img-fluid" alt="..." style="width: 64px">
+                                    <img src="/assets/img/icone/location.png" class="img-fluid" alt="..." style="width: 64px">
                                   </div>
                                   
                                   <div class="card-body">
@@ -5021,7 +5021,7 @@ onMounted(() => {
                                       <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                         <div class="row g-1">
                                           <div class="col-md-4">
-                                            <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
+                                            <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
                                               style="width: 90px;" />
                                           </div>
                                           <div class="col-md-8">
@@ -5075,7 +5075,7 @@ onMounted(() => {
                                         </div>
                                       </div>
                                       <div class="col-md-6">
-                                        <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
+                                        <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
                                           style="height: 85% !important;">
                                       </div>
                                       <div class="col-md-12">
@@ -5121,7 +5121,7 @@ onMounted(() => {
                                       <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                         <div class="row g-1">
                                           <div class="col-md-4">
-                                            <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
+                                            <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
                                               style="width: 90px;" />
                                           </div>
                                           <div class="col-md-8">
@@ -5175,7 +5175,7 @@ onMounted(() => {
                                         </div>
                                       </div>
                                       <div class="col-md-6">
-                                        <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
+                                        <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
                                           style="height: 85% !important;">
                                       </div>
                                       <div class="col-md-12">
@@ -5221,7 +5221,7 @@ onMounted(() => {
                                       <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                         <div class="row g-1">
                                           <div class="col-md-4">
-                                            <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
+                                            <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
                                               style="width: 90px;" />
                                           </div>
                                           <div class="col-md-8">
@@ -5275,7 +5275,7 @@ onMounted(() => {
                                         </div>
                                       </div>
                                       <div class="col-md-6">
-                                        <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
+                                        <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
                                         style="height: 85% !important;">
                                     </div>
                                     <div class="col-md-12">
@@ -5325,7 +5325,7 @@ onMounted(() => {
                                     <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                       <div class="row g-1">
                                         <div class="col-md-4">
-                                          <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
+                                          <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
                                             style="width: 90px;" />
                                         </div>
                                         <div class="col-md-8">
@@ -5379,7 +5379,7 @@ onMounted(() => {
                                       </div>
                                     </div>
                                     <div class="col-md-6">
-                                      <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
+                                      <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
                                         style="height: 85% !important;">
                                     </div>
                                     <div class="col-md-12">
@@ -5424,7 +5424,7 @@ onMounted(() => {
                                     <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                       <div class="row g-1">
                                         <div class="col-md-4">
-                                          <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
+                                          <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
                                             style="width: 90px;" />
                                         </div>
                                         <div class="col-md-8">
@@ -5478,7 +5478,7 @@ onMounted(() => {
                                       </div>
                                     </div>
                                     <div class="col-md-6">
-                                      <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
+                                      <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
                                         style="height: 85% !important;">
                                     </div>
                                     <div class="col-md-12">
@@ -5523,7 +5523,7 @@ onMounted(() => {
                                     <div class="card mb-3 border-0" style="max-width: 540px; background: #fafafa;">
                                       <div class="row g-1">
                                         <div class="col-md-4">
-                                          <img src="/public/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
+                                          <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"
                                             style="width: 90px;" />
                                         </div>
                                         <div class="col-md-8">
@@ -5577,7 +5577,7 @@ onMounted(() => {
                                       </div>
                                     </div>
                                     <div class="col-md-6">
-                                      <img src="/public/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
+                                      <img src="/assets/img/car2.jpg" class="img-fluid rounded-start h-100" alt="..."
                                         style="height: 85% !important;">
                                     </div>
                                     <div class="col-md-12">
@@ -5629,7 +5629,7 @@ onMounted(() => {
                       <div class="col-md-6 text-end">
                         <a v-bind:href="'/formulaire_reservation'" id="a_compagnie">
                         <button class="btn btn-primary" style="background-color: rgb(33 153 53);
-                                      border-color:rgb(33 153 53);  margin-top: -8px;"><img src="/public/assets/img/icone/plus.png"
+                                      border-color:rgb(33 153 53);  margin-top: -8px;"><img src="/assets/img/icone/plus.png"
                             class="img-fluid " alt="..."> Demander un retrait </button>
                       </a>
                       </div>
@@ -5645,13 +5645,13 @@ onMounted(() => {
                               <p style="font-size: 17px;font-weight: 600;">Paiement pour la location de Toyota yaris </p>
                             </div>
                             <div class="col-md-4">
-                              <p><img src="/public/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
+                              <p><img src="/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
                             </div>
                           </div>
                           <p>Paiement pour la location de Toyota yaris </p>
                           <div class="row mb-2">
                             <div class="col-md-8">
-                              <p>Montant | <strong> <img src="/public/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
+                              <p>Montant | <strong> <img src="/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
                             </div>
                             <div class="col-md-4">
                               <button class="btn btn-primary" style=" background: #219935; border-color: #219935;"> Solde : 12000 F</button>
@@ -5665,13 +5665,13 @@ onMounted(() => {
                               <p style="font-size: 17px;font-weight: 600;">Paiement pour la location de Toyota yaris </p>
                             </div>
                             <div class="col-md-4">
-                              <p><img src="/public/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
+                              <p><img src="/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
                             </div>
                           </div>
                           <p>Paiement pour la location de Toyota yaris </p>
                           <div class="row mb-2">
                             <div class="col-md-8">
-                              <p>Montant | <strong> <img src="/public/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
+                              <p>Montant | <strong> <img src="/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
                             </div>
                             <div class="col-md-4">
                               <button class="btn btn-primary" style=" background: #219935; border-color: #219935;"> Solde : 12000 F</button>
@@ -5685,13 +5685,13 @@ onMounted(() => {
                               <p style="font-size: 17px;font-weight: 600;">Paiement pour la location de Toyota yaris </p>
                             </div>
                             <div class="col-md-4">
-                              <p><img src="/public/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
+                              <p><img src="/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
                             </div>
                           </div>
                           <p>Paiement pour la location de Toyota yaris </p>
                           <div class="row mb-2">
                             <div class="col-md-8">
-                              <p>Montant | <strong> <img src="/public/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
+                              <p>Montant | <strong> <img src="/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
                             </div>
                             <div class="col-md-4">
                               <button class="btn btn-primary" style=" background: #219935; border-color: #219935;"> Solde : 12000 F</button>
@@ -5710,13 +5710,13 @@ onMounted(() => {
                               <p style="font-size: 17px;font-weight: 600;">Paiement pour la location de Toyota yaris </p>
                             </div>
                             <div class="col-md-4">
-                              <p><img src="/public/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
+                              <p><img src="/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
                             </div>
                           </div>
                           <p>Paiement pour la location de Toyota yaris </p>
                           <div class="row mb-2">
                             <div class="col-md-8">
-                              <p>Montant | <strong> <img src="/public/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
+                              <p>Montant | <strong> <img src="/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
                             </div>
                             <div class="col-md-4">
                               <button class="btn btn-primary" style=" background: #219935; border-color: #219935;"> Solde : 12000 F</button>
@@ -5730,13 +5730,13 @@ onMounted(() => {
                               <p style="font-size: 17px;font-weight: 600;">Paiement pour la location de Toyota yaris </p>
                             </div>
                             <div class="col-md-4">
-                              <p><img src="/public/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
+                              <p><img src="/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
                             </div>
                           </div>
                           <p>Paiement pour la location de Toyota yaris </p>
                           <div class="row mb-2">
                             <div class="col-md-8">
-                              <p>Montant | <strong> <img src="/public/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
+                              <p>Montant | <strong> <img src="/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
                             </div>
                             <div class="col-md-4">
                               <button class="btn btn-primary" style=" background: #219935; border-color: #219935;"> Solde : 12000 F</button>
@@ -5750,13 +5750,13 @@ onMounted(() => {
                               <p style="font-size: 17px;font-weight: 600;">Paiement pour la location de Toyota yaris </p>
                             </div>
                             <div class="col-md-4">
-                              <p><img src="/public/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
+                              <p><img src="/assets/img/icone/calendar.png" alt=""> 20-10-2023 </p>
                             </div>
                           </div>
                           <p>Paiement pour la location de Toyota yaris </p>
                           <div class="row mb-2">
                             <div class="col-md-8">
-                              <p>Montant | <strong> <img src="/public/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
+                              <p>Montant | <strong> <img src="/assets/img/icone/circle.png" alt="">  12000 FCFA</strong></p>
                             </div>
                             <div class="col-md-4">
                               <button class="btn btn-primary" style=" background: #219935; border-color: #219935;"> Solde : 12000 F</button>

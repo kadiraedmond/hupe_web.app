@@ -65,7 +65,7 @@ onMounted(() => {
                       <div class="row text-center" id="row1">
                         <div class="col-md-12">
                           <img
-                            src="/public/assets/img/car.png"
+                            src="/assets/img/car.png"
                             class="img-fluid w-25"
                             alt="..."
                           />
@@ -92,7 +92,7 @@ onMounted(() => {
                       <div class="row text-center" id="row2">
                         <div class="col-md-12">
                           <img
-                            src="/public/assets/img/bus.png"
+                            src="/assets/img/bus.png"
                             class="img-fluid w-25"
                             alt="..."
                           />
@@ -119,7 +119,7 @@ onMounted(() => {
                       <div class="row text-center" id="row1">
                         <div class="col-md-12">
                           <img
-                            src="/public/assets/img/engin.png"
+                            src="/assets/img/engin.png"
                             class="img-fluid w-25"
                             alt="..."
                           />
@@ -146,7 +146,7 @@ onMounted(() => {
                       <div class="row text-center" id="row2">
                         <div class="col-md-12">
                           <img
-                            src="/public/assets/img/engine.png"
+                            src="/assets/img/engine.png"
                             class="img-fluid w-25"
                             alt="..."
                           />

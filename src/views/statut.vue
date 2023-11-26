@@ -278,7 +278,7 @@ onMounted(() => {
                                 
                                 <div class="col-6 d-flex">
                                 <img
-                                    src="/public/assets/img/avatars/1.png"
+                                    src="/assets/img/avatars/1.png"
                                     alt
                                     class="w-px-40 h-auto rounded-circle"
                                     style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
@@ -443,7 +443,7 @@ onMounted(() => {
                         </div>
                         <!-- <div class="col-md-6">
                         <img
-                            src="/public/assets/img/car2.jpg"
+                            src="/assets/img/car2.jpg"
                             class="img-fluid rounded-start h-100"
                             alt="..."
                             style="height: 85% !important"
@@ -506,7 +506,7 @@ onMounted(() => {
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel10">
                                               <img
-                                                src="/public/assets/img/avatars/1.png"
+                                                src="/assets/img/avatars/1.png"
                                                 alt
                                                 class="w-px-40 h-auto rounded-circle"
                                                 style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"

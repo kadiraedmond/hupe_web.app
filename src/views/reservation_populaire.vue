@@ -170,7 +170,7 @@ onMounted(() => {
                     </div>
                     <div class="col-4">
                       <img
-                          src="/public/assets/img/rb.jpg"
+                          src="/assets/img/rb.jpg"
                           class="img-fluid h-100"
                           alt="..."
                           style="object-fit: cover"

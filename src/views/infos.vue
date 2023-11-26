@@ -81,10 +81,10 @@ onMounted(() => {
                                 <p>Cette application est destinée aux clients et leur permet de bénéficier des services offerts par Hupe. Les clients peuvent utiliser l'application pour réserver des tickets de bus, louer des voitures et des gros engins, ainsi que pour accéder à d'autres fonctionnalités pratiques. Elle offre une interface conviviale et intuitive, permettant aux utilisateurs de trouver facilement les services dont ils ont besoin.</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <img src="/public/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
+                                <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <img src="/public/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
+                                <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <h1 style="font-size: 20px;">L'application pour les partenaires</h1>
@@ -95,7 +95,7 @@ onMounted(() => {
                                 <p>L'application de scan est un outil essentiel pour les partenaires qui proposent des services. Elle permet aux partenaires de scanner les codes QR des réservations effectuées par les clients, facilitant ainsi le processus de vérification et de prise en charge des véhicules ou engins loués. Cette application garantit une gestion efficace et précise des réservations, offrant ainsi une expérience fluide pour les partenaires et les clients.</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <img src="/public/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
+                                <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
                             </div>
                         </div>
                         <section id="portfolio-details" class="portfolio-details">
@@ -407,7 +407,7 @@ onMounted(() => {
                                     <p>Chez HUPE, nous croyons en la puissance de la mobilité pour transformer la vie des gens. Notre aventure a commencé avec une simple idée : faciliter l'accès aux services de transport et de mobilité pour tous. Fondée en 2021, notre entreprise a rapidement évolué pour devenir une plateforme de premier plan dans le domaine de la mobilité.</p>  
                                 </div>
                                 <div class="col">
-                                    <img src="/public/assets/img/apropos.jpg" alt="" class="img-fluid">
+                                    <img src="/assets/img/apropos.jpg" alt="" class="img-fluid">
                                 </div>
                                  
                                 
@@ -426,7 +426,7 @@ onMounted(() => {
                                     <p>Notre mission est de simplifier vos déplacements et de répondre à tous vos besoins en matière de mobilité. Chez HUPE, nous nous efforçons de vous offrir des solutions de transport pratiques et abordables, que ce soit pour la location de véhicules, la location de gros engins, la réservation de billets de bus ou l'achat de véhicules neufs et d'occasion. Nous sommes déterminés à rendre la mobilité plus accessible à tous.</p>  
                                 </div>
                                 <div class="col">
-                                    <img src="/public/assets/img/apropos1.png" alt="" class="img-fluid w-100">
+                                    <img src="/assets/img/apropos1.png" alt="" class="img-fluid w-100">
                                 </div>
                                 
                             </div>
@@ -467,7 +467,7 @@ onMounted(() => {
                             <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                                 <a v-bind:href="'/location'" class="mt-4">
-                                    <img src="/public/assets/img/car.png" class="img-fluid w-25" alt="...">
+                                    <img src="/assets/img/car.png" class="img-fluid w-25" alt="...">
                                 </a>
                                 
                                 <div class="card-body" style=" background: #219935;">
@@ -482,7 +482,7 @@ onMounted(() => {
                             <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                                     <a v-bind:href="'/reservation'" class="mt-4 text-black">
-                                        <img src="/public/assets/img/bus.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/bus.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style=" background: #219935;">
@@ -497,7 +497,7 @@ onMounted(() => {
                             <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                                     <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                                        <img src="/public/assets/img/engin.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/engin.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style=" background: #219935;">
@@ -512,7 +512,7 @@ onMounted(() => {
                             <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                                     <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                                        <img src="/public/assets/img/engine.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/engine.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style=" background: #219935;">
@@ -541,7 +541,7 @@ onMounted(() => {
                                 </div>
 
                                 <div class="col">
-                                    <img src="/public/assets/img/apropos.jpg" alt="" class="img-fluid  ">
+                                    <img src="/assets/img/apropos.jpg" alt="" class="img-fluid  ">
                                 </div>
                                  
                                 
@@ -631,7 +631,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/user.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body"  style="background: #62bfc4!important;">
@@ -646,7 +646,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/part.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important;">
@@ -672,7 +672,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/trajet.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/trajet.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body"  style="background: #62bfc4!important;border-radius: 0px 0px 5px 5px;">
@@ -694,7 +694,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/notifi.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important;     border-radius: 0px 0px 5px 5px;">
@@ -723,7 +723,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/paie.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/paie.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important;  border-radius: 0px 0px 5px 5px;">
@@ -748,7 +748,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/valide.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/valide.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -776,7 +776,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -798,7 +798,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -827,7 +827,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/car.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/car.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -852,7 +852,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -923,7 +923,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/user.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body"  style="background: #62bfc4!important;">
@@ -938,7 +938,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/part.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important;">
@@ -964,7 +964,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/choix.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/choix.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;" >
@@ -987,7 +987,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/notifi.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1016,7 +1016,7 @@ onMounted(() => {
                                                     <div class="col">
                                                      <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                          <a href="" class="mt-4">
-                                                             <img src="/public/assets/img/paie.png" class="img-fluid w-25" alt="...">
+                                                             <img src="/assets/img/paie.png" class="img-fluid w-25" alt="...">
                                                          </a>
                                                          
                                                          <div class="card-body"  style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1040,7 +1040,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/valide.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/valide.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1068,7 +1068,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1090,7 +1090,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1119,7 +1119,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/engin.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/engin.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1143,7 +1143,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1215,7 +1215,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/user.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body"  style="background: #62bfc4!important;">
@@ -1230,7 +1230,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/part.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important;">
@@ -1256,7 +1256,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/trajet.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/trajet.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;" >
@@ -1278,7 +1278,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/notifi.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1307,7 +1307,7 @@ onMounted(() => {
                                                     <div class="col">
                                                      <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                          <a href="" class="mt-4">
-                                                             <img src="/public/assets/img/paie.png" class="img-fluid w-25" alt="...">
+                                                             <img src="/assets/img/paie.png" class="img-fluid w-25" alt="...">
                                                          </a>
                                                          
                                                          <div class="card-body"  style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1330,7 +1330,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/valide.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/valide.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1358,7 +1358,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1380,7 +1380,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1409,7 +1409,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/depart.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/depart.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1433,7 +1433,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1505,7 +1505,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/user.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/user.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body"  style="background: #62bfc4!important;">
@@ -1520,7 +1520,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/part.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/part.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important;">
@@ -1546,7 +1546,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/choix.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/choix.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;" >
@@ -1568,7 +1568,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/notifi.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/notifi.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1597,7 +1597,7 @@ onMounted(() => {
                                                     <div class="col">
                                                      <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                          <a href="" class="mt-4">
-                                                             <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                             <img src="/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                          </a>
                                                          
                                                          <div class="card-body"  style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1620,7 +1620,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/message.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/message.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1648,7 +1648,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/rdv.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/rdv.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1670,7 +1670,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/question.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/question.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1699,7 +1699,7 @@ onMounted(() => {
                                                     <div class="col">
                                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/car.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/car.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #62bfc4!important; border-radius: 0px 0px 5px 5px;">
@@ -1723,7 +1723,7 @@ onMounted(() => {
                                                     <div class="col">
                                                         <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                                         <a href="" class="mt-4">
-                                                            <img src="/public/assets/img/qr.png" class="img-fluid w-25" alt="...">
+                                                            <img src="/assets/img/qr.png" class="img-fluid w-25" alt="...">
                                                         </a>
                                                         
                                                         <div class="card-body" style="background: #f8e4dd !important; border-radius: 0px 0px 5px 5px;">
@@ -1801,7 +1801,7 @@ onMounted(() => {
                                 <h2 style="font-size: 20px; font-weight: 600;" class="mb-3">Navigation Accessible </h2>
                                 <p>Vous pouvez naviguer sur notre site web à l'aide du clavier. Utilisez les touches fléchées pour parcourir le contenu et appuyez sur la touche Entrée pour activer les liens.</p>
                                 <p>Si vous utilisez un lecteur d'écran, notre site est compatible avec des lecteurs d'écran populaires, tels que VoiceOver pour iOS et TalkBack pour Android. Pour activer la lecture vocale, suivez les instructions de votre lecteur d'écran.</p>
-                                <img src="/public/assets/img/as.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
+                                <img src="/assets/img/as.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
                             </div>
 
                             <div class="col-md-12 mt-4">
@@ -1814,7 +1814,7 @@ onMounted(() => {
 
                                     <div class="col-md-6 text-center">
                                          
-                                        <img src="/public/assets/img/text.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                                        <img src="/assets/img/text.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
 
                                     </div>
                                 </div>
@@ -1831,7 +1831,7 @@ onMounted(() => {
 
                                     <div class="col-md-6 text-center">
                                          
-                                         <img src="/public/assets/img/vocal.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                                         <img src="/assets/img/vocal.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
  
                                      </div>
 
@@ -1850,7 +1850,7 @@ onMounted(() => {
 
                                     <div class="col-md-6 text-center">
                                          
-                                         <img src="/public/assets/img/uti.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                                         <img src="/assets/img/uti.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
  
                                      </div>
 
@@ -1869,7 +1869,7 @@ onMounted(() => {
 
                                     <div class="col-md-6 text-center">
                                          
-                                         <img src="/public/assets/img/perso.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
+                                         <img src="/assets/img/perso.jpg" alt="" class="img-fluid w-75" style="border-radius: 5px;">
  
                                      </div>
 
@@ -1919,7 +1919,7 @@ onMounted(() => {
                                 style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
                                 >
                                 <img
-                                    src="/public/assets/img/blog/1.jpg"
+                                    src="/assets/img/blog/1.jpg"
                                     class="card-img-top h-50"
                                     alt="..."
                                 />
@@ -1967,7 +1967,7 @@ onMounted(() => {
                                 style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
                                 >
                                 <img
-                                    src="/public/assets/img/blog/2.jpg"
+                                    src="/assets/img/blog/2.jpg"
                                     class="card-img-top h-50"
                                     alt="..."
                                 />
@@ -2014,7 +2014,7 @@ onMounted(() => {
                                 style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
                                 >
                                 <img
-                                    src="/public/assets/img/blog/3.jpg"
+                                    src="/assets/img/blog/3.jpg"
                                     class="card-img-top h-50"
                                     alt="..."
                                 />
@@ -2061,7 +2061,7 @@ onMounted(() => {
                                 style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
                                 >
                                 <img
-                                    src="/public/assets/img/blog/4.jpg"
+                                    src="/assets/img/blog/4.jpg"
                                     class="card-img-top h-50"
                                     alt="..."
                                 />

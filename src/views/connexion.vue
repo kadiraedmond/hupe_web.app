@@ -83,7 +83,7 @@ const handleClient = () => {
                 <div class="col-md-12 text-center">
                   <h5 class="card-title mt-5">Authentification</h5>
                   <img
-                    src="/public/assets/img/auth.png"
+                    src="/assets/img/auth.png"
                     class="img-fluid rounded-start w-25"
                     alt="..."
                     style="margin-top: 8px; object-fit: cover;"

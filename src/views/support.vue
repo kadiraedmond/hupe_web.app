@@ -170,7 +170,7 @@ const options = {
                         
                         <div class="col-2">
                             <img
-                                src="/public/assets/img/avatars/1.png"
+                                src="/assets/img/avatars/1.png"
                                 alt
                                 class="w-px-40 h-auto rounded-circle"
                                 style="max-width: 50px; max-height: 50px; border: 1px solid rgb(214, 214, 214);"
@@ -197,7 +197,7 @@ const options = {
                     <div class="card mb-3 border-0" style="padding: 11px; background: #f4f4f4;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                          <img src="/public/assets/img/avatars/5.png" class="img-fluid rounded-start" alt="..." style=" border-radius: 50% !important; width: 70px;">
+                          <img src="/assets/img/avatars/5.png" class="img-fluid rounded-start" alt="..." style=" border-radius: 50% !important; width: 70px;">
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">

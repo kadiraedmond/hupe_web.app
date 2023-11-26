@@ -918,7 +918,7 @@ const valider = async (reservation) => {
                                     </div>
                                     <div class="col-md-6">
                                       <img
-                                        src="/public/assets/img/car2.jpg"
+                                        src="/assets/img/car2.jpg"
                                         class="img-fluid rounded-start h-100"
                                         alt="..."
                                         style="height: 85% !important"
@@ -1229,7 +1229,7 @@ const valider = async (reservation) => {
                                 </div>
                                 <div class="col-md-6">
                                   <img
-                                    src="/public/assets/img/car2.jpg"
+                                    src="/assets/img/car2.jpg"
                                     class="img-fluid rounded-start h-100"
                                     alt="..."
                                     style="height: 85% !important"
@@ -1541,7 +1541,7 @@ const valider = async (reservation) => {
                                 </div>
                                 <div class="col-md-6">
                                   <img
-                                    src="/public/assets/img/car2.jpg"
+                                    src="/assets/img/car2.jpg"
                                     class="img-fluid rounded-start h-100"
                                     alt="..."
                                     style="height: 85% !important"
@@ -1853,7 +1853,7 @@ const valider = async (reservation) => {
                                 </div>
                                 <div class="col-md-6">
                                   <img
-                                    src="/public/assets/img/car2.jpg"
+                                    src="/assets/img/car2.jpg"
                                     class="img-fluid rounded-start h-100"
                                     alt="..."
                                     style="height: 85% !important"
@@ -2165,7 +2165,7 @@ const valider = async (reservation) => {
                                 </div>
                                 <div class="col-md-6">
                                   <img
-                                    src="/public/assets/img/car2.jpg"
+                                    src="/assets/img/car2.jpg"
                                     class="img-fluid rounded-start h-100"
                                     alt="..."
                                     style="height: 85% !important"

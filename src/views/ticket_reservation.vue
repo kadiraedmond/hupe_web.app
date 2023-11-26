@@ -158,14 +158,14 @@ const telecharger = () => {
                             </div>
                         </div>
                         <div class="col-md-4 text-bottom">
-                           <img src="/public/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 100%; margin-top: 27px;">
+                           <img src="/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 100%; margin-top: 27px;">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5 text-white" style="background: #219935; border-radius: 0px 15px 15px 0px;">
                     <div class="row mt-2">
                         <div class="col-md-12 d-flex">
-                            <img src="/public/assets/img/logo2.png" alt="logo" class="img-fluid" style="height: 35px;"> 
+                            <img src="/assets/img/logo2.png" alt="logo" class="img-fluid" style="height: 35px;"> 
                             <div style="margin-top: 11px; margin-left: 9px;">
                                 <h6> | Hupe africa</h6>
                             </div>
@@ -255,7 +255,7 @@ const telecharger = () => {
                             
                         </div>
                         <div class="col-md-4 text-end">
-                           <img src="/public/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 75%; margin-top: 7px;">
+                           <img src="/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 75%; margin-top: 7px;">
                         </div>
                         
                     </div>

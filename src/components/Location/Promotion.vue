@@ -27,7 +27,7 @@ onBeforeMount(() => {
           <div class="row" style="padding: 6px">
             <div class="col-md-12 d-flex">
               <img
-                src="/public/assets/img/icone/car.png"
+                src="/assets/img/icone/car.png"
                 class="img-fluid"
                 alt="..."
                 style="width: 25px; height: 25px; margin-top: 6px"
@@ -37,7 +37,7 @@ onBeforeMount(() => {
               </h6>
               <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
                 <img
-                  src="/public/assets/img/icone/map.png"
+                  src="/assets/img/icone/map.png"
                   class="img-fluid"
                   alt="..."
                 />
@@ -88,7 +88,7 @@ onBeforeMount(() => {
         <div class="col-md-6">
           <div class="card text-center">
             <div class="text-center">
-              <img src="/public/assets/img/icone/promo.png" alt="" class="img-fluid w-25">
+              <img src="/assets/img/icone/promo.png" alt="" class="img-fluid w-25">
             </div>
             
             <div class="card-body">

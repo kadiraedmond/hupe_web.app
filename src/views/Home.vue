@@ -81,7 +81,7 @@ onMounted(() => {
           "
         >
           <img
-            src="/public/assets/img/accueil-car.png"
+            src="/assets/img/accueil-car.png"
             style="width: 260px; height: 188px; object-fit: cover; float: left"
           />
           <div class="wrapper text-start" style="margin-top: 2rem">
@@ -178,7 +178,7 @@ onMounted(() => {
             >
               <router-link to="/location" class="mt-4">
                 <img
-                  src="/public/assets/img/car.png"
+                  src="/assets/img/car.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -204,7 +204,7 @@ onMounted(() => {
             >
               <router-link to="/reservation" class="mt-4 text-black">
                 <img
-                  src="/public/assets/img/bus.png"
+                  src="/assets/img/bus.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -230,7 +230,7 @@ onMounted(() => {
             >
               <router-link to="/location_gros_engin" class="mt-4" id="a">
                 <img
-                  src="/public/assets/img/engin.png"
+                  src="/assets/img/engin.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -256,7 +256,7 @@ onMounted(() => {
             >
               <router-link to="/reservation" class="mt-4" id="a">
                 <img
-                  src="/public/assets/img/engine.png"
+                  src="/assets/img/engine.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -603,7 +603,7 @@ onMounted(() => {
                     </div>
                     <div class="col-4">
                       <img
-                          src="/public/assets/img/rb.jpg"
+                          src="/assets/img/rb.jpg"
                           class="img-fluid h-100"
                           alt="..."
                           style="object-fit: cover"
@@ -710,7 +710,7 @@ onMounted(() => {
             >
               <router-link to="/details_location_engin" style="color: #000">
                 <img
-                  src="/public/assets/img/car2.jpg"
+                  src="/assets/img/car2.jpg"
                   class="card-img-top"
                   alt="..."
                   style="
@@ -721,7 +721,7 @@ onMounted(() => {
                 />
               </router-link>
 
-              <img src="/public/assets/img/avatars/5.png" alt="" id="badgesLogo">
+              <img src="/assets/img/avatars/5.png" alt="" id="badgesLogo">
 
               <div class="card-body">
                 <router-link to="/detail" style="color: #000">
@@ -816,7 +816,7 @@ onMounted(() => {
                         
                         <div class="col-8 d-flex">
                           <img
-                            src="/public/assets/img/avatars/1.png"
+                            src="/assets/img/avatars/1.png"
                             alt
                             class="w-px-40 h-auto rounded-circle"
                             style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
@@ -867,7 +867,7 @@ onMounted(() => {
                   <div class="row g-0" style="margin: 10px">
                     <div class="col-4">
                       <img
-                        src="/public/assets/img/car2.jpg"
+                        src="/assets/img/car2.jpg"
                         class="img-fluid h-100"
                         alt="..."
                         style="
@@ -946,7 +946,7 @@ onMounted(() => {
             >
               <router-link to="/details_location_engin" style="color: #000">
                 <img
-                  src="/public/assets/img/car2.jpg"
+                  src="/assets/img/car2.jpg"
                   class="card-img-top"
                   alt="..."
                   style="
@@ -956,7 +956,7 @@ onMounted(() => {
                   "
                 />
               </router-link>
-              <img src="/public/assets/img/avatars/5.png" alt="" id="badgesLogo">
+              <img src="/assets/img/avatars/5.png" alt="" id="badgesLogo">
 
               <div class="card-body">
                 <router-link to="/detail" style="color: #000">
@@ -1051,7 +1051,7 @@ onMounted(() => {
                         
                         <div class="col-8 d-flex">
                           <img
-                            src="/public/assets/img/avatars/1.png"
+                            src="/assets/img/avatars/1.png"
                             alt
                             class="w-px-40 h-auto rounded-circle"
                             style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
@@ -1102,7 +1102,7 @@ onMounted(() => {
                   <div class="row g-0" style="margin: 10px">
                     <div class="col-4">
                       <img
-                        src="/public/assets/img/car2.jpg"
+                        src="/assets/img/car2.jpg"
                         class="img-fluid h-100"
                         alt="..."
                         style="
@@ -1174,7 +1174,7 @@ onMounted(() => {
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
               <img
-                src="/public/assets/img/blog/1.jpg"
+                src="/assets/img/blog/1.jpg"
                 class="card-img-top h-50"
                 alt="..."
               />
@@ -1222,7 +1222,7 @@ onMounted(() => {
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
               <img
-                src="/public/assets/img/blog/2.jpg"
+                src="/assets/img/blog/2.jpg"
                 class="card-img-top h-50"
                 alt="..."
               />
@@ -1269,7 +1269,7 @@ onMounted(() => {
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
               <img
-                src="/public/assets/img/blog/3.jpg"
+                src="/assets/img/blog/3.jpg"
                 class="card-img-top h-50"
                 alt="..."
               />
@@ -1316,7 +1316,7 @@ onMounted(() => {
               style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
             >
               <img
-                src="/public/assets/img/blog/4.jpg"
+                src="/assets/img/blog/4.jpg"
                 class="card-img-top h-50"
                 alt="..."
               />
@@ -1413,7 +1413,7 @@ onMounted(() => {
                 </form>
               </div>
               <div class="col-md-6" style="    background: #f9f9f9; margin-top: -73px; border-radius: 10px;  margin-bottom: 60px">
-                <img src="/public/assets/img/newletter.png"  class="img-fluid w-50" alt="">
+                <img src="/assets/img/newletter.png"  class="img-fluid w-50" alt="">
               </div>
             </div>
           </div>

@@ -92,7 +92,7 @@ onMounted(() => {
                                                 <div class="row">
                                                     <div class="col-12 d-flex">
                                                         <img
-                                                            src="/public/assets/img/avatars/1.png"
+                                                            src="/assets/img/avatars/1.png"
                                                             alt
                                                             class="w-px-40 h-auto rounded-circle"
                                                             style="max-width: 40px; max-height: 40px ; border: 1px solid rgb(214, 214, 214);"
@@ -121,7 +121,7 @@ onMounted(() => {
                                                 <div class="row">
                                                     <div class="col-12 d-flex">
                                                         <img
-                                                            src="/public/assets/img/avatars/1.png"
+                                                            src="/assets/img/avatars/1.png"
                                                             alt
                                                             class="w-px-40 h-auto rounded-circle"
                                                             style="max-width: 40px; max-height: 40px ; border: 1px solid rgb(214, 214, 214);"

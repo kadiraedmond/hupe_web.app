@@ -18,7 +18,7 @@ onMounted(() => {
         >
           <router-link to="/" class="mt-4">
             <img
-              src="/public/assets/img/engin.png"
+              src="/assets/img/engin.png"
               class="img-fluid w-25"
               alt="..."
             />
