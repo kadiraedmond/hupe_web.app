@@ -75,7 +75,7 @@ onMounted(() => {
                                 >
                                 <router-link to="/details_location_engin" style="color: #000">
                                     <img
-                                    src="/public/assets/img/car2.jpg"
+                                    src="/assets/img/car2.jpg"
                                     class="card-img-top"
                                     alt="..."
                                     style="
@@ -85,7 +85,7 @@ onMounted(() => {
                                     "
                                     />
                                 </router-link>
-                                <img src="/public/assets/img/avatars/5.png" alt="" id="badgesLogo">
+                                <img src="/assets/img/avatars/5.png" alt="" id="badgesLogo">
 
                                 <div class="card-body">
                                     <router-link to="/detail" style="color: #000">
@@ -142,7 +142,7 @@ onMounted(() => {
                                 >
                                 <router-link to="/details_location_engin" style="color: #000">
                                     <img
-                                    src="/public/assets/img/car2.jpg"
+                                    src="/assets/img/car2.jpg"
                                     class="card-img-top"
                                     alt="..."
                                     style="

@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/1.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #62bfc4 !important;">
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/2.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #f9f9f9 !important;" >
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/3.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #bbded8 !important;">
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/4.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #f8e4dd !important;">
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/5.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #fdb7b9 !important;">
@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/reservation/1.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/reservation/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #62bfc4 !important;">
@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/reservation/2.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/reservation/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #f9f9f9 !important;">
@@ -336,7 +336,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/reservation/3.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/reservation/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #bbded8 !important;">
@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/reservation/4.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/reservation/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #bbded8 !important;">
@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/reservation/5.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/reservation/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #fdb7b9!important;">
@@ -528,7 +528,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/1.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #62bfc4 !important;">
@@ -540,7 +540,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/2.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #f9f9f9 !important;">
@@ -552,7 +552,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/3.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #bbded8 !important;">
@@ -564,7 +564,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/4.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #bbded8 !important;">
@@ -576,7 +576,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/location/5.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/location/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #fdb7b9 !important;">
@@ -744,7 +744,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                 <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/service/1.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/service/1.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #62bfc4 !important;">
@@ -756,7 +756,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/service/2.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/service/2.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #f9f9f9 !important;">
@@ -768,7 +768,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/service/3.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/service/3.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #bbded8  !important;">
@@ -780,7 +780,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/service/4.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/service/4.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #bbded8 !important;">
@@ -792,7 +792,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <div class="col">
                                     <div class="card h-100 border-0 text-center" style="background: #EAEAEA !important;">
                                     <a href="" class="mt-4">
-                                        <img src="/public/assets/img/service/5.png" class="img-fluid w-25" alt="...">
+                                        <img src="/assets/img/service/5.png" class="img-fluid w-25" alt="...">
                                     </a>
                                     
                                     <div class="card-body" style="background: #fdb7b9 !important;">

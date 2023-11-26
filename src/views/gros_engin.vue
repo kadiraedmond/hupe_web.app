@@ -60,7 +60,7 @@ onMounted(() => {
                   style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
                 />
               </router-link>
-              <img src="/public/assets/img/avatars/5.png" alt="" id="badgesLogo">
+              <img src="/assets/img/avatars/5.png" alt="" id="badgesLogo">
 
               <div class="card-body">
                 <router-link :to="`/detail/${companie.uid}`">

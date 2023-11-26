@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-4">
                     <p>
-                        <img src="/public/assets/img/icone/calendar.png" alt="" />
+                        <img src="/assets/img/icone/calendar.png" alt="" />
                         {{ new Intl.DateTimeFormat(undefined, options).format(history.date) }}
                     </p>
                     </div>
@@ -31,7 +31,7 @@
                     <p>
                         Topic |
                         <strong>
-                        <img src="/public/assets/img/icone/circle.png" alt="" />
+                        <img src="/assets/img/icone/circle.png" alt="" />
                         {{ history.topic }}</strong
                         >
                     </p>

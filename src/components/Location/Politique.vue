@@ -121,7 +121,7 @@ const deletePolitique = async () => {
         v-if="firebaseText.length == 0"
       >
         <img
-          src="/public/assets/img/icone/plus.png"
+          src="/assets/img/icone/plus.png"
           class="img-fluid"
           alt="..."
         />
@@ -196,7 +196,7 @@ const deletePolitique = async () => {
               <div class="col-md-6">
                 <div class="card text-center">
                   <div class="text-center">
-                    <img src="/public/assets/img/icone/poli.png" alt="" class="img-fluid w-25">
+                    <img src="/assets/img/icone/poli.png" alt="" class="img-fluid w-25">
                   </div>
                   
                   <div class="card-body">

@@ -42,7 +42,7 @@ onMounted(() => {
                         <div class="col-md-6">
                             <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                                 <a href="" class="mt-4">
-                                    <img src="/public/assets/img/car.png" class="img-fluid w-25" alt="...">
+                                    <img src="/assets/img/car.png" class="img-fluid w-25" alt="...">
                                 </a>
                                 
                                 <div class="card-body">
@@ -90,7 +90,7 @@ onMounted(() => {
                         <div class="col-md-6">
                             <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
                                 <a href="" class="mt-4">
-                                    <img src="/public/assets/img/bus.png" class="img-fluid w-25" alt="...">
+                                    <img src="/assets/img/bus.png" class="img-fluid w-25" alt="...">
                                 </a>
                                 
                                 <div class="card-body">

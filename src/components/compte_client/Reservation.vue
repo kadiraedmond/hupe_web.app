@@ -95,7 +95,7 @@ onMounted(() => {
         >
           <router-link to="/reservation_de_ticket" class="mt-4">
             <img
-              src="/public/assets/img/bus.png"
+              src="/assets/img/bus.png"
               class="img-fluid w-25"
               alt="..."
             />

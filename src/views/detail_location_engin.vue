@@ -141,22 +141,22 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <img src="/public/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
+                    <img src="/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
                     <div class="row mt-4">
                         <div class="col-md-2"></div>
                     <div class="col-md-8" style="margin-top: 14px;">
                         <div class="row mt-4">
                             <div class="col-md-3">
-                                <img src="/public/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
+                                <img src="/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
                             </div>
                             <div class="col-md-3">
-                                <img src="/public/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
+                                <img src="/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
                             </div>
                             <div class="col-md-3">
-                                <img src="/public/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
+                                <img src="/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
                             </div>
                             <div class="col-md-3">
-                                <img src="/public/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
+                                <img src="/assets/img/cc.jpg" alt="" class="img-fluid" style="border-radius: 5px;">
                             </div>
                         </div>
                     </div>
@@ -189,7 +189,7 @@ onMounted(() => {
 
             <div class="card h-100" id="compagnie_card" style="background: #f3f4f6; box-shadow: none;">
               <a v-bind:href="'/details_vente_engin'">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img src="/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
               </a>
               <button class="btn btn-primary" id="badges0" style="left: 10px !important;">
                2000 FCFA
@@ -214,7 +214,7 @@ onMounted(() => {
 
             <div class="card h-100" id="compagnie_card" style="background: #f3f4f6; box-shadow: none;">
             <a v-bind:href="'/details_vente_engin'">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img src="/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
             </a>
             <button class="btn btn-primary" id="badges0" style="left: 10px !important;">
             2000 FCFA
@@ -239,7 +239,7 @@ onMounted(() => {
 
             <div class="card h-100" id="compagnie_card" style="background: #f3f4f6; box-shadow: none;">
             <a v-bind:href="'/details_vente_engin'">
-                <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                <img src="/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
             </a>
             <button class="btn btn-primary" id="badges0" style="left: 10px !important;">
             2000 FCFA
@@ -264,7 +264,7 @@ onMounted(() => {
 
                 <div class="card h-100" id="compagnie_card" style="background: #f3f4f6; box-shadow: none;">
                 <a v-bind:href="'/details_vente_engin'">
-                    <img src="/public/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
+                    <img src="/assets/img/car2.jpg" class="card-img-top" alt="..." style="border-radius: 10px 10px 0px 0px;">
                 </a>
                 <button class="btn btn-primary" id="badges0" style="left: 10px !important;">
                 2000 FCFA

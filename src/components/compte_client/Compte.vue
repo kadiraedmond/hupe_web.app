@@ -168,7 +168,7 @@ const recharge = async () => {
                     <div class="modal-body text-end">
                       <div class="row">
                         <div class="col-md-12 text-center">
-                          <img src="/public/assets/img/recharge.jpg" alt="" class="img-fluid w-75">
+                          <img src="/assets/img/recharge.jpg" alt="" class="img-fluid w-75">
                         </div>
                         <div class="col-md-12">
                           <form @submit.prevent="recharge" class="row g-3 needs-validation" novalidate>

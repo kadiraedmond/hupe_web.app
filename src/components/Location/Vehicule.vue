@@ -381,7 +381,7 @@ const handleInterieurPaysPrix = (e) => {
         style="background-color: #219935; border-color: #219935"
       >
         <img
-          src="/public/assets/img/icone/plus.png"
+          src="/assets/img/icone/plus.png"
           class="img-fluid"
           alt="..."
         />
@@ -597,7 +597,7 @@ const handleInterieurPaysPrix = (e) => {
                         "
                       >
                         <img
-                          src="/public/assets/img/icone/edit.png"
+                          src="/assets/img/icone/edit.png"
                           class="img-fluid"
                           alt="..."
                         />
@@ -787,7 +787,7 @@ const handleInterieurPaysPrix = (e) => {
                         @click="star(car)"
                       >
                         <img
-                          src="/public/assets/img/icone/star.png"
+                          src="/assets/img/icone/star.png"
                           class="img-fluid"
                           alt="..."
                         />
@@ -803,7 +803,7 @@ const handleInterieurPaysPrix = (e) => {
                         style="background-color: #219935; border-color: #219935"
                       >
                         <img
-                          src="/public/assets/img/icone/promotion.png"
+                          src="/assets/img/icone/promotion.png"
                           class="img-fluid"
                           alt="..."
                         />
@@ -928,7 +928,7 @@ const handleInterieurPaysPrix = (e) => {
                           @click="unlock(car)"
                         >
                           <img
-                            src="/public/assets/img/icone/unlock.png"
+                            src="/assets/img/icone/unlock.png"
                             class="img-fluid"
                             alt="..."
                           />
@@ -946,7 +946,7 @@ const handleInterieurPaysPrix = (e) => {
                           @click="remove(car)"
                         >
                           <img
-                            src="/public/assets/img/icone/delete.png"
+                            src="/assets/img/icone/delete.png"
                             class="img-fluid"
                             alt="..."
                           />
@@ -968,7 +968,7 @@ const handleInterieurPaysPrix = (e) => {
         <div class="col-md-6">
           <div class="card text-center">
             <div class="text-center">
-              <img src="/public/assets/img/icone/trajet.png" alt="" class="img-fluid w-25">
+              <img src="/assets/img/icone/trajet.png" alt="" class="img-fluid w-25">
             </div>
             
             <div class="card-body">

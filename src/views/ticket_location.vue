@@ -121,7 +121,7 @@ onMounted(() => {
                                         <p style=" font-size: 9px; font-weight: 700;">ANNEE |</p>
                                     </div>
                                     <div class="col-md-6 text-end">
-                                        <p style=" font-size: 9px;">2022</p>
+                                        <p style=" font-size: 9px;">{{ location.annee_vehicule }}</p>
                                     </div>
                                 </div>
 

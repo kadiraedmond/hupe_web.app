@@ -118,11 +118,11 @@ const logout = async () => {
 };
 
 const selectedValue = ref('');
-const options = [
-  { value: 'fr', label: 'France', imageUrl: 'public/assets/img/logo/benin.png' },
-  { value: 'us', label: 'United States', imageUrl: 'public/assets/img/logo/benin.png' },
-  // Ajoutez d'autres options selon vos besoins
-];
+// const options = [
+//   { value: 'fr', label: 'France', imageUrl: '/assets/img/logo/benin.png' },
+//   { value: 'us', label: 'United States', imageUrl: '/assets/img/logo/benin.png' },
+//   // Ajoutez d'autres options selon vos besoins
+// ] 
 
 
 </script>

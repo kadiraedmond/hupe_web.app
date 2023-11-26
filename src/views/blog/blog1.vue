@@ -23,7 +23,7 @@ onMounted(() => {
         
           <div class="row g-5">
             <div class="col-md-8">
-              <img src="/public/assets/img/blog/2.jpg" alt="" class="img-fluid w-100 mb-3" style="height: 20%; border-radius: 5px;">
+              <img src="/assets/img/blog/2.jpg" alt="" class="img-fluid w-100 mb-3" style="height: 20%; border-radius: 5px;">
               <h3 class="pb-4 mb-4  border-bottom">
                 Les Avantages de Louer un Véhicule avec Hupe
               </h3>
@@ -93,7 +93,7 @@ onMounted(() => {
                         <div class="card mb-3 border-0"  style="background:#f8f9fa;border-radius: 5px;">
                           <div class="row g-0">
                             <div class="col-md-4">
-                              <img src="/public/assets/img/blog/3.jpg" class="img-fluid rounded-start w-75" alt="...">
+                              <img src="/assets/img/blog/3.jpg" class="img-fluid rounded-start w-75" alt="...">
                             </div>
                             <div class="col-md-8">
                               <div class="card-body">

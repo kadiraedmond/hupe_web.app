@@ -40,7 +40,7 @@ onMounted(() => {
                 <div class="card h-100 text-center border-0">
                   <div class="row mt-4" style="justify-content: center">
                     <img
-                      src="/public/assets/img/icone/mail.png"
+                      src="/assets/img/icone/mail.png"
                       class="img-fluid"
                       alt="..."
                       style="width: 64px"
@@ -58,7 +58,7 @@ onMounted(() => {
                 <div class="card h-100 text-center border-0">
                   <div class="row mt-4" style="justify-content: center">
                     <img
-                      src="/public/assets/img/icone/web.png"
+                      src="/assets/img/icone/web.png"
                       class="img-fluid"
                       alt="..."
                       style="width: 64px"
@@ -79,7 +79,7 @@ onMounted(() => {
                 <div class="card h-100 text-center border-0">
                   <div class="row mt-4" style="justify-content: center">
                     <img
-                      src="/public/assets/img/icone/maps.png"
+                      src="/assets/img/icone/maps.png"
                       class="img-fluid"
                       alt="..."
                       style="width: 64px"
@@ -97,7 +97,7 @@ onMounted(() => {
                 <div class="card h-100 text-center border-0">
                   <div class="row mt-4" style="justify-content: center">
                     <img
-                      src="/public/assets/img/icone/location.png"
+                      src="/assets/img/icone/location.png"
                       class="img-fluid"
                       alt="..."
                       style="width: 64px"

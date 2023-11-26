@@ -59,7 +59,7 @@ const handleSubmit = () => {
                               <ul class="list-unstyled mt-3 mb-4">
                                 <li>
                                   <img
-                                    src="/public/assets/img/icone/yes.png"
+                                    src="/assets/img/icone/yes.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -68,7 +68,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/yes.png"
+                                    src="/assets/img/icone/yes.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -77,7 +77,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/no.png"
+                                    src="/assets/img/icone/no.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -86,7 +86,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/no.png"
+                                    src="/assets/img/icone/no.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -95,7 +95,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/no.png"
+                                    src="/assets/img/icone/no.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -105,7 +105,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/no.png"
+                                    src="/assets/img/icone/no.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -167,7 +167,7 @@ const handleSubmit = () => {
                               <ul class="list-unstyled mt-3 mb-4">
                                 <li>
                                   <img
-                                    src="/public/assets/img/icone/yes.png"
+                                    src="/assets/img/icone/yes.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -176,7 +176,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/yes.png"
+                                    src="/assets/img/icone/yes.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -185,7 +185,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/yes.png"
+                                    src="/assets/img/icone/yes.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -194,7 +194,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/yes.png"
+                                    src="/assets/img/icone/yes.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -203,7 +203,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/yes.png"
+                                    src="/assets/img/icone/yes.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"
@@ -213,7 +213,7 @@ const handleSubmit = () => {
                                 </li>
                                 <li class="mt-3">
                                   <img
-                                    src="/public/assets/img/icone/yes.png"
+                                    src="/assets/img/icone/yes.png"
                                     alt=""
                                     class="img-fluid"
                                     style="margin-top: -4px"

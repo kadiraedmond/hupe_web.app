@@ -673,7 +673,7 @@ const reserver = async (car) => {
                   <div class="col-md-6">
                     <div class="card text-center">
                       <div class="text-center">
-                        <img src="/public/assets/img/car.png" alt="" class="img-fluid w-25">
+                        <img src="/assets/img/car.png" alt="" class="img-fluid w-25">
                       </div>
                       
                       <div class="card-body">
@@ -729,7 +729,7 @@ const reserver = async (car) => {
                             "
                           >
                             <img
-                              src="/public/assets/img/icone/map.png"
+                              src="/assets/img/icone/map.png"
                               class="img-fluid"
                               alt="..."
                             />
@@ -756,7 +756,7 @@ const reserver = async (car) => {
                           "
                         >
                           <img
-                            src="/public/assets/img/car3.jpg"
+                            src="/assets/img/car3.jpg"
                             class="card-img-top"
                             alt="..."
                             style="
@@ -789,7 +789,7 @@ const reserver = async (car) => {
                     <div class="col-md-6">
                       <div class="card text-center">
                         <div class="text-center">
-                          <img src="/public/assets/img/icone/promo.png" alt="" class="img-fluid w-25">
+                          <img src="/assets/img/icone/promo.png" alt="" class="img-fluid w-25">
                         </div>
                         
                         <div class="card-body">
@@ -891,7 +891,7 @@ const reserver = async (car) => {
                                   style="justify-content: center"
                                 >
                                   <img
-                                    src="/public/assets/img/icone/mail.png"
+                                    src="/assets/img/icone/mail.png"
                                     class="img-fluid"
                                     alt="..."
                                     style="width: 64px"
@@ -915,7 +915,7 @@ const reserver = async (car) => {
                                   style="justify-content: center"
                                 >
                                   <img
-                                    src="/public/assets/img/icone/web.png"
+                                    src="/assets/img/icone/web.png"
                                     class="img-fluid"
                                     alt="..."
                                     style="width: 64px"
@@ -945,7 +945,7 @@ const reserver = async (car) => {
                                   style="justify-content: center"
                                 >
                                   <img
-                                    src="/public/assets/img/icone/maps.png"
+                                    src="/assets/img/icone/maps.png"
                                     class="img-fluid"
                                     alt="..."
                                     style="width: 64px"
@@ -969,7 +969,7 @@ const reserver = async (car) => {
                                   style="justify-content: center"
                                 >
                                   <img
-                                    src="/public/assets/img/icone/location.png"
+                                    src="/assets/img/icone/location.png"
                                     class="img-fluid"
                                     alt="..."
                                     style="width: 64px"

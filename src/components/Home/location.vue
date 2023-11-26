@@ -19,7 +19,24 @@ onBeforeMount(() => {
   companieStore.getAllCompanies
 
   companieStore.getLocationCompanies
-})
+}) 
+
+const notation = ref()
+const getNotation = async (uid) => {
+  const companieDocRef = doc(firestoreDb, 'compagnies', `${uid}`) 
+  const notationColRef = collection(companieDocRef, 'client_avis') 
+  
+  const snapshots = await getDocs(notationColRef) 
+
+  let totalEtoiles = 0 
+  snapshots.docs.forEach(not_doc => { 
+      const notationData = not_doc.data() 
+      totalEtoiles += Number(notationData.nombre_etoile)
+  }) 
+  
+  const calc = Math.round((totalEtoiles / snapshots.docs.length) * 20) 
+  notation.value = calc
+}
 </script>
 <template>
   <div
@@ -35,7 +52,6 @@ onBeforeMount(() => {
         class="card h-100"
         id="compagnie_card"
         style="background: #f9f9f9; box-shadow: none"
-        v-if="companie.offre == 'vip' && index < 4"
       >
         <router-link :to="`/detail/${companie.uid}`">
           <img
@@ -75,7 +91,7 @@ onBeforeMount(() => {
                       margin-top: -9px;
                     "
                   >
-                    <i class="bx bx-like" style="color: #219935"></i> 30%
+                    <i class="bx bx-like" style="color: #219935"></i> {{ notation == NaN ? 0 : notation }}%
                   </boutton>
                 </div>
             </div>

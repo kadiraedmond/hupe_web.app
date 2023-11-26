@@ -130,7 +130,7 @@ const payer = async (location) => {
 
       const client_notif = {
         title: 'Paiement pour location', 
-        message: `Vous avez effectué un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
+        message: `Vous avez effectué un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} ${location.annee_vehicule} pour une durée de ${differenceEnJours} jours.`, 
         destinataire: [userId], 
         lu: false, 
         createdAt: new Date()
@@ -155,7 +155,7 @@ const payer = async (location) => {
 
       const comp_notif = {
         title: 'Réception de paiement', 
-        message: `Vous avez reçu un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele}.`, 
+        message: `Vous avez reçu un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} ${location.annee_vehicule}.`, 
         destinataire: [location.compagnie_uid], 
         type: 'compagnie', 
         lu: false, 
@@ -279,7 +279,7 @@ const sendMessage = async (location) => {
             </div>
             <!-- <div class="col-md-6">
               <img
-                src="/public/assets/img/car2.jpg"
+                src="/assets/img/car2.jpg"
                 class="img-fluid rounded-start h-100"
                 alt="..."
                 style="height: 85% !important"

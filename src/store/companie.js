@@ -56,10 +56,23 @@ export const useCompanieStore = defineStore('companieStore', {
                 
                 const q = query(companiesColRef, where('type_compagnie', '==', 'Location'), where('country', '==', `${this.country}`))
                 const snapshot = await getDocs(q)
-                snapshot.docs.forEach((doc) => {
+                snapshot.docs.forEach(async (doc) => {
                     const data = doc.data()
-                    if(data.status == 'active') {
-                        this.locationCompanies.push(data)
+                    if(data.status == 'active') { 
+                        // const notationColRef = collection(doc.ref, 'client_avis') 
+                        
+                        // const snapshots = await getDocs(notationColRef) 
+
+                        // let totalEtoiles = 0 
+                        // snapshots.docs.forEach(not_doc => { 
+                        //     const notationData = not_doc.data() 
+                        //     totalEtoiles += Number(notationData.nombre_etoile)
+                        // }) 
+                        
+                        // const notation = Math.round((totalEtoiles / snapshots.docs.length) * 20) 
+                        // console.log({ ...data, notation }) 
+
+                        this.locationCompanies.push(data) 
                     }
                 }) 
 

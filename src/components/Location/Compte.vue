@@ -107,7 +107,7 @@ const retrait = async () => {
                 @click="checkAccount"
               >
                 <img
-                  src="/public/assets/img/icone/plus.png"
+                  src="/assets/img/icone/plus.png"
                   class="img-fluid"
                   alt="..."
                 />
@@ -125,7 +125,7 @@ const retrait = async () => {
                     <div class="modal-body text-end">
                       <div class="row">
                         <div class="col-md-12 text-center">
-                           <img src="/public/assets/img/reg.jpg" alt="" class="img-fluid w-75">
+                           <img src="/assets/img/reg.jpg" alt="" class="img-fluid w-75">
                           </div>
                         <div class="col-md-12">
                           <form @submit.prevent="retrait" class="row g-3 needs-validation" novalidate>

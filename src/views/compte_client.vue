@@ -79,7 +79,7 @@ onMounted(() => {
       style="margin-top: 0px"
     >
       <img
-        src="/public/assets/img/clt1.jpg"
+        src="/assets/img/clt1.jpg"
         alt=""
         class="img-fluid w-100"
         style="height: 380px; object-fit: cover"
@@ -296,7 +296,7 @@ onMounted(() => {
                       style="background-color: #219935; border-color: #219935"
                     >
                       <img
-                        src="/public/assets/img/icone/plus.png"
+                        src="/assets/img/icone/plus.png"
                         class="img-fluid"
                         alt="..."
                       />
