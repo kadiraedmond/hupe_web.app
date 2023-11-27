@@ -41,6 +41,8 @@ const retrait = async () => {
   try {
     const retraitColRef = collection(firestoreDb, 'retrait') 
 
+    if(Number(montant.value) < 50000) return 
+
     const data = {
       body: Number(montant.value), 
       compagnieUID: userId, 

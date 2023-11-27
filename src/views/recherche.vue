@@ -26,32 +26,32 @@ onMounted(() => {
                             <button class="nav-link active mb-3" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Résultats</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-location-tab" data-bs-toggle="pill" data-bs-target="#pills-location" type="button" role="tab" aria-controls="pills-location" aria-selected="false">Location de véhicule</button>
+                            <button class="nav-link" id="pills-location-tab" data-bs-toggle="pill" data-bs-target="#pills-location" type="button" role="tab" aria-controls="pills-location" aria-selected="false">Locations de véhicules</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-reservation-tab" data-bs-toggle="pill" data-bs-target="#pills-reservation" type="button" role="tab" aria-controls="pills-reservation" aria-selected="false">Reservation de ticket </button>
+                            <button class="nav-link" id="pills-reservation-tab" data-bs-toggle="pill" data-bs-target="#pills-reservation" type="button" role="tab" aria-controls="pills-reservation" aria-selected="false">Réservations de tickets </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-location2-tab" data-bs-toggle="pill" data-bs-target="#pills-location2" type="button" role="tab" aria-controls="pills-location2" aria-selected="false">Location de gros engin</button>
+                            <button class="nav-link" id="pills-location2-tab" data-bs-toggle="pill" data-bs-target="#pills-location2" type="button" role="tab" aria-controls="pills-location2" aria-selected="false">Locations de gros engins</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-achat-tab" data-bs-toggle="pill" data-bs-target="#pills-achat" type="button" role="tab" aria-controls="pills-achat" aria-selected="false">Achat de véhicule </button>
+                            <button class="nav-link" id="pills-achat-tab" data-bs-toggle="pill" data-bs-target="#pills-achat" type="button" role="tab" aria-controls="pills-achat" aria-selected="false">Achats de véhicules </button>
                         </li>
 
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Véhicules en location </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false">Trajet</button>
+                            <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false">Trajets</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false"> Gros engin en location</button>
+                            <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false"> Gros engins en location</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false">Véhicule en vente </button>
+                            <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false">Véhicules en vente </button>
                         </li>
                     </ul>
                 </div>

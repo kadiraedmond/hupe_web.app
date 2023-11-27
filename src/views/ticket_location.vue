@@ -5,7 +5,9 @@ import { collection, query, doc, getDoc, where, getDocs} from "firebase/firestor
 import { firestoreDb } from "@/firebase/firebase.js"
  
 import { useLocationStore } from '@/store/location.js'
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vue-router' 
+
+import QrcodeVue from 'qrcode.vue' 
 
 const route = useRoute()
 const locationStore = useLocationStore()
@@ -209,7 +211,8 @@ onMounted(() => {
                             
                     
                             <div class="col-md-4 text-bottom">
-                            <img src="/public/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 100%; margin-top: 104px;">
+                                <!-- <img src="/public/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 100%; margin-top: 104px;">  -->
+                                <qrcode-vue :value="location.ticket_id" :size="100" level="H" />
                             </div>
                         </div>
                     </div>
@@ -258,7 +261,7 @@ onMounted(() => {
                                         <p style=" font-size: 7px; font-weight: 700;">ANNEE |</p>
                                     </div>
                                     <div class="col-md-6 text-end">
-                                        <p style=" font-size: 7px;">2022</p>
+                                        <p style=" font-size: 7px;">{{ location.annee_vehicule }}</p>
                                     </div>
                                 </div>
 
@@ -351,7 +354,8 @@ onMounted(() => {
                                 
                             </div>
                             <div class="col-md-4 text-end">
-                            <img src="/public/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 75%; margin-top: 7px;">
+                            <!-- <img src="/public/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 75%; margin-top: 7px;">  -->
+                                <qrcode-vue :value="location.ticket_id" :size="68" level="H" />
                             </div>
                             
                         </div>

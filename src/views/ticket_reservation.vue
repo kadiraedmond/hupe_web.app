@@ -5,7 +5,9 @@ import { collection, query, doc, getDoc, where, getDocs} from "firebase/firestor
 import { firestoreDb } from "@/firebase/firebase.js"
  
 import { useReservationStore } from '@/store/reservation.js'
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vue-router' 
+
+import QrcodeVue from 'qrcode.vue' 
 
 const route = useRoute()
 const reservationStore = useReservationStore()
@@ -158,7 +160,8 @@ const telecharger = () => {
                             </div>
                         </div>
                         <div class="col-md-4 text-bottom">
-                           <img src="/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 100%; margin-top: 27px;">
+                           <!-- <img src="/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 100%; margin-top: 27px;">  -->
+                           <qrcode-vue :value="reservation.ticket_id" :size="100" level="H" />
                         </div>
                     </div>
                 </div>
@@ -255,7 +258,8 @@ const telecharger = () => {
                             
                         </div>
                         <div class="col-md-4 text-end">
-                           <img src="/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 75%; margin-top: 7px;">
+                           <!-- <img src="/assets/img/Qr.jpg" alt="" class="img-fluid" style="width: 75%; margin-top: 7px;">  -->
+                           <qrcode-vue :value="reservation.ticket_id" :size="68" level="H" />
                         </div>
                         
                     </div>

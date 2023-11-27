@@ -91,7 +91,7 @@ const getNotation = async (uid) => {
                       margin-top: -9px;
                     "
                   >
-                    <i class="bx bx-like" style="color: #219935"></i> {{ notation == NaN ? 0 : notation }}%
+                    <i class="bx bx-like" style="color: #219935"></i> 30%
                   </boutton>
                 </div>
             </div>

@@ -105,6 +105,8 @@ const sendMessage = async () => {
   } 
 } 
 
+const objet = ref('')
+
 const createNewConversation = async () => { 
   const data = { 
     uid: '', 
@@ -112,6 +114,7 @@ const createNewConversation = async () => {
     clientNumber: `${savedUser.telephone}`, 
     createdAt: Timestamp.now(), 
     etat: 'Encour', 
+    objet: objet.value, 
     typeUser: (!savedUser.raison_social || !!savedUser.raison_social) ? 'client' : 'partenaire', 
     userId: userId
   } 
@@ -268,7 +271,57 @@ const options = {
                 </div> 
 
                 <div class="text-end">
-                  <button @click="createNewConversation" class="btn btn-primary" style="background: #219935; border: #219935">Démarrer une nouvelle conversation</button>
+                  <!-- <button @click="createNewConversation" class="btn btn-primary" style="background: #219935; border: #219935">Démarrer une nouvelle conversation</button>  -->
+                  <button
+                    class="btn btn-primary"
+                    style="
+                      background-color: rgb(33 153 53);
+                      border-color: rgb(33 153 53);
+                      margin-top: -8px;
+                    "
+                    data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                  >
+                    <img
+                      src="/assets/img/icone/plus.png"
+                      class="img-fluid"
+                      alt="..."
+                    />
+                    Démarrer une nouvelle conversation
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header" style="background: #219935">
+                          <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Entrez l'objet de la conversation</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-end">
+                          <div class="row">
+                            <div class="col-md-12 text-center">
+                            <img src="/assets/img/reg.jpg" alt="" class="img-fluid w-75">
+                            </div>
+                            <div class="col-md-12">
+                              <form @submit.prevent="createNewConversation" class="row g-3 needs-validation" novalidate>
+                                <div class="col-md-12 text-start">
+                                  <label for="validationCustom01" class="form-label">objet :</label>
+                                  <input type="text" class="form-control" v-model="objet" required>
+                                  
+                                </div>
+                                
+                                <div class="col-12">
+                                  <button class="btn btn-primary" type="submit" style="background: #219935; border-color: #219935;">Créer la conversation</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
            </div>
