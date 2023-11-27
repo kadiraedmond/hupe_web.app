@@ -407,7 +407,9 @@ onMounted(() => {
                                     <p>Chez HUPE, nous croyons en la puissance de la mobilité pour transformer la vie des gens. Notre aventure a commencé avec une simple idée : faciliter l'accès aux services de transport et de mobilité pour tous. Fondée en 2021, notre entreprise a rapidement évolué pour devenir une plateforme de premier plan dans le domaine de la mobilité.</p>  
                                 </div>
                                 <div class="col">
-                                    <img src="/assets/img/apropos.jpg" alt="" class="img-fluid">
+                                    <div class="ratio ratio-16x9">
+                                       <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+                                    </div>
                                 </div>
                                  
                                 
