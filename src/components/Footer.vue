@@ -33,7 +33,7 @@ const lien = route.params.activeTab
           <li><router-link to="/informations">Qui sommes nous</router-link></li>
           <li><router-link to="/informations">Comment ça marche</router-link></li>
           
-          <li><router-link :to="`/informations/${`profile-tab`}`"> Blog</router-link></li>
+          <!-- <li><router-link :to="`/informations/${`profile-tab`}`"> Blog</router-link></li> -->
           <!-- <li><router-link :to="{ name: 'Informations', params: { activeTab: 'profile-tab' } }"> Blog</router-link></li> -->
           <li><router-link to="/informations">Blog</router-link></li>
           <li><router-link to="/informations">Accessibilité</router-link></li>

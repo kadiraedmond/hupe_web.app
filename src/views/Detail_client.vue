@@ -81,60 +81,60 @@ const locationColRef = collection(firestoreDb, 'location_vehicules')
 
 const isLoading = ref(false)
 
-const reserver = async (car) => {
-  isLoading.value = true
+// const reserver = async (car) => {
+//   isLoading.value = true
 
-  const Data = {
-    boite: car.boite,
-    chauffeur: avecChauffeur.value === true ? 'Oui' : 'Non',
-    client_id: user.uid || '',
-    client_profil_url: user.imageUrl || '',
-    compagnie_uid: companieId || companieStore.companie.uid,
-    created_at: new Date(),
-    date_retour: dateRetour.value,
-    date_retrait: dateRetrait.value,
-    enPromo: car.enPromo,
-    heure_retrait: heureRetrait.value,
-    identite_image_url: permis.value || '',
-    interieurPays: interieurPays.value === true ? 'Oui' : 'Non',
-    latitude: '',
-    lieu_retrait: lieuRetrait.value,
-    longitude: '',
-    modele: car.modele,
-    montant: car.montant,
-    moteur: car.moteur,
-    nom_client: name.value,
-    number: '',
-    payement: 'En attente',
-    plaque_vehicule: car.serie_vehicule,
-    status: 'En attente',
-    telephone_client: user.telephone,
-    ticket_id: uuidv4(),
-    vehicule: car.vehicule,
-    vehicule_image_url: car.vehicule_image_url,
-  }
+//   const Data = {
+//     boite: car.boite,
+//     chauffeur: avecChauffeur.value === true ? 'Oui' : 'Non',
+//     client_id: user.uid || '',
+//     client_profil_url: user.imageUrl || '',
+//     compagnie_uid: companieId || companieStore.companie.uid,
+//     created_at: new Date(),
+//     date_retour: dateRetour.value,
+//     date_retrait: dateRetrait.value,
+//     enPromo: car.enPromo,
+//     heure_retrait: heureRetrait.value,
+//     identite_image_url: permis.value || '',
+//     interieurPays: interieurPays.value === true ? 'Oui' : 'Non',
+//     latitude: '',
+//     lieu_retrait: lieuRetrait.value,
+//     longitude: '',
+//     modele: car.modele,
+//     montant: car.montant,
+//     moteur: car.moteur,
+//     nom_client: name.value,
+//     number: '',
+//     payement: 'En attente',
+//     plaque_vehicule: car.serie_vehicule,
+//     status: 'En attente',
+//     telephone_client: user.telephone,
+//     ticket_id: uuidv4(),
+//     vehicule: car.vehicule,
+//     vehicule_image_url: car.vehicule_image_url,
+//   }
 
-  try {
-    const docRef = await addDoc(locationColRef, Data)
+//   try {
+//     const docRef = await addDoc(locationColRef, Data)
 
-    if(docRef) {
-      console.log('Document ajouté avec success')
+//     if(docRef) {
+//       console.log('Document ajouté avec success')
       
-      isLoading.value = false
+//       isLoading.value = false
 
-      document.querySelector('.btn-close').click()
+//       document.querySelector('.btn-close').click()
 
-      toast.success("Réservation effectuée avec succès", { 
-        autoClose: 3500, 
-        position: toast.POSITION.TOP_CENTER
-      })
-    }
+//       toast.success("Réservation effectuée avec succès", { 
+//         autoClose: 3500, 
+//         position: toast.POSITION.TOP_CENTER
+//       })
+//     }
 
-    document.querySelector('#reservationForm').reset()
-  } catch (error) {
-    console.log(error)
-  }
-}
+//     document.querySelector('#reservationForm').reset()
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 </script>
 

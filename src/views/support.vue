@@ -8,8 +8,8 @@ import Swal from 'sweetalert2'
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'lk1kQSCZDqeYK1cpu2uo2LSnN7u2' || savedUser.uid || authStore.user.uid 
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'lk1kQSCZDqeYK1cpu2uo2LSnN7u2' || savedUser.uid || authStore.user.uid 
 
 const message = ref('')
 const messages = ref([])
@@ -22,7 +22,7 @@ const conversations = ref([])
 
 const internalMessageColRef = collection(firestoreDb, 'support_messages_admin') 
 
-onBeforeMount(async () => {
+onBeforeMount(async () => { 
 
   const q = query(internalMessageColRef, where('userId', '==', `${userId}`))
   const snapshot = await getDocs(q) 
@@ -270,9 +270,16 @@ const options = {
                   </form>
                 </div> 
 
-                <div class="text-end">
-                  <!-- <button @click="createNewConversation" class="btn btn-primary" style="background: #219935; border: #219935">Démarrer une nouvelle conversation</button>  -->
-                  <button
+                <div class="text-end mt-2">
+
+                  <form @submit.prevent="createNewConversation" class="col-md-4 text-start">
+                    <label for="validationCustom01" class="form-label">objet :</label>
+                    <input type="text" class="form-control mb-2" v-model="objet" required>
+                    
+                    <button type="submit" class="btn btn-primary" style="background: #219935; border: #219935">Démarrer une nouvelle conversation</button> 
+                  </form>
+                  
+                  <!-- <button
                     class="btn btn-primary"
                     style="
                       background-color: rgb(33 153 53);
@@ -287,10 +294,10 @@ const options = {
                       alt="..."
                     />
                     Démarrer une nouvelle conversation
-                  </button>
+                  </button> -->
 
                   <!-- Modal -->
-                  <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <!-- <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header" style="background: #219935">
@@ -300,7 +307,7 @@ const options = {
                         <div class="modal-body text-end">
                           <div class="row">
                             <div class="col-md-12 text-center">
-                            <img src="/assets/img/reg.jpg" alt="" class="img-fluid w-75">
+                              <img src="/assets/img/reg.jpg" alt="" class="img-fluid w-75">
                             </div>
                             <div class="col-md-12">
                               <form @submit.prevent="createNewConversation" class="row g-3 needs-validation" novalidate>
@@ -321,7 +328,7 @@ const options = {
                         
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
            </div>

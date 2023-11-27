@@ -126,7 +126,7 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
@@ -188,21 +188,21 @@ const routes = [
     path: '/compte_gros_engin',
     name: 'Compt',
     component: Compt,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
     path: '/compte_client',
     name: 'Client',
     component: Client,
-    meta: { requiresAuth: true, allowedUserType: 'client' }
+    // meta: { requiresAuth: true, allowedUserType: 'client' }
   },
 
   {
     path: '/compte_achat_engin',
     name: 'Comp',
     component: Comp,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
@@ -440,38 +440,38 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: routes,
 });
 
-router.beforeEach((to, from, next) => {
-  // Recuperer l'utilisateur connecte de facon reactive
-  let authUser = {}
-  onAuthStateChanged(auth, user => {
-    authUser = user
-  })
+// router.beforeEach((to, from, next) => {
+//   // Recuperer l'utilisateur connecte de facon reactive
+//   let authUser = {}
+//   onAuthStateChanged(auth, user => {
+//     authUser = user
+//   })
 
-  if (to.matched.some((record) => record.meta.requiresAuth)) { 
-    if (authUser) {
-      const allowedUserType = to.meta.allowedUserType
+//   if (to.matched.some((record) => record.meta.requiresAuth)) { 
+//     if (authUser) {
+//       const allowedUserType = to.meta.allowedUserType
 
-      // verifier si c'est une compagnie 
-      if (authUser.raison_social && allowedUserType === 'companie') {
-        next();
-      } 
-      // ou un client
-      else if (!authUser.raison_social && allowedUserType === 'client') {
-        next()
-      } else {
-        // Rediriger vers la page d'accueil si le type d'utilisateur n'est pas autorisé
-        next({ name: 'Home' }); 
-      }
-    } else {
-      // Rediriger vers la page d'accueil si l'utilisateur n'est pas authentifié
-      next({ name: 'Home' }); 
-    }
-  } else {
-    next();
-  }
-});
+//       // verifier si c'est une compagnie 
+//       if (authUser.raison_social && allowedUserType === 'companie') {
+//         next();
+//       } 
+//       // ou un client
+//       else if (!authUser.raison_social && allowedUserType === 'client') {
+//         next()
+//       } else {
+//         // Rediriger vers la page d'accueil si le type d'utilisateur n'est pas autorisé
+//         next({ name: 'Home' }); 
+//       }
+//     } else {
+//       // Rediriger vers la page d'accueil si l'utilisateur n'est pas authentifié
+//       next({ name: 'Home' }); 
+//     }
+//   } else {
+//     next();
+//   }
+// });
 
 export default router
