@@ -1175,8 +1175,9 @@ onMounted(() => {
             >
               <img
                 src="/assets/img/blog/1.jpg"
-                class="card-img-top h-50"
+                class="card-img-top"
                 alt="..."
+                style="height: 193.13px !important;"
               />
               <div class="card-body">
                 <div class="row" id="blog_row">
@@ -1225,6 +1226,7 @@ onMounted(() => {
                 src="/assets/img/blog/2.jpg"
                 class="card-img-top h-50"
                 alt="..."
+                style="height: 193.13px !important;"
               />
               <div class="card-body">
                 <div class="row" id="blog_row">
@@ -1272,11 +1274,12 @@ onMounted(() => {
                 src="/assets/img/blog/3.jpg"
                 class="card-img-top h-50"
                 alt="..."
+                style="height: 193.13px !important;"
               />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">Top 10 Destinations Incontournables à Explorer avec Hupe dans l'UEMOA</h5>
+                    <h5 class="card-title" id="blog_title">Top 10 Destinations Incontournables à Explorer ...</h5>
                   </div>
                 </div>
 
@@ -1317,13 +1320,14 @@ onMounted(() => {
             >
               <img
                 src="/assets/img/blog/4.jpg"
-                class="card-img-top h-50"
+                class="card-img-top"
                 alt="..."
+                style="height: 193.13px !important;"
               />
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">L'Impact de Hupe sur l'Industrie de la Location de Véhicules</h5>
+                    <h5 class="card-title" id="blog_title">L'Impact de Hupe sur l'Industrie de la Location ...</h5>
                   </div>
                 </div>
 
@@ -1363,26 +1367,27 @@ onMounted(() => {
     <!-- End Features Section -->
 
     <section id="features" class="features" style="margin-top: -60px">
-      <div class="container">
-        <div class="row mb-4">
+      <div class="container" style="border: 1px solid #efefef; border-radius: 5px;">
+        <div class="row mt-5">
           <div class="col-8">
-            
+            <div class="section-title text-start">
+                  <h2>Inscrivez vous à notre Newsletter</h2>
+                  <p id="section-p">
+                    Veuillez renseignez votre adresse mail, pour etre au courant de
+                    toutes nos nouveautés
+                  </p>
+                </div>
           </div>
+           
         </div>
-        <div class="row">
+        <div class="row mb-5">
           <div class="col-md-12 text-center mt-5">
-            <div class="row" style="margin-bottom: -82px;">
+            <div class="row">
 
               <div class="col-md-3"></div>
                
               <div class="col-md-6" style=" margin-top: -64px;">
-                <div class="section-title text-start">
-              <h2>Inscrivez vous à notre Newsletter</h2>
-              <p id="section-p">
-                Veuillez renseignez votre adresse mail, pour etre au courant de
-                toutes nos nouveautés
-              </p>
-            </div>
+                
                 <form
                   class="d-flex"
                   action=""

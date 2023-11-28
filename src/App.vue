@@ -7,7 +7,7 @@ import { ref, onMounted } from 'vue'
 
 const shwo = ref(true)
 onMounted(() => {
-  if(location.pathname === '/support') {
+  if(location.pathname === '/support' || location.pathname == '/terme-connection') {
     shwo.value = false
   } else {
     shwo.value = true

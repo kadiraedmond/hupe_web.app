@@ -56,6 +56,8 @@ import ReservationP from '@/views/reservation_populaire.vue';
 import EnginP from '@/views/engin_populaire.vue';
 import VenteP from '@/views/vente_populaire.vue';
 import InfosClient from '@/views/information_client.vue';
+import ConditionConnexion from '@/views/condition-connexion.vue';
+
 // import Politique from '@/views/politique.vue';
 
 
@@ -446,6 +448,15 @@ const routes = [
     component: InfosClient,
     
   },
+
+  {
+    path: '/terme-connection',
+    name: 'ConditionConnexion',
+    component: ConditionConnexion,
+    
+  },
+
+  ConditionConnexion
 
   // {
   //   path: '/politique',
