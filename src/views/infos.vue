@@ -69,35 +69,13 @@ onMounted(() => {
                         <div class="row">
                             <div class="col-md-12">
                                
-                                <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">A propos de l’application   </h2>
+                                <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Foire aux questions </h2>
                             <hr>
-                                <p>Hupe est un système composé de trois applications distinctes, chacune ayant un rôle spécifique</p>
+                                <p> </p>
                             </div>
                             
                         </div>
-                        <div class="row mt-4">
-                            <div class="col-md-6 mb-3">
-                                <h1 style="font-size: 20px;">L'application pour les clients</h1>
-                                <p>Cette application est destinée aux clients et leur permet de bénéficier des services offerts par Hupe. Les clients peuvent utiliser l'application pour réserver des tickets de bus, louer des voitures et des gros engins, ainsi que pour accéder à d'autres fonctionnalités pratiques. Elle offre une interface conviviale et intuitive, permettant aux utilisateurs de trouver facilement les services dont ils ont besoin.</p>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <h1 style="font-size: 20px;">L'application pour les partenaires</h1>
-                                <p>Cette application est spécialement conçue pour les partenaires de Hupe. Elle leur offre une plateforme dédiée pour gérer leurs offres de services, gérer les réservations, gérer leur profil et communiquer avec les clients. Les partenaires peuvent mettre à jour leurs disponibilités, gérer les tarifs, consulter les demandes de réservation et fournir un suivi de qualité pour assurer une expérience client optimale.</p>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <h1 style="font-size: 20px;">L'application de scan</h1>
-                                <p>L'application de scan est un outil essentiel pour les partenaires qui proposent des services. Elle permet aux partenaires de scanner les codes QR des réservations effectuées par les clients, facilitant ainsi le processus de vérification et de prise en charge des véhicules ou engins loués. Cette application garantit une gestion efficace et précise des réservations, offrant ainsi une expérience fluide pour les partenaires et les clients.</p>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
-                            </div>
-                        </div>
+                        
                         <section id="portfolio-details" class="portfolio-details">
                             <div class="container">
                                 <div class="row" style="background: #219935; color: white; border-radius: 5px;">
@@ -395,7 +373,7 @@ onMounted(() => {
                             </div>
                             
                         </div>
-                        <section id="faq" class="faq" style="margin-top: -40px;">
+                        <section id="faq" class="faq" style="margin-top: -40px; text-align: justify;">
                          <div class="container">
                             <div class="row mb-2">
                                 <div class="col-md-10">
@@ -408,7 +386,7 @@ onMounted(() => {
                                 </div>
                                 <div class="col">
                                     <div class="ratio ratio-16x9">
-                                       <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+                                       <iframe src="https://www.youtube.com/embed/aiK3kujv2SY" title="YouTube video" allowfullscreen></iframe>
                                     </div>
                                 </div>
                                  
@@ -416,7 +394,7 @@ onMounted(() => {
                             </div>
                          </div>
                         </section>
-                        <section id="faq" class="faq" style="margin-top: -90px;">
+                        <section id="faq" class="faq" style="margin-top: -90px; text-align: justify;">
                          <div class="container">
                             <div class="row mb-2">
                                 <div class="col-md-10">
@@ -428,13 +406,15 @@ onMounted(() => {
                                     <p>Notre mission est de simplifier vos déplacements et de répondre à tous vos besoins en matière de mobilité. Chez HUPE, nous nous efforçons de vous offrir des solutions de transport pratiques et abordables, que ce soit pour la location de véhicules, la location de gros engins, la réservation de billets de bus ou l'achat de véhicules neufs et d'occasion. Nous sommes déterminés à rendre la mobilité plus accessible à tous.</p>  
                                 </div>
                                 <div class="col">
-                                    <img src="/assets/img/apropos1.png" alt="" class="img-fluid w-100">
+                                    <div class="ratio ratio-16x9">
+                                       <iframe src="https://www.youtube.com/embed/Wr8eorNc5io" title="YouTube video" allowfullscreen></iframe>
+                                    </div>
                                 </div>
                                 
                             </div>
                          </div>
                         </section>
-                        <section id="faq" class="faq" style="margin-top: -90px;">
+                        <section id="faq" class="faq" style="margin-top: -90px; text-align: justify;">
                          <div class="container">
                             <div class="row mb-2">
                                 <div class="col-md-10">
@@ -451,7 +431,7 @@ onMounted(() => {
                          </div>
                         </section>
 
-                        <section id="faq" class="faq" style="margin-top: -90px;">
+                        <section id="faq" class="faq" style="margin-top: -90px; text-align: justify;">
                          <div class="container">
                             <div class="row mb-2">
                                 <div class="col-md-10">
@@ -465,72 +445,116 @@ onMounted(() => {
                                  
                                 
                             </div>
-                            <div class="row row-cols-1 row-cols-md-4 g-4">
-                            <div class="col">
-                                <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
-                                <a v-bind:href="'/location'" class="mt-4">
-                                    <img src="/assets/img/car.png" class="img-fluid w-25" alt="...">
-                                </a>
-                                
-                                <div class="card-body" style=" background: #219935;">
-                                    <a v-bind:href="'/location'" class="mt-4" id="a">
-                                    <h5 class="card-title text-white" style="font-size: 17px;">Louer un véhicule </h5>
-                                    </a>
-                                
-                                    <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
-                                    <a v-bind:href="'/reservation'" class="mt-4 text-black">
-                                        <img src="/assets/img/bus.png" class="img-fluid w-25" alt="...">
-                                    </a>
-                                    
-                                    <div class="card-body" style=" background: #219935;">
-                                    <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                                        <h5 class="card-title text-white" style="font-size: 17px;">Reserver un ticket de bus</h5>
-                                    </a>
-                                    
-                                    <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
+                            <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: 0px">
+                                <div class="col">
+                                    <div
+                                    class="card h-100 border-0 text-center"
+                                    style="background: #f9f9f9"
+                                    >
+                                    <router-link to="/location" class="mt-4">
+                                        <img
+                                        src="/assets/img/car.png"
+                                        class="img-fluid w-25"
+                                        alt="..."
+                                        />
+                                    </router-link>
+
+                                    <div class="card-body" style="background: #62bfc4 ; border-radius: 0px 0px 5px 5px;">
+                                        <router-link to="/location" class="mt-4" id="a">
+                                        <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
+                                            Louer un véhicule
+                                        </h5>
+                                        </router-link>
+
+                                        <p class="card-text text-black" style="font-size: 14px">
+                                        Découvrez le confort, la flexibilité et l'aventure avec notre flotte.
+                                        </p>
+                                    </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
-                                    <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                                        <img src="/assets/img/engin.png" class="img-fluid w-25" alt="...">
-                                    </a>
-                                    
-                                    <div class="card-body" style=" background: #219935;">
-                                    <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                                        <h5 class="card-title text-white" style="font-size: 17px;">Louer un gros engin </h5>
-                                    </a>
-                                    
-                                    <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
+                                <div class="col">
+                                    <div
+                                    class="card h-100 border-0 text-center"
+                                    style="background: #f9f9f9"
+                                    >
+                                    <router-link to="/reservation" class="mt-4 text-black">
+                                        <img
+                                        src="/assets/img/bus.png"
+                                        class="img-fluid w-25"
+                                        alt="..."
+                                        />
+                                    </router-link>
+
+                                    <div class="card-body" style="background: #bbded8 ; border-radius: 0px 0px 5px 5px;">
+                                        <router-link to="/reservation" class="mt-4" id="a">
+                                        <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
+                                            Réserver un ticket de bus
+                                        </h5>
+                                        </router-link>
+
+                                        <p class="card-text text-black" style="font-size: 14px">
+                                        Embarquez pour l'aventure en un clic avec nos réservations de bus.
+                                        </p>
+                                    </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100 border-0 text-center" style="background:#f6f8fb;">
-                                    <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                                        <img src="/assets/img/engine.png" class="img-fluid w-25" alt="...">
-                                    </a>
-                                    
-                                    <div class="card-body" style=" background: #219935;">
-                                    <a v-bind:href="'/reservation'" class="mt-4" id="a">
-                                        <h5 class="card-title text-white" style="font-size: 17px;">Acheter un engin</h5>
-                                    </a>
-                                    
-                                    <p class="card-text" style="font-size: 14px;">Évitez les files d'attente et réservez vos billets de bus en quelques instants.</p>
+                                <div class="col">
+                                    <div
+                                    class="card h-100 border-0 text-center"
+                                    style="background: #f9f9f9"
+                                    >
+                                    <router-link to="/location_gros_engin" class="mt-4" id="a">
+                                        <img
+                                        src="/assets/img/engin.png"
+                                        class="img-fluid w-25"
+                                        alt="..."
+                                        />
+                                    </router-link>
+
+                                    <div class="card-body" style="background: #f8e4dd ; border-radius: 0px 0px 5px 5px;">
+                                        <router-link to="/location_gros_engin" class="mt-4" id="a">
+                                        <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
+                                            Louer un gros engin
+                                        </h5>
+                                        </router-link>
+
+                                        <p class="card-text text-black" style="font-size: 14px">
+                                        Des engins puissants pour des résultats exceptionnels sur chaque chantier.
+                                        </p>
+                                    </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col">
+                                    <div
+                                    class="card h-100 border-0 text-center"
+                                    style="background: #f9f9f9"
+                                    >
+                                    <router-link to="/reservation" class="mt-4" id="a">
+                                        <img
+                                        src="/assets/img/engine.png"
+                                        class="img-fluid w-25"
+                                        alt="..."
+                                        />
+                                    </router-link>
+
+                                    <div class="card-body" style="background: #fdb7b9 ; border-radius: 0px 0px 5px 5px;">
+                                        <router-link to="/reservation" class="mt-4" id="a">
+                                        <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
+                                            Acheter un véhicule
+                                        </h5>
+                                        </router-link>
+
+                                        <p class="card-text text-black" style="font-size: 14px">
+                                        Le plaisir de conduire commence avec notre sélection exceptionnelle.
+                                        </p>
+                                    </div>
+                                    </div>
+                                </div>
                             </div>
                          </div>
                         </section>
 
-                        <section id="faq" class="faq" style="margin-top: -90px;">
+                        <section id="faq" class="faq" style="margin-top: -90px; text-align: justify;">
                          <div class="container">
                             <div class="row mb-2">
                                 <div class="col-md-10">
@@ -543,7 +567,9 @@ onMounted(() => {
                                 </div>
 
                                 <div class="col">
-                                    <img src="/assets/img/apropos.jpg" alt="" class="img-fluid  ">
+                                    <div class="ratio ratio-16x9">
+                                       <iframe src="https://www.youtube.com/embed/aiK3kujv2SY" title="YouTube video" allowfullscreen></iframe>
+                                    </div>
                                 </div>
                                  
                                 
@@ -551,7 +577,7 @@ onMounted(() => {
                          </div>
                         </section>
 
-                        <section id="faq" class="faq" style="margin-top: -90px;">
+                        <section id="faq" class="faq" style="margin-top: -90px; text-align: justify;">
                          <div class="container">
                             <div class="row mb-2">
                                 <div class="col-md-10">
@@ -568,7 +594,40 @@ onMounted(() => {
                          </div>
                         </section>
 
-                        <section id="faq" class="faq" style="margin-top: -90px;">
+                        <section id="faq" class="faq" style="margin-top: -90px; text-align: justify;">
+                         <div class="container">
+                            <div class="row mb-2">
+                                <div class="col-md-10">
+                                    <h1 style="font-size: 20px; font-weight: 700;">A propos de l’application  </h1>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-6 mb-3">
+                                    <h1 style="font-size: 20px;">L'application pour les clients</h1>
+                                    <p>Cette application est destinée aux clients et leur permet de bénéficier des services offerts par Hupe. Les clients peuvent utiliser l'application pour réserver des tickets de bus, louer des voitures et des gros engins, ainsi que pour accéder à d'autres fonctionnalités pratiques. Elle offre une interface conviviale et intuitive, permettant aux utilisateurs de trouver facilement les services dont ils ont besoin.</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <h1 style="font-size: 20px;">L'application pour les partenaires</h1>
+                                    <p>Cette application est spécialement conçue pour les partenaires de Hupe. Elle leur offre une plateforme dédiée pour gérer leurs offres de services, gérer les réservations, gérer leur profil et communiquer avec les clients. Les partenaires peuvent mettre à jour leurs disponibilités, gérer les tarifs, consulter les demandes de réservation et fournir un suivi de qualité pour assurer une expérience client optimale.</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <h1 style="font-size: 20px;">L'application de scan</h1>
+                                    <p>L'application de scan est un outil essentiel pour les partenaires qui proposent des services. Elle permet aux partenaires de scanner les codes QR des réservations effectuées par les clients, facilitant ainsi le processus de vérification et de prise en charge des véhicules ou engins loués. Cette application garantit une gestion efficace et précise des réservations, offrant ainsi une expérience fluide pour les partenaires et les clients.</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
+                                </div>
+                            </div>
+                         </div>
+                        </section>
+
+                        <section id="faq" class="faq" style="margin-top: -90px; text-align: justify;">
                          <div class="container">
                             <div class="row mb-2">
                                 <div class="col-md-10">
@@ -606,7 +665,7 @@ onMounted(() => {
                             </div>
                             
                         </div>
-                        <section id="faq" class="faq" style="margin-top: -40px;">
+                        <section id="faq" class="faq" style="margin-top: -40px; text-align: justify;">
                         <div class="container">
                             <div class="row mb-5">
                                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -1793,7 +1852,7 @@ onMounted(() => {
                         
                     </div>
                     <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0"> 
-                        <div class="row">
+                        <div class="row" style="text-align: justify;">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Accessibilité sur HUPE </h2>
                                 <hr>

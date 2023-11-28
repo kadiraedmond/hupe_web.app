@@ -8,8 +8,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   scannerStore.setCompanyScanners(userId)
 })
@@ -56,20 +56,18 @@ onMounted(() => {
     </div>
     <div class="w-100" v-else>
       <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <div class="card text-center">
-            <div class="text-center">
-              <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-25">
-            </div>
-            
-            <div class="card-body">
-              <p class="card-text">Aucun collaborateur disponible</p>
-            </div>
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <!-- <div class="card text-center border-0"> -->
+              <div class="text-center">
+                <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+              </div>
+              
+              <div class="card-body">
+                <p class="card-text">Aucun collaborateur disponible</p>
+              </div>
           </div>
-         
-          
-        </div>
+   
         <div class="col-md-3"></div>
       </div>
     </div>

@@ -92,7 +92,10 @@ const retrait = async () => {
         <div class="col-md-6">
           <div class="row mb-4">
             <div class="col-md-6">
-              <p style="color: #219935;">  Solde |<strong> {{ companieStore.totalAmount.solde }} </strong></p>
+              
+              <button class="btn btn-primary" style="background: #219935; border-color: #219935; color: white;">
+                   Solde |  <strong> {{ companieStore.totalAmount.solde }} </strong> 
+              </button>
               
             </div>
             <div class="col-md-6 text-end">
@@ -101,7 +104,7 @@ const retrait = async () => {
                   style="
                     background-color: rgb(33 153 53);
                     border-color: rgb(33 153 53);
-                    margin-top: -8px;
+                    
                   "
                   :data-bs-toggle="showWithdrawModal && 'modal'" :data-bs-target="showWithdrawModal && '#exampleModalr'" 
                   @click="checkAccount"

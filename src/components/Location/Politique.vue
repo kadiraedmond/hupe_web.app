@@ -6,8 +6,8 @@ import { collection, query, doc, addDoc, updateDoc, deleteDoc, where, getDoc, ge
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid 
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid 
 
 const politiqueColRef = collection(firestoreDb, 'politiques') 
 const firebaseText = ref([])
@@ -194,9 +194,9 @@ const deletePolitique = async () => {
             <div class="row">
               <div class="col-md-3"></div>
               <div class="col-md-6">
-                <div class="card text-center">
+                <div class="card text-center border-0">
                   <div class="text-center">
-                    <img src="/assets/img/icone/poli.png" alt="" class="img-fluid w-25">
+                    <img src="/assets/img/icone/poli.png" alt="" class="img-fluid w-50">
                   </div>
                   
                   <div class="card-body">

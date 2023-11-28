@@ -194,9 +194,9 @@ const deletePolitique = async () => {
             <div class="row">
               <div class="col-md-3"></div>
               <div class="col-md-6">
-                <div class="card text-center">
+                <div class="card text-center border-0">
                   <div class="text-center">
-                    <img src="/assets/img/icone/poli.png" alt="" class="img-fluid w-25">
+                    <img src="/assets/img/icone/poli.png" alt="" class="img-fluid w-50">
                   </div>
                   
                   <div class="card-body">

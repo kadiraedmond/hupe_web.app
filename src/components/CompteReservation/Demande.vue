@@ -85,7 +85,7 @@ onMounted(() => {
                 <div class="col-md-12">
                   <p>client | {{ demande.userInfos.lastName }} {{ demande.userInfos.firstName }} </p>
                   <p>Adresse | {{ demande.userInfos.addresse }}</p>
-                  <p>Contact | {{ demande.userInfos.telephone }}</p>
+                  <!-- <p>Contact | {{ demande.userInfos.telephone }}</p> -->
                   <p>Objet | {{ demande.objet }}</p>
                   <p>Demande | {{ demande.demande }}</p>
                 </div>

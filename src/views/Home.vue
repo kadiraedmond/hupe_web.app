@@ -46,19 +46,19 @@ onMounted(() => {
   const text = document.querySelector(".sec-text");
   const textLoad = () => {
     setTimeout(() => {
-      text.textContent = "Que vous cherchiez à louer une voiture pour une escapade, "
+      text.textContent = "Vous cherchiez à louer une voiture pour une escapade, "
     }, 4000)
     setTimeout(() => {
-      text.textContent = "Que vous cherchiez à acheter la voiture de vos rêves, "
+      text.textContent = "Vous cherchiez à acheter la voiture de vos rêves, "
     }, 8000)
     setTimeout(() => {
-      text.textContent = "Que vous cherchiez à trouver des gros engins pour vos projets, "
+      text.textContent = "Vous cherchiez à trouver des gros engins pour vos projets,   "
     }, 12000)
     setTimeout(() => {
-      text.textContent = "Que vous cherchiez à réserver "
+      text.textContent = "Vous cherchiez à réserver des billets de bus pour vos voyages,  "
     }, 16000)
     setTimeout(() => {
-      text.textContent = "des billets de bus pour vos voyages, "
+      text.textContent = "Hupe pour simplifier chaque étape de votre parcours. "
     }, 20000)
   }
 
@@ -84,23 +84,23 @@ onMounted(() => {
             src="/assets/img/accueil-car.png"
             style="width: 260px; height: 188px; object-fit: cover; float: left"
           />
-          <div class="wrapper text-start" style="margin-top: 2rem">
+          <div class="wrapper text-start" style="margin-top: 5rem" >
             <span class="text first-text text-black"
               >Quand la mobilité devient un jeu d'enfant !
             </span>
             <br />
-            <span class="text" style="font-size: 1rem; color: #218035">
+            <!-- <span class="text" style="font-size: 1rem ;color: black;">
               Notre application vous ouvre les portes d'un monde de possibilités
               pour répondre à tous vos besoins de déplacement.
-            </span> 
+            </span>  -->
             <br />
-            <span class="text sec-text" style="font-size: 1.20rem">
+            <span class="text sec-text" style="font-size: 1.1rem ;background: #219935;color: white;">
               Que vous cherchiez à louer une voiture pour une escapade, 
             </span> 
             <br />
-            <span class="text" style="font-size: 1rem; color: #218035">
+            <!-- <span class="text" style="font-size: 1rem; background: #219935;color: white;">
               Nous sommes là pour simplifier chaque étape de votre parcours.
-            </span>
+            </span> -->
           </div>
           <!-- <p class="text-white text-start" style="margin-top: 3.8%; font-size: 0.86rem">
             Découvrez notre sélection de véhicules de qualité à des tarifs
@@ -192,7 +192,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Découvrez le confort, la flexibilité et l'aventure avec notre flotte.
+                  Découvrez le confort, la flexibilité et l'aventure avec Hupe.
                 </p>
               </div>
             </div>
@@ -218,7 +218,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Embarquez pour l'aventure en un clic avec nos réservations de bus.
+                  Embarquez pour l'aventure avec nos réservations de bus.
                 </p>
               </div>
             </div>
@@ -244,7 +244,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                 Des engins puissants pour des résultats exceptionnels sur chaque chantier.
+                 Des engins puissants pour des résultats exceptionnels.
                 </p>
               </div>
             </div>
@@ -270,7 +270,7 @@ onMounted(() => {
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                 Le plaisir de conduire commence avec notre sélection exceptionnelle.
+                 Le plaisir de conduire débute avec la sélection Hupe.
                 </p>
               </div>
             </div>
