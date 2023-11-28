@@ -95,7 +95,8 @@ const handleSubmit = async () => {
   authStore.setUser(user)
   localStorage.setItem('user', JSON.stringify(user)) 
 
-  router.push('/confirmation') 
+  await router.push('/confirmation') 
+  window.location.reload() 
 
   // switch(companieService) {
   //   case 'Location':

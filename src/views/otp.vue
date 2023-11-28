@@ -73,7 +73,8 @@ const handleOnComplete = async (value) => {
       } 
       
       if((savedUser.raison_social || savedUser.type_compagnie) && savedUser.status == 'padding') {
-        router.push('/confirmation') 
+        await router.push('/confirmation') 
+        window.location.reload() 
         return 
       }
 
