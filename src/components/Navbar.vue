@@ -61,9 +61,10 @@ const country = ref()
 
 const searchTerm = ref('')
 
-const handleSearch = () => {
-  searchStore.search(searchTerm) 
-  router.push('/recherche')
+const handleSearch = async () => { 
+  await searchStore.search(searchTerm.value) 
+  location.pathname !== '/recherche' && router.push('/recherche') 
+  searchTerm.value = '' 
 }
 const API_URL = 'https://ipinfo.io/json?token=4e774d02603f38'
 

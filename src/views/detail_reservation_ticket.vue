@@ -78,7 +78,7 @@ const reserver = async (programme) => {
     montant: programme.montant,
     nom_client: name.value,
     nombre_personne: nombrePersonnes.value,
-    number: programme.number || '',
+    number: `T_${Date.now()}`, 
     payement: 'En attente',
     status: 'En attente',
     telephone_client: user.telephone,

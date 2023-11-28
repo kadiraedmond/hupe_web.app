@@ -8,8 +8,8 @@ import router from '@/router/router.js'
 
 const savedUser = JSON.parse(localStorage.getItem('user')) 
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'lk1kQSCZDqeYK1cpu2uo2LSnN7u2' || savedUser.uid || authStore.user.uid 
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'lk1kQSCZDqeYK1cpu2uo2LSnN7u2' || savedUser.uid || authStore.user.uid 
 
 const conversations = ref([]) 
 
