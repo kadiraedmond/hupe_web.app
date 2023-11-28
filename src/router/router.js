@@ -214,15 +214,8 @@ const routes = [
     
   },
 
-  // {
-  //   path: '/information',
-  //   name: 'Imformaton',
-  //   component: Information,
-    
-  // },
-
   {
-    path: '/information/:activeTab',
+    path: '/information',
     name: 'Imformaton',
     component: Information,
     

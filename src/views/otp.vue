@@ -59,12 +59,14 @@ const handleOnComplete = async (value) => {
       if((savedUser.raison_social || savedUser.type_compagnie) && savedUser.status == 'active') { 
 
         if(savedUser.type_compagnie == 'Location') {
-          router.push('/compte_vehicule') 
+          await router.push('/compte_vehicule') 
+          window.location.reload() 
           return 
         } 
         
         if(savedUser.type_compagnie == 'Transport') {
-          router.push('/compte_reservation') 
+          await router.push('/compte_reservation') 
+          window.location.reload() 
           return 
         }
         
@@ -80,13 +82,15 @@ const handleOnComplete = async (value) => {
     if(!authStore.isCompanie && authStore.isNew) { 
       const docRef = doc(firestoreDb, 'users', user.uid)
       await updateDoc(docRef, { token: user.stsTokenManager.accessToken })
-      router.push('/compte_client') 
+      await router.push('/compte_client') 
+      window.location.reload() 
       return 
 
     } 
     
     if(!authStore.isCompanie && !authStore.isNew) {
-      router.push('/compte_client') 
+      await router.push('/compte_client') 
+      window.location.reload() 
       return 
     }
   
