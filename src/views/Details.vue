@@ -453,9 +453,9 @@ onMounted(() => {
                 <div class="row mt-4">
                   <div class="col-md-3"></div>
                   <div class="col-md-6">
-                    <div class="card text-center">
+                    <div class="card text-center border-0">
                       <div class="text-center">
-                        <img src="/assets/img/icone/trajet.png" alt="" class="img-fluid w-25">
+                        <img src="/assets/img/icone/trajet.png" alt="" class="img-fluid w-50">
                       </div>
                       
                       <div class="card-body">
@@ -568,9 +568,9 @@ onMounted(() => {
                   <div class="row mt-4">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                      <div class="card text-center">
+                      <div class="card text-center border-0">
                         <div class="text-center">
-                          <img src="/assets/img/icone/promo.png" alt="" class="img-fluid w-25">
+                          <img src="/assets/img/icone/promo.png" alt="" class="img-fluid w-50">
                         </div>
                         
                         <div class="card-body">

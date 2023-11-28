@@ -198,7 +198,7 @@ const valider = async (location) => {
                           >
                             {{ enAttente.totalNumber }}
                           </button>
-                          Location en attente
+                          Locations en attente
                         </p>
                       </div>
                     </div>
@@ -250,7 +250,7 @@ const valider = async (location) => {
                           >
                             {{ valides.totalNumber }}
                           </button>
-                          Location validés
+                          Locations validés
                         </p>
                       </div>
                     </div>
@@ -304,7 +304,7 @@ const valider = async (location) => {
                           >
                             {{ confirmees.totalNumber }}
                           </button>
-                          Location confirmés
+                          Locations confirmés
                         </p>
                       </div>
                     </div>
@@ -356,7 +356,7 @@ const valider = async (location) => {
                           >
                             {{ annulees.totalNumber }}
                           </button>
-                          Location annulés
+                          Locations annulés
                         </p>
                       </div>
                     </div>
@@ -408,7 +408,7 @@ const valider = async (location) => {
                           >
                             {{ reportees.totalNumber }}
                           </button>
-                          Location reportés
+                          Locations reportés
                         </p>
                       </div>
                     </div>
@@ -460,7 +460,7 @@ const valider = async (location) => {
                           >
                             {{ utilisees.totalNumber }}
                           </button>
-                          Location utilisés
+                          Locations utilisés
                         </p>
                       </div>
                     </div>

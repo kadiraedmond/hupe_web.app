@@ -607,10 +607,10 @@ onMounted(() => {
                                     <p>Cette application est destinée aux clients et leur permet de bénéficier des services offerts par Hupe. Les clients peuvent utiliser l'application pour réserver des tickets de bus, louer des voitures et des gros engins, ainsi que pour accéder à d'autres fonctionnalités pratiques. Elle offre une interface conviviale et intuitive, permettant aux utilisateurs de trouver facilement les services dont ils ont besoin.</p>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
+                                    <img src="/assets/img/inter/1.png" alt="" class="img-fluid" style="border-radius:5px">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
+                                    <img src="/assets/img/inter/2.png" alt="" class="img-fluid" style="border-radius:5px">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <h1 style="font-size: 20px;">L'application pour les partenaires</h1>
@@ -621,7 +621,7 @@ onMounted(() => {
                                     <p>L'application de scan est un outil essentiel pour les partenaires qui proposent des services. Elle permet aux partenaires de scanner les codes QR des réservations effectuées par les clients, facilitant ainsi le processus de vérification et de prise en charge des véhicules ou engins loués. Cette application garantit une gestion efficace et précise des réservations, offrant ainsi une expérience fluide pour les partenaires et les clients.</p>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <img src="/assets/img/client.jpg" alt="" class="img-fluid" style="border-radius:5px">
+                                    <img src="/assets/img/inter/3.png" alt="" class="img-fluid" style="border-radius:5px">
                                 </div>
                             </div>
                          </div>
