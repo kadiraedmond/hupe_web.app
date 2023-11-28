@@ -781,77 +781,120 @@ const valider = async (location) => {
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
 
-              <div class="row">
-              <div class="col-md-12">
-                <div class="row">
-                
-                  <div class="col-6 text-start">
-                    <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
-                  </div>
-                  <div class="col-6"></div>
-                </div>
-              </div>
-              <div class="col-md-12 mt-2">
-                <div class="table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">N°</th>
-                        <th scope="col">NomClient</th>
-                        <th scope="col">Marque</th>
-                        <th scope="col">Modele</th>
-                        <th scope="col">Année</th>
-                        <th scope="col">Moteur</th>
-                        <th scope="col">Transmission</th>
-                        <th scope="col">Immatriculation</th>
-                        <th scope="col">Chauffeur</th>
-                        <th scope="col">Intérieur</th>
-                        <th scope="col">D.retrait</th>
-                        <th scope="col">H.retrait</th>
-                        <th scope="col">D.retour</th>
-                        <th scope="col">H.retour</th>
-                        <th scope="col">N.jours</th>
-                        
-                        <th scope="col">Prix</th>
-                        <th scope="col">Statut</th>
-                      
-                        
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(location, index) in elements_en_attente" :key="index">
-                        <th scope="row">1</th>
-                        <td></td>
-                        <td>{{ location.nom_client }}</td>
-                        
-                        <td> {{ location.vehicule }}</td>
-                        <td> {{ location.modele }}</td>
-                        <td> {{ location.année }}</td>
-                        <td>{{ location.moteur }}</td>
-                        <td> {{ location.boite }}</td>
-                        <td>{{ location.plaque_vehicule }}</td>
-                        <td>{{ location.chauffeur }}</td>
-                        <td>{{ location.interieurPays }}</td>
-                        <td>{{ location.date_retrait }}</td>
-                        <td>{{ location.heure_retrait }}</td>
-                        <td> {{ location.date_retour }}</td>
-                        <td> {{ location.heure_retour }}</td>
-                        <td> {{ location.montant }}</td>
-                        <td></td>
-                      
-                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ location.status }}</div></td>
-                        
-                      </tr>
+              <div class="row mb-4" >
+                <div class="col-md-1"></div>
+                <div class="col-md-10" style=" padding: 13px; border-radius: 5px; border: 1px solid #f2f2f2;">
+                  <form class="row g-3 needs-validation" method="post" action="{{ url('/biens/filtrer') }}">
+                   
+                    <div class="col-md-3">
+                       
+                       <input type="text" name="adresse" class="form-control" id="validationCustom02" placeholder="Adresse">
+                     
+                    </div>
+                    <div class="col-md-3">
+                       
+                      <input type="text" name="prix" class="form-control" id="validationCustom02" placeholder="Prix">
                     
+                    </div>
+                    <div class="col-md-4">
                       
+                        <div class="row">
+                          <div class="col-6">
+                            <input type="date" name="prix" class="form-control" id="validationCustomUsername" placeholder="date début" aria-describedby="inputGroupPrepend">
+                          </div>
+                          <div class="col-6">
+                            <input type="date" name="prix" class="form-control" id="validationCustomUsername" placeholder="Prix" aria-describedby="inputGroupPrepend">
+                          </div>
+                        </div>
+                         
+                    </div>
+                   
+                    <div class="col-2">
+                      <div class="row g-1">
+                        <div class="col-md-12">
+                          <button class="btn btn-primary" type="submit" style="background: #219935; border-color: #219935;">Consulter</button>
+                        </div>
+                         
+                      </div>
                       
-                    </tbody>
-                </table>
+                    </div>
+                  </form>
+                 
                 </div>
-                
+                <div class="col-md-1"></div>
               </div>
-            </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row">
+                  
+                    <div class="col-6 text-start">
+                      <button class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
+                    </div>
+                    <div class="col-6"></div>
+                  </div>
+                </div>
+                <div class="col-md-12 mt-2">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">id</th>
+                          <th scope="col">N°</th>
+                          <th scope="col">NomClient</th>
+                          <th scope="col">Marque</th>
+                          <th scope="col">Modele</th>
+                          <th scope="col">Année</th>
+                          <th scope="col">Moteur</th>
+                          <th scope="col">Transmission</th>
+                          <th scope="col">Immatriculation</th>
+                          <th scope="col">Chauffeur</th>
+                          <th scope="col">Intérieur</th>
+                          <th scope="col">D.retrait</th>
+                          <th scope="col">H.retrait</th>
+                          <th scope="col">D.retour</th>
+                          <th scope="col">H.retour</th>
+                          <th scope="col">N.jours</th>
+                          
+                          <th scope="col">Prix</th>
+                          <th scope="col">Statut</th>
+                        
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(location, index) in elements_en_attente" :key="index">
+                          <th scope="row">1</th>
+                          <td></td>
+                          <td>{{ location.nom_client }}</td>
+                          
+                          <td> {{ location.vehicule }}</td>
+                          <td> {{ location.modele }}</td>
+                          <td> {{ location.année }}</td>
+                          <td>{{ location.moteur }}</td>
+                          <td> {{ location.boite }}</td>
+                          <td>{{ location.plaque_vehicule }}</td>
+                          <td>{{ location.chauffeur }}</td>
+                          <td>{{ location.interieurPays }}</td>
+                          <td>{{ location.date_retrait }}</td>
+                          <td>{{ location.heure_retrait }}</td>
+                          <td> {{ location.date_retour }}</td>
+                          <td> {{ location.heure_retour }}</td>
+                          <td> {{ location.montant }}</td>
+                          <td></td>
+                        
+                          <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px;">{{ location.status }}</div></td>
+                          
+                        </tr>
+                      
+                        
+                        
+                      </tbody>
+                  </table>
+                  </div>
+                  
+                </div>
+              </div>
             </div>
             
           </div>

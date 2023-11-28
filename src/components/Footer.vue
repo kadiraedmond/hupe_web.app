@@ -92,9 +92,9 @@ const lien = route.params.activeTab
       <div class="col footer-links">
         <h4>Modes de paiement</h4>
         <ul>
-          <li><a href="#">Mobile money </a></li>
-          <li> <a href="#">Carte bancaire</a></li>
-          <li> <a href="#">Cinetpay</a></li>
+          <li><a href="#"><img src="/assets/img/logo/card.png" alt="" class="img-fluid">  Mobile money </a></li>
+          <li> <a href="#"> <img src="/assets/img/logo/card.png" alt="" class="img-fluid"> Carte bancaire</a></li>
+          <li> <a href="#"> <img src="/assets/img/logo/cinet.png" alt="" class="img-fluid" style="width: 90px; background: white;"></a></li>
           <li> <a href="#"></a></li>
         </ul>
       </div>

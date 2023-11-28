@@ -47,15 +47,21 @@ onMounted(() => {
                 </div>
                    
                   <div class="col-md-12">
-                    <nav>
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-location-tab" data-bs-toggle="tab" data-bs-target="#nav-location" type="button" role="tab" aria-controls="nav-location" aria-selected="true" style="border-radius: 5px 0px 0px 0px !important;"> Location de véhicule</button>
-                        <button class="nav-link" id="nav-reservation-tab" data-bs-toggle="tab" data-bs-target="#nav-reservation" type="button" role="tab" aria-controls="nav-reservation" aria-selected="false"> Reservation de ticket</button>
-                        <button class="nav-link" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-controls="nav-local" aria-selected="false"> Location de gros engin </button>
-                        <button class="nav-link " id="nav-vente-tab" data-bs-toggle="tab" data-bs-target="#nav-vente" type="button" role="tab" aria-controls="nav-vente" aria-selected="true">Vente de véhicule </button>
-                         
+                    <div class="row">
+                      <div class="col-md-3"></div>
+                      <div class="col-md-9">
+                        <nav>
+                          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-location-tab" data-bs-toggle="tab" data-bs-target="#nav-location" type="button" role="tab" aria-controls="nav-location" aria-selected="true" style="border-radius: 5px 0px 0px 0px !important;"> Location de véhicule</button>
+                            <button class="nav-link" id="nav-reservation-tab" data-bs-toggle="tab" data-bs-target="#nav-reservation" type="button" role="tab" aria-controls="nav-reservation" aria-selected="false"> Reservation de ticket</button>
+                            <button class="nav-link" id="nav-local-tab" data-bs-toggle="tab" data-bs-target="#nav-local" type="button" role="tab" aria-controls="nav-local" aria-selected="false"> Location de gros engin </button>
+                            <button class="nav-link " id="nav-vente-tab" data-bs-toggle="tab" data-bs-target="#nav-vente" type="button" role="tab" aria-controls="nav-vente" aria-selected="true">Vente de véhicule </button>
+                            
+                          </div>
+                        </nav>
                       </div>
-                    </nav>
+                    </div>
+                    
                     <div class="tab-content" id="nav-tabContent">
                       <div class="tab-pane fade show active" id="nav-location" role="tabpanel" aria-labelledby="nav-location-tab" tabindex="0">
                         <div class="row mt-4">
