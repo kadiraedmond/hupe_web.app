@@ -176,9 +176,9 @@ onMounted(() => {
               class="card h-100 border-0 text-center"
               style="background: #f9f9f9"
             >
-              <router-link to="/location" class="mt-4">
+              <router-link to="/location" class="mt-4 mb-1">
                 <img
-                  src="/assets/img/car.png"
+                  src="/assets/img/service/car.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -202,9 +202,9 @@ onMounted(() => {
               class="card h-100 border-0 text-center"
               style="background: #f9f9f9"
             >
-              <router-link to="/reservation" class="mt-4 text-black">
+              <router-link to="/reservation" class="mt-4 mb-1 text-black">
                 <img
-                  src="/assets/img/bus.png"
+                  src="/assets/img/service/bus.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -228,9 +228,9 @@ onMounted(() => {
               class="card h-100 border-0 text-center"
               style="background: #f9f9f9"
             >
-              <router-link to="/location_gros_engin" class="mt-4" id="a">
+              <router-link to="/location_gros_engin" class="mt-4 mb-1" id="a">
                 <img
-                  src="/assets/img/engin.png"
+                  src="/assets/img/service/engin.png"
                   class="img-fluid w-25"
                   alt="..."
                 />
@@ -254,9 +254,9 @@ onMounted(() => {
               class="card h-100 border-0 text-center"
               style="background: #f9f9f9"
             >
-              <router-link to="/reservation" class="mt-4" id="a">
+              <router-link to="/reservation" class="mt-4 mb-1" id="a">
                 <img
-                  src="/assets/img/engine.png"
+                  src="/assets/img/service/cars.png"
                   class="img-fluid w-25"
                   alt="..."
                 />

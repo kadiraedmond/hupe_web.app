@@ -134,7 +134,7 @@ const selectedValue = ref('');
       class="container d-flex align-items-center justify-content-between"
       style="height: 40px"
     >
-      <h1 class="logo">
+      <h1 class="logo" id="h1_logo">
         <router-link to="/"
           ><img
             src="/assets/img/logo2.png"
@@ -169,9 +169,9 @@ const selectedValue = ref('');
       <form class="d-flex" role="search" @submit.prevent="handleSearch">
         <input
           class="form-control me-2 text-white"
-          style="width: 200; max-width: 200px"
+          style="width: 200; max-width: 200px; font-size: 13px;"
           type="search"
-          placeholder="Rechercher"
+          placeholder="Recherche"
           v-model="searchTerm"
           aria-label="Search"
           id="search"
@@ -289,5 +289,13 @@ const selectedValue = ref('');
 
 ::placeholder {
   color: rgba(255, 255, 255, 0.8);
+}
+
+#h1_logo{
+  background: white;
+    padding: 4px;
+    border-radius: 5px;
+    height: 43px;
+    margin-top: 2px;
 }
 </style>
