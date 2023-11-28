@@ -654,13 +654,22 @@ onMounted(() => {
                               </div>
                               <div class="col-md-6">
                                 <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
+                                  <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
+                                    Message
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                      99+
+                                      <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                  </button>
+                                </router-link>
+                                <!-- <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
                                     <button
                                     class="btn btn-primary w-75"
                                     style="background: #219935; border-color: #219935 ; font-size: 12px; "
                                     >
                                         Message
                                     </button>
-                                </router-link>
+                                </router-link> -->
                               </div>
                              
                             </div>

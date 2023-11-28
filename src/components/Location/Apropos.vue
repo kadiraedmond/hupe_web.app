@@ -8,8 +8,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieById(userId) // authStore.user.uid
 
@@ -117,27 +117,21 @@ onMounted(() => {
             <div class="col-md-12">
               <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
               <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Nom </label>
+                <label for="validationCustom01" class="form-label">Raison sociale </label>
                 <input type="text" class="form-control" id="validationCustom01" v-model="responsable" >
                 
               </div>
               <div class="col-md-6">
-                <label for="validationCustom02" class="form-label">Prénoms</label>
-                <input type="text" class="form-control" id="validationCustom02" v-model="prenom" >
+                <label for="validationCustom02" class="form-label">Responsable</label>
+                <input type="text" class="form-control" id="validationCustom02" v-model="responsable" >
                  
               </div>
 
-              <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Photo de profil</label>
-                <div class="input-group has-validation">
-                  <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
-                   
-                </div>
-              </div>
+              
 
               <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Date de naissance </label>
-                <input type="date" class="form-control" id="validationCustom01" v-model="date_nais" >
+                <label for="validationCustom01" class="form-label">Description </label>
+                <input type="text" class="form-control" id="validationCustom01" v-model="date_nais" >
                 
               </div>
 
@@ -174,9 +168,17 @@ onMounted(() => {
               </div>
 
               <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Nom d'utilisateur</label>
+                <label for="validationCustomUsername" class="form-label">Image de couverture</label>
                 <div class="input-group has-validation">
-                  <input v-model="nom_utilisteur" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                  <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                   
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Logo</label>
+                <div class="input-group has-validation">
+                  <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
                    
                 </div>
               </div>

@@ -624,15 +624,15 @@ onMounted(() => {
                                                     <div class="col-md-10">
                                                       <div class="row">
                                                         <div class="col-md-12 mb-3">
-                                                          <!-- <router-link to="/raison_d_annulation"> -->
+                                                           <a href="/raison_d_annulation">
                                                             <button
-                                                            class="btn btn-primary w-100" @click="refresh()"
+                                                            class="btn btn-primary w-100"
                                                             style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
                                                            
                                                             >
                                                             Annuler quand même
                                                             </button>
-                                                          <!-- </router-link> -->
+                                                          </a>
                                                             
 
                                                             
@@ -732,59 +732,59 @@ onMounted(() => {
                             </div>
 
                             <div class="row" v-if="location.status == 'En attente'">
-                            <div class="col-md-6">
-                                <button
-                                class="btn btn-primary w-75"
-                                style="
-                                    background: white;
-                                    border-color: crimson;
-                                    color: crimson;
-                                    font-size: 12px; 
-                                "
-                                data-bs-toggle="modal"
-                                data-bs-target="#annulModal10"
-                                >
-                                Annuler
-                                </button>
+                              <!-- <div class="col-md-6">
+                                  <button
+                                  class="btn btn-primary w-75"
+                                  style="
+                                      background: white;
+                                      border-color: crimson;
+                                      color: crimson;
+                                      font-size: 12px; 
+                                  "
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#annulModal10"
+                                  >
+                                  Annuler
+                                  </button>
 
-                                <!-- Modal -->
-                                <div
-                                class="modal fade"
-                                id="annulModal10"
-                                tabindex="-1"
-                                aria-labelledby="exampleModalLabel10"
-                                aria-hidden="true"
-                                >
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                                        Donnez la raison de l'annulation
-                                        </h1>
-                                        <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    
-                                    <div>
-                                        <select v-model="option" class="w-100 mb-2">
-                                        <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du Véhicule</option>
-                                        <option value="J'ai changé d'avis">J'ai changé d'avis</option>
-                                        <option value="J'ai une autre option">J'ai une autre option</option>
-                                        <option value="Autre">Autre</option>
-                                        </select>
-                                        <div class="mb-2">
-                                        <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
-                                        </div>
-                                    </div>
-                                    <button @click="annul(location)" class="btn btn-primary">Enregistrer</button>
-                                    </div>
+                                
+                                  <div
+                                  class="modal fade"
+                                  id="annulModal10"
+                                  tabindex="-1"
+                                  aria-labelledby="exampleModalLabel10"
+                                  aria-hidden="true"
+                                  >
+                                  <div class="modal-dialog">
+                                      <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                                          Donnez la raison de l'annulation
+                                          </h1>
+                                          <button
+                                          type="button"
+                                          class="btn-close"
+                                          data-bs-dismiss="modal"
+                                          aria-label="Close"
+                                          ></button>
+                                      </div>
+                                      
+                                      <div>
+                                          <select v-model="option" class="w-100 mb-2">
+                                          <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du Véhicule</option>
+                                          <option value="J'ai changé d'avis">J'ai changé d'avis</option>
+                                          <option value="J'ai une autre option">J'ai une autre option</option>
+                                          <option value="Autre">Autre</option>
+                                          </select>
+                                          <div class="mb-2">
+                                          <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
+                                          </div>
+                                      </div>
+                                      <button @click="annul(location)" class="btn btn-primary">Enregistrer</button>
+                                      </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
+                              </div> -->
                             </div>
                             </div>
 
@@ -804,13 +804,22 @@ onMounted(() => {
                               </div>
                               <div class="col-6 text-end">
                                 <router-link :to="`/messagerie/${location.companieInfos.uid}`">
+                                  <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
+                                    Message
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                      99+
+                                      <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                  </button>
+                                </router-link>
+                                <!-- <router-link :to="`/messagerie/${location.companieInfos.uid}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="background: #219935; border-color: #219935 ;font-size: 12px; "
                                   >
                                   Message
                                   </button>
-                                </router-link>
+                                </router-link> -->
                               </div>
                             </div>
 

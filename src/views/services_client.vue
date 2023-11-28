@@ -84,7 +84,7 @@ const goToConversation = () => {
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                     <div class="col">
                                         <div class="card h-100">
-                                        <img src="/assets/img/messagerie-interne.jpg" class="card-img-top" alt="..." id="card-image">
+                                        <img src="/assets/img/support/messagerie-interne.jpg" class="card-img-top" alt="..." id="card-image">
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Messagerie interne</h5>
                                             <p class="card-text">La messagerie interne pour le support HUPE est une fonctionnalité qui facilite la communication directe entre les utilisateurs de l'application et notre équipe de support client.</p>
@@ -218,7 +218,7 @@ const goToConversation = () => {
                                     </div>
                                     <div class="col">
                                         <div class="card h-100">
-                                            <img src="/assets/img/signal-problem.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <img src="/assets/img/support/signal-problem.jpg" class="card-img-top" alt="..." id="card-image">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Signalement de Problèmes</h5>
                                                 <p class="card-text">Si vous rencontrez un problème technique ou si vous avez des suggestions pour améliorer notre application, veuillez utiliser notre formulaire de signalement de problèmes. Cela nous permettra de recueillir des informations détaillées pour résoudre le problème plus efficacement.</p>
@@ -232,7 +232,7 @@ const goToConversation = () => {
                                     </div>
                                     <div class="col">
                                         <div class="card h-100">
-                                            <img src="/assets/img/chat-direct.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <img src="/assets/img/support/chat-direct.jpg" class="card-img-top" alt="..." id="card-image">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Chat en Direct</h5>
                                                 <p class="card-text">Pour une assistance immédiate, utilisez notre service de chat en direct. Notre équipe de support est là pour répondre à vos questions en temps réel. Cliquez sur l'icône du chat en bas de l'écran pour démarrer une conversation</p>
@@ -247,7 +247,7 @@ const goToConversation = () => {
 
                                     <div class="col">
                                         <div class="card h-100">
-                                            <img src="/assets/img/email-assistance.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <img src="/assets/img/support/email-assistance.jpg" class="card-img-top" alt="..." id="card-image">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Assistance par E-mail</h5>
                                                 <p class="card-text">Consultez notre centre d'aide pour accéder à une multitude de ressources utiles.</p>
@@ -312,7 +312,7 @@ const goToConversation = () => {
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                     <div class="col">
                                         <div class="card h-100">
-                                        <img src="/assets/img/faq.jpg" class="card-img-top" alt="..." id="card-image">
+                                        <img src="/assets/img/aide/faq.jpg" class="card-img-top" alt="..." id="card-image">
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Foire Aux Questions (FAQ)</h5>
                                             <p class="card-text">Consultez notre FAQ pour trouver des réponses aux questions les plus courantes sur l'utilisation de l'application, les fonctionnalités, les paiements, la sécurité et bien d'autres sujets.</p>
@@ -326,7 +326,7 @@ const goToConversation = () => {
                                     </div>
                                     <div class="col">
                                         <div class="card h-100">
-                                            <img src="/assets/img/guide.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <img src="/assets/img/aide/guide.jpg" class="card-img-top" alt="..." id="card-image">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Guides d'Utilisation</h5>
                                                 <p class="card-text">Nous avons créé des guides d'utilisation détaillés qui vous expliquent étape par étape comment utiliser chaque aspect de l'application. Que vous souhaitiez réserver un véhicule, acheter un billet de bus ou utiliser notre service de location de gros engins, vous trouverez un guide correspondant.</p>
@@ -340,7 +340,7 @@ const goToConversation = () => {
                                     </div>
                                     <div class="col">
                                         <div class="card h-100">
-                                            <img src="/assets/img/video.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <img src="/assets/img/aide/video.jpg" class="card-img-top" alt="..." id="card-image">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title"> Tutoriels Vidéo</h5>
                                                 <p class="card-text"> Certaines personnes préfèrent apprendre en visualisant. Notre collection de tutoriels vidéo vous guide à travers les processus les plus importants de l'application, en vous montrant exactement comment effectuer différentes tâches.</p>
@@ -355,7 +355,7 @@ const goToConversation = () => {
 
                                     <div class="col">
                                         <div class="card h-100">
-                                            <img src="/assets/img/blog1.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <img src="/assets/img/aide/blog1.jpg" class="card-img-top" alt="..." id="card-image">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Articles Informatifs</h5>
                                                 <p class="card-text">Trouvez des articles informatifs sur divers sujets liés à la mobilité, à l'industrie automobile, aux voyages en bus, aux conseils de sécurité et plus encore. Nous vous tenons informés sur les dernières tendances et les informations utiles. </p>
@@ -419,7 +419,7 @@ const goToConversation = () => {
                                 <div class="row row-cols-1 row-cols-md-2 g-4">
                                     <div class="col">
                                         <div class="card h-100">
-                                        <img src="/assets/img/aide.jpg" class="card-img-top" alt="..." id="card-image">
+                                        <img src="/assets/img/contact/email.jpg" class="card-img-top" alt="..." id="card-image">
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Assistance par E-mail</h5>
                                             <p class="card-text">Vous pouvez nous contacter par e-mail à support@hupe-africa.com. Envoyez-nous un e-mail à tout moment, et notre équipe de support client vous répondra dans les plus brefs délais.</p>
@@ -433,7 +433,7 @@ const goToConversation = () => {
                                     </div>
                                     <div class="col">
                                         <div class="card h-100">
-                                            <img src="/assets/img/guide.jpg" class="card-img-top" alt="..." id="card-image">
+                                            <img src="/assets/img/contact/telephone.jpg" class="card-img-top" alt="..." id="card-image">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Numéro de Téléphone</h5>
                                                 <p class="card-text">Si vous préférez parler à un membre de notre équipe, vous pouvez nous appeler au [numéro de téléphone de contact]. Nos agents sont disponibles pendant nos heures d'ouverture [heures d'ouverture du support] pour répondre à vos questions et vous aider.</p>
@@ -538,7 +538,7 @@ const goToConversation = () => {
                         </div>
                     </div>
                     <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0" style="    padding: 30px;
-    margin-top: -30px;"> 
+                      margin-top: -30px;"> 
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 style="font-size: 24px; font-weight: 600;" class="mb-3">Condition de partenariat </h2>
@@ -658,7 +658,7 @@ const goToConversation = () => {
 #card-image{
     height: 235.13px;
     /* background-size: cover; */
-    object-fit: cover;
+    /* object-fit: cover; */
     border-radius: 15px 15px 0px 0px !important;
 }
 

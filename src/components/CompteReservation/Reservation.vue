@@ -424,11 +424,11 @@ const valider = async (reservation) => {
             <div class="row w-100">
               <div class="col-9"></div>
               <div class="col-3 text-end d-flex">
-                <li class="nav-item" role="presentation" style="margin-left: 176px;">
-                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                <li class="nav-item" role="presentation" style="margin-left: 8px;">
+                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"> Vue grille  <i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"> Vue liste  <i class='bx bx-list-ul'></i> </button>
                 </li>
               </div>
             </div>
@@ -736,11 +736,11 @@ const valider = async (reservation) => {
             <div class="row w-100">
               <div class="col-9"></div>
               <div class="col-3 text-end d-flex">
-                <li class="nav-item" role="presentation" style="margin-left: 176px;">
-                  <button class="nav-link active" id="pills-home-tab21" data-bs-toggle="pill" data-bs-target="#pills-home21" type="button" role="tab" aria-controls="pills-home21" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                <li class="nav-item" role="presentation" style="margin-left: 8px;">
+                  <button class="nav-link active" id="pills-home-tab21" data-bs-toggle="pill" data-bs-target="#pills-home21" type="button" role="tab" aria-controls="pills-home21" aria-selected="true">Vue grille  <i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-profile-tab21" data-bs-toggle="pill" data-bs-target="#pills-profile21" type="button" role="tab" aria-controls="pills-profile21" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                  <button class="nav-link" id="pills-profile-tab21" data-bs-toggle="pill" data-bs-target="#pills-profile21" type="button" role="tab" aria-controls="pills-profile21" aria-selected="false">Vue liste  <i class='bx bx-list-ul'></i> </button>
                 </li>
               </div>
             </div>
@@ -1047,11 +1047,11 @@ const valider = async (reservation) => {
             <div class="row w-100">
               <div class="col-9"></div>
               <div class="col-3 text-end d-flex">
-                <li class="nav-item" role="presentation" style="margin-left: 176px;">
-                  <button class="nav-link active" id="pills-home-tab22" data-bs-toggle="pill" data-bs-target="#pills-home22" type="button" role="tab" aria-controls="pills-home22" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                <li class="nav-item" role="presentation" style="margin-left: 8px;">
+                  <button class="nav-link active" id="pills-home-tab22" data-bs-toggle="pill" data-bs-target="#pills-home22" type="button" role="tab" aria-controls="pills-home22" aria-selected="true">Vue grille <i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-profile-tab22" data-bs-toggle="pill" data-bs-target="#pills-profile22" type="button" role="tab" aria-controls="pills-profile22" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                  <button class="nav-link" id="pills-profile-tab22" data-bs-toggle="pill" data-bs-target="#pills-profile22" type="button" role="tab" aria-controls="pills-profile22" aria-selected="false"> Vue liste <i class='bx bx-list-ul'></i> </button>
                 </li>
               </div>
             </div>
@@ -1359,11 +1359,11 @@ const valider = async (reservation) => {
             <div class="row w-100">
               <div class="col-9"></div>
               <div class="col-3 text-end d-flex">
-                <li class="nav-item" role="presentation" style="margin-left: 176px;">
-                  <button class="nav-link active" id="pills-home-tab23" data-bs-toggle="pill" data-bs-target="#pills-home23" type="button" role="tab" aria-controls="pills-home23" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                <li class="nav-item" role="presentation" style="margin-left: 8px;">
+                  <button class="nav-link active" id="pills-home-tab23" data-bs-toggle="pill" data-bs-target="#pills-home23" type="button" role="tab" aria-controls="pills-home23" aria-selected="true">Vue grille  <i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-profile-tab23" data-bs-toggle="pill" data-bs-target="#pills-profile23" type="button" role="tab" aria-controls="pills-profile23" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                  <button class="nav-link" id="pills-profile-tab23" data-bs-toggle="pill" data-bs-target="#pills-profile23" type="button" role="tab" aria-controls="pills-profile23" aria-selected="false">Vue liste  <i class='bx bx-list-ul'></i> </button>
                 </li>
               </div>
             </div>
@@ -1671,11 +1671,11 @@ const valider = async (reservation) => {
             <div class="row w-100">
               <div class="col-9"></div>
               <div class="col-3 text-end d-flex">
-                <li class="nav-item" role="presentation" style="margin-left: 176px;">
-                  <button class="nav-link active" id="pills-home-tab24" data-bs-toggle="pill" data-bs-target="#pills-home24" type="button" role="tab" aria-controls="pills-home24" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                <li class="nav-item" role="presentation" style="margin-left: 8px;">
+                  <button class="nav-link active" id="pills-home-tab24" data-bs-toggle="pill" data-bs-target="#pills-home24" type="button" role="tab" aria-controls="pills-home24" aria-selected="true">Vue grille  <i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-profile-tab24" data-bs-toggle="pill" data-bs-target="#pills-profile24" type="button" role="tab" aria-controls="pills-profile24" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                  <button class="nav-link" id="pills-profile-tab24" data-bs-toggle="pill" data-bs-target="#pills-profile24" type="button" role="tab" aria-controls="pills-profile24" aria-selected="false"> Vue liste  <i class='bx bx-list-ul'></i> </button>
                 </li>
               </div>
             </div>
@@ -1983,11 +1983,11 @@ const valider = async (reservation) => {
             <div class="row w-100">
               <div class="col-9"></div>
               <div class="col-3 text-end d-flex">
-                <li class="nav-item" role="presentation" style="margin-left: 176px;">
-                  <button class="nav-link active" id="pills-home-tab25" data-bs-toggle="pill" data-bs-target="#pills-home25" type="button" role="tab" aria-controls="pills-home25" aria-selected="true"> <i class='bx bxs-dashboard'></i> </button>
+                <li class="nav-item" role="presentation" style="margin-left: 8px;">
+                  <button class="nav-link active" id="pills-home-tab25" data-bs-toggle="pill" data-bs-target="#pills-home25" type="button" role="tab" aria-controls="pills-home25" aria-selected="true"> Vue grille <i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-profile-tab25" data-bs-toggle="pill" data-bs-target="#pills-profile25" type="button" role="tab" aria-controls="pills-profile25" aria-selected="false"> <i class='bx bx-list-ul'></i> </button>
+                  <button class="nav-link" id="pills-profile-tab25" data-bs-toggle="pill" data-bs-target="#pills-profile25" type="button" role="tab" aria-controls="pills-profile25" aria-selected="false">Vue liste <i class='bx bx-list-ul'></i> </button>
                 </li>
               </div>
             </div>

@@ -23,21 +23,40 @@ export const useSearchStore = defineStore('searchStore', {
             try { 
                 
                 // Recherche de compagnies 
+                this.companiesResults = [] 
                 const companiesQuery = query(companiesColRef, and(where('status', '==', 'active'), or(where('raison_social', '==', `${searchTerm}`), where('description', '==', `${searchTerm}`))))
                 const companiesSnapshot = await getDocs(companiesQuery)
                 companiesSnapshot.docs.forEach((doc) => this.companiesResults.push(doc.data()))
 
 
                 // Recherche de vehicules 
+                this.vehiculesResults = [] 
                 const vehiculesQuery = query(vehiculeColRef, or(where('vehicule', '==', `${searchTerm}`), where('modele', '==', `${searchTerm}`)))
                 const vehiculesSnapshots = await getDocs(vehiculesQuery) 
-                vehiculesSnapshots.docs.forEach(doc => this.vehiculesResults.push(doc.data()))  
-
+                vehiculesSnapshots.docs.forEach(async snap_doc => {
+                    const programData = snap_doc.data() 
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let companie = {}
+                    if(snapshot.exists()) companie = snapshot.data()
+                    this.vehiculesResults.push({ ...programData, companieInfos: companie })
+                })  
+                
                 
                 // Recherche de trajets 
+                this.trajetsResults = [] 
                 const trajetsQuery = query(trajetsColRef, or(where('lieu_depart', '==', `${searchTerm}`), where('destination', '==', `${searchTerm}`))) 
                 const trajetsSnapshots = await getDocs(trajetsQuery) 
-                trajetsSnapshots.docs.forEach(doc => this.trajetsResults.push(doc.data()))  
+                trajetsSnapshots.docs.forEach(async snap_doc => {
+                    const programData = snap_doc.data() 
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let companie = {}
+                    if(snapshot.exists()) companie = snapshot.data()
+                    this.trajetsResults.push({ ...programData, companieInfos: companie })
+                })  
 
                 this.results.push(this.companiesResults) 
                 this.results.push(this.vehiculesResults) 

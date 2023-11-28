@@ -55,6 +55,8 @@ import VehiculeP from '@/views/vehicule.vue';
 import ReservationP from '@/views/reservation_populaire.vue';
 import EnginP from '@/views/engin_populaire.vue';
 import VenteP from '@/views/vente_populaire.vue';
+import InfosClient from '@/views/information_client.vue';
+
 
 import { auth } from '@/firebase/firebase.js'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -436,6 +438,15 @@ const routes = [
     component: VenteP,
     
   },
+
+  {
+    path: '/information-client',
+    name: 'InfosClient',
+    component: InfosClient,
+    
+  },
+
+  
 ];
 
 const router = createRouter({
