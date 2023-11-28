@@ -1372,6 +1372,8 @@ onMounted(() => {
         <div class="row">
           <div class="col-md-12 text-center mt-5">
             <div class="row" style="margin-bottom: -82px;">
+
+              <div class="col-md-3"></div>
                
               <div class="col-md-6" style=" margin-top: -64px;">
                 <div class="section-title text-start">
@@ -1412,9 +1414,9 @@ onMounted(() => {
                   </div>
                 </form>
               </div>
-              <div class="col-md-6" style="    background: #f9f9f9; margin-top: -73px; border-radius: 10px;  margin-bottom: 60px">
-                <img src="/assets/img/newletter.png"  class="img-fluid w-50" alt="">
-              </div>
+
+              <div class="col-md-3"></div>
+              
             </div>
           </div>
         </div>
