@@ -8,7 +8,11 @@ import router from '@/router/router.js'
 
 const savedUser = JSON.parse(localStorage.getItem('user')) 
 
-const userId = savedUser.uid || authStore.user.uid
+let userId
+if(savedUser) {
+    userId = savedUser.uid || authStore.user.uid
+}
+
 // const userId = 'lk1kQSCZDqeYK1cpu2uo2LSnN7u2' || savedUser.uid || authStore.user.uid 
 
 const conversations = ref([]) 
@@ -29,8 +33,13 @@ onMounted(() => {
 
 const goToConversation = async () => {
     document.querySelector('.btn-close').click() 
-    await router.push('/support') 
-    window.location.reload() 
+
+    if(savedUser) {
+        await router.push('/support') 
+        window.location.reload() 
+    } else {
+        router.push('/connexion')
+    }
 }
 </script>
 
@@ -182,27 +191,31 @@ const goToConversation = async () => {
                                                                                 <h5 class="card-title" style="font-size: 18px;" >Conversations récentes</h5>
                                                                             </div>
                                                                         </div> 
-                                                                        <div @click="goToConversation" v-for="(conversation, i) in conversations" :key="i">
-                                                                            <router-link to="" class="text-black">
-                                                                                <div class="row">
-                                                                                    <div class="col-2">
-                                                                                            <img
-                                                                                            src="/assets/img/avatars/1.png"
-                                                                                            alt
-                                                                                            class="w-px-40 h-auto rounded-circle"
-                                                                                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                                                                            />
+
+                                                                        
+                                                                        <div v-if="savedUser"> 
+                                                                            <div @click="goToConversation" v-for="(conversation, i) in conversations" :key="i">
+                                                                                <router-link to="" class="text-black">
+                                                                                    <div class="row">
+                                                                                        <div class="col-2">
+                                                                                                <img
+                                                                                                src="/assets/img/avatars/1.png"
+                                                                                                alt
+                                                                                                class="w-px-40 h-auto rounded-circle"
+                                                                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                                                                                />
+                                                                                            </div>
+                                                                                            <div class="col-8">
+                                                                                                <h6 style="font-size: 13px;">{{ conversation.objet }}</h6>
+                                                                                        <p style="font-size: 13px;">{{ conversation.etat }}</p>
+                                                                                            </div>
+                                                                                        <div class="col-2 text-end">
+                                                                                        <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
                                                                                         </div>
-                                                                                        <div class="col-8">
-                                                                                            <h6 style="font-size: 13px;">{{ conversation.objet }}</h6>
-                                                                                    <p style="font-size: 13px;">{{ conversation.etat }}</p>
-                                                                                        </div>
-                                                                                    <div class="col-2 text-end">
-                                                                                    <h5 class="card-title" style="color:#219935"> <i class='bx bx-chevron-right'></i> </h5>
                                                                                     </div>
-                                                                                </div>
-                                                                            </router-link>
-                                                                            <hr>
+                                                                                </router-link>
+                                                                                <hr>
+                                                                            </div>
                                                                         </div>
                                                                                                                                         
                                                                     </div>
