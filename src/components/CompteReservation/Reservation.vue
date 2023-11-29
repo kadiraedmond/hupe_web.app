@@ -2,7 +2,7 @@
 import { useReservationStore } from '@/store/reservation.js'
 import { useAuthStore } from '@/store/auth.js'
 import { reactive, ref, onBeforeMount, onMounted } from "vue"
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { collection, query, doc, where, Timestamp, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 
 const reservationStore = useReservationStore()
@@ -122,10 +122,10 @@ const valider = async (reservation) => {
     
     const data = {
       title: 'Validation de réservation', 
-      destinataire: reservation.client_id, 
       message: `Votre demande de réservation de ticket pour le trajet « ${reservation.lieu_depart} - ${reservation.destination} » le « ${reservation.date_depart} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
+      destinataire: reservation.client_id, 
       lu: false, 
-      createdAt: new Date()
+      createdAt: Timestamp.now() 
     }
 
     await addDoc(notificationColRef, data)

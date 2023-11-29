@@ -4,12 +4,12 @@ import { useRoute } from "vue-router"
 import { useCompanieStore } from "@/store/companie.js"
 import { usePromotionStore } from "@/store/promotion.js"
 import Loader from "@/components/Loader.vue"
-import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage' 
 import Swal from 'sweetalert2' 
 
 import router from '@/router/router.js' 
 
-import { collection, doc, addDoc } from "firebase/firestore"
+import { collection, doc, addDoc, Timestamp } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import { toast } from "vue3-toastify"
 
@@ -116,7 +116,7 @@ const reserver = async (car) => {
     client_id: user.uid || "",
     client_profil_url: user.imageUrl || "",
     compagnie_uid: companieId,
-    created_at: new Date(),
+    created_at: Timestamp.now(),
     date_retour: new Date(dateRetour.value),
     date_retrait: new Date(dateRetrait.value),
     enPromo: car.enPromo || false,
@@ -182,7 +182,7 @@ const reserver = async (car) => {
       message: `Vous avez une réservation du véhicule « ${car.vehicule} ${car.modele} » en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} », veuillez valider ou annuler cette réservation.`, 
       userId: car.compagnie_uid,
       lu: false, 
-      createdAt: new Date()
+      createdAt: Timestamp.now() 
     }
 
     await addDoc(notificationColRef, comp_notif)
@@ -385,10 +385,10 @@ onMounted(() => {
                     <div class="modal-content">
                       <div
                         class="modal-header"
-                        style="background: #deeee4"
+                        style="background: #219935"
                       >
                         <h1
-                          class="modal-title fs-5"
+                          class="modal-title text-white fs-5"
                           id="exampleModalLabel"
                           style="font-size: 17px !important"
                         >
@@ -435,7 +435,7 @@ onMounted(() => {
                               type="text"
                               class="form-control"
                               id="validationCustom01"
-                              :value="user.phoneNumber"
+                              :value="user.telephone"
                               required
                               disabled
                             />

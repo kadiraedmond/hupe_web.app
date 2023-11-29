@@ -31,7 +31,7 @@ onBeforeMount(async () => {
   userStore.setUser(userId)
   locationStore.setUserLocations(userId)
 
-  
+  locations.value = [] 
   locationStore.userLocations.forEach(location => {
     if(param === 'en-attente' && location.status === 'En attente') {
       locations.value.push(location)
@@ -73,7 +73,7 @@ const reporter = async (location) => {
   const { status, ...extracted_location } = location
 
   try {
-    const docRef = await addDoc(reportColRef, { extracted_location, status: 'En attente', report: new Date(date_report.value) })
+    const docRef = await addDoc(reportColRef, { ...extracted_location, status: 'En attente', report: new Date(date_report.value) })
     
     Swal.fire({
       title: "Succès",
@@ -90,7 +90,7 @@ const reporter = async (location) => {
       message: `Vous avez une demande de report de la location N° ${location.number}`, 
       userId: location.compagnie_uid, 
       lu: false, 
-      createdAt: new Date() 
+      createdAt: Timestamp.now()  
     }
   
     await addDoc(notificationColRef, data)
@@ -185,7 +185,7 @@ const payer = async (location) => {
         message: `Vous avez effectué un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
         destinataire: userId,
         lu: false, 
-        createdAt: new Date()
+        createdAt: Timestamp.now() 
       }
 
       await addDoc(notificationColRef, client_notif)
@@ -224,7 +224,7 @@ const payer = async (location) => {
         message: `Vous avez reçu un paiement de caution de FCFA ${montant_apres_commission} pour la location de votre ${location.vehicule} ${location.modele}.`, 
         userId: location.compagnie_uid,
         lu: false, 
-        createdAt: new Date()
+        createdAt: Timestamp.now() 
       }
 
       await addDoc(notificationColRef, comp_notif)
@@ -268,7 +268,14 @@ onMounted(() => {
 })
 
  
-
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
 
 
 </script>

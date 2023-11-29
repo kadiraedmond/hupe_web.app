@@ -27,9 +27,10 @@ onMounted(() => {
   window.scrollTo(0, 0) 
 }) 
 
-const goToConversation = () => {
+const goToConversation = async () => {
     document.querySelector('.btn-close').click() 
-    router.push('/support') 
+    await router.push('/support') 
+    window.location.reload() 
 }
 </script>
 

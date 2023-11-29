@@ -30,6 +30,7 @@ onBeforeMount(async () => {
   userStore.setUser(userId)
   reservationStore.setUserReservations(userId)
 
+  reservation.value = [] 
   reservationStore.userReservations.forEach(reservation => {
     if(param === 'en-attente' && reservation.status === 'En attente') {
       reservations.value.push(reservation)
@@ -83,7 +84,7 @@ const reporter = async (reservation) => {
   const { status, ...extracted_reservation } = reservation
 
   try {
-    const docRef = await addDoc(reportColRef, { extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
+    const docRef = await addDoc(reportColRef, { ...extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
 
     Swal.fire({
       title: "Succès",
@@ -100,7 +101,7 @@ const reporter = async (reservation) => {
       message: `Vous avez une demande de report de la réservation N° ${reservation.number}`, 
       userId: reservation.compagnie_uid, 
       lu: false, 
-      createdAt: new Date() 
+      createdAt: Timestamp.now()  
     }
   
     await addDoc(notificationColRef, data)
@@ -161,7 +162,7 @@ const payer = async (reservation) => {
         message: `Vous avez effectué un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
         destinataire: userId,
         lu: false, 
-        createdAt: new Date()
+        createdAt: Timestamp.now() 
       }
 
       await addDoc(notificationColRef, client_notif)
@@ -200,7 +201,7 @@ const payer = async (reservation) => {
         message: `Vous avez reçu un paiement de FCFA ${montant_apres_commission} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
         userId: reservation.compagnie_uid,
         lu: false, 
-        createdAt: new Date()
+        createdAt: Timestamp.now() 
       }
 
       await addDoc(notificationColRef, comp_notif)
@@ -241,7 +242,16 @@ const sendMessage = async (reservation) => {
 
 onMounted(() => {
   window.scrollTo(0, 0)
-})
+}) 
+
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
 
 </script>
 <template>

@@ -1,7 +1,12 @@
 <script setup>
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount , onMounted } from "vue";
+import { onBeforeMount , onMounted } from "vue" 
+
+import { addDoc, doc, updateDoc, collection, Timestamp } from 'firebase/firestore'
+import { firestoreDb, storage } from '@/firebase/firebase.js' 
+import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage' 
+import Swal from 'sweetalert2' 
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -9,15 +14,89 @@ const authStore = useAuthStore()
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
-// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid 
+
+const raison_social = ref('') 
+const responsable = ref('') 
+const description = ref('') 
+const mail = ref('') 
+const phone = ref('') 
+const lieu = ref('')  
+const photo_profil = ref('')  
+const photo_couverture = ref('')  
+
 onBeforeMount(() => {
-  companieStore.setCompanieById(userId) // authStore.user.uid
+  companieStore.setCompanieById(userId) 
+  
+  raison_social.value = companieStore.companie.raison_social 
+  responsable.value = companieStore.companie.responsable 
+  mail.value = companieStore.companie.email 
+  phone.value = companieStore.companie.telephone 
+  lieu.value = companieStore.companie.adresse 
 
 })
 
 onMounted(() => {
   window.scrollTo(0, 0)
-})
+}) 
+
+const isUploading = ref(false) 
+
+const uploadPicture = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `compagniesImages/${userId}/${file.name}`)
+  
+  await uploadBytes(storageRef, file)
+
+  const downloadURL = await getDownloadURL(storageRef)
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    photo_couverture.value = downloadURL
+    isUploading.value = false
+  }
+}
+
+const uploadProfilePicture = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `compagniesImages/${userId}/${file.name}`)
+  
+  await uploadBytes(storageRef, file)
+
+  const downloadURL = await getDownloadURL(storageRef)
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    photo_profil.value = downloadURL
+    isUploading.value = false
+  }
+} 
+
+const handleSubmit = async () => {
+  const docRef = doc(firestoreDb, 'compagnies', `${userId}`) 
+  
+  const data = {
+    raison_social: raison_social.value, 
+    responsable: responsable.value, 
+    email: mail.value, 
+    telephone: phone.value, 
+    adresse: lieu.value, 
+    imageLogoUrl: photo_profil.value !== '' ? photo_profil.value : companieStore.companie.imageLogoUrl, 
+    imageCouvertureUrl: photo_couverture.value !== '' ? photo_couverture.value : companieStore.companie.imageCouvertureUrl 
+  } 
+
+  try {
+    await updateDoc(docRef, data) 
+    
+    Swal.fire({
+      title: "Succès",
+      text: "Informations misent à jour",
+      icon: "success"
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
 </script>
 
 <template>
@@ -119,7 +198,7 @@ onMounted(() => {
               <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
               <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Raison sociale </label>
-                <input type="text" class="form-control" id="validationCustom01" v-model="responsable" >
+                <input type="text" class="form-control" id="validationCustom01" v-model="raison_social" >
                 
               </div>
               <div class="col-md-6">
@@ -132,15 +211,10 @@ onMounted(() => {
 
               <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Description </label>
-                <input type="text" class="form-control" id="validationCustom01" v-model="date_nais" >
+                <input type="text" class="form-control" id="validationCustom01" v-model="description" >
                 
               </div>
 
-              <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Profession</label>
-                <input type="text" class="form-control" id="validationCustom01" v-model="profess" >
-                
-              </div>
               <div class="col-md-6">
                 <label for="validationCustom02" class="form-label">Email</label>
                 <input type="email" class="form-control" id="validationCustom02" v-model="mail" >
@@ -171,7 +245,7 @@ onMounted(() => {
               <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Image de couverture</label>
                 <div class="input-group has-validation">
-                  <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                  <input v-on:change="uploadPicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
                    
                 </div>
               </div>

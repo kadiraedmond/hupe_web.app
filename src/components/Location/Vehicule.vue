@@ -3,7 +3,7 @@ import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { collection, query, doc, where, setDoc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { collection, query, doc, Timestamp, where, setDoc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import { toast } from 'vue3-toastify'
 import { v4 as uuidv4 } from 'uuid'
@@ -61,7 +61,7 @@ const handleSubmit = async () => {
     status: 'active', 
     vehicule: marque.value, 
     vehicule_image_url: image.value, 
-    addedAt: new Date()
+    addedAt: Timestamp.now() 
   }
   const newDoc = await addDoc(collectionRef, data)
 
@@ -136,7 +136,7 @@ const promote = async (car) => {
       boite: car.boite, 
       compagnie_uid: userId, 
       country: companieStore.companie.country, 
-      createdAt: new Date(), 
+      createdAt: Timestamp.now(), 
       debut_promo: new Date(date_debut.value), 
       fin_promo: new Date(date_fin.value), 
       idTrack: uuidv4(), 

@@ -2,7 +2,7 @@
 import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
-import { updateDoc, doc, collection, getDoc } from "firebase/firestore"
+import { updateDoc, doc, collection, getDoc, Timestamp } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const userStore = useUserStore()
@@ -86,12 +86,12 @@ const recharge = async () => {
           if(!amount.solde || amount.solde == 0 || amount.solde === '') {
             data = {
               solde: Number(montant.value), 
-              new_recharge: new Date()
+              new_recharge: Timestamp.now() 
             }
           } else {
             data = {
               solde: Number(amount.solde) + Number(montant.value), 
-              new_recharge: new Date()
+              new_recharge: Timestamp.now() 
             }
           }
 
@@ -114,7 +114,7 @@ const recharge = async () => {
             message: `Votre compte a été crédité de FCFA ${montant.value}. Profitez de ce solde pour vos prochaines commandes.`, 
             destinataire: userId,
             lu: false, 
-            createdAt: new Date()
+            createdAt: Timestamp.now() 
           }
 
           try {

@@ -3,7 +3,7 @@ import { useCompanieStore } from "@/store/companie.js"
 import { useAuthStore } from "@/store/auth.js"
 import { reactive, ref, onBeforeMount, onMounted } from "vue"
 import Swal from 'sweetalert2'
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { collection, query, doc, where, Timestamp, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 
 const companieStore = useCompanieStore()
@@ -133,10 +133,10 @@ const valider = async (location) => {
     
     const data = {
       title: 'Validation de réservation', 
-      destinataire: [location.client_id], 
       message: `Votre demande de réservation du véhicule « ${location.vehicule} ${location.modele} » pour une durée de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
+      destinataire: location.client_id, 
       lu: false, 
-      createdAt: new Date()
+      createdAt: Timestamp.now()
     }
 
     await addDoc(notificationColRef, data)

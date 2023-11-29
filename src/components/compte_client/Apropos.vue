@@ -4,7 +4,8 @@ import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, ref } from "vue"
 
 import { addDoc, updateDoc, collection, Timestamp } from 'firebase/firestore'
-import { firestoreDb, storage } from '@/firebase/firebase.js'
+import { firestoreDb, storage } from '@/firebase/firebase.js' 
+import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { toast } from "vue3-toastify"
 
 const userStore = useUserStore()
@@ -49,13 +50,13 @@ const isUploading = ref(false)
 
 const uploadProfilePicture = async (e) => {
   const file = e.target.files[0]
-  const storageRef = storage.ref(`usersImages/${file.name}`)
+  const storageRef = fireRef(storage, `usersImages/${file.name}`)
   
   // Mettre le fichier dans le stockage de Firebase
-  const snapshot = await storageRef.put(file)
+  await uploadBytes(storageRef, file)
 
   // Récupérer l'URL du fichier téléchargé
-  const downloadURL = await snapshot.ref.getDownloadURL()
+  const downloadURL = await getDownloadURL(storageRef)
   if(!downloadURL) {
     isUploading.value = true
   } else {
@@ -80,14 +81,19 @@ const handleSubmit = async () => {
     username: nom_utilisteur.value
   } 
 
-  await updateDoc(userDocRef, data).then(() => {
-    console.log('Document mis a jour')
+  try {
+    await updateDoc(userDocRef, data) 
+    console.log('Document mis a jour') 
+
     Swal.fire({
       title: "Succès",
       text: "Informations misent à jour",
       icon: "success"
     })
-  })
+    
+  } catch (error) {
+    console.log(error)
+  }
 }
 </script>
 

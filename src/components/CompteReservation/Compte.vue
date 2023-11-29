@@ -3,7 +3,7 @@ import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount , onMounted, ref } from "vue"
 import Swal from 'sweetalert2'
-import { collection, query, doc, addDoc, updateDoc, where, getDoc, getDocs} from "firebase/firestore"
+import { collection, query, doc, addDoc, updateDoc, where, getDoc, getDocs, Timestamp} from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const companieStore = useCompanieStore()
@@ -46,7 +46,7 @@ const retrait = async () => {
     const data = {
       body: Number(montant.value), 
       compagnieUID: userId, 
-      date: new Date(), 
+      date: Timestamp.now(), 
       solde: Number(companieStore.totalAmount.solde), 
       status: 'En attente', 
       title: 'Retrait'
@@ -65,10 +65,9 @@ const retrait = async () => {
     const comp_notif = {
       title: 'Demande de retrait', 
       message: `Vous avez demandé un retrait de FCFA ${montant.value}, qui sera crédité sur votre compte après validation par l'administrateur.`, 
-      destinataire: [userId], 
-      type: 'compagnie', 
+      userId: userId, 
       lu: false, 
-      createdAt: new Date() 
+      createdAt: Timestamp.now() 
     }
   
     await addDoc(notificationColRef, comp_notif)
@@ -81,6 +80,15 @@ const retrait = async () => {
     })
     console.log(error)
   }
+} 
+
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
 }
 </script>
 

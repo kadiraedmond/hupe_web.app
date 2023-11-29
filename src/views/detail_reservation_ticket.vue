@@ -7,7 +7,7 @@ import Loader from '@/components/Loader.vue'
 
 import router from '@/router/router.js' 
 
-import { collection, doc, getDoc, addDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, addDoc, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from 'vue3-toastify'
 
@@ -68,7 +68,7 @@ const reserver = async (programme) => {
     client_id: user.uid,
     client_profil_url: user.imageUrl || '',
     compagnie_uid: programme.compagnie_uid,
-    createdAt: new Date(),
+    createdAt: Timestamp.now(),
     date_depart: programme.date_depart || '',
     destination: programme.destination,
     escale: programme.escale,
@@ -116,7 +116,7 @@ const reserver = async (programme) => {
       message: `Vous avez une réservation de ticket N° ${programme.number} en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet « ${programme.lieu_depart} - ${programme.destination} » du « ${formatedDateDepart} », veuillez valider ou annuler cette réservation.`, 
       userId: programme.compagnie_uid,
       lu: false, 
-      createdAt: new Date()
+      createdAt: Timestamp.now() 
     }
 
     await addDoc(notificationColRef, comp_notif)
@@ -293,10 +293,10 @@ onMounted(() => {
                     <div class="modal-content">
                         <div
                         class="modal-header"
-                        style="background: #deeee4"
+                        style="background: #219935"
                         >
                         <h1
-                            class="modal-title fs-5"
+                            class="modal-title text-white fs-5"
                             id="exampleModalLabel"
                             style="font-size: 17px !important"
                         >

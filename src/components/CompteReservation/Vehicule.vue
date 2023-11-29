@@ -3,7 +3,7 @@ import { useReservationStore } from '@/store/reservation.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { collection, query, setDoc, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { collection, query, setDoc, doc, Timestamp, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import { toast } from 'vue3-toastify'
 import { v4 as uuidv4 } from 'uuid'
@@ -179,7 +179,7 @@ const promote = async (trajet) => {
       ancien_montant: trajet.montant, 
       compagnie_uid: userId, 
       country: companieStore.companie.country, 
-      createdAt: new Date(), 
+      createdAt: Timestamp.now(), 
       debut_promo: debut_promo.value, 
       destination: trajet.destination, 
       escale: trajet.escale, 
