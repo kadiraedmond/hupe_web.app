@@ -69,26 +69,7 @@ onMounted(() => {
         
             <div class="col-md-4">
               <div class="position-sticky" style="top: 0rem;">
-                <div class="p-4 mb-3 bg-light rounded">
-                  <h4 class="fst-italic">Apropos</h4>
-                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad eius mod tempor incididunt ut labore et dolore magna</p>
-                </div>
-        
-                <div class="p-4">
-                  <h4 class="fst-italic mb-4">Categories d'articles</h4>
-                  <ol class="list-unstyled mb-0">
-                   
-
-                    <li><routeur-link to="">Location de véhicule</routeur-link></li>
-                    <li><routeur-link to="">Reservation de ticket</routeur-link></li>
-                    <li><routeur-link to="">Location de gros engin</routeur-link></li>
-                    <li><routeur-link to="">Vente de vehicule</routeur-link></li>
-  
-                    
-                  </ol>
-
-                </div>
-
+                 
                 <div class="p-4" style="background:#f8f9fa">
                   <h4 class="fst-italic mb-4">Articles récents</h4>
                   <ol class="list-unstyled mb-0">
@@ -158,8 +139,7 @@ onMounted(() => {
                   </ol>
                   
                 </div>
-        
-                
+
               </div>
             </div>
           </div>

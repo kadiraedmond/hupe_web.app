@@ -180,34 +180,34 @@ const routes = [
     path: '/compte_vehicule',
     name: 'Compte',
     component: Compte,
-    // meta: { requiresAuth: true, allowedUserType: 'companie' }
+    meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
   {
     path: '/compte_reservation',
     name: 'Comptes',
     component: Comptes,
-    // meta: { requiresAuth: true, allowedUserType: 'companie' }
+    meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
     path: '/compte_gros_engin',
     name: 'Compt',
     component: Compt,
-    // meta: { requiresAuth: true, allowedUserType: 'companie' }
+    meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
     path: '/compte_client',
     name: 'Client',
     component: Client,
-    // meta: { requiresAuth: true, allowedUserType: 'client' }
+    meta: { requiresAuth: true, allowedUserType: 'client' }
   },
 
   {
     path: '/compte_achat_engin',
     name: 'Comp',
     component: Comp,
-    // meta: { requiresAuth: true, allowedUserType: 'companie' }
+    meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {

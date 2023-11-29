@@ -8,8 +8,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   scannerStore.setCompanyScanners(userId)
 })
@@ -63,7 +63,7 @@ onMounted(() => {
                 <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
               </div>
               
-              <div class="card-body">
+              <div class="card-body text-center">
                 <p class="card-text">Aucun collaborateur disponible</p>
               </div>
           </div>
