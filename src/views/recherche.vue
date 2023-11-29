@@ -181,11 +181,81 @@ onMounted(() => {
 
             <div class="row">
                 
-                <div class="col-md-12">
-                    <div class="row row-cols-1 row-cols-md-3 g-4" v-for="(vehicule, i) in searchStore.vehiculesResults" :key="i">
+                <div class="col-md-12"> 
+                    <div class="row row-cols-1 row-cols-md-4 mt-4 mb-4 g-4"> 
                         <div
                             class="col"
+                            v-for="(companie, i) in searchStore.companiesResults" :key="i"
+                        >
+                            <div
+                            class="card h-100"
+                            id="compagnie_card"
+                            style="background: #f9f9f9; box-shadow: none"
                             
+                            >
+                                <router-link :to="companie.type_compagnie ==='Location' ? `/detail/${companie.uid}` : companie.type_compagnie ==='Transport' ? `/details/${companie.uid}` : ``" style="color: #000">
+                                    <img
+                                    :src="companie.imageCouvertureUrl"
+                                    class="card-img-top"
+                                    alt="..."
+                                    style="
+                                        border-radius: 10px 10px 0px 0px;
+                                        max-height: 174px;
+                                        object-fit: cover;
+                                    "
+                                    />
+                                </router-link>
+
+                                <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+
+                                <div class="card-body">
+                                    <router-link to="/detail" style="color: #000">
+                                        <div class="row mt-2">
+                                            <div class="col-md-7">
+                                            <h5
+                                                class="card-title"
+                                                style="font-size: 15px; color: black"
+                                            >
+                                                {{ companie.raison_social }}
+                                            </h5>
+                                            </div>
+                                            <div class="col-md-5 text-end">
+                                                <boutton
+                                                    class="btn btn-primary"
+                                                    style="
+                                                    background: white;
+                                                    border-color: white;
+                                                    border-radius: 30px;
+                                                    color: #219935;
+                                                    margin-top: -9px;
+                                                    "
+                                                >
+                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
+                                                </boutton>
+                                            </div>
+                                        </div>
+                                    </router-link>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p class="card-text mt-2" style="font-size: 14px">
+                                            <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 text-center mt-2">
+                                            <i
+                                            class="bx bx-car"
+                                            style="color: #8b8b8b; font-size: 21px"
+                                            ></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-3 mb-4 g-4">
+                        <div
+                            class="col"
+                            v-for="(vehicule, i) in searchStore.vehiculesResults" :key="i"
                         >
                             <router-link
                             :to="`/detail_vehicule_location/${vehicule.uid}`"
@@ -289,75 +359,112 @@ onMounted(() => {
                         </div>
                     
                     </div>
-                    <div class="row row-cols-1 row-cols-md-4 mt-4 g-4" v-for="(companie, i) in searchStore.companiesResults" :key="i"> 
+                    <div class="row row-cols-1 row-cols-md-2 mb-4 g-4">
                         <div
                             class="col"
-                            
+                            v-for="(trajet, i) in searchStore.trajetsResults" :key="i"
                         >
-                            <div
-                            class="card h-100"
-                            id="compagnie_card"
-                            style="background: #f9f9f9; box-shadow: none"
-                            
+                            <router-link
+                            :to="`/detail_reservation_ticket/${trajet.uid}`"
+                            style="color: #000"
                             >
-                                <router-link :to="companie.type_compagnie ==='Location' ? `/detail/${companie.uid}` : companie.type_compagnie ==='Transport' ? `/details/${companie.uid}` : ``" style="color: #000">
-                                    <img
-                                    :src="companie.imageCouvertureUrl"
-                                    class="card-img-top"
-                                    alt="..."
-                                    style="
-                                        border-radius: 10px 10px 0px 0px;
-                                        max-height: 174px;
-                                        object-fit: cover;
-                                    "
-                                    />
-                                </router-link>
-
-                                <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
-
-                                <div class="card-body">
-                                    <router-link to="/detail" style="color: #000">
-                                        <div class="row mt-2">
-                                            <div class="col-md-7">
-                                            <h5
-                                                class="card-title"
-                                                style="font-size: 15px; color: black"
+                                <div class="card h-100 border-0" id="card_compagnie">
+                                    <div class="row" style="margin: 0px">
+                                        <div class="col-md-12">
+                                            <div
+                                            class="card mb-3 border-0"
+                                            style="background: #f9f9f9;"
                                             >
-                                                {{ companie.raison_social }}
-                                            </h5>
-                                            </div>
-                                            <div class="col-md-5 text-end">
-                                                <boutton
+                                            <div class="row g-1 d-flex mt-2">
+                                                
+                                                <div class="col-8 d-flex">
+                                                <img
+                                                    :src="trajet.companieInfos.imageLogoUrl"
+                                                    alt
+                                                    class="w-px-40 h-auto rounded-circle"
+                                                    style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                                />
+                                                <div>
+                                                    <div class="card-body d-flex">
+                                                    <h5 class="card-title" style="font-size: 12px">
+                                                        {{ trajet.companieInfos.raison_social }}
+                                                    </h5>
+                                                    <p class="card-text" style="font-size: 12px">
+                                                        <i
+                                                        class="bx bx-map"
+                                                        style="color: rgb(139 139 139); margin-left: 5px"
+                                                        ></i>
+                                                        {{ trajet.companieInfos.description }}  
+                                                    </p>
+                                                    </div>
+                                                </div>
+                                                </div>
+
+                                                <div class="col-4 text-end">
+                                                <button
                                                     class="btn btn-primary"
                                                     style="
-                                                    background: white;
-                                                    border-color: white;
-                                                    border-radius: 30px;
-                                                    color: #219935;
-                                                    margin-top: -9px;
+                                                    background: #219935;
+                                                    border-color: #219935;
+                                                    margin-top: 5px;
+                                                    font-size: 12px;
                                                     "
                                                 >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                </boutton>
+                                                {{ trajet.montant }} FCFA
+                                                </button>
+                                                </div>
+                                                
+                                            </div>
                                             </div>
                                         </div>
-                                    </router-link>
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <p class="card-text mt-2" style="font-size: 14px">
-                                            <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
+                                    </div>
+                                    <div
+                                    class="card mb-3 mt-4"
+                                    style="
+                                        max-width: 540px;
+                                        margin: 8px;
+                                        margin-top: -10px !important;
+                                        background: #f9f9f9;
+                                    "
+                                    >
+                                    <div class="row g-0" style="margin: 10px">
+                                        <div class="col-4">
+                                        <img
+                                            src="/assets/img/rb.jpg"
+                                            class="img-fluid h-100"
+                                            alt="..."
+                                            style="
+                                            width: 150px;
+                                            object-fit: cover;
+                                            "
+                                        />
+                                        </div>
+                                        
+                                        <div class="col-8">
+                                        <div class="card-body">
+                                            <p class="card-text" style="font-size: 13px ; ">
+                                                Trajets | {{ trajet.lieu_depart }} - {{ trajet.destination }}
                                             </p>
+                                            <p class="card-text" style="font-size: 13px">
+                                            <strong style=" font-weight: 500;">Escales | </strong> {{ trajet.escale }}
+                                            </p>
+                                            <p class="card-text" style="font-size: 13px">
+                                            <strong style=" font-weight: 500;">Convocation | </strong> {{ trajet.heure_convocation }}
+                                            </p>
+                                            <p class="card-text" style="font-size: 13px">
+                                            <strong style=" font-weight: 500;">Jours du voyage | </strong>
+                                            {{ trajet.jours_voyage }}
+                                            </p>
+                                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                                         </div>
-                                        <div class="col-md-4 text-center mt-2">
-                                            <i
-                                            class="bx bx-car"
-                                            style="color: #8b8b8b; font-size: 21px"
-                                            ></i>
                                         </div>
+                                        
+                                    </div>
                                     </div>
                                 </div>
-                            </div>
+                            </router-link>
                         </div>
+                
                     </div>
                 </div>
             </div>
