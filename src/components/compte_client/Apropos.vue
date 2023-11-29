@@ -29,7 +29,6 @@ const nom_utilisteur = ref('')
 
 
 onBeforeMount(async () => {
-  // userId = savedUser.uid || authStore.user.uid
   await userStore.setUser(userId) 
   
   const { lastName, firstName, imageUrl, dateNaisse, profession, email, telephone, country, addresse, username } = userStore.user

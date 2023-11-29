@@ -86,60 +86,101 @@ onMounted(() => {
                             <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
-                                    <div class="col-md-12 mb-3" v-for="(notification, index) in notifications" :key="index">
-                                        <div class="card border-0">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-12 d-flex">
-                                                        <img
-                                                            src="/assets/img/avatars/1.png"
-                                                            alt
-                                                            class="w-px-40 h-auto rounded-circle"
-                                                            style="max-width: 40px; max-height: 40px ; border: 1px solid rgb(214, 214, 214);"
-                                                        />
-                                                        <h5 class="card-title" style="font-size: 14px; margin-left: 10px; margin-top: 14px;">{{ notification.title }}</h5>
+                                    <div v-if="notifications.length > 0">
+                                        <div class="col-md-12 mb-3" v-for="(notification, index) in notifications" :key="index">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-12 d-flex">
+                                                            <img
+                                                                src="/assets/img/avatars/1.png"
+                                                                alt
+                                                                class="w-px-40 h-auto rounded-circle"
+                                                                style="max-width: 40px; max-height: 40px ; border: 1px solid rgb(214, 214, 214);"
+                                                            />
+                                                            <h5 class="card-title" style="font-size: 14px; margin-left: 10px; margin-top: 14px;">{{ notification.title }}</h5>
+                                                        </div>
                                                     </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col-10">
+                                                            <p class="card-text" style="font-size: 13px;">{{ notification.message }}</p> 
+                                                        </div>
+                                                        <div class="col-2 text-end">
+                                                            <p style="color: #219935;"><i class='bx bx-check-double' ></i></p>
+                                                        </div>
+                                                    </div>                                        
                                                 </div>
-                                                <div class="row mt-2">
-                                                    <div class="col-10">
-                                                        <p class="card-text" style="font-size: 13px;">{{ notification.message }}</p> 
-                                                    </div>
-                                                    <div class="col-2 text-end">
-                                                        <p style="color: #219935;"><i class='bx bx-check-double' ></i></p>
-                                                    </div>
-                                                </div>                                        
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="w-100" v-else>
+                                        <div class="row">
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-6">
+                                                <!-- <div class="card text-center border-0"> -->
+                                                <div class="text-center">
+                                                    <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+                                                </div>
+                                                
+                                                <div class="card-body text-center">
+                                                    <p class="card-text">Aucune notification n'est disponible.</p>
+                                                </div>
+                                            </div>
+                                    
+                                            <div class="col-md-3"></div>
+                                        </div>
+                                    </div>
+                                                                    
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
-                                    <div class="col-md-12 mb-3" v-for="(noneReadNotification, index) in noneReadNotifications" :key="index">
-                                        <div class="card border-0">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-12 d-flex">
-                                                        <img
-                                                            src="/assets/img/avatars/1.png"
-                                                            alt
-                                                            class="w-px-40 h-auto rounded-circle"
-                                                            style="max-width: 40px; max-height: 40px ; border: 1px solid rgb(214, 214, 214);"
-                                                        />
-                                                        <h5 class="card-title" style="font-size: 14px; margin-left: 10px; margin-top: 14px;">{{ noneReadNotification.title }}</h5>
+                                    <div v-if="noneReadNotifications.length > 0">
+                                        <div class="col-md-12 mb-3" v-for="(noneReadNotification, index) in noneReadNotifications" :key="index">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-12 d-flex">
+                                                            <img
+                                                                src="/assets/img/avatars/1.png"
+                                                                alt
+                                                                class="w-px-40 h-auto rounded-circle"
+                                                                style="max-width: 40px; max-height: 40px ; border: 1px solid rgb(214, 214, 214);"
+                                                            />
+                                                            <h5 class="card-title" style="font-size: 14px; margin-left: 10px; margin-top: 14px;">{{ noneReadNotification.title }}</h5>
+                                                        </div>
                                                     </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col-10">
+                                                            <p class="card-text" style="    font-size: 13px;">{{ noneReadNotification.message }}</p> 
+                                                        </div>
+                                                        <div class="col-2 text-end">
+                                                            <p style="color: #219935;"><i class='bx bx-check-double' ></i></p>
+                                                        </div>
+                                                    </div>                                       
                                                 </div>
-                                                <div class="row mt-2">
-                                                    <div class="col-10">
-                                                        <p class="card-text" style="    font-size: 13px;">{{ noneReadNotification.message }}</p> 
-                                                    </div>
-                                                    <div class="col-2 text-end">
-                                                        <p style="color: #219935;"><i class='bx bx-check-double' ></i></p>
-                                                    </div>
-                                                </div>                                       
                                             </div>
+                                        </div> 
+                                    </div>
+
+                                    <div class="w-100" v-else>
+                                        <div class="row">
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-6">
+                                                <!-- <div class="card text-center border-0"> -->
+                                                <div class="text-center">
+                                                    <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+                                                </div>
+                                                
+                                                <div class="card-body text-center">
+                                                    <p class="card-text">Aucune notification non lue n'est actuellement disponible .</p>
+                                                </div>
+                                            </div>
+                                    
+                                            <div class="col-md-3"></div>
                                         </div>
-                                    </div>  
+                                    </div>
+                                     
                                 </div>
                             </div>
                         </div>

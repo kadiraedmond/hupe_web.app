@@ -63,7 +63,7 @@ onMounted(() => {
                 <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
               </div>
               
-              <div class="card-body">
+              <div class="card-body text-center">
                 <p class="card-text">Aucun collaborateur disponible</p>
               </div>
           </div>
