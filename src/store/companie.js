@@ -34,6 +34,7 @@ export const useCompanieStore = defineStore('companieStore', {
         async getAllCompanies() {
             try { 
                 const { data } = await axios.get(API_URL)
+                
 
                 this.country = data.country 
                 

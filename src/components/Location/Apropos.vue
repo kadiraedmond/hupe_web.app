@@ -8,8 +8,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieById(userId) // authStore.user.uid
 
@@ -131,13 +131,13 @@ onMounted(() => {
 
               <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Description </label>
-                <input type="text" class="form-control" id="validationCustom01" v-model="date_nais" >
+                <textarea type="text" class="form-control" id="validationCustom01" v-model="date_nais" ></textarea>
                 
               </div>
 
               <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Profession</label>
-                <input type="text" class="form-control" id="validationCustom01" v-model="profess" >
+                <label for="validationCustom01" class="form-label">Présentation</label>
+                <textarea type="text" class="form-control" id="validationCustom01" v-model="profess" ></textarea>
                 
               </div>
               <div class="col-md-6">
@@ -152,6 +152,7 @@ onMounted(() => {
                    
                 </div>
               </div>
+              
               <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Pays</label>
                 <div class="input-group has-validation">

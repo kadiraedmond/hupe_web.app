@@ -82,7 +82,7 @@ onMounted(() => {
         src="/assets/img/clt1.jpg"
         alt=""
         class="img-fluid w-100"
-        style="height: 380px; object-fit: cover"
+        style="height: 450px; /* object-fit: cover; */ object-fit: fill; image-rendering: pixelated;"
       />
     </section>
     <!-- End Portfolio Details Section -->

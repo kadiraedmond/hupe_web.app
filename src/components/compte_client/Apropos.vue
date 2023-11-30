@@ -188,14 +188,20 @@ const handleSubmit = async () => {
           <div class="row">
             <div class="col-md-12">
               <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Nom </label>
                 <input type="text" class="form-control" id="validationCustom01" v-model="nom" >
                 
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <label for="validationCustom02" class="form-label">Prénoms</label>
                 <input type="text" class="form-control" id="validationCustom02" v-model="prenom" >
+                 
+              </div>
+
+              <div class="col-md-4">
+                <label for="validationCustom02" class="form-label">Sexe</label>
+                <input type="text" class="form-control" id="validationCustom02" v-model="sexe" >
                  
               </div>
 

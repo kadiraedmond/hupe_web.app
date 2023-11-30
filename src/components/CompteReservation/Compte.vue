@@ -158,7 +158,8 @@ const retrait = async () => {
       </div>
       
       <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col" v-for="(history, index) in companieStore.companieHistory" :key="index">
+        
+        <div class="col" v-for="(history, index) in companieStore.companieHistory.slice().reverse()" :key="index">
           <div class="card h-100">
             
             <div class="card-body">

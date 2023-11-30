@@ -132,13 +132,13 @@ onMounted(() => {
 
               <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Description </label>
-                <input type="text" class="form-control" id="validationCustom01" v-model="date_nais" >
+                <textarea type="text" class="form-control" id="validationCustom01" v-model="date_nais" ></textarea>
                 
               </div>
 
               <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Profession</label>
-                <input type="text" class="form-control" id="validationCustom01" v-model="profess" >
+                <label for="validationCustom01" class="form-label">Présentation</label>
+                <textarea type="text" class="form-control" id="validationCustom01" v-model="profess" ></textarea>
                 
               </div>
               <div class="col-md-6">

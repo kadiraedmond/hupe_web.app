@@ -58,7 +58,7 @@ import VenteP from '@/views/vente_populaire.vue';
 import InfosClient from '@/views/information_client.vue';
 import ConditionConnexion from '@/views/condition-connexion.vue';
 
-// import Politique from '@/views/politique.vue';
+import Politique from '@/views/poltique.vue';
 
 
 import { auth } from '@/firebase/firebase.js'
@@ -70,6 +70,10 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    props: true,
+    meta: {
+      keepAlive: true, // Assurez-vous que cette propriété est définie sur true
+    },
   },
   {
     path: '/detail/:id',
@@ -93,7 +97,11 @@ const routes = [
     path: '/location',
     name: 'Location',
     component: Location,
+    
   },
+
+  // { path: '/page/:pageNumber',
+  //  component: Location },
 
    {
     path: '/formulaire_reservation',
@@ -180,34 +188,34 @@ const routes = [
     path: '/compte_vehicule',
     name: 'Compte',
     component: Compte,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
   {
     path: '/compte_reservation',
     name: 'Comptes',
     component: Comptes,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
     path: '/compte_gros_engin',
     name: 'Compt',
     component: Compt,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
     path: '/compte_client',
     name: 'Client',
     component: Client,
-    meta: { requiresAuth: true, allowedUserType: 'client' }
+    // meta: { requiresAuth: true, allowedUserType: 'client' }
   },
 
   {
     path: '/compte_achat_engin',
     name: 'Comp',
     component: Comp,
-    meta: { requiresAuth: true, allowedUserType: 'companie' }
+    // meta: { requiresAuth: true, allowedUserType: 'companie' }
   },
 
   {
@@ -456,14 +464,12 @@ const routes = [
     
   },
 
-  ConditionConnexion
-
-  // {
-  //   path: '/politique',
-  //   name: 'Politique',
-  //   component: Politique,
+  {
+    path: '/politique',
+    name: 'Politique',
+    component: Politique,
     
-  // },
+  },
 
   
 ];

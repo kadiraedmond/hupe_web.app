@@ -102,6 +102,10 @@ const changeProfilHandler = async () => {
                   <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   Promotion  d’un véhicule
                 </li>
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
+                  Réponse aux demandes des clients
+                </li>
               </ul>
               <h4 style="font-size: 18px; color: #219935; text-align: center">
                 Commission sur le chiffre d'affaires
@@ -152,6 +156,10 @@ const changeProfilHandler = async () => {
                <li class="mt-3" style="font-size: 19px;">
                   <i class='bx bxs-check-circle' style="color:#219935;"></i> 
                   Présence sur la liste des prestataires
+                </li>
+                <li class="mt-3" style="font-size: 19px;">
+                  <i class='bx bxs-check-circle' style="color:#219935;"></i> 
+                  Réponse aux demandes des clients
                 </li>
                 <li class="mt-3" style="font-size: 19px;">
                   <i class='bx bxs-x-circle'  style="color:red;"></i>

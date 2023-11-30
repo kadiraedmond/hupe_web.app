@@ -115,6 +115,7 @@ onMounted(() => {
           id="heros_left_section"
           style="background: transparent !important"
         >
+         <keep-alive>
           <div
             id="carouselExampleSlidesOnly"
             class="carousel slide"
@@ -152,7 +153,7 @@ onMounted(() => {
               </div>
             </div>
           </div>
-         
+        </keep-alive>
         </div>
       </div>
     </div>
@@ -181,6 +182,7 @@ onMounted(() => {
                   src="/assets/img/service/car.png"
                   class="img-fluid w-25"
                   alt="..."
+                  style="margin-top: 8px;"
                 />
               </router-link>
 
@@ -233,6 +235,7 @@ onMounted(() => {
                   src="/assets/img/service/engin.png"
                   class="img-fluid w-25"
                   alt="..."
+                  style="margin-top: 5px;"
                 />
               </router-link>
 

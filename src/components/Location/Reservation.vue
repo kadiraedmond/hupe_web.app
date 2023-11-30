@@ -40,8 +40,8 @@ const updateReservationsDashboard = () => {
       enAttente.totalNumber++;
       enAttente.totalPrice += Number(location.montant);
     } else if (location.status == "Validé") {
-      utilisees.totalNumber++;
-      utilisees.totalPrice += Number(location.montant);
+      valides.totalNumber++;
+      valides.totalPrice += Number(location.montant);
     } else if (location.status == "Confirmé") {
       confirmees.totalNumber++;
       confirmees.totalPrice += Number(location.montant);
@@ -59,8 +59,8 @@ const updateReservationsDashboard = () => {
 };
 const savedUser = JSON.parse(localStorage.getItem("user"))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid
 
 const elements_en_attente = ref([])
 const elements_valide = ref([])
@@ -84,7 +84,10 @@ onBeforeMount(async () => {
       elements_confirme.value.push(comp)
     } else if(comp.status == 'Annuler') {
       elements_annule.value.push(comp)
+    } else if(comp.status == 'Utilisé') {
+      elements_utilise.value.push(comp)
     }
+    
   })
 });
 
@@ -250,7 +253,7 @@ const valider = async (location) => {
                           >
                             {{ valides.totalNumber }}
                           </button>
-                          Locations validés
+                          Locations validées
                         </p>
                       </div>
                     </div>
@@ -304,7 +307,7 @@ const valider = async (location) => {
                           >
                             {{ confirmees.totalNumber }}
                           </button>
-                          Locations confirmés
+                          Locations confirmées
                         </p>
                       </div>
                     </div>
@@ -356,7 +359,7 @@ const valider = async (location) => {
                           >
                             {{ annulees.totalNumber }}
                           </button>
-                          Locations annulés
+                          Locations annulées
                         </p>
                       </div>
                     </div>
@@ -408,7 +411,7 @@ const valider = async (location) => {
                           >
                             {{ reportees.totalNumber }}
                           </button>
-                          Locations reportés
+                          Locations reportées
                         </p>
                       </div>
                     </div>
@@ -460,7 +463,7 @@ const valider = async (location) => {
                           >
                             {{ utilisees.totalNumber }}
                           </button>
-                          Locations utilisés
+                          Locations utilisées
                         </p>
                       </div>
                     </div>
@@ -494,6 +497,7 @@ const valider = async (location) => {
         
           
           </ul>
+          <hr>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
               <div class="row mt-5">
@@ -756,13 +760,27 @@ const valider = async (location) => {
                                             Nombres de jours de location |
                                             <strong>5 jours</strong>
                                           </p>
-                                          <button 
-                                          class="btn btn-primary text-white mb-2" 
-                                          style="background: #219935; border: #219935; float: right" 
-                                          @click="valider(location)"
-                                          >
-                                            Valider
-                                          </button>
+                                          <div class="row">
+                                            <div class="col-6 text-start">
+                                              <button 
+                                              class="btn btn-primary mb-2" 
+                                              style="background: white; border-color: #219935; color: #219935 ;" 
+                                               
+                                              >
+                                                Annuler
+                                              </button>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                              <button 
+                                              class="btn btn-primary text-white mb-2" 
+                                              style="background: #219935; border: #219935; float: right" 
+                                              @click="valider(location)"
+                                              >
+                                                Valider
+                                              </button>
+                                            </div>
+                                          </div>
+                                          
                                         </div>
                                       </div>
                                     </div>
@@ -923,6 +941,7 @@ const valider = async (location) => {
         
           
           </ul>
+          <hr>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home2" role="tabpanel" aria-labelledby="pills-home-tab2" tabindex="0">
               <div class="row mt-5">
@@ -1310,6 +1329,7 @@ const valider = async (location) => {
           
             
           </ul>
+          <hr>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home3" role="tabpanel" aria-labelledby="pills-home-tab3" tabindex="0">
               <div class="row mt-5">
@@ -1702,6 +1722,7 @@ const valider = async (location) => {
         
           
           </ul>
+          <hr>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home4" role="tabpanel" aria-labelledby="pills-home-tab4" tabindex="0">
               <div class="row mt-5">
@@ -1726,15 +1747,15 @@ const valider = async (location) => {
                         >
                           <h2
                             class="accordion-header"
-                            :id="'flush-headingOnea' + index"
+                            :id="'flush-headingTwo' + index"
                           >
                             <button
                               class="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
-                              :data-bs-target="'#flush-collapseOnea' + index"
+                              :data-bs-target="'#flush-collapseTwo' + index"
                               aria-expanded="false"
-                              :aria-controls="'flush-collapseOnea' + index"
+                              :aria-controls="'flush-collapseTwo' + index"
                               id="reser"
                             >
                               <div
@@ -1808,9 +1829,9 @@ const valider = async (location) => {
                             </button>
                           </h2>
                           <div
-                            :id="'flush-collapseOnea' + index"
+                            :id="'flush-collapseTwo' + index"
                             class="accordion-collapse collapse"
-                            :aria-labelledby="'flush-headingOnea' + index"
+                            :aria-labelledby="'flush-headingTwo' + index"
                             data-bs-parent="#accordionFlushExample"
                           >
                             <div
@@ -2085,6 +2106,7 @@ const valider = async (location) => {
         
           
           </ul>
+          <hr>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home5" role="tabpanel" aria-labelledby="pills-home-tab5" tabindex="0">
               <div class="row mt-5">
@@ -2468,6 +2490,7 @@ const valider = async (location) => {
         
           
           </ul>
+          <hr>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home6" role="tabpanel" aria-labelledby="pills-home-tab6" tabindex="0">
                <div class="row mt-5">

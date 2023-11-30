@@ -6,8 +6,8 @@ import { collection, query, doc, addDoc, updateDoc, deleteDoc, where, getDoc, ge
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid 
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid 
 
 const politiqueColRef = collection(firestoreDb, 'politiques') 
 const firebaseText = ref([])
@@ -183,7 +183,7 @@ const deletePolitique = async () => {
     </div>
 
     <div class="col-md-12">
-      <div class="card h-100" id="card_compagnie">
+      <div class="card h-100 border-0">
         <div class="card-body"> 
           <div v-if="firebaseText.length > 0">
             <p>

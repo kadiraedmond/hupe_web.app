@@ -1,24 +1,24 @@
-<script>
-  var quill = new Quill('#editor', {
-    theme: 'snow'
-  });
+<script setup>
+import VueSummernote from 'vue-summernote';
+import 'summernote/dist/summernote.css';
+
+const content = ref('');
+const options = ref({
+  height: 300,
+  // Autres options Summernote ici
+});
+
+const saveContent = () => {
+  console.log('Contenu enregistré :', content.value);
+};
 </script>
+
 <template>
-   <section id="portfolio-details" class="portfolio-details">
-            <div class="container" style="box-shadow: 1px 1px 3px #00000040;">
- 
-                <div id="editor">
-                    <p>Hello World!</p>
-                    <p>Some initial <strong>bold</strong> text</p>
-                    <p><br></p>
-                </div>
-            </div>
-    </section>
+  <div>
+    <vue-summernote v-model="content" :options="options"></vue-summernote>
+    <button @click="saveContent">Enregistrer</button>
+  </div>
 </template>
-
-<style scoped>
-
+<style>
 </style>
-  
-  
-  
+

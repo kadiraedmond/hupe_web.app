@@ -826,7 +826,7 @@ onMounted(() => {
                             <div class="row mb-2" v-if="location.status == 'Utilisé'" style="margin: 4px; margin-top: -15px;">
                                
                               <div class="col-12 text-center">
-                                <router-link :to="`/messagerie/${location.companieInfos.uid}`">
+                                <router-link :to="`/detail_vehicule_location/${location.companieInfos.uid}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="background: #219935; border-color: #219935 ;font-size: 12px; "
@@ -840,7 +840,7 @@ onMounted(() => {
                             <div class="row mb-2" v-if="location.status == 'Annuler'" style="margin: 4px; margin-top: -15px;">
                                
                                <div class="col-12 text-center">
-                                 <router-link :to="`/messagerie/${location.companieInfos.uid}`">
+                                 <router-link :to="`/detail_vehicule_location/${location.companieInfos.uid}`">
                                    <button
                                    class="btn btn-primary w-75"
                                    style="background: #219935; border-color: #219935 ;font-size: 12px; "

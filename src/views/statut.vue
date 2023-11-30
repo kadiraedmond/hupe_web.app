@@ -677,7 +677,7 @@ onMounted(() => {
                             <div class="row" v-if="reservation.status == 'Annuler'">
                                
                               <div class="col-md-12 text-center">
-                                <router-link to="">
+                                <router-link :to="`/detail_reservation_ticket/${reservation.companieInfos.uid}`">
                                     <button
                                     class="btn btn-primary w-75"
                                     style="background: #219935; border-color: #219935 ; font-size: 12px; "
@@ -692,7 +692,7 @@ onMounted(() => {
                             <div class="row" v-if="reservation.status == 'Utilisé'">
                                
                                <div class="col-md-12 text-center">
-                                 <router-link to="">
+                                <router-link :to="`/detail_reservation_ticket/${reservation.companieInfos.uid}`">
                                      <button
                                      class="btn btn-primary w-75"
                                      style="background: #219935; border-color: #219935 ; font-size: 12px; "
