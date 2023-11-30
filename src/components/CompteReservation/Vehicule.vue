@@ -123,38 +123,40 @@ const star = async (trajet) => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
   const programmesColRef = collection(companieDocRef, 'programme_des_voyages')
 
-  const docRef = doc(programmesColRef, `${trajet.uid}`)
+  const docRef = doc(programmesColRef, `${trajet.uid}`) 
 
-  if(companieStore.companie.offre === 'vip') {
-    const update = await updateDoc(docRef, { enAvant: true })
-    
-    const miseEn_avantDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'mise_en_avant')
-    const trajetEn_avantColRef = collection( miseEn_avantDocRef, 'programme_en_avant')
-
-    const addedDoc = await addDoc(trajetEn_avantColRef, trajet)
-
-    if(addedDoc) {
-      console.log('Document ajouté')
+  try {
+    if(companieStore.companie.offre === 'vip') {
+      await updateDoc(docRef, { enAvant: true })
+      
+      const miseEn_avantDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'mise_en_avant')
+      const trajetEn_avantColRef = collection( miseEn_avantDocRef, 'programme_en_avant')
+  
+      const addedDoc = await addDoc(trajetEn_avantColRef, trajet)
+  
+      console.log('Document ajouté') 
+  
       Swal.fire({
         title: "Succès",
         text: "Votre Programme de voyage a été mis en avant",
         icon: "success"
       })
-
-      const update = await updateDoc(addedDoc, { uid: addedDoc.id, enAvant: true })
-
-      if(update) {
-        console.log('ID ajouté')
-      }
-    }
+      await updateDoc(addedDoc, { uid: addedDoc.id, enAvant: true })
   
-  } else {
-    Swal.fire({
-      title: "Erreur",
-      text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
-      icon: "error"
-    })
+      console.log('ID ajouté')
+      
+    } else {
+      Swal.fire({
+        title: "Erreur",
+        text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
+        icon: "error"
+      })
+    }
+    
+  } catch (error) {
+    console.log(error)
   }
+
 }
 
 const debut_promo = ref()
@@ -166,112 +168,119 @@ const promote = async (trajet) => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
   const programmesColRef = collection(companieDocRef, 'programme_des_voyages')
 
-  const docRef = doc(programmesColRef, `${trajet.uid}`)
+  const docRef = doc(programmesColRef, `${trajet.uid}`) 
 
-  if(companieStore.companie.offre === 'vip') {
-    const update = await updateDoc(docRef, { enPromo: true })
+  try {
+    if(companieStore.companie.offre === 'vip') {
+      await updateDoc(docRef, { enPromo: true })
+      
+      const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
+      const trajetInPromoColRef = collection(promotionDocRef, 'programme_en_promo')
     
-    const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
-    const trajetInPromoColRef = collection(promotionDocRef, 'programme_en_promo')
-  
-    const data = {
-      uid: '', 
-      ancien_montant: trajet.montant, 
-      compagnie_uid: userId, 
-      country: companieStore.companie.country, 
-      createdAt: Timestamp.now(), 
-      debut_promo: debut_promo.value, 
-      destination: trajet.destination, 
-      escale: trajet.escale, 
-      fin_promo: fin_promo.value, 
-      heure_depart: trajet.heure_depart, 
-      idTrack: uuidv4(), 
-      lieu_depart: trajet.lieu_depart, 
-      montant: trajet.montant, 
-      pourcentage: taux_reduction.value
-    }
-  
-    const addedDoc = await addDoc(trajetInPromoColRef, data)
-  
-    if(addedDoc) {
+      const data = {
+        uid: '', 
+        ancien_montant: trajet.montant, 
+        compagnie_uid: userId, 
+        country: companieStore.companie.country, 
+        createdAt: Timestamp.now(), 
+        debut_promo: debut_promo.value, 
+        destination: trajet.destination, 
+        escale: trajet.escale, 
+        fin_promo: fin_promo.value, 
+        heure_depart: trajet.heure_depart, 
+        idTrack: uuidv4(), 
+        lieu_depart: trajet.lieu_depart, 
+        montant: trajet.montant, 
+        pourcentage: taux_reduction.value
+      }
+    
+      const addedDoc = await addDoc(trajetInPromoColRef, data)
+    
       console.log('Document ajouté')
       Swal.fire({
         title: "Succès",
         text: "Votre Programme de voyage a été mis en promotion",
         icon: "success"
       })
-
+  
       const update = await updateDoc(addedDoc, { uid: addedDoc.id })
       if(update) {
         console.log('ID ajouté')
       }
+      
+    } else {
+      Swal.fire({
+        title: "Erreur",
+        text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
+        icon: "error"
+      })
     }
-  } else {
-    Swal.fire({
-      title: "Erreur",
-      text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
-      icon: "error"
-    })
+    
+  } catch (error) {
+    console.log(error)
   }
+
 }
 
 const unlock = async (trajet) => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
   const programmesColRef = collection(companieDocRef, 'programme_des_voyages')
 
-  const docRef = doc(programmesColRef, `${trajet.uid}`)
+  const docRef = doc(programmesColRef, `${trajet.uid}`) 
 
-  if(trajet.status == 'desactive') {
-    const update = await updateDoc(docRef, { status: 'active' })
-  
-    if(update) {
+  try {
+    if(trajet.status == 'desactive') {
+      await updateDoc(docRef, { status: 'active' })
+    
       console.log('Programme dévérouillé')
       Swal.fire({
         title: "Succès",
         text: "Programme dévérouillé",
         icon: "success"
       })
-    }
-  } else if(trajet.status == 'active') {
-    const update = await updateDoc(docRef, { status: 'desactive' })
-  
-    if(update) {
+      
+    } else if(trajet.status == 'active') {
+      await updateDoc(docRef, { status: 'desactive' })
+    
       console.log('Programme Vérouillé')
       Swal.fire({
         title: "Succès",
         text: "Programme Vérouillé",
         icon: "success"
-      })
+      }) 
     }
+    
+  } catch (error) {
+    console.log(error)
   }
+
 }
 
 const remove = async (car) => {
-  Swal.fire({
+  const SwlResult = Swal.fire({
     title: 'Êtes-vous sûr de vouloir supprimer ce Programme ?',
     showCancelButton: true,
     confirmButtonText: 'Oui',
     cancelButtonText: 'Non',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
-      const programmesColRef = collection(companieDocRef, 'programme_des_voyages')
+  }) 
+    
+  if(SwlResult.isConfirmed) {
+    const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+    const programmesColRef = collection(companieDocRef, 'programme_des_voyages')
 
-      const docRef = doc(programmesColRef, `${car.uid}`)
+    const docRef = doc(programmesColRef, `${car.uid}`)
 
-      const result = deleteDoc(docRef)
+    await deleteDoc(docRef)
 
-      if(result) {
-        Swal.fire({
-          title: "Succès",
-          text: "Programmes supprimé",
-          icon: "success"
-        })
-      }
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      // 
-    }
-  })
+    Swal.fire({
+      title: "Succès",
+      text: "Programmes supprimé",
+      icon: "success"
+    })
+    
+  } else if (result.dismiss === Swal.DismissReason.cancel) {
+    // 
+  } 
 }
 </script>
 

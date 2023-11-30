@@ -449,8 +449,6 @@ const routes = [
     
   },
 
-  ConditionConnexion
-
   // {
   //   path: '/politique',
   //   name: 'Politique',

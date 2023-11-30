@@ -505,7 +505,7 @@ const options = {
                                 margin-bottom: -8px;
                             "
                             >
-                            Retrait | <strong>{{ location.date_retrait }} </strong> |
+                            Retrait | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} </strong> |
                             <strong>{{ location.heure_retrait }}</strong>
                             </p>
 
@@ -514,7 +514,7 @@ const options = {
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
-                            Retour | <strong>{{ location.date_retour }} </strong>
+                            Retour | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </strong>
                             </p>
                             <br />
 

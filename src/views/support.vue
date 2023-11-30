@@ -22,7 +22,7 @@ const conversations = ref([])
 
 const internalMessageColRef = collection(firestoreDb, 'support_messages_admin') 
 
-onBeforeMount(async () => { 
+onMounted(async () => { 
 
   const q = query(internalMessageColRef, where('userId', '==', `${userId}`))
   const snapshot = await getDocs(q) 

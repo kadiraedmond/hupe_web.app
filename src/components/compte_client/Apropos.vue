@@ -18,7 +18,7 @@ const userId = savedUser.uid || authStore.user.uid
 
 const nom = ref('')
 const prenom = ref('')
-const photo_profil = ref()
+const photo_profil = ref('')
 const date_nais = ref()
 const profess = ref('')
 const mail = ref('')
@@ -73,7 +73,7 @@ const handleSubmit = async () => {
     dateNaisse: date_nais.value,
     email: mail.value,
     firstName: prenom.value,
-    imageUrl: photo_profil.value,
+    imageUrl: photo_profil.value !== '' ? photo_profil.value : '',
     lastName: nom.value,
     profession: profess.value,
     telephone: phone.value,

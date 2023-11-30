@@ -469,7 +469,7 @@ const options = {
                                 margin-bottom: -8px;
                             "
                             >
-                            Départ | <strong>{{ reservation.date_depart }} </strong> |
+                            Départ | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(reservation.date_depart) }} </strong> |
                             <strong>{{ reservation.heure_depart }}</strong>
                             </p>
 

@@ -1,5 +1,6 @@
 <script setup>
-import { useUserStore } from "@/store/user.js"
+import { useUserStore } from "@/store/user.js" 
+import { useDemandeStore } from '@/store/demande.js'
 import { useAuthStore } from "@/store/auth.js"
 import { onBeforeMount, onMounted, ref } from "vue"
 
@@ -11,14 +12,16 @@ import GrosEngin from '@/components/compte_client/GrosEngins.vue'
 import AchatVehicule from '@/components/compte_client/AchatVehicule.vue'
 import Apropos from '@/components/compte_client/Apropos.vue'
 import Compte from '@/components/compte_client/Compte.vue'
-import Post from '@/components/compte_client/Post.vue'
+import Post from '@/components/compte_client/Post.vue' 
+import Swal from 'sweetalert2'
 
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from 'vue3-toastify'
 
 const userStore = useUserStore()
-const authStore = useAuthStore()
+const authStore = useAuthStore() 
+const demandeStore = useDemandeStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
@@ -37,8 +40,8 @@ const clientPublicationColRef = collection(firestoreDb, 'client_publication')
 
 const submitPost = async () => {
   const newData = {
-    client_id: authStore.user.uid,
-    createdAt: new Date(),
+    client_id: userId, 
+    createdAt: Timestamp.now(),
     demande: post.value,
     lecteurs: [],
     objet: object.value,
@@ -47,15 +50,15 @@ const submitPost = async () => {
   }
 
   try {
-    const addedDoc = await addDoc(clientPublicationColRef, newData)
-    
-    if(addedDoc) {
-      console.log('Document added successfull')
-      toast.success("Publication effectuée avec succès", { 
-        autoClose: 3500, 
-        position: toast.POSITION.TOP_CENTER
-    })
-    } 
+    await addDoc(clientPublicationColRef, newData) 
+
+    demandeStore.setPosts(userId)
+
+    Swal.fire({
+      title: "Succès",
+      text: "Publication effectuée avec succès",
+      icon: "success"
+    }) 
   } catch (error) {
     console.log(error)
   }

@@ -174,7 +174,8 @@ export const useCompanieStore = defineStore('companieStore', {
                 console.log(error)
             }
         },
-        async setCompanieCars(companieId) {
+        async setCompanieCars(companieId) { 
+            this.companieCars = [] 
             const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
             const companieSubColRef = collection(companieDocRef, 'vehicules_programmer')
             
