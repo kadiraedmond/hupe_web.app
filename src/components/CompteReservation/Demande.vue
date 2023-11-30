@@ -45,7 +45,8 @@ const handleSubmit = async (demande) => {
 
   await updateDoc(docRef, { lecteurs: [...pub.lecteurs, `${userId}`] })
 
-  document.querySelector('#form').reset()
+  document.querySelector('#form').reset() 
+  document.querySelector('.btn-close').click()
 }
 
 onBeforeMount(() => {

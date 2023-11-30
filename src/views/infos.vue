@@ -794,14 +794,14 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <div class="d-flex" style="margin-left: 135px;  position: absolute;">
-                                                            
-                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        <div class="d-flex" style="margin-left: 0px;  position: absolute; margin-top: -61px;">
                                                             <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Paiement </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                           
                                                         </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left: 135px;z-index: -1;"></div>
+                                                            <div class="vr" style="margin-left: 124px;z-index: -1;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                                 
@@ -849,11 +849,12 @@ onMounted(() => {
                                                     <div class="col text-center d-flex">
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:34px"></div>
+                                                            <div class="vr" style="margin-left:24px"></div>
                                                         </div>  
-                                                        <div class="d-flex" style="margin-left: -135px;">
-                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
-                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        <div class="d-flex" style="margin-left: 125px; margin-top: -75px; position: absolute;">
+                                                            
+                                                            <button class="btn btn-primary" id="circle_btn">3</button>
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>  
                                                         </div>             
                                                     </div>
                                                     <div class="col">
@@ -898,14 +899,14 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <div class="d-flex" style="margin-left: 135px;  position: absolute; margin-top: -72px;">
-                                                            
-                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        <div class="d-flex" style="margin-left: -37px;  position: absolute; margin-top: -61px;">
                                                             <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Transmission </h1>
+                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                           
                                                         </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:126px;z-index: -1; min-height: 17em !important;"></div>
+                                                            <div class="vr" style="margin-left:124px;z-index: -1; min-height: 17em !important;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                                
@@ -1037,11 +1038,12 @@ onMounted(() => {
                                                     <div class="col text-center d-flex">
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:34px"></div>
+                                                            <div class="vr" style="margin-left:24px"></div>
                                                         </div>  
-                                                        <div class="d-flex" style="margin-left: -135px;">
-                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
+                                                        <div class="d-flex" style="margin-left: 125px; margin-top: -38px; position: absolute;">
+                                                            
                                                             <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
                                                         </div>
                                                                   
                                                     </div>
@@ -1087,13 +1089,13 @@ onMounted(() => {
                                                      </div>
                                                      </div>
                                                     <div class="col text-center d-flex">
-                                                        <div class="d-flex" style="margin-left: -7px;">
+                                                        <div class="d-flex" style="margin-left: -33px;  position: absolute; margin-top: -61px;">
                                                             <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Confirmation </h1>
                                                             <button class="btn btn-primary" id="circle_btn">2</button>  
                                                         </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:-27px;z-index: -1;"></div>
+                                                            <div class="vr" style="margin-left:124px;z-index: -1;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                                 
@@ -1141,11 +1143,12 @@ onMounted(() => {
                                                     <div class="col text-center d-flex">
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:34px"></div>
+                                                            <div class="vr" style="margin-left:24px"></div>
                                                         </div>  
-                                                        <div class="d-flex" style="margin-left: -135px;">
-                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
+                                                        <div class="d-flex" style="margin-left: 125px; margin-top: -75px; position: absolute;">
+                                                            
                                                             <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
                                                         </div>            
                                                     </div>
                                                     <div class="col">
@@ -1190,13 +1193,13 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <div class="d-flex" style="margin-left: -12px;">
+                                                        <div class="d-flex" style="margin-left: -37px;  position: absolute; margin-top: -61px;">
                                                             <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Transmission </h1>
-                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                            <button class="btn btn-primary" id="circle_btn">4</button>  
                                                         </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:-27px;z-index: -1; min-height: 17em !important;"></div>
+                                                            <div class="vr" style="margin-left:124px;z-index: -1; min-height: 17em !important;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                                  
@@ -1329,11 +1332,12 @@ onMounted(() => {
                                                     <div class="col text-center d-flex">
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:34px"></div>
+                                                            <div class="vr" style="margin-left:24px"></div>
                                                         </div>  
-                                                        <div class="d-flex" style="margin-left: -135px;">
-                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
+                                                        <div class="d-flex" style="margin-left: 125px; margin-top: -38px; position: absolute;">
+                                                            
                                                             <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Réservation </h1>
                                                         </div>           
                                                     </div>
                                                     <div class="col">
@@ -1378,13 +1382,14 @@ onMounted(() => {
                                                      </div>
                                                      </div>
                                                     <div class="col text-center d-flex">
-                                                        <div class="d-flex" style="margin-left: -7px;">
-                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Paiement </h1>
-                                                            <button class="btn btn-primary" id="circle_btn">2</button>  
+                                                        <div class="d-flex" style="margin-left: 0px;  position: absolute; margin-top: -61px;">
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Paiement </h1> 
+                                                            <button class="btn btn-primary" id="circle_btn">2</button> 
+                                                           
                                                         </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:-27px;z-index: -1;"></div>
+                                                            <div class="vr" style="margin-left:124px;z-index: -1;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                     </div>
@@ -1431,11 +1436,12 @@ onMounted(() => {
                                                     <div class="col text-center d-flex">
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:34px"></div>
+                                                            <div class="vr" style="margin-left:24px"></div>
                                                         </div>  
-                                                        <div class="d-flex" style="margin-left: -135px;">
-                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
-                                                            <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                        <div class="d-flex" style="margin-left: 125px; margin-top: -75px; position: absolute;">
+                                                            
+                                                            <button class="btn btn-primary" id="circle_btn">3</button> 
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1> 
                                                         </div>               
                                                     </div>
                                                     <div class="col">
@@ -1480,13 +1486,13 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <div class="d-flex" style="margin-left: -12px;">
+                                                        <div class="d-flex" style="margin-left: -55px;  position: absolute; margin-top: -61px;">
                                                             <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Jour du départ </h1>
                                                             <button class="btn btn-primary" id="circle_btn">4</button>  
                                                         </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:-27px;z-index: -1; min-height: 17em !important;"></div>
+                                                            <div class="vr" style="margin-left:124px;z-index: -1; min-height: 17em !important;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                                  
@@ -1619,11 +1625,12 @@ onMounted(() => {
                                                     <div class="col text-center d-flex">
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:34px"></div>
+                                                            <div class="vr" style="margin-left:24px"></div>
                                                         </div>  
-                                                        <div class="d-flex" style="margin-left: -135px;">
-                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Choix de véhicule </h1>
+                                                        <div class="d-flex" style="margin-left: 125px; margin-top: -38px; position: absolute;">
                                                             <button class="btn btn-primary" id="circle_btn">1</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Choix de véhicule </h1>
+                                                            
                                                         </div>         
                                                     </div>
                                                     <div class="col">
@@ -1668,13 +1675,13 @@ onMounted(() => {
                                                      </div>
                                                      </div>
                                                     <div class="col text-center d-flex">
-                                                        <div class="d-flex" style="margin-left: -7px;">
+                                                        <div class="d-flex" style="margin-left: -20px;  position: absolute; margin-top: -61px;">
                                                             <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Messagerie </h1>
                                                             <button class="btn btn-primary" id="circle_btn">2</button>  
                                                         </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:-27px;z-index: -1;"></div>
+                                                            <div class="vr" style="margin-left:124px;z-index: -1;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>     
                                                     </div>
@@ -1721,11 +1728,12 @@ onMounted(() => {
                                                     <div class="col text-center d-flex">
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-right-arrow-alt'></i></h1>  
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:34px"></div>
+                                                            <div class="vr" style="margin-left:24px"></div>
                                                         </div>  
-                                                        <div class="d-flex" style="margin-left: -135px;">
-                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Prise de rendez-vous  </h1>
+                                                        <div class="d-flex" style="margin-left: 125px; margin-top: -75px; position: absolute;">
+                                                           
                                                             <button class="btn btn-primary" id="circle_btn">3</button>  
+                                                            <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Prise de rendez-vous  </h1>
                                                         </div>             
                                                     </div>
                                                     <div class="col">
@@ -1770,13 +1778,13 @@ onMounted(() => {
                                                     </div>
                                                     </div>
                                                     <div class="col text-center d-flex">
-                                                        <div class="d-flex" style="margin-left: -12px;">
+                                                        <div class="d-flex" style="margin-left: -190px;  position: absolute; margin-top: -61px;">
                                                             <h1 style="font-size: 20px; margin-top: 12px; margin-right: 30px;"> Rendez-vous pour les essais </h1>
                                                             <button class="btn btn-primary" id="circle_btn">4</button>  
                                                         </div>  
                                                        
                                                         <div class="d-flex" style="height: 200px;">
-                                                            <div class="vr" style="margin-left:-27px;z-index: -1; min-height: 17em !important;"></div>
+                                                            <div class="vr" style="margin-left:124px;z-index: -1; min-height: 17em !important;"></div>
                                                         </div>  
                                                         <h1 style="font-size: 100px; margin-top: 85px;  color: #219935;"><i class='bx bx-left-arrow-alt'></i></h1>  
                                                                 

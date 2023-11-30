@@ -41,7 +41,7 @@ const updateReservationsDashboard = (datas) => {
     
     else if(data.status == 'Validé') {
       valides.totalNumber++
-      utilisees.totalPrice += Number(data.montant)
+      valides.totalPrice += Number(data.montant)
     }
     
     else if(data.status == 'Confirmé') {
@@ -74,7 +74,25 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
-  await locationStore.setUserLocations(userId)
+  await locationStore.setUserLocations(userId) 
+
+  enAttente.totalNumber = 0
+  enAttente.totalPrice = 0
+
+  valides.totalNumber = 0 
+  valides.totalPrice = 0 
+
+  confirmees.totalNumber = 0 
+  confirmees.totalPrice = 0 
+
+  annulees.totalNumber = 0 
+  annulees.totalPrice = 0 
+
+  reportees.totalNumber = 0 
+  reportees.totalPrice = 0 
+  
+  utilisees.totalNumber = 0
+  utilisees.totalPrice = 0 
 
   updateReservationsDashboard(locationStore.userLocations)
 })
@@ -97,7 +115,7 @@ onMounted(() => {
         >
           <router-link to="/" class="mt-4">
             <img
-              src="/assets/img/car.png"
+              src="/assets/img/service/car.png"
               class="img-fluid w-25"
               alt="..."
             />
@@ -108,8 +126,7 @@ onMounted(() => {
               Location de voiture
             </h5>
             <p class="card-text" style="font-size: 14px">
-              Évitez les files d'attente et réservez vos billets de bus en
-              quelques instants.
+              Découvrez le confort, la flexibilité et l'aventure avec Hupe.
             </p>
           </div>
         </div>
@@ -124,10 +141,9 @@ onMounted(() => {
               style="background: #62bfc4; border-color: #62bfc4"
             >
               <div class="row text-black">
-                <div class="col-2">
-                  <i class="bx bx-time"></i>
+                <div class="col-10 text-start">
+                  <i class="bx bx-time"></i> En attente
                 </div>
-                <div class="col-8" style="font-size: 12px;">En attente</div>
                 <div class="col-2">{{ enAttente.totalNumber }}</div>
               </div>
             </boutton>
@@ -140,10 +156,10 @@ onMounted(() => {
                 style="background:  #bbded8; border-color: #bbded8"
               >
                 <div class="row text-black">
-                  <div class="col-2">
-                    <i class="bx bx-check-circle"></i>
+                  <div class="col-10 text-start">
+                    <i class="bx bx-check-circle"></i> Validé
                   </div>
-                  <div class="col-8" style="font-size: 12px;">Validé</div>
+                  
                   <div class="col-2">{{ valides.totalNumber }}</div>
                 </div>
               </boutton>
@@ -156,10 +172,10 @@ onMounted(() => {
                 style="background: #f9f9f9; border-color: #f9f9f9"
               >
                 <div class="row text-black">
-                  <div class="col-2">
-                    <i class="bx bx-x-circle"></i>
+                  <div class="col-10 text-start">
+                    <i class="bx bx-x-circle"></i> Annulé
                   </div>
-                  <div class="col-8" style="font-size: 12px;">Annulé</div>
+                 
                   <div class="col-2">{{ annulees.totalNumber }}</div>
                 </div>
               </boutton>
@@ -172,10 +188,10 @@ onMounted(() => {
                 style="background: #bbded8; border-color:#bbded8"
               >
                 <div class="row text-black">
-                  <div class="col-2">
-                    <i class="bx bx-check-square"></i>
+                  <div class="col-10 text-start">
+                    <i class="bx bx-check-square"></i> Confirmé
                   </div>
-                  <div class="col-8" style="font-size: 12px;">Confirmer</div>
+                 
                   <div class="col-2">{{ confirmees.totalNumber }}</div>
                 </div>
               </boutton>
@@ -188,10 +204,10 @@ onMounted(() => {
                 style="background: #f9f9f9; border-color: #f9f9f9"
               >
                 <div class="row text-black">
-                  <div class="col-2">
-                    <i class="bx bx-check-circle"></i>
+                  <div class="col-10 text-start">
+                    <i class="bx bx-check-circle"></i>  Utilisé
                   </div>
-                  <div class="col-8" style="font-size: 12px;">Utilisé</div>
+                   
                   <div class="col-2">{{ utilisees.totalNumber }}</div>
                 </div>
               </boutton>
@@ -204,10 +220,10 @@ onMounted(() => {
                 style="background:#bbded8; border-color:#bbded8"
               >
                 <div class="row text-black">
-                  <div class="col-2">
-                    <i class="bx bx-reset"></i>
+                  <div class="col-10 text-start">
+                    <i class="bx bx-reset"></i> Reporté
                   </div>
-                  <div class="col-8" style="font-size: 12px;">Reporté</div>
+                  
                   <div class="col-2">{{ reportees.totalNumber }}</div>
                 </div>
               </boutton>
@@ -220,11 +236,11 @@ onMounted(() => {
               style="background: #f8e4dd; ; border-color:#f8e4dd; "
             >
               <div class="row text-black">
-                <div class="col-2">
-                  <i class="bx bx-error-alt"></i>
+                <div class="col-10 text-start">
+                  <i class="bx bx-error-alt"></i>  En attente de report
                 </div>
-                <div class="col-8" style="font-size: 12px;">En attente de report</div>
-                <div class="col-2">{{ enAttente.totalNumber }}</div>
+                
+                <div class="col-2">{{ 0 }}</div>
               </div>
             </boutton>
           </div>

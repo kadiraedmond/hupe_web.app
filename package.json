@@ -15,8 +15,8 @@
     "firebase": "^10.4.0",
     "flag-icon-css": "^4.1.7",
     "pinia": "^2.1.7",
-    "quill": "^1.3.6",
     "qrcode.vue": "^3.4.1",
+    "quill": "^1.3.6",
     "sweetalert2": "^11.9.0",
     "uuid": "^9.0.1",
     "vue": "^3.3.4",
@@ -24,6 +24,7 @@
     "vue-i18next": "^0.9.4",
     "vue-otp-input": "^1.0.0",
     "vue-router": "^4.2.4",
+    "vue-summernote": "^1.0.3",
     "vue-tel-input": "^8.1.4",
     "vue3-otp-input": "^0.4.1",
     "vue3-toastify": "^0.1.14"

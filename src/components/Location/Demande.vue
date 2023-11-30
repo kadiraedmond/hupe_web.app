@@ -47,6 +47,7 @@ const handleSubmit = async (demande) => {
   await updateDoc(docRef, { lecteurs: [...pub.lecteurs, `${userId}`] })
 
   document.querySelector('#form').reset()
+  document.querySelector('.btn-close').click()
 }
 
 onBeforeMount(() => {
@@ -76,8 +77,29 @@ onMounted(() => {
         border: none;
       "
     >
-      <p style="color: #219935">{{ demande.objet }}</p>
-      <p class="text-black">{{ demande.demande }}</p>
+        <div class="row g-1 d-flex mt-1">
+                        
+          <div class="col-6 d-flex">
+              <img :src="demande.userInfos.imageUrl ? demande.userInfos.imageUrl : '/assets/img/avatars/1.png'" alt class="w-px-40 h-auto rounded-circle" style="max-width: 50px; height: 50px !important ; border: 1px solid rgb(214, 214, 214);" />
+              <div>
+                <div class="card-body" style="margin-top: 15px; margin-left: 12px;">
+                  <h5 class="card-title text-black" style="font-size: 12px">
+                    {{ demande.userInfos.lastName }} {{ demande.userInfos.firstName }}
+                  </h5>
+                  
+                </div>
+              </div>
+          </div>
+                        
+       </div>
+       <div class="row g-1 mt-1">
+        <div class="col-md-12">
+          <p style="color: #219935"> {{ demande.objet }}</p>
+          <p class="text-black" style="margin-top: -9px;">  {{ demande.demande }}</p>
+        </div>
+       </div>
+
+     
     </button>
 
     <!-- Modal -->
@@ -140,7 +162,6 @@ onMounted(() => {
     </div>
   
  
-  
   </div>
   </div>
     
@@ -148,9 +169,9 @@ onMounted(() => {
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-          <div class="card text-center">
+          <div class="card text-center border-0">
             <div class="text-center">
-              <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-25">
+              <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
             </div>
             
             <div class="card-body">

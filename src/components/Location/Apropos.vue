@@ -216,6 +216,12 @@ const handleSubmit = async () => {
                   <label for="validationCustom01" class="form-label">Description </label>
                   <input type="text" class="form-control" id="validationCustom01" v-model="description" >
                   
+                </div> 
+
+                <div class="col-md-6">
+                  <label for="validationCustom01" class="form-label">Présentation </label>
+                  <input type="text" class="form-control" id="validationCustom01" >
+                  
                 </div>
 
                 <div class="col-md-6">

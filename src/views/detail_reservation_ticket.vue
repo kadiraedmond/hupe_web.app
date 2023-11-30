@@ -45,7 +45,9 @@ onBeforeMount(async () => {
 })
 
 const name = ref('')
-const nombrePersonnes = ref()
+const nombrePersonnes = ref() 
+const dateDepart = ref() 
+const heureDepart = ref() 
 
 const reservationColRef = collection(firestoreDb, 'reservation')
 
@@ -69,14 +71,14 @@ const reserver = async (programme) => {
     client_profil_url: user.imageUrl || '',
     compagnie_uid: programme.compagnie_uid,
     createdAt: Timestamp.now(),
-    date_depart: programme.date_depart || '',
+    date_depart: new Date(dateDepart.value) || '',
     destination: programme.destination,
     escale: programme.escale,
-    heure_depart: programme.heure_depart,
+    heure_depart: heureDepart.value, 
     lieu_depart: programme.lieu_depart,
     lieu_arrive: programme.destination,
     montant: programme.montant,
-    nom_client: name.value,
+    nom_client: `${user.lastName} ${user.firstName}`,
     nombre_personne: nombrePersonnes.value,
     number: `T_${Date.now()}`, 
     payement: 'En attente',
@@ -327,8 +329,9 @@ onMounted(() => {
                                 type="text"
                                 class="form-control"
                                 id="validationCustom01"
-                                v-model="name"
-                                required
+                                :value="`${user.lastName} ${user.firstName}`"
+                                required 
+                                disabled 
                             />
                             </div>
 
@@ -374,12 +377,11 @@ onMounted(() => {
                                 >Date de départ</label
                             >
                             <input
-                                type="text"
+                                type="date"
                                 class="form-control"
                                 id="validationCustom01"
-                                :value="promotionStore.programme.date_depart"
+                                v-model="dateDepart"
                                 required
-                                disabled
                             />
                             </div>
                             <div class="col-md-6">
@@ -390,12 +392,11 @@ onMounted(() => {
                                 >Heure de départ</label
                             >
                             <input
-                                type="text"
+                                type="time"
                                 class="form-control"
                                 id="validationCustom01"
-                                :value="promotionStore.programme.heure_depart"
+                                v-model="heureDepart"
                                 required
-                                disabled
                             />
                             </div>
 

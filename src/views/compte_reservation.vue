@@ -36,7 +36,7 @@ onMounted(() => {
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details" style="margin-top: 0px;">
-      <img :src="companieStore.companie.imageCouvertureUrl" alt="" class="img-fluid w-100" style="height: 380px; object-fit: cover;">
+      <img :src="companieStore.companie.imageCouvertureUrl" alt="" class="img-fluid w-100" id="img_couv">
     </section>
     <!-- End Portfolio Details Section -->
 
@@ -190,5 +190,12 @@ onMounted(() => {
     border: var(--bs-nav-tabs-border-width) solid transparent;
     /* border-color: #219935; */
     border-radius: 0px !important;
+}
+
+#img_couv{
+  height: 450px;
+    /* object-fit: cover; */
+  object-fit: fill;
+  image-rendering: -webkit-optimize-contrast;
 }
 </style>

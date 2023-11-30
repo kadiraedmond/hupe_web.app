@@ -183,7 +183,7 @@ const deletePolitique = async () => {
     </div>
 
     <div class="col-md-12">
-      <div class="card h-100" id="card_compagnie">
+      <div class="card h-100 border-0">
         <div class="card-body"> 
           <div v-if="firebaseText.length > 0">
             <p>

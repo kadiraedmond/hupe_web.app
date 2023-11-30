@@ -41,8 +41,8 @@ const updateReservationsDashboard = () => {
     }
     
     else if(reservation.status == 'Validé') {
-      utilisees.totalNumber++
-      utilisees.totalPrice += Number(reservation.montant)
+      valides.totalNumber++
+      valides.totalPrice += Number(reservation.montant)
     }
     
     else if(reservation.status == 'Confirmé') {
@@ -80,7 +80,26 @@ const elements_utilise = ref([])
 const elements_annule = ref([])
 
 onBeforeMount(async () => {
-  await reservationStore.setCompanieReservations(userId)
+  await reservationStore.setCompanieReservations(userId) 
+
+  enAttente.totalNumber = 0
+  enAttente.totalPrice = 0
+
+  valides.totalNumber = 0 
+  valides.totalPrice = 0 
+
+  confirmees.totalNumber = 0 
+  confirmees.totalPrice = 0 
+
+  annulees.totalNumber = 0 
+  annulees.totalPrice = 0 
+
+  reportees.totalNumber = 0 
+  reportees.totalPrice = 0 
+  
+  utilisees.totalNumber = 0
+  utilisees.totalPrice = 0 
+
   updateReservationsDashboard()
 
   reservationStore.companieReservations.forEach(comp => {
@@ -138,6 +157,15 @@ const valider = async (reservation) => {
     console.log(error)
   }
 } 
+
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
 
 </script>
 

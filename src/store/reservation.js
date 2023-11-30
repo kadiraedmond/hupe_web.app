@@ -50,7 +50,7 @@ export const useReservationStore = defineStore('reservationStore', {
             }
         },
         async setUserReservations(userId) {
-            try {
+            try { 
                 const q = query(reservationColRef, where('client_id', "==", `${userId}`));
                 const snapshots = await getDocs(q)
                 for(let i = 0; i < snapshots.docs.length; i++) {
@@ -62,12 +62,13 @@ export const useReservationStore = defineStore('reservationStore', {
                     if(snapshot.exists()) company = snapshot.data()
                     this.userReservations.push({ ...programData, companieInfos: company })
 
-                }
-                console.log(this.userReservations)
-                // snapshot.docs.forEach((doc) => this.userReservations.push({ ...doc.data() }))
-            } catch (error) {
-                console.log(error)
             }
+            console.log(this.userReservations)
+            // snapshot.docs.forEach((doc) => this.userReservations.push({ ...doc.data() }))
+        } catch (error) {
+            console.log(error)
+        }
+            this.userReservations = [] 
         }, 
         async setReservationById(reservationId) {
             const docRef = doc(firestoreDb, 'reservation', `${reservationId}`)

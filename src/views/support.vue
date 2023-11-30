@@ -3,7 +3,9 @@ import { onBeforeMount, onMounted, computed, ref, reactive } from "vue"
 
 import { addDoc, updateDoc, query, where, doc, getDocs, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js' 
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2' 
+
+import router from '@/router/router.js'
 
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
@@ -136,6 +138,11 @@ const createNewConversation = async () => {
   } catch (error) {
     console.log(error)
   }
+} 
+
+const go_back = async () => {
+  await router.push('/service_client') 
+  window.location.reload() 
 }
 
 const options = {
@@ -162,13 +169,13 @@ const options = {
            <div class="col-md-4">
               <div class="row">
                   <div class="col-md-12" style="background-color:#219935 ; color: white">
-                      <h5 class="mt-4 mb-4"><router-link to="/service_client" class="text-white"><i class='bx bx-arrow-back' ></i></router-link>   Conversations</h5>
+                      <h5 class="mt-4 mb-4"><router-link @click="go_back" to="" class="text-white"><i class='bx bx-arrow-back' ></i></router-link>   Conversations</h5>
                   </div>
               </div>
               <div class="row" style="height: 500px; overflow-y: scroll;">
                 
                   <div class="col-md-12 mt-3" v-for="(conversation, i) in conversations" :key="conversation.uid">
-                    <router-link @click="() => handleConversationClick(conversation.uid)" to="/support">
+                    <router-link @click="() => handleConversationClick(conversation.uid)" to="">
                       <div class="row">
                         
                         <div class="col-2">

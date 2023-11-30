@@ -31,11 +31,11 @@ const autresVehicules = ref([])
 onBeforeMount(async () => {
   await promotionStore.setVehicule(carId)
 
-  companieId = promotionStore.vehicule.compagnie_uid
+  companieId = await promotionStore.vehicule.compagnie_uid
   console.log(companieId)
 
-  await companieStore.setCompanieById(companieId)
-  await companieStore.setCompanieCars(companieId) 
+  companieStore.setCompanieById(companieId)
+  companieStore.setCompanieCars(companieId) 
 
   vehicules.value = companieStore.companieCars 
 
@@ -130,7 +130,7 @@ const reserver = async (car) => {
     annee_vehicule: car.anne_vehicule, 
     montant: car.montant,
     moteur: car.moteur,
-    nom_client: name.value,
+    nom_client: `${user.lastName} ${user.firstName}`, 
     number: `T_${Date.now()}`, 
     payement: "En attente",
     plaque_vehicule: car.serie_vehicule,
@@ -419,8 +419,9 @@ onMounted(() => {
                               type="text"
                               class="form-control"
                               id="validationCustom01"
-                              v-model="name"
-                              required
+                              :value="`${user.lastName} ${user.firstName}`"
+                              required 
+                              disabled 
                             />
                           </div>
 

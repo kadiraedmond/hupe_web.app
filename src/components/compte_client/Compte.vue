@@ -145,7 +145,7 @@ const recharge = async () => {
         <div class="col-md-6">
           <div class="row mb-4">
             <div class="col-md-6">
-              <p style="color: #219935;">  Solde |<strong> {{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} </strong></p>
+              <p style="color: #219935;">  Solde |<strong> {{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} FCFA </strong></p>
             </div>
             <div class="col-md-6 text-end">
               <!-- Button trigger modal -->
@@ -198,7 +198,8 @@ const recharge = async () => {
       </div>
       
       <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col" v-for="(history, index) in userStore.userHistory" :key="index">
+        <div class="col" v-for="(history, index) in userStore.userHistory.slice().reverse()" :key="index">
+          <!-- <div class="col" v-for="(history, index) in userStore.userHistory" :key="index"></div> -->
           <div class="card h-100">
             
             <div class="card-body">

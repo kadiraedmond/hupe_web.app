@@ -109,7 +109,8 @@ onMounted(() => {
         :src="companieStore.companie.imageCouvertureUrl"
         alt=""
         class="img-fluid w-100"
-        style="height: 380px; object-fit: cover"
+        
+        id="img_couv"
       />
     </section>
     <!-- End Portfolio Details Section -->
@@ -831,4 +832,12 @@ onMounted(() => {
       /* border-color: #219935; */
       border-radius: 0px !important;
   }
+
+  #img_couv{
+  height: 450px;
+    /* object-fit: cover; */
+  object-fit: fill;
+  image-rendering: -webkit-optimize-contrast;
+}
+
 </style>

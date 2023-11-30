@@ -34,6 +34,7 @@ export const useCompanieStore = defineStore('companieStore', {
         async getAllCompanies() {
             try { 
                 const { data } = await axios.get(API_URL)
+                
 
                 this.country = data.country 
                 
@@ -175,6 +176,18 @@ export const useCompanieStore = defineStore('companieStore', {
             }
         },
         async setCompanieCars(companieId) { 
+            this.companieCars = [] 
+            const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
+            const companieSubColRef = collection(companieDocRef, 'vehicules_programmer')
+            
+            try {
+                const snapshot = await getDocs(companieSubColRef);
+                snapshot.docs.forEach((doc) => this.companieCars.push({ ...doc.data() }));
+            } catch (error) {
+                console.log(error)
+            } 
+        },
+        async setCompanieCars2(companieId) { 
             const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
             const companieSubColRef = collection(companieDocRef, 'vehicules_programmer')
             
@@ -236,7 +249,8 @@ export const useCompanieStore = defineStore('companieStore', {
                 console.log(error)
             }
         },
-        async setProgrammesVoyages(companyId) {
+        async setProgrammesVoyages(companyId) { 
+            this.programmeVoyages = [] 
             const companieDocRef = doc(firestoreDb, 'compagnies', `${companyId}`)
             const programmeVoyagesColRef = collection(companieDocRef, 'programme_des_voyages')
 

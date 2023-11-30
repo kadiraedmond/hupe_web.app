@@ -1,6 +1,8 @@
 <script setup>
 import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
 
+import Pagination from "@/components/Pagination.vue";
+
 import { useCompanieStore } from "@/store/companie.js";
 
 import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
@@ -15,12 +17,36 @@ onBeforeMount(() => {
   companieStore.getAllCompanies
 
   companieStore.getLocationCompanies
+ 
 
 })
 
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+
+
+const { locationCompanies } = useCompanieStore();
+
+const itemsPerPage = ref(5);
+const currentPage = ref(1);
+
+const totalItems = computed(() => (locationCompanies.value ? locationCompanies.value.length : 0));
+const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage.value));
+const paginatedCompanies = computed(() => {
+  if (locationCompanies.value) {
+    const start = (currentPage.value - 1) * itemsPerPage.value;
+    const end = start + itemsPerPage.value;
+    return locationCompanies.value.slice(start, end);
+  } else {
+    return [];
+  }
+});
+
+const updatePage = (newPage) => {
+  currentPage.value = newPage;
+};
 
 </script>
 
@@ -69,7 +95,7 @@ onMounted(() => {
         </div>
         
         <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
+          <div class="col"  v-for="(companie, index) in companieStore.locationCompanies" :key="index">
             <div
               class="card h-100"
               id="compagnie_card"
@@ -128,7 +154,9 @@ onMounted(() => {
               </div>
             </div>
           </div>
+           
         </div>
+        <Pagination :current-page="currentPage" :total-pages="totalPages" @update-page="updatePage" />
       </div>
     </section>
 

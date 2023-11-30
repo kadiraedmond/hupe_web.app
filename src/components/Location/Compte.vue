@@ -113,7 +113,7 @@ const options = {
           <div class="row mb-4">
             <div class="col-md-6">
               <button class="btn btn-primary" style="background: #219935; border-color: #219935; color: white;">
-                   Solde |  <strong> {{ companieStore.totalAmount.solde ? companieStore.totalAmount.solde : 0 }} </strong> 
+                   Solde |  <strong> {{ companieStore.totalAmount.solde ? companieStore.totalAmount.solde : 0 }} FCFA </strong> 
               </button>
              
               
@@ -176,7 +176,7 @@ const options = {
       </div>
  
       <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col" v-for="(history, index) in companieStore.companieHistory" :key="index">
+        <div class="col" v-for="(history, index) in companieStore.companieHistory.slice().reverse()" :key="index">
           <div class="card h-100">
             
             <div class="card-body">

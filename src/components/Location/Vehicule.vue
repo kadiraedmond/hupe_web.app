@@ -19,7 +19,7 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
-  await companieStore.setCompanieCars(userId) // authStore.user.uid
+  await companieStore.setCompanieCars2(userId) // authStore.user.uid
   companieCars.value = companieStore.companieCars 
 })
 
@@ -142,7 +142,7 @@ const promote = async (car) => {
         modele: car.modele, 
         montant: montant.value, 
         moteur: car.moteur, 
-        pourcentage: '', 
+        pourcentage: taux_reduction.value, 
         vehicule: car.vehicule, 
         vehicule_image_url: car.vehicule_image_url
       }
@@ -468,17 +468,24 @@ const handleInterieurPaysPrix = (e) => {
                     required
                   />
                 </div>
+                 
                 <div class="col-md-6">
-                  <label for="validationCustom02" class="form-label"
-                    >Moteur</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="validationCustom02"
-                    v-model="moteur"
-                    required
-                  />
+                  <label for="inputState" class="form-label">Moteur</label>
+                  <select id="inputState" v-model="moteur" class="form-select">
+                   
+                    <option value="Electrique">Electrique </option>
+                    <option value="Essence">Essence </option>
+                    <option value="Diesel ">Diesel  </option>
+                    <option value="Hybride">Hybride </option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputState" class="form-label">Transmission</label>
+                  <select id="inputState" v-model="transmission" class="form-select">
+                   
+                    <option value="">Manuelle </option>
+                    <option value="">Automatique </option>
+                  </select>
                 </div>
                 <div class="col-md-12">
                   <h2 style="font-size: 17px">Montant</h2>
@@ -499,7 +506,7 @@ const handleInterieurPaysPrix = (e) => {
 
                 <div class="col-md-4">
                   <label for="validationCustom01" class="form-label"
-                    >Avec chauffeur</label
+                    >Option chauffeur</label
                   >
                   <input
                     type="number"
@@ -511,7 +518,7 @@ const handleInterieurPaysPrix = (e) => {
                 </div>
                 <div class="col-md-4">
                   <label for="validationCustom02" class="form-label"
-                    >A l'intérieur</label
+                    >Option intérieur</label
                   >
                   <input
                     type="number"
@@ -533,6 +540,56 @@ const handleInterieurPaysPrix = (e) => {
                     required
                   />
                 </div>
+
+                <div class="col-md-12">
+                  <label for="validationCustom02" class="form-label"
+                    > Image 2</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="validationCustom02"
+                    @change="handleFile"
+                    required
+                  />
+                </div>
+                <div class="col-md-12">
+                  <label for="validationCustom02" class="form-label"
+                    >Image 3</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="validationCustom02"
+                    @change="handleFile"
+                    required
+                  />
+                </div>
+                <div class="col-md-12">
+                  <label for="validationCustom02" class="form-label"
+                    >Image 4</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="validationCustom02"
+                    @change="handleFile"
+                    required
+                  />
+                </div>
+                <div class="col-md-12">
+                  <label for="validationCustom02" class="form-label"
+                    >Image 5</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="validationCustom02"
+                    @change="handleFile"
+                    required
+                  />
+                </div>
+                
 
                 <div class="col-12 text-center">
                   <button
