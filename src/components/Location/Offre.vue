@@ -3,7 +3,9 @@ import { ref, onBeforeMount, onMounted } from 'vue'
 import { useCompanieStore } from '@/store/companie.js'
 import { doc, updateDoc} from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
-import { useAuthStore } from '@/store/auth.js'
+import { useAuthStore } from '@/store/auth.js' 
+
+import Swal from 'sweetalert2'
 
 const authStore = useAuthStore()
 const companieStore = useCompanieStore()
@@ -13,11 +15,11 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid 
 
-const offre_actuelle = ref('')
-onBeforeMount(() => {
-  companieStore.setCompanieById(userId) 
+const companie = ref({})
+onBeforeMount(async () => {
+  await companieStore.setCompanieById(userId) 
 
-  offre_actuelle.value = companieStore.companie.offre 
+  companie.value = companieStore.companie 
 
 })
 
@@ -25,29 +27,38 @@ onMounted(() => {
   window.scrollTo(0, 0)
 })
 
-const companieColRef = doc(firestoreDb, "compagnies", `${companieStore.companie.uid}`)
+const companieColRef = doc(firestoreDb, "compagnies", `${userId}`)
 
 const isVIP = ref(false)
 
-const changeProfilHandler = async () => {
-  if(companieStore.companie.offre == 'vip') {
-    try {
-      await updateDoc(companieColRef, { offre: 'basique' })
-      companieStore.companie.offre = 'basique' 
+const changeProfilHandler = async () => { 
 
-      offre_actuelle.value = 'basique'
-    } catch (error) {
-      console.log(error)
-    }
-  } else if(companieStore.companie.offre == 'basique') {
-    try {
+  try {
+    if(companie.value.offre == 'vip') { 
+  
+      await updateDoc(companieColRef, { offre: 'basique' }) 
+      companie.value.offre = 'basique' 
+
+      Swal.fire({
+        title: "Succès",
+        text: "Vous venez de passer en offre basique",
+        icon: "success"
+      })
+  
+    } else if(companie.value.offre == 'basique') { 
+  
       await updateDoc(companieColRef, { offre: 'vip' })
-      companieStore.companie.offre = 'vip' 
-
-      offre_actuelle.value = 'vip'
-    } catch (error) {
-      console.log(error)
+      companie.value.offre = 'vip' 
+      
+      Swal.fire({
+        title: "Succès",
+        text: "Vous venez de passer en offre VIP",
+        icon: "success"
+      })
     }
+    
+  } catch (error) {
+    console.log(error)
   }
 }
 </script>
@@ -59,7 +70,7 @@ const changeProfilHandler = async () => {
         <div class="col-md-6">
           <p>
             <strong> Profile actuel | </strong>
-            <b style="color: #219935">{{ offre_actuelle }}</b>
+            <b style="color: #219935">{{ companie.offre }}</b>
           </p>
 
           <div
@@ -120,7 +131,7 @@ const changeProfilHandler = async () => {
                     </h5>
                   </button>
                 </div>
-                <div class="col-md-12 text-center" v-if="companieStore.companie.offre !=='vip'">
+                <div class="col-md-12 text-center" v-if="companie.offre !=='vip'">
                   <button type="button" class="btn btn-primary text-center" style="background: #219935; border-color: #219935;" @click="changeProfilHandler">Sélectionner</button>
                 </div>
               </div>
@@ -187,7 +198,7 @@ const changeProfilHandler = async () => {
                     </h5>
                   </button>
                 </div>
-                <div class="col-md-12 text-center" v-if="companieStore.companie.offre !== 'basique'">
+                <div class="col-md-12 text-center" v-if="companie.offre !== 'basique'">
                   <button
                     type="button"
                     class="btn btn-primary text-center"

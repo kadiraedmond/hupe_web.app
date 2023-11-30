@@ -24,13 +24,23 @@ onMounted(() => {
 
 const showWithdrawModal = ref(false)
 
-const checkAccount = () => {
+const checkAccount = () => { 
+  if(!companieStore.totalAmount.solde || !Number(companieStore.totalAmount.solde)) {
+    Swal.fire({
+      title: "Erreur",
+      text: "Attendez de recevoir un payement pour faire une demande de retrait",
+      icon: "error"
+    }) 
+
+    return
+  } 
+  
   if(Number(companieStore.totalAmount.solde) < 50000) {
     Swal.fire({
-    title: "Erreur",
-    text: "Votre solde est insuffisant pour un retrait",
-    icon: "error"
-  })
+      title: "Erreur",
+      text: "Votre solde est insuffisant pour un retrait",
+      icon: "error"
+    })
   } else if(Number(companieStore.totalAmount.solde) >= 50000) {
     showWithdrawModal.value = true
   }
@@ -103,7 +113,7 @@ const options = {
           <div class="row mb-4">
             <div class="col-md-6">
               <button class="btn btn-primary" style="background: #219935; border-color: #219935; color: white;">
-                   Solde |  <strong> {{ companieStore.totalAmount.solde }} </strong> 
+                   Solde |  <strong> {{ companieStore.totalAmount.solde ? companieStore.totalAmount.solde : 0 }} </strong> 
               </button>
              
               

@@ -183,7 +183,8 @@ const unlock = async (car) => {
 
   try {
     if(car.status == 'desactive') {
-      await updateDoc(docRef, { status: 'active' })
+      await updateDoc(docRef, { status: 'active' }) 
+      car.status = 'active' 
     
       console.log('Véhicule dévérouillé')
       Swal.fire({
@@ -193,7 +194,8 @@ const unlock = async (car) => {
       }) 
   
     } else if(car.status == 'active') {
-      await updateDoc(docRef, { status: 'desactive' })
+      await updateDoc(docRef, { status: 'desactive' }) 
+      car.status = 'desactive' 
     
       console.log('Véhicule Vérouillé') 
 
@@ -264,7 +266,9 @@ const remove = async (car) => {
 
     const docRef = doc(vehiculesColRef, `${car.uid}`)
 
-    await deleteDoc(docRef)
+    await deleteDoc(docRef) 
+
+    companieStore.setCompanieCars(userId)
 
     Swal.fire({
       title: "Succès",
