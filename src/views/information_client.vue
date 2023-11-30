@@ -108,7 +108,7 @@ const handleSubmit = async () => {
               </div>
               <div class="col-md-12">
                 <label for="text" class="form-label">Sexe </label>
-                <input type="email" v-model="sexe" class="form-control" id="inputPassword4" required />
+                <input type="text" v-model="sexe" class="form-control" id="inputPassword4" required />
               </div>
               <div class="col-12">
                 <label for="inputAddress" class="form-label">Adresse email</label>

@@ -26,8 +26,6 @@ onBeforeMount(() => {
   offre = authStore.offre
   offre2 = authStore.offre2
   new_uid = savedUser.uid || authStore.user.uid 
-  userToken = savedUser.stsTokenManager.accessToken || authStore.user.stsTokenManager.accessToken
-  // console.log(authStore.user.stsTokenManager.accessToken)
 })
 
 const raison_social = ref('')
@@ -84,8 +82,7 @@ const handleSubmit = async () => {
     imageCouvertureUrl: image_couverture.value || '', 
     imageLogoUrl: image_logo.value || '', 
     offre: offre !== '' ? offre : offre2 || '', 
-    token: userToken || '',
-    type_compagnie: companieService || '',
+    type_compagnie: companieService || '', 
   })
   .then(() => console.log('Document ajouté'))
   

@@ -33,6 +33,7 @@ onBeforeMount(async () => {
   mail.value = companieStore.companie.email 
   phone.value = companieStore.companie.telephone 
   lieu.value = companieStore.companie.adresse 
+  description.value = companieStore.companie.description 
 
 })
 

@@ -175,7 +175,6 @@ export const useCompanieStore = defineStore('companieStore', {
             }
         },
         async setCompanieCars(companieId) { 
-            this.companieCars = [] 
             const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
             const companieSubColRef = collection(companieDocRef, 'vehicules_programmer')
             
@@ -184,7 +183,9 @@ export const useCompanieStore = defineStore('companieStore', {
                 snapshot.docs.forEach((doc) => this.companieCars.push({ ...doc.data() }));
             } catch (error) {
                 console.log(error)
-            }
+            } 
+            
+            this.companieCars = [] 
         },
         resetCompanieCars() {
           this.companieCars = []  
