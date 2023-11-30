@@ -21,6 +21,7 @@ const responsable = ref('')
 const description = ref('') 
 const mail = ref('') 
 const phone = ref('') 
+const pays = ref('') 
 const lieu = ref('')  
 const photo_profil = ref('')  
 const photo_couverture = ref('')  
@@ -34,6 +35,7 @@ onBeforeMount(async () => {
   phone.value = companieStore.companie.telephone 
   lieu.value = companieStore.companie.adresse 
   description.value = companieStore.companie.description 
+  pays.value = companieStore.companie.country 
 
 })
 
@@ -81,6 +83,7 @@ const handleSubmit = async () => {
     responsable: responsable.value, 
     email: mail.value, 
     telephone: phone.value, 
+    country: pays.value, 
     adresse: lieu.value, 
     imageLogoUrl: photo_profil.value !== '' ? photo_profil.value : companieStore.companie.imageLogoUrl, 
     imageCouvertureUrl: photo_couverture.value !== '' ? photo_couverture.value : companieStore.companie.imageCouvertureUrl 
