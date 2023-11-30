@@ -25,8 +25,8 @@ const lieu = ref('')
 const photo_profil = ref('') 
 const photo_couverture = ref('') 
 
-onBeforeMount(() => {
-  companieStore.setCompanieById(userId) 
+onBeforeMount(async () => {
+  await companieStore.setCompanieById(userId) 
 
   raison_social.value = companieStore.companie.raison_social 
   responsable.value = companieStore.companie.responsable 

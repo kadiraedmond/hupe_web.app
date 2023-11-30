@@ -19,8 +19,7 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
-  await companieStore.resetCompanieCars()
-  companieStore.setCompanieCars(userId) // authStore.user.uid
+  await companieStore.setCompanieCars(userId) // authStore.user.uid
   companieCars.value = companieStore.companieCars 
 })
 
@@ -46,7 +45,7 @@ const handleSubmit = async () => {
 
   const data = {
     uid: '', 
-    annee_vehicule: annee.value, 
+    anne_vehicule: annee.value, 
     avecchauffeurprix: prix_avec_chauffeur.value, 
     boite: '', 
     capitalprix: '', 

@@ -1,13 +1,59 @@
 <script setup>
+import { onMounted, onBeforeMount, ref } from 'vue'
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc } from "firebase/firestore"
+import { firestoreDb, storage } from "@/firebase/firebase.js"
+import router from '@/router/router.js'
+import { useAuthStore } from '@/store/auth.js'
+import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
+import Swal from 'sweetalert2'
 
-import { onMounted } from 'vue'
+const authStore = useAuthStore()
+const savedUser = JSON.parse(localStorage.getItem('user'))
 
-
+let docRef
 onMounted(() => {
   window.scrollTo(0, 0)
-})
- 
- 
+  docRef = doc(firestoreDb, 'users', authStore.uniqueIdentifier)
+}) 
+
+const nom = ref('')
+const prenom = ref('')
+const sexe = ref('') 
+const email = ref('')  
+
+const handleSubmit = async () => { 
+
+  try { 
+
+    await updateDoc(docRef, {
+      lastName: nom.value, 
+      firstName: prenom.value, 
+      sexe: sexe.value,
+      email: email.value, 
+    })
+    
+    console.log('Document ajouté') 
+
+    Swal.fire({
+      title: "Succès",
+      text: "Votre compte a été créé", 
+      icon: "success"
+    })
+
+    const snapshot = await getDoc(docRef)
+    let user
+    if(snapshot.exists()) user = snapshot.data()
+    authStore.setUser(user)
+    localStorage.setItem('user', JSON.stringify(user)) 
+  
+    await router.push('/compte_client') 
+    window.location.reload() 
+    
+  } catch (error) {
+    console.log(error)
+  } 
+} 
+
 </script>
 
 <template>
@@ -48,27 +94,27 @@ onMounted(() => {
           >
             <div class="col-md-12 text-center">
               <p style="font-weight: 700">
-                Compétez vos informations personnelles
+                Complétez vos informations personnelles
               </p>
             </div>
             <form @submit.prevent="handleSubmit" id="form" class="row g-3">
               <div class="col-md-12">
                 <label for="text" class="form-label">Nom </label>
-                <input type="text" v-model="raison_social" class="form-control" id="inputEmail4" required />
+                <input type="text" v-model="nom" class="form-control" id="inputEmail4" required />
               </div>
               <div class="col-md-12">
                 <label for="text" class="form-label">Prénoms </label>
-                <input type="text" v-model="responsable" class="form-control" id="inputPassword4" required />
+                <input type="text" v-model="prenom" class="form-control" id="inputPassword4" required />
               </div>
               <div class="col-md-12">
                 <label for="text" class="form-label">Sexe </label>
-                <input type="email" v-model="email" class="form-control" id="inputPassword4" required />
+                <input type="email" v-model="sexe" class="form-control" id="inputPassword4" required />
               </div>
               <div class="col-12">
                 <label for="inputAddress" class="form-label">Adresse email</label>
                 <input
                   type="email"
-                  v-model="addresse"
+                  v-model="email"
                   class="form-control"
                   id="inputAddress"
                   required
@@ -82,7 +128,7 @@ onMounted(() => {
                         <button type="submit" class="btn btn-primary" style="background-color: #219935; border-color: #219935;">Valider</button>
                       </div> -->
                       <div class="col-md-6 text-start">
-                        <router-link to="/choix_offres">
+                        <router-link to="/connexion-client">
                           <button
                         
                         class="btn btn-primary "
@@ -106,7 +152,6 @@ onMounted(() => {
                           border-color: #219935;
                           
                         "
-                        :disabled="isUploading"
                       >
                         Terminer  <i class='bx bx-check'></i> 
                       </button>

@@ -83,7 +83,7 @@ const handleOnComplete = async (value) => {
     if(!authStore.isCompanie && authStore.isNew) { 
       const docRef = doc(firestoreDb, 'users', user.uid)
       await updateDoc(docRef, { token: user.stsTokenManager.accessToken })
-      await router.push('/compte_client') 
+      await router.push('/information-client') 
       window.location.reload() 
       return 
 

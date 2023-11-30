@@ -27,7 +27,8 @@ export const useReservationStore = defineStore('reservationStore', {
         },
     },
     actions: {
-        async setTrajets(companieId) {
+        async setTrajets(companieId) { 
+            this.trajets = [] 
             const companieDocRef = doc(firestoreDb, 'compagnies', `${companieId}`)
             const companieSubColRef = collection(companieDocRef, 'programme_des_voyages')
             
