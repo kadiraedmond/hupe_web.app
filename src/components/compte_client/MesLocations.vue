@@ -38,7 +38,7 @@ const reporter = async (location) => {
   const { status, ...extracted_location } = location
 
   console.log(new Date(date_report.value))
-  const docRef = await addDoc(reportColRef, { extracted_location, status: 'En attente', report: new Date(date_report.value) })
+  const docRef = await addDoc(reportColRef, { ...extracted_location, status: 'En attente', report: new Date(date_report.value) })
         .then(() => {
           console.log('Document ajouté')
           toast.info("Location reportée", {
@@ -131,7 +131,7 @@ const payer = async (location) => {
       const client_notif = {
         title: 'Paiement pour location', 
         message: `Vous avez effectué un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} ${location.annee_vehicule} pour une durée de ${differenceEnJours} jours.`, 
-        destinataire: [userId], 
+        destinataire: userId, 
         lu: false, 
         createdAt: new Date()
       }
@@ -156,7 +156,7 @@ const payer = async (location) => {
       const comp_notif = {
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} ${location.annee_vehicule}.`, 
-        destinataire: [location.compagnie_uid], 
+        userId: location.compagnie_uid, 
         type: 'compagnie', 
         lu: false, 
         createdAt: new Date()

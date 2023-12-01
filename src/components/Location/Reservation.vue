@@ -3,7 +3,7 @@ import { useCompanieStore } from "@/store/companie.js"
 import { useAuthStore } from "@/store/auth.js"
 import { reactive, ref, onBeforeMount, onMounted } from "vue"
 import Swal from 'sweetalert2'
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { collection, query, doc, where, Timestamp, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 
 const companieStore = useCompanieStore()
@@ -36,31 +36,43 @@ let utilisees = reactive({
 
 const updateReservationsDashboard = () => {
   companieStore.companieLocations.forEach((location) => {
-    if (location.status == "En attente") {
+    if(location.status == "En attente") {
       enAttente.totalNumber++;
-      enAttente.totalPrice += Number(location.montant);
-    } else if (location.status == "Validé") {
+      enAttente.totalPrice += Number(location.montant) 
+    } 
+    
+    else if(location.status == "Validé") { 
       valides.totalNumber++;
-      valides.totalPrice += Number(location.montant);
-    } else if (location.status == "Confirmé") {
+      valides.totalPrice += Number(location.montant) 
+    } 
+    
+    else if(location.status == "Confirmé") { 
       confirmees.totalNumber++;
-      confirmees.totalPrice += Number(location.montant);
-    } else if (location.status == "Annuler") {
+      confirmees.totalPrice += Number(location.montant) 
+    } 
+    
+    else if(location.status == "Annuler") { 
       annulees.totalNumber++;
-      annulees.totalPrice += Number(location.montant);
-    } else if (location.status == "Reporté") {
+      annulees.totalPrice += Number(location.montant) 
+    } 
+    
+    else if(location.status == "Reporté") { 
       reportees.totalNumber++;
-      reportees.totalPrice += Number(location.montant);
-    } else if (location.status == "Utilisé") {
+      reportees.totalPrice += Number(location.montant) 
+
+    } 
+    
+    else if(location.status == "Utilisé") { 
       utilisees.totalNumber++;
-      utilisees.totalPrice += Number(location.montant);
+      utilisees.totalPrice += Number(location.montant) 
+
     }
   });
 };
 const savedUser = JSON.parse(localStorage.getItem("user"))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid
 
 const elements_en_attente = ref([])
 const elements_valide = ref([])
@@ -70,8 +82,27 @@ const elements_utilise = ref([])
 const elements_annule = ref([])
 
 onBeforeMount(async () => {
-  await companieStore.setCompanieLocations(userId)
-  updateReservationsDashboard()
+  await companieStore.setCompanieLocations(userId) 
+
+  enAttente.totalNumber = 0
+  enAttente.totalPrice = 0
+
+  valides.totalNumber = 0 
+  valides.totalPrice = 0 
+
+  confirmees.totalNumber = 0 
+  confirmees.totalPrice = 0 
+
+  annulees.totalNumber = 0 
+  annulees.totalPrice = 0 
+
+  reportees.totalNumber = 0 
+  reportees.totalPrice = 0 
+  
+  utilisees.totalNumber = 0
+  utilisees.totalPrice = 0 
+  
+  updateReservationsDashboard() 
   
   companieStore.companieLocations.forEach(comp => {
     if(comp.status == 'En attente') {
@@ -136,10 +167,10 @@ const valider = async (location) => {
     
     const data = {
       title: 'Validation de réservation', 
-      destinataire: [location.client_id], 
       message: `Votre demande de réservation du véhicule « ${location.vehicule} ${location.modele} » pour une durée de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
+      destinataire: location.client_id, 
       lu: false, 
-      createdAt: new Date()
+      createdAt: Timestamp.now()
     }
 
     await addDoc(notificationColRef, data)
@@ -636,12 +667,7 @@ const valider = async (location) => {
                                                   margin-top: -15px;
                                                 "
                                               >
-                                                {{
-                                                  new Intl.DateTimeFormat(
-                                                    undefined,
-                                                    options
-                                                  ).format(location.createdAt)
-                                                }}
+                                                {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }}
                                                 <br />
                                               </p>
                                             </div>
@@ -1084,12 +1110,7 @@ const valider = async (location) => {
                                                     margin-top: -15px;
                                                   "
                                                 >
-                                                  {{
-                                                    new Intl.DateTimeFormat(
-                                                      undefined,
-                                                      options
-                                                    ).format(location.createdAt)
-                                                  }}
+                                                  {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }}
                                                   <br />
                                                 </p>
                                               </div>

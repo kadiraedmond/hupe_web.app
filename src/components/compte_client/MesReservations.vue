@@ -17,8 +17,8 @@ const reservationStore = useReservationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   userStore.setUser(userId)
   reservationStore.setUserReservations(userId)
@@ -59,7 +59,7 @@ const reporter = async (reservation) => {
 
   const { status, ...extracted_reservation } = reservation
 
-  const docRef = await addDoc(reportColRef, { extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
+  const docRef = await addDoc(reportColRef, { ...extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
         .then(() => {
           console.log('Document ajouté')
           toast.info("Réservation reportée", {
@@ -140,7 +140,7 @@ const payer = async (reservation) => {
       const client_notif = {
         title: 'Paiement pour réservation', 
         message: `Vous avez effectué un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
-        destinataire: [userId], 
+        destinataire: userId, 
         lu: false, 
         createdAt: new Date()
       }
@@ -165,8 +165,7 @@ const payer = async (reservation) => {
       const comp_notif = {
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
-        destinataire: [reservation.compagnie_uid], 
-        type: 'compagnie', 
+        userId: reservation.compagnie_uid, 
         lu: false, 
         createdAt: new Date()
       }

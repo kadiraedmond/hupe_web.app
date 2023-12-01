@@ -1,14 +1,14 @@
 <!-- Pagination.vue -->
 <template>
-    <div class="pagination mt-4 text-center">
-      <button class="btn btn-primary" @click="prevPage" :disabled="currentPage === 1">Précédent</button>
-      <span>{{ currentPage }}</span>
-      <button class="btn btn-primary" @click="nextPage" :disabled="currentPage === totalPages">Suivant</button>
-    </div>
-  </template>
+  <div class="pagination mt-4 text-center">
+    <button class="btn btn-primary" @click="prevPage" :disabled="currentPage === 1">Précédent</button>
+    <span>{{ currentPage }}</span>
+    <button class="btn btn-primary" @click="nextPage" :disabled="currentPage === totalPages">Suivant</button>
+  </div>
+</template>
   
-  // Dans votre composant Pagination.vue
 <script setup>
+  // Dans votre composant Pagination.vue
 import { ref, defineProps, defineEmits } from 'vue';
 
 const { currentPage, totalPages } = defineProps(['current-page', 'total-pages']);
@@ -22,7 +22,7 @@ const updatePage = (newPage) => {
 <!-- Reste du composant -->
 
   
-  <style scoped>
+<style scoped>
   /* Ajoutez vos styles CSS si nécessaire */
-  </style>
+</style>
   

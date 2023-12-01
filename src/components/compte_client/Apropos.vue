@@ -4,7 +4,8 @@ import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, ref } from "vue"
 
 import { addDoc, updateDoc, collection, Timestamp } from 'firebase/firestore'
-import { firestoreDb, storage } from '@/firebase/firebase.js'
+import { firestoreDb, storage } from '@/firebase/firebase.js' 
+import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { toast } from "vue3-toastify"
 
 const userStore = useUserStore()
@@ -12,12 +13,12 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid 
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid 
 
 const nom = ref('')
 const prenom = ref('')
-const photo_profil = ref()
+const photo_profil = ref('')
 const date_nais = ref()
 const profess = ref('')
 const mail = ref('')
@@ -28,7 +29,6 @@ const nom_utilisteur = ref('')
 
 
 onBeforeMount(async () => {
-  // userId = savedUser.uid || authStore.user.uid
   await userStore.setUser(userId) 
   
   const { lastName, firstName, imageUrl, dateNaisse, profession, email, telephone, country, addresse, username } = userStore.user
@@ -49,13 +49,13 @@ const isUploading = ref(false)
 
 const uploadProfilePicture = async (e) => {
   const file = e.target.files[0]
-  const storageRef = storage.ref(`usersImages/${file.name}`)
+  const storageRef = fireRef(storage, `usersImages/${file.name}`)
   
   // Mettre le fichier dans le stockage de Firebase
-  const snapshot = await storageRef.put(file)
+  await uploadBytes(storageRef, file)
 
   // Récupérer l'URL du fichier téléchargé
-  const downloadURL = await snapshot.ref.getDownloadURL()
+  const downloadURL = await getDownloadURL(storageRef)
   if(!downloadURL) {
     isUploading.value = true
   } else {
@@ -73,21 +73,26 @@ const handleSubmit = async () => {
     dateNaisse: date_nais.value,
     email: mail.value,
     firstName: prenom.value,
-    imageUrl: photo_profil.value,
+    imageUrl: photo_profil.value !== '' ? photo_profil.value : '',
     lastName: nom.value,
     profession: profess.value,
     telephone: phone.value,
     username: nom_utilisteur.value
   } 
 
-  await updateDoc(userDocRef, data).then(() => {
-    console.log('Document mis a jour')
+  try {
+    await updateDoc(userDocRef, data) 
+    console.log('Document mis a jour') 
+
     Swal.fire({
       title: "Succès",
       text: "Informations misent à jour",
       icon: "success"
     })
-  })
+    
+  } catch (error) {
+    console.log(error)
+  }
 }
 </script>
 
@@ -188,20 +193,14 @@ const handleSubmit = async () => {
           <div class="row">
             <div class="col-md-12">
               <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Nom </label>
                 <input type="text" class="form-control" id="validationCustom01" v-model="nom" >
                 
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <label for="validationCustom02" class="form-label">Prénoms</label>
                 <input type="text" class="form-control" id="validationCustom02" v-model="prenom" >
-                 
-              </div>
-
-              <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">Sexe</label>
-                <input type="text" class="form-control" id="validationCustom02" v-model="sexe" >
                  
               </div>
 

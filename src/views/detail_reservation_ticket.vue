@@ -7,7 +7,7 @@ import Loader from '@/components/Loader.vue'
 
 import router from '@/router/router.js' 
 
-import { collection, doc, getDoc, addDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, addDoc, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from 'vue3-toastify'
 
@@ -45,7 +45,9 @@ onBeforeMount(async () => {
 })
 
 const name = ref('')
-const nombrePersonnes = ref()
+const nombrePersonnes = ref() 
+const dateDepart = ref() 
+const heureDepart = ref() 
 
 const reservationColRef = collection(firestoreDb, 'reservation')
 
@@ -68,15 +70,15 @@ const reserver = async (programme) => {
     client_id: user.uid,
     client_profil_url: user.imageUrl || '',
     compagnie_uid: programme.compagnie_uid,
-    createdAt: new Date(),
-    date_depart: programme.date_depart || '',
+    createdAt: Timestamp.now(),
+    date_depart: new Date(dateDepart.value) || '',
     destination: programme.destination,
     escale: programme.escale,
-    heure_depart: programme.heure_depart,
+    heure_depart: heureDepart.value, 
     lieu_depart: programme.lieu_depart,
     lieu_arrive: programme.destination,
     montant: programme.montant,
-    nom_client: name.value,
+    nom_client: `${user.lastName} ${user.firstName}`,
     nombre_personne: nombrePersonnes.value,
     number: `T_${Date.now()}`, 
     payement: 'En attente',
@@ -116,7 +118,7 @@ const reserver = async (programme) => {
       message: `Vous avez une réservation de ticket N° ${programme.number} en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet « ${programme.lieu_depart} - ${programme.destination} » du « ${formatedDateDepart} », veuillez valider ou annuler cette réservation.`, 
       userId: programme.compagnie_uid,
       lu: false, 
-      createdAt: new Date()
+      createdAt: Timestamp.now() 
     }
 
     await addDoc(notificationColRef, comp_notif)
@@ -293,10 +295,10 @@ onMounted(() => {
                     <div class="modal-content">
                         <div
                         class="modal-header"
-                        style="background: #deeee4"
+                        style="background: #219935"
                         >
                         <h1
-                            class="modal-title fs-5"
+                            class="modal-title text-white fs-5"
                             id="exampleModalLabel"
                             style="font-size: 17px !important"
                         >
@@ -327,8 +329,9 @@ onMounted(() => {
                                 type="text"
                                 class="form-control"
                                 id="validationCustom01"
-                                v-model="name"
-                                required
+                                :value="`${user.lastName} ${user.firstName}`"
+                                required 
+                                disabled 
                             />
                             </div>
 
@@ -374,12 +377,11 @@ onMounted(() => {
                                 >Date de départ</label
                             >
                             <input
-                                type="text"
+                                type="date"
                                 class="form-control"
                                 id="validationCustom01"
-                                :value="promotionStore.programme.date_depart"
+                                v-model="dateDepart"
                                 required
-                                disabled
                             />
                             </div>
                             <div class="col-md-6">
@@ -390,12 +392,11 @@ onMounted(() => {
                                 >Heure de départ</label
                             >
                             <input
-                                type="text"
+                                type="time"
                                 class="form-control"
                                 id="validationCustom01"
-                                :value="promotionStore.programme.heure_depart"
+                                v-model="heureDepart"
                                 required
-                                disabled
                             />
                             </div>
 

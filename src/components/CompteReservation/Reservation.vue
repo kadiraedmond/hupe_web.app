@@ -2,7 +2,7 @@
 import { useReservationStore } from '@/store/reservation.js'
 import { useAuthStore } from '@/store/auth.js'
 import { reactive, ref, onBeforeMount, onMounted } from "vue"
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { collection, query, doc, where, Timestamp, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 
 const reservationStore = useReservationStore()
@@ -41,8 +41,8 @@ const updateReservationsDashboard = () => {
     }
     
     else if(reservation.status == 'Validé') {
-      utilisees.totalNumber++
-      utilisees.totalPrice += Number(reservation.montant)
+      valides.totalNumber++
+      valides.totalPrice += Number(reservation.montant)
     }
     
     else if(reservation.status == 'Confirmé') {
@@ -80,7 +80,26 @@ const elements_utilise = ref([])
 const elements_annule = ref([])
 
 onBeforeMount(async () => {
-  await reservationStore.setCompanieReservations(userId)
+  await reservationStore.setCompanieReservations(userId) 
+
+  enAttente.totalNumber = 0
+  enAttente.totalPrice = 0
+
+  valides.totalNumber = 0 
+  valides.totalPrice = 0 
+
+  confirmees.totalNumber = 0 
+  confirmees.totalPrice = 0 
+
+  annulees.totalNumber = 0 
+  annulees.totalPrice = 0 
+
+  reportees.totalNumber = 0 
+  reportees.totalPrice = 0 
+  
+  utilisees.totalNumber = 0
+  utilisees.totalPrice = 0 
+
   updateReservationsDashboard()
 
   reservationStore.companieReservations.forEach(comp => {
@@ -122,10 +141,10 @@ const valider = async (reservation) => {
     
     const data = {
       title: 'Validation de réservation', 
-      destinataire: reservation.client_id, 
       message: `Votre demande de réservation de ticket pour le trajet « ${reservation.lieu_depart} - ${reservation.destination} » le « ${reservation.date_depart} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
+      destinataire: reservation.client_id, 
       lu: false, 
-      createdAt: new Date()
+      createdAt: Timestamp.now() 
     }
 
     await addDoc(notificationColRef, data)
@@ -138,6 +157,15 @@ const valider = async (reservation) => {
     console.log(error)
   }
 } 
+
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
 
 </script>
 

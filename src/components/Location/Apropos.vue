@@ -1,23 +1,106 @@
 <script setup>
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, onMounted } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue" 
+
+import { addDoc, doc, updateDoc, collection, Timestamp } from 'firebase/firestore'
+import { firestoreDb, storage } from '@/firebase/firebase.js' 
+import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
+import Swal from 'sweetalert2' 
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
-onBeforeMount(() => {
-  companieStore.setCompanieById(userId) // authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid 
+
+const raison_social = ref('') 
+const responsable = ref('') 
+const description = ref('') 
+const mail = ref('') 
+const phone = ref('') 
+const pays = ref('') 
+const lieu = ref('') 
+const photo_profil = ref('') 
+const photo_couverture = ref('') 
+
+onBeforeMount(async () => {
+  await companieStore.setCompanieById(userId) 
+
+  raison_social.value = companieStore.companie.raison_social 
+  responsable.value = companieStore.companie.responsable 
+  mail.value = companieStore.companie.email 
+  phone.value = companieStore.companie.telephone 
+  lieu.value = companieStore.companie.adresse 
+  description.value = companieStore.companie.description 
+  pays.value = companieStore.companie.country 
 
 })
 
 onMounted(() => {
   window.scrollTo(0, 0)
-})
+}) 
+
+const isUploading = ref(false) 
+
+const uploadPicture = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `compagniesImages/${userId}/${file.name}`)
+  
+  await uploadBytes(storageRef, file)
+
+  const downloadURL = await getDownloadURL(storageRef)
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    photo_couverture.value = downloadURL
+    isUploading.value = false
+  }
+}
+
+const uploadProfilePicture = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `compagniesImages/${userId}/${file.name}`)
+  
+  await uploadBytes(storageRef, file)
+
+  const downloadURL = await getDownloadURL(storageRef)
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    photo_profil.value = downloadURL
+    isUploading.value = false
+  }
+} 
+
+const handleSubmit = async () => {
+  const docRef = doc(firestoreDb, 'compagnies', `${userId}`) 
+  
+  const data = {
+    raison_social: raison_social.value, 
+    responsable: responsable.value, 
+    email: mail.value, 
+    telephone: phone.value, 
+    country: pays.value, 
+    adresse: lieu.value, 
+    imageLogoUrl: photo_profil.value !== '' ? photo_profil.value : companieStore.companie.imageLogoUrl, 
+    imageCouvertureUrl: photo_couverture.value !== '' ? photo_couverture.value : companieStore.companie.imageCouvertureUrl 
+  } 
+
+  try {
+    await updateDoc(docRef, data) 
+    
+    Swal.fire({
+      title: "Succès",
+      text: "Informations misent à jour",
+      icon: "success"
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
 </script>
 
 <template>
@@ -116,78 +199,78 @@ onMounted(() => {
           <div class="row">
             <div class="col-md-12">
               <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
-              <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Raison sociale </label>
-                <input type="text" class="form-control" id="validationCustom01" v-model="responsable" >
+                <div class="col-md-6">
+                  <label for="validationCustom01" class="form-label">Raison sociale </label>
+                  <input type="text" class="form-control" id="validationCustom01" v-model="raison_social" >
+                  
+                </div>
+                <div class="col-md-6">
+                  <label for="validationCustom02" class="form-label">Responsable</label>
+                  <input type="text" class="form-control" id="validationCustom02" v-model="responsable" >
+                  
+                </div>
+
                 
-              </div>
-              <div class="col-md-6">
-                <label for="validationCustom02" class="form-label">Responsable</label>
-                <input type="text" class="form-control" id="validationCustom02" v-model="responsable" >
-                 
-              </div>
 
-              
+                <div class="col-md-6">
+                  <label for="validationCustom01" class="form-label">Description </label>
+                  <input type="text" class="form-control" id="validationCustom01" v-model="description" >
+                  
+                </div> 
 
-              <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Description </label>
-                <textarea type="text" class="form-control" id="validationCustom01" v-model="date_nais" ></textarea>
-                
-              </div>
-
-              <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Présentation</label>
-                <textarea type="text" class="form-control" id="validationCustom01" v-model="profess" ></textarea>
-                
-              </div>
-              <div class="col-md-6">
-                <label for="validationCustom02" class="form-label">Email</label>
-                <input type="email" class="form-control" id="validationCustom02" v-model="mail" >
-                 
-              </div>
-              <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Téléphone</label>
-                <div class="input-group has-validation">
-                  <input v-model="phone" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                   
+                <div class="col-md-6">
+                  <label for="validationCustom01" class="form-label">Présentation </label>
+                  <input type="text" class="form-control" id="validationCustom01" >
+                  
                 </div>
-              </div>
-              
-              <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Pays</label>
-                <div class="input-group has-validation">
-                  <input v-model="pays" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"> 
-                </div>
-              </div>
 
-              <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Adresse</label>
-                <div class="input-group has-validation">
-                  <input v-model="lieu" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                   
+                <div class="col-md-6">
+                  <label for="validationCustom02" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="validationCustom02" v-model="mail" >
+                  
                 </div>
-              </div>
-
-              <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Image de couverture</label>
-                <div class="input-group has-validation">
-                  <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
-                   
+                <div class="col-md-6">
+                  <label for="validationCustomUsername" class="form-label">Téléphone</label>
+                  <div class="input-group has-validation">
+                    <input v-model="phone" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                    
+                  </div>
                 </div>
-              </div>
-
-              <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Logo</label>
-                <div class="input-group has-validation">
-                  <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
-                   
+                <div class="col-md-6">
+                  <label for="validationCustomUsername" class="form-label">Pays</label>
+                  <div class="input-group has-validation">
+                    <input v-model="pays" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"> 
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-12 text-end">
-                <button class="btn btn-primary" type="submit" :disabled="isUploading" style="background-color: #219935; border-color: #219935;">Enregistrer</button>
-              </div>
-            </form>
+                <div class="col-md-6">
+                  <label for="validationCustomUsername" class="form-label">Adresse</label>
+                  <div class="input-group has-validation">
+                    <input v-model="lieu" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                    
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="validationCustomUsername" class="form-label">Image de couverture</label>
+                  <div class="input-group has-validation">
+                    <input v-on:change="uploadPicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                    
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="validationCustomUsername" class="form-label">Logo</label>
+                  <div class="input-group has-validation">
+                    <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                    
+                  </div>
+                </div>
+
+                <div class="col-12 text-end">
+                  <button class="btn btn-primary" type="submit" :disabled="isUploading" style="background-color: #219935; border-color: #219935;">Enregistrer</button>
+                </div>
+              </form>
             </div>
           </div>
 

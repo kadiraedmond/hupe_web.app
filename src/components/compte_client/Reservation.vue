@@ -39,7 +39,7 @@ const updateReservationsDashboard = (datas) => {
     
     else if(data.status == 'Validé') {
       valides.totalNumber++
-      utilisees.totalPrice += Number(data.montant)
+      valides.totalPrice += Number(data.montant)
     }
     
     else if(data.status == 'Confirmé') {
@@ -72,7 +72,25 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
-  await reservationStore.setUserReservations(userId)
+  await reservationStore.setUserReservations(userId) 
+
+  enAttente.totalNumber = 0
+  enAttente.totalPrice = 0
+
+  valides.totalNumber = 0 
+  valides.totalPrice = 0 
+
+  confirmees.totalNumber = 0 
+  confirmees.totalPrice = 0 
+
+  annulees.totalNumber = 0 
+  annulees.totalPrice = 0 
+
+  reportees.totalNumber = 0 
+  reportees.totalPrice = 0 
+  
+  utilisees.totalNumber = 0
+  utilisees.totalPrice = 0 
 
   updateReservationsDashboard(reservationStore.userReservations)
 })

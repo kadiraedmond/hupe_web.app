@@ -7,7 +7,7 @@ import router from '@/router/router.js'
 import Loader from '@/components/Loader.vue'
 import Swal from 'sweetalert2'
 import { firestoreDb } from "@/firebase/firebase.js"
-import { updateDoc } from "firebase/firestore"
+import { updateDoc, doc } from "firebase/firestore"
 
 const authStore = useAuthStore()
 
@@ -49,7 +49,9 @@ const handleOnComplete = async (value) => {
     // console.log(authStore.user.stsTokenManager.accessToken) 
     const savedUser = JSON.parse(localStorage.getItem('user'))
 
-    if(authStore.isNew && authStore.isCompanie) {
+    if(authStore.isNew && authStore.isCompanie) { 
+      const docRef = doc(firestoreDb, 'compagnies', savedUser.uid)
+      await updateDoc(docRef, { token: user.stsTokenManager.accessToken })
       router.push('/choix_services') 
       return 
 
@@ -59,34 +61,38 @@ const handleOnComplete = async (value) => {
       if((savedUser.raison_social || savedUser.type_compagnie) && savedUser.status == 'active') { 
 
         if(savedUser.type_compagnie == 'Location') {
-          router.push('/compte_vehicule') 
+          await router.push('/compte_vehicule') 
+          window.location.reload() 
           return 
         } 
         
         if(savedUser.type_compagnie == 'Transport') {
-          router.push('/compte_reservation') 
+          await router.push('/compte_reservation') 
+          window.location.reload() 
           return 
         }
         
       } 
       
       if((savedUser.raison_social || savedUser.type_compagnie) && savedUser.status == 'padding') {
-        router.push('/confirmation') 
+        await router.push('/confirmation') 
+        window.location.reload() 
         return 
       }
 
     } 
     
     if(!authStore.isCompanie && authStore.isNew) { 
-      const docRef = doc(firestoreDb, 'users', user.uid)
+      const docRef = doc(firestoreDb, 'users', savedUser.uid)
       await updateDoc(docRef, { token: user.stsTokenManager.accessToken })
-      router.push('/compte_client') 
+      router.push('/information-client') 
       return 
 
     } 
     
     if(!authStore.isCompanie && !authStore.isNew) {
-      router.push('/compte_client') 
+      await router.push('/compte_client') 
+      window.location.reload() 
       return 
     }
   

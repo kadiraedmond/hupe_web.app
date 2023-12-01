@@ -2,7 +2,7 @@
 import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
-import { updateDoc, doc, collection, getDoc } from "firebase/firestore"
+import { updateDoc, doc, collection, getDoc, Timestamp } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const userStore = useUserStore()
@@ -11,8 +11,9 @@ import Swal from 'sweetalert2'
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid 
+
 onBeforeMount(() => {
   userStore.setUser(userId)
   userStore.setUserHistory(userId)
@@ -86,12 +87,12 @@ const recharge = async () => {
           if(!amount.solde || amount.solde == 0 || amount.solde === '') {
             data = {
               solde: Number(montant.value), 
-              new_recharge: new Date()
+              new_recharge: Timestamp.now() 
             }
           } else {
             data = {
               solde: Number(amount.solde) + Number(montant.value), 
-              new_recharge: new Date()
+              new_recharge: Timestamp.now() 
             }
           }
 
@@ -114,7 +115,7 @@ const recharge = async () => {
             message: `Votre compte a été crédité de FCFA ${montant.value}. Profitez de ce solde pour vos prochaines commandes.`, 
             destinataire: userId,
             lu: false, 
-            createdAt: new Date()
+            createdAt: Timestamp.now() 
           }
 
           try {
@@ -144,10 +145,7 @@ const recharge = async () => {
         <div class="col-md-6">
           <div class="row mb-4">
             <div class="col-md-6">
-               
-              <button class="btn btn-primary" style="background: #219935; border-color: #219935; color: white;">
-                   Solde |  <strong> {{userStore.totalAmount.solde }} </strong> 
-              </button>
+              <p style="color: #219935;">  Solde |<strong> {{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} FCFA </strong></p>
             </div>
             <div class="col-md-6 text-end">
               <!-- Button trigger modal -->

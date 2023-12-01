@@ -3,7 +3,7 @@ import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import Swal from 'sweetalert2'
-import { collection, query, doc, addDoc, updateDoc, where, getDoc, getDocs} from "firebase/firestore"
+import { collection, query, doc, addDoc, updateDoc, where, getDoc, getDocs, Timestamp } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const companieStore = useCompanieStore()
@@ -11,8 +11,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieHistory(userId)
   companieStore.setTotalAmount(userId)
@@ -24,13 +24,23 @@ onMounted(() => {
 
 const showWithdrawModal = ref(false)
 
-const checkAccount = () => {
+const checkAccount = () => { 
+  if(!companieStore.totalAmount.solde || !Number(companieStore.totalAmount.solde)) {
+    Swal.fire({
+      title: "Erreur",
+      text: "Attendez de recevoir un payement pour faire une demande de retrait",
+      icon: "error"
+    }) 
+
+    return
+  } 
+  
   if(Number(companieStore.totalAmount.solde) < 50000) {
     Swal.fire({
-    title: "Erreur",
-    text: "Votre solde est insuffisant pour un retrait",
-    icon: "error"
-  })
+      title: "Erreur",
+      text: "Votre solde est insuffisant pour un retrait",
+      icon: "error"
+    })
   } else if(Number(companieStore.totalAmount.solde) >= 50000) {
     showWithdrawModal.value = true
   }
@@ -46,7 +56,7 @@ const retrait = async () => {
     const data = {
       body: Number(montant.value), 
       compagnieUID: userId, 
-      date: new Date(), 
+      date: Timestamp.now(), 
       solde: Number(companieStore.totalAmount.solde), 
       status: 'En attente', 
       title: 'Retrait'
@@ -65,10 +75,9 @@ const retrait = async () => {
     const comp_notif = {
       title: 'Demande de retrait', 
       message: `Vous avez demandé un retrait de FCFA ${montant.value}, qui sera crédité sur votre compte après validation par l'administrateur.`, 
-      destinataire: [userId], 
-      type: 'compagnie', 
+      userId: userId, 
       lu: false, 
-      createdAt: new Date() 
+      createdAt: Timestamp.now() 
     }
   
     await addDoc(notificationColRef, comp_notif)
@@ -81,6 +90,15 @@ const retrait = async () => {
     })
     console.log(error)
   }
+} 
+
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
 }
 </script>
 
@@ -95,7 +113,7 @@ const retrait = async () => {
           <div class="row mb-4">
             <div class="col-md-6">
               <button class="btn btn-primary" style="background: #219935; border-color: #219935; color: white;">
-                   Solde |  <strong> {{ companieStore.totalAmount.solde }} </strong> 
+                   Solde |  <strong> {{ companieStore.totalAmount.solde ? companieStore.totalAmount.solde : 0 }} FCFA </strong> 
               </button>
              
               

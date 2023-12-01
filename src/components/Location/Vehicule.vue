@@ -3,7 +3,7 @@ import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { collection, query, doc, where, setDoc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { collection, query, doc, Timestamp, where, setDoc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import { toast } from 'vue3-toastify'
 import { v4 as uuidv4 } from 'uuid'
@@ -16,11 +16,10 @@ const companieCars = ref([])
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
-  await companieStore.resetCompanieCars()
-  companieStore.setCompanieCars(userId) // authStore.user.uid
+  await companieStore.setCompanieCars2(userId) // authStore.user.uid
   companieCars.value = companieStore.companieCars 
 })
 
@@ -46,7 +45,7 @@ const handleSubmit = async () => {
 
   const data = {
     uid: '', 
-    annee_vehicule: annee.value, 
+    anne_vehicule: annee.value, 
     avecchauffeurprix: prix_avec_chauffeur.value, 
     boite: '', 
     capitalprix: '', 
@@ -61,7 +60,7 @@ const handleSubmit = async () => {
     status: 'active', 
     vehicule: marque.value, 
     vehicule_image_url: image.value, 
-    addedAt: new Date()
+    addedAt: Timestamp.now() 
   }
   const newDoc = await addDoc(collectionRef, data)
 
@@ -122,54 +121,56 @@ const promote = async (car) => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
   const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
 
-  const docRef = doc(vehiculesColRef, `${car.uid}`)
-
-  if(companieStore.companie.offre === 'vip') {
-    const update = await updateDoc(docRef, { enPromo: true })
+  const docRef = doc(vehiculesColRef, `${car.uid}`) 
+  try {
+    if(companieStore.companie.offre === 'vip') {
+      await updateDoc(docRef, { enPromo: true })
+      
+      const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
+      const carInPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
     
-    const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
-    const carInPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
-  
-    const data = {
-      ancien_montant: car.montant, 
-      annee_vehicule: car.anne_vehicule, 
-      boite: car.boite, 
-      compagnie_uid: userId, 
-      country: companieStore.companie.country, 
-      createdAt: new Date(), 
-      debut_promo: new Date(date_debut.value), 
-      fin_promo: new Date(date_fin.value), 
-      idTrack: uuidv4(), 
-      modele: car.modele, 
-      montant: montant.value, 
-      moteur: car.moteur, 
-      pourcentage: '', 
-      vehicule: car.vehicule, 
-      vehicule_image_url: car.vehicule_image_url
-    }
-  
-    const addedDoc = await addDoc(carInPromoColRef, data)
-  
-    if(addedDoc) {
-      console.log('Document ajouté')
+      const data = {
+        ancien_montant: car.montant, 
+        annee_vehicule: car.anne_vehicule, 
+        boite: car.boite, 
+        compagnie_uid: userId, 
+        country: companieStore.companie.country, 
+        createdAt: Timestamp.now(), 
+        debut_promo: new Date(date_debut.value), 
+        fin_promo: new Date(date_fin.value), 
+        idTrack: uuidv4(), 
+        modele: car.modele, 
+        montant: montant.value, 
+        moteur: car.moteur, 
+        pourcentage: taux_reduction.value, 
+        vehicule: car.vehicule, 
+        vehicule_image_url: car.vehicule_image_url
+      }
+    
+      const addedDoc = await addDoc(carInPromoColRef, data)
+    
+      console.log('Document ajouté') 
+      
       Swal.fire({
         title: "Succès",
         text: "Votre véhicule a été mis en promotion",
         icon: "success"
+      }) 
+  
+      await updateDoc(addedDoc, { uid: addedDoc.id })
+      console.log('ID ajouté')
+    } else {
+      Swal.fire({
+        title: "Erreur",
+        text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
+        icon: "error"
       })
-
-      const update = await updateDoc(addedDoc, { uid: addedDoc.id })
-      if(update) {
-        console.log('ID ajouté')
-      }
     }
-  } else {
-    Swal.fire({
-      title: "Erreur",
-      text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
-      icon: "error"
-    })
+    
+  } catch (error) {
+    console.log(error)
   }
+
   
 }
 
@@ -177,70 +178,77 @@ const unlock = async (car) => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
   const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
 
-  const docRef = doc(vehiculesColRef, `${car.uid}`)
+  const docRef = doc(vehiculesColRef, `${car.uid}`) 
 
-  if(car.status == 'desactive') {
-    const update = await updateDoc(docRef, { status: 'active' })
-  
-    if(update) {
+  try {
+    if(car.status == 'desactive') {
+      await updateDoc(docRef, { status: 'active' }) 
+      car.status = 'active' 
+    
       console.log('Véhicule dévérouillé')
       Swal.fire({
         title: "Succès",
         text: "Véhicule dévérouillé",
         icon: "success"
-      })
-    }
-  } else if(car.status == 'active') {
-    const update = await updateDoc(docRef, { status: 'desactive' })
+      }) 
   
-    if(update) {
-      console.log('Véhicule Vérouillé')
+    } else if(car.status == 'active') {
+      await updateDoc(docRef, { status: 'desactive' }) 
+      car.status = 'desactive' 
+    
+      console.log('Véhicule Vérouillé') 
+
       Swal.fire({
         title: "Succès",
         text: "Véhicule Vérouillé",
         icon: "success"
-      })
+      }) 
     }
-  }
-  
+    
+  } catch (error) {
+    console.log(error)
+  } 
 }
 
 const star = async (car) => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
   const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
 
-  const docRef = doc(vehiculesColRef, `${car.uid}`)
+  const docRef = doc(vehiculesColRef, `${car.uid}`) 
+  
+  try {
+    if(companieStore.companie.offre === 'vip') {
+      const update = await updateDoc(docRef, { enAvant: true })
+      
+      const miseEn_avantDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'mise_en_avant')
+      const carEn_avantColRef = collection( miseEn_avantDocRef, 'vehicule_en_avant')
+  
+      const addedDoc = await addDoc(carEn_avantColRef, car)
+  
+      console.log('Document ajouté') 
 
-  if(companieStore.companie.offre === 'vip') {
-    const update = await updateDoc(docRef, { enAvant: true })
-    
-    const miseEn_avantDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'mise_en_avant')
-    const carEn_avantColRef = collection( miseEn_avantDocRef, 'vehicule_en_avant')
-
-    const addedDoc = await addDoc(carEn_avantColRef, car)
-
-    if(addedDoc) {
-      console.log('Document ajouté')
       Swal.fire({
         title: "Succès",
         text: "Votre véhicule a été mis en avant",
         icon: "success"
       })
 
-      const update = await updateDoc(addedDoc, { uid: addedDoc.id, enAvant: true })
+      await updateDoc(addedDoc, { uid: addedDoc.id, enAvant: true })
 
-      if(update) {
-        console.log('ID ajouté')
-      }
+      console.log('ID ajouté') 
+    
+    } else {
+      Swal.fire({
+        title: "Erreur",
+        text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
+        icon: "error"
+      })
     }
-  
-  } else {
-    Swal.fire({
-      title: "Erreur",
-      text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
-      icon: "error"
-    })
+    
+  } catch (error) {
+    console.log(error)
   }
+
 }
 
 const remove = async (car) => {
@@ -257,15 +265,16 @@ const remove = async (car) => {
 
     const docRef = doc(vehiculesColRef, `${car.uid}`)
 
-    const result = deleteDoc(docRef)
+    await deleteDoc(docRef) 
 
-    if(result) {
-      Swal.fire({
-        title: "Succès",
-        text: "Véhicule supprimé",
-        icon: "success"
-      })
-    }
+    companieStore.setCompanieCars(userId)
+
+    Swal.fire({
+      title: "Succès",
+      text: "Véhicule supprimé",
+      icon: "success"
+    })
+    
   } else if (SwlResult.dismiss === Swal.DismissReason.cancel) {
     // 
   }

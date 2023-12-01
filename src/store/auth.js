@@ -138,7 +138,9 @@ export const useAuthStore = defineStore('authStore', {
                                 username: ''
                             }
         
-                            const docRef = await addDoc(usersColRef, newUser)
+                            const docRef = await addDoc(usersColRef, newUser) 
+
+                            this.uniqueIdentifier = `${docRef.id}`
         
                             const userDocRef = doc(usersColRef, docRef.id)
         
