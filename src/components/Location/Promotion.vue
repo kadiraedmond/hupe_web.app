@@ -25,22 +25,16 @@ onBeforeMount(() => {
       <div class="col" v-for="(promotionCar, index) in promotionStore.companiePromotionCars" :key="index">
         <div class="card border-0" style="background: #f3f4f6; padding: 6px">
           <div class="row" style="padding: 6px">
-            <div class="col-md-12 d-flex">
-              <img
-                src="/assets/img/icone/car.png"
-                class="img-fluid"
-                alt="..."
-                style="width: 25px; height: 25px; margin-top: 6px"
-              />
-              <h6 style="font-size: 12px; margin-left: 5px; margin-top: 10px">
+            <div class="col-md-12 d-flex" style="margin-top: -11px;">
+              <button class="btn btn-primary"  style="width: 40px; height: 40px; border-radius: 50%; margin-top: 6px; object-fit: contains; border: 1px solid #8b8b8b;background: transparent; color: #848484; font-size: 18px;">
+                <i class='bx bx-car'></i>
+              </button>
+             
+              <h6 style="font-size: 15px; margin-left: 5px; margin-top: 16px">
                 {{ companieStore.companie.raison_social }}
               </h6>
-              <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
-                <img
-                  src="/assets/img/icone/map.png"
-                  class="img-fluid"
-                  alt="..."
-                />
+              <p style="font-size: 15px; margin-left: 5px; margin-top: 14px">
+                <i class='bx bxs-map'></i>
                 {{ companieStore.companie.adresse }}
               </p>
             </div>
@@ -53,10 +47,11 @@ onBeforeMount(() => {
               background: #a6a6a621;
               box-shadow: none;
               background: transparent;
+              margin-top: -10px;
             "
           >
-            <a
-              v-bind:href="'/detail'"
+            <router-link
+              to=''
               style="border: 1px solid; border-radius: 5px; border-color: #a6a6a6"
             >
               <img
@@ -69,7 +64,7 @@ onBeforeMount(() => {
                   object-fit: cover;
                 "
               />
-            </a>
+            </router-link>
             <button class="btn btn-primary" id="badges">
               <s> {{ promotionCar.ancien_montant }} FCFA </s>
             </button>

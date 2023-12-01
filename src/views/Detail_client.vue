@@ -705,34 +705,30 @@ const isLoading = ref(false)
                       style="background: #f3f4f6; padding: 6px"
                     >
                       <div class="row" style="padding: 6px">
-                        <div class="col-md-12 d-flex">
+                        <div class="col-md-12 d-flex" style="margin-top: -11px;">
                           <img
                           :src="companieStore.companie.imageLogoUrl"
                             class="img-fluid"
                             alt="..."
-                            style="width: 25px; height: 25px; margin-top: 6px"
+                            style="width: 40px; height: 40px; border-radius: 50%; margin-top: 6px; object-fit: contains; border: 1px solid #8b8b8b;"
                           />
                           <h6
                             style="
-                              font-size: 12px;
+                              font-size: 15px;
                               margin-left: 5px;
-                              margin-top: 10px;
+                              margin-top: 16px;
                             "
                           >
                           {{ companieStore.companie.raison_social }}
                           </h6>
                           <p
                             style="
-                              font-size: 12px;
+                              font-size: 15px;
                               margin-left: 5px;
-                              margin-top: 6px;
+                              margin-top: 14px;
                             "
                           >
-                            <img
-                              src="/assets/img/icone/map.png"
-                              class="img-fluid"
-                              alt="..."
-                            />
+                          <i class='bx bxs-map'></i>
                             {{ companieStore.companie.adresse }}
                           </p>
                         </div>
@@ -745,6 +741,7 @@ const isLoading = ref(false)
                           background: #a6a6a621;
                           box-shadow: none;
                           background: transparent;
+                          margin-top: -10px;
                         "
                       >
                         <router-link
@@ -814,7 +811,7 @@ const isLoading = ref(false)
               >
                 <div class="row mt-5">
                   <div class="col-md-12">
-                    <div class="card h-100" id="card_compagnie">
+                    <div class="card h-100">
                       <div class="card-body">
                         <H6>Lorem ipsum dolor sit amet</H6>
                         <p>

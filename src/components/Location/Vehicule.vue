@@ -876,7 +876,7 @@ const handleInterieurPaysPrix = (e) => {
                       >
                         <div class="modal-dialog">
                           <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header text-white" style="background-color: #219935; ">
                               <h1
                                 class="modal-title fs-5"
                                 id="exampleModalLabel"
