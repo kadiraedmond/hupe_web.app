@@ -50,7 +50,7 @@ const addNewTrajet = async () => {
     compagnie_uid: userId, 
     enAvant: false, 
     enPromo: false, 
-    escale: escale_a_faire.value, 
+    escale: escales_a_faire.value, 
     heure_convocation: heure_convocation.value, 
     heure_depart: heure_depart.value, 
     jours_voyage: jours_de_voyage.value, 
@@ -69,7 +69,9 @@ const addNewTrajet = async () => {
       text: "Votre trajet a été ajouté",
       icon: "success"
     })
-  }
+  } 
+
+  document.querySelector('btn-close-a').click() 
 
   try {
     await updateDoc(addedDoc, { uid: `${addedDoc.id}` })
@@ -80,7 +82,7 @@ const addNewTrajet = async () => {
 
     const programmeColRef = collection(firestoreDb, 'programme_des_voyages')
 
-    await setDoc(programmeColRef.doc(`${newDoc.id}`), newData)
+    await setDoc(doc(programmeColRef, `${newDoc.id}`), newData)
   
   } catch (error) {
     console.log(error)
@@ -108,7 +110,7 @@ const handleHeureConvocation = (e) => {
 }
 
 const handleEscale = (e) => {
-  escale_a_faire.value = e.target.value
+  escales_a_faire.value = e.target.value
 }
 
 const handleNombrePlace = (e) => {
@@ -117,6 +119,37 @@ const handleNombrePlace = (e) => {
 
 const handleJoursVoyage = (e) => {
   jours_de_voyage.value = e.target.value
+} 
+
+const update = async (trajet) => { 
+  const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+  const trajetsColRef = collection(companieDocRef, 'programme_des_voyages') 
+
+  const docRef = doc(trajetsColRef, `${trajet.uid}`) 
+
+  const data = {
+    lieu_depart: lieu_depart.value, 
+    destination: destination.value, 
+    heure_depart: heure_depart.value, 
+    montant: montant.value, 
+    heure_convocation: heure_convocation.value, 
+    jours_voyage: jours_de_voyage.value, 
+    nb_place: nombre_de_place.value, 
+    escale: escales_a_faire.value
+  } 
+
+  await updateDoc(docRef, data) 
+
+  const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+
+  await updateDoc(trajetDocRef, data)
+
+
+  Swal.fire({
+    title: "Succès",
+    text: "Votre trajet a été mis à jour",
+    icon: "success"
+  }) 
 }
 
 const star = async (trajet) => {
@@ -203,10 +236,11 @@ const promote = async (trajet) => {
         icon: "success"
       })
   
+      document.querySelector('btn-close').click() 
+
       const update = await updateDoc(addedDoc, { uid: addedDoc.id })
-      if(update) {
-        console.log('ID ajouté')
-      }
+     
+      console.log('ID ajouté')
       
     } else {
       Swal.fire({
@@ -320,7 +354,7 @@ const remove = async (car) => {
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                class="btn-close-a"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
@@ -398,7 +432,7 @@ const remove = async (car) => {
                     type="text"
                     class="form-control"
                     id="validationCustom01"
-                    v-model="escale_a_faire"
+                    v-model="escales_a_faire"
                     required
                   />
                 </div>
@@ -496,7 +530,7 @@ const remove = async (car) => {
                         </h1>
                         <button
                           type="button"
-                          class="btn-close"
+                          class="btn-close-m"
                           data-bs-dismiss="modal"
                           aria-label="Close"
                         ></button>

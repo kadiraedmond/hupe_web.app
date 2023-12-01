@@ -75,13 +75,13 @@ const handleSubmit = async () => {
 
       const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer')
 
-      await setDoc(vehiculeColRef.doc(`${newDoc.id}`), newData)
+      await setDoc(doc(vehiculeColRef, `${newDoc.id}`), newData)
       
     } catch (error) {
       console.log(error)
     }
 
-    await document.querySelector('.btn-close').click()
+    await document.querySelector('.btn-close-a').click()
     Swal.fire({
       title: "Succès",
       text: "Votre véhicule a été ajouté",
@@ -156,6 +156,8 @@ const promote = async (car) => {
         text: "Votre véhicule a été mis en promotion",
         icon: "success"
       }) 
+
+      document.querySelector('btn-close').click() 
   
       await updateDoc(addedDoc, { uid: addedDoc.id })
       console.log('ID ajouté')
@@ -330,21 +332,21 @@ const update = async (car) => {
     vehicule_image_url: edit_image.value
   }
 
-  const update = await updateDoc(docRef, data)
+  await updateDoc(docRef, data)
 
-  if(update) {
-    Swal.fire({
-      title: "Succès",
-      text: "Votre véhicule a été mis à jour",
-      icon: "success"
-    })
-  } else {
-    Swal.fire({
-      title: "Erreur",
-      text: "Une erreur s'est produite lors des modifications",
-      icon: "error"
-    })
-  }
+  const vehiculeDolRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`) 
+
+  await updateDoc(vehiculeDolRef, data)
+  
+  Swal.fire({
+    title: "Succès",
+    text: "Votre véhicule a été mis à jour",
+    icon: "success"
+  }) 
+
+  
+  
+  document.querySelector('btn-close-m').click() 
 }
 
 const handleMarque = (e) => {
@@ -413,7 +415,7 @@ const handleInterieurPaysPrix = (e) => {
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                class="btn-close-a"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
@@ -688,7 +690,7 @@ const handleInterieurPaysPrix = (e) => {
                               </h1>
                               <button
                                 type="button"
-                                class="btn-close"
+                                class="btn-close-m"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
                               ></button>

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { signInWithPhoneNumber } from 'firebase/auth'
-import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, Timestamp } from "firebase/firestore"
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, Timestamp, setDoc } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const companiesColRef = collection(firestoreDb, "compagnies")
@@ -90,7 +90,12 @@ export const useAuthStore = defineStore('authStore', {
         
                             await updateDoc(companieDocRef, { uid: `${docRef.id}` }) 
 
-                            this.user = { ...newCompanie, uid: `${docRef.id}` }
+                            this.user = { ...newCompanie, uid: `${docRef.id}` } 
+
+                            const userSubColRef = collection(userDocRef, 'myAccount')
+                            const accountDocRef = doc(userSubColRef, 'account') 
+
+                            await setDoc(accountDocRef, { solde: 0, new_recharge: '' })
         
                             this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
                         }
@@ -146,7 +151,12 @@ export const useAuthStore = defineStore('authStore', {
         
                             await updateDoc(userDocRef, { uid: `${docRef.id}` }) 
 
-                            this.user = { ...newUser, uid: `${docRef.id}` }
+                            this.user = { ...newUser, uid: `${docRef.id}` } 
+
+                            const userSubColRef = collection(userDocRef, 'myAccount')
+                            const accountDocRef = doc(userSubColRef, 'account') 
+
+                            await setDoc(accountDocRef, { solde: 0, new_recharge: '' })
     
                             this.confirmationResult = await signInWithPhoneNumber(authInstance, phone, verifier)
                         }

@@ -64,6 +64,7 @@ const submitPost = async () => {
   }
 
   document.querySelector('#postForm').reset()
+  document.querySelector('.btn-close').click() 
 }
 
 

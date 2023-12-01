@@ -72,6 +72,8 @@ const recharge = async () => {
             icon: "error"
           })
 
+          document.querySelector('.btn-close').click()
+
         } else if (data.status == "ACCEPTED") {
 
           const userDocRef = doc(firestoreDb, 'users', `${userId}`)
@@ -96,17 +98,18 @@ const recharge = async () => {
             }
           }
 
-          const update = await updateDoc(accountDocRef, data)
+          await updateDoc(accountDocRef, data)
 
-          if(update) {
-            console.log('Rechargement effectué')
-          }
+          console.log('Rechargement effectué')
 
           Swal.fire({
             title: "Succès",
             text: "Votre rechargement a été effectué avec succès",
             icon: "success"
-          })
+          }) 
+
+          
+          document.querySelector('.btn-close').click()
 
           const notificationColRef = collection(firestoreDb, 'notifications')
 

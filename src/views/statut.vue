@@ -27,7 +27,8 @@ const userId = savedUser.uid || authStore.user.uid
 
 const reservations = ref([])
 onBeforeMount(async () => {
-  userStore.setUser(userId)
+  userStore.setUser(userId) 
+  await reservationStore.resetUserReservations()
   reservationStore.setUserReservations(userId)
 
   reservation.value = [] 

@@ -31,7 +31,7 @@ const options = {
 
 <template>
   <div class="row mt-5">
-    <div class="col-md-6 mb-3" v-for="(post, postIndex) in demandeStore.posts" :key="postIndex">
+    <div class="col-md-6 mb-3" v-for="(post, postIndex) in demandeStore.posts.slice().reverse()" :key="postIndex">
       <!-- Button trigger modal -->
       <button
         type="button"

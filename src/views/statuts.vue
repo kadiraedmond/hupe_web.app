@@ -28,7 +28,8 @@ const userId = savedUser.uid || authStore.user.uid
 
 const locations = ref([])
 onBeforeMount(async () => {
-  userStore.setUser(userId)
+  userStore.setUser(userId) 
+  await locationStore.resetUserLocations() 
   locationStore.setUserLocations(userId)
 
   locations.value = [] 

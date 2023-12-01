@@ -16,6 +16,7 @@ export const useLocationStore = defineStore('locationStore', {
     actions: {
         async setUserLocations(userId) {
             try { 
+                 
                 const q = query(locationColRef, where('client_id', "==", `${userId}`));
                 const snapshots = await getDocs(q)
                 for(let i = 0; i < snapshots.docs.length; i++) {
@@ -27,12 +28,14 @@ export const useLocationStore = defineStore('locationStore', {
                     if(snapshot.exists()) company = snapshot.data()
                     this.userLocations.push({ ...programData, companieInfos: company })
                 
+                }
+            } catch (error) {
+                console.log(error)
             }
-        } catch (error) {
-            console.log(error)
-        }
-            this.userLocations = [] 
         }, 
+        resetUserLocations() {
+            this.userLocations = []
+        },
         async setLocationById(locationId) {
             const docRef = doc(firestoreDb, 'location_vehicules', `${locationId}`)
             const snapshot = await getDoc(docRef)
