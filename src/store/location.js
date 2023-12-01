@@ -32,9 +32,6 @@ export const useLocationStore = defineStore('locationStore', {
             } catch (error) {
                 console.log(error)
             }
-        }, 
-        resetUserLocations() {
-            this.userLocations = []
         },
         async setLocationById(locationId) {
             const docRef = doc(firestoreDb, 'location_vehicules', `${locationId}`)

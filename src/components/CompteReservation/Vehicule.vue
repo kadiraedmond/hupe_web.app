@@ -160,23 +160,57 @@ const star = async (trajet) => {
 
   try {
     if(companieStore.companie.offre === 'vip') {
-      await updateDoc(docRef, { enAvant: true })
       
       const miseEn_avantDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'mise_en_avant')
-      const trajetEn_avantColRef = collection( miseEn_avantDocRef, 'programme_en_avant')
+      const trajetEn_avantColRef = collection( miseEn_avantDocRef, 'programme_en_avant') 
+
+      const q = query(trajetEn_avantColRef, where('compagnie_uid', '==', `${userId}`)) 
+      const snapshots = await getDocs(q) 
+
+      const trajet_data = snapshots.docs[0].data() 
+
+      if(snapshots.docs.length > 0 && trajet_data.uid !== trajet.uid) {
+        Swal.fire({
+          title: "Erreur",
+          text: "Vous avez déjà un trajet en avant",
+          icon: "error"
+        })
+      } 
+
+      else if((snapshots.docs.length > 0 && trajet_data.uid === trajet.uid) || snapshots.docs.length === 0) {
+        
+        if(trajet.enAvant === false) {
+          await updateDoc(docRef, { enAvant: true }) 
+
+          await setDoc(doc(trajetEn_avantColRef, `${trajet.uid}`), { ...trajet, enAvant: true })
+      
+          console.log('Document ajouté') 
+      
+          Swal.fire({
+            title: "Succès",
+            text: "Votre Programme de voyage a été mis en avant",
+            icon: "success"
+          })
+      
+          console.log('ID ajouté')
+
+        } 
+
+        else if(trajet.enAvant === true) {
+          await updateDoc(docRef, { enAvant: false }) 
+
+          const trajetDocRef = doc(trajetEn_avantColRef, `${trajet.uid}`) 
+
+          await deleteDoc(trajetDocRef) 
+
+          Swal.fire({
+            title: "Succès",
+            text: "Votre trajet n'est plus en avant",
+            icon: "success"
+          })
+        }
+      }
   
-      const addedDoc = await addDoc(trajetEn_avantColRef, trajet)
-  
-      console.log('Document ajouté') 
-  
-      Swal.fire({
-        title: "Succès",
-        text: "Votre Programme de voyage a été mis en avant",
-        icon: "success"
-      })
-      await updateDoc(addedDoc, { uid: addedDoc.id, enAvant: true })
-  
-      console.log('ID ajouté')
       
     } else {
       Swal.fire({
@@ -290,7 +324,7 @@ const unlock = async (trajet) => {
 
 }
 
-const remove = async (car) => {
+const remove = async (trajet) => {
   const SwlResult = Swal.fire({
     title: 'Êtes-vous sûr de vouloir supprimer ce Programme ?',
     showCancelButton: true,
@@ -302,7 +336,7 @@ const remove = async (car) => {
     const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
     const programmesColRef = collection(companieDocRef, 'programme_des_voyages')
 
-    const docRef = doc(programmesColRef, `${car.uid}`)
+    const docRef = doc(programmesColRef, `${trajet.uid}`)
 
     await deleteDoc(docRef)
 
@@ -310,7 +344,11 @@ const remove = async (car) => {
       title: "Succès",
       text: "Programmes supprimé",
       icon: "success"
-    })
+    }) 
+
+    const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+
+    await deleteDoc(trajetDocRef)
     
   } else if (result.dismiss === Swal.DismissReason.cancel) {
     // 
@@ -675,11 +713,13 @@ const remove = async (car) => {
                   style="background-color: #219935; border-color: #219935"
                   @click="star(trajet)"
                 >
-                  <img
+                  <img 
+                    v-if="trajet.enAvant == false"
                     src="/assets/img/icone/star.png"
                     class="img-fluid"
                     alt="..."
-                  />
+                  /> 
+                  <i v-if="trajet.enAvant == true" style="color: #f2c33c" class="fa fa-star" aria-hidden="true"></i>
                 </button>
               </div>
               <div class="col" v-if="companieStore.companie.offre == 'vip'">
@@ -799,11 +839,13 @@ const remove = async (car) => {
                   style="background-color: #219935; border-color: #219935"
                   @click="unlock(trajet)"
                 >
-                  <img
+                  <img 
+                    v-if="trajet.status == 'active'"
                     src="/assets/img/icone/unlock.png"
                     class="img-fluid"
                     alt="..."
-                  />
+                  /> 
+                  <i v-if="trajet.status == 'desactive'" class="fa fa-unlock" aria-hidden="true"></i>
                 </button>
               </div>
               <div class="col text-center">

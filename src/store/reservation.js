@@ -70,9 +70,6 @@ export const useReservationStore = defineStore('reservationStore', {
                 console.log(error)
             }
         }, 
-        resetUserReservations() {
-            this.userReservations = [] 
-        },
         async setReservationById(reservationId) {
             const docRef = doc(firestoreDb, 'reservation', `${reservationId}`)
             const snapshot = await getDoc(docRef)

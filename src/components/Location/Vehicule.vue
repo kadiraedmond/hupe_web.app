@@ -220,22 +220,56 @@ const star = async (car) => {
   
   try {
     if(companieStore.companie.offre === 'vip') {
-      const update = await updateDoc(docRef, { enAvant: true })
       
       const miseEn_avantDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'mise_en_avant')
-      const carEn_avantColRef = collection( miseEn_avantDocRef, 'vehicule_en_avant')
-  
-      const addedDoc = await addDoc(carEn_avantColRef, car)
-  
-      console.log('Document ajouté') 
+      const carEn_avantColRef = collection( miseEn_avantDocRef, 'vehicule_en_avant') 
 
-      Swal.fire({
-        title: "Succès",
-        text: "Votre véhicule a été mis en avant",
-        icon: "success"
-      })
+      const q = query(carEn_avantColRef, where('compagnie_uid', '==', `${userId}`)) 
+      const snapshots = await getDocs(q) 
 
-      await updateDoc(addedDoc, { uid: addedDoc.id, enAvant: true })
+      const car_data = snapshots.docs[0].data() 
+
+      if(snapshots.docs.length > 0 && car_data.uid !== car.uid) {
+        Swal.fire({
+          title: "Erreur",
+          text: "Vous avez déjà un véhicule en avant",
+          icon: "error"
+        })
+      } 
+      
+      else if((snapshots.docs.length > 0 && car_data.uid === car.uid) || snapshots.docs.length === 0) { 
+
+        if(car.enAvant === false) {
+          await updateDoc(docRef, { enAvant: true }) 
+  
+          await setDoc(doc(carEn_avantColRef, `${car.uid}`), { ...car, enAvant: true })
+      
+          console.log('Document ajouté') 
+  
+          Swal.fire({
+            title: "Succès",
+            text: "Votre véhicule a été mis en avant",
+            icon: "success"
+          })
+  
+        } 
+        
+        else if(car.enAvant === true) {
+          await updateDoc(docRef, { enAvant: false }) 
+
+          const carDocRef = doc(carEn_avantColRef, `${car.uid}`) 
+
+          await deleteDoc(carDocRef) 
+
+          Swal.fire({
+            title: "Succès",
+            text: "Votre véhicule n'est plus en avant",
+            icon: "success"
+          })
+        }
+
+      }
+  
 
       console.log('ID ajouté') 
     
@@ -275,7 +309,11 @@ const remove = async (car) => {
       title: "Succès",
       text: "Véhicule supprimé",
       icon: "success"
-    })
+    }) 
+
+    const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`) 
+
+    await deleteDoc(vehiculeDocRef)
     
   } else if (SwlResult.dismiss === Swal.DismissReason.cancel) {
     // 
@@ -334,9 +372,9 @@ const update = async (car) => {
 
   await updateDoc(docRef, data)
 
-  const vehiculeDolRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`) 
+  const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`) 
 
-  await updateDoc(vehiculeDolRef, data)
+  await updateDoc(vehiculeDocRef, data)
   
   Swal.fire({
     title: "Succès",
@@ -854,11 +892,13 @@ const handleInterieurPaysPrix = (e) => {
                         "
                         @click="star(car)"
                       >
-                        <img
+                        <img 
+                          v-if="car.enAvant == false"
                           src="/assets/img/icone/star.png"
                           class="img-fluid"
                           alt="..."
-                        />
+                        /> 
+                        <i v-if="car.enAvant == true" style="color: #f2c33c" class="fa fa-star" aria-hidden="true"></i>
                       </button>
                     </div>
                     <div class="col" v-if="companieStore.companie.offre == 'vip'">
@@ -995,11 +1035,13 @@ const handleInterieurPaysPrix = (e) => {
                           "
                           @click="unlock(car)"
                         >
-                          <img
+                          <img 
+                            v-if="car.status == 'active'"
                             src="/assets/img/icone/unlock.png"
                             class="img-fluid"
                             alt="..."
-                          />
+                          /> 
+                          <i v-if="car.status == 'desactive'" class="fa fa-unlock" aria-hidden="true"></i>
                         </button>
                       </div>
                     </div>

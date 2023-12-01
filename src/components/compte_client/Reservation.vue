@@ -2,30 +2,30 @@
 import { useReservationStore } from "@/store/reservation.js"
 import { useAuthStore } from "@/store/auth.js"
 
-import { onBeforeMount, onMounted, reactive } from "vue";
+import { onBeforeMount, onMounted, ref, reactive } from "vue";
 
 
-let enAttente = reactive({
+const enAttente = ref({
   totalNumber: 0,
   totalPrice: 0
 })
-let valides = reactive({
+const valides = ref({
   totalNumber: 0,
   totalPrice: 0
 })
-let confirmees = reactive({
+const confirmees = ref({
   totalNumber: 0,
   totalPrice: 0
 })
-let annulees = reactive({
+const annulees = ref({
   totalNumber: 0,
   totalPrice: 0
 })
-let reportees = reactive({
+const reportees = ref({
   totalNumber: 0,
   totalPrice: 0
 })
-let utilisees = reactive({
+const utilisees = ref({
   totalNumber: 0,
   totalPrice: 0
 })
@@ -33,33 +33,33 @@ let utilisees = reactive({
 const updateReservationsDashboard = (datas) => {
   datas.forEach(data => {
     if(data.status == 'En attente') {
-      enAttente.totalNumber++
-      enAttente.totalPrice += Number(data.montant)
+      enAttente.value.totalNumber++
+      enAttente.value.totalPrice += Number(data.montant)
     }
     
     else if(data.status == 'Validé') {
-      valides.totalNumber++
-      valides.totalPrice += Number(data.montant)
+      valides.value.totalNumber++
+      valides.value.totalPrice += Number(data.montant)
     }
     
     else if(data.status == 'Confirmé') {
-      confirmees.totalNumber++
-      confirmees.totalPrice += Number(data.montant)
+      confirmees.value.totalNumber++
+      confirmees.value.totalPrice += Number(data.montant)
     }
     
     else if(data.status == 'Annuler') {
-      annulees.totalNumber++
-      annulees.totalPrice += Number(data.montant)
+      annulees.value.totalNumber++
+      annulees.value.totalPrice += Number(data.montant)
     }
     
     else if(data.status == 'Reporté') {
-      reportees.totalNumber++
-      reportees.totalPrice += Number(data.montant)
+      reportees.value.totalNumber++
+      reportees.value.totalPrice += Number(data.montant)
     }
     
     else if(data.status == 'Utilisé') {
-      utilisees.totalNumber++
-      utilisees.totalPrice += Number(data.montant)
+      utilisees.value.totalNumber++
+      utilisees.value.totalPrice += Number(data.montant)
     }
   })
 }
@@ -71,26 +71,26 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
-onBeforeMount(async () => {
-  await reservationStore.setUserReservations(userId) 
+onBeforeMount(() => {
+  reservationStore.setUserReservations(userId) 
 
-  enAttente.totalNumber = 0
-  enAttente.totalPrice = 0
+  enAttente.value.totalNumber = 0
+  enAttente.value.totalPrice = 0
 
-  valides.totalNumber = 0 
-  valides.totalPrice = 0 
+  valides.value.totalNumber = 0 
+  valides.value.totalPrice = 0 
 
-  confirmees.totalNumber = 0 
-  confirmees.totalPrice = 0 
+  confirmees.value.totalNumber = 0 
+  confirmees.value.totalPrice = 0 
 
-  annulees.totalNumber = 0 
-  annulees.totalPrice = 0 
+  annulees.value.totalNumber = 0 
+  annulees.value.totalPrice = 0 
 
-  reportees.totalNumber = 0 
-  reportees.totalPrice = 0 
+  reportees.value.totalNumber = 0 
+  reportees.value.totalPrice = 0 
   
-  utilisees.totalNumber = 0
-  utilisees.totalPrice = 0 
+  utilisees.value.totalNumber = 0
+  utilisees.value.totalPrice = 0 
 
   updateReservationsDashboard(reservationStore.userReservations)
 })
