@@ -5,7 +5,7 @@ import { useCompanieStore } from '@/store/companie.js'
 import { usePromotionStore } from '@/store/promotion.js'
 import Loader from "@/components/Loader.vue"
 
-import { collection, doc, addDoc } from 'firebase/firestore'
+import { collection, doc, addDoc, getDocs, query, where } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from 'vue3-toastify'
 
@@ -17,7 +17,16 @@ const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const companieId = route.params.id
+const companieId = route.params.id 
+
+const politiques = ref('') 
+
+const getPolitiques = async () => {
+  const q = query(firestoreDb, 'politiques', where('compagnie_uid', '==', `${companieId}`)) 
+  const snapshots = await getDocs(q) 
+
+  politiques.value = snapshots.docs[0].data()
+}
 
 onBeforeMount(async () => {
   await companieStore.resetCompanieCars()
@@ -29,7 +38,8 @@ onBeforeMount(async () => {
   })
 
   companieStore.setCompanieCars(companieId)
-  promotionStore.setCompaniePromotionCars(companieId)
+  promotionStore.setCompaniePromotionCars(companieId) 
+  getPolitiques()
 })
 
 onMounted(() => {
@@ -816,41 +826,8 @@ const isLoading = ref(false)
                   <div class="col-md-12">
                     <div class="card h-100" id="card_compagnie">
                       <div class="card-body">
-                        <H6>Lorem ipsum dolor sit amet</H6>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat Lorem ipsum dolor sit amet,
-                          consectetur adipiscing elit, sed do eiusmod tempor
-                          incididunt ut labore et dolore magna aliqua. Ut enim
-                          ad minim veniam, quis nostrud exercitation ullamco
-                          laboris nisi ut aliquip ex ea commodo consequatLorem
-                          ipsum dolor sit amet, consectetur adipiscing elit, sed
-                          do eiusmod tempor incididunt ut labore et dolore magna
-                          aliqua. Ut enim ad minim veniam, quis nostrud
-                          exercitation ullamco laboris nisi ut aliquip ex ea
-                          commodo consequat
-                        </p>
-
-                        <H6>Lorem ipsum dolor sit amet</H6>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat Lorem ipsum dolor sit amet,
-                          consectetur adipiscing elit, sed do eiusmod tempor
-                          <br />
-                          incididunt ut labore et dolore magna aliqua. Ut enim
-                          ad minim veniam, quis nostrud exercitation ullamco
-                          laboris nisi ut aliquip ex ea commodo consequatLorem
-                          ipsum dolor sit amet, <br />consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat
+                          {{ politiques.text }}
                         </p>
 
                         <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->

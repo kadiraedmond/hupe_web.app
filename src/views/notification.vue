@@ -38,6 +38,48 @@ onBeforeMount(async () => {
     })
 })
 
+const readNotifications = async () => { 
+    notifications.value = []
+
+    if(connectedUser.raison_social) {
+        const q = query(notificationColRef, where('userId', '==', `${connectedUser.uid}`))
+
+        const snapshot = await getDocs(q)
+        snapshot.docs.forEach(async doc => {
+            const notiData = doc.data() 
+
+            const docRef = doc(notificationColRef, `${doc.id}`)
+
+            await updateDoc(docRef, { lu: true }) 
+            
+            
+            notifications.value.push({ ...notiData, lu: true })
+        })
+    } else {
+        const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
+
+        const snapshot = await getDocs(q)
+        snapshot.docs.forEach(async doc => {
+            const notiData = doc.data() 
+
+            const docRef = doc(notificationColRef, `${doc.id}`)
+
+            await updateDoc(docRef, { lu: true }) 
+            
+            
+            notifications.value.push({ ...notiData, lu: true })
+        })
+    }
+    
+    noneReadNotification.value = [] 
+    
+    notifications.value.forEach(notification => {
+        if(notification.lu === false) {
+            noneReadNotifications.value.push(notification)
+        }
+    })
+}
+
 const refresh = ()=>{
   window.location.reload()
  } 
@@ -78,7 +120,7 @@ onMounted(() => {
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Toutes</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li @click="readNotifications" class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Non lues</button>
                             </li>
                             
@@ -106,7 +148,7 @@ onMounted(() => {
                                                             <p class="card-text" style="font-size: 13px;">{{ notification.message }}</p> 
                                                         </div>
                                                         <div class="col-2 text-end">
-                                                            <p style="color: #219935;"><i class='bx bx-check-double' ></i></p>
+                                                            <p style="color: #219935;"><i class='bx bx-check-double' style="color: #5bc0ea" ></i></p>
                                                         </div>
                                                     </div>                                        
                                                 </div>
