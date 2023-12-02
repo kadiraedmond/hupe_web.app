@@ -27,13 +27,10 @@ const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 
 const locations = ref([])
-onBeforeMount(() => { 
-  setTimeout(() => {
-    window.location.reload() 
-  }, 1000) 
-  
+onBeforeMount(async () => { 
+
   userStore.setUser(userId) 
-  locationStore.setUserLocations(userId)
+  await locationStore.setUserLocations(userId)
 
   locations.value = [] 
   locationStore.userLocations.forEach(location => {
@@ -48,6 +45,8 @@ onBeforeMount(() => {
     } else if(param === 'confirme' && location.status === 'Confirmé') {
       locations.value.push(location)
     } else if(param === 'annule' && location.status === 'Annuler') {
+      locations.value.push(location)
+    } else if(param === 'en-attente-de-report' && location.status === 'En report') {
       locations.value.push(location)
     }
   }) 

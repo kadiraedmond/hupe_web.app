@@ -26,13 +26,10 @@ const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 
 const reservations = ref([])
-onBeforeMount(() => { 
-  setTimeout(() => {
-    window.location.reload() 
-  }, 1000) 
+onBeforeMount(async () => {
 
   userStore.setUser(userId) 
-  reservationStore.setUserReservations(userId)
+  await reservationStore.setUserReservations(userId)
 
   reservation.value = [] 
   reservationStore.userReservations.forEach(reservation => {
@@ -47,6 +44,8 @@ onBeforeMount(() => {
     } else if(param === 'confirme' && reservation.status === 'Confirmé') {
       reservations.value.push(reservation)
     } else if(param === 'annule' && reservation.status === 'Annuler') {
+      reservations.value.push(reservation)
+    } else if(param === 'en-attente-de-report' && reservation.status === 'En report') {
       reservations.value.push(reservation)
     }
   }) 

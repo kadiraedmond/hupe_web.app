@@ -116,7 +116,12 @@ const logout = async () => {
   } catch (error) {
     console.log(error)
   }
-};
+}; 
+
+const goTo_client = async () => {
+  await router.push('/compte_client')
+  window.location.reload() 
+}
 
 const selectedValue = ref('');
 // const options = [
@@ -253,11 +258,11 @@ const selectedValue = ref('');
               <li>
                 <router-link v-if="authStore.isConnected && authStore.isCarsSellingCompany || user.raison_social" to="/compte_achat_engin">Compte vente d'engins </router-link>
               </li>
-              <li>
+              <li @click="goTo_client">
                 <router-link 
                   v-if="(authStore.user.uid && !authStore.user.raison_social) 
                         || (savedUser && !savedUser.raison_social)" 
-                  to="/compte_client">
+                  to="">
                   Mon compte 
                 </router-link>
               </li>

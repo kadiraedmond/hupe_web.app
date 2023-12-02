@@ -2,8 +2,10 @@
 import { useReservationStore } from "@/store/reservation.js"
 import { useAuthStore } from "@/store/auth.js"
 
-import { onBeforeMount, onMounted, ref, reactive } from "vue";
+import { onBeforeMount, onMounted, ref, reactive } from "vue" 
 
+
+import router from '@/router/router.js'
 
 const enAttente = ref({
   totalNumber: 0,
@@ -26,6 +28,10 @@ const reportees = ref({
   totalPrice: 0
 })
 const utilisees = ref({
+  totalNumber: 0,
+  totalPrice: 0
+})
+const en_report = ref({
   totalNumber: 0,
   totalPrice: 0
 })
@@ -60,6 +66,11 @@ const updateReservationsDashboard = (datas) => {
     else if(data.status == 'Utilisé') {
       utilisees.value.totalNumber++
       utilisees.value.totalPrice += Number(data.montant)
+    } 
+
+    else if(data.status == 'En report') {
+      en_report.value.totalNumber++
+      en_report.value.totalPrice += Number(data.montant)
     }
   })
 }
@@ -97,7 +108,36 @@ onBeforeMount(() => {
 
 onMounted(() => {
   window.scrollTo(0, 0)
-})
+}) 
+
+const goTo_attente = async () => {
+  await router.push(`/reservation_de_ticket/${`en-attente`}`) 
+  window.location.reload() 
+}
+const goTo_valide = async () => {
+  await router.push(`/reservation_de_ticket/${`valide`}`) 
+  window.location.reload() 
+}
+const goTo_annule = async () => {
+  await router.push(`/reservation_de_ticket/${`annule`}`) 
+  window.location.reload() 
+}
+const goTo_confirme = async () => {
+  await router.push(`/reservation_de_ticket/${`confirme`}`) 
+  window.location.reload() 
+}
+const goTo_utilise = async () => {
+  await router.push(`/reservation_de_ticket/${`utilise`}`) 
+  window.location.reload() 
+}
+const goTo_reporte = async () => {
+  await router.push(`/reservation_de_ticket/${`reporte`}`) 
+  window.location.reload() 
+}
+const goTo_attente_de_report = async () => {
+  await router.push(`/reservation_de_ticket/${`en-attente-de-report`}`) 
+  window.location.reload() 
+}
 
 </script>
 
@@ -132,7 +172,7 @@ onMounted(() => {
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
-            <router-link :to="`/reservation_de_ticket/${`en-attente`}`">
+            <router-link @click="goTo_attente" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background: #62bfc4; border-color: #62bfc4"
@@ -148,7 +188,7 @@ onMounted(() => {
             </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link :to="`/reservation_de_ticket/${`valide`}`">
+            <router-link @click="goTo_valide" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background: #bbded8; border-color: #bbded8"
@@ -164,7 +204,7 @@ onMounted(() => {
             </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link :to="`/reservation_de_ticket/${`annule`}`">
+            <router-link @click="goTo_annule" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background: #f9f9f9; border-color: #f9f9f9"
@@ -180,7 +220,7 @@ onMounted(() => {
             </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link :to="`/reservation_de_ticket/${`confirme`}`">
+            <router-link @click="goTo_confirme" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background: #bbded8; border-color: #bbded8"
@@ -196,7 +236,7 @@ onMounted(() => {
             </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link :to="`/reservation_de_ticket/${`utilise`}`">
+            <router-link @click="goTo_utilise" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background: #f9f9f9; border-color: #f9f9f9"
@@ -213,23 +253,7 @@ onMounted(() => {
           </div>
 
           <div class="col-md-12 mt-2">
-            <router-link :to="`/reservation_de_ticket/${`en-attente-de-report`}`">
-              <boutton
-                class="btn btn-primary w-100"
-                style="background: #bbded8; border-color: #bbded8"
-              >
-                <div class="row text-black">
-                  <div class="col-10 text-start">
-                    <i class="bx bx-error-alt"></i> En attente de report
-                  </div>
-                
-                  <div class="col-2">{{ 0 }}</div>
-                </div>
-              </boutton>
-            </router-link>
-          </div>
-          <div class="col-md-12 mt-2">
-            <router-link :to="`/reservation_de_ticket/${`reporte`}`">
+            <router-link @click="goTo_reporte" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background: #f8e4dd; border-color: #f8e4dd"
@@ -240,6 +264,23 @@ onMounted(() => {
                   </div>
                    
                   <div class="col-2">{{ reportees.totalNumber }}</div>
+                </div>
+              </boutton>
+            </router-link>
+          </div> 
+
+          <div class="col-md-12 mt-2">
+            <router-link @click="goTo_attente_de_report" to="">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #bbded8; border-color: #bbded8"
+              >
+                <div class="row text-black">
+                  <div class="col-10 text-start">
+                    <i class="bx bx-error-alt"></i> En attente de report
+                  </div>
+                
+                  <div class="col-2">{{ en_report.totalNumber }}</div>
                 </div>
               </boutton>
             </router-link>

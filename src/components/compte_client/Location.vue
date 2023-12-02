@@ -3,7 +3,9 @@ import { useUserStore } from "@/store/user.js"
 import { useAuthStore } from "@/store/auth.js"
 
 import { onBeforeMount, onMounted, ref, reactive } from "vue"
-import { useLocationStore } from '@/store/location.js'
+import { useLocationStore } from '@/store/location.js' 
+
+import router from '@/router/router.js'
 
 const locationStore = useLocationStore()
 
@@ -28,6 +30,10 @@ const reportees = ref({
   totalPrice: 0
 })
 const utilisees = ref({
+  totalNumber: 0,
+  totalPrice: 0
+})
+const en_report = ref({
   totalNumber: 0,
   totalPrice: 0
 })
@@ -62,6 +68,11 @@ const updateReservationsDashboard = (datas) => {
     else if(data.status == 'Utilisé') {
       utilisees.value.totalNumber++
       utilisees.value.totalPrice += Number(data.montant)
+    } 
+
+    else if(data.status == 'En report') {
+      en_report.value.totalNumber++
+      en_report.value.totalPrice += Number(data.montant)
     }
   })
 }
@@ -99,7 +110,36 @@ onBeforeMount(() => {
 
 onMounted(() => {
   window.scrollTo(0, 0)
-})
+}) 
+
+const goTo_attente = async () => {
+  await router.push(`/location_de_vehicule/${`en-attente`}`) 
+  window.location.reload() 
+}
+const goTo_valide = async () => {
+  await router.push(`/location_de_vehicule/${`valide`}`) 
+  window.location.reload() 
+}
+const goTo_annule = async () => {
+  await router.push(`/location_de_vehicule/${`annule`}`) 
+  window.location.reload() 
+}
+const goTo_confirme = async () => {
+  await router.push(`/location_de_vehicule/${`confirme`}`) 
+  window.location.reload() 
+}
+const goTo_utilise = async () => {
+  await router.push(`/location_de_vehicule/${`utilise`}`) 
+  window.location.reload() 
+}
+const goTo_reporte = async () => {
+  await router.push(`/location_de_vehicule/${`reporte`}`) 
+  window.location.reload() 
+}
+const goTo_attente_de_report = async () => {
+  await router.push(`/location_de_vehicule/${`en-attente-de-report`}`) 
+  window.location.reload() 
+}
 
 </script>
 
@@ -135,7 +175,7 @@ onMounted(() => {
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
-            <router-link :to="`/location_de_vehicule/${`en-attente`}`">
+          <router-link @click="goTo_attente" to="">
             <boutton
               class="btn btn-primary w-100"
               style="background: #62bfc4; border-color: #62bfc4"
@@ -150,7 +190,7 @@ onMounted(() => {
           </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link :to="`/location_de_vehicule/${`valide`}`">
+            <router-link @click="goTo_valide" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background:  #bbded8; border-color: #bbded8"
@@ -166,7 +206,7 @@ onMounted(() => {
             </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link :to="`/location_de_vehicule/${`annule`}`">
+            <router-link @click="goTo_annule" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background: #f9f9f9; border-color: #f9f9f9"
@@ -182,7 +222,7 @@ onMounted(() => {
             </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link :to="`/location_de_vehicule/${`confirme`}`">
+            <router-link @click="goTo_confirme" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background: #bbded8; border-color:#bbded8"
@@ -198,7 +238,7 @@ onMounted(() => {
             </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link :to="`/location_de_vehicule/${`utilise`}`">
+            <router-link @click="goTo_utilise" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background: #f9f9f9; border-color: #f9f9f9"
@@ -214,7 +254,7 @@ onMounted(() => {
             </router-link>
           </div>
           <div class="col-md-12 mt-2">
-            <router-link :to="`/location_de_vehicule/${`reporte`}`">
+            <router-link @click="goTo_reporte" to="">
               <boutton
                 class="btn btn-primary w-100"
                 style="background:#bbded8; border-color:#bbded8"
@@ -230,19 +270,21 @@ onMounted(() => {
             </router-link>
           </div>
 
-          <div class="col-md-12 mt-2">
-            <boutton
-              class="btn btn-primary w-100"
-              style="background: #f8e4dd; ; border-color:#f8e4dd; "
-            >
-              <div class="row text-black">
-                <div class="col-10 text-start">
-                  <i class="bx bx-error-alt"></i>  En attente de report
+          <div class="col-md-12 mt-2"> 
+            <router-link @click="goTo_attente_de_report" to="">
+              <boutton
+                class="btn btn-primary w-100"
+                style="background: #f8e4dd; ; border-color:#f8e4dd; "
+              >
+                <div class="row text-black">
+                  <div class="col-10 text-start">
+                    <i class="bx bx-error-alt"></i>  En attente de report
+                  </div>
+                  
+                  <div class="col-2">{{ en_report.totalNumber }}</div>
                 </div>
-                
-                <div class="col-2">{{ 0 }}</div>
-              </div>
-            </boutton>
+              </boutton> 
+            </router-link>
           </div>
         </div>
       </div>
