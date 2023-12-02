@@ -9,6 +9,8 @@ import { useReservationStore } from "@/store/reservation.js"
 import { usePromotionStore } from "@/store/promotion.js"
 import { useLocalisationStore } from "@/store/localisation.js"
 
+import router from '@/router/router.js'
+
 import {
   collection,
   query,
@@ -24,6 +26,8 @@ const slideStore = useSlide()
 const reservationStore = useReservationStore()
 const promotionStore = usePromotionStore()
 const localisationStore = useLocalisationStore()
+
+const savedUser = JSON.parse(localStorage.getItem('user'))
 
 onBeforeMount(() => {
   slideStore.getSlideImages
@@ -64,12 +68,24 @@ onMounted(() => {
 
   textLoad()
   setInterval(textLoad, 24000)
-})
+}) 
+
+const goTo_chat = async () => {
+  if(savedUser) {
+    await router.push('/support') 
+    location.reload() 
+  } else {
+    router.push('/connexion')
+  }
+}
 </script>
 
 <template>
   <!-- ========== Hero one =========== -->
-  <section id="hero" class="d-flex">
+  <section id="hero" class="d-flex"> 
+    <div @click="goTo_chat" style="position: fixed; bottom: 2%; right: 2%; background: #219935; border-radius: 50%; cursor: pointer">
+      <i class="fa-solid fa-message" style="color: white; font-size: 2rem; padding: 17px"></i>
+    </div>
     
     <div class="container-fluid"  id="background">
       <div class="row g-3" style="padding: 93px !important">
