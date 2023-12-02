@@ -27,10 +27,13 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
-onBeforeMount(async () => {
-  userStore.setUser(userId)
+onBeforeMount(() => {
+  setTimeout(() => {
+    window.location.reload() 
+  }, 1000) 
 
-});
+  userStore.setUser(userId) 
+})
 
 const service = ref('')
 const object = ref('')

@@ -119,49 +119,77 @@ const date_fin = ref()
 
 const promote = async (car) => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
-  const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
+  const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer') 
+
+  const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
+  const carInPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
 
   const docRef = doc(vehiculesColRef, `${car.uid}`) 
   try {
-    if(companieStore.companie.offre === 'vip') {
-      await updateDoc(docRef, { enPromo: true })
-      
-      const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
-      const carInPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
-    
-      const data = {
-        ancien_montant: car.montant, 
-        annee_vehicule: car.anne_vehicule, 
-        boite: car.boite, 
-        compagnie_uid: userId, 
-        country: companieStore.companie.country, 
-        createdAt: Timestamp.now(), 
-        debut_promo: new Date(date_debut.value), 
-        fin_promo: new Date(date_fin.value), 
-        idTrack: uuidv4(), 
-        modele: car.modele, 
-        montant: montant.value, 
-        moteur: car.moteur, 
-        pourcentage: taux_reduction.value, 
-        vehicule: car.vehicule, 
-        vehicule_image_url: car.vehicule_image_url
-      }
-    
-      const addedDoc = await addDoc(carInPromoColRef, data)
-    
-      console.log('Document ajouté') 
-      
-      Swal.fire({
-        title: "Succès",
-        text: "Votre véhicule a été mis en promotion",
-        icon: "success"
-      }) 
+    if(companieStore.companie.offre === 'vip') { 
+
+      if(car.enPromo === false) { 
+
+        if(car.montant <= Number(montant.value)) {
+          Swal.fire({
+            title: "Erreur",
+            text: "Entrez un prix conforme à la réduction",
+            icon: "error"
+          }) 
+        } 
+        
+        else {
+          await updateDoc(docRef, { enPromo: true })
+          
+          const data = { 
+            uid: car.uid, 
+            ancien_montant: car.montant, 
+            annee_vehicule: car.anne_vehicule, 
+            boite: car.boite, 
+            compagnie_uid: userId, 
+            country: companieStore.companie.country, 
+            createdAt: Timestamp.now(), 
+            debut_promo: new Date(date_debut.value), 
+            fin_promo: new Date(date_fin.value), 
+            idTrack: uuidv4(), 
+            modele: car.modele, 
+            montant: montant.value, 
+            moteur: car.moteur, 
+            pourcentage: taux_reduction.value, 
+            vehicule: car.vehicule, 
+            vehicule_image_url: car.vehicule_image_url
+          }
+        
+          await setDoc(doc(carInPromoColRef, `${car.uid}`), data)
+        
+          console.log('Document ajouté') 
+          
+          Swal.fire({
+            title: "Succès",
+            text: "Votre véhicule a été mis en promotion",
+            icon: "success"
+          })                 
+        }
+      } 
+
+      else if(car.enPromo === true) {
+        await updateDoc(docRef, { enPromo: false }) 
+
+        const carDocRef = doc(carInPromoColRef, `${car.uid}`) 
+
+        await deleteDoc(carDocRef) 
+
+        Swal.fire({
+          title: "Succès",
+          text: "Votre véhicule n'est plus en promotion",
+          icon: "success"
+        }) 
+      } 
 
       document.querySelector('btn-close').click() 
-  
-      await updateDoc(addedDoc, { uid: addedDoc.id })
-      console.log('ID ajouté')
-    } else {
+    } 
+    
+    else {
       Swal.fire({
         title: "Erreur",
         text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
@@ -954,7 +982,7 @@ const handleInterieurPaysPrix = (e) => {
                                     >Taux de réduction</label
                                   >
                                   <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
                                     id="validationCustom01"
                                     v-model="taux_reduction"
@@ -968,7 +996,7 @@ const handleInterieurPaysPrix = (e) => {
                                     >Montant</label
                                   >
                                   <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
                                     id="validationCustom02"
                                     v-model="montant"

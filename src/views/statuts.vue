@@ -27,10 +27,13 @@ const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 
 const locations = ref([])
-onBeforeMount(async () => {
+onBeforeMount(() => { 
+  setTimeout(() => {
+    window.location.reload() 
+  }, 1000) 
+  
   userStore.setUser(userId) 
-  // await locationStore.resetUserLocations() 
-  await locationStore.setUserLocations(userId)
+  locationStore.setUserLocations(userId)
 
   locations.value = [] 
   locationStore.userLocations.forEach(location => {
@@ -47,7 +50,7 @@ onBeforeMount(async () => {
     } else if(param === 'annule' && location.status === 'Annuler') {
       locations.value.push(location)
     }
-  })
+  }) 
 })
 
 const router = useRouter();

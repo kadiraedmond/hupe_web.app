@@ -233,50 +233,79 @@ const taux_reduction = ref()
 
 const promote = async (trajet) => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
-  const programmesColRef = collection(companieDocRef, 'programme_des_voyages')
+  const programmesColRef = collection(companieDocRef, 'programme_des_voyages') 
+
+  const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
+  const trajetInPromoColRef = collection(promotionDocRef, 'programme_en_promo')
 
   const docRef = doc(programmesColRef, `${trajet.uid}`) 
 
   try {
-    if(companieStore.companie.offre === 'vip') {
-      await updateDoc(docRef, { enPromo: true })
-      
-      const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
-      const trajetInPromoColRef = collection(promotionDocRef, 'programme_en_promo')
-    
-      const data = {
-        uid: '', 
-        ancien_montant: trajet.montant, 
-        compagnie_uid: userId, 
-        country: companieStore.companie.country, 
-        createdAt: Timestamp.now(), 
-        debut_promo: debut_promo.value, 
-        destination: trajet.destination, 
-        escale: trajet.escale, 
-        fin_promo: fin_promo.value, 
-        heure_depart: trajet.heure_depart, 
-        idTrack: uuidv4(), 
-        lieu_depart: trajet.lieu_depart, 
-        montant: trajet.montant, 
-        pourcentage: taux_reduction.value
-      }
-    
-      const addedDoc = await addDoc(trajetInPromoColRef, data)
-    
-      console.log('Document ajouté')
-      Swal.fire({
-        title: "Succès",
-        text: "Votre Programme de voyage a été mis en promotion",
-        icon: "success"
-      })
-  
-      document.querySelector('btn-close').click() 
+    if(companieStore.companie.offre === 'vip') { 
 
-      const update = await updateDoc(addedDoc, { uid: addedDoc.id })
-     
-      console.log('ID ajouté')
+      if(trajet.enPromo === false) {
+
+        if(trajet.montant <= Number(montant_promo.value)) {
+          Swal.fire({
+            title: "Erreur",
+            text: "Entrez un prix conforme à la réduction",
+            icon: "error"
+          }) 
+        } 
+
+        else {
+          
+          await updateDoc(docRef, { enPromo: true })
+          
+          const data = {
+            uid: trajet.uid, 
+            ancien_montant: trajet.montant, 
+            compagnie_uid: userId, 
+            country: companieStore.companie.country, 
+            createdAt: Timestamp.now(), 
+            debut_promo: debut_promo.value, 
+            destination: trajet.destination, 
+            escale: trajet.escale, 
+            fin_promo: fin_promo.value, 
+            heure_depart: trajet.heure_depart, 
+            idTrack: uuidv4(), 
+            lieu_depart: trajet.lieu_depart, 
+            montant: trajet.montant, 
+            pourcentage: taux_reduction.value
+          }
+        
+          await setDoc(doc(trajetInPromoColRef, `${trajet.uid}`), data)
+        
+          console.log('Document ajouté')
+          Swal.fire({
+            title: "Succès",
+            text: "Votre Programme de voyage a été mis en promotion",
+            icon: "success"
+          }) 
+    
+        }
+      } 
+
+      else if(trajet.enPromo === true) { 
+
+        await updateDoc(docRef, { enPromo: false }) 
+
+        const trajetDocRef = doc(trajetInPromoColRef, `${trajet.uid}`) 
+
+        await deleteDoc(trajetDocRef) 
+
+        Swal.fire({
+          title: "Succès",
+          text: "Votre trajet n'est plus en promotion",
+          icon: "success"
+        }) 
+      } 
+
       
-    } else {
+      document.querySelector('btn-close').click()
+    } 
+    
+    else {
       Swal.fire({
         title: "Erreur",
         text: "Vous ne pouvez pas effectuer cette action en raison de votre offre actuelle",
@@ -770,7 +799,7 @@ const remove = async (trajet) => {
                               >Taux de réduction</label
                             >
                             <input
-                              type="text"
+                              type="number"
                               class="form-control"
                               id="validationCustom01"
                               v-model="taux_reduction"

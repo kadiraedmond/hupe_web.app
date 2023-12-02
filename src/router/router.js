@@ -209,10 +209,6 @@ const routes = [
     name: 'Client',
     component: Client,
     // meta: { requiresAuth: true, allowedUserType: 'client' } 
-    beforeEnter(to, from, next) {
-      location.reload()
-      next()
-    },
   },
 
   {
@@ -325,10 +321,6 @@ const routes = [
     path: '/location_de_vehicule/:param',
     name: 'Statuts',
     component: Statuts, 
-    beforeEnter(to, from, next) {
-      location.reload()
-      next()
-    },
     
   },
 
@@ -337,10 +329,6 @@ const routes = [
     path: '/reservation_de_ticket/:param',
     name: 'Statut',
     component: Statut,
-    beforeEnter(to, from, next) {
-      location.reload()
-      next()
-    },
   },
 
   {
