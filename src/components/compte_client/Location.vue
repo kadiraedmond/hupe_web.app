@@ -84,9 +84,7 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
-onBeforeMount(() => {
-  locationStore.setUserLocations(userId) 
-
+onBeforeMount(async () => {
   enAttente.value.totalNumber = 0
   enAttente.value.totalPrice = 0
 
@@ -105,6 +103,10 @@ onBeforeMount(() => {
   utilisees.value.totalNumber = 0
   utilisees.value.totalPrice = 0 
 
+  en_report.value.totalNumber = 0
+  en_report.value.totalPrice = 0 
+
+  await locationStore.setUserLocations(userId) 
   updateReservationsDashboard(locationStore.userLocations)
 })
 

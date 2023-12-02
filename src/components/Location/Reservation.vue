@@ -36,7 +36,7 @@ let utilisees = reactive({
 
 const updateReservationsDashboard = () => {
   companieStore.companieLocations.forEach((location) => {
-    if(location.status == "En attente") {
+    if(location.status == "En attente" || location.status == "En report") {
       enAttente.totalNumber++;
       enAttente.totalPrice += Number(location.montant) 
     } 
@@ -105,7 +105,7 @@ onBeforeMount(async () => {
   updateReservationsDashboard() 
   
   companieStore.companieLocations.forEach(comp => {
-    if(comp.status == 'En attente') {
+    if(comp.status == 'En attente' || comp.status == 'En report') {
       elements_en_attente.value.push(comp)
     } else if(comp.status == 'Validé') {
       elements_valide.value.push(comp)
