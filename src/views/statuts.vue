@@ -32,6 +32,8 @@ onBeforeMount(async () => {
   userStore.setUser(userId) 
   await locationStore.setUserLocations(userId)
 
+  userStore.setTotalAmount(userId)
+
   locations.value = [] 
   locationStore.userLocations.forEach(location => {
     if(param === 'en-attente' && location.status === 'En attente') {
@@ -68,6 +70,8 @@ onMounted(() => {
 
 
 const date_report = ref()
+const date_retrait = ref()
+const date_retour = ref()
 
 const reporter = async (location) => {
   const reportColRef = collection(firestoreDb, 'location_reporter')
@@ -76,15 +80,23 @@ const reporter = async (location) => {
   const { status, ...extracted_location } = location
 
   try {
-    const docRef = await addDoc(reportColRef, { ...extracted_location, status: 'En attente', report: new Date(date_report.value) })
+    // const docRef = await addDoc(reportColRef, { ...extracted_location, status: 'En attente', report: new Date(date_report.value) })
     
     Swal.fire({
       title: "Succès",
       text: "Votre demande de report a été envoyé", 
       icon: "success"
-    })
+    }) 
+
+    const report_data = {
+      status: 'En report', 
+      report_retrait: new Date(date_retrait.value), 
+      report_retour: new Date(date_retour.value) 
+    }
   
-    await updateDoc(locationDocRef, { status: 'En report' }) 
+    await updateDoc(locationDocRef, report_data) 
+
+    await addDoc(reportColRef, { ...location, status: 'En attente', report_retrait: new Date(date_retrait.value), report_retour: new Date(date_retour.value) })
   
     const notificationColRef = collection(firestoreDb, 'notifications')
   
@@ -138,12 +150,30 @@ const payer = async (location) => {
   const userSubColRef = collection(userDocRef, 'myAccount')
   const accountDocRef = doc(userSubColRef, 'account')
 
-  const snapshot = await getDoc(accountDocRef)
+  const snapshot = await getDoc(accountDocRef) 
+
+  let total_a_payer = 0 
+
+  if(location.chauffeur == 'Oui' && location.interieurPays == 'Non') {
+    total_a_payer = Number(location.montant) + Number(location.avecchauffeurprix)
+  } 
+
+  else if(location.chauffeur == 'Non' && location.interieurPays == 'Oui') {
+    total_a_payer = Number(location.montant) + Number(interieurpaysprix)
+  } 
+
+  else if(location.chauffeur == 'Non' && location.interieurPays == 'Non') {
+    total_a_payer = Number(location.montant)
+  } 
+
+  else if(location.chauffeur == 'Oui' && location.interieurPays == 'Oui') {
+    total_a_payer = Number(location.montant) + Number(location.avecchauffeurprix) + Number(location.interieurpaysprix)
+  }
 
   let amount
   if(snapshot.exists()) amount = snapshot.data()
 
-  if(!amount.solde || amount.solde == 0 || amount.solde === '' || amount.solde < Number(location.montant)) {
+  if(!amount.solde || amount.solde == 0 || amount.solde === '' || amount.solde < total_a_payer) {
     Swal.fire({
       title: "Error",
       text: "Votre solde est insuffisant",
@@ -160,7 +190,7 @@ const payer = async (location) => {
     if (result.isConfirmed) {
     // Debiter le solde du client
     const data = {
-      solde: Number(amount.solde) - Number(location.montant), 
+      solde: Number(amount.solde) - total_a_payer, 
     }
 
     try {
@@ -185,7 +215,7 @@ const payer = async (location) => {
 
       const client_notif = {
         title: 'Paiement pour location', 
-        message: `Vous avez effectué un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
+        message: `Vous avez effectué un paiement de caution de FCFA ${total_a_payer} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
         destinataire: userId,
         lu: false, 
         createdAt: Timestamp.now() 
@@ -203,9 +233,9 @@ const payer = async (location) => {
       // calcul du montant suite a l'application de la commission selon l'offre de la compagnie
       let montant_apres_commission
       if(companieInfos.offre == 'basique') {
-        montant_apres_commission = Number(montant.value) - 0.15 * Number(montant.value)
+        montant_apres_commission = Number(total_a_payer) - 0.15 * Number(total_a_payer)
       } else if(companieInfos.offre == 'vip') {
-        montant_apres_commission = Number(montant.value) - 0.2 * Number(montant.value)
+        montant_apres_commission = Number(total_a_payer) - 0.2 * Number(total_a_payer)
       }
 
       // ajouter la somme sur le compte de la compagnie
@@ -401,17 +431,17 @@ const options = {
                                               <p>Pour reporter votre ticket , veuillez séléctionner une nouvelle date</p>
                                             </div>
                                             <div class="col-md-12">
-                                              <form class="row g-3 needs-validation" novalidate>
+                                              <form @submit.prevent="reporter(location)" class="row g-3 needs-validation" novalidate>
                                               <div class="col-md-12">
                                                 <label for="validationCustom01" class="form-label">Date de retrait</label>
-                                                <input type="date" class="form-control" id="validationCustom01" value="Mark" required>
+                                                <input type="date" class="form-control" id="validationCustom01" v-model="date_retrait" required>
                                                 <div class="valid-feedback">
                                                   Looks good!
                                                 </div>
                                               </div>
                                               <div class="col-md-12">
                                                 <label for="validationCustom02" class="form-label">Date de retour</label>
-                                                <input type="date" class="form-control" id="validationCustom02" value="Otto" required>
+                                                <input type="date" class="form-control" id="validationCustom02" v-model="date_retour" required>
                                                 <div class="valid-feedback">
                                                   Looks good!
                                                 </div>
@@ -499,7 +529,7 @@ const options = {
                         />
                         </div> -->
                         <div class="col-md-12">
-                        <div class="card-body">
+                          <div class="card-body">
                             <p
                             class="card-text"
                             style="
@@ -531,151 +561,105 @@ const options = {
                             <br />
 
                             <div class="row" v-if="location.status == 'Validé'">
-                            <!-- <div class="col-md-6">
+                              
+                              <div class="col-md-6">
                                 <button
-                                class="btn btn-primary"
-                                style="
-                                    background: white;
-                                    border-color: #219935;
-                                    color: #219935;"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#reportModal10"
-                                >
-                                Reporter
-                                </button>
-
-                                
-                                <div
-                                class="modal fade"
-                                id="reportModal10"
-                                tabindex="-1"
-                                aria-labelledby="exampleModalLabel10"
-                                aria-hidden="true"
-                                >
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                                        Donnez les informations du report
-                                        </h1>
-                                        <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    <form id="reportForm" @submit.prevent="reporter(location)">
-                                        <label>Nouvelle Date</label>
-                                        <input v-model="date_report" type="date" />
-
-                                        <button type="submit" class="btn btn-primary">
-                                        Enregistrer
-                                        </button>
-                                    </form>
-                                    </div>
-                                </div>
-                                </div>
-                            </div> -->
-
-                            <div class="col-md-5">
-                                <button
-                                class="btn btn-primary"
-                                style="
-                                    background: white;
-                                    border-color: crimson;
-                                    color: crimson;
-                                    font-size: 12px; 
-                                "
-                                data-bs-toggle="modal"
-                                data-bs-target="#annulModal10"
-                                >
-                                Annuler
+                                  class="btn btn-primary"
+                                  style="
+                                      background: white;
+                                      border-color: crimson;
+                                      color: crimson;
+                                      font-size: 12px; 
+                                  "
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#annulModal10"
+                                  >
+                                  Annuler
                                 </button>
 
                                 <!-- Modal -->
                                 <div
-                                class="modal fade"
-                                id="annulModal10"
-                                tabindex="-1"
-                                aria-labelledby="exampleModalLabel10"
-                                aria-hidden="true"
-                                >
+                                  class="modal fade"
+                                  id="annulModal10"
+                                  tabindex="-1"
+                                  aria-labelledby="exampleModalLabel10"
+                                  aria-hidden="true"
+                                  >
                                   <div class="modal-dialog">
-                                      <div class="modal-content" style="width: 75% !important">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                                              <img
-                                                src="/assets/img/avatars/1.png"
-                                                alt
-                                                class="w-px-40 h-auto rounded-circle"
-                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                              />
-                                            </h1>
-                                            <button
-                                            type="button"
-                                            class="btn-close"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"
-                                            ></button>
-                                        </div>
+                                    <div class="modal-content" style="width: 75% !important">
+                                      <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                                            <img
+                                              src="/assets/img/avatars/1.png"
+                                              alt
+                                              class="w-px-40 h-auto rounded-circle"
+                                              style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                            />
+                                          </h1>
+                                          <button
+                                          type="button"
+                                          class="btn-close"
+                                          data-bs-dismiss="modal"
+                                          aria-label="Close"
+                                          ></button>
+                                      </div>
 
-                                        <div class="modal-body">
-                                          <div class="row">
-                                             
-                                            <div class="col-md-12 text-center">
-                                              <div class="row">
-                                                <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
-                                                  <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
-                                                </div>
-                                                <div class="col-12">
-                                                  <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-10">
-                                                      <div class="row">
-                                                        <div class="col-md-12 mb-3">
-                                                           <a href="/raison_d_annulation">
-                                                            <button
-                                                            class="btn btn-primary w-100"
-                                                            style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
-                                                           
-                                                            >
-                                                            Annuler quand même
-                                                            </button>
-                                                          </a>
-                                                            
-
-                                                            
-                                                        </div>
+                                      <div class="modal-body">
+                                        <div class="row">
+                                          
+                                          <div class="col-md-12 text-center">
+                                            <div class="row">
+                                              <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
+                                                <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
+                                              </div>
+                                              <div class="col-12">
+                                                <div class="row">
+                                                  <div class="col-md-1"></div>
+                                                  <div class="col-md-10">
+                                                    <div class="row">
+                                                      <div class="col-md-12 mb-3">
+                                                        <a href="/raison_d_annulation">
+                                                          <button
+                                                          class="btn btn-primary w-100"
+                                                          style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
                                                         
+                                                          >
+                                                          Annuler quand même
+                                                          </button>
+                                                        </a>
+                                                          
 
-                                                        <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
-                                                          <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
-                                                        </div>
+                                                          
+                                                      </div>
+                                                      
 
-                                                        <div class="col-md-12 mb-3">
-                                                          <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
-                                                        </div>
+                                                      <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
+                                                        <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
+                                                      </div>
+
+                                                      <div class="col-md-12 mb-3">
+                                                        <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
                                                       </div>
                                                     </div>
-                                                    <div class="col-md-1"></div>
                                                   </div>
+                                                  <div class="col-md-1"></div>
                                                 </div>
                                               </div>
-                                              
                                             </div>
                                             
-                                            
                                           </div>
+                                          
                                         </div>
-
                                       </div>
+
+                                    </div>
                                   </div>
                                 </div>
-                                </div>
+                              </div>
 
-                            <div class="col-md-7 ">
-                              <!-- Button trigger modal -->
+                              <!-- Procéder au payement -->
+                              <div class="col-md-6">
+                                <!-- Button trigger modal -->
                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: #219935; border-color: #219935 ;font-size: 12px;">
                                     Procéder au paiement
                                   </button>
@@ -697,33 +681,36 @@ const options = {
                                               </div>
                                             </div>
                                             <div class="col-md-12 text-center">
-                                              <h5 style="font-size: 16px;color: black;">Compagnie {{ location.companieInfos.raison_social }} </h5>
+                                              <h5 style="font-size: 16px;color: black;">Compagnie : {{ location.companieInfos.raison_social }} </h5>
                                             </div>
                                             <div class="col-md-12">
                                               <p style=" font-size: 14px;"> {{ location.marque }} {{ location.modele }} {{ location.annee }}</p>
                                               <p style="margin-top: -15px; font-size: 14px;">{{ location.moteur }} | {{ location.boite }} | {{ location.plaque_vehicule }} </p>
                                               <p style="margin-top: -15px; font-size: 14px;"> chauffeur | <strong>{{ location.chauffeur }} </strong> </p>
                                               <p style="margin-top: -15px; font-size: 14px;"> Intérieur | <strong>{{ location.interieurPays }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;">Retrait | <strong>{{ location.date_retrait }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Retour | <strong>{{ location.date_retour }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;">Retrait | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Retour | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </strong> </p>
                                               <p style="margin-top: -15px; font-size: 14px;"> Nombres de jours de location |<strong>{{  }}</strong></p>
                                             </div>
                                             <hr>
                                             <div class="col-md-12">
-                                              <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ location.chauffeur }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ location.interieurPays }} </strong> </p>
+                                              <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ savedUser.lastName }} {{ savedUser.firstName }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} </strong> </p>
                                             </div>
 
                                             <hr>
                                             <div class="col-md-12">
-                                              <p style=" font-size: 14px;"> Prix de location | <strong>{{ location.montant }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Intérieur du pays | <strong>{{ location.interieurpaysprix}} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Chauffeur | <strong>{{location.avecchauffeurprix}} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ location.avecchauffeurprix + location.interieurpaysprix + location.montant }} </strong> </p>
+                                              <p style=" font-size: 14px;"> Prix de location | <strong>{{ location.montant }} FCFA </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Intérieur du pays | <strong>{{ location.interieurPays == 'Oui' ? location.interieurpaysprix : 0 }} FCFA </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Chauffeur | <strong>{{ location.chauffeur == 'Oui' ? location.avecchauffeurprix : 0 }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur == 'Oui' && location.interieurPays == 'Non'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.avecchauffeurprix) + Number(location.montant) }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur == 'Non' && location.interieurPays == 'Oui'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.interieurpaysprix) + Number(location.montant) }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur == 'Non' && location.interieurPays == 'Non'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.montant) }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur == 'Oui' && location.interieurPays == 'Oui'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.avecchauffeurprix) + Number(location.interieurpaysprix) + Number(location.montant) }} FCFA </strong> </p>
                                             </div>
 
                                             <div class="col-md-12 text-center">
-                                              <button class="btn btn-primary"  @click="payer(location)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
+                                              <button class="btn btn-primary" @click="payer(location)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
                                             </div>
                                           </div>
                                         </div>
@@ -731,18 +718,19 @@ const options = {
                                       </div>
                                     </div>
                                   </div>
-                                <!-- <button
-                                class="btn btn-primary"
-                                style="background: #219935; border-color: #219935 ;font-size: 12px;"
-                                @click="payer(location)"
-                                >
-                                Procéder au paiement
-                                </button> -->
-                            </div>
+                                  <!-- <button
+                                  class="btn btn-primary"
+                                  style="background: #219935; border-color: #219935 ;font-size: 12px;"
+                                  @click="payer(location)"
+                                  >
+                                  Procéder au paiement
+                                  </button> -->
+                                </div>
+                              </div>
+                              
                             </div>
 
-                            <div class="row" v-if="location.status == 'En attente'">
-                              <!-- <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="
@@ -766,40 +754,43 @@ const options = {
                                   aria-hidden="true"
                                   >
                                   <div class="modal-dialog">
-                                      <div class="modal-content">
-                                      <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                                    <div class="modal-content">
+                                      <div style="background: #219935" class="modal-header">
+                                        <h1 class="modal-title text-white fs-5" id="exampleModalLabel10">
                                           Donnez la raison de l'annulation
-                                          </h1>
-                                          <button
-                                          type="button"
-                                          class="btn-close"
-                                          data-bs-dismiss="modal"
-                                          aria-label="Close"
-                                          ></button>
+                                        </h1>
+                                        <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                        ></button>
                                       </div>
                                       
                                       <div>
-                                          <select v-model="option" class="w-100 mb-2">
+                                        <select v-model="option" class="w-100 mb-2">
                                           <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du Véhicule</option>
                                           <option value="J'ai changé d'avis">J'ai changé d'avis</option>
                                           <option value="J'ai une autre option">J'ai une autre option</option>
                                           <option value="Autre">Autre</option>
-                                          </select>
-                                          <div class="mb-2">
+                                        </select>
+                                        <div class="mb-2">
                                           <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
-                                          </div>
+                                        </div>
                                       </div>
                                       <button @click="annul(location)" class="btn btn-primary">Enregistrer</button>
-                                      </div>
+                                    </div>
                                   </div>
                                 </div>
-                              </div> -->
-                            </div>
+                            </div>  -->
+
+                            <div class="row" v-if="location.status == 'En attente'">
+                              <!--  -->
                             </div>
 
                             <div class="row mb-2" v-if="location.status == 'Confirmé'" style="margin: 4px; margin-top: -15px;">
-                              <div class="col-6 text-start">
+                              <div class="col-6 text-start"> 
+                                <a :href="`tel:${location.companieInfos.telephone}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="
@@ -810,7 +801,8 @@ const options = {
                                   "
                                   >
                                   Appel
-                                  </button>
+                                  </button> 
+                                </a>
                               </div>
                               <div class="col-6 text-end">
                                 <router-link :to="`/messagerie/${location.companieInfos.uid}`">
@@ -836,7 +828,7 @@ const options = {
                             <div class="row mb-2" v-if="location.status == 'Utilisé'" style="margin: 4px; margin-top: -15px;">
                                
                               <div class="col-12 text-center">
-                                <router-link :to="`/detail_vehicule_location/${location.companieInfos.uid}`">
+                                <router-link :to="`/detail_vehicule_location/${location.uid}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="background: #219935; border-color: #219935 ;font-size: 12px; "
@@ -849,8 +841,8 @@ const options = {
 
                             <div class="row mb-2" v-if="location.status == 'Annuler'" style="margin: 4px; margin-top: -15px;">
                                
-                               <div class="col-12 text-center">
-                                 <router-link :to="`/detail_vehicule_location/${location.companieInfos.uid}`">
+                              <div class="col-12 text-center">
+                                 <router-link :to="`/detail_vehicule_location/${location.uid}`">
                                    <button
                                    class="btn btn-primary w-75"
                                    style="background: #219935; border-color: #219935 ;font-size: 12px; "
@@ -858,11 +850,11 @@ const options = {
                                    Commander à nouveau
                                    </button>
                                  </router-link>
-                               </div>
-                             </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        </div>
-                    </div>
+                      </div>
                     </div>
                 </div>  
               </div>

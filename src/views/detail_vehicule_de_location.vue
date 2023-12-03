@@ -128,7 +128,9 @@ const reserver = async (car) => {
     longitude: "",
     modele: car.modele, 
     annee_vehicule: car.anne_vehicule, 
-    montant: car.montant,
+    montant: car.montant, 
+    avecchauffeurprix: car.avecchauffeurprix, 
+    interieurpaysprix: car.interieurpaysprix, 
     moteur: car.moteur,
     nom_client: `${user.lastName} ${user.firstName}`, 
     number: `T_${Date.now()}`, 
@@ -150,7 +152,8 @@ const reserver = async (car) => {
 
     isLoading.value = false
 
-    // document.querySelector(".btn-close").click()
+    document.querySelector("#reservationForm").reset() 
+    document.querySelector('.btn-close').click()
 
     Swal.fire({
       title: "Succès",
@@ -187,8 +190,6 @@ const reserver = async (car) => {
 
     await addDoc(notificationColRef, comp_notif)
 
-    document.querySelector("#reservationForm").reset() 
-    document.querySelector('.btn-close').click()
     await router.push(`/notation/${companieId}`) 
     window.location.reload() 
   } catch (error) {

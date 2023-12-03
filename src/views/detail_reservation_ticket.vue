@@ -96,7 +96,8 @@ const reserver = async (programme) => {
 
     isLoading.value = false
 
-    // document.querySelector('.btn-close').click()
+   document.querySelector('#reservationForm').reset() 
+    document.querySelector('.btn-close').click()
 
     Swal.fire({
       title: "Succès",
@@ -123,8 +124,6 @@ const reserver = async (programme) => {
 
     await addDoc(notificationColRef, comp_notif)
 
-    document.querySelector('#reservationForm').reset() 
-    document.querySelector('.btn-close').click()
     await router.push(`/notation/${companieId}`) 
     window.location.reload() 
   } catch (error) {

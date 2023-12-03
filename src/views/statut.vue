@@ -95,7 +95,7 @@ const reporter = async (reservation) => {
       icon: "success"
     })
 
-    await updateDoc(reservationDocRef, { status: 'En report' }) 
+    await updateDoc(reservationDocRef, { status: 'En report', date_report: new Date(date_report.value) }) 
   
     const notificationColRef = collection(firestoreDb, 'notifications')
   
@@ -180,9 +180,9 @@ const payer = async (reservation) => {
       // calcul du montant suite a l'application de la commission selon l'offre de la compagnie
       let montant_apres_commission
       if(companieInfos.offre == 'basique') {
-        montant_apres_commission = Number(montant.value) - 0.15 * Number(montant.value)
+        montant_apres_commission = Number(reservation.montant) - 0.15 * Number(reservation.montant)
       } else if(companieInfos.offre == 'vip') {
-        montant_apres_commission = Number(montant.value) - 0.2 * Number(montant.value)
+        montant_apres_commission = Number(reservation.montant) - 0.2 * Number(reservation.montant)
       }
 
       // ajouter la somme sur le compte de la compagnie
@@ -400,50 +400,54 @@ const options = {
                             </div>
                           
                             <div class="row mt-2">
-                            <div class="col-6">
+                              <div class="col-6">
+                                  <p
+                                  class="card-text"
+                                  style="
+                                      background: #efefef;
+                                      padding: 4px;
+                                      border-radius: 5px;
+                                      font-size: 12px;
+                                      margin-top: -15px;
+                                  "
+                                  >
+                                  {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
+                                
+                                  </p>
+                              </div>
+                              <div class="col-6">
                                 <p
-                                class="card-text"
-                                style="
-                                    background: #efefef;
-                                    padding: 4px;
-                                    border-radius: 5px;
-                                    font-size: 12px;
-                                    margin-top: -15px;
-                                "
-                                >
-                                {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
-                               
+                                  class="card-text"
+                                  style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                  >
+                                  N° |  <strong> {{ reservation.number }} </strong>
+                                  
                                 </p>
-                            </div>
-                            <div class="col-6">
-                              <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            N° |  <strong> {{ reservation.number }} </strong>
-                             
-                            </p>
+                              </div> 
+
                             </div>
 
-                            
-                            </div>
-                        <br />
+                            <br />
 
                             <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                           Place à réserver | <strong>{{ reservation.nombre_personne }} </strong> 
-                            <!-- <strong> Santafe 2022 </strong> -->
+                              class="card-text"
+                              style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                              >
+                              Place à réserver | <strong>{{ reservation.nombre_personne }} </strong> 
+                              <!-- <strong> Santafe 2022 </strong> -->
                             </p>
-                        <br />
+
+                            <br />
+
                             <p
                             class="card-text"
                             style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
                             >
-                            Trajet | {{ reservation.lieu_depart }} - {{ reservation.destination }}
+                              Trajet | {{ reservation.lieu_depart }} - {{ reservation.destination }}
                             </p>
-                        <br />
+
+                            <br />
+
                             <p
                             class="card-text"
                             style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
@@ -451,8 +455,8 @@ const options = {
                             Escale | <strong>{{ reservation.escale }} </strong>
                             </p>
                          
-                        <br />
-                        </div>
+                            <br />
+                          </div>
                         </div>
                         <!-- <div class="col-md-6">
                         <img
@@ -488,10 +492,10 @@ const options = {
                             
 
                             
-                            <div class="row" v-if="reservation.status == 'Validé'">
+                          <div class="row" v-if="reservation.status == 'Validé'">
                            
 
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <button
                                 class="btn btn-primary"
                                 style="
@@ -506,7 +510,7 @@ const options = {
                                 Annuler
                                 </button>
 
-                                <!-- Modal -->
+                                 Modal
                                 <div
                                 class="modal fade"
                                 id="annulModal10"
@@ -514,80 +518,80 @@ const options = {
                                 aria-labelledby="exampleModalLabel10"
                                 aria-hidden="true"
                                 >
-                                  <div class="modal-dialog">
-                                      <div class="modal-content" style="width: 75% !important">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                                              <img
-                                                src="/assets/img/avatars/1.png"
-                                                alt
-                                                class="w-px-40 h-auto rounded-circle"
-                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                              />
-                                            </h1>
-                                            <button
-                                            type="button"
-                                            class="btn-close"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"
-                                            ></button>
-                                        </div>
+                                   <div class="modal-dialog">
+                                    <div class="modal-content" style="width: 75% !important">
+                                      <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                                            <img
+                                              src="/assets/img/avatars/1.png"
+                                              alt
+                                              class="w-px-40 h-auto rounded-circle"
+                                              style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                            />
+                                          </h1>
+                                          <button
+                                          type="button"
+                                          class="btn-close"
+                                          data-bs-dismiss="modal"
+                                          aria-label="Close"
+                                          ></button>
+                                      </div>
 
-                                        <div class="modal-body">
-                                          <div class="row">
-                                             
-                                            <div class="col-md-12 text-center">
-                                              <div class="row">
-                                                <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
-                                                  <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
-                                                </div>
-                                                <div class="col-12">
-                                                  <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-10">
-                                                      <div class="row">
-                                                        <div class="col-md-12 mb-3">
-                                                          <!-- <router-link to="/raison_d_annulation"> -->
-                                                            <button
-                                                            class="btn btn-primary w-100" @click="refresh()"
-                                                            style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
-                                                           
-                                                            >
-                                                            Annuler quand même
-                                                            </button>
-                                                          <!-- </router-link> -->
-                                                            
+                                      <div class="modal-body">
+                                        <div class="row">
+                                            
+                                          <div class="col-md-12 text-center">
+                                            <div class="row">
+                                              <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
+                                                <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
+                                              </div>
+                                              <div class="col-12">
+                                                <div class="row">
+                                                  <div class="col-md-1"></div>
+                                                  <div class="col-md-10">
+                                                    <div class="row">
+                                                      <div class="col-md-12 mb-3"> 
+                                                        <!-- <router-link to="/raison_d_annulation"> -->
+                                                        <button
+                                                          class="btn btn-primary w-100" @click="refresh()"
+                                                          style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
+                                                          
+                                                          >
+                                                          Annuler quand même
+                                                          </button> 
+                                                        <!-- </router-link> -->
+                                                          
 
-                                                            
-                                                        </div>
-                                                        
+                                                          
+                                                      </div>
+                                                      
 
-                                                        <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
-                                                          <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
-                                                        </div>
+                                                      <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
+                                                        <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
+                                                      </div>
 
-                                                        <div class="col-md-12 mb-3">
-                                                          <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
-                                                        </div>
+                                                      <div class="col-md-12 mb-3">
+                                                        <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
                                                       </div>
                                                     </div>
-                                                    <div class="col-md-1"></div>
                                                   </div>
+                                                  <div class="col-md-1"></div>
                                                 </div>
                                               </div>
-                                              
                                             </div>
                                             
-                                            
                                           </div>
+                                          
+                                          
                                         </div>
-
                                       </div>
+
+                                    </div>
                                   </div>
                                 </div>
-                                </div>
+                            </div>
 
-                            <div class="col-md-7 ">
+                            <div class="col-md-6">
                               <!-- Button trigger modal -->
                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: #219935; border-color: #219935 ;font-size: 12px;">
                                     Procéder au paiement
@@ -648,49 +652,122 @@ const options = {
                                 >
                                 Procéder au paiement
                                 </button> -->
-                            </div>
-                            </div>
+                            </div> 
 
-                            <div class="row" v-if="reservation.status == 'Confirmé'">
-                              <div class="col-md-6">
+
+                          </div> 
+
+                          <!-- <div class="col-md-6">
+                            <button
+                            class="btn btn-primary w-75"
+                            style="
+                                background: white;
+                                border-color: crimson;
+                                color: crimson;
+                                font-size: 12px; 
+                            "
+                            data-bs-toggle="modal"
+                            data-bs-target="#annulModal10"
+                            >
+                            Annuler
+                            </button>
+
+                              
+                            <div
+                            class="modal fade"
+                            id="annulModal10"
+                            tabindex="-1"
+                            aria-labelledby="exampleModalLabel10"
+                            aria-hidden="true"
+                            >
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div style="background: #219935" class="modal-header">
+                                    <h1 class="modal-title text-white fs-5" id="exampleModalLabel10">
+                                      Donnez la raison de l'annulation
+                                    </h1>
+                                    <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                    ></button>
+                                  </div>
+                                  
+                                  <div>
+                                    <select v-model="option" class="w-100 mb-2">
+                                      <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du Véhicule</option>
+                                      <option value="J'ai changé d'avis">J'ai changé d'avis</option>
+                                      <option value="J'ai une autre option">J'ai une autre option</option>
+                                      <option value="Autre">Autre</option>
+                                    </select>
+                                    <div class="mb-2">
+                                      <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
+                                    </div>
+                                  </div>
+                                  <button @click="annul(reservation)" class="btn btn-primary">Enregistrer</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  -->
+
+                          <div class="row" v-if="reservation.status == 'Confirmé'">
+                            <div class="col-md-6">
+                              <a :href="`tel:${reservation.companieInfos.telephone}`">
+                                <button
+                                class="btn btn-primary w-75"
+                                style="
+                                    background: white;
+                                    border-color: #219935;
+                                    color: #219935;
+                                    font-size: 12px; 
+                                "
+                                >
+                                Appel
+                                </button> 
+                              </a>
+                            </div>
+                            <div class="col-md-6">
+                              <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
+                                <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
+                                  Message
+                                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    99+
+                                    <span class="visually-hidden">unread messages</span>
+                                  </span>
+                                </button>
+                              </router-link>
+                              <!-- <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
                                   <button
                                   class="btn btn-primary w-75"
-                                  style="
-                                      background: white;
-                                      border-color: #219935;
-                                      color: #219935;
-                                      font-size: 12px; 
-                                  "
+                                  style="background: #219935; border-color: #219935 ; font-size: 12px; "
                                   >
-                                  Appel
+                                      Message
                                   </button>
-                              </div>
-                              <div class="col-md-6">
-                                <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
-                                  <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
-                                    Message
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                      99+
-                                      <span class="visually-hidden">unread messages</span>
-                                    </span>
-                                  </button>
-                                </router-link>
-                                <!-- <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
-                                    <button
-                                    class="btn btn-primary w-75"
-                                    style="background: #219935; border-color: #219935 ; font-size: 12px; "
-                                    >
-                                        Message
-                                    </button>
-                                </router-link> -->
-                              </div>
-                             
+                              </router-link> -->
                             </div>
+                            
+                          </div>
 
-                            <div class="row" v-if="reservation.status == 'Annuler'">
-                               
+                          <div class="row" v-if="reservation.status == 'Annuler'">
+                              
+                            <div class="col-md-12 text-center">
+                              <router-link :to="`/detail_reservation_ticket/${reservation.uid}`">
+                                  <button
+                                  class="btn btn-primary w-75"
+                                  style="background: #219935; border-color: #219935 ; font-size: 12px; "
+                                  >
+                                      Commander à nouveau
+                                  </button>
+                              </router-link>
+                            </div>
+                            
+                          </div>
+
+                          <div class="row" v-if="reservation.status == 'Utilisé'">
+                              
                               <div class="col-md-12 text-center">
-                                <router-link :to="`/detail_reservation_ticket/${reservation.companieInfos.uid}`">
+                              <router-link :to="`/detail_reservation_ticket/${reservation.uid}`">
                                     <button
                                     class="btn btn-primary w-75"
                                     style="background: #219935; border-color: #219935 ; font-size: 12px; "
@@ -699,23 +776,8 @@ const options = {
                                     </button>
                                 </router-link>
                               </div>
-                             
-                            </div>
-
-                            <div class="row" v-if="reservation.status == 'Utilisé'">
-                               
-                               <div class="col-md-12 text-center">
-                                <router-link :to="`/detail_reservation_ticket/${reservation.companieInfos.uid}`">
-                                     <button
-                                     class="btn btn-primary w-75"
-                                     style="background: #219935; border-color: #219935 ; font-size: 12px; "
-                                     >
-                                         Commander à nouveau
-                                     </button>
-                                 </router-link>
-                               </div>
-                              
-                             </div>
+                            
+                          </div>
 
                             
 

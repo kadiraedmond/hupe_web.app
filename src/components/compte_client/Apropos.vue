@@ -3,10 +3,11 @@ import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, ref } from "vue"
 
-import { addDoc, updateDoc, collection, Timestamp } from 'firebase/firestore'
+import { addDoc, updateDoc, doc, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb, storage } from '@/firebase/firebase.js' 
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { toast } from "vue3-toastify"
+import { toast } from "vue3-toastify" 
+import Swal from 'sweetalert2' 
 
 const userStore = useUserStore()
 const authStore = useAuthStore()
@@ -70,7 +71,7 @@ const handleSubmit = async () => {
   const data = {
     addresse: lieu.value,
     country: pays.value,
-    dateNaisse: date_nais.value,
+    dateNaisse: date_nais.value !== '' ? new Date(date_nais.value) : '', 
     email: mail.value,
     firstName: prenom.value,
     imageUrl: photo_profil.value !== '' ? photo_profil.value : '',
@@ -192,7 +193,7 @@ const handleSubmit = async () => {
 
           <div class="row">
             <div class="col-md-12">
-              <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
+            <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
               <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Nom </label>
                 <input type="text" class="form-control" id="validationCustom01" v-model="nom" >

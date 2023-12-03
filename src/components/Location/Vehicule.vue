@@ -215,10 +215,10 @@ const unlock = async (car) => {
       await updateDoc(docRef, { status: 'active' }) 
       car.status = 'active' 
     
-      console.log('Véhicule dévérouillé')
+      console.log('Véhicule dévérrouillé')
       Swal.fire({
         title: "Succès",
-        text: "Véhicule dévérouillé",
+        text: "Véhicule dévérrouillé",
         icon: "success"
       }) 
   
@@ -226,11 +226,11 @@ const unlock = async (car) => {
       await updateDoc(docRef, { status: 'desactive' }) 
       car.status = 'desactive' 
     
-      console.log('Véhicule Vérouillé') 
+      console.log('Véhicule Vérrouillé') 
 
       Swal.fire({
         title: "Succès",
-        text: "Véhicule Vérouillé",
+        text: "Véhicule Vérrouillé",
         icon: "success"
       }) 
     }
