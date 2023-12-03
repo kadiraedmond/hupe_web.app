@@ -204,14 +204,11 @@ const payer = async (location) => {
 
       const notificationColRef = collection(firestoreDb, 'notifications')
 
-      const uneJournee = 24 * 60 * 60 * 1000
+      const uneJournee = 24 * 60 * 60 
 
-      const dateRetrait = new Date(location.date_retrait)
-      const dateRetour = new Date(location.date_retour)
+      const differenceEnMinutes = Math.abs(location.date_retour - location.date_retrait) 
 
-      const differenceEnMs = Math.abs(dateRetour - dateRetrait) 
-
-      const differenceEnJours = Math.round(differenceEnMs / uneJournee)
+      const differenceEnJours = Math.round(differenceEnMinutes / uneJournee)
 
       const client_notif = {
         title: 'Paiement pour location', 
@@ -690,12 +687,12 @@ const options = {
                                               <p style="margin-top: -15px; font-size: 14px;"> Intérieur | <strong>{{ location.interieurPays }} </strong> </p>
                                               <p style="margin-top: -15px; font-size: 14px;">Retrait | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
                                               <p style="margin-top: -15px; font-size: 14px;"> Retour | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Nombres de jours de location |<strong>{{  }}</strong></p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Nombre de jours de location |<strong> {{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</strong></p>
                                             </div>
                                             <hr>
                                             <div class="col-md-12">
                                               <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ savedUser.lastName }} {{ savedUser.firstName }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} FCFA </strong> </p>
                                             </div>
 
                                             <hr>
