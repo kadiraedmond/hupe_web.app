@@ -79,6 +79,7 @@ const annul = async (reservation) => {
 }
 
 const date_report = ref()
+const heure_report = ref()
 
 const reporter = async (reservation) => {
   const reportColRef = collection(firestoreDb, 'reservation_reporter')
@@ -87,7 +88,8 @@ const reporter = async (reservation) => {
   const { status, ...extracted_reservation } = reservation
 
   try {
-    const docRef = await addDoc(reportColRef, { ...extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
+    // const docRef = await addDoc(reportColRef, { ...extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
+    await setDoc(doc(reportColRef, `${reservation.uid}`), { ...reservation, status: 'En attente', date_report: new Date(date_report.value), heure_report: heure_report.value })
 
     Swal.fire({
       title: "Succès",
@@ -95,7 +97,7 @@ const reporter = async (reservation) => {
       icon: "success"
     })
 
-    await updateDoc(reservationDocRef, { status: 'En report', date_report: new Date(date_report.value) }) 
+    await updateDoc(reservationDocRef, { status: 'En report', date_depart: new Date(date_report.value), heure_depart: heure_report.value }) 
   
     const notificationColRef = collection(firestoreDb, 'notifications')
   
@@ -109,7 +111,6 @@ const reporter = async (reservation) => {
   
     await addDoc(notificationColRef, data)
 
-    await updateDoc(docRef, { uid: `${docRef.id}` })
     
   } catch (error) {
     console.log(error)
@@ -379,6 +380,13 @@ const options = {
                                                 <div class="col-md-12">
                                                   <label for="validationCustom01" class="form-label">Nouvelle date</label>
                                                   <input type="date" class="form-control" v-model="date_report" id="validationCustom01"  required>
+                                                  <div class="valid-feedback">
+                                                    Looks good!
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                  <label for="validationCustom01" class="form-label">Nouvelle heure</label>
+                                                  <input type="time" class="form-control" v-model="heure_report" id="validationCustom01"  required>
                                                   <div class="valid-feedback">
                                                     Looks good!
                                                   </div>
@@ -754,7 +762,7 @@ const options = {
                           <div class="row" v-if="reservation.status == 'Annuler'">
                               
                             <div class="col-md-12 text-center">
-                              <router-link :to="`/detail_reservation_ticket/${reservation.uid}`">
+                              <router-link :to="`/detail_reservation_ticket/${reservation.trajet_id}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="background: #219935; border-color: #219935 ; font-size: 12px; "
@@ -769,7 +777,7 @@ const options = {
                           <div class="row" v-if="reservation.status == 'Utilisé'">
                               
                               <div class="col-md-12 text-center">
-                              <router-link :to="`/detail_reservation_ticket/${reservation.uid}`">
+                              <router-link :to="`/detail_reservation_ticket/${reservation.trajet_id}`">
                                     <button
                                     class="btn btn-primary w-75"
                                     style="background: #219935; border-color: #219935 ; font-size: 12px; "

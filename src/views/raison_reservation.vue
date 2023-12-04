@@ -17,7 +17,7 @@ const refresh = ()=>{
   window.location.reload()
 } 
 
-const option = ref('')
+const option = ref('J\'ai changer d\'avis')
 const autre_raison = ref('')
 
 const annul = async () => {

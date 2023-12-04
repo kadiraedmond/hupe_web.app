@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 
 import router from '@/router/router.js' 
 
-import { collection, doc, addDoc, Timestamp } from "firebase/firestore"
+import { collection, doc, addDoc, updateDoc, Timestamp } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import { toast } from "vue3-toastify"
 
@@ -116,7 +116,8 @@ const reserver = async (car) => {
     chauffeur: avecChauffeur.value === true ? "Oui" : "Non",
     client_id: user.uid || "",
     client_profil_url: user.imageUrl || "",
-    compagnie_uid: companieId,
+    compagnie_uid: companieId, 
+    vehicule_id: car.uid, 
     created_at: Timestamp.now(),
     date_retour: new Date(dateRetour.value),
     date_retrait: new Date(dateRetrait.value),

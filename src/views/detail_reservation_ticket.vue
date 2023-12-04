@@ -7,7 +7,7 @@ import Loader from '@/components/Loader.vue'
 
 import router from '@/router/router.js' 
 
-import { collection, doc, getDoc, addDoc, Timestamp } from 'firebase/firestore'
+import { collection, doc, getDoc, addDoc, updateDoc, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from 'vue3-toastify'
 
@@ -70,7 +70,8 @@ const reserver = async (programme) => {
     uid: '', 
     client_id: user.uid,
     client_profil_url: user.imageUrl || '',
-    compagnie_uid: programme.compagnie_uid,
+    compagnie_uid: programme.compagnie_uid, 
+    trajet_id: programme.uid, 
     createdAt: Timestamp.now(),
     date_depart: new Date(dateDepart.value) || '',
     destination: programme.destination,

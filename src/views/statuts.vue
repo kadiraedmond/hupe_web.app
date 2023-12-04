@@ -80,7 +80,8 @@ const reporter = async (location) => {
   const { status, ...extracted_location } = location
 
   try {
-    // const docRef = await addDoc(reportColRef, { ...extracted_location, status: 'En attente', report: new Date(date_report.value) })
+    // const docRef = await addDoc(reportColRef, { ...extracted_location, status: 'En attente', report: new Date(date_report.value) }) 
+    await setDoc(doc(reportColRef, `${location.uid}`), { ...location, status: 'En attente', report_retrait: new Date(date_retrait.value), report_retour: new Date(date_retour.value) })
     
     Swal.fire({
       title: "Succès",
@@ -90,13 +91,11 @@ const reporter = async (location) => {
 
     const report_data = {
       status: 'En report', 
-      report_retrait: new Date(date_retrait.value), 
-      report_retour: new Date(date_retour.value) 
+      date_retrait: new Date(date_retrait.value), 
+      date_retour: new Date(date_retour.value) 
     }
   
     await updateDoc(locationDocRef, report_data) 
-
-    await addDoc(reportColRef, { ...location, status: 'En attente', report_retrait: new Date(date_retrait.value), report_retour: new Date(date_retour.value) })
   
     const notificationColRef = collection(firestoreDb, 'notifications')
   
@@ -110,7 +109,6 @@ const reporter = async (location) => {
   
     await addDoc(notificationColRef, data)
     
-    await updateDoc(docRef, { uid: `${docRef.id}` })
     
   } catch (error) {
     console.log(error)
@@ -827,7 +825,7 @@ const options = {
                             <div class="row mb-2" v-if="location.status == 'Utilisé'" style="margin: 4px; margin-top: -15px;">
                                
                               <div class="col-12 text-center">
-                                <router-link :to="`/detail_vehicule_location/${location.uid}`">
+                                <router-link :to="`/detail_vehicule_location/${location.vehicule_id}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="background: #219935; border-color: #219935 ;font-size: 12px; "
@@ -841,7 +839,7 @@ const options = {
                             <div class="row mb-2" v-if="location.status == 'Annuler'" style="margin: 4px; margin-top: -15px;">
                                
                               <div class="col-12 text-center">
-                                 <router-link :to="`/detail_vehicule_location/${location.uid}`">
+                                 <router-link :to="`/detail_vehicule_location/${location.vehicule_id}`">
                                    <button
                                    class="btn btn-primary w-75"
                                    style="background: #219935; border-color: #219935 ;font-size: 12px; "
