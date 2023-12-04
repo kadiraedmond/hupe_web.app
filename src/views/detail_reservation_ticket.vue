@@ -136,343 +136,737 @@ onMounted(() => {
 
 </script>
 <template>
-  <!-- ======= Breadcrumbs ======= -->
-  <!-- <section id="breadcrumbs" class="breadcrumbs">
-    <div class="container">
-      <ol>
-        <li><router-link to="/" style="color: #219935">Home</router-link></li>
-        <li>Rerservation</li>
-        <li>{{ companieStore.programme.lieu_depart }} - {{ companieStore.programme.destination }}</li>
-      </ol>
-    </div>
-  </section> -->
-  <!-- End Breadcrumbs -->
-
-  <!-- ======= Portfolio Details Section ======= -->
-  <section id="portfolio-details" class="portfolio-details mt-5">
+ 
+   <!-- ======= Portfolio Details Section ======= -->
+   <section id="portfolio-details" class="portfolio-details" style="margin-top: 50px;">
     <div class="container">
       <div class="row no-gutters mt-4">
-        <div class="col-md-5">
-          <div class="row row-cols-1 row-cols-md-3 g-2">
-            <div class="col">
-              <div class="card border-0" style="background: #219935">
-                <div class="card-body text-center">
-                  <h5
-                    class="card-title"
-                    style="font-size: 13px; font-weight: 700"
-                  >
-                    Trajet
-                  </h5>
-                  <hr style="color: white" />
-                  <p class="card-text text-white">{{ promotionStore.programme.lieu_depart }} - {{ promotionStore.programme.destination }}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card border-0" style="background: #f77f00">
-                <div class="card-body text-center">
-                  <h5
-                    class="card-title"
-                    style="font-size: 13px; font-weight: 700"
-                  >
-                    Escale
-                  </h5>
-                  <hr style="color: white" />
-                  <p class="card-text text-white">{{ promotionStore.programme.escale }}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card border-0" style="background: #3987fb">
-                <div class="card-body text-center">
-                  <h5
-                    class="card-title"
-                    style="font-size: 13px; font-weight: 700"
-                  >
-                    Heure de départ
-                  </h5>
-                  <hr style="color: white" />
-                  <p class="card-text text-white">{{ promotionStore.programme.heure_depart }}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card border-0" style="background: #ffd700">
-                <div class="card-body text-center">
-                  <h5
-                    class="card-title"
-                    style="font-size: 13px; font-weight: 700"
-                  >
-                    Convocation
-                  </h5>
-                  <hr style="color: white" />
-                  <p class="card-text text-white">{{ promotionStore.programme.heure_convocation }}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card border-0" style="background: #ff5733">
-                <div class="card-body text-center">
-                  <h5
-                    class="card-title"
-                    style="font-size: 13px; font-weight: 700"
-                  >
-                    Jours du voyage
-                  </h5>
-                  <hr style="color: white" />
-                  <p class="card-text text-white">{{ promotionStore.programme.jours_voyage }}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card border-0" style="background: #665d1e">
-                <div class="card-body text-center">
-                  <h5
-                    class="card-title"
-                    style="font-size: 13px; font-weight: 700"
-                  >
-                    Nombres de place
-                  </h5>
-                  <hr style="color: white" />
-                  <p class="card-text text-white">{{ promotionStore.programme.nb_place }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row mt-4">
-            <div class="col-md-6">
-              <p>Montant</p>
-            </div>
-            <div class="col-md-6 text-end">
-              <button
-                class="btn btn-primary w-100"
-                style="background: #219935; border-color: #219935"
-              >
-                {{ promotionStore.programme.montant }} FCFA
-              </button>
-            </div>
-          </div>
-
-          <div class="row mt-4">
-            <div class="col-md-6 text-end">
-              <router-link v-if="!user.uid" to="/connexion-client">
-                <button
-                  class="btn btn-primary w-100"
-                  style="
-                    background: #219935;
-                    border-color: #219935;
-                    margin-top: 20px;
-                  "
-                >
-                  Réserver
-                </button>
-              </router-link>
-              <router-link v-if="user.uid && !user.raison_social" to="">
-                <button
-                  class="btn btn-primary w-100"
-                  style="
-                    background: #219935;
-                    border-color: #219935;
-                    margin-top: 20px;
-                  "
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                >
-                  Réserver
-                </button>
-              </router-link>
-
-              <div
-                    class="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                    v-if="user.uid"
-                >
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div
-                        class="modal-header"
-                        style="background: #219935"
-                        >
-                        <h1
-                            class="modal-title text-white fs-5"
-                            id="exampleModalLabel"
-                            style="font-size: 17px !important"
-                        >
-                            Réservation de ticket
-                        </h1>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        ></button>
-                        </div>
-                        <div class="modal-body">
-                        <form
-                            id="reservationForm"
-                            class="row g-3 needs-validation"
-                            novalidate
-                            @submit.prevent="reserver(promotionStore.programme)"
-                        >
-                            <div class="col-md-12">
-                            <label
-                                for="validationCustom01"
-                                class="form-label"
-                                style="float: left"
-                                >Nom & Prénoms</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="validationCustom01"
-                                :value="`${user.lastName} ${user.firstName}`"
-                                required 
-                                disabled 
-                            />
-                            </div>
-
-                            <div class="col-md-12">
-                            <label
-                                for="validationCustom01"
-                                class="form-label"
-                                style="float: left"
-                                >Ville de départ</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="validationCustom01"
-                                :value="promotionStore.programme.lieu_depart"
-                                required
-                                disabled
-                            />
-                            </div>
-
-                            <div class="col-md-12">
-                            <label
-                                for="validationCustom01"
-                                class="form-label"
-                                style="float: left"
-                                >Ville d'arrivée</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="validationCustom01"
-                                :value="promotionStore.programme.destination"
-                                required
-                                disabled
-                            />
-                            </div>
-
-                            <div class="col-md-6">
-                            <label
-                                for="validationCustom01"
-                                class="form-label"
-                                style="float: left"
-                                >Date de départ</label
-                            >
-                            <input
-                                type="date"
-                                class="form-control"
-                                id="validationCustom01"
-                                v-model="dateDepart"
-                                required
-                            />
-                            </div>
-                            <div class="col-md-6">
-                            <label
-                                for="validationCustom01"
-                                class="form-label"
-                                style="float: left"
-                                >Heure de départ</label
-                            >
-                            <input
-                                type="time"
-                                class="form-control"
-                                id="validationCustom01"
-                                v-model="heureDepart"
-                                required
-                            />
-                            </div>
-
-                            <Loader 
-                            style="position: absolute; left: 35%; top: 15%"
-                            v-if="isLoading" 
-                            />
-
-                            <div class="col-md-12">
-                            <label
-                                for="validationCustom01"
-                                class="form-label"
-                                style="float: left"
-                                >Nombres de personnes</label
-                            >
-                            <input
-                                type="number"
-                                class="form-control"
-                                id="validationCustom01"
-                                v-model="nombrePersonnes"
-                                required
-                            />
-                            </div>
-
-                            <div class="col-12 text-center">
-                            <button
-                                class="btn btn-primary"
-                                type="submit"
-                                style="
-                                background: #219935;
-                                border-color: #219935;
-                                "
-                            >
-                                Soumettre
-                            </button>
-                            </div>
-                        </form>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 text-end">
-              <!-- <button
-                class="btn btn-primary w-100"
-                style="
-                  background: #8b8b8b;
-                  border-color: #efefef;
-                  width: 70px !important;
-                  height: 70px;
-                  border-radius: 50%;
-                "
-              >
-              </button> -->
-              <router-link :to="`/details/${companieId}`">
-                <img
-                    :src="companieStore.companie.imageLogoUrl"
-                    alt="logo"
-                    style="
-                        width: 70px !important;
-                        height: 70px;
-                        border-radius: 50%;
-                        border: 2.8px solid #E8E8E8
-                    "
-                />
-              </router-link>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-7">
+        <div class="col-md-8">
           <img
-            src="/assets/img/rb.jpg"
+          src="/assets/img/rb.jpg"
             alt=""
             class="img-fluid"
-            style="border-radius: 5px ;height: 397px; width: 100%; object-fit: cover;"
+            style="border-radius: 5px; width: 800px; height: 350px;  max-height: 350px"
           />
+          
+
+          <div class="row mt-4">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="row">
+                  <h5 class="mt-4" style="font-size: 25px">Détails du trajet</h5>
+                  <div class="col-6 mt-3">
+                    <div class="row g-0">
+                      <div class="col-4">
+                        <button class="btn btn-primary" id="btn_circle">
+                          <img src="/assets/img/detail/1.png" alt="" class="img-fluid">
+                        </button>
+                      </div>
+                      <div class="col-8">
+                        <h5>Trajet</h5>
+                        <p style="margin-top: -6px; font-size: 14px">{{ promotionStore.programme.lieu_depart }} - {{ promotionStore.programme.destination }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 mt-3">
+                    <div class="row g-0">
+                      <div class="col-4">
+                        <button class="btn btn-primary" id="btn_circle">
+                           <img src="/assets/img/detail/2.png" alt="" class="img-fluid">
+                        </button>
+                      </div>
+                      <div class="col-8">
+                        <h5>Escale</h5>
+                        <p style="margin-top: -6px; font-size: 14px">
+                          {{ promotionStore.programme.escale }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 mt-3">
+                    <div class="row g-0">
+                      <div class="col-4">
+                        <button class="btn btn-primary" id="btn_circle">
+                          <img src="/assets/img/detail/3.png" alt="" class="img-fluid">
+                        </button>
+                      </div>
+                      <div class="col-8">
+                        <h5>Heure de départ</h5>
+                        <p style="margin-top: -6px; font-size: 14px">{{ promotionStore.programme.heure_depart }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 mt-3">
+                    <div class="row g-0">
+                      <div class="col-4">
+                        <button class="btn btn-primary" id="btn_circle">
+                           <img src="/assets/img/detail/3.png" alt="" class="img-fluid">
+                        </button>
+                      </div>
+                      <div class="col-8">
+                        <h5>Convocation</h5>
+                        <p style="margin-top: -6px; font-size: 14px">
+                          {{ promotionStore.programme.heure_convocation }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 mt-3">
+                    <div class="row g-0">
+                      <div class="col-4">
+                        <button class="btn btn-primary" id="btn_circle">
+                           <img src="/assets/img/detail/4.png" alt="" class="img-fluid">
+                        </button>
+                      </div>
+                      <div class="col-8">
+                        <h5>Jours du voyage</h5>
+                        <p style="margin-top: -6px; font-size: 14px">
+                          {{ promotionStore.programme.jours_voyage }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 mt-3">
+                    <div class="row g-0">
+                      <div class="col-4">
+                        <button class="btn btn-primary" id="btn_circle">
+                           <img src="/assets/img/detail/5.png" alt="" class="img-fluid">
+                        </button>
+                      </div>
+                      <div class="col-8">
+                        <h5>Nombres de place</h5>
+                        <p style="margin-top: -6px; font-size: 14px">
+                          {{ promotionStore.programme.nb_place }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                   
+                  <!-- <div class="row mt-4">
+                      
+                    <div class="col-md-6 text-end">
+                      <router-link v-if="!user.uid" to="/connexion-client">
+                        <button
+                          class="btn btn-primary w-100"
+                          style="
+                            background: #219935;
+                            border-color: #219935;
+                            margin-top: 20px;
+                          "
+                        >
+                          Réserver
+                        </button>
+                      </router-link>
+                      <router-link v-if="user.uid && !user.raison_social" to="">
+                        <button
+                          class="btn btn-primary w-100"
+                          style="
+                            background: #219935;
+                            border-color: #219935;
+                            margin-top: 20px;
+                          "
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                        >
+                          Réserver
+                        </button>
+                      </router-link>
+
+                      
+                        <div
+                          class="modal fade"
+                          id="exampleModal"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div
+                                class="modal-header"
+                                style="background: #219935"
+                              >
+                                <h1
+                                  class="modal-title text-white fs-5"
+                                  id="exampleModalLabel"
+                                  style="font-size: 17px !important"
+                                >
+                                  Réservation de véhicule
+                                </h1>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                <form
+                                  class="row g-3 needs-validation"
+                                  novalidate
+                                  @submit.prevent="reserver(promotionStore.vehicule)"
+                                  id="reservationForm"
+                                >
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Nom & prénoms</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="`${user.lastName} ${user.firstName}`"
+                                      required 
+                                      disabled 
+                                    />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Téléphone</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="user.telephone"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Marque</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.vehicule"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Immatriculation</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.serie_vehicule"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Modèle</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.modele"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Moteur</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.moteur"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Transmission</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.boite"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6 d-flex justify-content-between">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      >Avec chauffeur</label
+                                    >
+                                    <div class="form-check">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="gridRadios"
+                                        id="gridRadios2"
+                                        value="Oui"
+                                        @click="toggleChauffeur(1)"
+                                        v-model="avecChauffeur"
+                                        :checked="avecChauffeur"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-6 d-flex justify-content-between">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      >Sans chauffeur</label
+                                    >
+                                    <div class="form-check">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="gridRadios"
+                                        id="gridRadios1"
+                                        value="Non"
+                                        @click="toggleChauffeur(2)"
+                                        v-model="sansChauffeur"
+                                        :checked="sansChauffeur"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-6 d-flex justify-content-between">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      >Capital du pays</label
+                                    >
+                                    <div class="form-check">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="gridRadios"
+                                        id="gridRadios4"
+                                        value="Non"
+                                        @click="togglePays(3)"
+                                        v-model="capitalPays"
+                                        :checked="capitalPays"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-6 d-flex justify-content-between">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      >Intérieur du pays</label
+                                    >
+                                    <div class="form-check">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="gridRadios"
+                                        id="gridRadios5"
+                                        value="Oui"
+                                        @click="togglePays(4)"
+                                        v-model="interieurPays"
+                                        :checked="interieurPays"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Date de Retrait</label
+                                    >
+                                    <input
+                                      type="date"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="dateRetrait"
+                                      required
+                                    />
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Heure de Retrait</label
+                                    >
+                                    <input
+                                      type="time"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="heureRetrait"
+                                      required
+                                    />
+                                  </div>
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Lieu du Retrait</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="lieuRetrait"
+                                      required
+                                    />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Date de retour</label
+                                    >
+                                    <input
+                                      type="date"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="dateRetour"
+                                      required
+                                    />
+                                  </div>
+
+                                  <Loader 
+                                    style="position: absolute; left: 35%; top: 15%"
+                                    v-if="isLoading" 
+                                  />
+
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Permis de conduire</label
+                                    >
+                                    <input
+                                      type="file"
+                                      class="form-control"
+                                      id="fileInput"
+                                      @change="handleFileChange"
+                                      required
+                                    />
+                                  </div>
+
+                                  <div class="col-12 text-center">
+                                    <button
+                                      class="btn btn-primary"
+                                      type="submit"
+                                      style="
+                                        background: #219935;
+                                        border-color: #219935;
+                                      "
+                                    >
+                                      Réserver
+                                    </button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-6 text-end">
+                      <router-link :to="`/detail/${companieStore.companie.uid}`">
+                        <img
+                          :src="companieStore.companie.imageLogoUrl"
+                          alt="logo"
+                          style="
+                            width: 70px !important;
+                            height: 70px;
+                            border-radius: 50%;
+                            border: 2.8px solid #E8E8E8
+                          "
+                        />
+                      </router-link>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+             
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{ promotionStore.programme.lieu_depart }} - {{ promotionStore.programme.destination }}</h5>
+
+                  <p class="card-text"> </p>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-6">
+                          <h6>Montant</h6>
+                        </div>
+                        <div class="col-6">
+                          <h6 style=" color: #219935 !important">
+                            {{ promotionStore.programme.montant }} FCFA
+                          </h6>
+                        </div>
+                      </div>
+                       
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 mt-4">
+              <div class="card">
+                <div class="card-body text-center">
+                   
+                   
+                    <p class="card-text" style="line-height: 2"></p>
+                    <div class="row">
+                       
+                    </div>
+
+                    <div class="row">
+                       
+ 
+                    </div>
+
+                    
+
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    <div class="row mt-3">
+                      <div class="col-md-12 text-center">
+                        <router-link v-if="!user.uid" to="/connexion-client">
+                          <button
+                            class="btn btn-primary w-100"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 20px;
+                            "
+                          >
+                            Réserver
+                          </button>
+                        </router-link>
+                        <router-link v-if="user.uid && !user.raison_social" to="">
+                          <button
+                            class="btn btn-primary w-100"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 20px;
+                            "
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                          >
+                            Réserver
+                          </button>
+                        </router-link>
+
+                        <div
+                          class="modal fade"
+                          id="exampleModal"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                          v-if="user.uid"
+                      >
+                          <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div
+                              class="modal-header"
+                              style="background: #219935"
+                              >
+                              <h1
+                                  class="modal-title text-white fs-5"
+                                  id="exampleModalLabel"
+                                  style="font-size: 17px !important"
+                              >
+                                  Réservation de ticket
+                              </h1>
+                              <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                              ></button>
+                              </div>
+                              <div class="modal-body">
+                              <form
+                                  id="reservationForm"
+                                  class="row g-3 needs-validation"
+                                  novalidate
+                                  @submit.prevent="reserver(promotionStore.programme)"
+                              >
+                                  <div class="col-md-12">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Nom & Prénoms</label
+                                  >
+                                  <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="`${user.lastName} ${user.firstName}`"
+                                      required 
+                                      disabled 
+                                  />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Ville de départ</label
+                                  >
+                                  <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.programme.lieu_depart"
+                                      required
+                                      disabled
+                                  />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Ville d'arrivée</label
+                                  >
+                                  <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.programme.destination"
+                                      required
+                                      disabled
+                                  />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Date de départ</label
+                                  >
+                                  <input
+                                      type="date"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="dateDepart"
+                                      required
+                                  />
+                                  </div>
+                                  <div class="col-md-6">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Heure de départ</label
+                                  >
+                                  <input
+                                      type="time"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="heureDepart"
+                                      required
+                                  />
+                                  </div>
+
+                                  <Loader 
+                                  style="position: absolute; left: 35%; top: 15%"
+                                  v-if="isLoading" 
+                                  />
+
+                                  <div class="col-md-12">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Nombres de personnes</label
+                                  >
+                                  <input
+                                      type="number"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="nombrePersonnes"
+                                      required
+                                  />
+                                  </div>
+
+                                  <div class="col-12 text-center">
+                                  <button
+                                      class="btn btn-primary"
+                                      type="submit"
+                                      style="
+                                      background: #219935;
+                                      border-color: #219935;
+                                      "
+                                  >
+                                      Soumettre
+                                  </button>
+                                  </div>
+                              </form>
+                              </div>
+                          </div>
+                          </div>
+                      </div>
+                      </div>
+                    </div>
+             
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -492,48 +886,89 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" v-for="(programme, i) in autresProgrammes" :key="i">
-          <div
-            class="card h-100"
-            id="compagnie_card"
-            style="background: #f3f4f6; box-shadow: none"
-          >
-            <router-link :to="`/detail_reservation_ticket/${programme.uid}`"> 
-              <img
-                src="/assets/img/rb.jpg"
-                class="card-img-top"
-                alt="..."
-                style="border-radius: 10px 10px 0px 0px"
-              />
-            </router-link>
-            <button
-              class="btn btn-primary"
-              id="badges0"
-              style="left: 10px !important"
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div
+              class="col"
+              v-for="(programme, i) in autresProgrammes" :key="i"
             >
-              {{ programme.montant }} FCFA
-            </button>
+              <router-link
+              :to="`/detail_reservation_ticket/${programme.uid}`"
+                style="color: #000"
+              >
+                <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
+                  <div class="row" style="margin: 0px">
+                    <div class="col-md-12">
+                      <div
+                        class="card h-100 mb-3 border-0"
+                        style="background: #f9f9f9;"
+                      >
+                        <div class="row g-1 d-flex mt-2">
+                          
+                          <div class="col-6 d-flex">
+                             
+                          </div>
 
-            <div class="card-body">
-              <router-link to="/details_vente_engin">
-                <div class="row">
-                  <div class="col-md-12">
-                    <h5
-                      class="card-title"
-                      style="font-size: 15px; color: black"
-                    >
-                      {{ programme.lieu_depart }} - {{ programme.destination }}
-                    </h5>
+                          <div class="col-6 text-end">
+                            <button
+                              class="btn btn-primary"
+                              style="
+                                background: #219935;
+                                border-color: #219935;
+                                margin-top: 5px;
+                                font-size: 12px;
+                              "
+                            >
+                            {{ programme.montant }}  FCFA
+                            </button>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                  <div class="card border-0" style="margin: 8px; margin-top: -13px;">
+                    <img
+                            src="/assets/img/rb.jpg"
+                            class="img-fluid h-100"
+                            alt="..."
+                            style="object-fit: cover ; border-radius: 11px;"
+                    />
+                  
+                    <div class="card-body" style="background-color:#f9f9f9;">
+                      <div class="row" style=" background: white; border-radius: 5px;">
+                        <div class="col-md-12 mt-2 mb-2">
+                          <h5 class="card-title " style=" font-size: 15px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
+                  /> {{ programme.lieu_depart }} -
+                              {{ programme.destination }}  </h5>
+                        </div>
+                      </div>
+                    
+                    
+                      
+                    </div>
+                  </div>
+                  
                 </div>
               </router-link>
             </div>
-        </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </template>
 
-<style></style>
+<style scoped>
+
+#btn_circle {
+  font-size: 30px;
+  border-radius: 50%;
+  color: black;
+  background: white;
+  border-color: #8b8b8b;
+  width: 60px;
+  height: 60px;
+}
+</style>

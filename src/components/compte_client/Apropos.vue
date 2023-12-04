@@ -13,8 +13,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid 
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid 
 
 const nom = ref('')
 const prenom = ref('')
@@ -201,7 +201,7 @@ const handleSubmit = async () => {
               <div class="col-md-6">
                 <label for="validationCustom02" class="form-label">Prénoms</label>
                 <input type="text" class="form-control" id="validationCustom02" v-model="prenom" >
-                 
+                 <!--  -->
               </div>
 
               <div class="col-md-6">

@@ -11,8 +11,8 @@ import Swal from 'sweetalert2'
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid 
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid 
 
 onBeforeMount(() => {
   userStore.setUser(userId)
@@ -145,7 +145,10 @@ const recharge = async () => {
         <div class="col-md-6">
           <div class="row mb-4">
             <div class="col-md-6">
-              <p style="color: #219935;">  Solde |<strong> {{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} FCFA </strong></p>
+              <button class="btn btn-primary" style="background: #219935; border-color: #219935; color: white;">
+                   Solde |  <strong> {{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} FCFA</strong> 
+              </button>
+              
             </div>
             <div class="col-md-6 text-end">
               <!-- Button trigger modal -->
@@ -199,7 +202,7 @@ const recharge = async () => {
       
       <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col" v-for="(history, index) in userStore.userHistory.slice().reverse()" :key="index">
-          <!-- <div class="col" v-for="(history, index) in userStore.userHistory" :key="index"></div> -->
+          <div class="col" v-for="(history, index) in userStore.userHistory" :key="index"></div>
           <div class="card h-100">
             
             <div class="card-body">

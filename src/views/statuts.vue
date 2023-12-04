@@ -23,8 +23,8 @@ const locationStore = useLocationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 
 const locations = ref([])
 onBeforeMount(async () => {
@@ -460,70 +460,104 @@ const options = {
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
-                            <strong>{{ location.modele }} </strong> |
+                            <strong>{{ location.marque }} | {{ location.modele }} | {{ location.annee }} </strong> |
                             <!-- <strong> Santafe 2022 </strong> -->
                             </p>
                             <br />
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            {{ location.moteur }} | {{ location.boite }} | {{ location.plaque_vehicule }}
-                            </p>
+                            <div class="row" style="margin-top: 10px;">
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> Moteur </strong> <br>   {{ location.moteur }} 
+                                </p>
+
+                              </div>
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> Transmission</strong> <br> {{ location.boite }} 
+                                </p>
+                              </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 32px;">
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> Immatriculation </strong> <br>  {{ location.plaque_vehicule }}
+                                </p>
+
+                              </div>
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> Transmission</strong> <br> {{ location.boite }} 
+                                </p>
+                              </div>
+                            </div>
+                            
                             <br />
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            chauffeur | <strong>{{ location.chauffeur }} </strong>
-                            </p>
-                            <br />
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            Intérieur | <strong>{{ location.interieurPays }} </strong>
-                            </p>
+                            <div class="row" style="margin-top: 10px;">
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> chauffeur </strong> <br>   {{ location.chauffeur }}  
+                                </p>
+
+                              </div>
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong>Intérieur</strong> <br> {{ location.interieurPays }}  
+                                </p>
+                              </div>
+                            </div>
                             <br />
                         </div>
                         </div>
-                        <!-- <div class="col-md-6">
-                        <img
-                            src="/assets/img/car2.jpg"
-                            class="img-fluid rounded-start h-100"
-                            alt="..."
-                            style="height: 85% !important"
-                        />
-                        </div> -->
+                        
                         <div class="col-md-12">
                         <div class="card-body">
-                            <p
-                            class="card-text"
-                            style="
-                                font-size: 13px;
-                                margin-top: -41px;
-                                margin-bottom: -8px;
-                            "
-                            >
-                            Retrait | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} </strong> |
-                            <strong>{{ location.heure_retrait }}</strong>
-                            </p>
+                          <div class="row" style="margin-top: -26px;">
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong>  Retrait </strong> <br> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} 
+                                </p>
 
-                            <br />
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            Retour | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </strong>
-                            </p>
+                              </div>
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> Retour</strong> <br> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
+                                </p>
+                              </div>
+                            </div>
+                            
                             <br />
 
                             <p
                             class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                            style="font-size: 13px; margin-top: -7px; margin-bottom: -11px"
                             >
-                            Nombres de jours de location |
-                            <strong>{{  }}</strong>
+                            <strong>Nombres de jours de location </strong>  <br/>
+                            
                             </p>
                             <br />
 
@@ -843,7 +877,7 @@ const options = {
                                 </router-link>
                               </div>
                             </div>
-
+<!--  -->
                             <div class="row mb-2" v-if="location.status == 'Annuler'" style="margin: 4px; margin-top: -15px;">
                                
                                <div class="col-12 text-center">

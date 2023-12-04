@@ -16,8 +16,8 @@ const companieCars = ref([])
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   await companieStore.setCompanieCars2(userId) // authStore.user.uid
   companieCars.value = companieStore.companieCars 
@@ -389,11 +389,7 @@ const handleInterieurPaysPrix = (e) => {
         data-bs-target="#exampleModal"
         style="background-color: #219935; border-color: #219935"
       >
-        <img
-          src="/assets/img/icone/plus.png"
-          class="img-fluid"
-          alt="..."
-        />
+      <i class='bx bx-plus'></i>
         Ajouter
       </button>
 
@@ -623,10 +619,10 @@ const handleInterieurPaysPrix = (e) => {
           <div class="col-md-8">
             <div class="card-body">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <p class="card-text"><strong>{{ car.vehicule }} </strong></p>
                 </div>
-                <div class="col-md-6 text-end">
+                <div class="col-md-8 text-end">
                   <button
                     class="btn btn-primary"
                     style="background-color: #219935; border-color: #219935"
@@ -662,11 +658,7 @@ const handleInterieurPaysPrix = (e) => {
                           border-color: #219935;
                         "
                       >
-                        <img
-                          src="/assets/img/icone/edit.png"
-                          class="img-fluid"
-                          alt="..."
-                        />
+                      <i class='bx bx-edit' ></i>
                       </button>
 
                       <!-- Modal -->
@@ -852,11 +844,7 @@ const handleInterieurPaysPrix = (e) => {
                         "
                         @click="star(car)"
                       >
-                        <img
-                          src="/assets/img/icone/star.png"
-                          class="img-fluid"
-                          alt="..."
-                        />
+                      <i class='bx bx-star' ></i>
                       </button>
                     </div>
                     <div class="col" v-if="companieStore.companie.offre == 'vip'">
@@ -868,11 +856,7 @@ const handleInterieurPaysPrix = (e) => {
                         data-bs-target="#exampleModal1"
                         style="background-color: #219935; border-color: #219935"
                       >
-                        <img
-                          src="/assets/img/icone/promotion.png"
-                          class="img-fluid"
-                          alt="..."
-                        />
+                      <i class='bx bxs-megaphone' ></i>
                       </button>
 
                       <!-- Modal -->
@@ -993,11 +977,7 @@ const handleInterieurPaysPrix = (e) => {
                           "
                           @click="unlock(car)"
                         >
-                          <img
-                            src="/assets/img/icone/unlock.png"
-                            class="img-fluid"
-                            alt="..."
-                          />
+                        <i class='bx bx-lock-alt' ></i>
                         </button>
                       </div>
                     </div>
@@ -1011,11 +991,7 @@ const handleInterieurPaysPrix = (e) => {
                           "
                           @click="remove(car)"
                         >
-                          <img
-                            src="/assets/img/icone/delete.png"
-                            class="img-fluid"
-                            alt="..."
-                          />
+                        <i class='bx bx-trash'></i>
                         </button>
                       </div>
                     </div>

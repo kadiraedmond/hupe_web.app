@@ -5,6 +5,7 @@ onMounted(() => {
   window.scrollTo(0, 0)
 });
 
+
 document.addEventListener("scroll", function() {
     var fixe = document.getElementById("fixe");
     var footer = document.querySelector("footer");

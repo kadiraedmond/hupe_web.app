@@ -68,7 +68,7 @@ export const useReservationStore = defineStore('reservationStore', {
         } catch (error) {
             console.log(error)
         }
-            this.userReservations = [] 
+            
         }, 
         async setReservationById(reservationId) {
             const docRef = doc(firestoreDb, 'reservation', `${reservationId}`)

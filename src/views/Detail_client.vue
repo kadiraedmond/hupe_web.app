@@ -144,7 +144,7 @@ const isLoading = ref(false)
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: 0px"
+      style="margin-top: -21px ; padding: 122px;" 
     >
       <img
         :src="companieStore.companie.imageCouvertureUrl"
@@ -155,10 +155,10 @@ const isLoading = ref(false)
     </section>
     <!-- End Portfolio Details Section -->
 
-    <section id="faq" class="faq" style="margin-top: -70px">
+    <section id="faq" class="faq" style="margin-top: -140px">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-4">
+          <div class="col-md-5">
             <div class="card mb-3 border-0">
               <div class="row g-0">
                 <div class="col-md-4">
@@ -166,7 +166,7 @@ const isLoading = ref(false)
                     :src="companieStore.companie.imageLogoUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 100px; height: 100px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
+                    style="width: 150px; height: 150px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
                   />
                 </div>
                 <div class="col-md-8">
@@ -175,6 +175,7 @@ const isLoading = ref(false)
                     <p class="card-text">
                       {{ companieStore.companie.description }}
                     </p>
+                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> 30%</button>
                     
                   </div>
                 </div>
@@ -190,7 +191,7 @@ const isLoading = ref(false)
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: -40px"
+      style="margin-top: -70px"
     >
       <div class="container">
         <div class="row gy-4">
@@ -1026,10 +1027,11 @@ const isLoading = ref(false)
 } */
 
 #img_couv{
-  height: 450px;
+  height: 250px;
     /* object-fit: cover; */
   object-fit: fill;
   image-rendering: -webkit-optimize-contrast;
+  border-radius: 10px;
 }
 
 
