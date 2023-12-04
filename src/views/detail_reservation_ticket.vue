@@ -66,7 +66,8 @@ const options = {
 
 const reserver = async (programme) => {
   isLoading.value = true
-  const Data = {
+  const Data = { 
+    uid: '', 
     client_id: user.uid,
     client_profil_url: user.imageUrl || '',
     compagnie_uid: programme.compagnie_uid,
@@ -90,9 +91,11 @@ const reserver = async (programme) => {
   if(Data)  isLoading.value = true
 
   try {
-    await addDoc(reservationColRef, Data)
+    const docRef = await addDoc(reservationColRef, Data)
 
     console.log('Document ajouté avec success')
+
+    await updateDoc(docRef, { uid: `${docRef.id}` })
 
     isLoading.value = false
 

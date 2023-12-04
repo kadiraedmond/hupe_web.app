@@ -110,7 +110,8 @@ const options = {
 
 const reserver = async (car) => {
   isLoading.value = true
-  const Data = {
+  const Data = { 
+    uid: '', 
     boite: car.boite,
     chauffeur: avecChauffeur.value === true ? "Oui" : "Non",
     client_id: user.uid || "",
@@ -146,9 +147,11 @@ const reserver = async (car) => {
   if(Data)  isLoading.value = true
 
   try {
-    await addDoc(locationColRef, Data)
+    const docRef = await addDoc(locationColRef, Data)
 
-    console.log("Document ajouté avec success")
+    console.log("Document ajouté avec success") 
+
+    await updateDoc(docRef, { uid: `${docRef.id}` })
 
     isLoading.value = false
 

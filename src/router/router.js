@@ -41,7 +41,8 @@ import Statuts from '@/views/statuts.vue';
 import Statut from '@/views/statut.vue';
 import Pays from '@/views/pays.vue';
 import Confirmation from '@/views/attente.vue';
-import Raison from '@/views/raison.vue';
+import RaisonLocation from '@/views/raison_location.vue';
+import RaisonReservation from '@/views/raison_reservation.vue';
 import Notification from '@/views/notification.vue';
 import Tickets from '@/views/ticket_location.vue';
 import Ticketss from '@/views/ticket_reservation.vue';
@@ -346,9 +347,15 @@ const routes = [
     
   },
   {
-    path: '/raison_d_annulation',
-    name: 'Raison',
-    component: Raison,
+    path: '/raison/location/:id',
+    name: 'RaisonLocation',
+    component: RaisonLocation,
+    
+  },
+  {
+    path: '/raison/reservation/:id',
+    name: 'RaisonReservation',
+    component: RaisonReservation,
     
   },
 

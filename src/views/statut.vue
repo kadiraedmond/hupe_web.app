@@ -551,15 +551,15 @@ const options = {
                                                   <div class="col-md-10">
                                                     <div class="row">
                                                       <div class="col-md-12 mb-3"> 
-                                                        <!-- <router-link to="/raison_d_annulation"> -->
+                                                      <a :href="`/raison/reservation/${reservation.uid}`">
                                                         <button
-                                                          class="btn btn-primary w-100" @click="refresh()"
+                                                          class="btn btn-primary w-100"
                                                           style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
                                                           
                                                           >
                                                           Annuler quand même
                                                           </button> 
-                                                        <!-- </router-link> -->
+                                                        </a>
                                                           
 
                                                           
@@ -570,8 +570,10 @@ const options = {
                                                         <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
                                                       </div>
 
-                                                      <div class="col-md-12 mb-3">
-                                                        <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
+                                                      <div class="col-md-12 mb-3"> 
+                                                        <a :href="`tel:${reservation.companieInfos.telephone}`">
+                                                          <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
+                                                        </a>
                                                       </div>
                                                     </div>
                                                   </div>

@@ -4,7 +4,7 @@ import { useAuthStore } from "@/store/auth.js";
 import { onBeforeMount, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-import { addDoc, updateDoc, collection, doc, getDoc, Timestamp } from 'firebase/firestore'
+import { addDoc, updateDoc, collection, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from "vue3-toastify"
 import Swal from 'sweetalert2'
@@ -615,7 +615,7 @@ const options = {
                                                   <div class="col-md-10">
                                                     <div class="row">
                                                       <div class="col-md-12 mb-3">
-                                                        <a href="/raison_d_annulation">
+                                                        <a :href="`/raison/location/${location.uid}`">
                                                           <button
                                                           class="btn btn-primary w-100"
                                                           style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
@@ -634,8 +634,10 @@ const options = {
                                                         <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
                                                       </div>
 
-                                                      <div class="col-md-12 mb-3">
-                                                        <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
+                                                      <div class="col-md-12 mb-3"> 
+                                                        <a :href="`tel:${location.companieInfos.telephone}`">
+                                                          <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
+                                                        </a>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -687,7 +689,7 @@ const options = {
                                               <p style="margin-top: -15px; font-size: 14px;"> Intérieur | <strong>{{ location.interieurPays }} </strong> </p>
                                               <p style="margin-top: -15px; font-size: 14px;">Retrait | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
                                               <p style="margin-top: -15px; font-size: 14px;"> Retour | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Nombre de jours de location |<strong> {{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</strong></p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Nombre de jours de location | <strong> {{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</strong></p>
                                             </div>
                                             <hr>
                                             <div class="col-md-12">
