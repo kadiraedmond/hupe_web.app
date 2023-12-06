@@ -35,7 +35,11 @@ const moteur = ref('')
 const prix_journalier = ref()
 const prix_avec_chauffeur = ref()
 const prix_interieur = ref()
-const image = ref()
+const image1 = ref()
+const image2 = ref()
+const image3 = ref()
+const image4 = ref()
+const image5 = ref()
 
 const isUploading = ref(false)
 
@@ -59,7 +63,11 @@ const handleSubmit = async () => {
     serie_vehicule: immatriculation.value, 
     status: 'active', 
     vehicule: marque.value, 
-    vehicule_image_url: image.value, 
+    vehicule_image_url: image1.value, 
+    vehicule_image_url2: image2.value, 
+    vehicule_image_url3: image3.value, 
+    vehicule_image_url4: image4.value, 
+    vehicule_image_url5: image5.value, 
     addedAt: Timestamp.now() 
   }
   const newDoc = await addDoc(collectionRef, data)
@@ -95,7 +103,7 @@ const handleSubmit = async () => {
 
 }
 
-const handleFile = async (e) => {
+const handleFile1 = async (e) => {
   const file = e.target.files[0]
   const storageRef = fireRef(storage, `location_vehicule/${companieStore.companie.uid}/${file.name}`)
 
@@ -107,7 +115,71 @@ const handleFile = async (e) => {
   if(!downloadURL) {
     isUploading.value = true
   } else {
-    image.value = downloadURL
+    image1.value = downloadURL
+    isUploading.value = false
+  }
+}
+const handleFile2 = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `location_vehicule/${companieStore.companie.uid}/${file.name}`)
+
+  await uploadBytes(storageRef, file)
+  
+  const downloadURL = await getDownloadURL(storageRef)
+  // console.log(downloadURL)
+
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    image2.value = downloadURL
+    isUploading.value = false
+  }
+}
+const handleFile3 = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `location_vehicule/${companieStore.companie.uid}/${file.name}`)
+
+  await uploadBytes(storageRef, file)
+  
+  const downloadURL = await getDownloadURL(storageRef)
+  // console.log(downloadURL)
+
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    image3.value = downloadURL
+    isUploading.value = false
+  }
+}
+const handleFile4 = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `location_vehicule/${companieStore.companie.uid}/${file.name}`)
+
+  await uploadBytes(storageRef, file)
+  
+  const downloadURL = await getDownloadURL(storageRef)
+  // console.log(downloadURL)
+
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    image4.value = downloadURL
+    isUploading.value = false
+  }
+}
+const handleFile5 = async (e) => {
+  const file = e.target.files[0]
+  const storageRef = fireRef(storage, `location_vehicule/${companieStore.companie.uid}/${file.name}`)
+
+  await uploadBytes(storageRef, file)
+  
+  const downloadURL = await getDownloadURL(storageRef)
+  // console.log(downloadURL)
+
+  if(!downloadURL) {
+    isUploading.value = true
+  } else {
+    image5.value = downloadURL
     isUploading.value = false
   }
 }
@@ -543,7 +615,7 @@ const handleInterieurPaysPrix = (e) => {
                    
                     <option value="Electrique">Electrique </option>
                     <option value="Essence">Essence </option>
-                    <option value="Diesel ">Diesel  </option>
+                    <option value="Diesel">Diesel  </option>
                     <option value="Hybride">Hybride </option>
                   </select>
                 </div>
@@ -551,8 +623,8 @@ const handleInterieurPaysPrix = (e) => {
                   <label for="inputState" class="form-label">Transmission</label>
                   <select id="inputState" v-model="transmission" class="form-select">
                    
-                    <option value="">Manuelle </option>
-                    <option value="">Automatique </option>
+                    <option value="Manuelle">Manuelle </option>
+                    <option value="Automatique">Automatique </option>
                   </select>
                 </div>
                 <div class="col-md-12">
@@ -604,7 +676,8 @@ const handleInterieurPaysPrix = (e) => {
                     type="file"
                     class="form-control"
                     id="validationCustom02"
-                    @change="handleFile"
+                    @change="handleFile1" 
+                    accept="image/*"
                     required
                   />
                 </div>
@@ -617,7 +690,8 @@ const handleInterieurPaysPrix = (e) => {
                     type="file"
                     class="form-control"
                     id="validationCustom02"
-                    @change="handleFile"
+                    @change="handleFile2" 
+                    accept="image/*"
                     required
                   />
                 </div>
@@ -629,7 +703,8 @@ const handleInterieurPaysPrix = (e) => {
                     type="file"
                     class="form-control"
                     id="validationCustom02"
-                    @change="handleFile"
+                    @change="handleFile3" 
+                    accept="image/*"
                     required
                   />
                 </div>
@@ -641,7 +716,8 @@ const handleInterieurPaysPrix = (e) => {
                     type="file"
                     class="form-control"
                     id="validationCustom02"
-                    @change="handleFile"
+                    @change="handleFile4" 
+                    accept="image/*"
                     required
                   />
                 </div>
@@ -653,7 +729,8 @@ const handleInterieurPaysPrix = (e) => {
                     type="file"
                     class="form-control"
                     id="validationCustom02"
-                    @change="handleFile"
+                    @change="handleFile5" 
+                    accept="image/*"
                     required
                   />
                 </div>
@@ -882,7 +959,7 @@ const handleInterieurPaysPrix = (e) => {
                                   <label
                                     for="validationCustom02"
                                     class="form-label"
-                                    >Ajouter une images</label
+                                    >Ajouter une image</label
                                   >
                                   <input
                                     type="file"

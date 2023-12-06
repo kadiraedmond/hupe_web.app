@@ -12,63 +12,63 @@ const authStore = useAuthStore()
 let enAttente = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let valides = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let confirmees = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let annulees = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let reportees = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let utilisees = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 
 const updateReservationsDashboard = () => {
   companieStore.companieLocations.forEach((location) => {
     if(location.status == "En attente" || location.status == "En report") {
-      enAttente.totalNumber++;
+      enAttente.totalNumber++
       enAttente.totalPrice += Number(location.montant) 
     } 
     
     else if(location.status == "Validé") { 
-      valides.totalNumber++;
+      valides.totalNumber++
       valides.totalPrice += Number(location.montant) 
     } 
     
     else if(location.status == "Confirmé") { 
-      confirmees.totalNumber++;
+      confirmees.totalNumber++
       confirmees.totalPrice += Number(location.montant) 
     } 
     
     else if(location.status == "Annuler") { 
-      annulees.totalNumber++;
+      annulees.totalNumber++
       annulees.totalPrice += Number(location.montant) 
     } 
     
     else if(location.status == "Reporté") { 
-      reportees.totalNumber++;
+      reportees.totalNumber++
       reportees.totalPrice += Number(location.montant) 
 
     } 
     
     else if(location.status == "Utilisé") { 
-      utilisees.totalNumber++;
+      utilisees.totalNumber++
       utilisees.totalPrice += Number(location.montant) 
 
     }
-  });
-};
+  })
+}
 const savedUser = JSON.parse(localStorage.getItem("user"))
 
 const userId = savedUser.uid || authStore.user.uid
@@ -152,22 +152,10 @@ const valider = async (location) => {
     if(snapshot.exists()) user = snapshot.data()
 
     const notificationColRef = collection(firestoreDb, 'notifications')
-
-    const uneJournee = 24 * 60 * 60 * 1000
-
-    const dateRetrait = new Date(location.date_retrait)
-    const dateRetour = new Date(location.date_retour)
-
-    const differenceEnMs = Math.abs(dateRetour - dateRetrait) 
-
-    const differenceEnJours = Math.round(differenceEnMs / uneJournee)
-
-    const formatedDateRetrait = new Intl.DateTimeFormat(undefined, options).format(location.date_retrait)
-    const formatedDateRetour = new Intl.DateTimeFormat(undefined, options).format(location.date_retour)
     
     const data = {
       title: 'Validation de réservation', 
-      message: `Votre demande de réservation du véhicule « ${location.vehicule} ${location.modele} » pour une durée de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
+      message: `Votre demande de réservation du véhicule « ${location.vehicule} ${location.modele} » pour une durée de « ${ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) } jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
       destinataire: location.client_id, 
       lu: false, 
       createdAt: Timestamp.now()
@@ -600,7 +588,7 @@ const valider = async (location) => {
                                             class="bx bx-map"
                                             style="color: rgb(139 139 139)"
                                           ></i>
-                                          CI,rue 250
+                                          {{ location.client_addresse }}
                                         </p>
                                       </div>
                                     </div>
@@ -753,11 +741,11 @@ const valider = async (location) => {
                                           >
                                             Retrait |
                                             <strong
-                                              >{{ location.date_retrait }}
+                                              >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
                                             </strong>
                                             |
                                             <strong>{{
-                                              location.heure_retrait
+                                              new Intl.DateTimeFormat(undefined, options).format(location.heure_retrait)
                                             }}</strong>
                                           </p>
 
@@ -771,7 +759,7 @@ const valider = async (location) => {
                                           >
                                             Retour |
                                             <strong
-                                              >{{ location.date_retour }}
+                                              >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
                                             </strong>
                                           </p>
 
@@ -784,7 +772,7 @@ const valider = async (location) => {
                                             "
                                           >
                                             Nombres de jours de location |
-                                            <strong>5 jours</strong>
+                                            <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
                                           </p>
                                           <div class="row">
                                             <div class="col-6 text-start">
@@ -920,9 +908,9 @@ const valider = async (location) => {
                           <td>{{ location.plaque_vehicule }}</td>
                           <td>{{ location.chauffeur }}</td>
                           <td>{{ location.interieurPays }}</td>
-                          <td>{{ location.date_retrait }}</td>
+                          <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
                           <td>{{ location.heure_retrait }}</td>
-                          <td> {{ location.date_retour }}</td>
+                          <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
                           <td> {{ location.heure_retour }}</td>
                           <td> {{ location.montant }}</td>
                           <td></td>
@@ -1043,7 +1031,7 @@ const valider = async (location) => {
                                               class="bx bx-map"
                                               style="color: rgb(139 139 139)"
                                             ></i>
-                                            CI,rue 250
+                                            {{ location.client_addresse }}
                                           </p>
                                         </div>
                                       </div>
@@ -1196,7 +1184,7 @@ const valider = async (location) => {
                                             >
                                               Retrait |
                                               <strong
-                                                >{{ location.date_retrait }}
+                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
                                               </strong>
                                               |
                                               <strong>{{
@@ -1214,7 +1202,7 @@ const valider = async (location) => {
                                             >
                                               Retour |
                                               <strong
-                                                >{{ location.date_retour }}
+                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
                                               </strong>
                                             </p>
 
@@ -1227,7 +1215,7 @@ const valider = async (location) => {
                                               "
                                             >
                                               Nombres de jours de location |
-                                              <strong>5 jours</strong>
+                                              <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
                                             </p>
                                           </div>
                                         </div>
@@ -1302,9 +1290,9 @@ const valider = async (location) => {
                         <td>{{ location.plaque_vehicule }}</td>
                         <td>{{ location.chauffeur }}</td>
                         <td>{{ location.interieurPays }}</td>
-                        <td>{{ location.date_retrait }}</td>
+                        <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
                         <td>{{ location.heure_retrait }}</td>
-                        <td> {{ location.date_retour }}</td>
+                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
                         <td> {{ location.heure_retour }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>
@@ -1426,7 +1414,7 @@ const valider = async (location) => {
                                               class="bx bx-map"
                                               style="color: rgb(139 139 139)"
                                             ></i>
-                                            CI,rue 250
+                                            {{ location.client_addresse }}
                                           </p>
                                         </div>
                                       </div>
@@ -1577,7 +1565,7 @@ const valider = async (location) => {
                                             >
                                               Retrait |
                                               <strong
-                                                >{{ location.date_retrait }}
+                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
                                               </strong>
                                               |
                                               <strong>{{
@@ -1595,7 +1583,7 @@ const valider = async (location) => {
                                             >
                                               Retour |
                                               <strong
-                                                >{{ location.date_retour }}
+                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
                                               </strong>
                                             </p>
 
@@ -1608,7 +1596,7 @@ const valider = async (location) => {
                                               "
                                             >
                                               Nombres de jours de location |
-                                              <strong>5 jours</strong>
+                                              <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
                                             </p>
                                           </div>
                                         </div>
@@ -1695,9 +1683,9 @@ const valider = async (location) => {
                       <td>{{ location.plaque_vehicule }}</td>
                       <td>{{ location.chauffeur }}</td>
                       <td>{{ location.interieurPays }}</td>
-                      <td>{{ location.date_retrait }}</td>
+                      <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
                       <td>{{ location.heure_retrait }}</td>
-                      <td> {{ location.date_retour }}</td>
+                      <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
                       <td> {{ location.heure_retour }}</td>
                       <td> </td>
                       <td> {{ location.montant }}</td>
@@ -1819,7 +1807,7 @@ const valider = async (location) => {
                                           class="bx bx-map"
                                           style="color: rgb(139 139 139)"
                                         ></i>
-                                        CI,rue 250
+                                        {{ location.client_addresse }}
                                       </p>
                                     </div>
                                   </div>
@@ -1977,7 +1965,7 @@ const valider = async (location) => {
                                         >
                                           Retrait |
                                           <strong
-                                            >{{ location.date_retrait }}
+                                            >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
                                           </strong>
                                           |
                                           <strong>{{
@@ -1995,7 +1983,7 @@ const valider = async (location) => {
                                         >
                                           Retour |
                                           <strong
-                                            >{{ location.date_retour }}
+                                            >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
                                           </strong>
                                         </p>
 
@@ -2008,7 +1996,7 @@ const valider = async (location) => {
                                           "
                                         >
                                           Nombres de jours de location |
-                                          <strong>5 jours</strong>
+                                          <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
                                         </p>
                                       </div>
                                     </div>
@@ -2080,10 +2068,10 @@ const valider = async (location) => {
                         <td>{{ location.plaque_vehicule }}</td>
                         <td>{{ location.chauffeur }}</td>
                         <td>{{ location.interieurPays }}</td>
-                        <td>{{ location.date_retrait }}</td>
+                        <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
                         <td>{{ location.heure_retrait }}</td>
-                        <td> {{ location.date_retour }}</td>
-                        <td> {{ location.heure_retour }}</td>
+                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
+                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.heure_retour) }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>
                       
@@ -2203,7 +2191,7 @@ const valider = async (location) => {
                                               class="bx bx-map"
                                               style="color: rgb(139 139 139)"
                                             ></i>
-                                            CI,rue 250
+                                            {{ location.client_addresse }}
                                           </p>
                                         </div>
                                       </div>
@@ -2361,7 +2349,7 @@ const valider = async (location) => {
                                             >
                                               Retrait |
                                               <strong
-                                                >{{ location.date_retrait }}
+                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
                                               </strong>
                                               |
                                               <strong>{{
@@ -2379,7 +2367,7 @@ const valider = async (location) => {
                                             >
                                               Retour |
                                               <strong
-                                                >{{ location.date_retour }}
+                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
                                               </strong>
                                             </p>
 
@@ -2392,7 +2380,7 @@ const valider = async (location) => {
                                               "
                                             >
                                               Nombres de jours de location |
-                                              <strong>5 jours</strong>
+                                              <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
                                             </p>
                                           </div>
                                         </div>
@@ -2464,9 +2452,9 @@ const valider = async (location) => {
                         <td>{{ location.plaque_vehicule }}</td>
                         <td>{{ location.chauffeur }}</td>
                         <td>{{ location.interieurPays }}</td>
-                        <td>{{ location.date_retrait }}</td>
+                        <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
                         <td>{{ location.heure_retrait }}</td>
-                        <td> {{ location.date_retour }}</td>
+                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
                         <td> {{ location.heure_retour }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>
@@ -2587,7 +2575,7 @@ const valider = async (location) => {
                                               class="bx bx-map"
                                               style="color: rgb(139 139 139)"
                                             ></i>
-                                            CI,rue 250
+                                            {{ location.client_addresse }}
                                           </p>
                                         </div>
                                       </div>
@@ -2745,7 +2733,7 @@ const valider = async (location) => {
                                             >
                                               Retrait |
                                               <strong
-                                                >{{ location.date_retrait }}
+                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
                                               </strong>
                                               |
                                               <strong>{{
@@ -2763,7 +2751,7 @@ const valider = async (location) => {
                                             >
                                               Retour |
                                               <strong
-                                                >{{ location.date_retour }}
+                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
                                               </strong>
                                             </p>
 
@@ -2776,7 +2764,7 @@ const valider = async (location) => {
                                               "
                                             >
                                               Nombres de jours de location |
-                                              <strong>5 jours</strong>
+                                              <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
                                             </p>
                                           </div>
                                         </div>
@@ -2848,9 +2836,9 @@ const valider = async (location) => {
                         <td>{{ location.plaque_vehicule }}</td>
                         <td>{{ location.chauffeur }}</td>
                         <td>{{ location.interieurPays }}</td>
-                        <td>{{ location.date_retrait }}</td>
+                        <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
                         <td>{{ location.heure_retrait }}</td>
-                        <td> {{ location.date_retour }}</td>
+                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
                         <td> {{ location.heure_retour }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>

@@ -157,7 +157,9 @@ const payer = async (reservation) => {
         title: "Succès",
         text: "Payement effectué",
         icon: "success"
-      })
+      }) 
+
+      document.querySelector('.btn-close-payer').click()
 
       const notificationColRef = collection(firestoreDb, 'notifications')
 
@@ -211,8 +213,11 @@ const payer = async (reservation) => {
       await addDoc(notificationColRef, comp_notif)
 
       // mise a jour du status de la réservation
-      const reservationDolRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)
-      await updateDoc(reservationDocRef, { status: 'Confirmé' })
+      const reservationDocRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)
+      await updateDoc(reservationDocRef, { status: 'Confirmé', payement: 'éffectuer' })
+
+      
+      reservations.value = reservations.value.filter(reser => reser.uid !== reservation.uid)
       
       console.log('Payement effectué')
     } catch (error) {
@@ -613,7 +618,7 @@ const options = {
                                       <div class="modal-content" style="width: 87%;">
                                         <div class="modal-header" style="background-color: #219935 ; color: white">
                                           <h1 class="modal-title fs-5" id="exampleModalLabel">Details pour le paiement</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          <button type="button" class="btn-close-payer" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                           <div class="row">
@@ -741,10 +746,10 @@ const options = {
                               <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
                                 <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
                                   Message
-                                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                  <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                     99+
                                     <span class="visually-hidden">unread messages</span>
-                                  </span>
+                                  </span> -->
                                 </button>
                               </router-link>
                               <!-- <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">

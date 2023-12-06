@@ -31,9 +31,9 @@ const options = {
   year: 'numeric', 
   month: '2-digit', 
   day: '2-digit', 
-  hour: '2-digit', 
-  minute: '2-digit', 
-  second: '2-digit', 
+//   hour: '2-digit', 
+//   minute: '2-digit', 
+//   second: '2-digit', 
 }
 
 const telecharger = () => {
@@ -186,7 +186,7 @@ onMounted(() => {
                                         <p style=" font-size: 9px; font-weight: 700;">DATE DE RETRAIT |</p>
                                     </div>
                                     <div class="col-md-6 text-end">
-                                        <p style=" font-size: 9px;"> {{ location.date_retrait }} </p>
+                                        <p style=" font-size: 9px;"> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} </p>
                                     </div>
                                 </div>
 
@@ -204,7 +204,7 @@ onMounted(() => {
                                         <p style=" font-size: 9px; font-weight: 700;">DATE DE RETOUR |</p>
                                     </div>
                                     <div class="col-md-6 text-end">
-                                        <p style=" font-size: 9px;"> {{ location.date_retour }} </p>
+                                        <p style=" font-size: 9px;"> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </p>
                                     </div>
                                 </div>
                             </div>
@@ -324,7 +324,7 @@ onMounted(() => {
                                         <p style=" font-size: 7px; font-weight: 700;">DATE DE RETRAIT |</p>
                                     </div>
                                     <div class="col-md-6 text-end">
-                                        <p style=" font-size: 7px;"> {{ location.date_retrait }} </p>
+                                        <p style=" font-size: 7px;"> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} </p>
                                     </div>
                                 </div>
 
@@ -342,7 +342,7 @@ onMounted(() => {
                                         <p style=" font-size: 7px; font-weight: 700;">DATE DE RETOUR |</p>
                                     </div>
                                     <div class="col-md-6 text-end">
-                                        <p style=" font-size: 7px;"> {{ location.date_retour }} </p>
+                                        <p style=" font-size: 7px;"> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </p>
                                     </div>
                                 </div>
                             </div>

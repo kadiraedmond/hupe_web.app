@@ -114,7 +114,8 @@ const reserver = async (car) => {
     uid: '', 
     boite: car.boite,
     chauffeur: avecChauffeur.value === true ? "Oui" : "Non",
-    client_id: user.uid || "",
+    client_id: user.uid || "", 
+    client_addresse: user.addresse, 
     client_profil_url: user.imageUrl || "",
     compagnie_uid: companieId, 
     vehicule_id: car.uid, 
@@ -167,14 +168,7 @@ const reserver = async (car) => {
 
     const notificationColRef = collection(firestoreDb, 'notifications')
 
-    const uneJournee = 24 * 60 * 60 * 1000
-
-    const dateRetrait = new Date(car.date_retrait)
-    const dateRetour = new Date(car.date_retour)
-
-    const differenceEnMs = Math.abs(dateRetour - dateRetrait) 
-
-    const differenceEnJours = Math.round(differenceEnMs / uneJournee)
+    const differenceEnJours = Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60))
 
     const userDocRef = doc(firestoreDb, 'users', `${car.client_id}`)
     const snapshot = await getDoc(userDocRef)
@@ -745,7 +739,7 @@ onMounted(() => {
               <div class="row mt-4">
                 <div class="col-md-3">
                   <img
-                    :src="promotionStore.vehicule.vehicule_image_url"
+                    :src="promotionStore.vehicule.vehicule_image_url2"
                     alt=""
                     class="img-fluid"
                     style="border-radius: 5px; width: 120px; height: 60px;   max-height: 60px"
@@ -753,7 +747,7 @@ onMounted(() => {
                 </div>
                 <div class="col-md-3">
                   <img
-                    :src="promotionStore.vehicule.vehicule_image_url"
+                    :src="promotionStore.vehicule.vehicule_image_url3"
                     alt=""
                     class="img-fluid"
                     style="border-radius: 5px; width: 120px; height: 60px;   max-height: 60px"
@@ -761,7 +755,7 @@ onMounted(() => {
                 </div>
                 <div class="col-md-3">
                   <img
-                    :src="promotionStore.vehicule.vehicule_image_url"
+                    :src="promotionStore.vehicule.vehicule_image_url4"
                     alt=""
                     class="img-fluid"
                     style="border-radius: 5px; width: 120px; height: 60px;   max-height: 60px"
@@ -769,7 +763,7 @@ onMounted(() => {
                 </div>
                 <div class="col-md-3">
                   <img
-                    :src="promotionStore.vehicule.vehicule_image_url"
+                    :src="promotionStore.vehicule.vehicule_image_url5"
                     alt=""
                     class="img-fluid"
                     style="border-radius: 5px; width: 120px; height: 60px;  max-height: 60px"

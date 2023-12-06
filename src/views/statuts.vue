@@ -41,7 +41,7 @@ onBeforeMount(async () => {
     } else if(param === 'valide' && location.status === 'Validé') {
       locations.value.push(location)
     } else if(param === 'reporte' && location.status === 'Reporté') {
-      location.value.push(location)
+      locations.value.push(location)
     } else if(param === 'utilise' && location.status === 'Utilisé') {
       locations.value.push(location)
     } else if(param === 'confirme' && location.status === 'Confirmé') {
@@ -83,6 +83,10 @@ const reporter = async (location) => {
     // const docRef = await addDoc(reportColRef, { ...extracted_location, status: 'En attente', report: new Date(date_report.value) }) 
     await setDoc(doc(reportColRef, `${location.uid}`), { ...location, status: 'En attente', report_retrait: new Date(date_retrait.value), report_retour: new Date(date_retour.value) })
     
+
+    document.querySelector('#reportForm').reset()
+    document.querySelector('.btn-close-reporter').click()
+
     Swal.fire({
       title: "Succès",
       text: "Votre demande de report a été envoyé", 
@@ -108,14 +112,14 @@ const reporter = async (location) => {
     }
   
     await addDoc(notificationColRef, data)
+
+    locations.value = locations.value.filter(loca => loca.uid !== location.uid)
     
     
   } catch (error) {
     console.log(error)
   }
 
-  document.querySelector('#reportForm').reset()
-  document.querySelector('.btn-close').click()
 }
 
 const option = ref('')
@@ -198,15 +202,14 @@ const payer = async (location) => {
         title: "Succès",
         text: "Payement effectué",
         icon: "success"
-      })
+      }) 
+
+      
+      document.querySelector('.btn-close-payer').click()
 
       const notificationColRef = collection(firestoreDb, 'notifications')
 
-      const uneJournee = 24 * 60 * 60 
-
-      const differenceEnMinutes = Math.abs(location.date_retour - location.date_retrait) 
-
-      const differenceEnJours = Math.round(differenceEnMinutes / uneJournee)
+      const differenceEnJours = Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60))
 
       const client_notif = {
         title: 'Paiement pour location', 
@@ -258,8 +261,11 @@ const payer = async (location) => {
       await addDoc(notificationColRef, comp_notif)
 
       // mise a jour du status de la location
-      const locationDolRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)
-      await updateDoc(locationDocRef, { status: 'Confirmé' })
+      const locationDocRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)
+      await updateDoc(locationDocRef, { status: 'Confirmé', payement: 'éffectuer' })
+
+
+      locations.value = locations.value.filter(loca => loca.uid !== location.uid)
       
       console.log('Payement effectué')
     } catch (error) {
@@ -418,7 +424,7 @@ const options = {
                                       <div class="modal-content">
                                         <div class="modal-header" style="background-color:#219935 !important; color: white ">
                                           <h1 class="modal-title fs-5" id="exampleModalLabel">Demande de report</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          <button type="button" class="btn-close-reporter" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                           <div class="row">
@@ -550,8 +556,7 @@ const options = {
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
-                            Nombres de jours de location |
-                            <strong>{{  }}</strong>
+                            Nombres de jours de location | <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</strong>
                             </p>
                             <br />
 
@@ -667,7 +672,7 @@ const options = {
                                       <div class="modal-content" style="width: 87%;">
                                         <div class="modal-header text-white" style="background: #219935">
                                           <h1 class="modal-title fs-5" id="exampleModalLabel">Détails du paiement</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          <button type="button" class="btn-close-payer" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                           <div class="row">
@@ -805,10 +810,10 @@ const options = {
                                 <router-link :to="`/messagerie/${location.companieInfos.uid}`">
                                   <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
                                     Message
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                       99+
                                       <span class="visually-hidden">unread messages</span>
-                                    </span>
+                                    </span> -->
                                   </button>
                                 </router-link>
                                 <!-- <router-link :to="`/messagerie/${location.companieInfos.uid}`">

@@ -141,7 +141,7 @@ const valider = async (reservation) => {
     
     const data = {
       title: 'Validation de réservation', 
-      message: `Votre demande de réservation de ticket pour le trajet « ${reservation.lieu_depart} - ${reservation.destination} » le « ${reservation.date_depart} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
+      message: `Votre demande de réservation de ticket pour le trajet « ${reservation.lieu_depart} - ${reservation.destination} » le « ${ new Intl.DateTimeFormat(undefined, options).format(reservation.date_depart) } » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
       destinataire: reservation.client_id, 
       lu: false, 
       createdAt: Timestamp.now() 
@@ -504,7 +504,7 @@ const options = {
                                       class="bx bx-map"
                                       style="color: rgb(139 139 139);"
                                     ></i>
-                                    CI,rue 250
+                                    {{ reservation.client_addresse }}
                                   </p>
                                 </div>
                               </div>
@@ -650,7 +650,7 @@ const options = {
                                       "
                                     >
                                       Retour |
-                                      <strong>{{ location.date_retour }} </strong>
+                                      <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </strong>
                                     </p>
                                      
 
@@ -828,7 +828,7 @@ const options = {
                                               id="icon_menu"
                                               style="color: #219935"
                                             ></i>
-                                            CI,rue 250
+                                            {{ reservation.client_addresse }}
                                           </p>
                                         </div>
                                       </div>
@@ -1139,7 +1139,7 @@ const options = {
                                           id="icon_menu"
                                           style="color: #219935"
                                         ></i>
-                                        CI,rue 250
+                                        {{ reservation.client_addresse }}
                                       </p>
                                     </div>
                                   </div>
@@ -1451,7 +1451,7 @@ const options = {
                                           id="icon_menu"
                                           style="color: #219935"
                                         ></i>
-                                        CI,rue 250
+                                        {{ reservation.client_addresse }}
                                       </p>
                                     </div>
                                   </div>
@@ -1763,7 +1763,7 @@ const options = {
                                           id="icon_menu"
                                           style="color: #219935"
                                         ></i>
-                                        CI,rue 250
+                                        {{ reservation.client_addresse }}
                                       </p>
                                     </div>
                                   </div>
@@ -2075,7 +2075,7 @@ const options = {
                                           id="icon_menu"
                                           style="color: #219935"
                                         ></i>
-                                        CI,rue 250
+                                        {{ reservation.client_addresse }}
                                       </p>
                                     </div>
                                   </div>
