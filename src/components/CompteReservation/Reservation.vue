@@ -139,7 +139,8 @@ const valider = async (reservation) => {
 
     const notificationColRef = collection(firestoreDb, 'notifications')
     
-    const data = {
+    const data = { 
+      uid: '', 
       title: 'Validation de réservation', 
       message: `Votre demande de réservation de ticket pour le trajet « ${reservation.lieu_depart} - ${reservation.destination} » le « ${ new Intl.DateTimeFormat(undefined, options).format(reservation.date_depart) } » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
       destinataire: reservation.client_id, 
@@ -147,7 +148,9 @@ const valider = async (reservation) => {
       createdAt: Timestamp.now() 
     }
 
-    await addDoc(notificationColRef, data)
+    const docRef = await addDoc(notificationColRef, data)
+
+    await updateDoc(docRef.ref, { uid: `${docRef.id}` })
   } catch (error) {
     Swal.fire({
       title: "Erreur",
@@ -512,7 +515,7 @@ const options = {
                             </div>
                             <div class="col-md-6 text-end">
                               
-                                  <strong style="color: rgb(247 127 0);font-size: 12px; margin-right: 10px; font-weight: 500;">{{ location.status }} </strong>
+                                  <strong style="color: rgb(247 127 0);font-size: 12px; margin-right: 10px; font-weight: 500;">{{ reservation.status }} </strong>
                                   <button
                                     class="btn btn-primary"
                                     style="
@@ -567,7 +570,17 @@ const options = {
                                             {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
                                             
                                             </p>
-                                        </div>       
+                                        </div>     
+
+                                        <div class="col-6" >
+                                          <p
+                                          class="card-text"
+                                          style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                          >
+                                          N° |
+                                          <strong style="color: #219935"> {{ reservation.number }} </strong>
+                                          </p>
+                                        </div>    
                                     </div>
                                     <br />
                                           
@@ -650,7 +663,7 @@ const options = {
                                       "
                                     >
                                       Retour |
-                                      <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </strong>
+                                      <strong>{{ new Intl.DateTimeFormat(undefined, options).format(reservation.date_retour) }} </strong>
                                     </p>
                                      
 
@@ -903,8 +916,8 @@ const options = {
                                             margin-top: -15px;
                                           "
                                         >
-                                          Il y a environ un jour <br />
-                                          <strong> T22356_1253523 </strong>
+                                          Il y a environ {{ Math.round(((new Date()) - reservation.createdAt) / (24 * 60 * 60)) }} jours <br />
+                                          <strong> {{ reservation.number }} </strong>
                                         </p>
                                         <hr />
 
@@ -1214,8 +1227,8 @@ const options = {
                                         margin-top: -15px;
                                       "
                                     >
-                                      Il y a environ un jour <br />
-                                      <strong> T22356_1253523 </strong>
+                                      Il y a environ {{ Math.round(((new Date()) - reservation.createdAt) / (24 * 60 * 60)) }} jours <br />
+                                      <strong> {{ reservation.number }} </strong>
                                     </p>
                                     <hr />
 
@@ -1526,8 +1539,8 @@ const options = {
                                         margin-top: -15px;
                                       "
                                     >
-                                      Il y a environ un jour <br />
-                                      <strong> T22356_1253523 </strong>
+                                      Il y a environ {{ Math.round(((new Date()) - reservation.createdAt) / (24 * 60 * 60)) }} jours <br />
+                                      <strong> {{ reservation.number }} </strong>
                                     </p>
                                     <hr />
 
@@ -1838,8 +1851,8 @@ const options = {
                                         margin-top: -15px;
                                       "
                                     >
-                                      Il y a environ un jour <br />
-                                      <strong> T22356_1253523 </strong>
+                                      Il y a environ {{ Math.round(((new Date()) - reservation.createdAt) / (24 * 60 * 60)) }} jours <br />
+                                      <strong> {{ reservation.number }} </strong>
                                     </p>
                                     <hr />
 
@@ -2150,8 +2163,8 @@ const options = {
                                         margin-top: -15px;
                                       "
                                     >
-                                      Il y a environ un jour <br />
-                                      <strong> T22356_1253523 </strong>
+                                      Il y a environ {{ Math.round(((new Date()) - reservation.createdAt) / (24 * 60 * 60)) }} jours <br />
+                                      <strong> {{ reservation.number }} </strong>
                                     </p>
                                     <hr />
 

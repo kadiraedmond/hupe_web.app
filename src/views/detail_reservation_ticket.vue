@@ -120,6 +120,7 @@ const reserver = async (programme) => {
     const formatedDateDepart = new Intl.DateTimeFormat(undefined, options).format(programme.date_depart)
     
     const comp_notif = {
+      uid: '', 
       title: 'Réservation de ticket', 
       message: `Vous avez une réservation de ticket N° ${programme.number} en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet « ${programme.lieu_depart} - ${programme.destination} » du « ${formatedDateDepart} », veuillez valider ou annuler cette réservation.`, 
       userId: programme.compagnie_uid,
@@ -127,7 +128,9 @@ const reserver = async (programme) => {
       createdAt: Timestamp.now() 
     }
 
-    await addDoc(notificationColRef, comp_notif)
+    const comp_docRef = await addDoc(notificationColRef, comp_notif)
+
+    await updateDoc(comp_docRef.ref, { uid: `${comp_docRef.id}` })
 
     await router.push(`/notation/${companieId}`) 
     window.location.reload() 
@@ -407,7 +410,7 @@ onMounted(() => {
                             </div>
 
                             <Loader 
-                            style="position: absolute; left: 35%; top: 15%"
+                            style="position: absolute; left: -28.8%; top: 26.8%"
                             v-if="isLoading" 
                             />
 

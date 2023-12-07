@@ -72,7 +72,8 @@ const retrait = async () => {
 
     const notificationColRef = collection(firestoreDb, 'notifications')
   
-    const comp_notif = {
+    const comp_notif = { 
+      uid: '', 
       title: 'Demande de retrait', 
       message: `Vous avez demandé un retrait de FCFA ${montant.value}, qui sera crédité sur votre compte après validation par l'administrateur.`, 
       userId: userId, 
@@ -80,7 +81,8 @@ const retrait = async () => {
       createdAt: Timestamp.now() 
     }
   
-    await addDoc(notificationColRef, comp_notif)
+    const docRef = await addDoc(notificationColRef, comp_notif)
+    await updateDoc(docRef.ref, { uid: `${docRef.id}` })
 
   } catch (error) {
     Swal.fire({

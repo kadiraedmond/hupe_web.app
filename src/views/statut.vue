@@ -101,7 +101,8 @@ const reporter = async (reservation) => {
   
     const notificationColRef = collection(firestoreDb, 'notifications')
   
-    const data = {
+    const data = { 
+      uid: '', 
       title: 'Report de réservation', 
       message: `Vous avez une demande de report de la réservation N° ${reservation.number}`, 
       userId: reservation.compagnie_uid, 
@@ -109,7 +110,10 @@ const reporter = async (reservation) => {
       createdAt: Timestamp.now()  
     }
   
-    await addDoc(notificationColRef, data)
+    const docRef = await addDoc(notificationColRef, data)
+    
+    
+    await updateDoc(docRef.ref, { uid: `${docRef.id}` })
 
     
   } catch (error) {
@@ -163,7 +167,8 @@ const payer = async (reservation) => {
 
       const notificationColRef = collection(firestoreDb, 'notifications')
 
-      const client_notif = {
+      const client_notif = { 
+        uid: '', 
         title: 'Paiement pour réservation', 
         message: `Vous avez effectué un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
         destinataire: userId,
@@ -171,7 +176,9 @@ const payer = async (reservation) => {
         createdAt: Timestamp.now() 
       }
 
-      await addDoc(notificationColRef, client_notif)
+      const client_docRef = await addDoc(notificationColRef, client_notif)
+
+      await updateDoc(client_docRef.ref, { uid: `${client_docRef.id}` })
   
       // Recherche de la compagnie dans la base
       const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_uid}`) 
@@ -202,7 +209,8 @@ const payer = async (reservation) => {
 
       await updateDoc(comp_accountDocRef, comp_data)
 
-      const comp_notif = {
+      const comp_notif = { 
+        uid: '', 
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de FCFA ${montant_apres_commission} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
         userId: reservation.compagnie_uid,
@@ -210,7 +218,9 @@ const payer = async (reservation) => {
         createdAt: Timestamp.now() 
       }
 
-      await addDoc(notificationColRef, comp_notif)
+      const comp_docRef = await addDoc(notificationColRef, comp_notif)
+
+      await updateDoc(comp_docRef.ref, { uid: `${comp_docRef.id}` })
 
       // mise a jour du status de la réservation
       const reservationDocRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)

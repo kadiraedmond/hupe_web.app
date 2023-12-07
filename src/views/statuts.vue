@@ -103,7 +103,8 @@ const reporter = async (location) => {
   
     const notificationColRef = collection(firestoreDb, 'notifications')
   
-    const data = {
+    const data = { 
+      uid: '', 
       title: 'Report de location', 
       message: `Vous avez une demande de report de la location N° ${location.number}`, 
       userId: location.compagnie_uid, 
@@ -111,7 +112,9 @@ const reporter = async (location) => {
       createdAt: Timestamp.now()  
     }
   
-    await addDoc(notificationColRef, data)
+    const docRef = await addDoc(notificationColRef, data)
+
+    await updateDoc(docRef.ref, { uid: `${docRef.id}` })
 
     locations.value = locations.value.filter(loca => loca.uid !== location.uid)
     
@@ -211,7 +214,8 @@ const payer = async (location) => {
 
       const differenceEnJours = Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60))
 
-      const client_notif = {
+      const client_notif = { 
+        uid: '', 
         title: 'Paiement pour location', 
         message: `Vous avez effectué un paiement de caution de FCFA ${total_a_payer} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
         destinataire: userId,
@@ -219,7 +223,10 @@ const payer = async (location) => {
         createdAt: Timestamp.now() 
       }
 
-      await addDoc(notificationColRef, client_notif)
+      const client_docRef = await addDoc(notificationColRef, client_notif)
+
+
+      await updateDoc(client_docRef.ref, { uid: `${client_docRef.id}` })
   
       // Recherche de la compagnie dans la base
       const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${location.compagnie_uid}`)
@@ -250,7 +257,8 @@ const payer = async (location) => {
 
       await updateDoc(comp_accountDocRef, comp_data)
 
-      const comp_notif = {
+      const comp_notif = { 
+        uid: '', 
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de caution de FCFA ${montant_apres_commission} pour la location de votre ${location.vehicule} ${location.modele}.`, 
         userId: location.compagnie_uid,
@@ -258,7 +266,10 @@ const payer = async (location) => {
         createdAt: Timestamp.now() 
       }
 
-      await addDoc(notificationColRef, comp_notif)
+      const comp_docRef = await addDoc(notificationColRef, comp_notif)
+
+
+      await updateDoc(comp_docRef.ref, { uid: `${comp_docRef.id}` })
 
       // mise a jour du status de la location
       const locationDocRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)

@@ -113,7 +113,8 @@ const recharge = async () => {
 
           const notificationColRef = collection(firestoreDb, 'notifications')
 
-          const client_notif = {
+          const client_notif = { 
+            uid: '', 
             title: 'Rechargement de compte', 
             message: `Votre compte a été crédité de FCFA ${montant.value}. Profitez de ce solde pour vos prochaines commandes.`, 
             destinataire: userId,
@@ -121,11 +122,8 @@ const recharge = async () => {
             createdAt: Timestamp.now() 
           }
 
-          try {
-            await addDoc(notificationColRef, client_notif)
-          } catch (error) {
-            console.log(error)
-          }
+          const docRef = await addDoc(notificationColRef, client_notif)
+          await updateDoc(docRef.ref, { uid: `${docRef.id}` })
 
         }
     })

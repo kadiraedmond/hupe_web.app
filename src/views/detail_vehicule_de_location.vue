@@ -179,6 +179,7 @@ const reserver = async (car) => {
     const formatedDateRetour = new Intl.DateTimeFormat(undefined, options).format(car.date_retour)
     
     const comp_notif = {
+      uid: '', 
       title: 'Location de véhicule', 
       message: `Vous avez une réservation du véhicule « ${car.vehicule} ${car.modele} » en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} », veuillez valider ou annuler cette réservation.`, 
       userId: car.compagnie_uid,
@@ -186,7 +187,9 @@ const reserver = async (car) => {
       createdAt: Timestamp.now() 
     }
 
-    await addDoc(notificationColRef, comp_notif)
+    const comp_docRef = await addDoc(notificationColRef, comp_notif)
+
+    await updateDoc(comp_docRef.ref, { uid: `${comp_docRef.id}` })
 
     await router.push(`/notation/${companieId}`) 
     window.location.reload() 
@@ -671,7 +674,7 @@ onMounted(() => {
                           </div>
 
                           <Loader 
-                            style="position: absolute; left: 35%; top: 15%"
+                            style="position: absolute; left: -28.8%; top: 26.8%"
                             v-if="isLoading" 
                           />
 

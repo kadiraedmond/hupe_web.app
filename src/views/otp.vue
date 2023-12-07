@@ -139,7 +139,7 @@ const resendCode = async () => {
                     />
 
                     <Loader 
-                      style="position: absolute; left: 44.8%; top: 28%"
+                      style="position: absolute; left: 44%; top: 38.8%"
                       v-if="isLoading" 
                     />
                   </div>

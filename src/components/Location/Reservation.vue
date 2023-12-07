@@ -153,7 +153,8 @@ const valider = async (location) => {
 
     const notificationColRef = collection(firestoreDb, 'notifications')
     
-    const data = {
+    const data = { 
+      uid: '', 
       title: 'Validation de réservation', 
       message: `Votre demande de réservation du véhicule « ${location.vehicule} ${location.modele} » pour une durée de « ${ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) } jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
       destinataire: location.client_id, 
@@ -161,7 +162,9 @@ const valider = async (location) => {
       createdAt: Timestamp.now()
     }
 
-    await addDoc(notificationColRef, data)
+    const docRef = await addDoc(notificationColRef, data)
+    await updateDoc(docRef.ref, { uid: `${docRef.id}` })
+  
   } catch (error) {
     Swal.fire({
       title: "Erreur",
@@ -1490,6 +1493,16 @@ const valider = async (location) => {
                                                   <br />
                                                 </p>
                                               </div>
+                                              
+                                              <div class="col-6" >
+                                                <p
+                                                class="card-text"
+                                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                                >
+                                                N° |
+                                                <strong style="color: #219935"> {{ location.number }} </strong>
+                                                </p>
+                                              </div>    
                                             </div>
                                             <br />
 

@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onBeforeMount, ref } from 'vue'
+import { onMounted, onBeforeMount, computed, ref } from 'vue'
 import { firestoreDb } from "@/firebase/firebase.js"
 import { updateDoc, doc, getDocs, query, where, collection, getDoc } from "firebase/firestore"
 
@@ -11,7 +11,18 @@ const notificationColRef = collection(firestoreDb, 'notifications')
 
 const noneReadNotifications = ref([])
 
+const isLoading = ref(false)
+
+const notifications_desc = computed(() => notifications.value.sort((a,b) => {
+	return b.createdAt - a.createdAt
+})) 
+
+const noneReadNotifications_desc = computed(() => noneReadNotifications.value.sort((a,b) => {
+	return b.createdAt - a.createdAt
+}))
+
 onBeforeMount(async () => {
+    isLoading.value = true
     connectedUser = JSON.parse(localStorage.getItem('user')) || authStore.user 
 
     if(connectedUser.raison_social) {
@@ -35,49 +46,33 @@ onBeforeMount(async () => {
         if(notification.lu === false) {
             noneReadNotifications.value.push(notification)
         }
-    })
+    }) 
+
+
+    isLoading.value = false
 })
 
-const readNotifications = async () => { 
-    notifications.value = []
+const readNotifications = async (notification) => { 
 
-    if(connectedUser.raison_social) {
-        const q = query(notificationColRef, where('userId', '==', `${connectedUser.uid}`))
+    const docRef = doc(notificationColRef, `${notification.uid}`)
 
-        const snapshot = await getDocs(q)
-        snapshot.docs.forEach(async doc => {
-            const notiData = doc.data() 
-
-            const docRef = doc(notificationColRef, `${doc.id}`)
-
-            await updateDoc(docRef, { lu: true }) 
-            
-            
-            notifications.value.push({ ...notiData, lu: true })
-        })
-    } else {
-        const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
-
-        const snapshot = await getDocs(q)
-        snapshot.docs.forEach(async doc => {
-            const notiData = doc.data() 
-
-            const docRef = doc(notificationColRef, `${doc.id}`)
-
-            await updateDoc(docRef, { lu: true }) 
-            
-            
-            notifications.value.push({ ...notiData, lu: true })
-        })
-    }
+    await updateDoc(docRef, { lu: true }) 
     
-    noneReadNotification.value = [] 
-    
-    notifications.value.forEach(notification => {
-        if(notification.lu === false) {
-            noneReadNotifications.value.push(notification)
+    notifications.value.forEach(noti => {
+        if(noti.uid === notification.uid) {
+            noti.lu = true
         }
     })
+        
+    let noneReads = []
+    notifications.value.forEach(notification => {
+        if(notification.lu === false) {
+            noneReads.push(notification)
+        }
+    })
+    
+    noneReadNotifications.value = noneReads
+
 }
 
 const refresh = ()=>{
@@ -120,7 +115,7 @@ onMounted(() => {
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Toutes</button>
                             </li>
-                            <li @click="readNotifications" class="nav-item" role="presentation">
+                            <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Non lues</button>
                             </li>
                             
@@ -130,7 +125,7 @@ onMounted(() => {
                                 <div class="row">
                                     <div v-if="notifications.length > 0">
                                         <div class="col-md-12 mb-3" v-for="(notification, index) in notifications" :key="index">
-                                            <div class="card border-0">
+                                            <div @click="readNotifications(notification)" class="card border-0 survol">
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-12 d-flex">
@@ -148,14 +143,20 @@ onMounted(() => {
                                                             <p class="card-text" style="font-size: 13px;">{{ notification.message }}</p> 
                                                         </div>
                                                         <div class="col-2 text-end">
-                                                            <p style="color: #219935;"><i class='bx bx-check-double' style="color: #5bc0ea" ></i></p>
+                                                            <p style="color: #219935;"><i class='bx bx-check-double' :style="notification.lu === true && `color: #5bc0ea`" ></i></p>
                                                         </div>
                                                     </div>                                        
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="w-100" v-else>
+                                    </div> 
+                                    
+                                    <Loader 
+                                        style="position: absolute; left: -28.8%; top: 26.8%"
+                                        v-if="isLoading" 
+                                    /> 
+
+                                    <div class="w-100" v-if="isLoading === false && notifications.length === 0">
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-6">
@@ -179,7 +180,7 @@ onMounted(() => {
                                 <div class="row">
                                     <div v-if="noneReadNotifications.length > 0">
                                         <div class="col-md-12 mb-3" v-for="(noneReadNotification, index) in noneReadNotifications" :key="index">
-                                            <div class="card border-0">
+                                            <div @click="readNotifications(noneReadNotification)" class="card border-0 survol">
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-12 d-flex">
@@ -194,10 +195,10 @@ onMounted(() => {
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-10">
-                                                            <p class="card-text" style="    font-size: 13px;">{{ noneReadNotification.message }}</p> 
+                                                            <p class="card-text" style="font-size: 13px;">{{ noneReadNotification.message }}</p> 
                                                         </div>
                                                         <div class="col-2 text-end">
-                                                            <p style="color: #219935;"><i class='bx bx-check-double' ></i></p>
+                                                            <p style="color: #219935;"><i class='bx bx-check-double' :style="noneReadNotification.lu === true && `color: #5bc0ea`" ></i></p>
                                                         </div>
                                                     </div>                                       
                                                 </div>
@@ -205,7 +206,12 @@ onMounted(() => {
                                         </div> 
                                     </div>
 
-                                    <div class="w-100" v-else>
+                                    <Loader 
+                                        style="position: absolute; left: -28.8%; top: 26.8%"
+                                        v-if="isLoading" 
+                                    />
+
+                                    <div class="w-100" v-if="isLoading === false && noneReadNotifications.length === 0">
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-6">
@@ -250,5 +256,9 @@ onMounted(() => {
     border: 0;
     border-radius: var(--bs-nav-pills-border-radius);
     color: black;
+}
+
+.survol:hover {
+    cursor: pointer;
 }
 </style>
