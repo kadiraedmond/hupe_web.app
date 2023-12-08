@@ -38,38 +38,38 @@ const en_report = ref({
 
 const updateReservationsDashboard = (datas) => {
   datas.forEach(data => {
-    if(data.status == 'En attente') {
-      enAttente.value.totalNumber++
+    if(data.status === 'En attente') {
+      enAttente.value.totalNumber++  
       enAttente.value.totalPrice += Number(data.montant)
     }
     
-    else if(data.status == 'Validé') {
-      valides.value.totalNumber++
+    if(data.status === 'Validé') {
+      valides.value.totalNumber++  
       valides.value.totalPrice += Number(data.montant)
     }
     
-    else if(data.status == 'Confirmé') {
-      confirmees.value.totalNumber++
+    if(data.status === 'Confirmé') {
+      confirmees.value.totalNumber++  
       confirmees.value.totalPrice += Number(data.montant)
     }
     
-    else if(data.status == 'Annuler') {
-      annulees.value.totalNumber++
+    if(data.status === 'Annuler') {
+      annulees.value.totalNumber++  
       annulees.value.totalPrice += Number(data.montant)
     }
     
-    else if(data.status == 'Reporté') {
-      reportees.value.totalNumber++
+    if(data.status === 'Reporté') {
+      reportees.value.totalNumber++  
       reportees.value.totalPrice += Number(data.montant)
     }
     
-    else if(data.status == 'Utilisé') {
-      utilisees.value.totalNumber++
+    if(data.status === 'Utilisé') {
+      utilisees.value.totalNumber++  
       utilisees.value.totalPrice += Number(data.montant)
     } 
 
-    else if(data.status == 'En report') {
-      en_report.value.totalNumber++
+    if(data.status === 'En report') {
+      en_report.value.totalNumber++  
       en_report.value.totalPrice += Number(data.montant)
     }
   })

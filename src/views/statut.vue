@@ -35,17 +35,29 @@ onBeforeMount(async () => {
   reservationStore.userReservations.forEach(reservation => {
     if(param === 'en-attente' && reservation.status === 'En attente') {
       reservations.value.push(reservation)
-    } else if(param === 'valide' && reservation.status === 'Validé') {
+    }
+    
+    if(param === 'valide' && reservation.status === 'Validé') {
       reservations.value.push(reservation)
-    } else if(param === 'reporte' && reservation.status === 'Reporté') {
+    }
+    
+    if(param === 'reporte' && reservation.status === 'Reporté') {
       reservations.value.push(reservation)
-    } else if(param === 'utilise' && reservation.status === 'Utilisé') {
+    }
+    
+    if(param === 'utilise' && reservation.status === 'Utilisé') {
       reservations.value.push(reservation)
-    } else if(param === 'confirme' && reservation.status === 'Confirmé') {
+    }
+    
+    if(param === 'confirme' && reservation.status === 'Confirmé') {
       reservations.value.push(reservation)
-    } else if(param === 'annule' && reservation.status === 'Annuler') {
+    }
+    
+    if(param === 'annule' && reservation.status === 'Annuler') {
       reservations.value.push(reservation)
-    } else if(param === 'en-attente-de-report' && reservation.status === 'En report') {
+    }
+    
+    if(param === 'en-attente-de-report' && reservation.status === 'En report') {
       reservations.value.push(reservation)
     }
   }) 
@@ -105,7 +117,7 @@ const reporter = async (reservation) => {
       uid: '', 
       title: 'Report de réservation', 
       message: `Vous avez une demande de report de la réservation N° ${reservation.number}`, 
-      userId: reservation.compagnie_uid, 
+      userId: `${reservation.compagnie_uid}`, 
       lu: false, 
       createdAt: Timestamp.now()  
     }
@@ -113,7 +125,7 @@ const reporter = async (reservation) => {
     const docRef = await addDoc(notificationColRef, data)
     
     
-    await updateDoc(docRef.ref, { uid: `${docRef.id}` })
+    await updateDoc(docRef, { uid: `${docRef.id}` })
 
     
   } catch (error) {
@@ -178,7 +190,7 @@ const payer = async (reservation) => {
 
       const client_docRef = await addDoc(notificationColRef, client_notif)
 
-      await updateDoc(client_docRef.ref, { uid: `${client_docRef.id}` })
+      await updateDoc(client_docRef, { uid: `${client_docRef.id}` })
   
       // Recherche de la compagnie dans la base
       const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_uid}`) 
@@ -213,14 +225,14 @@ const payer = async (reservation) => {
         uid: '', 
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de FCFA ${montant_apres_commission} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
-        userId: reservation.compagnie_uid,
+        userId: `${reservation.compagnie_uid}`,
         lu: false, 
         createdAt: Timestamp.now() 
       }
 
       const comp_docRef = await addDoc(notificationColRef, comp_notif)
 
-      await updateDoc(comp_docRef.ref, { uid: `${comp_docRef.id}` })
+      await updateDoc(comp_docRef, { uid: `${comp_docRef.id}` })
 
       // mise a jour du status de la réservation
       const reservationDocRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)

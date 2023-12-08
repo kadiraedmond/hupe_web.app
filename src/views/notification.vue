@@ -3,6 +3,12 @@ import { onMounted, onBeforeMount, computed, ref } from 'vue'
 import { firestoreDb } from "@/firebase/firebase.js"
 import { updateDoc, doc, getDocs, query, where, collection, getDoc } from "firebase/firestore"
 
+import { useNotificationStore } from '@/store/notification.js' 
+
+import Swal from 'sweetalert2'
+
+const notificationStore = useNotificationStore() 
+
 let connectedUser 
 
 const notifications = ref([])
@@ -53,25 +59,34 @@ onBeforeMount(async () => {
 })
 
 const readNotifications = async (notification) => { 
-
-    const docRef = doc(notificationColRef, `${notification.uid}`)
-
-    await updateDoc(docRef, { lu: true }) 
-    
-    notifications.value.forEach(noti => {
-        if(noti.uid === notification.uid) {
-            noti.lu = true
-        }
+    Swal.fire({
+        title: `${notification.title}`,
+        text: `${notification.message}`,
+        icon: "info"
     })
+
+    if(notification.lu === false) {
+        const docRef = doc(notificationColRef, `${notification.uid}`)
+    
+        await updateDoc(docRef, { lu: true }) 
         
-    let noneReads = []
-    notifications.value.forEach(notification => {
-        if(notification.lu === false) {
-            noneReads.push(notification)
-        }
-    })
+        notifications.value.forEach(noti => {
+            if(noti.uid === notification.uid) {
+                noti.lu = true
+            }
+        })
+            
+        let noneReads = []
+        notifications.value.forEach(notification => {
+            if(notification.lu === false) {
+                noneReads.push(notification)
+            }
+        })
+        
+        noneReadNotifications.value = noneReads
     
-    noneReadNotifications.value = noneReads
+        notificationStore.setCount(noneReadNotifications.value.length)
+    }
 
 }
 

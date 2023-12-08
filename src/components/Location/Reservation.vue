@@ -36,34 +36,34 @@ let utilisees = reactive({
 
 const updateReservationsDashboard = () => {
   companieStore.companieLocations.forEach((location) => {
-    if(location.status == "En attente" || location.status == "En report") {
-      enAttente.totalNumber++
+    if(location.status === "En attente" || location.status === "En report") {
+      enAttente.totalNumber++  
       enAttente.totalPrice += Number(location.montant) 
     } 
     
-    else if(location.status == "Validé") { 
-      valides.totalNumber++
+    if(location.status === "Validé") { 
+      valides.totalNumber++  
       valides.totalPrice += Number(location.montant) 
     } 
     
-    else if(location.status == "Confirmé") { 
-      confirmees.totalNumber++
+    if(location.status === "Confirmé") { 
+      confirmees.totalNumber++  
       confirmees.totalPrice += Number(location.montant) 
     } 
     
-    else if(location.status == "Annuler") { 
-      annulees.totalNumber++
+    if(location.status === "Annuler") { 
+      annulees.totalNumber++  
       annulees.totalPrice += Number(location.montant) 
     } 
     
-    else if(location.status == "Reporté") { 
-      reportees.totalNumber++
+    if(location.status === "Reporté") { 
+      reportees.totalNumber++  
       reportees.totalPrice += Number(location.montant) 
 
     } 
     
-    else if(location.status == "Utilisé") { 
-      utilisees.totalNumber++
+    if(location.status === "Utilisé") { 
+      utilisees.totalNumber++  
       utilisees.totalPrice += Number(location.montant) 
 
     }
@@ -105,17 +105,27 @@ onBeforeMount(async () => {
   updateReservationsDashboard() 
   
   companieStore.companieLocations.forEach(comp => {
-    if(comp.status == 'En attente' || comp.status == 'En report') {
+    if(comp.status === 'En attente' || comp.status === 'En report') {
       elements_en_attente.value.push(comp)
-    } else if(comp.status == 'Validé') {
+    } 
+    
+    if(comp.status === 'Validé') {
       elements_valide.value.push(comp)
-    } else if(comp.status == 'Reporté') {
+    } 
+    
+    if(comp.status === 'Reporté') {
       elements_reporte.value.push(comp)
-    } else if(comp.status == 'Confirmé') {
+    } 
+    
+    if(comp.status === 'Confirmé') {
       elements_confirme.value.push(comp)
-    } else if(comp.status == 'Annuler') {
+    } 
+    
+    if(comp.status === 'Annuler') {
       elements_annule.value.push(comp)
-    } else if(comp.status == 'Utilisé') {
+    } 
+    
+    if(comp.status === 'Utilisé') {
       elements_utilise.value.push(comp)
     }
     
@@ -1488,13 +1498,14 @@ const valider = async (location) => {
                                                     new Intl.DateTimeFormat(
                                                       undefined,
                                                       options
-                                                    ).format(location.createdAt)
+                                                    ).format(location.created_at)
                                                   }}
                                                   <br />
-                                                </p>
+                                                </p> 
+                                                <strong style="color: #219935"> {{ location.number }} </strong>
                                               </div>
                                               
-                                              <div class="col-6" >
+                                              <!-- <div class="col-6" >
                                                 <p
                                                 class="card-text"
                                                 style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
@@ -1502,7 +1513,7 @@ const valider = async (location) => {
                                                 N° |
                                                 <strong style="color: #219935"> {{ location.number }} </strong>
                                                 </p>
-                                              </div>    
+                                              </div>     -->
                                             </div>
                                             <br />
 

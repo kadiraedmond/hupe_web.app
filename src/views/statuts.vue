@@ -38,17 +38,29 @@ onBeforeMount(async () => {
   locationStore.userLocations.forEach(location => {
     if(param === 'en-attente' && location.status === 'En attente') {
       locations.value.push(location)
-    } else if(param === 'valide' && location.status === 'Validé') {
+    }
+    
+    if(param === 'valide' && location.status === 'Validé') {
       locations.value.push(location)
-    } else if(param === 'reporte' && location.status === 'Reporté') {
+    }
+    
+    if(param === 'reporte' && location.status === 'Reporté') {
       locations.value.push(location)
-    } else if(param === 'utilise' && location.status === 'Utilisé') {
+    }
+    
+    if(param === 'utilise' && location.status === 'Utilisé') {
       locations.value.push(location)
-    } else if(param === 'confirme' && location.status === 'Confirmé') {
+    }
+    
+    if(param === 'confirme' && location.status === 'Confirmé') {
       locations.value.push(location)
-    } else if(param === 'annule' && location.status === 'Annuler') {
+    }
+    
+    if(param === 'annule' && location.status === 'Annuler') {
       locations.value.push(location)
-    } else if(param === 'en-attente-de-report' && location.status === 'En report') {
+    }
+    
+    if(param === 'en-attente-de-report' && location.status === 'En report') {
       locations.value.push(location)
     }
   }) 
@@ -107,14 +119,14 @@ const reporter = async (location) => {
       uid: '', 
       title: 'Report de location', 
       message: `Vous avez une demande de report de la location N° ${location.number}`, 
-      userId: location.compagnie_uid, 
+      userId: `${location.compagnie_uid}`, 
       lu: false, 
       createdAt: Timestamp.now()  
     }
   
     const docRef = await addDoc(notificationColRef, data)
 
-    await updateDoc(docRef.ref, { uid: `${docRef.id}` })
+    await updateDoc(docRef, { uid: `${docRef.id}` })
 
     locations.value = locations.value.filter(loca => loca.uid !== location.uid)
     
@@ -226,7 +238,7 @@ const payer = async (location) => {
       const client_docRef = await addDoc(notificationColRef, client_notif)
 
 
-      await updateDoc(client_docRef.ref, { uid: `${client_docRef.id}` })
+      await updateDoc(client_docRef, { uid: `${client_docRef.id}` })
   
       // Recherche de la compagnie dans la base
       const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${location.compagnie_uid}`)
@@ -261,7 +273,7 @@ const payer = async (location) => {
         uid: '', 
         title: 'Réception de paiement', 
         message: `Vous avez reçu un paiement de caution de FCFA ${montant_apres_commission} pour la location de votre ${location.vehicule} ${location.modele}.`, 
-        userId: location.compagnie_uid,
+        userId: `${location.compagnie_uid}`,
         lu: false, 
         createdAt: Timestamp.now() 
       }
@@ -269,7 +281,7 @@ const payer = async (location) => {
       const comp_docRef = await addDoc(notificationColRef, comp_notif)
 
 
-      await updateDoc(comp_docRef.ref, { uid: `${comp_docRef.id}` })
+      await updateDoc(comp_docRef, { uid: `${comp_docRef.id}` })
 
       // mise a jour du status de la location
       const locationDocRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)
@@ -485,7 +497,7 @@ const options = {
                                         margin-top: -15px;
                                     "
                                     >
-                                    {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }} <br />
+                                    {{ new Intl.DateTimeFormat(undefined, options).format(location.created_at) }} <br />
                                      
                                     </p>
                                 </div> 
@@ -571,7 +583,7 @@ const options = {
                             </p>
                             <br />
 
-                            <div class="row" v-if="location.status == 'Validé'">
+                            <div class="row" v-if="location.status === 'Validé'">
                               
                               <div class="col-md-6">
                                 <button
@@ -714,12 +726,12 @@ const options = {
                                             <hr>
                                             <div class="col-md-12">
                                               <p style=" font-size: 14px;"> Prix de location | <strong>{{ location.montant }} FCFA </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Intérieur du pays | <strong>{{ location.interieurPays == 'Oui' ? location.interieurpaysprix : 0 }} FCFA </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Chauffeur | <strong>{{ location.chauffeur == 'Oui' ? location.avecchauffeurprix : 0 }} FCFA </strong> </p>
-                                              <p v-if="location.chauffeur == 'Oui' && location.interieurPays == 'Non'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.avecchauffeurprix) + Number(location.montant) }} FCFA </strong> </p>
-                                              <p v-if="location.chauffeur == 'Non' && location.interieurPays == 'Oui'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.interieurpaysprix) + Number(location.montant) }} FCFA </strong> </p>
-                                              <p v-if="location.chauffeur == 'Non' && location.interieurPays == 'Non'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.montant) }} FCFA </strong> </p>
-                                              <p v-if="location.chauffeur == 'Oui' && location.interieurPays == 'Oui'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.avecchauffeurprix) + Number(location.interieurpaysprix) + Number(location.montant) }} FCFA </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Intérieur du pays | <strong>{{ location.interieurPays === 'Oui' ? location.interieurpaysprix : 0 }} FCFA </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Chauffeur | <strong>{{ location.chauffeur === 'Oui' ? location.avecchauffeurprix : 0 }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.avecchauffeurprix) + Number(location.montant) }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.interieurpaysprix) + Number(location.montant) }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.montant) }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.avecchauffeurprix) + Number(location.interieurpaysprix) + Number(location.montant) }} FCFA </strong> </p>
                                             </div>
 
                                             <div class="col-md-12 text-center">
@@ -797,11 +809,11 @@ const options = {
                                 </div>
                             </div>  -->
 
-                            <div class="row" v-if="location.status == 'En attente'">
+                            <div class="row" v-if="location.status === 'En attente'">
                               <!--  -->
                             </div>
 
-                            <div class="row mb-2" v-if="location.status == 'Confirmé'" style="margin: 4px; margin-top: -15px;">
+                            <div class="row mb-2" v-if="location.status === 'Confirmé'" style="margin: 4px; margin-top: -15px;">
                               <div class="col-6 text-start"> 
                                 <a :href="`tel:${location.companieInfos.telephone}`">
                                   <button
@@ -838,7 +850,7 @@ const options = {
                               </div>
                             </div>
 
-                            <div class="row mb-2" v-if="location.status == 'Utilisé'" style="margin: 4px; margin-top: -15px;">
+                            <div class="row mb-2" v-if="location.status === 'Utilisé'" style="margin: 4px; margin-top: -15px;">
                                
                               <div class="col-12 text-center">
                                 <router-link :to="`/detail_vehicule_location/${location.vehicule_id}`">
@@ -852,7 +864,7 @@ const options = {
                               </div>
                             </div>
 
-                            <div class="row mb-2" v-if="location.status == 'Annuler'" style="margin: 4px; margin-top: -15px;">
+                            <div class="row mb-2" v-if="location.status === 'Annuler'" style="margin: 4px; margin-top: -15px;">
                                
                               <div class="col-12 text-center">
                                  <router-link :to="`/detail_vehicule_location/${location.vehicule_id}`">

@@ -35,33 +35,33 @@ let utilisees = reactive({
 
 const updateReservationsDashboard = () => {
   reservationStore.companieReservations.forEach(reservation => {
-    if(reservation.status == 'En attente' || reservation.status == 'En report') {
-      enAttente.totalNumber++
+    if(reservation.status === 'En attente' || reservation.status === 'En report') {
+      enAttente.totalNumber++ 
       enAttente.totalPrice += Number(reservation.montant)
     }
     
-    else if(reservation.status == 'Validé') {
-      valides.totalNumber++
+    if(reservation.status === 'Validé') {
+      valides.totalNumber++ 
       valides.totalPrice += Number(reservation.montant)
     }
     
-    else if(reservation.status == 'Confirmé') {
-      confirmees.totalNumber++
+    if(reservation.status === 'Confirmé') {
+      confirmees.totalNumber++ 
       confirmees.totalPrice += Number(reservation.montant)
     }
     
-    else if(reservation.status == 'Annuler') {
-      annulees.totalNumber++
+    if(reservation.status === 'Annuler') {
+      annulees.totalNumber++ 
       annulees.totalPrice += Number(reservation.montant)
     }
     
-    else if(reservation.status == 'Reporté') {
-      reportees.totalNumber++
+    if(reservation.status === 'Reporté') {
+      reportees.totalNumber++ 
       reportees.totalPrice += Number(reservation.montant)
     }
     
-    else if(reservation.status == 'Utilisé') {
-      utilisees.totalNumber++
+    if(reservation.status === 'Utilisé') {
+      utilisees.totalNumber++ 
       utilisees.totalPrice += Number(reservation.montant)
     }
   })
@@ -103,15 +103,23 @@ onBeforeMount(async () => {
   updateReservationsDashboard()
 
   reservationStore.companieReservations.forEach(comp => {
-    if(comp.status == 'En attente' || comp.status == 'En report') {
+    if(comp.status === 'En attente' || comp.status === 'En report') {
       elements_en_attente.value.push(comp)
-    } else if(comp.status == 'Validé') {
+    } 
+    
+    if(comp.status === 'Validé') {
       elements_valide.value.push(comp)
-    } else if(comp.status == 'Reporté') {
+    } 
+    
+    if(comp.status === 'Reporté') {
       elements_reporte.value.push(comp)
-    } else if(comp.status == 'Confirmé') {
+    } 
+    
+    if(comp.status === 'Confirmé') {
       elements_confirme.value.push(comp)
-    } else if(comp.status == 'Annuler') {
+    } 
+    
+    if(comp.status === 'Annuler') {
       elements_annule.value.push(comp)
     }
   })

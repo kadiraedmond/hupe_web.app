@@ -102,9 +102,9 @@ const options = {
   year: 'numeric', 
   month: '2-digit', 
   day: '2-digit', 
-  hour: '2-digit', 
-  minute: '2-digit', 
-  second: '2-digit', 
+  // hour: '2-digit', 
+  // minute: '2-digit', 
+  // second: '2-digit', 
 }
 
 
@@ -157,6 +157,32 @@ const reserver = async (car) => {
 
     isLoading.value = false
 
+
+    const notificationColRef = collection(firestoreDb, 'notifications')
+
+    const differenceEnJours = Math.round((Data.date_retour - Data.date_retrait) / (24 * 60 * 60))
+
+    const userDocRef = doc(firestoreDb, 'users', `${car.client_id}`)
+    const snapshot = await getDoc(userDocRef)
+    let user
+    if(snapshot.exists()) user = snapshot.data()
+
+    const formatedDateRetrait = new Intl.DateTimeFormat(undefined, options).format(Data.date_retrait)
+    const formatedDateRetour = new Intl.DateTimeFormat(undefined, options).format(Data.date_retour)
+    
+    const comp_notif = {
+      uid: '', 
+      title: 'Location de véhicule', 
+      message: `Vous avez une réservation du véhicule « ${car.vehicule} ${car.modele} » en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} », veuillez valider ou annuler cette réservation.`, 
+      userId: Data.compagnie_uid,
+      lu: false, 
+      createdAt: Timestamp.now() 
+    }
+
+    const comp_docRef = await addDoc(notificationColRef, comp_notif)
+
+    await updateDoc(comp_docRef, { uid: `${comp_docRef.id}` }) 
+
     document.querySelector("#reservationForm").reset() 
     document.querySelector('.btn-close').click()
 
@@ -165,31 +191,6 @@ const reserver = async (car) => {
       text: "Réservation effectuée avec succès",
       icon: "success"
     })
-
-    const notificationColRef = collection(firestoreDb, 'notifications')
-
-    const differenceEnJours = Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60))
-
-    const userDocRef = doc(firestoreDb, 'users', `${car.client_id}`)
-    const snapshot = await getDoc(userDocRef)
-    let user
-    if(snapshot.exists()) user = snapshot.data()
-
-    const formatedDateRetrait = new Intl.DateTimeFormat(undefined, options).format(car.date_retrait)
-    const formatedDateRetour = new Intl.DateTimeFormat(undefined, options).format(car.date_retour)
-    
-    const comp_notif = {
-      uid: '', 
-      title: 'Location de véhicule', 
-      message: `Vous avez une réservation du véhicule « ${car.vehicule} ${car.modele} » en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet de « ${differenceEnJours} jours » du « ${formatedDateRetrait} » au « ${formatedDateRetour} », veuillez valider ou annuler cette réservation.`, 
-      userId: car.compagnie_uid,
-      lu: false, 
-      createdAt: Timestamp.now() 
-    }
-
-    const comp_docRef = await addDoc(notificationColRef, comp_notif)
-
-    await updateDoc(comp_docRef.ref, { uid: `${comp_docRef.id}` })
 
     await router.push(`/notation/${companieId}`) 
     window.location.reload() 

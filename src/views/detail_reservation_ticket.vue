@@ -71,7 +71,7 @@ const reserver = async (programme) => {
     client_id: user.uid,
     client_profil_url: user.imageUrl || '', 
     client_addresse: user.addresse, 
-    compagnie_uid: programme.compagnie_uid, 
+    compagnie_uid: companieId, 
     trajet_id: programme.uid, 
     createdAt: Timestamp.now(),
     date_depart: new Date(dateDepart.value) || '',
@@ -101,7 +101,29 @@ const reserver = async (programme) => {
 
     isLoading.value = false
 
-   document.querySelector('#reservationForm').reset() 
+    const notificationColRef = collection(firestoreDb, 'notifications')
+
+    const userDocRef = doc(firestoreDb, 'users', `${Data.client_id}`)
+    const snapshot = await getDoc(userDocRef)
+    let user
+    if(snapshot.exists()) user = snapshot.data()
+
+    const formatedDateDepart = new Intl.DateTimeFormat(undefined, options).format(Data.date_depart)
+    
+    const comp_notif = {
+      uid: '', 
+      title: 'Réservation de ticket', 
+      message: `Vous avez une réservation de ticket N° ${Data.number} en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet « ${programme.lieu_depart} - ${programme.destination} » du « ${formatedDateDepart} », veuillez valider ou annuler cette réservation.`, 
+      userId: Data.compagnie_uid,
+      lu: false, 
+      createdAt: Timestamp.now() 
+    }
+
+    const comp_docRef = await addDoc(notificationColRef, comp_notif)
+
+    await updateDoc(comp_docRef, { uid: `${comp_docRef.id}` }) 
+
+    document.querySelector('#reservationForm').reset() 
     document.querySelector('.btn-close').click()
 
     Swal.fire({
@@ -109,28 +131,6 @@ const reserver = async (programme) => {
       text: "Réservation effectuée avec succès",
       icon: "success"
     })
-
-    const notificationColRef = collection(firestoreDb, 'notifications')
-
-    const userDocRef = doc(firestoreDb, 'users', `${programme.client_id}`)
-    const snapshot = await getDoc(userDocRef)
-    let user
-    if(snapshot.exists()) user = snapshot.data()
-
-    const formatedDateDepart = new Intl.DateTimeFormat(undefined, options).format(programme.date_depart)
-    
-    const comp_notif = {
-      uid: '', 
-      title: 'Réservation de ticket', 
-      message: `Vous avez une réservation de ticket N° ${programme.number} en attente de validation venant du client « ${user.lastName} ${user.firstName} » pour le trajet « ${programme.lieu_depart} - ${programme.destination} » du « ${formatedDateDepart} », veuillez valider ou annuler cette réservation.`, 
-      userId: programme.compagnie_uid,
-      lu: false, 
-      createdAt: Timestamp.now() 
-    }
-
-    const comp_docRef = await addDoc(notificationColRef, comp_notif)
-
-    await updateDoc(comp_docRef.ref, { uid: `${comp_docRef.id}` })
 
     await router.push(`/notation/${companieId}`) 
     window.location.reload() 

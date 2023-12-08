@@ -7,6 +7,7 @@ import { useLocalisationStore } from '@/store/localisation.js'
 import { useCompanieStore } from '@/store/companie.js' 
 import { useSlide } from '@/store/slideImages.js' 
 import { usePromotionStore } from '@/store/promotion.js' 
+import { useNotificationStore } from '@/store/notification.js' 
 import axios from 'axios'
 import router from '@/router/router.js'
 import Swal from 'sweetalert2'
@@ -22,6 +23,7 @@ const companieStore = useCompanieStore()
 const searchStore = useSearchStore() 
 const slideStore = useSlide() 
 const promotionStore = usePromotionStore() 
+const notificationStore = useNotificationStore() 
 
 const user = authStore.user
 const savedUser = JSON.parse(localStorage.getItem('user'))
@@ -48,11 +50,12 @@ onBeforeMount(async () => {
       snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
   }
 
-  notifications.value.forEach(notification => {
+  await notifications.value.forEach(notification => {
     if(notification.lu === false) {
         noneReadNotifications.value.push(notification)
     }
-  })
+  }) 
+  notificationStore.setCount(noneReadNotifications.value.length)
 }) 
 
 const collected_country = ['BJ', 'BF', 'CI', 'GN', 'ML', 'NE', 'SN', 'TG'] 
@@ -120,6 +123,14 @@ const logout = async () => {
 
 const goTo_client = async () => {
   await router.push('/compte_client')
+  window.location.reload() 
+}
+const goTo_location = async () => {
+  await router.push('/compte_vehicule')
+  window.location.reload() 
+}
+const goTo_reservation = async () => {
+  await router.push('/compte_reservation')
   window.location.reload() 
 }
 
@@ -233,17 +244,17 @@ const selectedValue = ref('');
               </span> <i class="bi bi-chevron-down"></i
             ></router-link>
             <ul style="background: #219935">
-              <li>
+              <li @click="goTo_location">
                 <router-link 
-                  to="/compte_vehicule" 
+                  to="" 
                   v-if="(savedUser && savedUser.type_compagnie == 'Location') 
                         || (user.raison_social && user.type_compagnie == 'Location') 
                         || (authStore.isConnected && authStore.isLocationCompany)"
                   >Compte location de vehicules</router-link
                 >
               </li>
-              <li>
-                <router-link to="/compte_reservation" 
+              <li @click="goTo_reservation">
+                <router-link to="" 
                 v-if="(savedUser && savedUser.type_compagnie == 'Transport') 
                       || (user.raison_social && user.type_compagnie == 'Transport') 
                       || (authStore.isConnected && authStore.isReservationCompany)"
@@ -274,7 +285,7 @@ const selectedValue = ref('');
             <router-link v-if="authStore.user.uid || savedUser" class="nav-link scrollto" :to="`/notification`" :class="{ active: $route.path === '/notification' }"
             ><i class="bx bxs-bell" id="icon_menu"></i> 
               <p style="position: absolute; right: -8px; top: -10px; color: white; background: #E00; border-radius: 100%; padding: 0 2px">
-                {{ noneReadNotifications.length > 0 ? `+${noneReadNotifications.length}` : '' }} 
+                {{ notificationStore.count > 0 ? `+${notificationStore.count}` : '' }} 
               </p>
             </router-link>
           </li>
