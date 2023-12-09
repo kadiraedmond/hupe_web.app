@@ -35,7 +35,12 @@ let utilisees = reactive({
 
 const updateReservationsDashboard = () => {
   reservationStore.companieReservations.forEach(reservation => {
-    if(reservation.status === 'En attente' || reservation.status === 'En report') {
+    if(reservation.status === 'En attente') {
+      enAttente.totalNumber++ 
+      enAttente.totalPrice += Number(reservation.montant)
+    }
+
+    if(reservation.status === 'En report') {
       enAttente.totalNumber++ 
       enAttente.totalPrice += Number(reservation.montant)
     }
@@ -150,7 +155,7 @@ const valider = async (reservation) => {
     const data = { 
       uid: '', 
       title: 'Validation de réservation', 
-      message: `Votre demande de réservation de ticket pour le trajet « ${reservation.lieu_depart} - ${reservation.destination} » le « ${ new Intl.DateTimeFormat(undefined, options).format(reservation.date_depart) } » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
+      message: `Votre demande de réservation de ticket pour le trajet « ${reservation.lieu_depart} - ${reservation.destination} » le « ${ new Intl.DateTimeFormat('fr-FR', options).format(reservation.date_depart.toDate()) } » a été validée, vous pouvez procéder au paiement dès maintenant.`, 
       destinataire: reservation.client_id, 
       lu: false, 
       createdAt: Timestamp.now() 
@@ -575,7 +580,7 @@ const options = {
                                                 margin-top: -15px;
                                             "
                                             >
-                                            {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
+                                            {{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.createdAt.toDate()) }} <br />
                                             
                                             </p>
                                         </div>     
@@ -671,7 +676,7 @@ const options = {
                                       "
                                     >
                                       Retour |
-                                      <strong>{{ new Intl.DateTimeFormat(undefined, options).format(reservation.date_retour) }} </strong>
+                                      <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.date_retour.toDate()) }} </strong>
                                     </p>
                                      
 

@@ -181,8 +181,9 @@ export const useCompanieStore = defineStore('companieStore', {
             const companieSubColRef = collection(companieDocRef, 'vehicules_programmer')
             
             try {
-                const snapshot = await getDocs(companieSubColRef);
-                snapshot.docs.forEach((doc) => this.companieCars.push({ ...doc.data() }));
+                const q = query(companieSubColRef, where('status', '==', 'active'))
+                const snapshot = await getDocs(q)
+                snapshot.docs.forEach((doc) => this.companieCars.push({ ...doc.data() }))
             } catch (error) {
                 console.log(error)
             } 
@@ -192,8 +193,8 @@ export const useCompanieStore = defineStore('companieStore', {
             const companieSubColRef = collection(companieDocRef, 'vehicules_programmer')
             
             try {
-                const snapshot = await getDocs(companieSubColRef);
-                snapshot.docs.forEach((doc) => this.companieCars.push({ ...doc.data() }));
+                const snapshot = await getDocs(companieSubColRef)
+                snapshot.docs.forEach((doc) => this.companieCars.push({ ...doc.data() }))
             } catch (error) {
                 console.log(error)
             } 
@@ -255,7 +256,8 @@ export const useCompanieStore = defineStore('companieStore', {
             const programmeVoyagesColRef = collection(companieDocRef, 'programme_des_voyages')
 
             try {
-                const snapshot = await getDocs(programmeVoyagesColRef);
+                const q = query(programmeVoyagesColRef, where('status', '==', 'active'))
+                const snapshot = await getDocs(q)
 
                 snapshot.docs.forEach((doc) => this.programmeVoyages.push({ ...doc.data() }))
             } catch (error) {

@@ -1,7 +1,7 @@
 <script setup>
-import { onMounted, onBeforeMount, computed, ref } from 'vue'
+import { onMounted, onBeforeMount, computed, onUnmounted, ref } from 'vue'
 import { firestoreDb } from "@/firebase/firebase.js"
-import { updateDoc, doc, getDocs, query, where, collection, getDoc } from "firebase/firestore"
+import { updateDoc, doc, getDocs, query, where, collection, onSnapshot, getDoc } from "firebase/firestore"
 
 import { useNotificationStore } from '@/store/notification.js' 
 
@@ -27,6 +27,9 @@ const noneReadNotifications_desc = computed(() => noneReadNotifications.value.so
 	return b.createdAt - a.createdAt
 }))
 
+
+let unsubscribe
+
 onBeforeMount(async () => {
     isLoading.value = true
     connectedUser = JSON.parse(localStorage.getItem('user')) || authStore.user 
@@ -36,11 +39,31 @@ onBeforeMount(async () => {
 
         const snapshot = await getDocs(q)
         snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+
+        unsubscribe = onSnapshot(q, (snapshot) => {
+            snapshot.docChanges().forEach((change) => {
+                const userData = change.doc.data()
+                if (change.type === 'added' && userData.userId === connectedUser.uid) {
+                    notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+                    noneReadNotifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+                }
+            })
+        })
     } else {
         const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
 
         const snapshot = await getDocs(q)
         snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+
+        unsubscribe = onSnapshot(q, (snapshot) => {
+            snapshot.docChanges().forEach((change) => {
+                const userData = change.doc.data()
+                if (change.type === 'added' && userData.destinataire === connectedUser.uid) {
+                    notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+                    noneReadNotifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+                }
+            })
+        })
     }
 
     // const q = query(notificationColRef, where('destinataire', 'array-contains', `${connectedUser.uid}`))
@@ -90,15 +113,16 @@ const readNotifications = async (notification) => {
 
 }
 
-const refresh = ()=>{
-  window.location.reload()
- } 
+const refresh = () => {
+    window.location.reload()
+} 
  
 onMounted(() => {
   window.scrollTo(0, 0)
   this.refresh()
 })
 
+onUnmounted(() => unsubscribe())
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
@@ -139,7 +163,7 @@ onMounted(() => {
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
                                     <div v-if="notifications.length > 0">
-                                        <div class="col-md-12 mb-3" v-for="(notification, index) in notifications" :key="index">
+                                        <div class="col-md-12 mb-3" v-for="(notification, index) in notifications_desc" :key="index">
                                             <div @click="readNotifications(notification)" class="card border-0 survol">
                                                 <div class="card-body">
                                                     <div class="row">

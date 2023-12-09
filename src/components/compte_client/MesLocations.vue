@@ -133,7 +133,7 @@ const payer = async (location) => {
         message: `Vous avez effectué un paiement de caution de FCFA ${location.montant} pour la location de votre ${location.vehicule} ${location.modele} ${location.annee_vehicule} pour une durée de ${differenceEnJours} jours.`, 
         destinataire: userId, 
         lu: false, 
-        createdAt: new Date()
+        createdAt: Timestamp.now()
       }
 
       await addDoc(notificationColRef, client_notif)
@@ -159,7 +159,7 @@ const payer = async (location) => {
         userId: location.compagnie_uid, 
         type: 'compagnie', 
         lu: false, 
-        createdAt: new Date()
+        createdAt: Timestamp.now()
       }
 
       await addDoc(notificationColRef, comp_notif)
@@ -224,7 +224,7 @@ const sendMessage = async (location) => {
                         margin-top: -15px;
                       "
                     >
-                      {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }} <br />
+                      {{ new Intl.DateTimeFormat('fr-FR', options).format(location.createdAt.toDate()) }} <br />
                       <strong> {{ location.number }} </strong>
                     </p>
                   </div>

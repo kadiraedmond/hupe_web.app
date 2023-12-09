@@ -19,13 +19,16 @@ const promotionStore = usePromotionStore()
 const authStore = useAuthStore()
 const companieId = route.params.id 
 
-const politiques = ref('') 
+const politiques = ref({}) 
 
 const getPolitiques = async () => {
   const q = query(firestoreDb, 'politiques', where('compagnie_uid', '==', `${companieId}`)) 
   const snapshots = await getDocs(q) 
 
-  politiques.value = snapshots.docs[0].data()
+  if(snapshots.docs.length > 0) {
+    politiques.value = snapshots.docs[0].data()
+  }
+
 }
 
 onBeforeMount(async () => {
@@ -39,7 +42,9 @@ onBeforeMount(async () => {
 
   companieStore.setCompanieCars(companieId)
   promotionStore.setCompaniePromotionCars(companieId) 
+
   getPolitiques()
+  
 })
 
 onMounted(() => {
@@ -958,7 +963,7 @@ const isLoading = ref(false)
                                     class="card-title"
                                     style="font-size: 14px"
                                   >
-                                    {{ companieStore.companie.latitude }} {{ companieStore.companie.longitude }}
+                                    {{ companieStore.companie.latitude }} - {{ companieStore.companie.longitude }}
                                   </h5>
                                 </div>
                               </div>

@@ -1,7 +1,7 @@
 <script setup>
 import { useCompanieStore } from "@/store/companie.js"
 import { useAuthStore } from "@/store/auth.js"
-import { reactive, ref, onBeforeMount, onMounted } from "vue"
+import { reactive, ref, onBeforeMount, onUnmounted, onMounted } from "vue"
 import Swal from 'sweetalert2'
 import { collection, query, doc, where, Timestamp, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
@@ -36,7 +36,12 @@ let utilisees = reactive({
 
 const updateReservationsDashboard = () => {
   companieStore.companieLocations.forEach((location) => {
-    if(location.status === "En attente" || location.status === "En report") {
+    if(location.status === "En attente") {
+      enAttente.totalNumber++  
+      enAttente.totalPrice += Number(location.montant) 
+    } 
+
+    if(location.status === "En report") {
       enAttente.totalNumber++  
       enAttente.totalPrice += Number(location.montant) 
     } 
@@ -105,7 +110,11 @@ onBeforeMount(async () => {
   updateReservationsDashboard() 
   
   companieStore.companieLocations.forEach(comp => {
-    if(comp.status === 'En attente' || comp.status === 'En report') {
+    if(comp.status === 'En attente') {
+      elements_en_attente.value.push(comp)
+    } 
+
+    if(comp.status === 'En report') {
       elements_en_attente.value.push(comp)
     } 
     
@@ -130,10 +139,30 @@ onBeforeMount(async () => {
     }
     
   })
-});
+})
+
+onUnmounted(() => {
+  enAttente.totalNumber = 0
+  enAttente.totalPrice = 0
+
+  valides.totalNumber = 0 
+  valides.totalPrice = 0 
+
+  confirmees.totalNumber = 0 
+  confirmees.totalPrice = 0 
+
+  annulees.totalNumber = 0 
+  annulees.totalPrice = 0 
+
+  reportees.totalNumber = 0 
+  reportees.totalPrice = 0 
+  
+  utilisees.totalNumber = 0
+  utilisees.totalPrice = 0 
+})
 
 onMounted(() => {
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0)
 })
 
 const options = {
@@ -668,8 +697,18 @@ const valider = async (location) => {
                                                   margin-top: -15px;
                                                 "
                                               >
-                                                {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }}
+                                                {{ new Intl.DateTimeFormat('fr-FR', options).format(location.created_at.toDate()) }}
                                                 <br />
+                                              </p>
+                                            </div> 
+
+                                            <div class="col-6" >
+                                              <p
+                                              class="card-text"
+                                              style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                              >
+                                              N° |
+                                              <strong style="color: #219935"> {{ location.number }} </strong>
                                               </p>
                                             </div>
                                           </div>
@@ -754,11 +793,11 @@ const valider = async (location) => {
                                           >
                                             Retrait |
                                             <strong
-                                              >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
+                                              >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
                                             </strong>
                                             |
                                             <strong>{{
-                                              new Intl.DateTimeFormat(undefined, options).format(location.heure_retrait)
+                                              new Intl.DateTimeFormat('fr-FR', options).format(location.heure_retrait.toDate())
                                             }}</strong>
                                           </p>
 
@@ -772,7 +811,7 @@ const valider = async (location) => {
                                           >
                                             Retour |
                                             <strong
-                                              >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
+                                              >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
                                             </strong>
                                           </p>
 
@@ -908,8 +947,8 @@ const valider = async (location) => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="(location, index) in elements_en_attente" :key="index">
-                          <th scope="row">1</th>
+                        <tr v-for="(location, i) in elements_en_attente" :key="i">
+                          <th scope="row">{{ i }}</th>
                           <td></td>
                           <td>{{ location.nom_client }}</td>
                           
@@ -921,9 +960,9 @@ const valider = async (location) => {
                           <td>{{ location.plaque_vehicule }}</td>
                           <td>{{ location.chauffeur }}</td>
                           <td>{{ location.interieurPays }}</td>
-                          <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
+                          <td>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}</td>
                           <td>{{ location.heure_retrait }}</td>
-                          <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
+                          <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}</td>
                           <td> {{ location.heure_retour }}</td>
                           <td> {{ location.montant }}</td>
                           <td></td>
@@ -1111,8 +1150,18 @@ const valider = async (location) => {
                                                     margin-top: -15px;
                                                   "
                                                 >
-                                                  {{ new Intl.DateTimeFormat(undefined, options).format(location.createdAt) }}
+                                                  {{ new Intl.DateTimeFormat('fr-FR', options).format(location.created_at.toDate()) }}
                                                   <br />
+                                                </p>
+                                              </div> 
+
+                                              <div class="col-6" >
+                                                <p
+                                                class="card-text"
+                                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                                >
+                                                N° |
+                                                <strong style="color: #219935"> {{ location.number }} </strong>
                                                 </p>
                                               </div>
                                             </div>
@@ -1197,7 +1246,7 @@ const valider = async (location) => {
                                             >
                                               Retrait |
                                               <strong
-                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
+                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
                                               </strong>
                                               |
                                               <strong>{{
@@ -1215,7 +1264,7 @@ const valider = async (location) => {
                                             >
                                               Retour |
                                               <strong
-                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
+                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
                                               </strong>
                                             </p>
 
@@ -1303,9 +1352,9 @@ const valider = async (location) => {
                         <td>{{ location.plaque_vehicule }}</td>
                         <td>{{ location.chauffeur }}</td>
                         <td>{{ location.interieurPays }}</td>
-                        <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
+                        <td>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}</td>
                         <td>{{ location.heure_retrait }}</td>
-                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
+                        <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}</td>
                         <td> {{ location.heure_retour }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>
@@ -1496,16 +1545,15 @@ const valider = async (location) => {
                                                 >
                                                   {{
                                                     new Intl.DateTimeFormat(
-                                                      undefined,
+                                                      'fr-FR',
                                                       options
-                                                    ).format(location.created_at)
+                                                    ).format(location.created_at.toDate())
                                                   }}
                                                   <br />
                                                 </p> 
-                                                <strong style="color: #219935"> {{ location.number }} </strong>
                                               </div>
                                               
-                                              <!-- <div class="col-6" >
+                                              <div class="col-6" >
                                                 <p
                                                 class="card-text"
                                                 style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
@@ -1513,7 +1561,7 @@ const valider = async (location) => {
                                                 N° |
                                                 <strong style="color: #219935"> {{ location.number }} </strong>
                                                 </p>
-                                              </div>     -->
+                                              </div>    
                                             </div>
                                             <br />
 
@@ -1589,7 +1637,7 @@ const valider = async (location) => {
                                             >
                                               Retrait |
                                               <strong
-                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
+                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
                                               </strong>
                                               |
                                               <strong>{{
@@ -1607,7 +1655,7 @@ const valider = async (location) => {
                                             >
                                               Retour |
                                               <strong
-                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
+                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
                                               </strong>
                                             </p>
 
@@ -1627,7 +1675,9 @@ const valider = async (location) => {
                                         <div class="col-md-12">
                                           <div class="row" style="    padding: 10px;top: -19px;">
                                             <div class="col-md-6 text-start">
-                                              <button class="btn " style="background:white ; color:#219935 ; border-color:#219935 ; font-size: 12px;">Appel</button>
+                                              <a :href="`tel:${location.telephone_client}`">
+                                                <button class="btn " style="background:white ; color:#219935 ; border-color:#219935 ; font-size: 12px;">Appel</button>
+                                              </a>
                                             </div>
                                             <div class="col-md-6 text-end">
                                               <router-link :to="`/messagerie-compagnie/${location.client_id}`">
@@ -1707,9 +1757,9 @@ const valider = async (location) => {
                       <td>{{ location.plaque_vehicule }}</td>
                       <td>{{ location.chauffeur }}</td>
                       <td>{{ location.interieurPays }}</td>
-                      <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
+                      <td>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}</td>
                       <td>{{ location.heure_retrait }}</td>
-                      <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
+                      <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}</td>
                       <td> {{ location.heure_retour }}</td>
                       <td> </td>
                       <td> {{ location.montant }}</td>
@@ -1900,11 +1950,21 @@ const valider = async (location) => {
                                             >
                                               {{
                                                 new Intl.DateTimeFormat(
-                                                  undefined,
+                                                  'fr-FR',
                                                   options
-                                                ).format(location.createdAt)
+                                                ).format(location.created_at.toDate())
                                               }}
                                               <br />
+                                            </p>
+                                          </div> 
+
+                                          <div class="col-6" >
+                                            <p
+                                            class="card-text"
+                                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                            >
+                                            N° |
+                                            <strong style="color: #219935"> {{ location.number }} </strong>
                                             </p>
                                           </div>
                                         </div>
@@ -1989,7 +2049,7 @@ const valider = async (location) => {
                                         >
                                           Retrait |
                                           <strong
-                                            >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
+                                            >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
                                           </strong>
                                           |
                                           <strong>{{
@@ -2007,7 +2067,7 @@ const valider = async (location) => {
                                         >
                                           Retour |
                                           <strong
-                                            >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
+                                            >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
                                           </strong>
                                         </p>
 
@@ -2092,10 +2152,10 @@ const valider = async (location) => {
                         <td>{{ location.plaque_vehicule }}</td>
                         <td>{{ location.chauffeur }}</td>
                         <td>{{ location.interieurPays }}</td>
-                        <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
+                        <td>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}</td>
                         <td>{{ location.heure_retrait }}</td>
-                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
-                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.heure_retour) }}</td>
+                        <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}</td>
+                        <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.heure_retour.toDate()) }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>
                       
@@ -2284,11 +2344,21 @@ const valider = async (location) => {
                                                 >
                                                   {{
                                                     new Intl.DateTimeFormat(
-                                                      undefined,
+                                                      'fr-FR',
                                                       options
-                                                    ).format(location.createdAt)
+                                                    ).format(location.created_at.toDate())
                                                   }}
                                                   <br />
+                                                </p>
+                                              </div> 
+
+                                              <div class="col-6" >
+                                                <p
+                                                class="card-text"
+                                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                                >
+                                                N° |
+                                                <strong style="color: #219935"> {{ location.number }} </strong>
                                                 </p>
                                               </div>
                                             </div>
@@ -2373,7 +2443,7 @@ const valider = async (location) => {
                                             >
                                               Retrait |
                                               <strong
-                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
+                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
                                               </strong>
                                               |
                                               <strong>{{
@@ -2391,7 +2461,7 @@ const valider = async (location) => {
                                             >
                                               Retour |
                                               <strong
-                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
+                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
                                               </strong>
                                             </p>
 
@@ -2476,9 +2546,9 @@ const valider = async (location) => {
                         <td>{{ location.plaque_vehicule }}</td>
                         <td>{{ location.chauffeur }}</td>
                         <td>{{ location.interieurPays }}</td>
-                        <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
+                        <td>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}</td>
                         <td>{{ location.heure_retrait }}</td>
-                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
+                        <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}</td>
                         <td> {{ location.heure_retour }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>
@@ -2668,11 +2738,21 @@ const valider = async (location) => {
                                                 >
                                                   {{
                                                     new Intl.DateTimeFormat(
-                                                      undefined,
+                                                      'fr-FR',
                                                       options
-                                                    ).format(location.createdAt)
+                                                    ).format(location.created_at.toDate())
                                                   }}
                                                   <br />
+                                                </p>
+                                              </div> 
+
+                                              <div class="col-6" >
+                                                <p
+                                                class="card-text"
+                                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                                >
+                                                N° |
+                                                <strong style="color: #219935"> {{ location.number }} </strong>
                                                 </p>
                                               </div>
                                             </div>
@@ -2757,7 +2837,7 @@ const valider = async (location) => {
                                             >
                                               Retrait |
                                               <strong
-                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}
+                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
                                               </strong>
                                               |
                                               <strong>{{
@@ -2775,7 +2855,7 @@ const valider = async (location) => {
                                             >
                                               Retour |
                                               <strong
-                                                >{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
+                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
                                               </strong>
                                             </p>
 
@@ -2860,9 +2940,9 @@ const valider = async (location) => {
                         <td>{{ location.plaque_vehicule }}</td>
                         <td>{{ location.chauffeur }}</td>
                         <td>{{ location.interieurPays }}</td>
-                        <td>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }}</td>
+                        <td>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}</td>
                         <td>{{ location.heure_retrait }}</td>
-                        <td> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}</td>
+                        <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}</td>
                         <td> {{ location.heure_retour }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>

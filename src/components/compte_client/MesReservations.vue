@@ -142,7 +142,7 @@ const payer = async (reservation) => {
         message: `Vous avez effectué un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
         destinataire: userId, 
         lu: false, 
-        createdAt: new Date()
+        createdAt: Timestamp.now()
       }
 
       await addDoc(notificationColRef, client_notif)
@@ -167,7 +167,7 @@ const payer = async (reservation) => {
         message: `Vous avez reçu un paiement de FCFA ${reservation.montant} pour la réservation du ticket N° ${reservation.number} pour le trajet de ${reservation.lieu_depart} à ${reservation.destination}.`, 
         userId: reservation.compagnie_uid, 
         lu: false, 
-        createdAt: new Date()
+        createdAt: Timestamp.now()
       }
 
       await addDoc(notificationColRef, comp_notif)
@@ -211,7 +211,7 @@ const payer = async (reservation) => {
                         margin-top: -15px;
                       "
                     >
-                      {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
+                      {{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.createdAt.toDate()) }} <br />
                       <strong> {{ reservation.number }} </strong>
                     </p>
                   </div>

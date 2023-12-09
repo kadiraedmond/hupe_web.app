@@ -93,17 +93,7 @@ const reporter = async (location) => {
 
   try {
     // const docRef = await addDoc(reportColRef, { ...extracted_location, status: 'En attente', report: new Date(date_report.value) }) 
-    await setDoc(doc(reportColRef, `${location.uid}`), { ...location, status: 'En attente', report_retrait: new Date(date_retrait.value), report_retour: new Date(date_retour.value) })
-    
-
-    document.querySelector('#reportForm').reset()
-    document.querySelector('.btn-close-reporter').click()
-
-    Swal.fire({
-      title: "Succès",
-      text: "Votre demande de report a été envoyé", 
-      icon: "success"
-    }) 
+    await setDoc(doc(reportColRef, `${location.uid}`), { ...extracted_location, status: 'En attente', report_retrait: new Date(date_retrait.value), report_retour: new Date(date_retour.value) })
 
     const report_data = {
       status: 'En report', 
@@ -126,7 +116,15 @@ const reporter = async (location) => {
   
     const docRef = await addDoc(notificationColRef, data)
 
-    await updateDoc(docRef, { uid: `${docRef.id}` })
+    await updateDoc(docRef, { uid: `${docRef.id}` }) 
+
+    document.querySelector('.btn-close-reporter').click()
+
+    Swal.fire({
+      title: "Succès",
+      text: "Votre demande de report a été envoyé", 
+      icon: "success"
+    }) 
 
     locations.value = locations.value.filter(loca => loca.uid !== location.uid)
     
@@ -249,10 +247,37 @@ const payer = async (location) => {
 
       // calcul du montant suite a l'application de la commission selon l'offre de la compagnie
       let montant_apres_commission
-      if(companieInfos.offre == 'basique') {
-        montant_apres_commission = Number(total_a_payer) - 0.15 * Number(total_a_payer)
-      } else if(companieInfos.offre == 'vip') {
-        montant_apres_commission = Number(total_a_payer) - 0.2 * Number(total_a_payer)
+      
+      if(companieInfos.offre === 'basique') {
+
+        if(differenceEnJours >= 1 && differenceEnJours <= 3) {
+          montant_apres_commission = Number(total_a_payer) - (0.15 * Number(total_a_payer))
+        } 
+
+        if(differenceEnJours >= 4 && differenceEnJours <= 7) {
+          montant_apres_commission = Number(total_a_payer) - (2 * 0.15 * Number(total_a_payer))
+        } 
+
+        if(differenceEnJours > 7) {
+          montant_apres_commission = Number(total_a_payer) - (3 * 0.15 * Number(total_a_payer))
+        }
+
+      } 
+      
+      else if(companieInfos.offre === 'vip') {
+
+        if(differenceEnJours >= 1 && differenceEnJours <= 3) {
+          montant_apres_commission = Number(total_a_payer) - (0.20 * Number(total_a_payer))
+        } 
+
+        if(differenceEnJours >= 4 && differenceEnJours <= 7) {
+          montant_apres_commission = Number(total_a_payer) - (2 * 0.20 * Number(total_a_payer))
+        } 
+
+        if(differenceEnJours > 7) {
+          montant_apres_commission = Number(total_a_payer) - (3 * 0.20 * Number(total_a_payer))
+        }
+
       }
 
       // ajouter la somme sur le compte de la compagnie
@@ -455,7 +480,7 @@ const options = {
                                               <p>Pour reporter votre ticket , veuillez séléctionner une nouvelle date</p>
                                             </div>
                                             <div class="col-md-12">
-                                              <form @submit.prevent="reporter(location)" class="row g-3 needs-validation" novalidate>
+                                            <form @submit.prevent="reporter(location)" class="row g-3 needs-validation" novalidate>
                                               <div class="col-md-12">
                                                 <label for="validationCustom01" class="form-label">Date de retrait</label>
                                                 <input type="date" class="form-control" id="validationCustom01" v-model="date_retrait" required>
@@ -497,7 +522,7 @@ const options = {
                                         margin-top: -15px;
                                     "
                                     >
-                                    {{ new Intl.DateTimeFormat(undefined, options).format(location.created_at) }} <br />
+                                    {{ new Intl.DateTimeFormat('fr-FR', options).format(location.created_at.toDate()) }} <br />
                                      
                                     </p>
                                 </div> 
@@ -562,7 +587,7 @@ const options = {
                                 margin-bottom: -8px;
                             "
                             >
-                            Retrait | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} </strong> |
+                            Retrait | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }} </strong> |
                             <strong>{{ location.heure_retrait }}</strong>
                             </p>
 
@@ -571,7 +596,7 @@ const options = {
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
-                            Retour | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </strong>
+                            Retour | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }} </strong>
                             </p>
                             <br />
 
@@ -713,8 +738,8 @@ const options = {
                                               <p style="margin-top: -15px; font-size: 14px;">{{ location.moteur }} | {{ location.boite }} | {{ location.plaque_vehicule }} </p>
                                               <p style="margin-top: -15px; font-size: 14px;"> chauffeur | <strong>{{ location.chauffeur }} </strong> </p>
                                               <p style="margin-top: -15px; font-size: 14px;"> Intérieur | <strong>{{ location.interieurPays }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;">Retrait | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retrait) }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Retour | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;">Retrait | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Retour | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }} </strong> </p>
                                               <p style="margin-top: -15px; font-size: 14px;"> Nombre de jours de location | <strong> {{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</strong></p>
                                             </div>
                                             <hr>

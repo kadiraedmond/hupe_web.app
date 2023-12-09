@@ -1,65 +1,65 @@
 // src/router.js
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from '@/views/Home.vue';
-import Detail from '@/views/Detail_client.vue';
-import Details from '@/views/Details.vue';
-import Reservation from '@/views/reservation.vue';
-import Location from '@/views/location.vue';
-import Form from '@/views/form_reservation.vue';
-import Forms from '@/views/form_locations.vue';
-import Choix from '@/views/choix_service.vue';
-import Choi from '@/views/choix_offres.vue';
-import Cho from '@/views/choix_offres2.vue';
-import Information from '@/views/informations.vue';
-import Service from '@/views/service.vue';
-import Connexion from '@/views/connexion.vue';
-import ClientConnexion from '@/views/connexion_client.vue';
-import Compte from '@/views/compte_location_vehicule.vue';
-import Comp from '@/views/compte_achat_engin.vue';
-import Compt from '@/views/compte_gros_engin.vue';
-import Comptes from '@/views/compte_reservation.vue';
-import Client from '@/views/compte_client.vue';
-import Dashboard from '@/views/dashbord.vue';
-import Activite from '@/views/activite.vue';
-import Otp from '@/views/otp.vue';
-import Partenaire from '@/views/partenaire.vue';
-import Pclient from '@/views/client.vue';
-import Message from '@/views/message.vue';
-import MessageCompagnie from '@/views/message_compagnie.vue';
-import Sclient from '@/views/services_client.vue';
-import Info from '@/views/infos.vue';
-import Legales from '@/views/legales.vue';
-import Application from '@/views/application.vue';
-import Vehicule from '@/views/detail_vehicule_de_location.vue';
-import Reserve from '@/views/detail_reservation_ticket.vue';
-import Dengin from '@/views/detail_location_engin.vue';
-import Engin from '@/views/gros_engin.vue';
-import Promotion from '@/views/promotion.vue';
-import Notation from '@/views/notation.vue';
-import Statuts from '@/views/statuts.vue';
-import Statut from '@/views/statut.vue';
-import Pays from '@/views/pays.vue';
-import Confirmation from '@/views/attente.vue';
-import RaisonLocation from '@/views/raison_location.vue';
-import RaisonReservation from '@/views/raison_reservation.vue';
-import Notification from '@/views/notification.vue';
-import Tickets from '@/views/ticket_location.vue';
-import Ticketss from '@/views/ticket_reservation.vue';
-import Recherche from '@/views/recherche.vue';
-import Support from '@/views/support.vue';
-import Blog from '@/views/blog/blog.vue';
-import Blog1 from '@/views/blog/blog1.vue';
-import Blog2 from '@/views/blog/blog2.vue';
-import Blog3 from '@/views/blog/blog3.vue';
-import VehiculeP from '@/views/vehicule.vue';
-import ReservationP from '@/views/reservation_populaire.vue';
-import EnginP from '@/views/engin_populaire.vue';
-import VenteP from '@/views/vente_populaire.vue';
-import InfosClient from '@/views/information_client.vue';
-import ConditionConnexion from '@/views/condition-connexion.vue';
+const Home = () => import('@/views/Home.vue')
+const Detail = () => import('@/views/Detail_client.vue')
+const Details = () => import('@/views/Details.vue')
+const Reservation = () => import('@/views/reservation.vue')
+const Location = () => import('@/views/location.vue')
+const Form = () => import('@/views/form_reservation.vue')
+const Forms = () => import('@/views/form_locations.vue')
+const Choix = () => import('@/views/choix_service.vue')
+const Choi = () => import('@/views/choix_offres.vue')
+const Cho = () => import('@/views/choix_offres2.vue')
+const Information = () => import('@/views/informations.vue')
+const Service = () => import('@/views/service.vue')
+const Connexion = () => import('@/views/connexion.vue')
+const ClientConnexion = () => import('@/views/connexion_client.vue')
+const Compte = () => import('@/views/compte_location_vehicule.vue')
+const Comp = () => import('@/views/compte_achat_engin.vue')
+const Compt = () => import('@/views/compte_gros_engin.vue')
+const Comptes = () => import('@/views/compte_reservation.vue')
+const Client = () => import('@/views/compte_client.vue')
+const Dashboard = () => import('@/views/dashbord.vue')
+const Activite = () => import('@/views/activite.vue')
+const Otp = () => import('@/views/otp.vue')
+const Partenaire = () => import('@/views/partenaire.vue')
+const Pclient = () => import('@/views/client.vue')
+const Message = () => import('@/views/message.vue')
+const MessageCompagnie = () => import('@/views/message_compagnie.vue')
+const Sclient = () => import('@/views/services_client.vue')
+const Info = () => import('@/views/infos.vue')
+const Legales = () => import('@/views/legales.vue')
+const Application = () => import('@/views/application.vue')
+const Vehicule = () => import('@/views/detail_vehicule_de_location.vue')
+const Reserve = () => import('@/views/detail_reservation_ticket.vue')
+const Dengin = () => import('@/views/detail_location_engin.vue')
+const Engin = () => import('@/views/gros_engin.vue')
+const Promotion = () => import('@/views/promotion.vue')
+const Notation = () => import('@/views/notation.vue')
+const Statuts = () => import('@/views/statuts.vue')
+const Statut = () => import('@/views/statut.vue')
+const Pays = () => import('@/views/pays.vue')
+const Confirmation = () => import('@/views/attente.vue')
+const RaisonLocation = () => import('@/views/raison_location.vue')
+const RaisonReservation = () => import('@/views/raison_reservation.vue')
+const Notification = () => import('@/views/notification.vue')
+const Tickets = () => import('@/views/ticket_location.vue')
+const Ticketss = () => import('@/views/ticket_reservation.vue')
+const Recherche = () => import('@/views/recherche.vue')
+const Support = () => import('@/views/support.vue')
+const Blog = () => import('@/views/blog/blog.vue')
+const Blog1 = () => import('@/views/blog/blog1.vue')
+const Blog2 = () => import('@/views/blog/blog2.vue')
+const Blog3 = () => import('@/views/blog/blog3.vue')
+const VehiculeP = () => import('@/views/vehicule.vue')
+const ReservationP = () => import('@/views/reservation_populaire.vue')
+const EnginP = () => import('@/views/engin_populaire.vue')
+const VenteP = () => import('@/views/vente_populaire.vue')
+const InfosClient = () => import('@/views/information_client.vue')
+const ConditionConnexion = () => import('@/views/condition-connexion.vue')
 
-import Politique from '@/views/poltique.vue';
+const Politique = () => import('@/views/poltique.vue')
 
 
 import { auth } from '@/firebase/firebase.js'

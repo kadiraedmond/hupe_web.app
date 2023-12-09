@@ -101,13 +101,7 @@ const reporter = async (reservation) => {
 
   try {
     // const docRef = await addDoc(reportColRef, { ...extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
-    await setDoc(doc(reportColRef, `${reservation.uid}`), { ...reservation, status: 'En attente', date_report: new Date(date_report.value), heure_report: heure_report.value })
-
-    Swal.fire({
-      title: "Succès",
-      text: "Votre demande de report a été envoyé", 
-      icon: "success"
-    })
+    await setDoc(doc(reportColRef, `${reservation.uid}`), { ...extracted_reservation, status: 'En attente', date_report: new Date(date_report.value), heure_report: heure_report.value })
 
     await updateDoc(reservationDocRef, { status: 'En report', date_depart: new Date(date_report.value), heure_depart: heure_report.value }) 
   
@@ -128,12 +122,19 @@ const reporter = async (reservation) => {
     await updateDoc(docRef, { uid: `${docRef.id}` })
 
     
+    document.querySelector('.btn-close-report').click()
+    
+    
+    Swal.fire({
+      title: "Succès",
+      text: "Votre demande de report a été envoyé", 
+      icon: "success"
+    })
+
+    
   } catch (error) {
     console.log(error)
   }
-
-  document.querySelector('#reportForm').reset()
-  document.querySelector('.btn-close').click()
 }
 
 const payer = async (reservation) => {
@@ -201,10 +202,17 @@ const payer = async (reservation) => {
 
       // calcul du montant suite a l'application de la commission selon l'offre de la compagnie
       let montant_apres_commission
+      
       if(companieInfos.offre == 'basique') {
-        montant_apres_commission = Number(reservation.montant) - 0.15 * Number(reservation.montant)
-      } else if(companieInfos.offre == 'vip') {
-        montant_apres_commission = Number(reservation.montant) - 0.2 * Number(reservation.montant)
+
+        montant_apres_commission = Number(reservation.montant) - (0.15 * Number(reservation.montant))
+
+      } 
+      
+      else if(companieInfos.offre == 'vip') {
+
+        montant_apres_commission = Number(reservation.montant) - (0.20 * Number(reservation.montant))
+
       }
 
       // ajouter la somme sur le compte de la compagnie
@@ -395,7 +403,7 @@ const options = {
                                       <div class="modal-content">
                                         <div class="modal-header" style="background-color:#219935 !important; color: white ">
                                           <h1 class="modal-title fs-5" id="exampleModalLabel">Demande de report</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          <button type="button" class="btn-close-report" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                           <div class="row">
@@ -446,7 +454,7 @@ const options = {
                                       margin-top: -15px;
                                   "
                                   >
-                                  {{ new Intl.DateTimeFormat(undefined, options).format(reservation.createdAt) }} <br />
+                                  {{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.createdAt.toDate()) }} <br />
                                 
                                   </p>
                               </div>
@@ -511,7 +519,7 @@ const options = {
                                 margin-bottom: -8px;
                             "
                             >
-                            Départ | <strong>{{ new Intl.DateTimeFormat(undefined, options).format(reservation.date_depart) }} </strong> |
+                            Départ | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.date_depart.toDate()) }} </strong> |
                             <strong>{{ reservation.heure_depart }}</strong>
                             </p>
 

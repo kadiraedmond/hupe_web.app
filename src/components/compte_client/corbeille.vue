@@ -21,7 +21,7 @@
                     <div class="col-md-4">
                     <p>
                         <img src="/assets/img/icone/calendar.png" alt="" />
-                        {{ new Intl.DateTimeFormat(undefined, options).format(history.date) }}
+                        {{ new Intl.DateTimeFormat('fr-FR', options).format(history.date.toDate()) }}
                     </p>
                     </div>
                 </div>

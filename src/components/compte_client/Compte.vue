@@ -213,7 +213,7 @@ const recharge = async () => {
                   <div class="col-md-6 text-end">
                     <p>
                       <i class='bx bx-calendar'></i>
-                      {{ new Intl.DateTimeFormat(undefined, options).format(history.date) }}
+                      {{ new Intl.DateTimeFormat('fr-FR', options).format(history.date.toDate()) }}
                     </p>
                   </div>
               </div>

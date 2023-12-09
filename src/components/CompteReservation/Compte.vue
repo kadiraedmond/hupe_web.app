@@ -192,7 +192,7 @@ const options = {
                   <div class="col-md-4 text-end">
                     <p>
                       <i class='bx bx-calendar'></i>
-                      {{ new Intl.DateTimeFormat(undefined, options).format(history.datePayement) }}
+                      {{ new Intl.DateTimeFormat('fr-FR', options).format(history.datePayement.toDate()) }}
                     </p>
                   </div>
               </div>

@@ -330,7 +330,11 @@ const star = async (car) => {
       const q = query(carEn_avantColRef, where('compagnie_uid', '==', `${userId}`)) 
       const snapshots = await getDocs(q) 
 
-      const car_data = snapshots.docs[0].data() 
+      let car_data 
+
+      if(snapshots.docs.length > 0) {
+        car_data = snapshots.docs[0].data()
+      }
 
       if(snapshots.docs.length > 0 && car_data.uid !== car.uid) {
         Swal.fire({
@@ -343,6 +347,7 @@ const star = async (car) => {
       else if((snapshots.docs.length > 0 && car_data.uid === car.uid) || snapshots.docs.length === 0) { 
 
         if(car.enAvant === false) {
+          car.enAvant = true
           await updateDoc(docRef, { enAvant: true }) 
   
           await setDoc(doc(carEn_avantColRef, `${car.uid}`), { ...car, enAvant: true })
@@ -358,6 +363,7 @@ const star = async (car) => {
         } 
         
         else if(car.enAvant === true) {
+          car.enAvant = false
           await updateDoc(docRef, { enAvant: false }) 
 
           const carDocRef = doc(carEn_avantColRef, `${car.uid}`) 
@@ -1001,12 +1007,12 @@ const handleInterieurPaysPrix = (e) => {
                         @click="star(car)"
                       >
                         <img 
-                          v-if="car.enAvant == false"
+                          v-if="car.enAvant === false"
                           src="/assets/img/icone/star.png"
                           class="img-fluid"
                           alt="..."
                         /> 
-                        <i v-if="car.enAvant == true" style="color: #f2c33c" class="fa fa-star" aria-hidden="true"></i>
+                        <i v-if="car.enAvant === true" style="color: #f2c33c" class="fa fa-star" aria-hidden="true"></i>
                       </button>
                     </div>
                     <div class="col" v-if="companieStore.companie.offre == 'vip'">
@@ -1144,12 +1150,12 @@ const handleInterieurPaysPrix = (e) => {
                           @click="unlock(car)"
                         >
                           <img 
-                            v-if="car.status == 'active'"
+                            v-if="car.status === 'active'"
                             src="/assets/img/icone/unlock.png"
                             class="img-fluid"
                             alt="..."
                           /> 
-                          <i v-if="car.status == 'desactive'" class="fa fa-unlock" aria-hidden="true"></i>
+                          <i v-if="car.status === 'desactive'" class="fa fa-unlock" aria-hidden="true"></i>
                         </button>
                       </div>
                     </div>

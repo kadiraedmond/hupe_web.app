@@ -167,7 +167,11 @@ const star = async (trajet) => {
       const q = query(trajetEn_avantColRef, where('compagnie_uid', '==', `${userId}`)) 
       const snapshots = await getDocs(q) 
 
-      const trajet_data = snapshots.docs[0].data() 
+      let trajet_data 
+
+      if(snapshots.docs.length > 0) {
+        trajet_data = snapshots.docs[0].data() 
+      }
 
       if(snapshots.docs.length > 0 && trajet_data.uid !== trajet.uid) {
         Swal.fire({
@@ -180,6 +184,7 @@ const star = async (trajet) => {
       else if((snapshots.docs.length > 0 && trajet_data.uid === trajet.uid) || snapshots.docs.length === 0) {
         
         if(trajet.enAvant === false) {
+          trajet.enAvant = true
           await updateDoc(docRef, { enAvant: true }) 
 
           await setDoc(doc(trajetEn_avantColRef, `${trajet.uid}`), { ...trajet, enAvant: true })
@@ -197,6 +202,7 @@ const star = async (trajet) => {
         } 
 
         else if(trajet.enAvant === true) {
+          trajet.enAvant = false
           await updateDoc(docRef, { enAvant: false }) 
 
           const trajetDocRef = doc(trajetEn_avantColRef, `${trajet.uid}`) 
@@ -326,7 +332,8 @@ const unlock = async (trajet) => {
   const docRef = doc(programmesColRef, `${trajet.uid}`) 
 
   try {
-    if(trajet.status == 'desactive') {
+    if(trajet.status === 'desactive') {
+      trajet.status = 'active'
       await updateDoc(docRef, { status: 'active' })
     
       console.log('Programme dévérouillé')
@@ -336,7 +343,8 @@ const unlock = async (trajet) => {
         icon: "success"
       })
       
-    } else if(trajet.status == 'active') {
+    } else if(trajet.status === 'active') {
+      trajet.status = 'desactive'
       await updateDoc(docRef, { status: 'desactive' })
     
       console.log('Programme Vérouillé')

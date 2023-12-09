@@ -50,7 +50,7 @@ const options = {
             <p class="text-black">{{ post.demande }}</p>
           </div>
           <div class="col-6 text-end">
-            <p class="text-black">Posté le : {{ new Intl.DateTimeFormat(undefined, options).format(post.createdAt) }}</p>
+            <p class="text-black">Posté le : {{ new Intl.DateTimeFormat('fr-FR', options).format(post.createdAt.toDate()) }}</p>
             <p class="text-black">
               {{ post.responses.length }} {{ post.responses.length === 0 ? 'réponses' : post.responses.length === 1 ? 'réponse' : 'réponses' }}
             </p>

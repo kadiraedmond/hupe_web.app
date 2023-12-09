@@ -15,7 +15,7 @@ import Swal from 'sweetalert2'
 import { onMounted, onBeforeMount, ref } from 'vue'
 
 import { firestoreDb } from "@/firebase/firebase.js"
-import { updateDoc, doc, getDocs, query, where, collection, getDoc } from "firebase/firestore"
+import { updateDoc, doc, getDocs, query, where, collection, onSnapshot, getDoc } from "firebase/firestore"
 
 const authStore = useAuthStore()
 const localisationStore = useLocalisationStore()
@@ -43,11 +43,41 @@ onBeforeMount(async () => {
 
       const snapshot = await getDocs(q)
       snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+
+      onSnapshot(q, async (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          const userData = change.doc.data()
+          if (change.type === 'added' && userData.userId === connectedUser.uid) {
+            notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+
+            if(userData.lu === false) {
+              noneReadNotifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+            }
+          }
+        })
+
+        notificationStore.setCount(noneReadNotifications.value.length)
+      })
   } else {
       const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
 
       const snapshot = await getDocs(q)
       snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+
+      onSnapshot(q, async (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          const userData = change.doc.data()
+          if (change.type === 'added' && userData.destinataire === connectedUser.uid) {
+            notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+
+            if(userData.lu === false) {
+              noneReadNotifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+            }
+          }
+        })
+
+        notificationStore.setCount(noneReadNotifications.value.length)
+      })
   }
 
   await notifications.value.forEach(notification => {
