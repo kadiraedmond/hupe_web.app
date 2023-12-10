@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onBeforeMount, computed, onUnmounted, ref } from 'vue'
+import { onMounted, onBeforeMount, computed, onUnmounted, watch, ref } from 'vue'
 import { firestoreDb } from "@/firebase/firebase.js"
 import { updateDoc, doc, getDocs, query, where, collection, onSnapshot, getDoc } from "firebase/firestore"
 
@@ -37,32 +37,43 @@ onBeforeMount(async () => {
     if(connectedUser.raison_social) {
         const q = query(notificationColRef, where('userId', '==', `${connectedUser.uid}`))
 
-        const snapshot = await getDocs(q)
-        snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+        // const snapshot = await getDocs(q)
+        // snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
 
         unsubscribe = onSnapshot(q, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 const userData = change.doc.data()
-                if (change.type === 'added' && userData.userId === connectedUser.uid) {
+                if(change.type === 'added' && userData.userId === connectedUser.uid) {
                     notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
-                    noneReadNotifications.value.push({ ...change.doc.data(), uid: change.doc.id })
                 }
             })
+
+            noneReadNotifications.value = []
+            notifications.value.forEach(notification => {
+                if(notification.lu === false) {
+                    noneReadNotifications.value.push(notification)
+                }
+            }) 
         })
     } else {
         const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
 
-        const snapshot = await getDocs(q)
-        snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+        // const snapshot = await getDocs(q)
+        // snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
 
         unsubscribe = onSnapshot(q, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 const userData = change.doc.data()
-                if (change.type === 'added' && userData.destinataire === connectedUser.uid) {
+                if(change.type === 'added' && userData.destinataire === connectedUser.uid) {
                     notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
-                    noneReadNotifications.value.push({ ...change.doc.data(), uid: change.doc.id })
                 }
             })
+
+            notifications.value.forEach(notification => {
+                if(notification.lu === false) {
+                    noneReadNotifications.value.push(notification)
+                }
+            }) 
         })
     }
 
@@ -70,12 +81,6 @@ onBeforeMount(async () => {
 
     // const snapshot = await getDocs(q)
     // snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
-
-    notifications.value.forEach(notification => {
-        if(notification.lu === false) {
-            noneReadNotifications.value.push(notification)
-        }
-    }) 
 
 
     isLoading.value = false
@@ -218,7 +223,7 @@ onUnmounted(() => unsubscribe())
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
                                     <div v-if="noneReadNotifications.length > 0">
-                                        <div class="col-md-12 mb-3" v-for="(noneReadNotification, index) in noneReadNotifications" :key="index">
+                                        <div class="col-md-12 mb-3" v-for="(noneReadNotification, index) in noneReadNotifications_desc" :key="index">
                                             <div @click="readNotifications(noneReadNotification)" class="card border-0 survol">
                                                 <div class="card-body">
                                                     <div class="row">

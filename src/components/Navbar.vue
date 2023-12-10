@@ -12,7 +12,7 @@ import axios from 'axios'
 import router from '@/router/router.js'
 import Swal from 'sweetalert2'
 
-import { onMounted, onBeforeMount, ref } from 'vue'
+import { onMounted, onBeforeMount, ref, watch } from 'vue'
 
 import { firestoreDb } from "@/firebase/firebase.js"
 import { updateDoc, doc, getDocs, query, where, collection, onSnapshot, getDoc } from "firebase/firestore"
@@ -39,53 +39,44 @@ onBeforeMount(async () => {
   connectedUser = JSON.parse(localStorage.getItem('user')) || authStore.user 
 
   if(connectedUser.raison_social) {
-      const q = query(notificationColRef, where('userId', '==', `${connectedUser.uid}`))
+    const q = query(notificationColRef, where('userId', '==', `${connectedUser.uid}`))
 
-      const snapshot = await getDocs(q)
-      snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+    // const snapshot = await getDocs(q)
+    // snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
 
-      onSnapshot(q, async (snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          const userData = change.doc.data()
-          if (change.type === 'added' && userData.userId === connectedUser.uid) {
-            notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+    onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        const userData = change.doc.data()
+        if(change.type === 'added' && userData.userId === connectedUser.uid) {
+          notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
 
-            if(userData.lu === false) {
-              noneReadNotifications.value.push({ ...change.doc.data(), uid: change.doc.id })
-            }
+          if(userData.lu === false) {
+            notificationStore.setCount(notificationStore.count + 1)
           }
-        })
+        }
 
-        notificationStore.setCount(noneReadNotifications.value.length)
       })
+    })
   } else {
-      const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
+    const q = query(notificationColRef, where('destinataire', '==', `${connectedUser.uid}`))
 
-      const snapshot = await getDocs(q)
-      snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
+    // const snapshot = await getDocs(q)
+    // snapshot.docs.forEach(doc => notifications.value.push(doc.data()))
 
-      onSnapshot(q, async (snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          const userData = change.doc.data()
-          if (change.type === 'added' && userData.destinataire === connectedUser.uid) {
-            notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
+    onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        const userData = change.doc.data()
+        if(change.type === 'added' && userData.destinataire === connectedUser.uid) {
+          notifications.value.push({ ...change.doc.data(), uid: change.doc.id })
 
-            if(userData.lu === false) {
-              noneReadNotifications.value.push({ ...change.doc.data(), uid: change.doc.id })
-            }
+          if(userData.lu === false) {
+            notificationStore.setCount(notificationStore.count + 1)
           }
-        })
+        }
 
-        notificationStore.setCount(noneReadNotifications.value.length)
       })
+    })
   }
-
-  await notifications.value.forEach(notification => {
-    if(notification.lu === false) {
-        noneReadNotifications.value.push(notification)
-    }
-  }) 
-  notificationStore.setCount(noneReadNotifications.value.length)
 }) 
 
 const collected_country = ['BJ', 'BF', 'CI', 'GN', 'ML', 'NE', 'SN', 'TG'] 
