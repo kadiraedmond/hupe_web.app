@@ -66,13 +66,13 @@ const recharge = async () => {
     })
     CinetPay.waitResponse(async (data) => {
         if (data.status == "REFUSED") {
+          document.querySelector('.btn-close').click()
+          
           Swal.fire({
             title: "Erreur",
             text: "Votre rechargement a échoué",
             icon: "error"
           })
-
-          document.querySelector('.btn-close').click()
 
         } else if (data.status == "ACCEPTED") {
 
@@ -102,6 +102,8 @@ const recharge = async () => {
 
           console.log('Rechargement effectué')
 
+          document.querySelector('.btn-close').click()
+          
           Swal.fire({
             title: "Succès",
             text: "Votre rechargement a été effectué avec succès",
@@ -109,7 +111,6 @@ const recharge = async () => {
           }) 
 
           
-          document.querySelector('.btn-close').click()
 
           const notificationColRef = collection(firestoreDb, 'notifications')
 

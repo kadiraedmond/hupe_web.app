@@ -21,21 +21,21 @@ const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const carId = route.params.id
+const carId = route.params.vehiculeId
 
-let companieId 
+const companieId = route.params.companieId
 
 const vehicules = ref([]) 
 const autresVehicules = ref([])
 
 onBeforeMount(async () => {
-  await promotionStore.setVehicule(carId)
+  await promotionStore.setVehicule(companieId, carId)
 
-  companieId = await promotionStore.vehicule.compagnie_uid
-  console.log(companieId)
+  // companieId = await promotionStore.vehicule.compagnie_uid
+  // console.log(companieId)
 
   companieStore.setCompanieById(companieId)
-  companieStore.setCompanieCars(companieId) 
+  await companieStore.setCompanieCars(companieId) 
 
   vehicules.value = companieStore.companieCars 
 
@@ -803,7 +803,7 @@ onMounted(() => {
             id="compagnie_card"
             style="background: #f3f4f6; box-shadow: none"
           >
-            <router-link :to="`/detail_vehicule_location/${car.uid}`">
+            <router-link :to="`/detail_vehicule_location/${companieId}/${car.uid}`">
               <img
                 :src="car.vehicule_image_url"
                 class="card-img-top"

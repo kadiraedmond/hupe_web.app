@@ -277,14 +277,14 @@ const routes = [
   },
 
   {
-    path: '/detail_vehicule_location/:id',
+    path: '/detail_vehicule_location/:companieId/:vehiculeId',
     name: 'Vehicule',
     component: Vehicule,
     
   },
 
   {
-    path: '/detail_reservation_ticket/:id',
+    path: '/detail_reservation_ticket/:companieId/:trajetId',
     name: 'Reserve',
     component: Reserve,
     

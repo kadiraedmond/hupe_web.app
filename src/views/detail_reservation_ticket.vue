@@ -20,20 +20,20 @@ const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const programmeId = route.params.id 
+const programmeId = route.params.trajetId 
 
 const programmes = ref([]) 
 const autresProgrammes = ref([]) 
 
-let companieId
+const companieId = route.params.companieId
 
 onBeforeMount(async () => {
-  await promotionStore.setProgramme(programmeId) 
+  await promotionStore.setProgramme(companieId, programmeId) 
 
-  companieId = await promotionStore.programme.compagnie_uid
+  // companieId = await promotionStore.programme.compagnie_uid
 
   companieStore.setCompanieById(companieId)
-  companieStore.setProgrammesVoyages(companieId) 
+  await companieStore.setProgrammesVoyages(companieId) 
 
   programmes.value = companieStore.programmeVoyages 
 
@@ -508,7 +508,7 @@ onMounted(() => {
             id="compagnie_card"
             style="background: #f3f4f6; box-shadow: none"
           >
-            <router-link :to="`/detail_reservation_ticket/${programme.uid}`"> 
+            <router-link :to="`/detail_reservation_ticket/${companieId}/${programme.uid}`"> 
               <img
                 src="/assets/img/rb.jpg"
                 class="card-img-top"

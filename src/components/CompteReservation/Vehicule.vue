@@ -64,29 +64,27 @@ const addNewTrajet = async () => {
 
   if(addedDoc) {
     console.log('Document ajouté')
+    try {
+      await updateDoc(addedDoc, { uid: `${addedDoc.id}` })
+      console.log('ID ajouté')
+
+      const newData = { ...data, uid: `${addedDoc.id}` }
+      trajets.value.push(newData)
+
+      // const programmeColRef = collection(firestoreDb, 'programme_des_voyages')
+
+      // await setDoc(doc(programmeColRef, `${addedDoc.id}`), newData)
+    
+    } catch (error) {
+      console.log(error)
+    }
+    document.querySelector('btn-close-a').click() 
     Swal.fire({
       title: "Succès",
       text: "Votre trajet a été ajouté",
       icon: "success"
     })
   } 
-
-  document.querySelector('btn-close-a').click() 
-
-  try {
-    await updateDoc(addedDoc, { uid: `${addedDoc.id}` })
-    console.log('ID ajouté')
-
-    const newData = { ...data, uid: `${newDoc.id}` }
-    trajets.value.push(newData)
-
-    const programmeColRef = collection(firestoreDb, 'programme_des_voyages')
-
-    await setDoc(doc(programmeColRef, `${newDoc.id}`), newData)
-  
-  } catch (error) {
-    console.log(error)
-  }
 }
 
 const handleLieuDepart = (e) => {

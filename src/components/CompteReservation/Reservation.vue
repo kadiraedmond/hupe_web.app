@@ -134,6 +134,8 @@ onMounted(() => {
   window.scrollTo(0, 0)
 })
 
+const notificationColRef = collection(firestoreDb, 'notifications')
+
 const valider = async (reservation) => {
   const docRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)
 
@@ -149,8 +151,6 @@ const valider = async (reservation) => {
     const snapshot = await getDoc(userDocRef)
     let user
     if(snapshot.exists()) user = snapshot.data()
-
-    const notificationColRef = collection(firestoreDb, 'notifications')
     
     const data = { 
       uid: '', 
@@ -164,6 +164,8 @@ const valider = async (reservation) => {
     const docRef = await addDoc(notificationColRef, data)
 
     await updateDoc(docRef.ref, { uid: `${docRef.id}` })
+
+    elements_valide.value = elements_valide.value.filter(el => el.uid !== location.uid)
   } catch (error) {
     Swal.fire({
       title: "Erreur",
@@ -181,6 +183,54 @@ const options = {
   // hour: '2-digit', 
   // minute: '2-digit', 
   // second: '2-digit', 
+}
+
+const annuler = async (reservation) => {
+  const reservationDocRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)
+
+  const result = await Swal.fire({
+      title: `Êtes-vous sûr de vouloir ${reservation.status === 'En attente' ? 'Annuler' : reservation.status === 'En report' ? 'Rejeter': ''} cette commande de réservation ?`,
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+    })
+      
+  if (result.isConfirmed) {
+    try {
+      await updateDoc(reservationDocRef, { status: 'Annuler' })
+
+      let client_notif
+
+      if(reservation.status === 'En attente') {
+        client_notif = { 
+          uid: '', 
+          title: 'Annulation de réservation', 
+          message: `Votre réservation de ticket pour le trajet ${reservation.lieu_depart} - ${reservation.destination} a été annulé par la compagnie.`, 
+          destinataire: reservation.client_id,
+          lu: false, 
+          createdAt: Timestamp.now() 
+        }
+      }
+      else if(location.status === 'En report') {
+        client_notif = { 
+          uid: '', 
+          title: 'Annulation de réservation', 
+          message: `Votre demande de report pour le trajet ${reservation.lieu_depart} - ${reservation.destination} a été rejetée par la compagnie.`, 
+          destinataire: location.client_id,
+          lu: false, 
+          createdAt: Timestamp.now() 
+        }
+      }
+      const client_docRef = await addDoc(notificationColRef, client_notif)
+
+      await updateDoc(client_docRef, { uid: `${client_docRef.id}` })
+
+      elements_en_attente.value = elements_en_attente.value.filter(el => el.uid !== location.uid)
+  
+    } catch (error) {
+      console.log(error)
+    } 
+  }
 }
 
 </script>
@@ -690,13 +740,26 @@ const options = {
                                     >
                                     Jours de voyages | <strong>{{ reservation.jours_voyage ? reservation.jours_voyage : 'NaN' }}</strong>
                                     </p>
-                                    <button 
-                                    class="btn btn-primary text-white mb-2" 
-                                    style="background: #219935; border: #219935; float: right" 
-                                    @click="valider(reservation)"
-                                    >
-                                      Valider
-                                    </button>
+                                    <div class="row">
+                                      <div class="col-6 text-start">
+                                        <button 
+                                        class="btn btn-primary mb-2" 
+                                        style="background: white; border-color: #219935; color: #219935 ;" 
+                                          @click="annuler(reservation)"
+                                        >
+                                          {{ reservation.status === 'En attente' ? 'Annuler' : reservation.status === 'En report' ? 'Rejeter': '' }}
+                                        </button>
+                                      </div>
+                                      <div class="col-6 text-end">
+                                        <button 
+                                        class="btn btn-primary text-white mb-2" 
+                                        style="background: #219935; border: #219935; float: right" 
+                                        @click="valider(reservation)"
+                                        >
+                                          Valider
+                                        </button>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>

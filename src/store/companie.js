@@ -22,6 +22,7 @@ export const useCompanieStore = defineStore('companieStore', {
         companieRentedCars: [],
         companieOneCar: null,
         companieCars: [],
+        companieCars2: [],
         car: {},
         companieHistory: [],
         companieLocations: [],
@@ -194,7 +195,7 @@ export const useCompanieStore = defineStore('companieStore', {
             
             try {
                 const snapshot = await getDocs(companieSubColRef)
-                snapshot.docs.forEach((doc) => this.companieCars.push({ ...doc.data() }))
+                snapshot.docs.forEach((doc) => this.companieCars2.push({ ...doc.data() }))
             } catch (error) {
                 console.log(error)
             } 

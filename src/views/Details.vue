@@ -294,7 +294,7 @@ onMounted(() => {
                           </div>
                           <div class="col-md-12">
                             <!-- Button trigger modal -->
-                            <router-link :to="`/detail_reservation_ticket/${programme.uid}`">
+                            <router-link :to="`/detail_reservation_ticket/${companieId}/${programme.uid}`">
                               <button
                                 type="button"
                                 class="btn btn-primary"

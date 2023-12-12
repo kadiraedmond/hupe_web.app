@@ -23,7 +23,7 @@ const userId = savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   isLoading.value = true
   await companieStore.setCompanieCars2(userId) // authStore.user.uid
-  companieCars.value = companieStore.companieCars 
+  companieCars.value = companieStore.companieCars2 
 })
 
 onMounted(() => {
@@ -84,9 +84,9 @@ const handleSubmit = async () => {
       const newData = { ...data, uid: `${newDoc.id}` }
       companieCars.value.push(newData)
 
-      const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer')
+      // const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer')
 
-      await setDoc(doc(vehiculeColRef, `${newDoc.id}`), newData)
+      // await setDoc(doc(vehiculeColRef, `${newDoc.id}`), newData)
       
     } catch (error) {
       console.log(error)

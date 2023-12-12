@@ -336,7 +336,7 @@ const isLoading = ref(false)
 
                               <div class="col-md-12 mt-4 text-start">
                                 <!-- Button trigger modal -->
-                                <router-link :to="`/detail_vehicule_location/${car.uid}`">
+                                <router-link :to="`/detail_vehicule_location/${companieId}/${car.uid}`">
                                   <button
                                     type="button"
                                     class="btn btn-primary"

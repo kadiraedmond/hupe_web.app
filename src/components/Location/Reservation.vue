@@ -174,6 +174,8 @@ const options = {
   // second: '2-digit', 
 }
 
+const notificationColRef = collection(firestoreDb, 'notifications')
+
 const valider = async (location) => {
   const docRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)
 
@@ -189,8 +191,6 @@ const valider = async (location) => {
     const snapshot = await getDoc(userDocRef)
     let user
     if(snapshot.exists()) user = snapshot.data()
-
-    const notificationColRef = collection(firestoreDb, 'notifications')
     
     const data = { 
       uid: '', 
@@ -203,6 +203,8 @@ const valider = async (location) => {
 
     const docRef = await addDoc(notificationColRef, data)
     await updateDoc(docRef.ref, { uid: `${docRef.id}` })
+
+    elements_valide.value = elements_valide.value.filter(el => el.uid !== location.uid)
   
   } catch (error) {
     Swal.fire({
@@ -213,6 +215,56 @@ const valider = async (location) => {
     console.log(error)
   }
 } 
+
+const annuler = async (location) => {
+  const locationDocRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)
+
+  const result = await Swal.fire({
+      title: `Êtes-vous sûr de vouloir ${location.status === 'En attente' ? 'Annuler' : location.status === 'En report' ? 'Rejeter': ''} cette commande de location ?`,
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+    })
+      
+  if (result.isConfirmed) {
+    try {
+      await updateDoc(locationDocRef, { status: 'Annuler' })
+
+      let client_notif
+
+      if(location.status === 'En attente') {
+        client_notif = { 
+          uid: '', 
+          title: 'Annulation de location', 
+          message: `Votre réservation du véhicule ${location.vehicule} ${location.modele} ${location.annee_vehicule} a été annulé par la compagnie.`, 
+          destinataire: location.client_id,
+          lu: false, 
+          createdAt: Timestamp.now() 
+        }
+      }
+      else if(location.status === 'En report') {
+        client_notif = { 
+          uid: '', 
+          title: 'Annulation de location', 
+          message: `Votre demande de report pour la location du véhicule ${location.vehicule} ${location.modele} ${location.annee_vehicule} a été rejetée par la compagnie.`, 
+          destinataire: location.client_id,
+          lu: false, 
+          createdAt: Timestamp.now() 
+        }
+      }
+      const client_docRef = await addDoc(notificationColRef, client_notif)
+
+      await updateDoc(client_docRef, { uid: `${client_docRef.id}` })
+
+      elements_en_attente.value = elements_en_attente.value.filter(el => el.uid !== location.uid)
+  
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
+  
+}
 </script>
 
 <template>
@@ -797,7 +849,7 @@ const valider = async (location) => {
                                             </strong>
                                             |
                                             <strong>{{
-                                              new Intl.DateTimeFormat('fr-FR', options).format(location.heure_retrait.toDate())
+                                              location.heure_retrait
                                             }}</strong>
                                           </p>
 
@@ -831,9 +883,9 @@ const valider = async (location) => {
                                               <button 
                                               class="btn btn-primary mb-2" 
                                               style="background: white; border-color: #219935; color: #219935 ;" 
-                                               
+                                               @click="annuler(location)"
                                               >
-                                                Annuler
+                                                {{ location.status === 'En attente' ? 'Annuler' : location.status === 'En report' ? 'Rejeter': '' }}
                                               </button>
                                             </div>
                                             <div class="col-6 text-end">

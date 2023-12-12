@@ -359,7 +359,7 @@ const goTo_chat = async () => {
             :key="index"
           >
             <router-link
-              :to="`/detail_vehicule_location/${vehicule.uid}`"
+              :to="`/detail_vehicule_location/${vehicule.companieInfos.uid}/${vehicule.uid}`"
               style="color: #000"
             >
               <div class="card h-100 border-0" id="card_compagnie">
@@ -531,7 +531,7 @@ const goTo_chat = async () => {
               ) in promotionStore.popularDestinations"
               :key="index"
           >
-            <router-link :to="`/detail_reservation_ticket/${popularDestination.uid}`" style="color: #000">
+            <router-link :to="`/detail_reservation_ticket/${popularDestination.companieInfos.uid}/${popularDestination.uid}`" style="color: #000">
               <div class="card h-100 border-0" id="card_compagnie">
                 <div class="row" style="margin: 0px">
                   <div class="col-md-12">
