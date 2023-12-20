@@ -38,6 +38,8 @@ const montant = ref()
 const apiKey = '8147832776464ac622a6806.22624295'
 const site_id = '132831'
 
+const userDocRef = doc(firestoreDb, 'users', `${userId}`)
+
 const recharge = async () => {
   function checkout() {
     CinetPay.setConfig({
@@ -76,7 +78,6 @@ const recharge = async () => {
 
         } else if (data.status == "ACCEPTED") {
 
-          const userDocRef = doc(firestoreDb, 'users', `${userId}`)
           const userSubColRef = collection(userDocRef, 'myAccount')
           const accountDocRef = doc(userSubColRef, 'account')
 
@@ -125,6 +126,19 @@ const recharge = async () => {
 
           const docRef = await addDoc(notificationColRef, client_notif)
           await updateDoc(docRef.ref, { uid: `${docRef.id}` })
+
+          // ajout des informations de transactions
+          const transactionColRef = collection(userDocRef, 'hystory')
+          
+          const transaction_data = {
+            body: `${montant.value}`,
+            date: Timestamp.now(),
+            solde: Number(amount.solde) + Number(montant.value),
+            title: 'Recharge de compte',
+            topic: 'Recharge'
+          }
+
+          await addDoc(transactionColRef, transaction_data)
 
         }
     })

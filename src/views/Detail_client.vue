@@ -771,7 +771,7 @@ const isLoading = ref(false)
                           "
                         >
                           <img
-                            src="/assets/img/car3.jpg"
+                            :src="promoCar.vehicule_image_url"
                             class="card-img-top"
                             alt="..."
                             style="

@@ -1,6 +1,7 @@
 <script setup>
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
+import { usePromotionStore } from '@/store/promotion.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { collection, query, doc, Timestamp, where, setDoc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2'
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
+const promotionStore = usePromotionStore()
 
 const companieCars = ref([])
 
@@ -192,6 +194,53 @@ const montant = ref()
 const date_debut = ref()
 const date_fin = ref()
 
+const in_promotion = ref(false)
+
+const checkPromotion = async (car) => {
+  if(car.enPromo === true) {
+    in_promotion.value = false
+    
+    const result = await Swal.fire({
+      text: 'Ce véhicule est déjà en promotion. Voulez-vous annuler la promotion ?',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+    })
+
+    if(result.isConfirmed) {
+      const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+      const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
+
+      const promotionDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'promotion')
+      const carInPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
+
+      const docRef = doc(vehiculesColRef, `${car.uid}`) 
+
+      try {
+        await updateDoc(docRef, { enPromo: false }) 
+
+        const carDocRef = doc(carInPromoColRef, `${car.uid}`) 
+
+        await deleteDoc(carDocRef) 
+        car.enPromo = false
+        promotionStore.setCompaniePromotionCars(userId)
+
+        Swal.fire({
+          title: "Succès",
+          text: "Votre véhicule n'est plus en promotion",
+          icon: "success"
+        }) 
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  else if(car.enPromo === false) {
+    in_promotion.value = true
+  }
+}
+
 const promote = async (car) => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
   const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer') 
@@ -238,6 +287,8 @@ const promote = async (car) => {
           await setDoc(doc(carInPromoColRef, `${car.uid}`), data)
         
           console.log('Document ajouté') 
+          car.enPromo = true
+          promotionStore.setCompaniePromotionCars(userId)
           
           Swal.fire({
             title: "Succès",
@@ -253,6 +304,8 @@ const promote = async (car) => {
         const carDocRef = doc(carInPromoColRef, `${car.uid}`) 
 
         await deleteDoc(carDocRef) 
+        car.enPromo = false
+        promotionStore.setCompaniePromotionCars(userId)
 
         Swal.fire({
           title: "Succès",
@@ -1023,6 +1076,7 @@ const handleInterieurPaysPrix = (e) => {
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal1"
                         style="background-color: #219935; border-color: #219935"
+                        @click="checkPromotion(car)"
                       >
                         <img
                           src="/assets/img/icone/promotion.png"
@@ -1033,6 +1087,7 @@ const handleInterieurPaysPrix = (e) => {
 
                       <!-- Modal -->
                       <div
+                      v-if="in_promotion"
                         class="modal fade"
                         id="exampleModal1"
                         tabindex="-1"
@@ -1087,6 +1142,7 @@ const handleInterieurPaysPrix = (e) => {
                                     id="validationCustom02"
                                     v-model="montant"
                                     required
+
                                   />
                                 </div>
 

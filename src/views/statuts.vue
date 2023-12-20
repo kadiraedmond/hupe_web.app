@@ -167,6 +167,7 @@ const payer = async (location) => {
 
   const snapshot = await getDoc(accountDocRef) 
 
+  const differenceEnJours = Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60))
   let total_a_payer = 0 
 
   if(location.chauffeur == 'Oui' && location.interieurPays == 'Non') {
@@ -202,10 +203,10 @@ const payer = async (location) => {
       cancelButtonText: 'Non',
     })
       
-    if (result.isConfirmed) {
+    if(result.isConfirmed) {
     // Debiter le solde du client
     const data = {
-      solde: Number(amount.solde) - total_a_payer, 
+      solde: Number(amount.solde) - (total_a_payer * differenceEnJours), 
     }
 
     try {
@@ -222,7 +223,6 @@ const payer = async (location) => {
 
       const notificationColRef = collection(firestoreDb, 'notifications')
 
-      const differenceEnJours = Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60))
 
       const client_notif = { 
         uid: '', 

@@ -59,7 +59,7 @@ export const useAuthStore = defineStore('authStore', {
                             const newCompanie = {
                                 uid: '', 
                                 adresse: '', 
-                                adresse_mail: '', 
+                                email: '', 
                                 country: '', 
                                 createdAt: new Date(), 
                                 description: '', 
@@ -92,7 +92,7 @@ export const useAuthStore = defineStore('authStore', {
 
                             this.user = { ...newCompanie, uid: `${docRef.id}` } 
 
-                            const userSubColRef = collection(userDocRef, 'myAccount')
+                            const userSubColRef = collection(companieDocRef, 'myAccount')
                             const accountDocRef = doc(userSubColRef, 'account') 
 
                             await setDoc(accountDocRef, { solde: 0, new_recharge: '' })
