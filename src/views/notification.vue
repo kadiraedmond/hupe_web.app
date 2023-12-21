@@ -86,8 +86,10 @@ onMounted(() => {
                             <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
+                                    
                                     <div v-if="notifications.length > 0">
-                                        <div class="col-md-12 mb-3" v-for="(notification, index) in notifications" :key="index">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8 mb-3" v-for="(notification, index) in notifications" :key="index">
                                             <div class="card border-0">
                                                 <div class="card-body">
                                                     <div class="row">
@@ -112,6 +114,7 @@ onMounted(() => {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-2"></div>
                                     </div>
                                     <div class="w-100" v-else>
                                         <div class="row">
@@ -136,7 +139,8 @@ onMounted(() => {
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
                                     <div v-if="noneReadNotifications.length > 0">
-                                        <div class="col-md-12 mb-3" v-for="(noneReadNotification, index) in noneReadNotifications" :key="index">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8 mb-3" v-for="(noneReadNotification, index) in noneReadNotifications" :key="index">
                                             <div class="card border-0">
                                                 <div class="card-body">
                                                     <div class="row">
@@ -161,6 +165,7 @@ onMounted(() => {
                                                 </div>
                                             </div>
                                         </div> 
+                                        <div class="col-md-2"></div>
                                     </div>
 
                                     <div class="w-100" v-else>

@@ -59,6 +59,7 @@ import InfosClient from '@/views/information_client.vue';
 import ConditionConnexion from '@/views/condition-connexion.vue';
 import VueListe from '@/views/liste_location.vue';
 import VueListes from '@/views/liste_reservation.vue';
+import Etape from '@/views/etape.vue';
 
 import Politique from '@/views/poltique.vue';
 
@@ -477,6 +478,13 @@ const routes = [
     path: '/liste-reservation',
     name: 'VueListes',
     component: VueListes,
+    
+  },
+
+  {
+    path: '/type-utilisateur',
+    name: 'Etape',
+    component: Etape,
     
   },
 
