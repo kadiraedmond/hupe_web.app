@@ -28,7 +28,7 @@ onMounted(() => {
                 Comment Hupe Simplifie Vos Voyages Quotidiens
               </h3>
         
-              <article class="blog-post">
+              <article class="blog-post" style="text-align: justify;">
                 <h2 class="blog-post-title mb-4" style="font-size: 19px; font-weight: 600;">Extrait</h2>
                  
         
@@ -38,7 +38,7 @@ onMounted(() => {
                 </p>
                 <hr>
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="text-align: justify;">
                         <h2 class="mb-2" style="font-size: 19px; font-weight: 600;">Navigation Intuitive</h2>
                         <p>Naviguer dans une ville peut parfois être un défi, mais avec Hupe, vous êtes entre de bonnes mains. Notre interface intuitive vous guide sans effort à travers les rues, vous offrant des itinéraires optimaux et des informations en temps réel pour éviter les embouteillages. Plus de stress, juste un voyage fluide.</p>
 
@@ -170,7 +170,7 @@ onMounted(() => {
           <div class="row g-5">
             <div class="col-md-8">
               
-              <div class="row">
+              <div class="row" style="margin-top: -85px;">
                
                 <div class="col-md-12">
                   <h2 class="mb-4" style="font-size: 19px;

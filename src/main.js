@@ -7,6 +7,14 @@
 // import './assets/slide2.js'
 // import './assets/font.css'
 
+ 
+
+// Import Bootstrap and BootstrapVue CSS files (order is important)
+// import '../node_modules/bootstrap/dist/css/bootstrap.css'
+// import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
+
+ 
+
 import "bootstrap/dist/js/bootstrap.bundle.min.js" 
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 // import '../node_modules/flag-icon-css/css/flag-icons.min.css'

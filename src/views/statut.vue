@@ -22,15 +22,16 @@ const reservationStore = useReservationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
 
 const reservations = ref([])
 onBeforeMount(async () => {
-  userStore.setUser(userId)
-  reservationStore.setUserReservations(userId)
 
-  reservation.value = [] 
+  userStore.setUser(userId) 
+  await reservationStore.setUserReservations(userId)
+
+  reservations.value = [] 
   reservationStore.userReservations.forEach(reservation => {
     if(param === 'en-attente' && reservation.status === 'En attente') {
       reservations.value.push(reservation)
@@ -44,8 +45,10 @@ onBeforeMount(async () => {
       reservations.value.push(reservation)
     } else if(param === 'annule' && reservation.status === 'Annuler') {
       reservations.value.push(reservation)
+    } else if(param === 'en-attente-de-report' && reservation.status === 'En report') {
+      reservations.value.push(reservation)
     }
-  })
+  }) 
 })
 
 const option = ref('')
@@ -76,6 +79,7 @@ const annul = async (reservation) => {
 }
 
 const date_report = ref()
+const heure_report = ref()
 
 const reporter = async (reservation) => {
   const reportColRef = collection(firestoreDb, 'reservation_reporter')
@@ -84,7 +88,8 @@ const reporter = async (reservation) => {
   const { status, ...extracted_reservation } = reservation
 
   try {
-    const docRef = await addDoc(reportColRef, { ...extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
+    // const docRef = await addDoc(reportColRef, { ...extracted_reservation, status: 'En attente', report: new Date(date_report.value) })
+    await setDoc(doc(reportColRef, `${reservation.uid}`), { ...reservation, status: 'En attente', date_report: new Date(date_report.value), heure_report: heure_report.value })
 
     Swal.fire({
       title: "Succès",
@@ -92,7 +97,7 @@ const reporter = async (reservation) => {
       icon: "success"
     })
 
-    await updateDoc(reservationDocRef, { status: 'En report' }) 
+    await updateDoc(reservationDocRef, { status: 'En report', date_depart: new Date(date_report.value), heure_depart: heure_report.value }) 
   
     const notificationColRef = collection(firestoreDb, 'notifications')
   
@@ -106,7 +111,6 @@ const reporter = async (reservation) => {
   
     await addDoc(notificationColRef, data)
 
-    await updateDoc(docRef, { uid: `${docRef.id}` })
     
   } catch (error) {
     console.log(error)
@@ -177,9 +181,9 @@ const payer = async (reservation) => {
       // calcul du montant suite a l'application de la commission selon l'offre de la compagnie
       let montant_apres_commission
       if(companieInfos.offre == 'basique') {
-        montant_apres_commission = Number(montant.value) - 0.15 * Number(montant.value)
+        montant_apres_commission = Number(reservation.montant) - 0.15 * Number(reservation.montant)
       } else if(companieInfos.offre == 'vip') {
-        montant_apres_commission = Number(montant.value) - 0.2 * Number(montant.value)
+        montant_apres_commission = Number(reservation.montant) - 0.2 * Number(reservation.montant)
       }
 
       // ajouter la somme sur le compte de la compagnie
@@ -248,9 +252,9 @@ const options = {
   year: 'numeric', 
   month: '2-digit', 
   day: '2-digit', 
-  hour: '2-digit', 
-  minute: '2-digit', 
-  second: '2-digit', 
+  // hour: '2-digit', 
+  // minute: '2-digit', 
+  // second: '2-digit', 
 }
 
 </script>

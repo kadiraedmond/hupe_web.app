@@ -154,93 +154,299 @@ onMounted(() => {
             <div class="col-md-12">
               <div class="row">
                 <div class="row">
-                  <h5 class="mt-4" style="font-size: 25px">Détails du trajet</h5>
+                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;" >Détails du trajet</h5>
                   <div class="col-6 mt-3">
                     <div class="row g-0">
-                      <div class="col-4">
+                      <div class="col-12 d-flex">
                         <button class="btn btn-primary" id="btn_circle">
                           <img src="/assets/img/detail/1.png" alt="" class="img-fluid">
                         </button>
+                        <div id="space-left">
+                          <h5 style="font-size: 18px; font-weight: 600;">Trajet</h5>
+                          <p style="margin-top: -6px; font-size: 14px">{{ promotionStore.programme.lieu_depart }} - {{ promotionStore.programme.destination }}</p>
+                        </div>
                       </div>
-                      <div class="col-8">
-                        <h5>Trajet</h5>
-                        <p style="margin-top: -6px; font-size: 14px">{{ promotionStore.programme.lieu_depart }} - {{ promotionStore.programme.destination }}</p>
-                      </div>
+                       
                     </div>
                   </div>
                   <div class="col-6 mt-3">
                     <div class="row g-0">
-                      <div class="col-4">
+                      <div class="col-12 d-flex">
                         <button class="btn btn-primary" id="btn_circle">
                            <img src="/assets/img/detail/2.png" alt="" class="img-fluid">
                         </button>
-                      </div>
-                      <div class="col-8">
-                        <h5>Escale</h5>
+                        <div id="space-left">
+                          <h5 style="font-size: 18px; font-weight: 600;">Escale</h5>
                         <p style="margin-top: -6px; font-size: 14px">
                           {{ promotionStore.programme.escale }}
                         </p>
+                        </div>
                       </div>
+                       
                     </div>
                   </div>
                   <div class="col-6 mt-3">
                     <div class="row g-0">
-                      <div class="col-4">
+                      <div class="col-12 d-flex">
                         <button class="btn btn-primary" id="btn_circle">
                           <img src="/assets/img/detail/3.png" alt="" class="img-fluid">
                         </button>
-                      </div>
-                      <div class="col-8">
-                        <h5>Heure de départ</h5>
+                        <div id="space-left">
+                          <h5 style="font-size: 18px; font-weight: 600;">Heure de départ</h5>
                         <p style="margin-top: -6px; font-size: 14px">{{ promotionStore.programme.heure_depart }}</p>
+                        </div>
                       </div>
+                       
                     </div>
                   </div>
                   <div class="col-6 mt-3">
                     <div class="row g-0">
-                      <div class="col-4">
+                      <div class="col-12 d-flex">
                         <button class="btn btn-primary" id="btn_circle">
                            <img src="/assets/img/detail/3.png" alt="" class="img-fluid">
                         </button>
-                      </div>
-                      <div class="col-8">
-                        <h5>Convocation</h5>
+                        <div id="space-left">
+                          <h5 style="font-size: 18px; font-weight: 600;">Convocation</h5>
                         <p style="margin-top: -6px; font-size: 14px">
                           {{ promotionStore.programme.heure_convocation }}
                         </p>
+                        </div>
                       </div>
+                       
                     </div>
                   </div>
                   <div class="col-6 mt-3">
                     <div class="row g-0">
-                      <div class="col-4">
+                      <div class="col-12 d-flex">
                         <button class="btn btn-primary" id="btn_circle">
                            <img src="/assets/img/detail/4.png" alt="" class="img-fluid">
                         </button>
+                        <div id="space-left">
+                          <h5 style="font-size: 18px; font-weight: 600;">Jours du voyage</h5>
+                          <p style="margin-top: -6px; font-size: 14px">
+                            {{ promotionStore.programme.jours_voyage }}
+                          </p>
+                        </div>
                       </div>
-                      <div class="col-8">
-                        <h5>Jours du voyage</h5>
-                        <p style="margin-top: -6px; font-size: 14px">
-                          {{ promotionStore.programme.jours_voyage }}
-                        </p>
-                      </div>
+                       
                     </div>
                   </div>
                   <div class="col-6 mt-3">
                     <div class="row g-0">
-                      <div class="col-4">
+                      <div class="col-12 d-flex">
                         <button class="btn btn-primary" id="btn_circle">
                            <img src="/assets/img/detail/5.png" alt="" class="img-fluid">
                         </button>
-                      </div>
-                      <div class="col-8">
-                        <h5>Nombres de place</h5>
+                        <div id="space-left">
+                          <h5 style="font-size: 18px; font-weight: 600;">Nombres de place</h5>
                         <p style="margin-top: -6px; font-size: 14px">
                           {{ promotionStore.programme.nb_place }}
                         </p>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+
+                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Prix</h5>
+
+                  <div class="col-md-12 mt-3">
+                    <div class="card">
+                      <div class="card-body text-center">
+                        <p class="card-title" style="font-weight: 600;">La valeur du trajet est estimée à</p>
+                         
+                        <p class="card-text" style="font-size: 50px; font-weight: 500; color: #219935;"> {{ promotionStore.programme.montant }} FCFA</p>
+                         
                       </div>
                     </div>
                   </div>
+
+                  
+
+                  <div class="col-md-12 text-center">
+                        <router-link v-if="!user.uid" to="/connexion-client">
+                          <button
+                            class="btn btn-primary w-100"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 20px;
+                            "
+                          >
+                            Réserver
+                          </button>
+                        </router-link>
+                        <router-link v-if="user.uid && !user.raison_social" to="">
+                          <button
+                            class="btn btn-primary w-100"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 20px;
+                            "
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                          >
+                            Réserver
+                          </button>
+                        </router-link>
+
+                        <div
+                          class="modal fade"
+                          id="exampleModal"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                          v-if="user.uid"
+                      >
+                          <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div
+                              class="modal-header"
+                              style="background: #219935"
+                              >
+                              <h1
+                                  class="modal-title text-white fs-5"
+                                  id="exampleModalLabel"
+                                  style="font-size: 17px !important"
+                              >
+                                  Réservation de ticket
+                              </h1>
+                              <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                              ></button>
+                              </div>
+                              <div class="modal-body">
+                              <form
+                                  id="reservationForm"
+                                  class="row g-3 needs-validation"
+                                  novalidate
+                                  @submit.prevent="reserver(promotionStore.programme)"
+                              >
+                                  <div class="col-md-12">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Nom & Prénoms</label
+                                  >
+                                  <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="`${user.lastName} ${user.firstName}`"
+                                      required 
+                                      disabled 
+                                  />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Ville de départ</label
+                                  >
+                                  <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.programme.lieu_depart"
+                                      required
+                                      disabled
+                                  />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Ville d'arrivée</label
+                                  >
+                                  <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.programme.destination"
+                                      required
+                                      disabled
+                                  />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Date de départ</label
+                                  >
+                                  <input
+                                      type="date"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="dateDepart"
+                                      required
+                                  />
+                                  </div>
+                                  <div class="col-md-6">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Heure de départ</label
+                                  >
+                                  <input
+                                      type="time"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="heureDepart"
+                                      required
+                                  />
+                                  </div>
+
+                                  <Loader 
+                                  style="position: absolute; left: 35%; top: 15%"
+                                  v-if="isLoading" 
+                                  />
+
+                                  <div class="col-md-12">
+                                  <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Nombres de personnes</label
+                                  >
+                                  <input
+                                      type="number"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="nombrePersonnes"
+                                      required
+                                  />
+                                  </div>
+
+                                  <div class="col-12 text-center">
+                                  <button
+                                      class="btn btn-primary"
+                                      type="submit"
+                                      style="
+                                      background: #219935;
+                                      border-color: #219935;
+                                      "
+                                  >
+                                      Soumettre
+                                  </button>
+                                  </div>
+                              </form>
+                              </div>
+                          </div>
+                          </div>
+                      </div>
+                      </div>
                    
                   <!-- <div class="row mt-4">
                       
@@ -675,7 +881,7 @@ onMounted(() => {
 
                     
 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    🌍 Réservez Maintenant, Explorez Plus Tard : Ne manquez pas l'opportunité de vivre l'aventure. Réservez pour se trajet ({{ promotionStore.programme.lieu_depart }} - {{ promotionStore.programme.destination }}) dès maintenant et ouvrez la porte à une expérience sans limites.
                     <div class="row mt-3">
                       <div class="col-md-12 text-center">
                         <router-link v-if="!user.uid" to="/connexion-client">
@@ -970,5 +1176,9 @@ onMounted(() => {
   border-color: #8b8b8b;
   width: 60px;
   height: 60px;
+}
+#space-left{
+  margin-left: 12px;
+  margin-top: 10px;
 }
 </style>

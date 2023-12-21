@@ -53,7 +53,7 @@ const lien = route.params.activeTab
       <div class="col footer-links">
         <h4>Liens utiles </h4>
         <ul>
-          <li> <router-link to="{ name: 'Service', hash: '#contact-tab-pane' }">Location de véhicules </router-link></li>
+          <li> <router-link to="/services">Location de véhicules </router-link></li>
           <li> <router-link to="/services">Réservations de tickets de bus  </router-link></li>
           <li> <router-link to="/services">Location de gros en engin </router-link></li>
           <li> <router-link to="/services">Vente de véhicule </router-link></li>
@@ -85,16 +85,15 @@ const lien = route.params.activeTab
           <a href="https://www.instagram.com/hupeafrica/" class="instagram"><i class="bx bxl-instagram"></i></a>
           <a href="https://www.youtube.com/channel/UCh07rr8p-XHo0zrmZfFQd1w" class="google-plus"><i class="bx bxl-youtube"></i></a>
           <a href="https://www.linkedin.com/showcase/91588607" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://www.linkedin.com/showcase/91588607" class="tiktok"><i class='bx bxl-tiktok'></i></a>
         </div>
       </div>
 
       <div class="col footer-links">
         <h4>Modes de paiement</h4>
         <ul>
-          <li><a href="#"><img src="/assets/img/logo/card.png" alt="" class="img-fluid">  Mobile money </a></li>
-          <li> <a href="#"> <img src="/assets/img/logo/card.png" alt="" class="img-fluid"> Carte bancaire</a></li>
-          <li> <a href="#"> <img src="/assets/img/logo/cinet.png" alt="" class="img-fluid" style="width: 90px; background: white;"></a></li>
+          <li><a href="#"> Mobile money </a></li>
+          <li> <a href="#">Carte bancaire</a></li>
+          <li> <a href="#"> CinetPay</a></li>
           <li> <a href="#"></a></li>
         </ul>
       </div>

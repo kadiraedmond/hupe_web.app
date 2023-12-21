@@ -17,8 +17,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
 
 const trajets = ref([])
 onBeforeMount(async () => {
@@ -421,11 +421,11 @@ const remove = async (car) => {
   </div>
   <div class="row mt-4">
     <div v-if="trajets.length > 0">
-      <div class="col-md-6" v-for="(trajet, index) in trajets" :key="index">
+      <div class="col-md-4" v-for="(trajet, index) in trajets" :key="index">
       <div class="card h-100" style="max-width: 540px">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-6 mt-2">
+            <div class="col-6 mt-2">
               <button
                 class="btn btn-primary mb-2"
                 style="background-color: #219935; border-color: #219935"
@@ -433,30 +433,30 @@ const remove = async (car) => {
                 {{ trajet.montant }} FCFA
               </button>
             </div>
-            <div class="col-md-6 mt-2"></div>
+            <div class="col-6 mt-2"></div>
 
-            <div class="col-md-6 mt-2">
-              <p><strong>Lieu de départ |</strong> {{ trajet.lieu_depart }}</p>
+            <div class="col-6 mt-2">
+              <p><strong>Lieu de départ</strong> <br> {{ trajet.lieu_depart }}</p>
             </div>
 
-            <div class="col-md-6 mt-2">
-              <p><strong>Destinations |</strong> {{ trajet.destination }}</p>
+            <div class="col-6 mt-2">
+              <p><strong>Destinations </strong> <br> {{ trajet.destination }}</p>
             </div>
 
-            <div class="col-md-6 mt-2">
-              <p><strong> Heure de départ |</strong> {{ trajet.heure_depart }}</p>
+            <div class="col-6" style="margin-top:-5px">
+              <p><strong> Heure de départ </strong> <br> {{ trajet.heure_depart }}</p>
             </div>
 
-            <div class="col-md-6 mt-2">
-              <p><strong>Convocation |</strong> {{ trajet.convocation }}</p>
+            <div class="col-6" style="margin-top:-5px">
+              <p><strong>Convocation </strong> <br> {{ trajet.convocation }}</p>
             </div>
 
-            <div class="col-md-6 mt-3">
-              <p><strong>Escale | </strong> {{ trajet.escale }}</p>
+            <div class="col-6" style="margin-top:-5px">
+              <p><strong>Escale </strong> <br> {{ trajet.escale }}</p>
             </div>
 
-            <div class="col-md-6 mt-3">
-              <p><strong>Jours de voyage |</strong> {{ trajet.jours_voyage }}</p>
+            <div class="col-6 " style="margin-top:-5px">
+              <p><strong>Jours de voyage </strong> <br> {{ trajet.jours_voyage }}</p>
             </div>
           </div>
           <div class="col-md-12 mt-4 text-start">

@@ -57,6 +57,8 @@ import EnginP from '@/views/engin_populaire.vue';
 import VenteP from '@/views/vente_populaire.vue';
 import InfosClient from '@/views/information_client.vue';
 import ConditionConnexion from '@/views/condition-connexion.vue';
+import VueListe from '@/views/liste_location.vue';
+import VueListes from '@/views/liste_reservation.vue';
 
 import Politique from '@/views/poltique.vue';
 
@@ -461,6 +463,20 @@ const routes = [
     path: '/politique',
     name: 'Politique',
     component: Politique,
+    
+  },
+
+  {
+    path: '/liste-location',
+    name: 'VueListe',
+    component: VueListe,
+    
+  },
+
+  {
+    path: '/liste-reservation',
+    name: 'VueListes',
+    component: VueListes,
     
   },
 

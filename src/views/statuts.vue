@@ -460,7 +460,7 @@ const options = {
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
-                            <strong>{{ location.marque }} | {{ location.modele }} | {{ location.annee }} </strong> |
+                            <strong>{{ location.vehicule }} | {{ location.modele }} | {{ location.annee }} </strong> 
                             <!-- <strong> Santafe 2022 </strong> -->
                             </p>
                             <br />
@@ -475,12 +475,7 @@ const options = {
 
                               </div>
                               <div class="col-6">
-                                <p
-                                class="card-text"
-                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                >
-                                <strong> Transmission</strong> <br> {{ location.boite }} 
-                                </p>
+                                
                               </div>
                             </div>
 
@@ -548,7 +543,7 @@ const options = {
                                 <strong> Retour</strong> <br> {{ new Intl.DateTimeFormat(undefined, options).format(location.date_retour) }}
                                 </p>
                               </div>
-                            </div>
+                          </div>
                             
                             <br />
 

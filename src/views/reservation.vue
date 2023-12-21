@@ -62,7 +62,7 @@ onMounted(() => {
           </div>
         </div>
         
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+        <!-- <div class="row row-cols-1 row-cols-md-4 g-4">
           <div class="col" v-for="(companie, index) in companieStore.transportCompanies" :key="index">
             <div
               class="card h-100"
@@ -122,6 +122,44 @@ onMounted(() => {
               </div>
             </div>
           </div>
+        </div> -->
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+            <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+              <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+              </router-link>
+              <router-link :to="`/details/${companie.uid}`" id="router-link">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8">
+                      <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
+                    </div>
+                    <div class="col-4">
+                      <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
+                    </div>
+
+                  </div>
+
+                  <div class="row" style="margin-top: -11px;">
+                    <div class="col-8">
+                      <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                            {{ companie.adresse }}</p>
+                    </div>
+                    <div class="col-4">
+                      <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                    </div>
+
+                  </div>
+                
+                  
+                </div>
+              </router-link>
+              
+            </div>
+          </div>  
+        
         </div>
 
       </div>
@@ -133,8 +171,39 @@ onMounted(() => {
     <!-- End #main -->    
 </template>
 <style scoped>
- #badgesLogo {
+ /* #badgesLogo {
   display: inline-block;
+    left: 9px;
+    width: 45px;
+    height: 45px;
+    
+    position: absolute;
+    margin-top: 150px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    object-fit: cover;
+} */
+
+#search {
+    width: 491px !important;
+    height: 54px;
+    /* border-radius: 30px; */
+    font-size: 14px;
+    background-color: white;
+    border-color: #219935;
+    color: #219935 !important;
+    border-radius: 10px;
+}
+
+#icon_search {
+    margin-left: -51px;
+    font-size: 25px;
+    margin-top: 16px;
+    color: #019934;
+}
+
+#badgesLogo {
+    display: inline-block;
     left: 9px;
     width: 45px;
     height: 45px;
@@ -146,21 +215,20 @@ onMounted(() => {
     object-fit: cover;
 }
 
-#search {
-    width: 491px !important;
-    height: 54px;
-    /* border-radius: 30px; */
-    font-size: 14px;
-    background-color: white;
-    border-color: #219935;
-    color: white !important;
-    border-radius: 10px;
+#badgesLogo1 {
+     
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    /* object-fit: cover; */
 }
 
-#icon_search {
-    margin-left: -51px;
-    font-size: 25px;
-    margin-top: 16px;
-    color: #019934;
+#router-link{
+  color: black !important;
+}
+
+#router-link:hover{
+  color: black !important;
 }
 </style>

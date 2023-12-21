@@ -342,4 +342,9 @@ const selectedValue = ref('');
     appearance: none;
     border-color: #219935;
 }
+
+input::placeholder {
+        color: #219935;
+        /* opacity: 0.5; */
+      }
 </style>

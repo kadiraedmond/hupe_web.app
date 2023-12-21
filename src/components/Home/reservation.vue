@@ -110,7 +110,7 @@ onBeforeMount(() => {
       _msthash="251"
     ></button>
   </div> -->
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
     <div class="col"  v-for="(companie, index) in companieStore.vipTransportCompanies"
           :key="index > 6">
       <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
@@ -121,17 +121,17 @@ onBeforeMount(() => {
           <div class="card-body">
             <div class="row">
               <div class="col-8">
-                <h5 class="card-title"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
+                <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
               </div>
               <div class="col-4">
-                <p> <i class="bx bx-like" style="color: #219935"></i> 30% </p>
+                <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
               </div>
 
             </div>
 
             <div class="row" style="margin-top: -11px;">
               <div class="col-8">
-                <p class="card-text" style="margin-top: 10px; color: #8b8b8b"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
                       {{ companie.adresse }}</p>
               </div>
               <div class="col-4">

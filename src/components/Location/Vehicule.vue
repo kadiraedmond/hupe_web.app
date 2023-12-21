@@ -630,17 +630,22 @@ const handleInterieurPaysPrix = (e) => {
                     {{ car.montant }} FCFA
                   </button>
                 </div>
-                <div class="col-md-12 mt-3">
-                  <p class="card-text"><strong>Modèle | </strong> {{ car.modele }}</p>
+                <div class="col-md-6 mt-3">
+                  <p class="card-text"><strong>Modèle </strong> <br> {{ car.modele }}</p>
                 </div>
-                <div class="col-md-12 mt-3">
+                <div class="col-md-6 mt-3">
                   <p class="card-text">
-                    <strong>Moteur | </strong> {{ car.moteur }}
+                    <strong>Moteur  </strong> <br> {{ car.moteur }}
                   </p>
                 </div>
-                <div class="col-md-12 mt-3">
+                <div class="col-md-6 mt-3">
                   <p class="card-text">
-                    <strong>Immatriculation | </strong> {{ car.serie_vehicule }}
+                    <strong>Immatriculation </strong> <br> {{ car.serie_vehicule }}
+                  </p>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <p class="card-text">
+                    <strong>Transmission  </strong> <br> {{ location.boite }} 
                   </p>
                 </div>
 
@@ -1004,6 +1009,7 @@ const handleInterieurPaysPrix = (e) => {
       </div>
     </div>
   </div>
+  
   <div class="w-100" v-else>
       <div class="row">
         <div class="col-md-3"></div>
@@ -1023,5 +1029,6 @@ const handleInterieurPaysPrix = (e) => {
         <div class="col-md-3"></div>
       </div>
   </div>
+  
 </template>
 <style></style>

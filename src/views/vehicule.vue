@@ -71,7 +71,7 @@ onMounted(() => {
           </div>
         </div>
         
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
           <div
             class="col"
             v-for="(vehicule, index) in promotionStore.popularCars"
@@ -169,12 +169,103 @@ onMounted(() => {
                           <strong style=" font-weight: 500;">Immatriculation | </strong>
                           {{ vehicule.serie_vehicule }}
                         </p>
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                        
                       </div>
                     </div>
                     
                   </div>
                 </div>
+              </div>
+            </router-link>
+          </div>
+        </div> -->
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div
+            class="col"
+            v-for="(vehicule, index) in promotionStore.popularCars"
+            :key="index"
+          >
+            <router-link
+              :to="`/detail_vehicule_location/${vehicule.uid}`"
+              style="color: #000"
+            >
+              <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card h-100 mb-3 border-0"
+                      style="background: #f9f9f9;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-7 d-flex">
+                          <img
+                            :src="vehicule.companieInfos.imageLogoUrl"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="width: 40px; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 10px">
+                                {{ vehicule.companieInfos.raison_social }}
+                              </h5>
+                               
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-5 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                            {{ vehicule.montant }} FCFA
+                          </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card border-0" style="margin: 8px; margin-top: -13px;">
+                  <div :id="'carouselExampleControls' + index" class="carousel slide"  data-ride="false"  data-interval="false">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active ">
+                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleControls' + index" data-bs-slide="prev" id="btn1">
+                      <i class='bx bx-chevron-left' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExampleControls' + index" data-bs-slide="next" id="btn1">
+                      <i class='bx bx-chevron-right' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
+                    </button>
+                  </div>
+
+                  <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 182px; width: 97%; margin-left: 5px;">
+                      <div class="col-md-12 mt-2">
+                        <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
+                /> {{ vehicule.vehicule }} {{ vehicule.modele }} {{  vehicule.annee }}  </h5>
+                      </div>
+                    </div>
+                   
+                
+                  
+                </div>
+                 
               </div>
             </router-link>
           </div>
