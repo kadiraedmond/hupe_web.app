@@ -1,0 +1,1013 @@
+<script setup>
+import { onBeforeMount, onMounted, ref } from "vue"
+import { useRoute } from 'vue-router'
+import { useCompanieStore } from '@/store/companie.js'
+import { usePromotionStore } from '@/store/promotion.js'
+import Loader from "@/components/Loader.vue"
+
+import { collection, doc, addDoc, getDocs, query, where } from 'firebase/firestore'
+import { firestoreDb } from '@/firebase/firebase.js'
+import { toast } from 'vue3-toastify'
+
+import { useAuthStore } from '@/store/auth.js'
+import { v4 as uuidv4 } from 'uuid'
+
+const route = useRoute()
+const companieStore = useCompanieStore()
+const promotionStore = usePromotionStore()
+
+const authStore = useAuthStore()
+const companieId = route.params.id 
+
+const politiques = ref({}) 
+
+const getPolitiques = async () => {
+  const q = query(firestoreDb, 'politiques', where('compagnie_uid', '==', `${companieId}`)) 
+  const snapshots = await getDocs(q) 
+
+  if(snapshots.docs.length > 0) {
+    politiques.value = snapshots.docs[0].data()
+  }
+
+}
+
+onBeforeMount(async () => {
+  await companieStore.resetCompanieCars()
+  await companieStore.setCompanieById(companieId)
+
+  toast.success(`Bienvenue chez ${companieStore.companie.raison_social}`, { 
+    autoClose: 3500, 
+    position: toast.POSITION.TOP_CENTER
+  })
+
+  companieStore.setCompanieCars(companieId)
+  promotionStore.setCompaniePromotionCars(companieId) 
+
+  getPolitiques()
+  
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
+const user = JSON.parse(localStorage.getItem('user')) || authStore.user
+
+const name = ref('')
+const avecChauffeur = ref(false)
+const sansChauffeur = ref(false)
+const capitalPays = ref(false)
+const interieurPays = ref(false)
+const dateRetrait = ref()
+const heureRetrait = ref()
+const lieuRetrait = ref('')
+const dateRetour = ref()
+const permis = ref()
+
+const toggleChauffeur = (num) => {
+  if(num == 1) {
+    avecChauffeur.value = true
+    sansChauffeur.value = false
+  } else if(num == 2) {
+    sansChauffeur.value = true
+    avecChauffeur.value = false
+  }
+}
+
+const togglePays = (num) => {
+  if(num == 3) {
+    capitalPays.value = true
+    interieurPays.value = false
+  } else if(num == 4) {
+    interieurPays.value = true
+    capitalPays.value = false
+  }
+}
+
+const handleFileChange = () => {
+    const fileInput = document.querySelector('#fileInput')
+    
+    const selectedFile = fileInput.files[0]
+
+    permis.value = selectedFile
+}
+
+const locationColRef = collection(firestoreDb, 'location_vehicules')
+
+const isLoading = ref(false)
+
+// const reserver = async (car) => {
+//   isLoading.value = true
+
+//   const Data = {
+//     boite: car.boite,
+//     chauffeur: avecChauffeur.value === true ? 'Oui' : 'Non',
+//     client_id: user.uid || '',
+//     client_profil_url: user.imageUrl || '',
+//     compagnie_uid: companieId || companieStore.companie.uid,
+//     created_at: new Date(),
+//     date_retour: dateRetour.value,
+//     date_retrait: dateRetrait.value,
+//     enPromo: car.enPromo,
+//     heure_retrait: heureRetrait.value,
+//     identite_image_url: permis.value || '',
+//     interieurPays: interieurPays.value === true ? 'Oui' : 'Non',
+//     latitude: '',
+//     lieu_retrait: lieuRetrait.value,
+//     longitude: '',
+//     modele: car.modele,
+//     montant: car.montant,
+//     moteur: car.moteur,
+//     nom_client: name.value,
+//     number: '',
+//     payement: 'En attente',
+//     plaque_vehicule: car.serie_vehicule,
+//     status: 'En attente',
+//     telephone_client: user.telephone,
+//     ticket_id: uuidv4(),
+//     vehicule: car.vehicule,
+//     vehicule_image_url: car.vehicule_image_url,
+//   }
+
+//   try {
+//     const docRef = await addDoc(locationColRef, Data)
+
+//     if(docRef) {
+//       console.log('Document ajouté avec success')
+      
+//       isLoading.value = false
+
+//       document.querySelector('.btn-close').click()
+
+//       toast.success("Réservation effectuée avec succès", { 
+//         autoClose: 3500, 
+//         position: toast.POSITION.TOP_CENTER
+//       })
+//     }
+
+//     document.querySelector('#reservationForm').reset()
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
+</script>
+
+<template>
+  <main id="main">
+    <!-- ======= Portfolio Details Section ======= -->
+    <section
+      id="portfolio-details"
+      class="portfolio-details"
+      style="margin-top: -21px ; padding: 122px;" 
+    >
+    <div class="card text-bg-dark">
+        <img :src="companieStore.companie.imageCouvertureUrl" class="card-img" alt="..."  id="img_couv">
+          <div class="card-img-overlay">
+                               
+         </div>
+    </div>
+      <!-- <img
+        :src="companieStore.companie.imageCouvertureUrl"
+        alt=""
+        class="img-fluid w-100"
+        id="img_couv"
+      /> -->
+    </section>
+    <!-- End Portfolio Details Section -->
+
+    <section id="faq" class="faq" style="margin-top: -140px">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-5">
+            <div class="card mb-3 border-0">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img
+                    :src="companieStore.companie.imageLogoUrl"
+                    alt
+                    class="w-px-40 h-auto rounded-circle"
+                    style="width: 150px; height: 150px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ companieStore.companie.raison_social }}</h5>
+                    <p class="card-text">
+                      {{ companieStore.companie.description }}
+                    </p>
+                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> 30%</button>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Frequently Asked Questions Section -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section
+      id="portfolio-details"
+      class="portfolio-details"
+      style="margin-top: -70px"
+    >
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="home-tab-pane"
+                  aria-selected="true"
+                  style="border-radius: 5px 0px 0px 0px !important;"
+                >
+                  Véhicules
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="profile-tab-pane"
+                  aria-selected="false"
+                >
+                  Promotions
+                </button>
+              </li>
+              <!-- <li class="nav-item" role="presentation">
+              <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Tarifs</button>
+            </li> -->
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="politique-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#politique-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="politique-tab-pane"
+                  aria-selected="false"
+                >
+                  Politiques
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="apropos-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#apropos-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="apropos-tab-pane"
+                  aria-selected="false"
+                  style="border-radius: 0px 5px 0px 0px !important;"
+                >
+                  A propos
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="home-tab-pane"
+                role="tabpanel"
+                aria-labelledby="home-tab"
+                tabindex="0"
+              >
+              <div v-if="companieStore.companieCars.length > 0">
+                <div class="row mt-4">
+                  <div class="col-md-6 mb-2" v-for="(car, i) in companieStore.companieCars" :key="i">
+                    <div class="card mb-3" style="max-width: 540px">
+                      <div class="row g-0">
+                        <div class="col-md-4">
+                          <img
+                            :src="car.vehicule_image_url"
+                            class="img-fluid rounded-start"
+                            alt="..."
+                            style="height: 271px; object-fit: cover;  width: 100%;"
+                          />
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <p class="card-text" style="font-size: 13px">
+                                  <strong>{{ car.vehicule }} | {{ car.modele }} | {{ car.anne_vehicule }} </strong>
+                                </p>
+                              </div>
+                              <div class="col-md-6 text-end">
+                                <button
+                                  class="btn btn-primary"
+                                  style="
+                                    background-color: #219935;
+                                    border-color: #219935;
+                                    font-size: 13px;
+                                  "
+                                >
+                                  {{ car.montant }} FCFA
+                                </button>
+                              </div>
+
+                               
+                              <div class="col-md-12 mt-2">
+                                <div class="row mt-2">
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Moteur</strong> <br>
+                                   {{ car.moteur }} 
+                                   </p>
+                                  </div>
+
+                                  <div class="col-6">
+                                     
+                                  </div>
+                                </div>
+                                <div class="row mt-2">
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Immatriculation</strong> <br>
+                                   {{ car.serie_vehicule }} CFA 
+                                   </p>
+                                  </div>
+
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Transmission </strong> <br>
+                                      {{ car.vehicule.boite}} CFA 
+                                   </p>
+                                  </div>
+                                </div>
+                                <div class="row mt-2">
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Avec chauffeur </strong> <br>
+                                   {{ car.avecchauffeurprix }} CFA 
+                                   </p>
+                                  </div>
+
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Vers l'intérieur </strong> <br>
+                                      {{ car.interieurpaysprix }} CFA 
+                                   </p>
+                                  </div>
+                                </div>
+                                
+                                 
+                              </div>
+
+                              <div class="col-md-12 mt-4 text-start">
+                                <!-- Button trigger modal -->
+                                <router-link :to="`/detail_vehicule_location/${companieId}/${car.uid}`">
+                                  <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    style="
+                                      background-color: #219935;
+                                      border-color: #219935;
+                                    "
+                                    data-bs-toggle="modal"
+                                    :data-bs-target="'#exampleModal' + i"
+                                  >
+                                    Voir plus
+                                  </button>
+                                </router-link>
+
+                                <!-- Modal -->
+                                <!-- <div
+                                  class="modal fade"
+                                  :id="'exampleModal' + i"
+                                  tabindex="-1"
+                                  aria-labelledby="exampleModalLabel"
+                                  aria-hidden="true"
+                                >
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div
+                                        class="modal-header"
+                                        style="background: #deeee4"
+                                      >
+                                        <h1
+                                          class="modal-title fs-5"
+                                          id="exampleModalLabel"
+                                          style="font-size: 17px !important"
+                                        >
+                                          Réservation de véhicule
+                                        </h1>
+                                        <button
+                                          type="button"
+                                          class="btn-close"
+                                          data-bs-dismiss="modal"
+                                          aria-label="Close"
+                                        ></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form
+                                          class="row g-3 needs-validation"
+                                          novalidate
+                                          @submit.prevent="reserver(car)"
+                                          id="reservationForm"
+                                        >
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Nom & prénoms</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="name"
+                                              required
+                                            />
+                                          </div>
+
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Téléphone</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="user.telephone"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Marque</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.vehicule"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Immatriculation</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.serie_vehicule"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Modèle</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.modele"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Moteur</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.moteur"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Transmission</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              :value="car.boite"
+                                              required
+                                              disabled
+                                            />
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Avec chauffeur</label
+                                            >
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="gridRadios"
+                                                id="gridRadios2"
+                                                value="Oui"
+                                                @click="toggleChauffeur(1)"
+                                                v-model="avecChauffeur"
+                                                :checked="avecChauffeur"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Sans chauffeur</label
+                                            >
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="gridRadios"
+                                                id="gridRadios1"
+                                                value="Non"
+                                                @click="toggleChauffeur(2)"
+                                                v-model="sansChauffeur"
+                                                :checked="sansChauffeur"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Capital du pays</label
+                                            >
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="gridRadios"
+                                                id="gridRadios4"
+                                                value="Non"
+                                                @click="togglePays(3)"
+                                                v-model="capitalPays"
+                                                :checked="capitalPays"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Intérieur du pays</label
+                                            >
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="gridRadios"
+                                                id="gridRadios5"
+                                                value="Oui"
+                                                @click="togglePays(4)"
+                                                v-model="interieurPays"
+                                                :checked="interieurPays"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Date de Retrait</label
+                                            >
+                                            <input
+                                              type="date"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="dateRetrait"
+                                              required
+                                            />
+                                          </div>
+                                          <div class="col-md-6">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Heure de Retrait</label
+                                            >
+                                            <input
+                                              type="time"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="heureRetrait"
+                                              required
+                                            />
+                                          </div>
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Lieu du Retrait</label
+                                            >
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="lieuRetrait"
+                                              required
+                                            />
+                                          </div>
+
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Date de retour</label
+                                            >
+                                            <input
+                                              type="date"
+                                              class="form-control"
+                                              id="validationCustom01"
+                                              v-model="dateRetour"
+                                              required
+                                            />
+                                          </div>
+
+                                          <Loader 
+                                            style="position: absolute; left: 35%; top: 15%"
+                                            v-if="isLoading" 
+                                          />
+
+                                          <div class="col-md-12">
+                                            <label
+                                              for="validationCustom01"
+                                              class="form-label"
+                                              >Permis de conduire</label
+                                            >
+                                            <input
+                                              type="file"
+                                              class="form-control"
+                                              id="fileInput"
+                                              @change="handleFileChange"
+                                              required
+                                            />
+                                          </div>
+
+                                          <div class="col-12 text-center">
+                                            <button
+                                              class="btn btn-primary"
+                                              type="submit"
+                                              style="
+                                                background: #219935;
+                                                border-color: #219935;
+                                              "
+                                            >
+                                              Réserver
+                                            </button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div> -->
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="w-100" v-else>
+                <div class="row mt-4">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <div class="card text-center border-0">
+                      <div class="text-center">
+                        <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+                      </div>
+                      
+                      <div class="card-body">
+                        <p class="card-text">Aucun véhicule disponible</p>
+                      </div>
+                    </div>
+                  
+                    
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+              </div>
+                
+              </div>
+
+              <div
+                class="tab-pane fade"
+                id="profile-tab-pane"
+                role="tabpanel"
+                aria-labelledby="profile-tab"
+                tabindex="0"
+              >
+                <div  v-if="promotionStore.companiePromotionCars.length > 0">
+                  <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
+                  <div class="col" v-for="(promoCar, i) in promotionStore.companiePromotionCars" :key="i">
+                    
+                    <div
+                      class="card border-0"
+                      style="background: #f3f4f6; padding: 6px"
+                    >
+                      <div class="row" style="padding: 6px">
+                        <div class="col-md-12 d-flex" style="margin-top: -11px;">
+                          <img
+                          :src="companieStore.companie.imageLogoUrl"
+                            class="img-fluid"
+                            alt="..."
+                            style="width: 40px; height: 40px; border-radius: 50%; margin-top: 6px; object-fit: contains; border: 1px solid #8b8b8b;"
+                          />
+                          <h6
+                            style="
+                              font-size: 15px;
+                              margin-left: 5px;
+                              margin-top: 16px;
+                            "
+                          >
+                          {{ companieStore.companie.raison_social }}
+                          </h6>
+                          <p
+                            style="
+                              font-size: 15px;
+                              margin-left: 5px;
+                              margin-top: 14px;
+                            "
+                          >
+                          <i class='bx bxs-map'></i>
+                            {{ companieStore.companie.adresse }}
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        class="card h-100"
+                        id="compagnie_card"
+                        style="
+                          padding: 6px;
+                          background: #a6a6a621;
+                          box-shadow: none;
+                          background: transparent;
+                          margin-top: -10px;
+                        "
+                      >
+                        <router-link
+                          to="'/detail'"
+                          style="
+                            border: 1px solid;
+                            border-radius: 5px;
+                            border-color: #a6a6a6;
+                          "
+                        >
+                          <img
+                            :src="promoCar.vehicule_image_url"
+                            class="card-img-top"
+                            alt="..."
+                            style="
+                              border-radius: 5px 5px 5px 5px;
+                              height: 215px !important;
+                              object-fit: cover;
+                            "
+                          />
+                    </router-link>
+                        <button class="btn btn-primary" id="badges">
+                          <s> {{ promoCar.ancien_montant }} FCFA </s>
+                        </button>
+                        <button class="btn btn-primary" id="badges0">
+                          {{ promoCar.montant }} FCFA
+                        </button>
+                        <button class="btn btn-primary" id="badges012">
+                          {{ promoCar.pourcentage }}%
+                        </button>
+                        <button class="btn btn-primary" id="badges0121">
+                          {{ promoCar.vehicule }} {{ promoCar.modele }} {{ promoCar.anne_vehicule }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <div class="w-100" v-else>
+                  <div class="row mt-4">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                      <div class="card text-center border-0">
+                        <div class="text-center">
+                          <img src="/assets/img/icone/promo.png" alt="" class="img-fluid w-50">
+                        </div>
+                        
+                        <div class="card-body">
+                          <p class="card-text">Aucune promotion disponible.</p>
+                        </div>
+                      </div>
+                    
+                      
+                    </div>
+                    <div class="col-md-3"></div>
+                  </div>
+                </div>
+                
+              </div>
+
+              <div
+                class="tab-pane fade"
+                id="politique-tab-pane"
+                role="tabpanel"
+                aria-labelledby="politique-tab"
+                tabindex="0"
+              >
+                <div class="row mt-5">
+                  <div class="col-md-12">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <p>
+                          {{ politiques.text }}
+                        </p>
+
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="tab-pane fade"
+                id="apropos-tab-pane"
+                role="tabpanel"
+                aria-labelledby="apropos-tab"
+                tabindex="0"
+              >
+               
+                <div class="row mt-5">
+                  <div class="col-md-12">
+                    <div class="card mb-3 border-0">
+                      <div class="row g-2">
+                        <div class="col-md-3 text-center">
+                          <div class="card text-bg-white" style="padding: 10px;">
+                            <img src="/assets/img/service/car.png" class="card-img" alt="...">
+                            <div class="card-img-overlay">
+                               
+                            </div>
+                          </div>
+                          
+                         
+                        </div>
+                        <div class="col-md-9">
+                          <div class="card-body">
+                             <div class="row">
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-car'></i>  Raison sociale</h6>
+                                <p>{{ companieStore.companie.raison_social }} </p>
+                               </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-user' ></i> Responsable </h6>
+                                <p> {{ companieStore.companie.responsable }} </p>
+                               </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-phone' ></i> Téléphone</h6>
+                                <p>{{ companieStore.companie.telephone }} </p>
+                                <p>{{ companieStore.companie.site_web }}</p>
+                               </div>
+                             </div>
+                             <hr>
+                             <div class="row">
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-envelope' ></i>  Email</h6>
+                                <p>{{ companieStore.companie.email }} </p>
+                               </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"><i class='bx bx-map'></i> Adresse</h6>
+                                <p>  {{ companieStore.companie.adresse }} </p>
+                               </div>
+
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-map-pin' ></i> Localisation</h6>
+                                <p>  {{ companieStore.companie.latitude }} {{ companieStore.companie.longitude }} </p>
+                               </div>
+                             </div>
+                             <hr>
+                             <div class="row">
+                               <div class="col-md-12">
+                                <h6 id="h6">Présentation</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                               </div>
+                                                    
+                             </div>
+                             <hr>
+                             <div class="row">
+                               
+                               <div class="col-md-12">
+                                <h6 id="h6">Description</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                               </div>
+
+                                <div class="card-body">
+                                  <h5
+                                    class="card-title"
+                                    style="font-size: 14px"
+                                  >
+                                    {{ companieStore.companie.latitude }} - {{ companieStore.companie.longitude }}
+                                  </h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- End Portfolio Details Section -->
+  </main>
+  <!-- End #main -->
+</template>
+<style scoped>
+/* .nav-tabs .nav-link {
+    border: none !important;
+} */
+
+.nav-tabs .nav-link {
+    /* margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); */
+    /* background: 0 0; */
+    /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+    /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+    /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+    margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
+    border: var(--bs-nav-tabs-border-width) solid transparent;
+    /* border-color: #219935; */
+    border-radius: 0px !important;
+}
+
+/* #img_couv{
+  max-height: 431px;
+    
+    min-width: 392px !important;
+    max-inline-size: -webkit-fill-available;
+} */
+
+#img_couv{
+  height: 250px;
+    /* object-fit: cover; */
+  object-fit: fill;
+  image-rendering: -webkit-optimize-contrast;
+  border-radius: 10px;
+}
+
+#h6{
+  font-size: 14px;
+  font-weight: 600;
+  color: #21993599;
+}
+
+
+</style>

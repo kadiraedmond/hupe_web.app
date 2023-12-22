@@ -7,11 +7,15 @@ import { ref, onMounted } from 'vue'
 
 const shwo = ref(true)
 onMounted(() => {
-  if(location.pathname == '/service_client' || location.pathname == '/legales' || location.pathname == '/services'  || location.pathname == '/informations') {
+  if(location.pathname === '/support' || location.pathname == '/terme-connection') {
     shwo.value = false
   } else {
     shwo.value = true
   }
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
 })
 
 
@@ -24,7 +28,7 @@ onMounted(() => {
     <router-view />
   </div>
 
-    <Footer v-show="shwo" />
+  <Footer v-show="shwo" />
 </template>
 
 <style scoped>

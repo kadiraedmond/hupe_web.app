@@ -19,8 +19,17 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-body {
-  font-family: "Open Sans", sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Poppins', "Open Sans", sans-serif;
   color: #444444;
 }
 
@@ -632,8 +641,7 @@ section {
 
 #card_compagnie{
   border-radius: 5px;
-  /* background: rgba(217, 217, 217, 0.13); */
-  background: #f3f4f6;
+  background: rgba(217, 217, 217, 0.13);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -1826,6 +1834,10 @@ section {
   font-size: 14px;
   background: white;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  /* bottom: 0; */
+  right: 0;
+  left: 0;
 }
 
 #footer .footer-top {
@@ -2007,7 +2019,6 @@ section {
     border-top: 1px solid #DFDFE0;
     padding: 1.8125rem 0;
     background: transparent;
-    color: #219935;
 }
 
 .accordion-button:not(.collapsed) {
@@ -2095,27 +2106,4 @@ section {
     margin-left: 10px;
     height: 50px;
 
-}
-
-.fixe{
-  position: fixed;
-    top: 20px;
-    /* right: 0; */
-    /* left: 0; */
-    /* z-index: 1030; */
-}
-
-
-#attente-tab .nav-link.active {
-  /* color: var(--bs-nav-tabs-link-active-color); */
-  /* background-color: var(--bs-nav-tabs-link-active-bg); */
-  /* border-color: var(--bs-nav-tabs-link-active-border-color); */
-  color: white;
-  /* background-color: var(--bs-nav-tabs-link-active-bg); */
-  border-color: #219935;
-  /* background-image: linear-gradient(to right, #219935 0%, #219935 51%, #219935 100%); */
-}
-.form-check-input:checked{
-background-color: #219935 !important;
-border-color: #219935 !important;
 }

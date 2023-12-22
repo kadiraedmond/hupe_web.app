@@ -1,8 +1,22 @@
-<script>
-export default{
-        name:"Footer"
-    };
- 
+<script setup>
+
+import { useRoute } from "vue-router"
+
+const route = useRoute()
+
+route.params.activeTab || 'home-tab'
+const lien = route.params.activeTab
+// export default {
+//   name: "Footer",  
+//   data() {
+//     return {
+//       activeTab: route.params.activeTab || 'home-tab',
+      
+//     };
+//   },
+  
+// };
+
 </script>
 <template>
      <!-- ======= Footer ======= -->
@@ -18,6 +32,9 @@ export default{
           <li><router-link to="/informations">Foire aux questions</router-link></li>
           <li><router-link to="/informations">Qui sommes nous</router-link></li>
           <li><router-link to="/informations">Comment ça marche</router-link></li>
+          
+          <!-- <li><router-link :to="`/informations/${`profile-tab`}`"> Blog</router-link></li> -->
+          <!-- <li><router-link :to="{ name: 'Informations', params: { activeTab: 'profile-tab' } }"> Blog</router-link></li> -->
           <li><router-link to="/informations">Blog</router-link></li>
           <li><router-link to="/informations">Accessibilité</router-link></li>
         </ul>
@@ -40,7 +57,7 @@ export default{
           <li> <router-link to="/services">Réservations de tickets de bus  </router-link></li>
           <li> <router-link to="/services">Location de gros en engin </router-link></li>
           <li> <router-link to="/services">Vente de véhicule </router-link></li>
-          <li> <router-link to="/services">Partenaires par pays  </router-link></li> 
+          <li> <router-link to="/partenaire_par_pays">Partenaires par pays  </router-link></li> 
           <li> <router-link to="/pour_partenaire">Pour les partenaires </router-link></li>
           <li> <router-link to="/pour_client">Pour les clients </router-link></li>
          
@@ -54,8 +71,8 @@ export default{
         <ul>
 
           <li><router-link to="/legales">Politiques de confidentialité</router-link></li>
-          <li><router-link to="/legales">Politique de sécurité </router-link></li>
-          <li><router-link to="/legales">Terme et conditions </router-link></li>
+          <li><router-link to="/legales">Politiques de sécurité </router-link></li>
+          <li><router-link to="/legales">Termes et conditions </router-link></li>
           <li><router-link to="/legales">Droit d’auteur </router-link></li>
         </ul>
       </div>
@@ -63,20 +80,20 @@ export default{
       <div class="col footer-links">
         <h4>Retrouvez-nous sur</h4>
         <div class="social-links text-md-right pt-0 pt-md-0">
-          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bx bxl-youtube"></i></a>
-          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://twitter.com/Hupeafrica" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100088080067301" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/hupeafrica/" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UCh07rr8p-XHo0zrmZfFQd1w" class="google-plus"><i class="bx bxl-youtube"></i></a>
+          <a href="https://www.linkedin.com/showcase/91588607" class="linkedin"><i class="bx bxl-linkedin"></i></a>
         </div>
       </div>
 
       <div class="col footer-links">
         <h4>Modes de paiement</h4>
         <ul>
-          <li><a href="#">Mobile money </a></li>
+          <li><a href="#"> Mobile money </a></li>
           <li> <a href="#">Carte bancaire</a></li>
-          <li> <a href="#">Cinetpay</a></li>
+          <li> <a href="#"> CinetPay</a></li>
           <li> <a href="#"></a></li>
         </ul>
       </div>
@@ -95,7 +112,7 @@ export default{
   </div>
 </div>
 
-<div class="container d-md-flex py-4">
+<div class="container d-md-flex py-4" style="padding-top: 0.8rem!important; padding-bottom: 0.8rem!important;">
 
   <div class="me-md-auto text-center text-md-start">
     <div class="copyright">

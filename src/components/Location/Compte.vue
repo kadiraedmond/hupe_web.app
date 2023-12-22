@@ -1,353 +1,231 @@
 <script setup>
-   
+import { useCompanieStore } from '@/store/companie.js'
+import { useAuthStore } from '@/store/auth.js'
+import { onBeforeMount, onMounted, ref } from "vue"
+import Swal from 'sweetalert2'
+import { collection, query, doc, addDoc, updateDoc, where, getDoc, getDocs, Timestamp } from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
+
+const companieStore = useCompanieStore()
+const authStore = useAuthStore()
+
+const savedUser = JSON.parse(localStorage.getItem('user'))
+
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+onBeforeMount(() => {
+  companieStore.setCompanieHistory(userId)
+  companieStore.setTotalAmount(userId)
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
+const showWithdrawModal = ref(false)
+
+const checkAccount = () => { 
+  if(!companieStore.totalAmount.solde || !Number(companieStore.totalAmount.solde)) {
+    Swal.fire({
+      title: "Erreur",
+      text: "Attendez de recevoir un payement pour faire une demande de retrait",
+      icon: "error"
+    }) 
+
+    return
+  } 
+  
+  if(Number(companieStore.totalAmount.solde) < 50000) {
+    Swal.fire({
+      title: "Erreur",
+      text: "Votre solde est insuffisant pour un retrait",
+      icon: "error"
+    })
+  } else if(Number(companieStore.totalAmount.solde) >= 50000) {
+    showWithdrawModal.value = true
+  }
+}
+
+const montant = ref()
+const retrait = async () => {
+  try {
+    const retraitColRef = collection(firestoreDb, 'retrait') 
+
+    if(Number(montant.value) < 50000) return 
+
+    const data = {
+      body: Number(montant.value), 
+      compagnieUID: userId, 
+      date: Timestamp.now(), 
+      solde: Number(companieStore.totalAmount.solde), 
+      status: 'En attente', 
+      title: 'Retrait'
+    }
+
+    await addDoc(retraitColRef, data)
+
+    Swal.fire({
+      title: "Succès",
+      text: "Votre demande a été effectuée",
+      icon: "success"
+    })
+
+    const notificationColRef = collection(firestoreDb, 'notifications')
+  
+    const comp_notif = { 
+      uid: '', 
+      title: 'Demande de retrait', 
+      message: `Vous avez demandé un retrait de FCFA ${montant.value}, qui sera crédité sur votre compte après validation par l'administrateur.`, 
+      userId: userId, 
+      lu: false, 
+      createdAt: Timestamp.now() 
+    }
+  
+    const docRef = await addDoc(notificationColRef, comp_notif)
+
+    await updateDoc(docRef.ref, { uid: `${docRef.id}` })
+
+  } catch (error) {
+    Swal.fire({
+      title: "Erreur",
+      text: "Erreur lors du traitement de la demande",
+      icon: "error"
+    })
+    console.log(error)
+  }
+} 
+
+const options = {
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit', 
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: '2-digit', 
+}
 </script>
 
 <template>
-     <div class="row mt-5">
-                  <div class="col-md-12">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <h1 style="font-size: 20px">
-                          Historiques des transanctions
-                        </h1>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="row mb-4">
-                          <div class="col-md-6">
-                            <p><strong> Solde |</strong> 20 000</p>
-                          </div>
-                          <div class="col-md-6 text-end">
-                            <a
-                              v-bind:href="'/formulaire_reservation'"
-                              id="a_compagnie"
-                            >
-                              <button
-                                class="btn btn-primary"
-                                style="
-                                  background-color: rgb(33 153 53);
-                                  border-color: rgb(33 153 53);
-                                  margin-top: -8px;
-                                "
-                              >
-                                <img
-                                  src="/public/assets/img/icone/plus.png"
-                                  class="img-fluid"
-                                  alt="..."
-                                />
-                                Demander un retrait
-                              </button>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 style="font-size: 20px">Historiques des transanctions</h1>
+        </div>
+        <div class="col-md-6">
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <button class="btn btn-primary" style="background: #219935; border-color: #219935; color: white;">
+                   Solde |  <strong> {{ companieStore.totalAmount.solde ? companieStore.totalAmount.solde : 0 }} FCFA </strong> 
+              </button>
+             
+              
+            </div>
+            <div class="col-md-6 text-end">
+              <button
+                class="btn btn-primary"
+                style="
+                  background-color: rgb(33 153 53);
+                  border-color: rgb(33 153 53);
+                   
+                " 
+                :data-bs-toggle="showWithdrawModal && 'modal'" :data-bs-target="showWithdrawModal && '#exampleModalr'" 
+                @click="checkAccount"
+              >
+                <img
+                  src="/assets/img/icone/plus.png"
+                  class="img-fluid"
+                  alt="..."
+                />
+                Demander un retrait
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" :id="showWithdrawModal && 'exampleModalr'" tabindex="-1" aria-labelledby="exampleModalLabelr" aria-hidden="true" v-show="showWithdrawModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header" style="background: #219935">
+                      <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Demande de retrait</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="row mt-4">
-                      <div class="col-md-6">
-                        <div class="row">
-                          <div
-                            class="col-md-12 mb-4"
-                            style="
-                              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                            "
-                          >
-                            <div class="row">
-                              <div class="col-md-8">
-                                <p style="font-size: 17px; font-weight: 600">
-                                  Paiement pour la location de Toyota yaris
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <p>
-                                  <img
-                                    src="/public/assets/img/icone/calendar.png"
-                                    alt=""
-                                  />
-                                  20-10-2023
-                                </p>
-                              </div>
-                            </div>
-                            <p>Paiement pour la location de Toyota yaris</p>
-                            <div class="row mb-2">
-                              <div class="col-md-8">
-                                <p>
-                                  Montant |
-                                  <strong>
-                                    <img
-                                      src="/public/assets/img/icone/circle.png"
-                                      alt=""
-                                    />
-                                    12000 FCFA</strong
-                                  >
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <button
-                                  class="btn btn-primary"
-                                  style="
-                                    background: #219935;
-                                    border-color: #219935;
-                                  "
-                                >
-                                  Solde : 12000 F
-                                </button>
-                              </div>
-                            </div>
+                    <div class="modal-body text-end">
+                      <div class="row">
+                        <div class="col-md-12 text-center">
+                           <img src="/assets/img/reg.jpg" alt="" class="img-fluid w-75">
                           </div>
-                          <div
-                            class="col-md-12 mb-4"
-                            style="
-                              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                            "
-                          >
-                            <div class="row">
-                              <div class="col-md-8">
-                                <p style="font-size: 17px; font-weight: 600">
-                                  Paiement pour la location de Toyota yaris
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <p>
-                                  <img
-                                    src="/public/assets/img/icone/calendar.png"
-                                    alt=""
-                                  />
-                                  20-10-2023
-                                </p>
-                              </div>
+                        <div class="col-md-12">
+                          <form @submit.prevent="retrait" class="row g-3 needs-validation" novalidate>
+                            <div class="col-md-12 text-start">
+                              <label for="validationCustom01" class="form-label">Entrez le montant</label>
+                              <input type="number" class="form-control" v-model="montant" required>
+                              
                             </div>
-                            <p>Paiement pour la location de Toyota yaris</p>
-                            <div class="row mb-2">
-                              <div class="col-md-8">
-                                <p>
-                                  Montant |
-                                  <strong>
-                                    <img
-                                      src="/public/assets/img/icone/circle.png"
-                                      alt=""
-                                    />
-                                    12000 FCFA</strong
-                                  >
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <button
-                                  class="btn btn-primary"
-                                  style="
-                                    background: #219935;
-                                    border-color: #219935;
-                                  "
-                                >
-                                  Solde : 12000 F
-                                </button>
-                              </div>
+                            
+                            <div class="col-12">
+                              <button class="btn btn-primary" type="submit" style="background: #219935; border-color: #219935;">Valider</button>
                             </div>
-                          </div>
-                          <div
-                            class="col-md-12 mb-4"
-                            style="
-                              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                            "
-                          >
-                            <div class="row">
-                              <div class="col-md-8">
-                                <p style="font-size: 17px; font-weight: 600">
-                                  Paiement pour la location de Toyota yaris
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <p>
-                                  <img
-                                    src="/public/assets/img/icone/calendar.png"
-                                    alt=""
-                                  />
-                                  20-10-2023
-                                </p>
-                              </div>
-                            </div>
-                            <p>Paiement pour la location de Toyota yaris</p>
-                            <div class="row mb-2">
-                              <div class="col-md-8">
-                                <p>
-                                  Montant |
-                                  <strong>
-                                    <img
-                                      src="/public/assets/img/icone/circle.png"
-                                      alt=""
-                                    />
-                                    12000 FCFA</strong
-                                  >
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <button
-                                  class="btn btn-primary"
-                                  style="
-                                    background: #219935;
-                                    border-color: #219935;
-                                  "
-                                >
-                                  Solde : 12000 F
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+                          </form>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="row">
-                          <div
-                            class="col-md-12 mb-4"
-                            style="
-                              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                            "
-                          >
-                            <div class="row">
-                              <div class="col-md-8">
-                                <p style="font-size: 17px; font-weight: 600">
-                                  Paiement pour la location de Toyota yaris
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <p>
-                                  <img
-                                    src="/public/assets/img/icone/calendar.png"
-                                    alt=""
-                                  />
-                                  20-10-2023
-                                </p>
-                              </div>
-                            </div>
-                            <p>Paiement pour la location de Toyota yaris</p>
-                            <div class="row mb-2">
-                              <div class="col-md-8">
-                                <p>
-                                  Montant |
-                                  <strong>
-                                    <img
-                                      src="/public/assets/img/icone/circle.png"
-                                      alt=""
-                                    />
-                                    12000 FCFA</strong
-                                  >
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <button
-                                  class="btn btn-primary"
-                                  style="
-                                    background: #219935;
-                                    border-color: #219935;
-                                  "
-                                >
-                                  Solde : 12000 F
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="col-md-12 mb-4"
-                            style="
-                              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                            "
-                          >
-                            <div class="row">
-                              <div class="col-md-8">
-                                <p style="font-size: 17px; font-weight: 600">
-                                  Paiement pour la location de Toyota yaris
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <p>
-                                  <img
-                                    src="/public/assets/img/icone/calendar.png"
-                                    alt=""
-                                  />
-                                  20-10-2023
-                                </p>
-                              </div>
-                            </div>
-                            <p>Paiement pour la location de Toyota yaris</p>
-                            <div class="row mb-2">
-                              <div class="col-md-8">
-                                <p>
-                                  Montant |
-                                  <strong>
-                                    <img
-                                      src="/public/assets/img/icone/circle.png"
-                                      alt=""
-                                    />
-                                    12000 FCFA</strong
-                                  >
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <button
-                                  class="btn btn-primary"
-                                  style="
-                                    background: #219935;
-                                    border-color: #219935;
-                                  "
-                                >
-                                  Solde : 12000 F
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="col-md-12 mb-4"
-                            style="
-                              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                            "
-                          >
-                            <div class="row">
-                              <div class="col-md-8">
-                                <p style="font-size: 17px; font-weight: 600">
-                                  Paiement pour la location de Toyota yaris
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <p>
-                                  <img
-                                    src="/public/assets/img/icone/calendar.png"
-                                    alt=""
-                                  />
-                                  20-10-2023
-                                </p>
-                              </div>
-                            </div>
-                            <p>Paiement pour la location de Toyota yaris</p>
-                            <div class="row mb-2">
-                              <div class="col-md-8">
-                                <p>
-                                  Montant |
-                                  <strong>
-                                    <img
-                                      src="/public/assets/img/icone/circle.png"
-                                      alt=""
-                                    />
-                                    12000 FCFA</strong
-                                  >
-                                </p>
-                              </div>
-                              <div class="col-md-4">
-                                <button
-                                  class="btn btn-primary"
-                                  style="
-                                    background: #219935;
-                                    border-color: #219935;
-                                  "
-                                >
-                                  Solde : 12000 F
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      
                     </div>
+                    
                   </div>
                 </div>
-  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col" v-for="(history, index) in companieStore.companieHistory.slice().reverse()" :key="index">
+          <div class="card h-100">
+            
+            <div class="card-body">
+              <div class="row">
+                  <div class="col-md-8">
+                    <p style="font-size: 17px; font-weight: 600">
+                      {{ history.title }}
+                    </p>
+                  </div>
+                  <div class="col-md-4 text-end">
+                    <p>
+                      <i class='bx bx-calendar'></i>
+                      {{ new Intl.DateTimeFormat('fr-FR', options).format(history.datePayement.toDate()) }}
+                    </p>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p>{{ history.title }}</p>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-md-8">
+                  <p>
+                    Montant |
+                    <strong>
+                      <i class='bx bxs-plus-circle' style="color: #219935;" ></i>
+                      {{ history.montantVerser }} FCFA</strong
+                    >
+                  </p>
+                </div>
+                <div class="col-md-4 text-end">
+                  <button
+                    class="btn btn-primary"
+                    style="background: #219935; border-color: #219935"
+                  >
+                    Solde : {{ history.solde }} F
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 </template>
-<style>
-</style>
+<style></style>

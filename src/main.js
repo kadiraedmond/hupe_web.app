@@ -7,36 +7,50 @@
 // import './assets/slide2.js'
 // import './assets/font.css'
 
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
-import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+ 
 
-// Ajoutez les icônes solid à la bibliothèque
-library.add(fas);
+// Import Bootstrap and BootstrapVue CSS files (order is important)
+// import '../node_modules/bootstrap/dist/css/bootstrap.css'
+// import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
 
-/* import specific icons */
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+ 
 
-/* add icons to the library */
-library.add(faUserSecret)
+import "bootstrap/dist/js/bootstrap.bundle.min.js" 
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+// import '../node_modules/flag-icon-css/css/flag-icons.min.css'
 
-// import { createApp } from 'vue'
-// import App from './App.vue'
+import VueTelInput from 'vue-tel-input'
+import 'vue-tel-input/vue-tel-input.css'
+import VOtpInput from "vue3-otp-input"
+import 'vue3-toastify/dist/index.css'
 
-createApp(App).component('font-awesome-icon', FontAwesomeIcon);
 
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router/router'; // Importez le fichier de configuration de Vue Router
+import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import App from './App.vue'
+import router from './router/router' 
 
 const pinia = createPinia()
+const app = createApp(App)
 
-const app = createApp(App);
+const globalOptions = {
+    mode: 'national',
+    autoDefaultCountry: true,
+    dropdownOptions: {
+        disable: false,
+        showDialCodeInSelection: true,
+    },
+    inputOptions: {
+        required: true,
+        type: 'String', 
+        autofocus: true,
+        placeholder: 'Téléphone'
+    }
+}
 
+
+app.use(router) 
 app.use(pinia)
-app.use(router); // Utilisez Vue Router
+app.use(VueTelInput, globalOptions)
 
-app.mount('#app');
+app.component('v-otp-input', VOtpInput).mount('#app')
