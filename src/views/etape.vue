@@ -195,16 +195,16 @@ const handleClient = () => {
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <img src="assets/img/inter/car.svg" class="d-block w-100" alt="...">
+                <img src="/assets/img/inter/car.svg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                <img src="assets/img/inter/bus.svg" class="d-block w-100" alt="...">
+                <img src="/assets/img/inter/bus.svg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                <img src="assets/img/inter/engin.svg" class="d-block w-100" alt="...">
+                <img src="/assets/img/inter/engin.svg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                <img src="assets/img/inter/sale.svg" class="d-block w-100" alt="...">
+                <img src="/assets/img/inter/sale.svg" class="d-block w-100" alt="...">
                 </div>
             </div>
             </div>
