@@ -921,7 +921,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 
                             </div>
 
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-6"></div>
                                 <div class="col-md-6 text-end">
                                     <router-link to="/location_gros_engin">
@@ -929,7 +929,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                     </router-link>
                                    
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="row mt-4">
                                 <div class="col-md-12 text-center">

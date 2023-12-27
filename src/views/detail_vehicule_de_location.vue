@@ -211,7 +211,7 @@ onMounted(() => {
   <section id="portfolio-details" class="portfolio-details" style="margin-top: 50px;">
     <div class="container">
       <div class="row no-gutters mt-4">
-        <div class="col-md-5">
+        <!-- <div class="col-md-5">
           <div class="row row-cols-1 row-cols-md-3 g-2">
             <div class="col">
               <div class="card border-0" style="background: #219935">
@@ -340,7 +340,7 @@ onMounted(() => {
           </div>
 
           <div class="row mt-4">
-              <!-- Button trigger modal -->
+              
             <div class="col-md-6 text-end">
               <router-link v-if="!user.uid" to="/connexion-client">
                 <button
@@ -369,7 +369,7 @@ onMounted(() => {
                 </button>
               </router-link>
 
-              <!-- Modal -->
+               
                 <div
                   class="modal fade"
                   id="exampleModal"
@@ -720,8 +720,8 @@ onMounted(() => {
               </router-link>
             </div>
           </div>
-          </div>
-        <div class="col-md-7">
+        </div> -->
+        <div class="col-md-8">
           <img
           :src="promotionStore.vehicule.vehicule_image_url"
             alt=""
