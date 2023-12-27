@@ -20,7 +20,8 @@ const isLoading = ref(false)
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'MtFQ9kulTaxS2MsKN3O6'
 // const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   isLoading.value = true
@@ -56,8 +57,8 @@ const handleSubmit = async () => {
     uid: '', 
     anne_vehicule: annee.value, 
     avecchauffeurprix: prix_avec_chauffeur.value, 
-    boite: '', 
-    capitalprix: '', 
+    boite: transmission.value, 
+    capitalprix: 0, 
     compagnie_uid: userId, 
     enAvant: false, 
     enPromo: false, 

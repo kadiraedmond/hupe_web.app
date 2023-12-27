@@ -4,8 +4,10 @@ import { firestoreDb } from '@/firebase/firebase.js'
 import axios from 'axios'
 
 const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+
 const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
 const vehiculeEnPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
+const programmeEnPromoColRef = collection(promotionDocRef, 'programme_en_promo')
 
 const miseEnAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
 const programmeEnAvantColRef = collection(miseEnAvantDocRef, 'programme_en_avant')
@@ -21,7 +23,8 @@ export const usePromotionStore = defineStore('promotionStore', {
         popularCars: [],
         vehicule: {},
         programme: {},
-        companiePromotionCars: []
+        companiePromotionCars: [],
+        companiePromotionProgrammes: []
     }),
 
     getters: {
@@ -107,6 +110,19 @@ export const usePromotionStore = defineStore('promotionStore', {
                 const snapshots = await getDocs(q)
 
                 snapshots.docs.forEach(doc => this.companiePromotionCars.push(doc.data()))
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async setCompaniePromotionProgrammes(companieId) { 
+            this.companiePromotionProgrammes = [] 
+            try {
+                const q = query(programmeEnPromoColRef, where('compagnie_uid', '==', `${companieId}`))
+                const snapshots = await getDocs(q)
+
+                snapshots.docs.forEach(doc => this.companiePromotionProgrammes.push(doc.data()))
+
+                console.log(this.companiePromotionProgrammes)
             } catch (error) {
                 console.log(error)
             }

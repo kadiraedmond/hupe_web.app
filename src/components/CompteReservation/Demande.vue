@@ -16,7 +16,6 @@ const usersColRef = collection(firestoreDb, 'users')
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
 
-
 const userInformations = ref({})
 
 const getClientInformations = async (clientId) => {
@@ -72,11 +71,62 @@ onMounted(() => {
           style="
             background: white !important;
             box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 1px 1px;
-            border: none;
+            border: none;height: 165px;
           "
         >
-          <p style="color: #219935">{{ demande.objet }}</p>
-          <p class="text-black">{{ demande.demande }}</p>
+        <div class="row">
+            <div class="col-4 text-center" style="background-color: #219935; height: 159px;">
+              <img
+                :src="
+                    demande.userInfos.imageUrl
+                    ? demande.userInfos.imageUrl
+                    : '/assets/img/avatars/1.png'
+                    "
+                  class="img-fluid w-75"
+                  alt="..."
+                  style="margin-top: 16px; background: white; padding: 10px; border-radius: 10px; height: 125px;"
+                />
+            </div>
+            <div class="col-8">
+              <div class="row g-1 d-flex mt-1">
+                <div class="col-6 ">
+                  <!-- <img
+                    :src="
+                      demande.userInfos.imageUrl
+                        ? demande.userInfos.imageUrl
+                        : '/assets/img/avatars/1.png'
+                    "
+                    alt
+                    class="w-px-40 h-auto rounded-circle"
+                    style="
+                      max-width: 50px;
+                      height: 50px !important ;
+                      border: 1px solid rgb(214, 214, 214);
+                    "
+                  /> -->
+                  <div>
+                    <div
+                      class="card-body"
+                      style="margin-top: 15px;"
+                    >
+                      <p class="card-title text-black" style="font-weight:700">
+                        {{ demande.userInfos.lastName }}
+                        {{ demande.userInfos.firstName }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row g-1 mt-1">
+                <div class="col-md-12">
+                  <p style="color: #219935">  <i class='bx bx-news'></i>  {{ demande.objet }}</p>
+                  <p class="text-black" style="margin-top: -9px">
+                     <i class='bx bx-mail-send'></i> {{ demande.demande }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </button>
 
         <!-- Modal -->
@@ -116,7 +166,7 @@ onMounted(() => {
                     <textarea
                       class="form-control"
                       id="validationTextarea"
-                      placeholder="Reponse" 
+                      placeholder="" 
                       v-model="response"
                       required
                     ></textarea>

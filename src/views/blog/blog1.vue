@@ -28,7 +28,7 @@ onMounted(() => {
                 Les Avantages de Louer un Véhicule avec Hupe
               </h3>
         
-              <article class="blog-post">
+              <article class="blog-post" style="text-align: justify;">
                 <h2 class="blog-post-title mb-4" style="font-size: 19px; font-weight: 600;">Extrait</h2>
                  
         
@@ -38,7 +38,7 @@ onMounted(() => {
                 </p>
                 <hr>
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="text-align: justify;">
                         <h2 class="mb-2" style="font-size: 19px; font-weight: 600;">Économies Substantielles </h2>
                         <p>Hupe s'engage à offrir des tarifs de location compétitifs, vous permettant d'économiser considérablement par rapport aux autres services de location. Profitez de tarifs transparents, sans coûts cachés, et adaptez votre location à votre budget, qu'il s'agisse d'une journée, d'une semaine ou plus.</p>
                         <h2 class="mb-2" style="font-size: 19px; font-weight: 600;">Large Gamme de Véhicules </h2>
@@ -150,7 +150,7 @@ onMounted(() => {
           <div class="row g-5">
             <div class="col-md-8">
               
-              <div class="row">
+              <div class="row" style="margin-top: -85px;">
                
                 <div class="col-md-12">
                   <h2 class="mb-4" style="font-size: 19px;

@@ -155,6 +155,13 @@ const goTo_reservation = async () => {
   window.location.reload() 
 }
 
+const home = async () => {
+  await router.push('/') 
+  await new Promise(resolve => setTimeout(resolve, 1));
+  window.location.reload() 
+}
+
+
 const selectedValue = ref('');
 // const options = [
 //   { value: 'fr', label: 'France', imageUrl: '/assets/img/logo/benin.png' },
@@ -174,7 +181,7 @@ const selectedValue = ref('');
       <h1 class="logo" id="h1_logo">
         <router-link to="/"
           ><img
-            src="/assets/img/logo2.png"
+            src="/assets/img/logo3.png"
             alt=""
             class="img-fluid"
             style="margin-top: -6px"
@@ -189,9 +196,9 @@ const selectedValue = ref('');
               <option value="CI">Côte d'Ivoire</option>
               <option value="GN">Guinée Conakry</option>
               <option value="ML">Mali</option>
-              <option value="NE">Niger</option>
+              <option value="NE">🇦🇱 Niger</option>
               <option value="SN">Sénégal</option>
-              <option value="TG">Togo</option>
+              <option value="TG">🇹🇬 Togo</option>
             </select>
             <!-- <select v-model="selectedValue">
             <option v-for="option in options" :key="option.value" :value="option.value">
@@ -205,7 +212,7 @@ const selectedValue = ref('');
       <!-- .navbar -->
       <form class="d-flex" role="search" @submit.prevent="handleSearch">
         <input
-          class="form-control me-2 text-white"
+          class="form-control me-2"
           style="width: 200; max-width: 200px; font-size: 13px;"
           type="search"
           placeholder="Recherche"
@@ -220,7 +227,7 @@ const selectedValue = ref('');
       <nav id="navbar" class="navbar">
         <ul>
           <li>
-            <router-link to="/" class="nav-link scrollto " :class="{ active: $route.path === '/' }"
+            <router-link @click="home" to="" class="nav-link scrollto " :class="{ active: $route.path === '/' }"
               ><i class="bx bx-home" id="icon_menu"></i> Accueil</router-link
             >
           </li>
@@ -249,7 +256,7 @@ const selectedValue = ref('');
           </li>
 
           <li>
-            <router-link v-if="!authStore.user.uid && !savedUser" to="/connexion" class="nav-link scrollto" :class="{ active: $route.path === '/connexion' }"
+            <router-link v-if="!authStore.user.uid && !savedUser" to="/type-utilisateur" class="nav-link scrollto" :class="{ active: $route.path === '/connexion' }"
               ><i class="bx bx-user" id="icon_menu"></i> Connexion
             </router-link>
           </li>
@@ -322,6 +329,13 @@ const selectedValue = ref('');
 <style scoped>
  #search{
   font-size: 15px;
+  width: 300px;
+    height: 41px;
+    /* border-radius: 30px; */
+    font-size: 14px;
+    background-color: white;
+    border-color: #219935;
+    color: #219935!important;
  }
 
 ::placeholder {
@@ -329,10 +343,45 @@ const selectedValue = ref('');
 }
 
 #h1_logo{
-  background: white;
+  /* background: white; */
+  background: #219935;
     padding: 4px;
     border-radius: 5px;
     height: 43px;
     margin-top: 2px;
 }
+
+#icon_search {
+    margin-left: -51px;
+    font-size: 19px;
+    margin-top: 11px;
+    color: #219935;
+}
+
+.form-select1 {
+    display: block;
+    width: 100%;
+    padding: .375rem 2.25rem .375rem .75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #219935;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #219935;
+    border-radius: .375rem;
+    /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-color: #219935;
+}
+
+input::placeholder {
+        color: #219935;
+        /* opacity: 0.5; */
+      }
 </style>

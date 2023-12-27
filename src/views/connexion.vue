@@ -73,6 +73,8 @@ const handleClient = () => {
 
 <template>
   <main id="main">
+
+     
     <section id="features" class="features" style="margin-top: 100px">
       <div class="container w-50">
         <div class="row">
@@ -90,9 +92,7 @@ const handleClient = () => {
                   />
                 </div>
                 <div class="col-md-12">
-                  <!-- <div>
-                    <input type="tel" ref="phoneInput">
-                  </div> -->
+                   
                   <div class="card-body">
                     <p class="card-text text-center">
                       Veuillez entrer votre numero de telephone, nous vous
@@ -113,7 +113,7 @@ const handleClient = () => {
                          />
                       </div>
 
-                      <div class="d-flex justify-content-between my-2">
+                      <!-- <div class="d-flex justify-content-between my-2">
                         <div class="" style="display: flex; flex-direction: column; align-items: center">
                           <label class="form-check-label mb-2" for="gridRadios1">
                             Je suis un client
@@ -140,7 +140,7 @@ const handleClient = () => {
                             required
                           />
                         </div>
-                      </div>
+                      </div> -->
                       
                       <div class="text-center">
                         <button

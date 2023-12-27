@@ -159,21 +159,27 @@ const isLoading = ref(false)
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: 0px"
+      style="margin-top: -21px ; padding: 122px;" 
     >
-      <img
+    <div class="card text-bg-dark">
+        <img :src="companieStore.companie.imageCouvertureUrl" class="card-img" alt="..."  id="img_couv">
+          <div class="card-img-overlay">
+                               
+         </div>
+    </div>
+      <!-- <img
         :src="companieStore.companie.imageCouvertureUrl"
         alt=""
         class="img-fluid w-100"
         id="img_couv"
-      />
+      /> -->
     </section>
     <!-- End Portfolio Details Section -->
 
-    <section id="faq" class="faq" style="margin-top: -70px">
+    <section id="faq" class="faq" style="margin-top: -140px">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-4">
+          <div class="col-md-5">
             <div class="card mb-3 border-0">
               <div class="row g-0">
                 <div class="col-md-4">
@@ -181,7 +187,7 @@ const isLoading = ref(false)
                     :src="companieStore.companie.imageLogoUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 100px; height: 100px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
+                    style="width: 150px; height: 150px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
                   />
                 </div>
                 <div class="col-md-8">
@@ -190,6 +196,7 @@ const isLoading = ref(false)
                     <p class="card-text">
                       {{ companieStore.companie.description }}
                     </p>
+                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> 30%</button>
                     
                   </div>
                 </div>
@@ -205,7 +212,7 @@ const isLoading = ref(false)
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: -40px"
+      style="margin-top: -70px"
     >
       <div class="container">
         <div class="row gy-4">
@@ -299,7 +306,7 @@ const isLoading = ref(false)
                             <div class="row">
                               <div class="col-md-6">
                                 <p class="card-text" style="font-size: 13px">
-                                  <strong>{{ car.moteur }} | {{ car.modele }} | {{ car.anne_vehicule }} </strong>
+                                  <strong>{{ car.vehicule }} | {{ car.modele }} | {{ car.anne_vehicule }} </strong>
                                 </p>
                               </div>
                               <div class="col-md-6 text-end">
@@ -315,23 +322,52 @@ const isLoading = ref(false)
                                 </button>
                               </div>
 
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text" style="font-size: 13px">
-                                  {{ car.moteur }} | {{ car.boite }} | {{ car.serie_vehicule }}
-                                </p>
-                              </div>
-                              <div class="col-md-12 mt-3">
-                                <p class="card-text" style="font-size: 13px">
-                                  Location simple | <strong> {{ car.montant }} CFA </strong>
-                                </p>
-                                <p class="card-text" style="font-size: 13px">
-                                  Location avec chauffeur |
-                                  <strong> {{ car.avecchauffeurprix }} CFA </strong>
-                                </p>
-                                <p class="card-text" style="font-size: 13px">
-                                  Location vers l'intérieur |
-                                  <strong> {{ car.interieurpaysprix }} CFA </strong>
-                                </p>
+                               
+                              <div class="col-md-12 mt-2">
+                                <div class="row mt-2">
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Moteur</strong> <br>
+                                   {{ car.moteur }} 
+                                   </p>
+                                  </div>
+
+                                  <div class="col-6">
+                                     
+                                  </div>
+                                </div>
+                                <div class="row mt-2">
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Immatriculation</strong> <br>
+                                   {{ car.serie_vehicule }} CFA 
+                                   </p>
+                                  </div>
+
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Transmission </strong> <br>
+                                      {{ car.vehicule.boite}} CFA 
+                                   </p>
+                                  </div>
+                                </div>
+                                <div class="row mt-2">
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Avec chauffeur </strong> <br>
+                                   {{ car.avecchauffeurprix }} CFA 
+                                   </p>
+                                  </div>
+
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Vers l'intérieur </strong> <br>
+                                      {{ car.interieurpaysprix }} CFA 
+                                   </p>
+                                  </div>
+                                </div>
+                                
+                                 
                               </div>
 
                               <div class="col-md-12 mt-4 text-start">
@@ -720,34 +756,30 @@ const isLoading = ref(false)
                       style="background: #f3f4f6; padding: 6px"
                     >
                       <div class="row" style="padding: 6px">
-                        <div class="col-md-12 d-flex">
+                        <div class="col-md-12 d-flex" style="margin-top: -11px;">
                           <img
                           :src="companieStore.companie.imageLogoUrl"
                             class="img-fluid"
                             alt="..."
-                            style="width: 25px; height: 25px; margin-top: 6px"
+                            style="width: 40px; height: 40px; border-radius: 50%; margin-top: 6px; object-fit: contains; border: 1px solid #8b8b8b;"
                           />
                           <h6
                             style="
-                              font-size: 12px;
+                              font-size: 15px;
                               margin-left: 5px;
-                              margin-top: 10px;
+                              margin-top: 16px;
                             "
                           >
                           {{ companieStore.companie.raison_social }}
                           </h6>
                           <p
                             style="
-                              font-size: 12px;
+                              font-size: 15px;
                               margin-left: 5px;
-                              margin-top: 6px;
+                              margin-top: 14px;
                             "
                           >
-                            <img
-                              src="/assets/img/icone/map.png"
-                              class="img-fluid"
-                              alt="..."
-                            />
+                          <i class='bx bxs-map'></i>
                             {{ companieStore.companie.adresse }}
                           </p>
                         </div>
@@ -760,6 +792,7 @@ const isLoading = ref(false)
                           background: #a6a6a621;
                           box-shadow: none;
                           background: transparent;
+                          margin-top: -10px;
                         "
                       >
                         <router-link
@@ -829,7 +862,7 @@ const isLoading = ref(false)
               >
                 <div class="row mt-5">
                   <div class="col-md-12">
-                    <div class="card h-100" id="card_compagnie">
+                    <div class="card h-100">
                       <div class="card-body">
                         <p>
                           {{ politiques.text }}
@@ -849,114 +882,69 @@ const isLoading = ref(false)
                 aria-labelledby="apropos-tab"
                 tabindex="0"
               >
+               
                 <div class="row mt-5">
                   <div class="col-md-12">
-                    <div class="card h-100" id="card_compagnie">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <p>
-                              <strong>Raison sociale |</strong> {{ companieStore.companie.raison_social }}
-                            </p>
-
-                            <p><strong> Responsable |</strong> {{ companieStore.companie.responsable }}</p>
+                    <div class="card mb-3 border-0">
+                      <div class="row g-2">
+                        <div class="col-md-3 text-center">
+                          <div class="card text-bg-white" style="padding: 10px;">
+                            <img src="/assets/img/service/car.png" class="card-img" alt="...">
+                            <div class="card-img-overlay">
+                               
+                            </div>
                           </div>
+                          
+                         
+                        </div>
+                        <div class="col-md-9">
+                          <div class="card-body">
+                             <div class="row">
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-car'></i>  Raison sociale</h6>
+                                <p>{{ companieStore.companie.raison_social }} </p>
+                               </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-user' ></i> Responsable </h6>
+                                <p> {{ companieStore.companie.responsable }} </p>
+                               </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-phone' ></i> Téléphone</h6>
+                                <p>{{ companieStore.companie.telephone }} </p>
+                                <p>{{ companieStore.companie.site_web }}</p>
+                               </div>
+                             </div>
+                             <hr>
+                             <div class="row">
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-envelope' ></i>  Email</h6>
+                                <p>{{ companieStore.companie.email }} </p>
+                               </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"><i class='bx bx-map'></i> Adresse</h6>
+                                <p>  {{ companieStore.companie.adresse }} </p>
+                               </div>
 
-                          <div
-                            class="row row-cols-1 row-cols-md-4 mb-4 g-4"
-                            style="margin-top: -5px"
-                          >
-                            <div class="col">
-                              <div class="card h-100 text-center border-0">
-                                <div
-                                  class="row mt-4"
-                                  style="justify-content: center"
-                                >
-                                  <img
-                                    src="/assets/img/icone/mail.png"
-                                    class="img-fluid"
-                                    alt="..."
-                                    style="width: 64px"
-                                  />
-                                </div>
-
-                                <div class="card-body">
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 14px"
-                                  >
-                                    {{ companieStore.companie.adresse_mail }}
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="card h-100 text-center border-0">
-                                <div
-                                  class="row mt-4"
-                                  style="justify-content: center"
-                                >
-                                  <img
-                                    src="/assets/img/icone/web.png"
-                                    class="img-fluid"
-                                    alt="..."
-                                    style="width: 64px"
-                                  />
-                                </div>
-
-                                <div class="card-body">
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 14px"
-                                  >
-                                    {{ companieStore.companie.site_web }}
-                                  </h5>
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 14px"
-                                  >
-                                    {{ companieStore.companie.telephone }}
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="card h-100 text-center border-0">
-                                <div
-                                  class="row mt-4"
-                                  style="justify-content: center"
-                                >
-                                  <img
-                                    src="/assets/img/icone/maps.png"
-                                    class="img-fluid"
-                                    alt="..."
-                                    style="width: 64px"
-                                  />
-                                </div>
-
-                                <div class="card-body">
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 14px"
-                                  >
-                                    {{ companieStore.companie.adresse }}
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="card h-100 text-center border-0">
-                                <div
-                                  class="row mt-4"
-                                  style="justify-content: center"
-                                >
-                                  <img
-                                    src="/assets/img/icone/location.png"
-                                    class="img-fluid"
-                                    alt="..."
-                                    style="width: 64px"
-                                  />
-                                </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-map-pin' ></i> Localisation</h6>
+                                <p>  {{ companieStore.companie.latitude }} {{ companieStore.companie.longitude }} </p>
+                               </div>
+                             </div>
+                             <hr>
+                             <div class="row">
+                               <div class="col-md-12">
+                                <h6 id="h6">Présentation</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                               </div>
+                                                    
+                             </div>
+                             <hr>
+                             <div class="row">
+                               
+                               <div class="col-md-12">
+                                <h6 id="h6">Description</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                               </div>
 
                                 <div class="card-body">
                                   <h5
@@ -970,8 +958,6 @@ const isLoading = ref(false)
                             </div>
                           </div>
                         </div>
-
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
                     </div>
                   </div>
@@ -980,7 +966,6 @@ const isLoading = ref(false)
             </div>
           </div>
         </div>
-      </div>
     </section>
     <!-- End Portfolio Details Section -->
   </main>
@@ -1011,10 +996,17 @@ const isLoading = ref(false)
 } */
 
 #img_couv{
-  height: 450px;
+  height: 250px;
     /* object-fit: cover; */
   object-fit: fill;
   image-rendering: -webkit-optimize-contrast;
+  border-radius: 10px;
+}
+
+#h6{
+  font-size: 14px;
+  font-weight: 600;
+  color: #21993599;
 }
 
 

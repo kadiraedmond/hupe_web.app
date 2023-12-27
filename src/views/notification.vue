@@ -167,6 +167,7 @@ onUnmounted(() => unsubscribe())
                             <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
+                                    
                                     <div v-if="notifications.length > 0">
                                         <div class="col-md-12 mb-3" v-for="(notification, index) in notifications_desc" :key="index">
                                             <div @click="readNotifications(notification)" class="card border-0 survol">
@@ -248,6 +249,7 @@ onUnmounted(() => unsubscribe())
                                                 </div>
                                             </div>
                                         </div> 
+                                        <div class="col-md-2"></div>
                                     </div>
 
                                     <Loader 

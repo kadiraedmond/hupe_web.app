@@ -18,8 +18,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieById(userId)
 })
@@ -35,48 +35,50 @@ onMounted(() => {
   <main id="main">
 
     <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details" style="margin-top: 0px;">
-      <img :src="companieStore.companie.imageCouvertureUrl" alt="" class="img-fluid w-100" id="img_couv">
+    <section id="portfolio-details" class="portfolio-details"  style="margin-top: -21px ; padding: 122px;" >
+      <div class="card text-bg-dark">
+          <img :src="companieStore.companie.imageCouvertureUrl" class="card-img" alt="..."  id="img_couv">
+            <div class="card-img-overlay">
+                                
+          </div>
+      </div>
     </section>
     <!-- End Portfolio Details Section -->
 
-    <section id="faq" class="faq" style="margin-top: -70px;">
+    <section id="faq" class="faq" style="margin-top: -140px;">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card mb-3 border-0" style="max-width: 540px;">
+          <div class="col-md-5">
+            <div class="card mb-3 border-0">
               <div class="row g-0">
-                <div class="col-md-4" style="  display: flex;">
-                  <img :src="companieStore.companie.imageLogoUrl" 
-                  alt="" 
-                  class="w-px-40 h-auto rounded-circle" 
-                  style="width: 100px;
-                    height: 100px !important;
-                    object-fit: cover;
-                    border: 2.8px solid rgb(232, 232, 232);" />
+                <div class="col-4">
+                  <img
+                    :src="companieStore.companie.imageLogoUrl"
+                    alt
+                    class="w-px-40 h-auto rounded-circle"
+                    style="width: 150px; height: 150px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
+                  />
                 </div>
-                <div class="col-md-8">
+                <div class="col-8">
                   <div class="card-body">
                     <h5 class="card-title">{{ companieStore.companie.raison_social }}</h5>
-                    <p class="card-text">{{ companieStore.companie.description }} </p>
+                    <p class="card-text">
+                      {{ companieStore.companie.description }}
+                    </p>
+                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> 30%</button>
+                    
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="col-md-6 text-end">
-          <a v-bind:href="'/dashboard'" id="a_compagnie">
-            <button class="btn btn-primary" style="background: #219935;border-color: #219935;"> Tableau de bord</button>
-          </a>
-          
-        </div> -->
 
         </div>
       </div>
     </section><!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details" style="margin-top: -40px;">
+    <section id="portfolio-details" class="portfolio-details" style="margin-top: -70px;">
       <div class="container">
 
         <div class="row gy-4">
@@ -193,9 +195,10 @@ onMounted(() => {
 }
 
 #img_couv{
-  height: 450px;
+  height: 250px;
     /* object-fit: cover; */
   object-fit: fill;
   image-rendering: -webkit-optimize-contrast;
+  border-radius: 10px;
 }
 </style>

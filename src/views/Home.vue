@@ -176,7 +176,7 @@ const goTo_chat = async () => {
   </section>
 
   <main id="main">
-    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <!-- ======= Que voulez-vous faire  ======= -->
     <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
@@ -298,7 +298,7 @@ const goTo_chat = async () => {
       </div>
     </section>
 
-    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <!-- ======= Compagnies de locations populaires ======= -->
     <section id="features" class="features" style="margin-top: -48px">
       <div class="container">
         <div class="row">
@@ -327,7 +327,7 @@ const goTo_chat = async () => {
       </div>
     </section>
 
-    <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+    <!-- ======= Véhicules populaires ======= -->
     <section id="features" class="features" style="margin-top: -80px">
       <div class="container">
         <div class="row">
@@ -352,7 +352,7 @@ const goTo_chat = async () => {
           </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
           <div
             class="col"
             v-for="(vehicule, index) in promotionStore.popularCars"
@@ -450,12 +450,103 @@ const goTo_chat = async () => {
                           <strong style=" font-weight: 500;">Immatriculation | </strong>
                           {{ vehicule.serie_vehicule }}
                         </p>
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                        
                       </div>
                     </div>
                     
                   </div>
                 </div>
+              </div>
+            </router-link>
+          </div>
+        </div> -->
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div
+            class="col"
+            v-for="(vehicule, index) in promotionStore.popularCars"
+            :key="index"
+          >
+            <router-link
+              :to="`/detail_vehicule_location/${vehicule.uid}`"
+              style="color: #000"
+            >
+              <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card h-100 mb-3 border-0"
+                      style="background: #f9f9f9;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-7 d-flex">
+                          <img
+                            :src="vehicule.companieInfos.imageLogoUrl"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="width: 40px; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 10px">
+                                {{ vehicule.companieInfos.raison_social }}
+                              </h5>
+                               
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-5 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                            {{ vehicule.montant }} FCFA
+                          </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card border-0" style="margin: 8px; margin-top: -13px;">
+                  <div :id="'carouselExampleControls' + index" class="carousel slide"  data-ride="false"  data-interval="false">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active ">
+                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleControls' + index" data-bs-slide="prev" id="btn1">
+                      <i class='bx bx-chevron-left' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExampleControls' + index" data-bs-slide="next" id="btn1">
+                      <i class='bx bx-chevron-right' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
+                    </button>
+                  </div>
+
+                  <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 182px; width: 97%; margin-left: 5px;">
+                      <div class="col-md-12 mt-2">
+                        <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
+                /> {{ vehicule.vehicule }} {{ vehicule.modele }} {{  vehicule.annee }}  </h5>
+                      </div>
+                    </div>
+                   
+                
+                  
+                </div>
+                 
               </div>
             </router-link>
           </div>
@@ -519,7 +610,7 @@ const goTo_chat = async () => {
             </router-link>
           </div>
         </div>
-        <div
+        <!-- <div
           class="swiffy-slider slider-item-show3 slider-item-reveal slider-nav-dark slider-nav-outside-expand"
         >
           <ul class="slider-container py-4" id="slider2">
@@ -617,7 +708,6 @@ const goTo_chat = async () => {
                             {{ popularDestination.jours_voyage }}
                           </p>
                          
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
                     </div>
                     <div class="col-4">
@@ -682,6 +772,84 @@ const goTo_chat = async () => {
               _msthash="105"
               class="active"
             ></button>
+          </div>
+        </div> -->
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div
+            class="col"
+            v-for=" (popularDestination, index  ) in promotionStore.popularDestinations" :key="index"
+          >
+            <router-link
+            :to="`/detail_reservation_ticket/${popularDestination.uid}`"
+              style="color: #000"
+            >
+              <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card h-100 mb-3 border-0"
+                      style="background: #f9f9f9;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-7 d-flex">
+                          <img
+                          :src="popularDestination.companieInfos.imageLogoUrl"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="width: 40px; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 10px">
+                                {{
+                                    popularDestination.companieInfos
+                                      .raison_social
+                                  }}
+                              </h5>
+                               
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-5 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                          {{ popularDestination.montant }}  FCFA
+                          </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card border-0" style="margin: 8px; margin-top: -13px;">
+                  <img
+                          src="/assets/img/rb.jpg"
+                          class="img-fluid h-100"
+                          alt="..."
+                          style="object-fit: cover ; border-radius: 11px;height: 197px !important;"
+                   />
+
+                   <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 155px; width: 97%; margin-left: 4px;">
+                      <div class="col-md-12 mt-2 ">
+                        <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
+                /> {{ popularDestination.lieu_depart }} -
+                            {{ popularDestination.destination }}  </h5>
+                      </div>
+                    </div>
+                </div>
+                 
+              </div>
+            </router-link>
           </div>
         </div>
 
@@ -1217,15 +1385,16 @@ const goTo_chat = async () => {
                   </div>
                 </div>
 
-                <p class="card-text" style="font-size: 13px">
+                <p class="card-text" style="font-size: 13px; text-align: justify;">
                   Dans le tourbillon quotidien de la vie urbaine, chaque instant compte... 
                 </p>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12 text-center">
                     <router-link to="/blog">
                       <button
-                      class="btn btn-primary"
-                      style="background-color: #219935 !important; border: none"
+                      class="btn"
+                      id="btn-blog"
+                     
                     >
                       Voir plus
                     </button>
@@ -1266,15 +1435,15 @@ const goTo_chat = async () => {
                   </div>
                 </div>
 
-                <p class="card-text" style="font-size: 13px">
+                <p class="card-text" style="font-size: 13px; text-align: justify;">
                   Louer un véhicule avec Hupe va bien au-delà d'une simple transaction ...
                 </p>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12 text-center">
                     <router-link to="/blog/article2">
                       <button
-                      class="btn btn-primary"
-                      style="background-color: #219935 !important; border: none"
+                      class="btn"
+                       id="btn-blog"
                     >
                       Voir plus
                     </button>
@@ -1314,15 +1483,15 @@ const goTo_chat = async () => {
                   </div>
                 </div>
 
-                <p class="card-text" style="font-size: 13px">
-                  À travers les huit joyaux de l'UEMOA, Hupe vous invite à découvrir des destinations inoubliables.
+                <p class="card-text" style="font-size: 13px; text-align: justify;">
+                  À travers les huit joyaux de l'UEMOA, Hupe vous invite à découvrir ...
                 </p>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12 text-center">
                     <router-link to="/blog/article3">
                       <button
-                      class="btn btn-primary"
-                      style="background-color: #219935 !important; border: none"
+                      class="btn"
+                      id="btn-blog"
                     >
                       Voir plus
                     </button>
@@ -1362,15 +1531,15 @@ const goTo_chat = async () => {
                   </div>
                 </div>
 
-                <p class="card-text" style="font-size: 13px">
-                  L'évolution rapide de l'industrie de la location de véhicules a trouvé un nouveau protagoniste en Hupe...
+                <p class="card-text" style="font-size: 13px; text-align: justify;">
+                  L'évolution rapide de l'industrie de la location de véhicules a trouvé un nouveau ...
                 </p>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12 text-center">
                     <router-link to="/blog/article4">
                       <button
-                      class="btn btn-primary"
-                      style="background-color: #219935 !important; border: none"
+                      class="btn"
+                       id="btn-blog"
                     >
                       Voir plus
                     </button>
@@ -1388,8 +1557,8 @@ const goTo_chat = async () => {
     <section id="features" class="features" style="margin-top: -60px">
       <div class="container" style="border: 1px solid #efefef; border-radius: 5px;">
         <div class="row mt-5">
-          <div class="col-8">
-            <div class="section-title text-start">
+          <div class="col-12">
+            <div class="section-title text-center">
                   <h2>Inscrivez vous à notre Newsletter</h2>
                   <p id="section-p">
                     Veuillez renseignez votre adresse mail, pour etre au courant de
@@ -1620,6 +1789,27 @@ body, html {
     opacity: 1;
     /* color: red; */
     background: #219935 !important;
+}
+
+#btn-blog:hover{
+  background-color: white !important;
+  color: #219935;
+  border-color: #219935 !important;
+}
+
+#btn-blog{
+  background-color: #219935 ;
+   border-color: #219935;
+    color: white;
+
+}
+
+#btn1{
+  
+}
+
+#btn1:hover{
+  display: block;
 }
 
 

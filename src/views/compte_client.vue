@@ -79,21 +79,21 @@ onMounted(() => {
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: 0px"
+      style="margin-top: -21px ; padding: 122px;" 
     >
       <img
         src="/assets/img/clt1.jpg"
         alt=""
         class="img-fluid w-100"
-        style="height: 450px; /* object-fit: cover; */ object-fit: fill; image-rendering: pixelated;"
+        id="img_couv"
       />
     </section>
     <!-- End Portfolio Details Section -->
 
-    <section id="faq" class="faq" style="margin-top: -70px">
+    <section id="faq" class="faq" style="margin-top: -140px">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-4">
+          <div class="col-md-5">
             <div class="card mb-3 border-0" style="max-width: 540px">
               <div class="row g-0">
                 <div class="col-md-4" style=" display: flex; justify-content: center; align-items: center">
@@ -101,19 +101,19 @@ onMounted(() => {
                     :src="userStore.user.imageUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 100px;
-                          height: 100px !important;
+                    style="width: 150px;
+                          height: 150px !important;
                           object-fit: cover;
                           border: 2.8px solid rgb(232, 232, 232);"
                   />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title" style="font-size: 16px;">
+                    <h5 class="card-title">
                       {{ userStore.user.lastName }}
                       {{ userStore.user.firstName }}
                     </h5>
-                    <p class="card-text" style="font-size: 15px;">{{ userStore.user.profession }}</p>
+                    <p class="card-text">{{ userStore.user.profession }}</p>
                   </div>
                 </div>
               </div>
@@ -161,7 +161,7 @@ onMounted(() => {
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: -40px"
+      style="margin-top: -70px"
     >
       <div class="container">
         <div class="row gy-4">
@@ -523,5 +523,13 @@ onMounted(() => {
     border: var(--bs-nav-tabs-border-width) solid transparent;
     /* border-color: #219935; */
     border-radius: 0px !important;
+}
+
+#img_couv{
+  height: 250px;
+    /* object-fit: cover; */
+  object-fit: fill;
+  image-rendering: -webkit-optimize-contrast;
+  border-radius: 10px;
 }
 </style>

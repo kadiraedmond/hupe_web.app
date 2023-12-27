@@ -76,7 +76,8 @@ const updateReservationsDashboard = () => {
 }
 const savedUser = JSON.parse(localStorage.getItem("user"))
 
-const userId = savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'MtFQ9kulTaxS2MsKN3O6'
 // const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid
 
 const elements_en_attente = ref([])
@@ -835,49 +836,62 @@ const annuler = async (location) => {
                                   </div> -->
                                       <div class="col-md-12">
                                         <div class="card-body">
-                                          <p
-                                            class="card-text"
-                                            style="
-                                              font-size: 13px;
-                                              margin-top: -32px;
-                                              margin-bottom: -8px;
-                                            "
-                                          >
-                                            Retrait |
-                                            <strong
-                                              >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
-                                            </strong>
-                                            |
-                                            <strong>{{
-                                              location.heure_retrait
-                                            }}</strong>
-                                          </p>
+                                          <div class="row">
+                                            <div class="col-md-6">
 
-                                          <p
-                                            class="card-text"
-                                            style="
-                                              font-size: 13px;
-                                              margin-top: 20px;
-                                              margin-bottom: 20px;
-                                            "
-                                          >
-                                            Retour |
-                                            <strong
-                                              >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
-                                            </strong>
-                                          </p>
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: -32px;
+                                                  margin-bottom: -8px;
+                                                "
+                                              >
+                                                Retrait |
+                                                <strong
+                                                  >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
+                                                </strong>
+                                                |
+                                                <strong>{{
+                                                  location.heure_retrait
+                                                }}</strong>
+                                              </p>
 
-                                          <p
-                                            class="card-text"
-                                            style="
-                                              font-size: 13px;
-                                              margin-top: -11px;
-                                              margin-bottom: 11px;
-                                            "
-                                          >
-                                            Nombres de jours de location |
-                                            <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
-                                          </p>
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: 20px;
+                                                  margin-bottom: 20px;
+                                                "
+                                              >
+                                                Retour |
+                                                <strong
+                                                  >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
+                                                </strong>
+                                              </p>
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: -11px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                Nombres de jours de location |
+                                                <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
+                                              </p>
+                                            </div>
+                                            <div class="col-md-6">
+                                              <div style="margin-top: -2rem">
+                                                <img 
+                                                  :src="location.identite_image_url"
+                                                  style="width: 150px; height: 150px"
+                                                />
+                                              </div>
+                                            </div>
+                                          </div>
                                           <div class="row">
                                             <div class="col-6 text-start">
                                               <button 
@@ -901,6 +915,7 @@ const annuler = async (location) => {
                                           
                                         </div>
                                       </div>
+                              
                                     </div>
                                   </div>
                                 </div>

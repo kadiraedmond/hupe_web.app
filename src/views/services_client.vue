@@ -38,7 +38,7 @@ const goToConversation = async () => {
         await router.push('/support') 
         window.location.reload() 
     } else {
-        router.push('/connexion')
+        router.push('/type-utilisateur')
     }
 }
 </script>

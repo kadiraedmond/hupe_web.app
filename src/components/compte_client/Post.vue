@@ -41,11 +41,19 @@ const options = {
         style="
           background: white !important;
           box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-          border: none;
+          border: none; height: 165px;
         "
       >
         <div class="row">
-          <div class="col-6">
+          <div class="col-3 text-center" style="background-color: #219935; height: 159px;">
+            <img
+                  src="/assets/img/service/car.png"
+                  class="img-fluid w-100"
+                  alt="..."
+                  style="margin-top: 32px; background: white; padding: 10px; border-radius: 10px;"
+                />
+          </div>
+          <div class="col-4">
             <p style="color: #219935">{{ post.objet }}</p>
             <p class="text-black">{{ post.demande }}</p>
           </div>

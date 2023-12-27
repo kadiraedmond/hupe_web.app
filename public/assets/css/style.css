@@ -19,12 +19,13 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@200;300;400;500;600&display=swap');
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lato','Helvetica','Arial',  sans-serif;
 }
 body {
   color: #444444;
+  transition: opacity 0.5s ease;
 }
 
 a {
@@ -49,7 +50,8 @@ h4,
 h5,
 h6 {
   /* font-family: "Krub", sans-serif; */
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: 'Lato','Helvetica','Arial',  sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -136,7 +138,8 @@ h6 {
 --------------------------------------------------------------*/
 #header {
   /* background: #f6f7ff; */ 
-  background: #219935;
+  /* background: #219935; */
+  background: #ffffff;
   border-bottom: 1.5px solid #eceefe !important;
   transition: all 0.5s;
   z-index: 997;
@@ -229,7 +232,8 @@ h6 {
   font-family: "Krub", sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #ffff;
+  /* color: #ffff; */
+  color: #219935;
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -278,7 +282,6 @@ h6 {
   border-radius: 5px;
   font-weight: 600;
   color: #fff;
-  color: #219935;
 }
 
 .navbar .getstarted:hover,
@@ -305,6 +308,7 @@ h6 {
 
 .navbar .dropdown ul li {
   min-width: 200px;
+  color: #fff;
 }
 
 .navbar .dropdown ul a {
@@ -1840,7 +1844,8 @@ section {
   padding: 21px 0 5px 0;
   /* padding: 60px 0 30px 0; */
   /* background: #fff; */
-  background: #219935;
+  /* background: #219935; */
+  background: #f7f7f7;
 }
 
 #footer .footer-top .footer-contact {
@@ -1868,7 +1873,8 @@ section {
 #footer .footer-top h4 {
   font-size: 16px;
   font-weight: bold;
-  color: white;
+  /* color: white; */
+  color: #219935;
   position: relative;
   padding-bottom: 12px;
 }
@@ -1903,7 +1909,8 @@ section {
 
 #footer .footer-top .footer-links ul a {
   /* color: #777777; */
-  color: white;
+  /* color: white; */
+  color: #222222;
   transition: 0.3s;
   display: inline-block;
   line-height: 1;

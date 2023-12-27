@@ -215,7 +215,7 @@ const recharge = async () => {
       
       <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col" v-for="(history, index) in userStore.userHistory.slice().reverse()" :key="index">
-          <!-- <div class="col" v-for="(history, index) in userStore.userHistory" :key="index"></div> -->
+          <div class="col" v-for="(history, index) in userStore.userHistory" :key="index"></div>
           <div class="card h-100">
             
             <div class="card-body">

@@ -542,41 +542,69 @@ const options = {
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
-                            <strong>{{ location.modele }} </strong> |
+                            <strong>{{ location.vehicule }} | {{ location.modele }} | {{ location.annee }} </strong> 
                             <!-- <strong> Santafe 2022 </strong> -->
                             </p>
                             <br />
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            {{ location.moteur }} | {{ location.boite }} | {{ location.plaque_vehicule }}
-                            </p>
+                            <div class="row" style="margin-top: 10px;">
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> Moteur </strong> <br>   {{ location.moteur }} 
+                                </p>
+
+                              </div>
+                              <div class="col-6">
+                                
+                              </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 32px;">
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> Immatriculation </strong> <br>  {{ location.plaque_vehicule }}
+                                </p>
+
+                              </div>
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> Transmission</strong> <br> {{ location.boite }} 
+                                </p>
+                              </div>
+                            </div>
+                            
                             <br />
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            chauffeur | <strong>{{ location.chauffeur }} </strong>
-                            </p>
-                            <br />
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            Intérieur | <strong>{{ location.interieurPays }} </strong>
-                            </p>
+                            <div class="row" style="margin-top: 10px;">
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong> chauffeur </strong> <br>   {{ location.chauffeur }}  
+                                </p>
+
+                              </div>
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                <strong>Intérieur</strong> <br> {{ location.interieurPays }}  
+                                </p>
+                              </div>
+                            </div>
                             <br />
                         </div>
                         </div>
-                        <!-- <div class="col-md-6">
-                        <img
-                            src="/assets/img/car2.jpg"
-                            class="img-fluid rounded-start h-100"
-                            alt="..."
-                            style="height: 85% !important"
-                        />
-                        </div> -->
+                        
                         <div class="col-md-12">
                           <div class="card-body">
                             <p
@@ -602,7 +630,7 @@ const options = {
 
                             <p
                             class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                            style="font-size: 13px; margin-top: -7px; margin-bottom: -11px"
                             >
                             Nombres de jours de location | <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</strong>
                             </p>

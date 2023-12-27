@@ -58,6 +58,9 @@ const EnginP = () => import('@/views/engin_populaire.vue')
 const VenteP = () => import('@/views/vente_populaire.vue')
 const InfosClient = () => import('@/views/information_client.vue')
 const ConditionConnexion = () => import('@/views/condition-connexion.vue')
+const VueListe = () =>  import('@/views/liste_location.vue')
+const VueListes = () =>  import('@/views/liste_reservation.vue')
+const Etape = () => import('@/views/etape.vue')
 
 const Politique = () => import('@/views/poltique.vue')
 
@@ -467,6 +470,27 @@ const routes = [
     path: '/politique',
     name: 'Politique',
     component: Politique,
+    
+  },
+
+  {
+    path: '/liste-location',
+    name: 'VueListe',
+    component: VueListe,
+    
+  },
+
+  {
+    path: '/liste-reservation',
+    name: 'VueListes',
+    component: VueListes,
+    
+  },
+
+  {
+    path: '/type-utilisateur',
+    name: 'Etape',
+    component: Etape,
     
   },
 

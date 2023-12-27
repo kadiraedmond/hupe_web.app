@@ -1,5 +1,6 @@
 <script setup>
 import { useReservationStore } from '@/store/reservation.js'
+import { usePromotionStore } from '@/store/promotion.js'
 import { useAuthStore } from '@/store/auth.js'
 import { onBeforeMount, onMounted, ref } from "vue"
 import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2'
 import { useCompanieStore } from '@/store/companie.js'
 
 const companieStore = useCompanieStore()
+const promotionStore = usePromotionStore()
 const reservationStore = useReservationStore()
 const authStore = useAuthStore()
 
@@ -19,7 +21,6 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
-
 const trajets = ref([])
 onBeforeMount(async () => {
   await reservationStore.setTrajets(userId)
@@ -50,6 +51,7 @@ const addNewTrajet = async () => {
     compagnie_uid: userId, 
     enAvant: false, 
     enPromo: false, 
+    destination: destination.value,
     escale: escales_a_faire.value, 
     heure_convocation: heure_convocation.value, 
     heure_depart: heure_depart.value, 
@@ -78,7 +80,7 @@ const addNewTrajet = async () => {
     } catch (error) {
       console.log(error)
     }
-    document.querySelector('btn-close-a').click() 
+    document.querySelector('.btn-close-a').click() 
     Swal.fire({
       title: "Succès",
       text: "Votre trajet a été ajouté",
@@ -260,6 +262,7 @@ const promote = async (trajet) => {
         else {
           
           await updateDoc(docRef, { enPromo: true })
+          trajet.enPromo = true
           
           const data = {
             uid: trajet.uid, 
@@ -274,11 +277,12 @@ const promote = async (trajet) => {
             heure_depart: trajet.heure_depart, 
             idTrack: uuidv4(), 
             lieu_depart: trajet.lieu_depart, 
-            montant: trajet.montant, 
+            montant: montant_promo.value, 
             pourcentage: taux_reduction.value
           }
         
           await setDoc(doc(trajetInPromoColRef, `${trajet.uid}`), data)
+          promotionStore.setCompaniePromotionProgrammes(userId)
         
           console.log('Document ajouté')
           Swal.fire({
@@ -293,10 +297,12 @@ const promote = async (trajet) => {
       else if(trajet.enPromo === true) { 
 
         await updateDoc(docRef, { enPromo: false }) 
+        trajet.enPromo = false
 
         const trajetDocRef = doc(trajetInPromoColRef, `${trajet.uid}`) 
 
         await deleteDoc(trajetDocRef) 
+        promotionStore.setCompaniePromotionProgrammes(userId)
 
         Swal.fire({
           title: "Succès",
@@ -306,7 +312,7 @@ const promote = async (trajet) => {
       } 
 
       
-      document.querySelector('btn-close').click()
+      document.querySelector('.btn-close').click()
     } 
     
     else {
@@ -483,6 +489,18 @@ const remove = async (trajet) => {
                     required
                   />
                 </div>
+                <div class="col-md-12">
+                  <label for="validationCustom02" class="form-label"
+                    >Heure de convocation</label
+                  >
+                  <input
+                    type="time"
+                    class="form-control"
+                    id="validationCustom02"
+                    v-model="heure_convocation"
+                    required
+                  />
+                </div>
 
                 <div class="col-md-12">
                   <label for="validationCustom02" class="form-label"
@@ -505,7 +523,20 @@ const remove = async (trajet) => {
                     type="text"
                     class="form-control"
                     id="validationCustom01"
-                    v-model="escales_a_faire"
+                    v-model="jours_de_voyage"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="validationCustom01" class="form-label"
+                    >Nombre de places</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="validationCustom01"
+                    v-model="nombre_de_place"
                     required
                   />
                 </div>
@@ -528,378 +559,395 @@ const remove = async (trajet) => {
   </div>
   <div class="row mt-4">
     <div v-if="trajets.length > 0">
-      <div class="col-md-6" v-for="(trajet, index) in trajets" :key="index">
-      <div class="card h-100" style="max-width: 540px">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6 mt-2">
-              <button
-                class="btn btn-primary mb-2"
-                style="background-color: #219935; border-color: #219935"
-              >
-                {{ trajet.montant }} FCFA
-              </button>
-            </div>
-            <div class="col-md-6 mt-2"></div>
-
-            <div class="col-md-6 mt-2">
-              <p><strong>Lieu de départ |</strong> {{ trajet.lieu_depart }}</p>
-            </div>
-
-            <div class="col-md-6 mt-2">
-              <p><strong>Destinations |</strong> {{ trajet.destination }}</p>
-            </div>
-
-            <div class="col-md-6 mt-2">
-              <p><strong> Heure de départ |</strong> {{ trajet.heure_depart }}</p>
-            </div>
-
-            <div class="col-md-6 mt-2">
-              <p><strong>Convocation |</strong> {{ trajet.convocation }}</p>
-            </div>
-
-            <div class="col-md-6 mt-3">
-              <p><strong>Escale | </strong> {{ trajet.escale }}</p>
-            </div>
-
-            <div class="col-md-6 mt-3">
-              <p><strong>Jours de voyage |</strong> {{ trajet.jours_voyage }}</p>
-            </div>
-          </div>
-          <div class="col-md-12 mt-4 text-start">
-            <div class="row row-clols-md-5">
-              <div class="col">
-                <!-- Button trigger modal -->
+      <div class="col-md-4">
+        <div class="card h-100" style="max-width: 540px" v-for="(trajet, index) in trajets" :key="index">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 mt-2">
                 <button
-                  type="button"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal4"
-                  style="
-                    background-color: #219935;
-                    border-color: #219935;
-                  "
+                  class="btn btn-primary mb-2"
+                  style="background-color: #219935; border-color: #219935"
                 >
-                  <img
-                    src="/assets/img/icone/edit.png"
-                    class="img-fluid"
-                    alt="..."
-                  />
+                  {{ trajet.montant }} FCFA
                 </button>
+              </div>
+              <div class="col-6 mt-2"></div>
 
-                <!-- Modal -->
-                <div
-                  class="modal fade"
-                  id="exampleModal4"
-                  tabindex="-1"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header" style="background-color: #219935; color: white;">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">
-                          Modifier un trajet
-                        </h1>
-                        <button
-                          type="button"
-                          class="btn-close-m"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        <form
-                          class="row g-3 needs-validation text-start"
-                          novalidate 
-                          @submit.prevent="update(trajet)"
-                        >
-                          <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label"
-                              >Lieu de départ
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="validationCustom01"
-                              :value="trajet.lieu_depart"
-                              @input="handleLieuDepart"
-                              required
-                            />
-                          </div>
-                          <div class="col-md-12">
-                            <label for="validationCustom02" class="form-label"
-                              >Destination</label
-                            >
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="validationCustom02"
-                              :value="trajet.destination"
-                              @input="handleDestination"
-                              required
-                            />
-                          </div>
+              <div class="col-6 mt-2">
+                <p><strong>Lieu de départ</strong> <br> {{ trajet.lieu_depart }}</p>
+              </div>
 
-                          <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label"
-                              >Montant</label
-                            >
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="validationCustom01"
-                              :value="trajet.montant"
-                              @input="handleMontant"
-                              required
-                            />
-                          </div>
-                          <div class="col-md-12">
-                            <label for="validationCustom02" class="form-label"
-                              >Heure de départ</label
-                            >
-                            <input
-                              type="time"
-                              class="form-control"
-                              id="validationCustom02"
-                              :value="trajet.heure_depart"
-                              @input="handleHeureDepart"
-                              required
-                            />
-                          </div>
+              <div class="col-6 mt-2">
+                <p><strong>Destinations </strong> <br> {{ trajet.destination }}</p>
+              </div>
 
-                          <div class="col-md-12">
-                            <label for="validationCustom02" class="form-label"
-                              >Heure de convocation</label
-                            >
-                            <input
-                              type="time"
-                              class="form-control"
-                              id="validationCustom02"
-                              :value="trajet.heure_convocation"
-                              @input="handleHeureConvocation"
-                              required
-                            />
-                          </div>
+              <div class="col-6" style="margin-top:-5px">
+                <p><strong> Heure de départ </strong> <br> {{ trajet.heure_depart }}</p>
+              </div>
 
-                          <div class="col-md-12">
-                            <label for="validationCustom02" class="form-label"
-                              >Nombre de places</label
-                            >
-                            <input
-                              type="number"
-                              class="form-control"
-                              id="validationCustom02"
-                              :value="trajet.nb_place"
-                              @input="handleNombrePlace"
-                              required
-                            />
-                          </div>
+              <div class="col-6" style="margin-top:-5px">
+                <p><strong>Convocation </strong> <br> {{ trajet.heure_convocation }}</p>
+              </div>
 
-                          <div class="col-md-12">
-                            <label for="validationCustom02" class="form-label"
-                              >Escale à faire</label
-                            >
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="validationCustom02"
-                              :value="trajet.escale"
-                              @input="handleEscale"
-                              required
-                            />
-                          </div>
+              <div class="col-6" style="margin-top:-5px">
+                <p><strong>Escale </strong> <br> {{ trajet.escale }}</p>
+              </div>
 
-                          <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label"
-                              >Jours de voyages</label
-                            >
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="validationCustom01"
-                              :value="trajet.jours_voyage"
-                              @input="handleJoursVoyage"
-                              required
-                            />
-                          </div>
+              <div class="col-6 " style="margin-top:-5px">
+                <p><strong>Jours de voyage </strong> <br> {{ trajet.jours_voyage }}</p>
+              </div>
+              <div class="col-6 " style="margin-top:-5px">
+                <p><strong>Nombre de places </strong> <br> {{ trajet.nb_place }}</p>
+              </div>
+            </div>
+            <div class="col-md-12 mt-4 text-start">
+              <div class="row row-clols-md-5">
+                <div class="col">
+                  <!-- Button trigger modal -->
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal4"
+                    style="
+                      background-color: #219935;
+                      border-color: #219935;
+                    "
+                  >
+                    <img
+                      src="/assets/img/icone/edit.png"
+                      class="img-fluid"
+                      alt="..."
+                    />
+                  </button>
 
-                          <div class="col-12 text-center">
-                            <button
-                              class="btn btn-primary"
-                              style="
-                                background-color: #219935;
-                                border-color: #219935;
-                              "
-                              type="submit"
-                            >
-                              Modifier
-                            </button>
-                          </div>
-                        </form>
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="exampleModal4"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header" style="background-color: #219935; color: white;">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">
+                            Modifier un trajet
+                          </h1>
+                          <button
+                            type="button"
+                            class="btn-close-m"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <form
+                            class="row g-3 needs-validation text-start"
+                            novalidate 
+                            @submit.prevent="update(trajet)"
+                          >
+                            <div class="col-md-12">
+                              <label for="validationCustom01" class="form-label"
+                                >Lieu de départ
+                              </label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="validationCustom01"
+                                :value="trajet.lieu_depart"
+                                @input="handleLieuDepart"
+                                required
+                              />
+                            </div>
+                            <div class="col-md-12">
+                              <label for="validationCustom02" class="form-label"
+                                >Destination</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="validationCustom02"
+                                :value="trajet.destination"
+                                @input="handleDestination"
+                                required
+                              />
+                            </div>
+
+                            <div class="col-md-12">
+                              <label for="validationCustom01" class="form-label"
+                                >Montant</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="validationCustom01"
+                                :value="trajet.montant"
+                                @input="handleMontant"
+                                required
+                              />
+                            </div>
+                            <div class="col-md-12">
+                              <label for="validationCustom02" class="form-label"
+                                >Heure de départ</label
+                              >
+                              <input
+                                type="time"
+                                class="form-control"
+                                id="validationCustom02"
+                                :value="trajet.heure_depart"
+                                @input="handleHeureDepart"
+                                required
+                              />
+                            </div>
+
+                            <div class="col-md-12">
+                              <label for="validationCustom02" class="form-label"
+                                >Heure de convocation</label
+                              >
+                              <input
+                                type="time"
+                                class="form-control"
+                                id="validationCustom02"
+                                :value="trajet.heure_convocation"
+                                @input="handleHeureConvocation"
+                                required
+                              />
+                            </div>
+
+                            <div class="col-md-12">
+                              <label for="validationCustom02" class="form-label"
+                                >Nombre de places</label
+                              >
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="validationCustom02"
+                                :value="trajet.nb_place"
+                                @input="handleNombrePlace"
+                                required
+                              />
+                            </div>
+
+                            <div class="col-md-12">
+                              <label for="validationCustom02" class="form-label"
+                                >Escale à faire</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="validationCustom02"
+                                :value="trajet.escale"
+                                @input="handleEscale"
+                                required
+                              />
+                            </div>
+
+                            <div class="col-md-12">
+                              <label for="validationCustom01" class="form-label"
+                                >Jours de voyages</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="validationCustom01"
+                                :value="trajet.jours_voyage"
+                                @input="handleJoursVoyage"
+                                required
+                              />
+                            </div>
+
+                            <div class="col-md-12">
+                              <label for="validationCustom01" class="form-label"
+                                >Nombre de places</label
+                              >
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="validationCustom01"
+                                :value="trajet.nb_place"
+                                @input="handleNombrePlace"
+                                required
+                              />
+                            </div>
+
+                            <div class="col-12 text-center">
+                              <button
+                                class="btn btn-primary"
+                                style="
+                                  background-color: #219935;
+                                  border-color: #219935;
+                                "
+                                type="submit"
+                              >
+                                Modifier
+                              </button>
+                            </div>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col" v-if="companieStore.companie.offre == 'vip'">
-                <button
-                  class="btn btn-primary"
-                  style="background-color: #219935; border-color: #219935"
-                  @click="star(trajet)"
-                >
-                  <img 
-                    v-if="trajet.enAvant == false"
-                    src="/assets/img/icone/star.png"
-                    class="img-fluid"
-                    alt="..."
-                  /> 
-                  <i v-if="trajet.enAvant == true" style="color: #f2c33c" class="fa fa-star" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div class="col" v-if="companieStore.companie.offre == 'vip'">
-                <!-- Button trigger modal -->
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal1"
-                  style="background-color: #219935; border-color: #219935"
-                >
-                  <img
-                    src="/assets/img/icone/promotion.png"
-                    class="img-fluid"
-                    alt="..."
-                  />
-                </button>
+                <div class="col" v-if="companieStore.companie.offre == 'vip'">
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #219935; border-color: #219935"
+                    @click="star(trajet)"
+                  >
+                    <img 
+                      v-if="trajet.enAvant == false"
+                      src="/assets/img/icone/star.png"
+                      class="img-fluid"
+                      alt="..."
+                    /> 
+                    <i v-if="trajet.enAvant == true" style="color: #f2c33c" class="fa fa-star" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="col" v-if="companieStore.companie.offre == 'vip'">
+                  <!-- Button trigger modal -->
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal1"
+                    style="background-color: #219935; border-color: #219935"
+                  >
+                    <img
+                      src="/assets/img/icone/promotion.png"
+                      class="img-fluid"
+                      alt="..."
+                    />
+                  </button>
 
-                <!-- Modal -->
-                <div
-                  class="modal fade"
-                  id="exampleModal1"
-                  tabindex="-1"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header" style="background-color: #219935; color: white;">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">
-                          Promouvoir un vehicule
-                        </h1>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        <form
-                          class="row g-3 needs-validation text-start"
-                          novalidate 
-                          @submit.prevent="promote(trajet)"
-                        >
-                          <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label"
-                              >Taux de réduction</label
-                            >
-                            <input
-                              type="number"
-                              class="form-control"
-                              id="validationCustom01"
-                              v-model="taux_reduction"
-                              required
-                            />
-                          </div>
-                          <div class="col-md-12">
-                            <label for="validationCustom02" class="form-label"
-                              >Montant</label
-                            >
-                            <input
-                              type="number"
-                              class="form-control"
-                              id="validationCustom02"
-                              v-model="montant_promo"
-                              required
-                            />
-                          </div>
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="exampleModal1"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header" style="background-color: #219935; color: white;">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">
+                            Promouvoir un vehicule
+                          </h1>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <form
+                            class="row g-3 needs-validation text-start"
+                            novalidate 
+                            @submit.prevent="promote(trajet)"
+                          >
+                            <div class="col-md-12">
+                              <label for="validationCustom01" class="form-label"
+                                >Taux de réduction</label
+                              >
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="validationCustom01"
+                                v-model="taux_reduction"
+                                required
+                              />
+                            </div>
+                            <div class="col-md-12">
+                              <label for="validationCustom02" class="form-label"
+                                >Montant</label
+                              >
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="validationCustom02"
+                                v-model="montant_promo"
+                                required
+                              />
+                            </div>
 
-                          <div class="col-md-6">
-                            <label for="validationCustom01" class="form-label"
-                              >Date de debut</label
-                            >
-                            <input
-                              type="date"
-                              class="form-control"
-                              id="validationCustom01"
-                              v-model="debut_promo"
-                              required
-                            />
-                          </div>
-                          <div class="col-md-6">
-                            <label for="validationCustom02" class="form-label"
-                              >Date de fin</label
-                            >
-                            <input
-                              type="date"
-                              class="form-control"
-                              id="validationCustom02"
-                              v-model="fin_promo"
-                              required
-                            />
-                          </div>
+                            <div class="col-md-6">
+                              <label for="validationCustom01" class="form-label"
+                                >Date de debut</label
+                              >
+                              <input
+                                type="date"
+                                class="form-control"
+                                id="validationCustom01"
+                                v-model="debut_promo"
+                                required
+                              />
+                            </div>
+                            <div class="col-md-6">
+                              <label for="validationCustom02" class="form-label"
+                                >Date de fin</label
+                              >
+                              <input
+                                type="date"
+                                class="form-control"
+                                id="validationCustom02"
+                                v-model="fin_promo"
+                                required
+                              />
+                            </div>
 
-                          <div class="col-12 text-center">
-                            <button
-                              class="btn btn-primary"
-                              style="
-                                background-color: #219935;
-                                border-color: #219935;
-                              "
-                              type="submit"
-                            >
-                              Promouvoir
-                            </button>
-                          </div>
-                        </form>
+                            <div class="col-12 text-center">
+                              <button
+                                class="btn btn-primary"
+                                style="
+                                  background-color: #219935;
+                                  border-color: #219935;
+                                "
+                                type="submit"
+                              >
+                                Promouvoir
+                              </button>
+                            </div>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col">
-                <button
-                  class="btn btn-primary"
-                  style="background-color: #219935; border-color: #219935"
-                  @click="unlock(trajet)"
-                >
-                  <img 
-                    v-if="trajet.status == 'active'"
-                    src="/assets/img/icone/unlock.png"
-                    class="img-fluid"
-                    alt="..."
-                  /> 
-                  <i v-if="trajet.status == 'desactive'" class="fa fa-unlock" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div class="col text-center">
-                <button
-                  class="btn btn-primary"
-                  style="background-color: #ff000087; border-color: #ff000087" 
-                  @click="remove(trajet)"
-                >
-                  <img
-                    src="/assets/img/icone/delete.png"
-                    class="img-fluid"
-                    alt="..."
-                  />
-                </button>
+                <div class="col">
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #219935; border-color: #219935"
+                    @click="unlock(trajet)"
+                  >
+                    <img 
+                      v-if="trajet.status == 'active'"
+                      src="/assets/img/icone/unlock.png"
+                      class="img-fluid"
+                      alt="..."
+                    /> 
+                    <i v-if="trajet.status == 'desactive'" class="fa fa-unlock" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="col text-center">
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #ff000087; border-color: #ff000087" 
+                    @click="remove(trajet)"
+                  >
+                    <img
+                      src="/assets/img/icone/delete.png"
+                      class="img-fluid"
+                      alt="..."
+                    />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
     <div class="w-100" v-else>

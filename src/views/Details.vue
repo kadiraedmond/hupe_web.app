@@ -115,7 +115,7 @@ onMounted(() => {
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: 0px"
+      style="margin-top: -21px ; padding: 122px;" 
     >
       <img
         :src="companieStore.companie.imageCouvertureUrl"
@@ -127,10 +127,10 @@ onMounted(() => {
     </section>
     <!-- End Portfolio Details Section -->
 
-    <section id="faq" class="faq" style="margin-top: -70px">
+    <section id="faq" class="faq" style="margin-top: -140px">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-4">
+          <div class="col-md-5">
             <div class="card mb-3 border-0" style="max-width: 540px">
               <div class="row g-0">
                 <div class="col-md-4">
@@ -138,7 +138,7 @@ onMounted(() => {
                     :src="companieStore.companie.imageLogoUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 100px; height: 100px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
+                    style="width: 150px; height: 150px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
                   />
                 </div>
                 <div class="col-md-8">
@@ -147,6 +147,7 @@ onMounted(() => {
                     <p class="card-text">
                       {{ companieStore.companie.description }}
                     </p>
+                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> 30%</button>
                   </div>
                 </div>
               </div>
@@ -161,7 +162,7 @@ onMounted(() => {
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: -40px"
+      style="margin-top: -70px"
     >
       <div class="container">
         <div class="row gy-4">
@@ -270,26 +271,26 @@ onMounted(() => {
                           <div class="col-md-6"></div>
 
                           <div class="col-md-6 mt-2">
-                            <p><strong>Lieu de départ |</strong> {{ programme.lieu_depart }}</p>
+                            <p><strong>Lieu de départ </strong> <br> {{ programme.lieu_depart }}</p>
                           </div>
 
                           <div class="col-md-6 mt-2">
-                            <p><strong>Destinations |</strong> {{ programme.destination }}</p>
+                            <p><strong>Destinations </strong> <br> {{ programme.destination }}</p>
                           </div>
 
-                          <div class="col-md-6 mt-2">
-                            <p><strong> Heure de départ |</strong> {{ programme.heure_depart }}</p>
+                          <div class="col-md-6 mt-2" style="margin-top: -9px !important;">
+                            <p><strong> Heure de départ </strong> <br> {{ programme.heure_depart }}</p>
                           </div>
 
-                          <div class="col-md-6 mt-2">
-                            <p><strong>Convocation |</strong> {{ programme.heure_convocation }}</p>
+                          <div class="col-md-6 mt-2" style="margin-top: -9px !important;">
+                            <p><strong>Convocation </strong> <br> {{ programme.heure_convocation }}</p>
                           </div>
 
-                          <div class="col-md-6 mt-3">
-                            <p><strong>Escale | </strong> {{ programme.escale }}</p>
+                          <div class="col-md-6 mt-3" style="margin-top: -9px !important;">
+                            <p><strong>Escale  </strong> <br> {{ programme.escale }}</p>
                           </div>
 
-                          <div class="col-md-6 mt-3">
+                          <div class="col-md-6 mt-3" style="margin-top: -9px !important;">
                             <p><strong>Jours de voyage |</strong> {{ programme.jours_voyage }}</p>
                           </div>
                           <div class="col-md-12">
@@ -642,7 +643,7 @@ onMounted(() => {
               >
                 <div class="row mt-5">
                   <div class="col-md-12">
-                    <div class="card h-100" id="card_compagnie">
+                    <div class="card h-100"  >
                       <div class="card-body">
                         <p>
                           {{ politiques.text }}
@@ -662,129 +663,75 @@ onMounted(() => {
                 aria-labelledby="apropos-tab"
                 tabindex="0"
               >
+                 
+
                 <div class="row mt-5">
                   <div class="col-md-12">
-                    <div class="card h-100" id="card_compagnie">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <p>
-                              <strong>Raison sociale |</strong> {{ companieStore.companie.raison_social }}
-                            </p>
-
-                            <p><strong> Responsable |</strong>{{ companieStore.companie.responsable }}</p>
+                    <div class="card mb-3 border-0">
+                      <div class="row g-2">
+                        <div class="col-md-3 text-center">
+                          <div class="card text-bg-white" style="padding: 10px;">
+                            <img src="/assets/img/service/bus.png" class="card-img" alt="...">
+                            <div class="card-img-overlay">
+                               
+                            </div>
                           </div>
+                          
+                         
+                        </div>
+                        <div class="col-md-9">
+                          <div class="card-body">
+                             <div class="row">
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-car'></i>  Raison sociale</h6>
+                                <p>{{ companieStore.companie.raison_social }} </p>
+                               </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-user' ></i> Responsable </h6>
+                                <p> {{ companieStore.companie.responsable }} </p>
+                               </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-phone' ></i> Téléphone</h6>
+                                <p>{{ companieStore.companie.telephone }} </p>
+                                <p>{{ companieStore.companie.site_web }}</p>
+                               </div>
+                             </div>
+                             <hr>
+                             <div class="row">
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-envelope' ></i>  Email</h6>
+                                <p>{{ companieStore.companie.email }} </p>
+                               </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"><i class='bx bx-map'></i> Adresse</h6>
+                                <p>  {{ companieStore.companie.adresse }} </p>
+                               </div>
 
-                          <div
-                            class="row row-cols-1 row-cols-md-4 mb-4 g-4"
-                            style="margin-top: -5px"
-                          >
-                            <div class="col">
-                              <div class="card h-100 text-center border-0">
-                                <div
-                                  class="row mt-4"
-                                  style="justify-content: center"
-                                >
-                                  <img
-                                    src="/assets/img/icone/mail.png"
-                                    class="img-fluid"
-                                    alt="..."
-                                    style="width: 64px"
-                                  />
-                                </div>
+                               <div class="col-md-4">
+                                <h6 id="h6"> <i class='bx bx-map-pin' ></i> Localisation</h6>
+                                <p>  {{ companieStore.companie.latitude }} {{ companieStore.companie.longitude }} </p>
+                               </div>
+                             </div>
+                             <hr>
+                             <div class="row">
+                               <div class="col-md-12">
+                                <h6 id="h6">Présentation</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                               </div>
+                                                    
+                             </div>
+                             <hr>
+                             <div class="row">
+                               
+                               <div class="col-md-12">
+                                <h6 id="h6">Description</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                               </div>
 
-                                <div class="card-body">
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 14px"
-                                  >
-                                    {{ companieStore.companie.adresse_mail }}
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="card h-100 text-center border-0">
-                                <div
-                                  class="row mt-4"
-                                  style="justify-content: center"
-                                >
-                                  <img
-                                    src="/assets/img/icone/web.png"
-                                    class="img-fluid"
-                                    alt="..."
-                                    style="width: 64px"
-                                  />
-                                </div>
-
-                                <div class="card-body">
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 14px"
-                                  >
-                                    {{ companieStore.companie.site_web }}
-                                  </h5>
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 14px"
-                                  >
-                                    {{ companieStore.companie.telephone }}
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="card h-100 text-center border-0">
-                                <div
-                                  class="row mt-4"
-                                  style="justify-content: center"
-                                >
-                                  <img
-                                    src="/assets/img/icone/maps.png"
-                                    class="img-fluid"
-                                    alt="..."
-                                    style="width: 64px"
-                                  />
-                                </div>
-
-                                <div class="card-body">
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 14px"
-                                  >
-                                    {{ companieStore.companie.adresse }}
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="card h-100 text-center border-0">
-                                <div
-                                  class="row mt-4"
-                                  style="justify-content: center"
-                                >
-                                  <img
-                                    src="/assets/img/icone/location.png"
-                                    class="img-fluid"
-                                    alt="..."
-                                    style="width: 64px"
-                                  />
-                                </div>
-
-                                <div class="card-body">
-                                  <h5
-                                    class="card-title"
-                                    style="font-size: 14px"
-                                  >
-                                    {{ companieStore.companie.latitude }} {{ companieStore.companie.longitude }}
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
+                                
+                             </div>
                           </div>
                         </div>
-
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
                     </div>
                   </div>
@@ -813,10 +760,17 @@ onMounted(() => {
   }
 
   #img_couv{
-  height: 450px;
+  height: 250px;
     /* object-fit: cover; */
   object-fit: fill;
   image-rendering: -webkit-optimize-contrast;
+  border-radius: 10px;
+}
+
+#h6{
+  font-size: 14px;
+  font-weight: 600;
+  color: #21993599;
 }
 
 </style>

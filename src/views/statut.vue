@@ -31,7 +31,10 @@ onBeforeMount(async () => {
   userStore.setUser(userId) 
   await reservationStore.setUserReservations(userId)
 
-  reservation.value = [] 
+  userStore.setUser(userId) 
+  await reservationStore.setUserReservations(userId)
+
+  reservations.value = [] 
   reservationStore.userReservations.forEach(reservation => {
     if(param === 'en-attente' && reservation.status === 'En attente') {
       reservations.value.push(reservation)
@@ -54,6 +57,8 @@ onBeforeMount(async () => {
     }
     
     if(param === 'annule' && reservation.status === 'Annuler') {
+      reservations.value.push(reservation)
+    } else if(param === 'en-attente-de-report' && reservation.status === 'En report') {
       reservations.value.push(reservation)
     }
     

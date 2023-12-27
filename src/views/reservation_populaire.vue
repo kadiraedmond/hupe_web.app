@@ -71,7 +71,7 @@ onMounted(() => {
           </div>
         </div>
         
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
           <div
             class="col"
             v-for="(
@@ -165,7 +165,7 @@ onMounted(() => {
                             {{ popularDestination.jours_voyage }}
                           </p>
                          
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                        
                       </div>
                     </div>
                     <div class="col-4">
@@ -182,7 +182,86 @@ onMounted(() => {
               </div>
             </router-link>
           </div>
+        </div> -->
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div
+            class="col"
+            v-for=" (popularDestination, index  ) in promotionStore.popularDestinations" :key="index"
+          >
+            <router-link
+            :to="`/detail_reservation_ticket/${popularDestination.uid}`"
+              style="color: #000"
+            >
+              <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
+                <div class="row" style="margin: 0px">
+                  <div class="col-md-12">
+                    <div
+                      class="card h-100 mb-3 border-0"
+                      style="background: #f9f9f9;"
+                    >
+                      <div class="row g-1 d-flex mt-2">
+                        
+                        <div class="col-7 d-flex">
+                          <img
+                          :src="popularDestination.companieInfos.imageLogoUrl"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="width: 40px; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
+                          />
+                          <div>
+                            <div class="card-body d-flex">
+                              <h5 class="card-title" style="font-size: 10px">
+                                {{
+                                    popularDestination.companieInfos
+                                      .raison_social
+                                  }}
+                              </h5>
+                               
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-5 text-end">
+                          <button
+                            class="btn btn-primary"
+                            style="
+                              background: #219935;
+                              border-color: #219935;
+                              margin-top: 5px;
+                              font-size: 12px;
+                            "
+                          >
+                          {{ popularDestination.montant }}  FCFA
+                          </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card border-0" style="margin: 8px; margin-top: -13px;">
+                  <img
+                          src="/assets/img/rb.jpg"
+                          class="img-fluid h-100"
+                          alt="..."
+                          style="object-fit: cover ; border-radius: 11px;height: 197px !important;"
+                   />
+
+                   <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 155px; width: 97%; margin-left: 4px;">
+                      <div class="col-md-12 mt-2 ">
+                        <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
+                /> {{ popularDestination.lieu_depart }} -
+                            {{ popularDestination.destination }}  </h5>
+                      </div>
+                    </div>
+                </div>
+                 
+              </div>
+            </router-link>
+          </div>
         </div>
+
       </div>
     </section>
 
@@ -213,7 +292,7 @@ onMounted(() => {
     font-size: 14px;
     background-color: white;
     border-color: #219935;
-    color: white !important;
+    color: #219935 !important;
     border-radius: 10px;
 }
 
