@@ -7,7 +7,9 @@ import { useCompanieStore } from "@/store/companie.js";
 import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
 
-const companieStore = useCompanieStore();
+const companieStore = useCompanieStore()
+
+const companiesColRef = collection(firestoreDb, "compagnies")
 
 onBeforeMount(() => {
   companieStore.getAllCompanies
@@ -17,6 +19,31 @@ onBeforeMount(() => {
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+const searchTerm = ref('')
+
+const results = ref([])
+
+const handleSearch = async () => {
+  results.value = []
+  const q = query(companiesColRef, 
+              where('type_compagnie', '==', 'Transport'), 
+              where('country', '==', `${companieStore.country}`),
+              where('status', '==', 'active')
+            )
+
+  const snapshot = await getDocs(q)
+  
+  snapshot.docs.forEach(doc => {
+    const companieData = doc.data() 
+
+    if(companieData.raison_social.toLowerCase().includes(searchTerm.value.toLowerCase()) || companieData.description.toLowerCase().includes(searchTerm.value.toLowerCase())) {
+        results.value.push(companieData) 
+    }
+  })
+
+  companieStore.transportCompanies = results.value
+}
 
 </script>
 <template>

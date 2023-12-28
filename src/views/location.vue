@@ -5,10 +5,12 @@ import Pagination from "@/components/Pagination.vue";
 
 import { useCompanieStore } from "@/store/companie.js";
 
-import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
+import { collection, query, doc, where, getDoc, getDocs } from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
 
-const companieStore = useCompanieStore();
+const companieStore = useCompanieStore()
+
+const companiesColRef = collection(firestoreDb, "compagnies")
  
 
 onBeforeMount(() => {
@@ -46,7 +48,32 @@ const paginatedCompanies = computed(() => {
 
 const updatePage = (newPage) => {
   currentPage.value = newPage;
-};
+}
+
+const searchTerm = ref('')
+
+const results = ref([])
+
+const handleSearch = async () => {
+  results.value = []
+  const q = query(companiesColRef, 
+              where('type_compagnie', '==', 'Location'), 
+              where('country', '==', `${companieStore.country}`),
+              where('status', '==', 'active')
+            )
+
+  const snapshot = await getDocs(q)
+  
+  snapshot.docs.forEach(doc => {
+    const companieData = doc.data() 
+
+    if(companieData.raison_social.toLowerCase().includes(searchTerm.value.toLowerCase()) || companieData.description.toLowerCase().includes(searchTerm.value.toLowerCase())) {
+        results.value.push(companieData) 
+    }
+  })
+
+  companieStore.locationCompanies = results.value
+}
 
 </script>
 
@@ -77,7 +104,7 @@ const updatePage = (newPage) => {
                 <div class="col-md-12">
                   <form class="d-flex" role="search" @submit.prevent="handleSearch">
                     <input
-                      class="form-control me-2 text-white"
+                      class="form-control me-2 text-dark"
                       type="search"
                       placeholder="Rechercher"
                       v-model="searchTerm"
@@ -248,7 +275,7 @@ const updatePage = (newPage) => {
     font-size: 14px;
     background-color: white;
     border-color: #219935;
-    color: white !important;
+    color: black !important;
     border-radius: 10px;
 }
 
