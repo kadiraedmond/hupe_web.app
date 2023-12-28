@@ -5,6 +5,9 @@ import { reactive, ref, onBeforeMount, onUnmounted, onMounted } from "vue"
 import Swal from 'sweetalert2'
 import { collection, query, doc, where, Timestamp, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
+import fileDownloader from "file-downloader-js"
+
+import axios from "axios"
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -265,6 +268,14 @@ const annuler = async (location) => {
     
   }
   
+}
+
+const downloadPermis = (url, filename) => {
+  axios.get(url, {
+    responseType: "blob"
+  }).then((res) => {
+    fileDownloader(res.data, filename);
+  })
 }
 </script>
 
@@ -836,7 +847,7 @@ const annuler = async (location) => {
                                   </div> -->
                                       <div class="col-md-12">
                                         <div class="card-body">
-                                          <div class="row">
+                                          <div class="row mb-2">
                                             <div class="col-md-6">
 
                                               <p
@@ -884,11 +895,14 @@ const annuler = async (location) => {
                                               </p>
                                             </div>
                                             <div class="col-md-6">
-                                              <div style="margin-top: -2rem">
-                                                <img 
-                                                  :src="location.identite_image_url"
-                                                  style="width: 150px; height: 150px"
-                                                />
+                                              <div>
+                                                <a :href="location.identite_image_url" target="_blank" style="display: flex; flex-direction: column">
+                                                  <img 
+                                                    :src="location.identite_image_url"
+                                                    style="width: 150px; height: 150px; margin-top: -2rem"
+                                                  />
+                                                  <i class='bx bxs-download' style="margin-left: 7.5rem; font-size: 2rem"></i>
+                                                </a>
                                               </div>
                                             </div>
                                           </div>

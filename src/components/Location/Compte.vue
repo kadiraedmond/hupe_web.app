@@ -86,6 +86,21 @@ const retrait = async () => {
 
     await updateDoc(docRef.ref, { uid: `${docRef.id}` })
 
+    // ajout de l'historique de la compagnie
+    const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
+    const comp_hystoryColRef = collection(comp_companieDocRef, 'hystory')
+
+    const comp_hystory = {
+      title: 'Demande de retrait',
+      solde: Number(companieStore.totalAmount.solde),
+      montantVerser: Number(montant.value),
+      datePayement: Timestamp.now()
+    }
+
+    await addDoc(comp_hystoryColRef, comp_hystory)
+
+    location.reload()
+
   } catch (error) {
     Swal.fire({
       title: "Erreur",

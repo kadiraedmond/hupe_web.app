@@ -164,6 +164,7 @@ const payer = async (location) => {
   const userDocRef = doc(firestoreDb, 'users', `${userId}`)
   const userSubColRef = collection(userDocRef, 'myAccount')
   const accountDocRef = doc(userSubColRef, 'account')
+  const hystoryColRef = collection(userDocRef, 'hystory')
 
   const snapshot = await getDoc(accountDocRef) 
 
@@ -186,10 +187,12 @@ const payer = async (location) => {
     total_a_payer = Number(location.montant) + Number(location.avecchauffeurprix) + Number(location.interieurpaysprix)
   }
 
+  const montant_a_payer = total_a_payer * differenceEnJours
+
   let amount
   if(snapshot.exists()) amount = snapshot.data()
 
-  if(!amount.solde || amount.solde == 0 || amount.solde === '' || amount.solde < total_a_payer) {
+  if(!amount.solde || amount.solde == 0 || amount.solde === '' || amount.solde < montant_a_payer) {
     Swal.fire({
       title: "Error",
       text: "Votre solde est insuffisant",
@@ -206,11 +209,13 @@ const payer = async (location) => {
     if(result.isConfirmed) {
     // Debiter le solde du client
     const data = {
-      solde: Number(amount.solde) - (total_a_payer * differenceEnJours), 
+      solde: Number(amount.solde) - montant_a_payer, 
     }
 
     try {
       await updateDoc(accountDocRef, data)
+
+      document.querySelector('.btn-close-payer').click()
 
       Swal.fire({
         title: "Succès",
@@ -218,16 +223,12 @@ const payer = async (location) => {
         icon: "success"
       }) 
 
-      
-      document.querySelector('.btn-close-payer').click()
-
       const notificationColRef = collection(firestoreDb, 'notifications')
-
 
       const client_notif = { 
         uid: '', 
         title: 'Paiement pour location', 
-        message: `Vous avez effectué un paiement de caution de FCFA ${total_a_payer} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
+        message: `Vous avez effectué un paiement de caution de FCFA ${montant_a_payer} pour la location de votre ${location.vehicule} ${location.modele} pour une durée de ${differenceEnJours} jours.`, 
         destinataire: userId,
         lu: false, 
         createdAt: Timestamp.now() 
@@ -237,6 +238,19 @@ const payer = async (location) => {
 
 
       await updateDoc(client_docRef, { uid: `${client_docRef.id}` })
+
+      // ajout de l'hisqtorique client
+      const client_hystory = {
+        body: montant_a_payer,
+        title: 'Paiement pour location',
+        topic: 'Paiement',
+        solde: amount.solde,
+        date: Timestamp.now()
+      }
+      
+      await addDoc(hystoryColRef, client_hystory)
+
+      // -----------------------------------------------
   
       // Recherche de la compagnie dans la base
       const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${location.compagnie_uid}`)
@@ -251,15 +265,15 @@ const payer = async (location) => {
       if(companieInfos.offre === 'basique') {
 
         if(differenceEnJours >= 1 && differenceEnJours <= 3) {
-          montant_apres_commission = Number(total_a_payer) - (0.15 * Number(total_a_payer))
+          montant_apres_commission = Number(montant_a_payer) - (0.15 * Number(montant_a_payer))
         } 
 
         if(differenceEnJours >= 4 && differenceEnJours <= 7) {
-          montant_apres_commission = Number(total_a_payer) - (2 * 0.15 * Number(total_a_payer))
+          montant_apres_commission = Number(montant_a_payer) - (2 * 0.15 * Number(montant_a_payer))
         } 
 
         if(differenceEnJours > 7) {
-          montant_apres_commission = Number(total_a_payer) - (3 * 0.15 * Number(total_a_payer))
+          montant_apres_commission = Number(montant_a_payer) - (3 * 0.15 * Number(montant_a_payer))
         }
 
       } 
@@ -267,15 +281,15 @@ const payer = async (location) => {
       else if(companieInfos.offre === 'vip') {
 
         if(differenceEnJours >= 1 && differenceEnJours <= 3) {
-          montant_apres_commission = Number(total_a_payer) - (0.20 * Number(total_a_payer))
+          montant_apres_commission = Number(montant_a_payer) - (0.20 * Number(montant_a_payer))
         } 
 
         if(differenceEnJours >= 4 && differenceEnJours <= 7) {
-          montant_apres_commission = Number(total_a_payer) - (2 * 0.20 * Number(total_a_payer))
+          montant_apres_commission = Number(montant_a_payer) - (2 * 0.20 * Number(montant_a_payer))
         } 
 
         if(differenceEnJours > 7) {
-          montant_apres_commission = Number(total_a_payer) - (3 * 0.20 * Number(total_a_payer))
+          montant_apres_commission = Number(montant_a_payer) - (3 * 0.20 * Number(montant_a_payer))
         }
 
       }
@@ -283,6 +297,7 @@ const payer = async (location) => {
       // ajouter la somme sur le compte de la compagnie
       const comp_accountColRef = collection(comp_companieDocRef, 'myAccount')
       const comp_accountDocRef = doc(comp_accountColRef, 'account')
+      const comp_hystoryColRef = collection(comp_companieDocRef, 'hystory')
 
       const snapshot = await getDoc(comp_accountDocRef)
       let companieAccount
@@ -307,6 +322,16 @@ const payer = async (location) => {
 
 
       await updateDoc(comp_docRef, { uid: `${comp_docRef.id}` })
+
+      // ajout de l'historique de la compagnie
+      const comp_hystory = {
+        title: 'Réception de paiement',
+        solde: companieAccount.solde,
+        montantVerser: montant_a_payer,
+        datePayement: Timestamp.now()
+      }
+
+      await addDoc(comp_hystoryColRef, comp_hystory)
 
       // mise a jour du status de la location
       const locationDocRef = doc(firestoreDb, 'location_vehicules', `${location.uid}`)

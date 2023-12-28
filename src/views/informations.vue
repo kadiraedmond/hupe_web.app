@@ -32,9 +32,12 @@ const raison_social = ref('')
 const responsable = ref('')
 const addresse = ref('')
 const description = ref('')
+const presentation = ref('')
 const image_couverture = ref()
 const image_logo = ref()
 const email = ref('')
+
+const country = ref()
 
 const isUploading = ref(false)
 
@@ -79,6 +82,8 @@ const handleSubmit = async () => {
     raison_social: raison_social.value,
     responsable: responsable.value,
     description: description.value,
+    presentation: presentation.value,
+    country: country.value,
     imageCouvertureUrl: image_couverture.value || '', 
     imageLogoUrl: image_logo.value || '', 
     offre: offre !== '' ? offre : offre2 || '', 
@@ -197,6 +202,29 @@ const handleSubmit = async () => {
                 <textarea type="text" v-model="description" class="form-control" id="inputAddress2" required>
                 </textarea>
               </div>
+              <div class="col-12">
+                <label for="inputAddress2" class="form-label"
+                  >Présentation</label
+                >
+                <textarea type="text" v-model="presentation" class="form-control" id="inputAddress2" required>
+                </textarea>
+              </div>
+              <div class="col-12">
+                <label for="inputAddress2" class="form-label"
+                  >Pays</label
+                >
+                <select v-model="country" class="form-select1" style="background: #E8E8E8; color: black" id="validationCustom04" required>
+                  <option value="BJ" selected>Bénin</option>
+                  <option value="BF">Burkina Faso</option>
+                  <option value="CI">Côte d'Ivoire</option>
+                  <option value="GN">Guinée Conakry</option>
+                  <option value="ML">Mali</option>
+                  <option value="NE">Niger</option>
+                  <option value="SN">Sénégal</option>
+                  <option value="TG">Togo</option>
+                </select>
+              </div>
+
               <div class="col-md-12">
                 <label for="inputCity" class="form-label"
                   >Images de couverture</label
@@ -260,4 +288,8 @@ const handleSubmit = async () => {
   </main>
   <!-- End #main -->
 </template>
-<style></style>
+<style>
+select option {
+  font-size: 1rem
+}
+</style>
