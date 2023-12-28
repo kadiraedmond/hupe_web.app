@@ -293,59 +293,60 @@ const isLoading = ref(false)
                   <div class="col-md-6 mb-2" v-for="(car, i) in companieStore.companieCars" :key="i">
                     <div class="card mb-3" style="max-width: 540px">
                       <div class="row g-0">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                           <img
                             :src="car.vehicule_image_url"
                             class="img-fluid rounded-start"
                             alt="..."
-                            style="height: 271px; object-fit: cover;  width: 100%;"
+                            style="height: 218px; object-fit: cover;  width: 100%;"
                           />
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                           <div class="card-body">
-                            <div class="row">
-                              <div class="col-md-6">
-                                <p class="card-text" style="font-size: 13px">
-                                  <strong>{{ car.vehicule }} | {{ car.modele }} | {{ car.anne_vehicule }} </strong>
-                                </p>
+                            <div class="row g-1">
+                              <div class="col-md-12">
+                                <div class="row mb-2">
+                                  <div class="col-md-8">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>{{ car.vehicule }} | {{ car.modele }} | {{ car.anne_vehicule }} </strong> 
+                                    </p>
+                                  </div>
+
+                                  <div class="col-md-4"> 
+                                      <button
+                                      class="btn btn-primary"
+                                      style="
+                                        background-color: #219935;
+                                        border-color: #219935;
+                                        font-size: 13px;
+                                        margin-left: -29px;
+                                        width: 104px;
+                                        position: absolute;
+                                        margin-top: -8px;
+                                      "
+                                    >
+                                      {{ car.montant }} FCFA
+                                    </button>
+                                   
+                                  </div>
+                                </div>
+                                
                               </div>
-                              <div class="col-md-6 text-end">
-                                <button
-                                  class="btn btn-primary"
-                                  style="
-                                    background-color: #219935;
-                                    border-color: #219935;
-                                    font-size: 13px;
-                                  "
-                                >
-                                  {{ car.montant }} FCFA
-                                </button>
-                              </div>
+                               
 
                                
                               <div class="col-md-12 mt-2">
+                                 
                                 <div class="row mt-2">
                                   <div class="col-6">
-                                    <p class="card-text" style="font-size: 13px">
-                                      <strong>  Moteur</strong> <br>
-                                   {{ car.moteur }} 
-                                   </p>
+                                      <p class="card-text" style="font-size: 13px">
+                                        <strong>  Moteur</strong> <br>
+                                      {{ car.moteur }} 
+                                      </p>
                                   </div>
-
+                                  
                                   <div class="col-6">
-                                     
-                                  </div>
-                                </div>
-                                <div class="row mt-2">
-                                  <div class="col-6">
-                                    <p class="card-text" style="font-size: 13px">
-                                      <strong>  Immatriculation</strong> <br>
-                                   {{ car.serie_vehicule }} CFA 
-                                   </p>
-                                  </div>
-
-                                  <div class="col-6">
-                                    <p class="card-text" style="font-size: 13px">
+                                    <p class="card-text" style="font-size: 13px ; margin-left: 40px;">
                                       <strong>  Transmission </strong> <br>
                                       {{ car.vehicule.boite}} CFA 
                                    </p>
@@ -360,7 +361,7 @@ const isLoading = ref(false)
                                   </div>
 
                                   <div class="col-6">
-                                    <p class="card-text" style="font-size: 13px">
+                                    <p class="card-text" style="font-size: 13px ; margin-left: 34px;">
                                       <strong>  Vers l'intérieur </strong> <br>
                                       {{ car.interieurpaysprix }} CFA 
                                    </p>
@@ -370,345 +371,37 @@ const isLoading = ref(false)
                                  
                               </div>
 
-                              <div class="col-md-12 mt-4 text-start">
-                                <!-- Button trigger modal -->
-                                <router-link :to="`/detail_vehicule_location/${companieId}/${car.uid}`">
-                                  <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    style="
-                                      background-color: #219935;
-                                      border-color: #219935;
-                                    "
-                                    data-bs-toggle="modal"
-                                    :data-bs-target="'#exampleModal' + i"
-                                  >
-                                    Voir plus
-                                  </button>
-                                </router-link>
 
-                                <!-- Modal -->
-                                <!-- <div
-                                  class="modal fade"
-                                  :id="'exampleModal' + i"
-                                  tabindex="-1"
-                                  aria-labelledby="exampleModalLabel"
-                                  aria-hidden="true"
-                                >
-                                  <div class="modal-dialog">
-                                    <div class="modal-content">
-                                      <div
-                                        class="modal-header"
-                                        style="background: #deeee4"
-                                      >
-                                        <h1
-                                          class="modal-title fs-5"
-                                          id="exampleModalLabel"
-                                          style="font-size: 17px !important"
-                                        >
-                                          Réservation de véhicule
-                                        </h1>
-                                        <button
-                                          type="button"
-                                          class="btn-close"
-                                          data-bs-dismiss="modal"
-                                          aria-label="Close"
-                                        ></button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <form
-                                          class="row g-3 needs-validation"
-                                          novalidate
-                                          @submit.prevent="reserver(car)"
-                                          id="reservationForm"
-                                        >
-                                          <div class="col-md-12">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Nom & prénoms</label
-                                            >
-                                            <input
-                                              type="text"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              v-model="name"
-                                              required
-                                            />
-                                          </div>
-
-                                          <div class="col-md-12">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Téléphone</label
-                                            >
-                                            <input
-                                              type="text"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              :value="user.telephone"
-                                              required
-                                              disabled
-                                            />
-                                          </div>
-
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Marque</label
-                                            >
-                                            <input
-                                              type="text"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              :value="car.vehicule"
-                                              required
-                                              disabled
-                                            />
-                                          </div>
-
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Immatriculation</label
-                                            >
-                                            <input
-                                              type="text"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              :value="car.serie_vehicule"
-                                              required
-                                              disabled
-                                            />
-                                          </div>
-
-                                          <div class="col-md-12">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Modèle</label
-                                            >
-                                            <input
-                                              type="text"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              :value="car.modele"
-                                              required
-                                              disabled
-                                            />
-                                          </div>
-
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Moteur</label
-                                            >
-                                            <input
-                                              type="text"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              :value="car.moteur"
-                                              required
-                                              disabled
-                                            />
-                                          </div>
-
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Transmission</label
-                                            >
-                                            <input
-                                              type="text"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              :value="car.boite"
-                                              required
-                                              disabled
-                                            />
-                                          </div>
-
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Avec chauffeur</label
-                                            >
-                                            <div class="form-check">
-                                              <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                name="gridRadios"
-                                                id="gridRadios2"
-                                                value="Oui"
-                                                @click="toggleChauffeur(1)"
-                                                v-model="avecChauffeur"
-                                                :checked="avecChauffeur"
-                                              />
-                                            </div>
-                                          </div>
-
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Sans chauffeur</label
-                                            >
-                                            <div class="form-check">
-                                              <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                name="gridRadios"
-                                                id="gridRadios1"
-                                                value="Non"
-                                                @click="toggleChauffeur(2)"
-                                                v-model="sansChauffeur"
-                                                :checked="sansChauffeur"
-                                              />
-                                            </div>
-                                          </div>
-
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Capital du pays</label
-                                            >
-                                            <div class="form-check">
-                                              <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                name="gridRadios"
-                                                id="gridRadios4"
-                                                value="Non"
-                                                @click="togglePays(3)"
-                                                v-model="capitalPays"
-                                                :checked="capitalPays"
-                                              />
-                                            </div>
-                                          </div>
-
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Intérieur du pays</label
-                                            >
-                                            <div class="form-check">
-                                              <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                name="gridRadios"
-                                                id="gridRadios5"
-                                                value="Oui"
-                                                @click="togglePays(4)"
-                                                v-model="interieurPays"
-                                                :checked="interieurPays"
-                                              />
-                                            </div>
-                                          </div>
-
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Date de Retrait</label
-                                            >
-                                            <input
-                                              type="date"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              v-model="dateRetrait"
-                                              required
-                                            />
-                                          </div>
-                                          <div class="col-md-6">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Heure de Retrait</label
-                                            >
-                                            <input
-                                              type="time"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              v-model="heureRetrait"
-                                              required
-                                            />
-                                          </div>
-                                          <div class="col-md-12">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Lieu du Retrait</label
-                                            >
-                                            <input
-                                              type="text"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              v-model="lieuRetrait"
-                                              required
-                                            />
-                                          </div>
-
-                                          <div class="col-md-12">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Date de retour</label
-                                            >
-                                            <input
-                                              type="date"
-                                              class="form-control"
-                                              id="validationCustom01"
-                                              v-model="dateRetour"
-                                              required
-                                            />
-                                          </div>
-
-                                          <Loader 
-                                            style="position: absolute; left: 35%; top: 15%"
-                                            v-if="isLoading" 
-                                          />
-
-                                          <div class="col-md-12">
-                                            <label
-                                              for="validationCustom01"
-                                              class="form-label"
-                                              >Permis de conduire</label
-                                            >
-                                            <input
-                                              type="file"
-                                              class="form-control"
-                                              id="fileInput"
-                                              @change="handleFileChange"
-                                              required
-                                            />
-                                          </div>
-
-                                          <div class="col-12 text-center">
-                                            <button
-                                              class="btn btn-primary"
-                                              type="submit"
-                                              style="
-                                                background: #219935;
-                                                border-color: #219935;
-                                              "
-                                            >
-                                              Réserver
-                                            </button>
-                                          </div>
-                                        </form>
-                                      </div>
-                                    </div>
+                              <div class="col-md-12 mt-2 text-start">
+                                <div class="row">
+                                  <div class="col-6">
+                                    <p class="card-text" style="font-size: 13px">
+                                      <strong>  Immatriculation</strong> <br>
+                                   {{ car.serie_vehicule }} CFA 
+                                   </p>
                                   </div>
-                                </div> -->
-                                
+
+                                  
+                                  <div class="col-6">
+                                    <router-link :to="`/detail_vehicule_location/${companieId}/${car.uid}`">
+                                      <button
+                                        type="button"
+                                        class="btn btn-primary"
+                                        style="
+                                          background-color: #219935;
+                                          border-color: #219935;
+                                          margin-left: 40px;
+                                          font-size: 13px;
+                                        "
+                                        data-bs-toggle="modal"
+                                        :data-bs-target="'#exampleModal' + i"
+                                      >
+                                        Voir plus
+                                      </button>
+                                    </router-link>
+                                  </div>
+                                </div>
+
                               </div>
                             </div>
                           </div>
