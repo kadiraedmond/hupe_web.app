@@ -71,8 +71,8 @@ const updateReservationsDashboard = () => {
 };
 const savedUser = JSON.parse(localStorage.getItem("user"))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = "qdo1Ig1tnMlmvFCxa6OE" || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = "qdo1Ig1tnMlmvFCxa6OE" || savedUser.uid || authStore.user.uid
 
 const elements_en_attente = ref([])
 const elements_valide = ref([])
@@ -709,6 +709,15 @@ const valider = async (location) => {
 
                                               </div>
                                               <div class="col-6">
+                                                <div>
+                                                <a :href="location.identite_image_url" target="_blank" style="display: flex; flex-direction: column">
+                                                  <img 
+                                                    :src="location.identite_image_url"
+                                                    style="width: 150px; height: 65px; margin-top: -2.5rem"
+                                                  />
+                                                   
+                                                </a>
+                                              </div>
                                                 
                                               </div>
                                             </div>
@@ -1145,7 +1154,15 @@ const valider = async (location) => {
 
                                             </div>
                                             <div class="col-6">
-                                              
+                                              <div>
+                                                <a :href="location.identite_image_url" target="_blank" style="display: flex; flex-direction: column">
+                                                  <img 
+                                                    :src="location.identite_image_url"
+                                                    style="width: 150px; height: 65px; margin-top: -2.5rem"
+                                                  />
+                                                   
+                                                </a>
+                                              </div>
                                             </div>
                                           </div>
 
@@ -1531,7 +1548,15 @@ const valider = async (location) => {
 
                                             </div>
                                             <div class="col-6">
-                                              
+                                              <div>
+                                                <a :href="location.identite_image_url" target="_blank" style="display: flex; flex-direction: column">
+                                                  <img 
+                                                    :src="location.identite_image_url"
+                                                    style="width: 150px; height: 65px; margin-top: -2.5rem"
+                                                  />
+                                                   
+                                                </a>
+                                              </div>
                                             </div>
                                           </div>
 
@@ -1932,7 +1957,15 @@ const valider = async (location) => {
 
                                             </div>
                                             <div class="col-6">
-                                              
+                                              <div>
+                                                <a :href="location.identite_image_url" target="_blank" style="display: flex; flex-direction: column">
+                                                  <img 
+                                                    :src="location.identite_image_url"
+                                                    style="width: 150px; height: 65px; margin-top: -2.5rem"
+                                                  />
+                                                   
+                                                </a>
+                                              </div>
                                             </div>
                                           </div>
 
@@ -2315,7 +2348,15 @@ const valider = async (location) => {
 
                                             </div>
                                             <div class="col-6">
-                                              
+                                              <div>
+                                                <a :href="location.identite_image_url" target="_blank" style="display: flex; flex-direction: column">
+                                                  <img 
+                                                    :src="location.identite_image_url"
+                                                    style="width: 150px; height: 65px; margin-top: -2.5rem"
+                                                  />
+                                                   
+                                                </a>
+                                              </div> 
                                             </div>
                                           </div>
 
@@ -2699,7 +2740,15 @@ const valider = async (location) => {
 
                                             </div>
                                             <div class="col-6">
-                                              
+                                              <div>
+                                                <a :href="location.identite_image_url" target="_blank" style="display: flex; flex-direction: column">
+                                                  <img 
+                                                    :src="location.identite_image_url"
+                                                    style="width: 150px; height: 65px; margin-top: -2.5rem"
+                                                  />
+                                                   
+                                                </a>
+                                              </div>
                                             </div>
                                           </div>
 
@@ -2878,6 +2927,7 @@ const valider = async (location) => {
         </div>
       </div>
     </div>
+  </div>
    
 </template>
 <style scoped>
