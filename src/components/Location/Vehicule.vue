@@ -17,7 +17,7 @@ const companieCars = ref([])
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 // const userId = savedUser.uid || authStore.user.uid
-const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
+const userId = 'qdo1Ig1tnMlmvFCxa6OE' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   await companieStore.setCompanieCars2(userId) // authStore.user.uid
   companieCars.value = companieStore.companieCars 
