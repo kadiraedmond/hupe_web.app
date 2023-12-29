@@ -114,7 +114,7 @@ export const useCompanieStore = defineStore('companieStore', {
 
                 this.country = data.country 
 
-                const q = query(companiesColRef, where('type_compagnie', '==', 'Tansport'), where('country', '==', `${this.country}`))
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Transport'), where('country', '==', `${this.country}`))
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => {
                     const data = doc.data()
@@ -310,7 +310,7 @@ export const useCompanieStore = defineStore('companieStore', {
             // mettre a jour les compagnies de reservation
             try { 
 
-                const q = query(companiesColRef, where('type_compagnie', '==', 'Tansport'), where('country', '==', `${this.country}`))
+                const q = query(companiesColRef, where('type_compagnie', '==', 'Transport'), where('country', '==', `${this.country}`))
                 const snapshot = await getDocs(q);
                 snapshot.docs.forEach((doc) => {
                     const data = doc.data()

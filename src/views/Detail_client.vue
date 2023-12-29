@@ -307,7 +307,7 @@ const isLoading = ref(false)
                               <div class="col-md-12">
                                 <div class="row mb-2">
                                   <div class="col-md-8">
-                                    <p class="card-text" style="font-size: 13px">
+                                    <p class="card-text" style="font-size: 14px">
                                       <strong>{{ car.vehicule }} | {{ car.modele }} | {{ car.anne_vehicule }} </strong> 
                                     </p>
                                   </div>
@@ -318,7 +318,7 @@ const isLoading = ref(false)
                                       style="
                                         background-color: #219935;
                                         border-color: #219935;
-                                        font-size: 13px;
+                                        font-size: 14px;
                                         margin-left: -29px;
                                         width: 104px;
                                         position: absolute;
@@ -339,14 +339,14 @@ const isLoading = ref(false)
                                  
                                 <div class="row mt-2">
                                   <div class="col-6">
-                                      <p class="card-text" style="font-size: 13px">
+                                      <p class="card-text" style="font-size: 14px">
                                         <strong>  Moteur</strong> <br>
                                       {{ car.moteur }} 
                                       </p>
                                   </div>
                                   
                                   <div class="col-6">
-                                    <p class="card-text" style="font-size: 13px ; margin-left: 40px;">
+                                    <p class="card-text" style="font-size: 14px ; margin-left: 32px;">
                                       <strong>  Transmission </strong> <br>
                                       {{ car.vehicule.boite}} CFA 
                                    </p>
@@ -354,14 +354,14 @@ const isLoading = ref(false)
                                 </div>
                                 <div class="row mt-2">
                                   <div class="col-6">
-                                    <p class="card-text" style="font-size: 13px">
+                                    <p class="card-text" style="font-size: 14px">
                                       <strong>  Avec chauffeur </strong> <br>
                                    {{ car.avecchauffeurprix }} CFA 
                                    </p>
                                   </div>
 
                                   <div class="col-6">
-                                    <p class="card-text" style="font-size: 13px ; margin-left: 34px;">
+                                    <p class="card-text" style="font-size: 14px ; margin-left: 27px;">
                                       <strong>  Vers l'intérieur </strong> <br>
                                       {{ car.interieurpaysprix }} CFA 
                                    </p>
@@ -375,7 +375,7 @@ const isLoading = ref(false)
                               <div class="col-md-12 mt-2 text-start">
                                 <div class="row">
                                   <div class="col-6">
-                                    <p class="card-text" style="font-size: 13px">
+                                    <p class="card-text" style="font-size: 14px">
                                       <strong>  Immatriculation</strong> <br>
                                    {{ car.serie_vehicule }} CFA 
                                    </p>
@@ -391,7 +391,7 @@ const isLoading = ref(false)
                                           background-color: #219935;
                                           border-color: #219935;
                                           margin-left: 40px;
-                                          font-size: 13px;
+                                          font-size: 14px;
                                         "
                                         data-bs-toggle="modal"
                                         :data-bs-target="'#exampleModal' + i"

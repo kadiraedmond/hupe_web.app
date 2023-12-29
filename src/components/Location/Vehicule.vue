@@ -832,29 +832,50 @@ const handleInterieurPaysPrix = (e) => {
             <div class="card-body">
               <div class="row">
                 <div class="col-md-6">
-                  <p class="card-text"><strong>{{ car.vehicule }} </strong></p>
+                  <p class="card-text" style=""><strong>{{ car.vehicule }} | {{ car.modele }} |  {{ car.anne_vehicule }}   </strong></p>
                 </div>
                 <div class="col-md-6 text-end">
                   <button
                     class="btn btn-primary"
-                    style="background-color: #219935; border-color: #219935"
+                    style="background-color: #219935; border-color: #219935;"
                   >
                     {{ car.montant }} FCFA
                   </button>
                 </div>
-                <div class="col-md-12 mt-3">
-                  <p class="card-text"><strong>Modèle | </strong> {{ car.modele }}</p>
-                </div>
-                <div class="col-md-12 mt-3">
-                  <p class="card-text">
-                    <strong>Moteur | </strong> {{ car.moteur }}
+                 
+                <div class="col-md-6 mt-3">
+                  <p class="card-text" style="">
+                    <strong>Moteur </strong> <br> {{ car.moteur }}
                   </p>
                 </div>
-                <div class="col-md-12 mt-3">
-                  <p class="card-text">
-                    <strong>Immatriculation | </strong> {{ car.serie_vehicule }}
+
+                <div class="col-md-6 mt-3">
+                  <p class="card-text" style="  margin-left: 40px;">
+                    <strong>Transmission</strong> <br> {{ car.vehicule.boite}}
                   </p>
                 </div>
+
+                
+                <div class="col-6 mt-2">
+                    <p class="card-text" style="">
+                        <strong>  Vers l'intérieur </strong> <br>
+                        {{ car.interieurpaysprix }} CFA 
+                    </p>
+                </div>  
+                
+
+                <div class="col-6 mt-2">
+                   <p class="card-text" style="margin-left: 29px;">
+                       <strong>  Avec chauffeur </strong> <br>
+                      {{ car.avecchauffeurprix }} CFA 
+                   </p>
+                </div>
+  
+                <div class="col-md-6 mt-2">
+                  <p class="card-text" style="">
+                    <strong>Immatriculation </strong> {{ car.serie_vehicule }}
+                  </p>
+                </div>           
 
                 <div class="col-md-12 mt-4 text-start">
                   <div class="row row-clols-md-5">

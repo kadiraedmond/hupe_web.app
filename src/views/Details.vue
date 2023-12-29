@@ -147,7 +147,7 @@ onMounted(() => {
                     <p class="card-text">
                       {{ companieStore.companie.description }}
                     </p>
-                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> 30%</button>
+                    <button class="btn btn-primary" style=" width: 115px; background: rgb(33 153 53); border-radius: 20px; border-color: rgb(33 153 53);"><i class="bx bx-like" style="color: white"></i> 30%</button>
                   </div>
                 </div>
               </div>
@@ -253,45 +253,49 @@ onMounted(() => {
               >
                <div v-if="companieStore.programmeVoyages.length > 0">
                 <div class="row mt-4">
-                  <div class="col-md-6 mb-4" v-for="(programme, i) in companieStore.programmeVoyages" :key="i">
+                  <div class="col-md-4 mb-4" v-for="(programme, i) in companieStore.programmeVoyages" :key="i">
                     <div class="card h-100" id="card_compagnie">
                       <div class="card-body">
                         <div class="row">
+
                           <div class="col-md-6 mt-2">
                             <button
                               class="btn btn-primary mb-2"
                               style="
                                 background-color: #219935;
                                 border-color: #219935;
+                                font-size: 13px;
                               "
                             >
                               {{ programme.montant }} FCFA
                             </button>
                           </div>
-                          <div class="col-md-6"></div>
-
+                          
+                          <div class="col-md-6"> 
+                          </div>
+                          
                           <div class="col-md-6 mt-2">
-                            <p><strong>Lieu de départ </strong> <br> {{ programme.lieu_depart }}</p>
+                            <p style="font-size: 13px;"><strong>Lieu de départ </strong> <br> {{ programme.lieu_depart }}</p>
                           </div>
 
                           <div class="col-md-6 mt-2">
-                            <p><strong>Destinations </strong> <br> {{ programme.destination }}</p>
+                            <p style="font-size: 13px;"><strong>Destinations </strong> <br> {{ programme.destination }}</p>
                           </div>
 
                           <div class="col-md-6 mt-2" style="margin-top: -9px !important;">
-                            <p><strong> Heure de départ </strong> <br> {{ programme.heure_depart }}</p>
+                            <p style="font-size: 13px;"><strong> Heure de départ </strong> <br> {{ programme.heure_depart }}</p>
                           </div>
 
                           <div class="col-md-6 mt-2" style="margin-top: -9px !important;">
-                            <p><strong>Convocation </strong> <br> {{ programme.heure_convocation }}</p>
+                            <p style="font-size: 13px;"><strong>Convocation </strong> <br> {{ programme.heure_convocation }}</p>
                           </div>
 
                           <div class="col-md-6 mt-3" style="margin-top: -9px !important;">
-                            <p><strong>Escale  </strong> <br> {{ programme.escale }}</p>
+                            <p style="font-size: 13px;"><strong>Escale  </strong> <br> {{ programme.escale }}</p>
                           </div>
 
                           <div class="col-md-6 mt-3" style="margin-top: -9px !important;">
-                            <p><strong>Jours de voyage |</strong> {{ programme.jours_voyage }}</p>
+                            <p style="font-size: 13px;"><strong>Jours de voyage</strong> <br> {{ programme.jours_voyage }}</p>
                           </div>
                           <div class="col-md-12">
                             <!-- Button trigger modal -->
@@ -302,6 +306,7 @@ onMounted(() => {
                                 style="
                                   background-color: #219935;
                                   border-color: #219935;
+                                  font-size: 13px;
                                 "
                                 data-bs-toggle="modal"
                                 data-bs-target="#exampleModal"
