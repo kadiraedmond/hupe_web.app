@@ -61,7 +61,8 @@ const handleSubmit = async () => {
     message: message.value,
     otherUserId: companieId,
     sendAt: Timestamp.now(),
-    userId: userId
+    userId: userId,
+    lu: false
   }
 
   const newData = await addDoc(messageColRef, data)

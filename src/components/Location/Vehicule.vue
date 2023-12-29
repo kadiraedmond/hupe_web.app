@@ -20,8 +20,8 @@ const isLoading = ref(false)
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'qdo1Ig1tnMlmvFCxa6OE'
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'qdo1Ig1tnMlmvFCxa6OE'
 // const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   isLoading.value = true

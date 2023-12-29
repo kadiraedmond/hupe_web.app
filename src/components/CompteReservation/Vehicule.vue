@@ -558,9 +558,9 @@ const remove = async (trajet) => {
     </div>
   </div>
   <div class="row mt-4">
-    <div v-if="trajets.length > 0">
-      <div class="col-md-4">
-        <div class="card h-100" style="max-width: 540px" v-for="(trajet, index) in trajets" :key="index">
+    <div v-if="trajets.length > 0" class="row">
+      <div class="col-md-4" v-for="(trajet, index) in trajets" :key="index">
+        <div class="card h-100" style="max-width: 540px">
           <div class="card-body">
             <div class="row">
               <div class="col-6 mt-2">

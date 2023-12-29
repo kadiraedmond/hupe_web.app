@@ -143,6 +143,11 @@ onMounted(() => {
   window.scrollTo(0, 0)
 })
 
+const goToRelatedProgram = async (programUID) => {
+  await router.push(`/detail_reservation_ticket/${companieId}/${programUID}`)
+  location.reload()
+}
+
 </script>
 <template>
  
@@ -300,6 +305,7 @@ onMounted(() => {
                           </button>
                         </router-link>
 
+                        <!-- Modal -->
                         <div
                           class="modal fade"
                           id="exampleModal"
@@ -307,154 +313,154 @@ onMounted(() => {
                           aria-labelledby="exampleModalLabel"
                           aria-hidden="true"
                           v-if="user.uid"
-                      >
+                        >
                           <div class="modal-dialog">
-                          <div class="modal-content">
-                              <div
-                              class="modal-header"
-                              style="background: #219935"
-                              >
-                              <h1
-                                  class="modal-title text-white fs-5"
-                                  id="exampleModalLabel"
-                                  style="font-size: 17px !important"
-                              >
-                                  Réservation de ticket
-                              </h1>
-                              <button
-                                  type="button"
-                                  class="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"
-                              ></button>
-                              </div>
-                              <div class="modal-body">
-                              <form
-                                  id="reservationForm"
-                                  class="row g-3 needs-validation"
-                                  novalidate
-                                  @submit.prevent="reserver(promotionStore.programme)"
-                              >
-                                  <div class="col-md-12">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Nom & Prénoms</label
-                                  >
-                                  <input
-                                      type="text"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      :value="`${user.lastName} ${user.firstName}`"
-                                      required 
-                                      disabled 
-                                  />
-                                  </div>
+                            <div class="modal-content">
+                                <div
+                                class="modal-header"
+                                style="background: #219935"
+                                >
+                                <h1
+                                    class="modal-title text-white fs-5"
+                                    id="exampleModalLabel"
+                                    style="font-size: 17px !important"
+                                >
+                                    Réservation de ticket
+                                </h1>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                                </div>
+                                <div class="modal-body">
+                                <form
+                                    id="reservationForm"
+                                    class="row g-3 needs-validation"
+                                    novalidate
+                                    @submit.prevent="reserver(promotionStore.programme)"
+                                >
+                                    <div class="col-md-12">
+                                    <label
+                                        for="validationCustom01"
+                                        class="form-label"
+                                        style="float: left"
+                                        >Nom & Prénoms</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="validationCustom01"
+                                        :value="`${user.lastName} ${user.firstName}`"
+                                        required 
+                                        disabled 
+                                    />
+                                    </div>
 
-                                  <div class="col-md-12">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Ville de départ</label
-                                  >
-                                  <input
-                                      type="text"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      :value="promotionStore.programme.lieu_depart"
-                                      required
-                                      disabled
-                                  />
-                                  </div>
+                                    <div class="col-md-12">
+                                    <label
+                                        for="validationCustom01"
+                                        class="form-label"
+                                        style="float: left"
+                                        >Ville de départ</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="validationCustom01"
+                                        :value="promotionStore.programme.lieu_depart"
+                                        required
+                                        disabled
+                                    />
+                                    </div>
 
-                                  <div class="col-md-12">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Ville d'arrivée</label
-                                  >
-                                  <input
-                                      type="text"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      :value="promotionStore.programme.destination"
-                                      required
-                                      disabled
-                                  />
-                                  </div>
+                                    <div class="col-md-12">
+                                    <label
+                                        for="validationCustom01"
+                                        class="form-label"
+                                        style="float: left"
+                                        >Ville d'arrivée</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="validationCustom01"
+                                        :value="promotionStore.programme.destination"
+                                        required
+                                        disabled
+                                    />
+                                    </div>
 
-                                  <div class="col-md-6">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Date de départ</label
-                                  >
-                                  <input
-                                      type="date"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      v-model="dateDepart"
-                                      required
-                                  />
-                                  </div>
-                                  <div class="col-md-6">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Heure de départ</label
-                                  >
-                                  <input
-                                      type="time"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      v-model="heureDepart"
-                                      required
-                                  />
-                                  </div>
+                                    <div class="col-md-6">
+                                    <label
+                                        for="validationCustom01"
+                                        class="form-label"
+                                        style="float: left"
+                                        >Date de départ</label
+                                    >
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="validationCustom01"
+                                        v-model="dateDepart"
+                                        required
+                                    />
+                                    </div>
+                                    <div class="col-md-6">
+                                    <label
+                                        for="validationCustom01"
+                                        class="form-label"
+                                        style="float: left"
+                                        >Heure de départ</label
+                                    >
+                                    <input
+                                        type="time"
+                                        class="form-control"
+                                        id="validationCustom01"
+                                        v-model="heureDepart"
+                                        required
+                                    />
+                                    </div>
 
-                            <Loader 
-                            style="position: absolute; left: 35%; top: 15%"
-                            v-if="isLoading" 
-                            />
+                              <Loader 
+                              style="position: absolute; left: 35%; top: 15%"
+                              v-if="isLoading" 
+                              />
 
-                                  <div class="col-md-12">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Nombres de personnes</label
-                                  >
-                                  <input
-                                      type="number"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      v-model="nombrePersonnes"
-                                      required
-                                  />
-                                  </div>
+                                    <div class="col-md-12">
+                                    <label
+                                        for="validationCustom01"
+                                        class="form-label"
+                                        style="float: left"
+                                        >Nombres de personnes</label
+                                    >
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        id="validationCustom01"
+                                        v-model="nombrePersonnes"
+                                        required
+                                    />
+                                    </div>
 
-                                  <div class="col-12 text-center">
-                                  <button
-                                      class="btn btn-primary"
-                                      type="submit"
-                                      style="
-                                      background: #219935;
-                                      border-color: #219935;
-                                      "
-                                  >
-                                      Soumettre
-                                  </button>
-                                  </div>
-                              </form>
-                              </div>
+                                    <div class="col-12 text-center">
+                                    <button
+                                        class="btn btn-primary"
+                                        type="submit"
+                                        style="
+                                        background: #219935;
+                                        border-color: #219935;
+                                        "
+                                    >
+                                        Soumettre
+                                    </button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
                           </div>
-                          </div>
-                      </div>
+                        </div>
                       </div>
                    
                   <!-- <div class="row mt-4">
@@ -920,161 +926,6 @@ onMounted(() => {
                           </button>
                         </router-link>
 
-                        <div
-                          class="modal fade"
-                          id="exampleModal"
-                          tabindex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                          v-if="user.uid"
-                      >
-                          <div class="modal-dialog">
-                          <div class="modal-content">
-                              <div
-                              class="modal-header"
-                              style="background: #219935"
-                              >
-                              <h1
-                                  class="modal-title text-white fs-5"
-                                  id="exampleModalLabel"
-                                  style="font-size: 17px !important"
-                              >
-                                  Réservation de ticket
-                              </h1>
-                              <button
-                                  type="button"
-                                  class="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"
-                              ></button>
-                              </div>
-                              <div class="modal-body">
-                              <form
-                                  id="reservationForm"
-                                  class="row g-3 needs-validation"
-                                  novalidate
-                                  @submit.prevent="reserver(promotionStore.programme)"
-                              >
-                                  <div class="col-md-12">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Nom & Prénoms</label
-                                  >
-                                  <input
-                                      type="text"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      :value="`${user.lastName} ${user.firstName}`"
-                                      required 
-                                      disabled 
-                                  />
-                                  </div>
-
-                                  <div class="col-md-12">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Ville de départ</label
-                                  >
-                                  <input
-                                      type="text"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      :value="promotionStore.programme.lieu_depart"
-                                      required
-                                      disabled
-                                  />
-                                  </div>
-
-                                  <div class="col-md-12">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Ville d'arrivée</label
-                                  >
-                                  <input
-                                      type="text"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      :value="promotionStore.programme.destination"
-                                      required
-                                      disabled
-                                  />
-                                  </div>
-
-                                  <div class="col-md-6">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Date de départ</label
-                                  >
-                                  <input
-                                      type="date"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      v-model="dateDepart"
-                                      required
-                                  />
-                                  </div>
-                                  <div class="col-md-6">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Heure de départ</label
-                                  >
-                                  <input
-                                      type="time"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      v-model="heureDepart"
-                                      required
-                                  />
-                                  </div>
-
-                                  <Loader 
-                                  style="position: absolute; left: 35%; top: 15%"
-                                  v-if="isLoading" 
-                                  />
-
-                                  <div class="col-md-12">
-                                  <label
-                                      for="validationCustom01"
-                                      class="form-label"
-                                      style="float: left"
-                                      >Nombres de personnes</label
-                                  >
-                                  <input
-                                      type="number"
-                                      class="form-control"
-                                      id="validationCustom01"
-                                      v-model="nombrePersonnes"
-                                      required
-                                  />
-                                  </div>
-
-                                  <div class="col-12 text-center">
-                                  <button
-                                      class="btn btn-primary"
-                                      type="submit"
-                                      style="
-                                      background: #219935;
-                                      border-color: #219935;
-                                      "
-                                  >
-                                      Soumettre
-                                  </button>
-                                  </div>
-                              </form>
-                              </div>
-                          </div>
-                          </div>
-                      </div>
                       </div>
                     </div>
              
@@ -1108,7 +959,7 @@ onMounted(() => {
             id="compagnie_card"
             style="background: #f3f4f6; box-shadow: none"
           >
-            <router-link :to="`/detail_reservation_ticket/${programme.uid}`"> 
+            <router-link @click="goToRelatedProgram(programme.uid)" to=""> 
               <img
                 src="/assets/img/rb.jpg"
                 class="card-img-top"
