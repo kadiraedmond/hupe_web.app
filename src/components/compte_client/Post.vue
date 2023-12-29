@@ -53,11 +53,11 @@ const options = {
                   style="margin-top: 32px; background: white; padding: 10px; border-radius: 10px;"
                 />
           </div>
-          <div class="col-4">
+          <div class="col-4 mt-3">
             <p style="color: #219935">{{ post.objet }}</p>
             <p class="text-black">{{ post.demande }}</p>
           </div>
-          <div class="col-6 text-end">
+          <div class="col-5 mt-3 text-end">
             <p class="text-black">Posté le : {{ new Intl.DateTimeFormat('fr-FR', options).format(post.createdAt.toDate()) }}</p>
             <p class="text-black">
               {{ post.responses.length }} {{ post.responses.length === 0 ? 'réponses' : post.responses.length === 1 ? 'réponse' : 'réponses' }}

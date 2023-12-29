@@ -6,8 +6,8 @@ import { collection, query, doc, addDoc, updateDoc, deleteDoc, where, getDoc, ge
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'MtFQ9kulTaxS2MsKN3O6'
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MtFQ9kulTaxS2MsKN3O6'
 // const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid 
 
 const politiqueColRef = collection(firestoreDb, 'politiques') 

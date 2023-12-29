@@ -5,9 +5,6 @@ import { reactive, ref, onBeforeMount, onUnmounted, onMounted } from "vue"
 import Swal from 'sweetalert2'
 import { collection, query, doc, where, Timestamp, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
-import fileDownloader from "file-downloader-js"
-
-import axios from "axios"
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -79,8 +76,8 @@ const updateReservationsDashboard = () => {
 }
 const savedUser = JSON.parse(localStorage.getItem("user"))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'MtFQ9kulTaxS2MsKN3O6'
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MtFQ9kulTaxS2MsKN3O6'
 // const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid
 
 const elements_en_attente = ref([])
@@ -268,14 +265,6 @@ const annuler = async (location) => {
     
   }
   
-}
-
-const downloadPermis = (url, filename) => {
-  axios.get(url, {
-    responseType: "blob"
-  }).then((res) => {
-    fileDownloader(res.data, filename);
-  })
 }
 </script>
 
@@ -1217,95 +1206,153 @@ const downloadPermis = (url, filename) => {
                                       "
                                     >
                                       <div class="row g-0" style="margin: -2px">
-                                        <div class="col-md-12">
-                                          <div class="card-body">
-                                            <div class="row mt-2">
-                                              <div class="col-6">
-                                                <p
-                                                  class="card-text"
-                                                  style="
-                                                    background: #efefef;
-                                                    padding: 4px;
-                                                    border-radius: 5px;
-                                                    font-size: 12px;
-                                                    margin-top: -15px;
-                                                  "
-                                                >
-                                                  {{ new Intl.DateTimeFormat('fr-FR', options).format(location.created_at.toDate()) }}
-                                                  <br />
-                                                </p>
-                                              </div> 
-
-                                              <div class="col-6" >
-                                                <p
-                                                class="card-text"
-                                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                                >
-                                                N° |
-                                                <strong style="color: #219935"> {{ location.number }} </strong>
-                                                </p>
-                                              </div>
-                                            </div>
-                                            <br />
-
+                                        <div class="row mt-4">
+                                          <div class="col-6">
                                             <p
                                               class="card-text"
                                               style="
-                                                font-size: 13px;
-                                                margin-top: -11px;
-                                                margin-bottom: 11px;
+                                                background: #efefef;
+                                                padding: 4px;
+                                                border-radius: 5px;
+                                                font-size: 12px;
+                                                margin-top: -15px;
                                               "
                                             >
-                                              <strong
-                                                >{{ location.vehicule }}
-                                              </strong>
-                                              |
-                                              <strong>
-                                                {{ location.modele }}
-                                              </strong>
+                                              {{ new Intl.DateTimeFormat('fr-FR', options).format(location.created_at.toDate()) }}
+                                              <br />
                                             </p>
+                                          </div> 
 
+                                          <div class="col-6" >
                                             <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: 0px;
-                                                margin-bottom: 11px;
-                                              "
+                                            class="card-text"
+                                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                                             >
-                                              {{ location.moteur }} |
-                                              {{ location.boite }} |
-                                              {{ location.plaque_vehicule }}
-                                            </p>
-
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: 0px;
-                                                margin-bottom: 11px;
-                                              "
-                                            >
-                                              chauffeur |
-                                              <strong
-                                                >{{ location.chauffeur }}
-                                              </strong>
-                                            </p>
-
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: 0px;
-                                                margin-bottom: 11px;
-                                              "
-                                            >
-                                              Intérieur |
-                                              <strong
-                                                >{{ location.interieurPays }}
-                                              </strong>
+                                            N° |
+                                            <strong style="color: #219935"> {{ location.number }} </strong>
                                             </p>
                                           </div>
+                                        </div>
+                                        <br />
+                                        <div class="row d-flex align-items-center">
+                                          <div class="col-md-6">
+                                            <div class="card-body">
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: -11px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                <strong
+                                                  >{{ location.vehicule }}
+                                                </strong>
+                                                |
+                                                <strong>
+                                                  {{ location.modele }}
+                                                </strong>
+                                              </p>
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: 0px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                {{ location.moteur }} |
+                                                {{ location.boite }} |
+                                                {{ location.plaque_vehicule }}
+                                              </p>
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: 0px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                chauffeur |
+                                                <strong
+                                                  >{{ location.chauffeur }}
+                                                </strong>
+                                              </p>
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: 0px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                Intérieur |
+                                                <strong
+                                                  >{{ location.interieurPays }}
+                                                </strong>
+                                              </p>
+                                            </div>
+                                            <div class="card-body">
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: -32px;
+                                                  margin-bottom: -8px;
+                                                "
+                                              >
+                                                Retrait |
+                                                <strong
+                                                  >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
+                                                </strong>
+                                                |
+                                                <strong>{{
+                                                  location.heure_retrait
+                                                }}</strong>
+                                              </p>
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: 20px;
+                                                  margin-bottom: 20px;
+                                                "
+                                              >
+                                                Retour |
+                                                <strong
+                                                  >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
+                                                </strong>
+                                              </p>
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: -11px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                Nombres de jours de location |
+                                                <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
+                                              </p>
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6" style="margin-top: 2rem">
+                                            <div>
+                                              <a :href="location.identite_image_url" target="_blank" style="display: flex; flex-direction: column">
+                                                <img 
+                                                  :src="location.identite_image_url"
+                                                  style="width: 150px; height: 150px; margin-top: -2rem"
+                                                />
+                                                <i class='bx bxs-download' style="margin-left: 7.5rem; font-size: 2rem"></i>
+                                              </a>
+                                            </div>
                                         </div>
                                         <!-- <div class="col-md-6">
                                       <img
@@ -1316,51 +1363,6 @@ const downloadPermis = (url, filename) => {
                                       />
                                     </div> -->
                                         <div class="col-md-12">
-                                          <div class="card-body">
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: -32px;
-                                                margin-bottom: -8px;
-                                              "
-                                            >
-                                              Retrait |
-                                              <strong
-                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
-                                              </strong>
-                                              |
-                                              <strong>{{
-                                                location.heure_retrait
-                                              }}</strong>
-                                            </p>
-
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: 20px;
-                                                margin-bottom: 20px;
-                                              "
-                                            >
-                                              Retour |
-                                              <strong
-                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
-                                              </strong>
-                                            </p>
-
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: -11px;
-                                                margin-bottom: 11px;
-                                              "
-                                            >
-                                              Nombres de jours de location |
-                                              <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
-                                            </p>
-                                          </div>
                                         </div>
                                       </div>
                                     </div>
@@ -1610,148 +1612,161 @@ const downloadPermis = (url, filename) => {
                                       "
                                     >
                                       <div class="row g-0" style="margin: -2px">
-                                        <div class="col-md-12">
-                                          <div class="card-body">
-                                            <div class="row mt-2">
-                                              <div class="col-6">
-                                                <p
-                                                  class="card-text"
-                                                  style="
-                                                    background: #efefef;
-                                                    padding: 4px;
-                                                    border-radius: 5px;
-                                                    font-size: 12px;
-                                                    margin-top: -15px;
-                                                  "
-                                                >
-                                                  {{
-                                                    new Intl.DateTimeFormat(
-                                                      'fr-FR',
-                                                      options
-                                                    ).format(location.created_at.toDate())
-                                                  }}
-                                                  <br />
-                                                </p> 
-                                              </div>
-                                              
-                                              <div class="col-6" >
-                                                <p
+                                        <div class="row mt-4">
+                                          <div class="col-6">
+                                            <p
+                                              class="card-text"
+                                              style="
+                                                background: #efefef;
+                                                padding: 4px;
+                                                border-radius: 5px;
+                                                font-size: 12px;
+                                                margin-top: -15px;
+                                              "
+                                            >
+                                              {{
+                                                new Intl.DateTimeFormat(
+                                                  'fr-FR',
+                                                  options
+                                                ).format(location.created_at.toDate())
+                                              }}
+                                              <br />
+                                            </p> 
+                                          </div>
+                                          
+                                          <div class="col-6" >
+                                            <p
+                                            class="card-text"
+                                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                            >
+                                            N° |
+                                            <strong style="color: #219935"> {{ location.number }} </strong>
+                                            </p>
+                                          </div>    
+                                        </div>
+                                        <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                          <div class="col-md-6">
+                                            <div class="card-body">
+                                              <br />
+
+                                              <p
                                                 class="card-text"
-                                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                                >
-                                                N° |
-                                                <strong style="color: #219935"> {{ location.number }} </strong>
-                                                </p>
-                                              </div>    
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: -11px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                <strong
+                                                  >{{ location.vehicule }}
+                                                </strong>
+                                                |
+                                                <strong>
+                                                  {{ location.modele }}
+                                                </strong>
+                                              </p>
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: 0px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                {{ location.moteur }} |
+                                                {{ location.boite }} |
+                                                {{ location.plaque_vehicule }}
+                                              </p>
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: 0px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                chauffeur |
+                                                <strong
+                                                  >{{ location.chauffeur }}
+                                                </strong>
+                                              </p>
+
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: 0px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                Intérieur |
+                                                <strong
+                                                  >{{ location.interieurPays }}
+                                                </strong>
+                                              </p>
                                             </div>
-                                            <br />
+                                            <div class="card-body">
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: -32px;
+                                                  margin-bottom: -8px;
+                                                "
+                                              >
+                                                Retrait |
+                                                <strong
+                                                  >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
+                                                </strong>
+                                                |
+                                                <strong>{{
+                                                  location.heure_retrait
+                                                }}</strong>
+                                              </p>
 
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: -11px;
-                                                margin-bottom: 11px;
-                                              "
-                                            >
-                                              <strong
-                                                >{{ location.vehicule }}
-                                              </strong>
-                                              |
-                                              <strong>
-                                                {{ location.modele }}
-                                              </strong>
-                                            </p>
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: 20px;
+                                                  margin-bottom: 20px;
+                                                "
+                                              >
+                                                Retour |
+                                                <strong
+                                                  >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
+                                                </strong>
+                                              </p>
 
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: 0px;
-                                                margin-bottom: 11px;
-                                              "
-                                            >
-                                              {{ location.moteur }} |
-                                              {{ location.boite }} |
-                                              {{ location.plaque_vehicule }}
-                                            </p>
-
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: 0px;
-                                                margin-bottom: 11px;
-                                              "
-                                            >
-                                              chauffeur |
-                                              <strong
-                                                >{{ location.chauffeur }}
-                                              </strong>
-                                            </p>
-
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: 0px;
-                                                margin-bottom: 11px;
-                                              "
-                                            >
-                                              Intérieur |
-                                              <strong
-                                                >{{ location.interieurPays }}
-                                              </strong>
-                                            </p>
+                                              <p
+                                                class="card-text"
+                                                style="
+                                                  font-size: 13px;
+                                                  margin-top: -11px;
+                                                  margin-bottom: 11px;
+                                                "
+                                              >
+                                                Nombres de jours de location |
+                                                <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
+                                              </p>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6" style="margin-top: 2rem">
+                                            <div>
+                                              <a :href="location.identite_image_url" target="_blank" style="display: flex; flex-direction: column">
+                                                <img 
+                                                  :src="location.identite_image_url"
+                                                  style="width: 150px; height: 150px; margin-top: -2rem"
+                                                />
+                                                <i class='bx bxs-download' style="margin-left: 7.5rem; font-size: 2rem"></i>
+                                              </a>
+                                            </div>
                                           </div>
                                         </div>
                                       
                                         <div class="col-md-12">
-                                          <div class="card-body">
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: -32px;
-                                                margin-bottom: -8px;
-                                              "
-                                            >
-                                              Retrait |
-                                              <strong
-                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}
-                                              </strong>
-                                              |
-                                              <strong>{{
-                                                location.heure_retrait
-                                              }}</strong>
-                                            </p>
-
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: 20px;
-                                                margin-bottom: 20px;
-                                              "
-                                            >
-                                              Retour |
-                                              <strong
-                                                >{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
-                                              </strong>
-                                            </p>
-
-                                            <p
-                                              class="card-text"
-                                              style="
-                                                font-size: 13px;
-                                                margin-top: -11px;
-                                                margin-bottom: 11px;
-                                              "
-                                            >
-                                              Nombres de jours de location |
-                                              <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }} jours</strong>
-                                            </p>
-                                          </div>
                                         </div>
                                         <div class="col-md-12">
                                           <div class="row" style="    padding: 10px;top: -19px;">
@@ -2236,7 +2251,7 @@ const downloadPermis = (url, filename) => {
                         <td>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}</td>
                         <td>{{ location.heure_retrait }}</td>
                         <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}</td>
-                        <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.heure_retour.toDate()) }}</td>
+                        <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.heure_retour) }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>
                       
@@ -3047,6 +3062,7 @@ const downloadPermis = (url, filename) => {
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 <style scoped>

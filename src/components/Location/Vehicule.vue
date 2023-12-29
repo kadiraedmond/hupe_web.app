@@ -20,8 +20,8 @@ const isLoading = ref(false)
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'MtFQ9kulTaxS2MsKN3O6'
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'MtFQ9kulTaxS2MsKN3O6'
 // const userId = 'YYiQmKBenyUzKzyxIEO1vHxfEPb2' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   isLoading.value = true
@@ -311,7 +311,7 @@ const promote = async (car) => {
         promotionStore.setCompaniePromotionCars(userId)
 
         await location.reload()
-        
+
         Swal.fire({
           title: "Succès",
           text: "Votre véhicule n'est plus en promotion",

@@ -912,7 +912,7 @@ onMounted(() => {
                               margin-top: 20px;
                             "
                           >
-                          Commencer la reservation
+                          Commencer la réservation
                           </button>
                         </router-link>
                         <router-link v-if="user.uid && !user.raison_social" to="">
@@ -926,7 +926,7 @@ onMounted(() => {
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
                           >
-                          Commencer la reservation
+                          Commencer la réservation
                           </button>
                         </router-link>
 
@@ -1750,7 +1750,7 @@ onMounted(() => {
                         </router-link>
 
                         <!-- Modal -->
-                          <div
+                          <!-- <div
                             class="modal fade"
                             id="exampleModal"
                             tabindex="-1"
@@ -1768,7 +1768,7 @@ onMounted(() => {
                                     id="exampleModalLabel"
                                     style="font-size: 17px !important"
                                   >
-                                    Rèserver
+                                    Réserver
                                   </h1>
                                   <button
                                     type="button"
@@ -2082,7 +2082,7 @@ onMounted(() => {
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                       </div>
                     </div>
              
