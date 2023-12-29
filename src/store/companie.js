@@ -308,6 +308,8 @@ export const useCompanieStore = defineStore('companieStore', {
             } 
 
             // mettre a jour les compagnies de reservation
+            this.transportCompanies = []
+            this.vipTransportCompanies = []
             try { 
 
                 const q = query(companiesColRef, where('type_compagnie', '==', 'Transport'), where('country', '==', `${this.country}`))

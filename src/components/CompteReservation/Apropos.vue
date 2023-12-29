@@ -19,6 +19,7 @@ const userId = savedUser.uid || authStore.user.uid
 const raison_social = ref('') 
 const responsable = ref('') 
 const description = ref('') 
+const presentation = ref('') 
 const mail = ref('') 
 const phone = ref('') 
 const pays = ref('') 
@@ -35,6 +36,7 @@ onBeforeMount(async () => {
   phone.value = companieStore.companie.telephone 
   lieu.value = companieStore.companie.adresse 
   description.value = companieStore.companie.description 
+  presentation.value = companieStore.companie.presentation 
   pays.value = companieStore.companie.country 
 
 })
@@ -85,6 +87,8 @@ const handleSubmit = async () => {
     telephone: phone.value, 
     country: pays.value, 
     adresse: lieu.value, 
+    description: description.value,
+    presentation: presentation.value,
     imageLogoUrl: photo_profil.value !== '' ? photo_profil.value : companieStore.companie.imageLogoUrl, 
     imageCouvertureUrl: photo_couverture.value !== '' ? photo_couverture.value : companieStore.companie.imageCouvertureUrl 
   } 
@@ -218,6 +222,11 @@ const handleSubmit = async () => {
                 <input type="text" class="form-control" id="validationCustom01" v-model="description" >
                 
               </div>
+              <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Présentation </label>
+                <input type="text" class="form-control" id="validationCustom01" v-model="presentation" >
+                
+              </div>
 
               <div class="col-md-6">
                 <label for="validationCustom02" class="form-label">Email</label>
@@ -234,7 +243,17 @@ const handleSubmit = async () => {
               <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Pays</label>
                 <div class="input-group has-validation">
-                  <input v-model="pays" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"> 
+                  <!-- <input v-model="pays" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">  -->
+                  <select v-model="pays" class="form-select1" style="background: #E8E8E8; color: black" id="validationCustom04" required>
+                    <option value="BJ" selected>Bénin</option>
+                    <option value="BF">Burkina Faso</option>
+                    <option value="CI">Côte d'Ivoire</option>
+                    <option value="GN">Guinée Conakry</option>
+                    <option value="ML">Mali</option>
+                    <option value="NE">Niger</option>
+                    <option value="SN">Sénégal</option>
+                    <option value="TG">Togo</option>
+                  </select>
                 </div>
               </div>
 
@@ -248,6 +267,9 @@ const handleSubmit = async () => {
 
               <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Image de couverture</label>
+                <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
+                  <img :src="companieStore.companie.imageCouvertureUrl" style="width: 100%" />
+                </div>
                 <div class="input-group has-validation">
                   <input v-on:change="uploadPicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
                    
@@ -256,6 +278,9 @@ const handleSubmit = async () => {
 
               <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Logo</label>
+                <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
+                  <img :src="companieStore.companie.imageLogoUrl" style="width: 100%" />
+                </div>
                 <div class="input-group has-validation">
                   <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
                    

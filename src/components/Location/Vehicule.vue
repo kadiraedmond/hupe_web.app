@@ -291,6 +291,8 @@ const promote = async (car) => {
           car.enPromo = true
           promotionStore.setCompaniePromotionCars(userId)
           
+          await location.reload()
+          
           Swal.fire({
             title: "Succès",
             text: "Votre véhicule a été mis en promotion",
@@ -307,6 +309,8 @@ const promote = async (car) => {
         await deleteDoc(carDocRef) 
         car.enPromo = false
         promotionStore.setCompaniePromotionCars(userId)
+
+        await location.reload()
 
         Swal.fire({
           title: "Succès",
@@ -510,44 +514,39 @@ const handleEditPicture = async () => {
 }
 
 const update = async (car) => {
-  // if(!edit_marque.value || !edit_modele.modele || !edit_immatriculation.value || !edit_annee.value || !edit_prix_journalier.value || !edit_prix_chauffeur.value || !edit_prix_interieur.value) {
-  //   Swal.fire({
-  //     title: "Erreur",
-  //     text: "Entrez des données",
-  //     icon: "error"
-  //   })
-  // }
+  
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
   const vehiculesColRef = collection(companieDocRef, 'vehicules_programmer')
 
   const docRef = doc(vehiculesColRef, `${car.uid}`)
 
   const data = {
-    anne_vehicule: edit_annee.value, 
-    avecchauffeurprix: edit_prix_chauffeur.value, 
-    interieurpaysprix: edit_prix_interieur.value, 
-    vehicule: edit_marque.value, 
-    montant: edit_prix_journalier.value, 
-    modele: edit_modele.value, 
-    serie_vehicule: edit_immatriculation.value, 
-    vehicule_image_url: edit_image.value
+    anne_vehicule: edit_annee.value ? edit_annee.value : car.anne_vehicule, 
+    avecchauffeurprix: edit_prix_chauffeur.value ? edit_prix_chauffeur.value : car.avecchauffeurprix, 
+    interieurpaysprix: edit_prix_interieur.value ? edit_prix_interieur.value : car.interieurpaysprix, 
+    vehicule: edit_marque.value ? edit_marque.value : car.vehicule, 
+    montant: edit_prix_journalier.value ? edit_prix_journalier.value : car.montant, 
+    modele: edit_modele.value ? edit_modele.value : car.modele, 
+    serie_vehicule: edit_immatriculation.value ? edit_immatriculation.value : car.serie_vehicule, 
+    vehicule_image_url: image1.value ? image1.value : car.vehicule_image_url, 
+    vehicule_image_url2: image2.value ? image2.value : car.vehicule_image_url2, 
+    vehicule_image_url3: image3.value ? image3.value : car.vehicule_image_url3, 
+    vehicule_image_url4: image4.value ? image4.value : car.vehicule_image_url4, 
+    vehicule_image_url5: image5.value ? image5.value : car.vehicule_image_url5
   }
 
   await updateDoc(docRef, data)
-
-  const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`) 
-
-  await updateDoc(vehiculeDocRef, data)
   
+  document.querySelector('.btn-close-m').click()
+  
+  await location.reload()
+
   Swal.fire({
     title: "Succès",
     text: "Votre véhicule a été mis à jour",
     icon: "success"
   }) 
 
-  
-  
-  document.querySelector('btn-close-m').click() 
 }
 
 const handleMarque = (e) => {
@@ -908,7 +907,7 @@ const handleInterieurPaysPrix = (e) => {
                       >
                         <div class="modal-dialog">
                           <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header" style="background: #219935; color: white">
                               <h1
                                 class="modal-title fs-5"
                                 id="exampleModalLabele"
@@ -1039,17 +1038,93 @@ const handleInterieurPaysPrix = (e) => {
                                     required
                                   />
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12 mb-4">
                                   <label
                                     for="validationCustom02"
                                     class="form-label"
-                                    >Ajouter une image</label
+                                    >Modifier l'image</label
                                   >
+                                  <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
+                                    <img :src="car.vehicule_image_url" style="width: 100%" />
+                                  </div>
                                   <input
                                     type="file"
                                     class="form-control"
                                     id="validationCustom02"
-                                    @change="handleEditPicture"
+                                    @change="handleFile1"
+                                    accept="image/*"
+                                    required
+                                  />
+                                </div>
+                                <div class="col-md-12 mb-4">
+                                  <label
+                                    for="validationCustom02"
+                                    class="form-label"
+                                    >Modifier l'image</label
+                                  >
+                                  <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
+                                    <img :src="car.vehicule_image_url2" style="width: 100%" />
+                                  </div>
+                                  <input
+                                    type="file"
+                                    class="form-control"
+                                    id="validationCustom02"
+                                    @change="handleFile2"
+                                    accept="image/*"
+                                    required
+                                  />
+                                </div>
+                                <div class="col-md-12 mb-4">
+                                  <label
+                                    for="validationCustom02"
+                                    class="form-label"
+                                    >Modifier l'image</label
+                                  >
+                                  <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
+                                    <img :src="car.vehicule_image_url3" style="width: 100%" />
+                                  </div>
+                                  <input
+                                    type="file"
+                                    class="form-control"
+                                    id="validationCustom02"
+                                    @change="handleFile3"
+                                    accept="image/*"
+                                    required
+                                  />
+                                </div>
+                                <div class="col-md-12 mb-4">
+                                  <label
+                                    for="validationCustom02"
+                                    class="form-label"
+                                    >Modifier l'image</label
+                                  >
+                                  <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
+                                    <img :src="car.vehicule_image_url4" style="width: 100%" />
+                                  </div>
+                                  <input
+                                    type="file"
+                                    class="form-control"
+                                    id="validationCustom02"
+                                    @change="handleFile4"
+                                    accept="image/*"
+                                    required
+                                  />
+                                </div>
+                                <div class="col-md-12 mb-4">
+                                  <label
+                                    for="validationCustom02"
+                                    class="form-label"
+                                    >Modifier l'image</label
+                                  >
+                                  <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
+                                    <img :src="car.vehicule_image_url5" style="width: 100%" />
+                                  </div>
+                                  <input
+                                    type="file"
+                                    class="form-control"
+                                    id="validationCustom02"
+                                    @change="handleFile5"
+                                    accept="image/*"
                                     required
                                   />
                                 </div>

@@ -2087,8 +2087,8 @@ const valider = async (location) => {
                         <td>{{ location.interieurPays }}</td>
                         <td>{{ location.date_retrait }}</td>
                         <td>{{ location.heure_retrait }}</td>
-                        <td> {{ location.date_retour }}</td>
-                        <td> {{ location.heure_retour }}</td>
+                        <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}</td>
+                        <td> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.heure_retour) }}</td>
                         <td> {{ location.montant }}</td>
                         <td></td>
                       
@@ -2878,7 +2878,7 @@ const valider = async (location) => {
         </div>
       </div>
     </div>
-  </div>
+   
 </template>
 <style scoped>
 .nav-tabs .nav-link {

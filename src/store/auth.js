@@ -63,6 +63,7 @@ export const useAuthStore = defineStore('authStore', {
                                 country: '', 
                                 createdAt: new Date(), 
                                 description: '', 
+                                presentation: '', 
                                 imageCouvertureUrl: '', 
                                 imageLogoUrl: '', 
                                 joinedAt: Timestamp.now(), 

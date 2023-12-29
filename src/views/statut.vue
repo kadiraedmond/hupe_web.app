@@ -146,6 +146,7 @@ const payer = async (reservation) => {
   const userDocRef = doc(firestoreDb, 'users', `${userId}`)
   const userSubColRef = collection(userDocRef, 'myAccount')
   const accountDocRef = doc(userSubColRef, 'account')
+  const hystoryColRef = collection(userDocRef, 'hystory')
 
   const snapshot = await getDoc(accountDocRef)
 
@@ -197,6 +198,19 @@ const payer = async (reservation) => {
       const client_docRef = await addDoc(notificationColRef, client_notif)
 
       await updateDoc(client_docRef, { uid: `${client_docRef.id}` })
+      
+      // ajout de l'hisqtorique client
+      const client_hystory = {
+        body: montant_a_payer,
+        title: 'Paiement pour location',
+        topic: 'Paiement',
+        solde: amount.solde,
+        date: Timestamp.now()
+      }
+      
+      await addDoc(hystoryColRef, client_hystory)
+
+      // -------------------------------------------
   
       // Recherche de la compagnie dans la base
       const comp_companieDocRef = doc(firestoreDb, 'compagnies', `${reservation.compagnie_uid}`) 
@@ -223,6 +237,7 @@ const payer = async (reservation) => {
       // ajouter la somme sur le compte de la compagnie
       const comp_accountColRef = collection(comp_companieDocRef, 'myAccount')
       const comp_accountDocRef = doc(comp_accountColRef, 'account')
+      const comp_hystoryColRef = collection(comp_companieDocRef, 'hystory')
 
       const snapshot = await getDoc(comp_accountDocRef)
       let companieAccount
@@ -246,6 +261,16 @@ const payer = async (reservation) => {
       const comp_docRef = await addDoc(notificationColRef, comp_notif)
 
       await updateDoc(comp_docRef, { uid: `${comp_docRef.id}` })
+
+      // ajout de l'historique de la compagnie
+      const comp_hystory = {
+        title: 'Réception de paiement',
+        solde: companieAccount.solde,
+        montantVerser: montant_a_payer,
+        datePayement: Timestamp.now()
+      }
+
+      await addDoc(comp_hystoryColRef, comp_hystory)
 
       // mise a jour du status de la réservation
       const reservationDocRef = doc(firestoreDb, 'reservation', `${reservation.uid}`)
