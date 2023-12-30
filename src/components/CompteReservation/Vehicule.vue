@@ -52,6 +52,7 @@ const addNewTrajet = async () => {
     enAvant: false, 
     enPromo: false, 
     destination: destination.value,
+    country: savedUser.country,
     escale: escales_a_faire.value, 
     heure_convocation: heure_convocation.value, 
     heure_depart: heure_depart.value, 
@@ -162,7 +163,7 @@ const star = async (trajet) => {
     if(companieStore.companie.offre === 'vip') {
       
       const miseEn_avantDocRef = doc(firestoreDb, 'compagnies_offre_vip', 'mise_en_avant')
-      const trajetEn_avantColRef = collection( miseEn_avantDocRef, 'programme_en_avant') 
+      const trajetEn_avantColRef = collection(miseEn_avantDocRef, 'programme_en_avant') 
 
       const q = query(trajetEn_avantColRef, where('compagnie_uid', '==', `${userId}`)) 
       const snapshots = await getDocs(q) 
@@ -276,6 +277,7 @@ const promote = async (trajet) => {
             fin_promo: fin_promo.value, 
             heure_depart: trajet.heure_depart, 
             idTrack: uuidv4(), 
+            country: savedUser.country,
             lieu_depart: trajet.lieu_depart, 
             montant: montant_promo.value, 
             pourcentage: taux_reduction.value

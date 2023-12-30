@@ -62,6 +62,7 @@ const handleSubmit = async () => {
     compagnie_uid: userId, 
     enAvant: false, 
     enPromo: false, 
+    country: savedUser.country,
     interieurpaysprix: prix_interieur.value, 
     modele: modele.value, 
     montant: prix_journalier.value, 
@@ -280,6 +281,7 @@ const promote = async (car) => {
             modele: car.modele, 
             montant: montant.value, 
             moteur: car.moteur, 
+            country: savedUser.country,
             pourcentage: taux_reduction.value, 
             vehicule: car.vehicule, 
             vehicule_image_url: car.vehicule_image_url
