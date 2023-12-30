@@ -108,7 +108,12 @@ const handleSubmit = async () => {
               </div>
               <div class="col-md-12">
                 <label for="text" class="form-label">Sexe </label>
-                <input type="text" v-model="sexe" class="form-control" id="inputPassword4" required />
+                <!-- <input type="text" v-model="sexe" class="form-control" id="inputPassword4" required /> -->
+                <select v-model="sexe" class="form-select1" style="background: #E8E8E8; color: black" id="validationCustom04" required>
+                  <option value="Masculin" selected>Masculin</option>
+                  <option value="Féminin">Féminin</option>
+                  <option value="Autre">Autre</option>
+                </select>
               </div>
               <div class="col-12">
                 <label for="inputAddress" class="form-label">Adresse email</label>
