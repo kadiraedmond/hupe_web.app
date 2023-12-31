@@ -8,7 +8,7 @@ onMounted(() => {
 
 <template>
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+    <!-- <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
           <ol>
@@ -17,17 +17,18 @@ onMounted(() => {
           </ol>
   
         </div>
-      </section><!-- End Breadcrumbs -->
+      </section> -->
+      <!-- End Breadcrumbs -->
   
       <!-- ======= Portfolio Details Section ======= -->
-      <section id="portfolio-details" class="portfolio-details">
-          <div class="container" style="box-shadow: 1px 1px 3px #00000040;">
+      <section id="portfolio-details" class="portfolio-details" style="margin-top: 50px;">
+          <div class="container">
   
               <div class="row no-gutters mt-4">
                   <div class="col-md-2"></div>
-                  <div class="col-md-8 justify-content-center" style="text-align: justify;">
+                  <div class="col-md-8 justify-content-center" style="text-align: justify; box-shadow: 1px 1px 3px #00000040; padding: 30px;">
   
-                      <h3 class="mt-5 mb-4" style="font-size: 22px;">Chers Utilisateurs,</h3>
+                      <h3 class="mt-1 mb-4" style="font-size: 22px;">Chers Utilisateurs,</h3>
                       <p data-aos=" -up">
                         Nous vous remercions de choisir Hupe pour répondre à vos besoins de location de véhicules, d'engins, réservation de tickets de bus, et d'achat de véhicules. Pour garantir une expérience positive pour vous et tous nos utilisateurs, veuillez prendre quelques instants pour lire notre politique et nos directives. Ces informations sont conçues pour créer un environnement sûr et agréable pour tous les utilisateurs de notre plateforme.
                       </p>

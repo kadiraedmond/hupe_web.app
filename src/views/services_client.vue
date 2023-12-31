@@ -360,9 +360,9 @@ const goToConversation = async () => {
                                                 <p class="card-text"> Certaines personnes préfèrent apprendre en visualisant. Notre collection de tutoriels vidéo vous guide à travers les processus les plus importants de l'application, en vous montrant exactement comment effectuer différentes tâches.</p>
                                             </div>
                                             <div class="card-footer text-center">
-                                                <router-link to="/">
+                                                <a href="https://www.youtube.com/channel/UCh07rr8p-XHo0zrmZfFQd1w">
                                                     <button class="btn btn-primary w-50 " style=" border: 1px solid; border-radius: 30px; border-color: #d6d6d6; background: white; color: #219935;">Démarrer</button>
-                                                </router-link>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

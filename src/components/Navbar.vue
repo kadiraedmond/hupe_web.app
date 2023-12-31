@@ -210,7 +210,18 @@ const selectedValue = ref('');
         </ul>
       </nav>
       <!-- .navbar -->
-      <form class="d-flex" role="search" @submit.prevent="handleSearch">
+
+      <form class="d-flex" role="search" @submit.prevent="handleSearch" id="search">
+      <div class="input-group">
+        <span class="input-group-text" style="background: white; border-color: #219935; color: #219935;">
+          
+          <i class="bi bi-search"></i>
+        </span>
+        <input type="search" class="form-control" placeholder="Recherche..." v-model="searchTerm" aria-label="Recherche" style="border-color: #219935;">
+      </div>
+      <!-- <button class="btn btn-primary" type="submit">Rechercher</button> -->
+    </form>
+      <!-- <form class="d-flex" role="search" @submit.prevent="handleSearch">
         <input
           class="form-control me-2"
           style="width: 200; max-width: 200px; font-size: 13px;"
@@ -221,8 +232,8 @@ const selectedValue = ref('');
           id="search"
         />
         <i class="bx bx-search" type="submit" id="icon_search"></i>
-        <!-- <button class="btn btn-outline-success" type="submit" style="margin-left: -90px;">Search</button> -->
-      </form>
+        
+      </form> -->
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -328,14 +339,13 @@ const selectedValue = ref('');
 
 <style scoped>
  #search{
-  font-size: 15px;
-  width: 300px;
-    height: 41px;
-    /* border-radius: 30px; */
-    font-size: 14px;
-    background-color: white;
-    border-color: #219935;
-    color: #219935!important;
+  /* font-size: 15px; */
+  width: 200px;
+  height: 41px;
+  background-color: white;
+  border-color: #219935;
+  color: #219935!important;
+  margin-left: 14px;
  }
 
 ::placeholder {

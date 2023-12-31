@@ -7,7 +7,7 @@ onMounted(() => {
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+    <!-- <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
           <ol>
@@ -16,17 +16,18 @@ onMounted(() => {
           </ol>
   
         </div>
-      </section><!-- End Breadcrumbs -->
+      </section> -->
+      <!-- End Breadcrumbs -->
   
       <!-- ======= Portfolio Details Section ======= -->
-      <section id="portfolio-details" class="portfolio-details">
-          <div class="container" style="box-shadow: 1px 1px 3px #00000040;">
+      <section id="portfolio-details" class="portfolio-details" style="margin-top: 50px;">
+          <div class="container">
   
               <div class="row no-gutters mt-4">
                   <div class="col-md-2"></div>
-                  <div class="col-md-8 justify-content-center" style="text-align: justify;">
+                  <div class="col-md-8 justify-content-center" style="text-align: justify; box-shadow: 1px 1px 3px #00000040; padding: 30px;">
   
-                      <h3 class="mt-5 mb-4" style="font-size: 22px;">Cher(e) Partenaire,</h3>
+                      <h3 class="mt-1 mb-4" style="font-size: 22px;">Cher(e) Partenaire,</h3>
                       <p data-aos=" -up">
                         Nous sommes ravis de collaborer avec vous en tant que partenaire de HUPE. Notre objectif est de fournir une expérience exceptionnelle à nos utilisateurs tout en établissant des relations de travail solides et équitables avec nos partenaires. Cette note de politique détaille les attentes et les directives que nous souhaitons établir dans le cadre de notre partenariat. Veuillez lire attentivement les informations ci-dessous :
                       </p>

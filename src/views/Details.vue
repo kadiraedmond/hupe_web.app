@@ -766,10 +766,12 @@ onMounted(() => {
 
   #img_couv{
   height: 250px;
-    /* object-fit: cover; */
-  object-fit: fill;
+    object-fit: cover;
+  /* object-fit: fill; */
   image-rendering: -webkit-optimize-contrast;
   border-radius: 10px;
+  border: 1px solid #219935;
+  object-position: 50% 75% !important;
 }
 
 #h6{

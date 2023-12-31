@@ -13,8 +13,8 @@ onBeforeMount(() => {
   
 
   companieStore.getAllCompanies
-
   companieStore.getLocationCompanies
+  companieStore.getTransportCompanies
 
 })
 
@@ -25,7 +25,7 @@ onMounted(() => {
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+    <!-- <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
           <ol>
@@ -34,10 +34,12 @@ onMounted(() => {
           </ol>
   
         </div>
-      </section><!-- End Breadcrumbs -->
+    </section> -->
+      
+    <!-- End Breadcrumbs -->
   
       <!-- ======= Portfolio Details Section ======= -->
-      <section id="portfolio-details" class="portfolio-details">
+      <section id="portfolio-details" class="portfolio-details" style="margin-top : 50px;">
           <div class="container">
   
               <div class="row no-gutters mt-4">
@@ -67,7 +69,7 @@ onMounted(() => {
                         <div class="row mt-4">
                           <div class="col-md-12">
                             <div class="d-flex align-items-start">
-                              <div class="row">
+                              <div class="row w-100">
                                 <div class="col-md-3">
                                   <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     <button class="nav-link active text-start" id="v-pills-togo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-togo" type="button" role="tab" aria-controls="v-pills-togo" aria-selected="true"><img src="/assets/img/logo/togo.png" alt="" class="img-fluid"> Togo</button>
@@ -84,506 +86,322 @@ onMounted(() => {
                                   <div class="tab-content" id="v-pills-tabContent">
                                   <div class="tab-pane fade show active" id="v-pills-togo" role="tabpanel" aria-labelledby="v-pills-togo-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
+                                      <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
+                                            :key="index">
+                                        <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                            <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                            <div class="card-body">
+                                              <div class="row">
+                                                <div class="col-8">
+                                                  <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                  <p> <i class="bx bx-like" style="color: #219935;font-size: 14px;"></i> 30% </p>
+                                                </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
+                                              </div>
+
+                                              <div class="row" style="margin-top: -11px;">
+                                                <div class="col-8">
+                                                  <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                        {{ companie.adresse }}</p>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+                                                <div class="col-4">
+                                                  <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
                                                 </div>
+
                                               </div>
-                                            </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
+                                            
+                                              
                                             </div>
-                                          </div>
+                                          </router-link>
+                                          
                                         </div>
-                                      </div>
+                                      </div>  
+                                    
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-ci" role="tabpanel" aria-labelledby="v-pills-ci-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
+                                      <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
+                                            :key="index">
+                                        <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                            <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                            <div class="card-body">
+                                              <div class="row">
+                                                <div class="col-8">
+                                                  <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                  <p> <i class="bx bx-like" style="color: #219935;font-size: 14px;"></i> 30% </p>
+                                                </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
+                                              </div>
+
+                                              <div class="row" style="margin-top: -11px;">
+                                                <div class="col-8">
+                                                  <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                        {{ companie.adresse }}</p>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+                                                <div class="col-4">
+                                                  <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
                                                 </div>
+
                                               </div>
-                                            </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
+                                            
+                                              
                                             </div>
-                                          </div>
+                                          </router-link>
+                                          
                                         </div>
-                                      </div>
+                                      </div>  
+                                    
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-mali" role="tabpanel" aria-labelledby="v-pills-mali-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
+                                      <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
+                                            :key="index">
+                                        <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                            <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                            <div class="card-body">
+                                              <div class="row">
+                                                <div class="col-8">
+                                                  <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                  <p> <i class="bx bx-like" style="color: #219935;font-size: 14px;"></i> 30% </p>
+                                                </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
+                                              </div>
+
+                                              <div class="row" style="margin-top: -11px;">
+                                                <div class="col-8">
+                                                  <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                        {{ companie.adresse }}</p>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+                                                <div class="col-4">
+                                                  <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
                                                 </div>
+
                                               </div>
-                                            </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
+                                            
+                                              
                                             </div>
-                                          </div>
+                                          </router-link>
+                                          
                                         </div>
-                                      </div>
+                                      </div>  
+                                    
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-benin" role="tabpanel" aria-labelledby="v-pills-benin-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
+                                      <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
+                                            :key="index">
+                                        <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                            <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                            <div class="card-body">
+                                              <div class="row">
+                                                <div class="col-8">
+                                                  <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                  <p> <i class="bx bx-like" style="color: #219935;font-size: 14px;"></i> 30% </p>
+                                                </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
+                                              </div>
+
+                                              <div class="row" style="margin-top: -11px;">
+                                                <div class="col-8">
+                                                  <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                        {{ companie.adresse }}</p>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+                                                <div class="col-4">
+                                                  <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
                                                 </div>
+
                                               </div>
-                                            </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
+                                            
+                                              
                                             </div>
-                                          </div>
+                                          </router-link>
+                                          
                                         </div>
-                                      </div>
+                                      </div>  
+                                    
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-burkina" role="tabpanel" aria-labelledby="v-pills-burkina-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
+                                      <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
+                                            :key="index">
+                                        <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                            <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                            <div class="card-body">
+                                              <div class="row">
+                                                <div class="col-8">
+                                                  <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                  <p> <i class="bx bx-like" style="color: #219935;font-size: 14px;"></i> 30% </p>
+                                                </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
+                                              </div>
+
+                                              <div class="row" style="margin-top: -11px;">
+                                                <div class="col-8">
+                                                  <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                        {{ companie.adresse }}</p>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+                                                <div class="col-4">
+                                                  <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
                                                 </div>
+
                                               </div>
-                                            </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
+                                            
+                                              
                                             </div>
-                                          </div>
+                                          </router-link>
+                                          
                                         </div>
-                                      </div>
+                                      </div>  
+                                    
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-guinne" role="tabpanel" aria-labelledby="v-pills-guinne-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
+                                      <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
+                                            :key="index">
+                                        <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                            <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                            <div class="card-body">
+                                              <div class="row">
+                                                <div class="col-8">
+                                                  <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                  <p> <i class="bx bx-like" style="color: #219935;font-size: 14px;"></i> 30% </p>
+                                                </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
+                                              </div>
+
+                                              <div class="row" style="margin-top: -11px;">
+                                                <div class="col-8">
+                                                  <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                        {{ companie.adresse }}</p>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+                                                <div class="col-4">
+                                                  <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
                                                 </div>
+
                                               </div>
-                                            </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
+                                            
+                                              
                                             </div>
-                                          </div>
+                                          </router-link>
+                                          
                                         </div>
-                                      </div>
+                                      </div>  
+                                    
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-niger" role="tabpanel" aria-labelledby="v-pills-niger-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
+                                      <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
+                                            :key="index">
+                                        <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                            <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                            <div class="card-body">
+                                              <div class="row">
+                                                <div class="col-8">
+                                                  <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                  <p> <i class="bx bx-like" style="color: #219935;font-size: 14px;"></i> 30% </p>
+                                                </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
+                                              </div>
+
+                                              <div class="row" style="margin-top: -11px;">
+                                                <div class="col-8">
+                                                  <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                        {{ companie.adresse }}</p>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+                                                <div class="col-4">
+                                                  <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
                                                 </div>
+
                                               </div>
-                                            </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
+                                            
+                                              
                                             </div>
-                                          </div>
+                                          </router-link>
+                                          
                                         </div>
-                                      </div>
+                                      </div>  
+                                    
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-senegal" role="tabpanel" aria-labelledby="v-pills-senegal-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
+                                      <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
+                                            :key="index">
+                                        <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                            <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                            <div class="card-body">
+                                              <div class="row">
+                                                <div class="col-8">
+                                                  <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                  <p> <i class="bx bx-like" style="color: #219935;font-size: 14px;"></i> 30% </p>
+                                                </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
+                                              </div>
+
+                                              <div class="row" style="margin-top: -11px;">
+                                                <div class="col-8">
+                                                  <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                        {{ companie.adresse }}</p>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+                                                <div class="col-4">
+                                                  <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
                                                 </div>
+
                                               </div>
-                                            </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
+                                            
+                                              
                                             </div>
-                                          </div>
+                                          </router-link>
+                                          
                                         </div>
-                                      </div>
+                                      </div>  
+                                    
                                     </div>
                                   </div>
                                 </div>
@@ -600,7 +418,7 @@ onMounted(() => {
                         <div class="row mt-4">
                           <div class="col-md-12">
                             <div class="d-flex align-items-start">
-                              <div class="row">
+                              <div class="row w-100">
                                 <div class="col-md-3">
                                   <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     <button class="nav-link active text-start" id="v-pills-togo1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-togo1" type="button" role="tab" aria-controls="v-pills-togo1" aria-selected="true"><img src="/assets/img/logo/togo.png" alt="" class="img-fluid"> Togo</button>
@@ -617,506 +435,314 @@ onMounted(() => {
                                   <div class="tab-content" id="v-pills-tabContent">
                                   <div class="tab-pane fade show active" id="v-pills-togo1" role="tabpanel" aria-labelledby="v-pills-togo1-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
-                                          </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                        <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+                                          <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                              <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+                                            </router-link>
+                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                              <div class="card-body">
+                                                <div class="row">
+                                                  <div class="col-8">
+                                                    <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
+                                                  </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+
+                                                <div class="row" style="margin-top: -11px;">
+                                                  <div class="col-8">
+                                                    <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                          {{ companie.adresse }}</p>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                                                  </div>
+
                                                 </div>
+                                              
+                                                
                                               </div>
                                             </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
-                                            </div>
+                                            
                                           </div>
-                                        </div>
-                                      </div>
+                                        </div>  
+                                      
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-ci1" role="tabpanel" aria-labelledby="v-pills-ci1-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
-                                          </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                        <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+                                          <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                              <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+                                            </router-link>
+                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                              <div class="card-body">
+                                                <div class="row">
+                                                  <div class="col-8">
+                                                    <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
+                                                  </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+
+                                                <div class="row" style="margin-top: -11px;">
+                                                  <div class="col-8">
+                                                    <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                          {{ companie.adresse }}</p>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                                                  </div>
+
                                                 </div>
+                                              
+                                                
                                               </div>
                                             </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
-                                            </div>
+                                            
                                           </div>
-                                        </div>
-                                      </div>
+                                        </div>  
+                                      
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-mali1" role="tabpanel" aria-labelledby="v-pills-mali1-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
-                                          </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                        <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+                                          <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                              <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+                                            </router-link>
+                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                              <div class="card-body">
+                                                <div class="row">
+                                                  <div class="col-8">
+                                                    <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
+                                                  </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+
+                                                <div class="row" style="margin-top: -11px;">
+                                                  <div class="col-8">
+                                                    <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                          {{ companie.adresse }}</p>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                                                  </div>
+
                                                 </div>
+                                              
+                                                
                                               </div>
                                             </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
-                                            </div>
+                                            
                                           </div>
-                                        </div>
-                                      </div>
+                                        </div>  
+                                      
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-benin1" role="tabpanel" aria-labelledby="v-pills-benin1-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
-                                          </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                        <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+                                          <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                              <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+                                            </router-link>
+                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                              <div class="card-body">
+                                                <div class="row">
+                                                  <div class="col-8">
+                                                    <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
+                                                  </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+
+                                                <div class="row" style="margin-top: -11px;">
+                                                  <div class="col-8">
+                                                    <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                          {{ companie.adresse }}</p>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                                                  </div>
+
                                                 </div>
+                                              
+                                                
                                               </div>
                                             </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
-                                            </div>
+                                            
                                           </div>
-                                        </div>
-                                      </div>
+                                        </div>  
+                                      
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-burkina1" role="tabpanel" aria-labelledby="v-pills-burkina1-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
-                                          </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                        <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+                                          <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                              <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+                                            </router-link>
+                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                              <div class="card-body">
+                                                <div class="row">
+                                                  <div class="col-8">
+                                                    <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
+                                                  </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+
+                                                <div class="row" style="margin-top: -11px;">
+                                                  <div class="col-8">
+                                                    <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                          {{ companie.adresse }}</p>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                                                  </div>
+
                                                 </div>
+                                              
+                                                
                                               </div>
                                             </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
-                                            </div>
+                                            
                                           </div>
-                                        </div>
-                                      </div>
+                                        </div>  
+                                      
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-guinne1" role="tabpanel" aria-labelledby="v-pills-guinne1-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
-                                          </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                        <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+                                          <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                              <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+                                            </router-link>
+                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                              <div class="card-body">
+                                                <div class="row">
+                                                  <div class="col-8">
+                                                    <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
+                                                  </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+
+                                                <div class="row" style="margin-top: -11px;">
+                                                  <div class="col-8">
+                                                    <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                          {{ companie.adresse }}</p>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                                                  </div>
+
                                                 </div>
+                                              
+                                                
                                               </div>
                                             </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
-                                            </div>
+                                            
                                           </div>
-                                        </div>
-                                      </div>
+                                        </div>  
+                                      
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-niger1" role="tabpanel" aria-labelledby="v-pills-niger1-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
-                                          </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                        <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+                                          <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                              <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+                                            </router-link>
+                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                              <div class="card-body">
+                                                <div class="row">
+                                                  <div class="col-8">
+                                                    <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
+                                                  </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+
+                                                <div class="row" style="margin-top: -11px;">
+                                                  <div class="col-8">
+                                                    <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                          {{ companie.adresse }}</p>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                                                  </div>
+
                                                 </div>
+                                              
+                                                
                                               </div>
                                             </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
-                                            </div>
+                                            
                                           </div>
-                                        </div>
-                                      </div>
+                                        </div>  
+                                      
                                     </div>
                                   </div>
                                   <div class="tab-pane fade" id="v-pills-senegal1" role="tabpanel" aria-labelledby="v-pills-senegal1-tab" tabindex="0">
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                                      <div class="col" v-for="(companie, index) in companieStore.locationCompanies" :key="index">
-                                        <div
-                                          class="card h-100"
-                                          id="compagnie_card"
-                                          style="background: #f9f9f9; box-shadow: none"
-                                        >
-                                          <router-link :to="`/detail/${companie.uid}`">
-                                            <img
-                                              :src="companie.imageCouvertureUrl"
-                                              class="card-img-top"
-                                              alt="..."
-                                              style="border-radius: 10px 10px 0px 0px ; max-height: 174px; object-fit: cover;"
-                                            />
-                                          </router-link>
-                                          <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
+                                        <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+                                          <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                              <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+                                            </router-link>
+                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                              <div class="card-body">
+                                                <div class="row">
+                                                  <div class="col-8">
+                                                    <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
+                                                  </div>
 
-                                          <div class="card-body">
-                                            <router-link :to="`/detail/${companie.uid}`">
-                                              <div class="row mt-2">
-                                                <div class="col-md-7">
-                                                  <h5
-                                                    class="card-title"
-                                                    style="font-size: 15px; color: black"
-                                                  >
-                                                    {{ companie.raison_social }}
-                                                  </h5>
                                                 </div>
-                                                <div class="col-md-5 text-end">
-                                                  <boutton
-                                                    class="btn btn-primary"
-                                                    style="
-                                                      background: white;
-                                                      border-color: white;
-                                                      border-radius: 30px;
-                                                      color: #219935;
-                                                      margin-top: -9px;
-                                                    "
-                                                  >
-                                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                                  </boutton>
+
+                                                <div class="row" style="margin-top: -11px;">
+                                                  <div class="col-8">
+                                                    <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                                          {{ companie.adresse }}</p>
+                                                  </div>
+                                                  <div class="col-4">
+                                                    <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                                                  </div>
+
                                                 </div>
+                                              
+                                                
                                               </div>
                                             </router-link>
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <p class="card-text mt-2" style="font-size: 14px">
-                                                  <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                                </p>
-                                              </div>
-                                              <div class="col-md-4 text-center mt-2">
-                                                <i
-                                                  class="bx bx-car"
-                                                  style="color: #8b8b8b; font-size: 21px"
-                                                ></i>
-                                              </div>
-                                            </div>
+                                            
                                           </div>
-                                        </div>
-                                      </div>
+                                        </div>  
+                                      
                                     </div>
                                   </div>
                                 </div>
@@ -1172,6 +798,40 @@ onMounted(() => {
     object-fit: cover;
 }
 
+#badgesLogo1 {
+     
+     width: 45px;
+     height: 45px;
+     border-radius: 50%;
+     border: 1px solid #ffffff;
+     /* object-fit: cover; */
+ }
+
+#search {
+    width: 491px !important;
+    height: 54px;
+    /* border-radius: 30px; */
+    font-size: 14px;
+    background-color: white;
+    border-color: #219935;
+    color: black !important;
+    border-radius: 10px;
+}
+
+#icon_search {
+    margin-left: -51px;
+    font-size: 25px;
+    margin-top: 16px;
+    color: #019934;
+}
+
+#router-link{
+   color: black !important;
+ }
+ 
+ #router-link:hover{
+   color: black !important;
+ }
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     color: var(--bs-nav-pills-link-active-color);
     background-color: #219935;

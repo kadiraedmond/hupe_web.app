@@ -11,7 +11,7 @@ onMounted(() => {
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+    <!-- <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
           <ol>
@@ -22,10 +22,11 @@ onMounted(() => {
           </ol>
   
         </div>
-      </section><!-- End Breadcrumbs -->
+      </section> -->
+      <!-- End Breadcrumbs -->
 
         <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features">
+    <section id="features" class="features" style="margin-top: 50px;">
       <div class="container">
         <div class="row">
           <div class="col-md-12 ">

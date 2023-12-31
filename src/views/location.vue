@@ -81,20 +81,21 @@ const handleSearch = async () => {
   <main id="main">
 
      <!-- ======= Breadcrumbs ======= -->
-     <section id="breadcrumbs" class="breadcrumbs">
+     <!-- <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
           <ol>
             <li> <router-link to="/" style="color: #219935;" >Home</router-link></li>
             <li>Location de véhicule</li>
-            <!-- <li>Toyota yaris 2022</li> -->
+ 
 
           </ol>
   
         </div>
-    </section><!-- End Breadcrumbs -->
+    </section> -->
+    <!-- End Breadcrumbs -->
      <!-- ======= Expertise et conseils en immobiliers Section ======= -->
-    <section id="features" class="features mt-4">
+    <section id="features" class="features " style="margin-top: 90px;">
       <div class="container">
         <div class="row mb-4" style="margin-top: -51px;
     margin-bottom: 33px !important;">
@@ -102,7 +103,18 @@ const handleSearch = async () => {
           <div class="col-md-6">
             <div class="row" style="padding: 10px; border-radius: 5px;">
                 <div class="col-md-12">
-                  <form class="d-flex" role="search" @submit.prevent="handleSearch">
+                  
+                    <form class="d-flex" role="search" @submit.prevent="handleSearch" id="search">
+                    <div class="input-group">
+                      <span class="input-group-text" style="background: white; border-color: #219935; color: #219935; width: 60px;">
+                        
+                        <i class="bi bi-search" style="margin-left: 10px; font-size: 20px;"></i>
+                      </span>
+                      <input type="search" class="form-control" placeholder="Recherche..." v-model="searchTerm" aria-label="Recherche" style="border-color: #219935;">
+                    </div>
+                    <!-- <button class="btn btn-primary" type="submit">Rechercher</button> -->
+                  </form>
+                  <!-- <form class="d-flex" role="search" @submit.prevent="handleSearch">
                     <input
                       class="form-control me-2 text-dark"
                       type="search"
@@ -112,8 +124,7 @@ const handleSearch = async () => {
                       id="search"
                     />
                     <i class="bx bx-search" type="submit" id="icon_search"></i>
-                    <!-- <button class="btn btn-outline-success" type="submit" style="margin-left: -90px;">Search</button> -->
-                  </form>
+                   </form> -->
 
                  
                 </div>

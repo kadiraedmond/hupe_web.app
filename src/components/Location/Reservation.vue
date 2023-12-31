@@ -2746,7 +2746,7 @@ const valider = async (location) => {
                                                     :src="location.identite_image_url"
                                                     style="width: 150px; height: 65px; margin-top: -2.5rem"
                                                   />
-                                                   
+                                                    
                                                 </a>
                                               </div>
                                             </div>

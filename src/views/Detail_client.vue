@@ -161,18 +161,19 @@ const isLoading = ref(false)
       class="portfolio-details"
       style="margin-top: -21px ; padding: 122px;" 
     >
-    <div class="card text-bg-dark">
+    <!-- <div class="card text-bg-dark">
         <img :src="companieStore.companie.imageCouvertureUrl" class="card-img" alt="..."  id="img_couv">
           <div class="card-img-overlay">
                                
          </div>
-    </div>
-      <!-- <img
-        :src="companieStore.companie.imageCouvertureUrl"
+    </div> -->
+    <img
+       :src="companieStore.companie.imageCouvertureUrl"
         alt=""
         class="img-fluid w-100"
+        
         id="img_couv"
-      /> -->
+      />
     </section>
     <!-- End Portfolio Details Section -->
 
@@ -690,10 +691,12 @@ const isLoading = ref(false)
 
 #img_couv{
   height: 250px;
-    /* object-fit: cover; */
-  object-fit: fill;
+    object-fit: cover;
+  /* object-fit: fill; */
   image-rendering: -webkit-optimize-contrast;
   border-radius: 10px;
+  border: 1px solid #219935;
+  object-position: 50% 75% !important;
 }
 
 #h6{

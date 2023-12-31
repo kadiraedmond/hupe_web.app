@@ -1918,7 +1918,8 @@ section {
 
 #footer .footer-top .footer-links ul a:hover {
   text-decoration: none;
-  color: #cad1f8 !important;
+  color:  #219935 !important;
+  text-decoration: underline !important;
 }
 
 #footer .footer-newsletter {

@@ -271,7 +271,7 @@ const goTo_chat = async () => {
           <div class="col">
             <div
               class="card h-100 border-0 text-center"
-              style="background: #f9f9f9"
+              style="background: #f9f9f9 ; z-index: -1;"
             >
               <router-link to="/reservation" class="mt-4 mb-1" id="a">
                 <img
@@ -1504,7 +1504,7 @@ const goTo_chat = async () => {
           <div class="col">
             <div
               class="card h-100 border-0"
-              style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+              style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); z-index: -1;"
             >
               <img
                 src="/assets/img/blog/4.jpg"

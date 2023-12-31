@@ -25,74 +25,80 @@ onBeforeMount(() => {
 </script>
 
 <template>
-              <div class="row row-cols-1 row-cols-md-3  g-2">
-                    <div class="col" v-for="(offre, index) in promotionStore.offresVehicules" :key="index">
-                      <div
-                        class="card border-0"
-                        style="background: #f3f4f6; padding: 6px"
-                      >
-                        <div class="row" style="padding: 6px">
-                          <div class="col-md-12 d-flex">
-                            <img
-                              :src="offre.companieInfos.imageLogoUrl"
-                              class="img-fluid"
-                              alt="..."
-                              style="width: 25px; height: 25px; border-radius: 50%; margin-top: 6px; object-fit: contains; border: 1px solid #8b8b8b;"
-                            />
-                            <h6
-                              style="font-size: 12px; margin-left: 5px; margin-top: 10px"
-                            >
-                            {{ offre.companieInfos.raison_social }}
-                            </h6>
-                            <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
-                              <i class='bx bxs-map'></i>
-
-                              {{ offre.companieInfos.adresse }}
-                            </p>
-                          </div>
-                        </div>
+  <div class="row row-cols-1 row-cols-md-3  g-2">
+                      <div class="col" v-for="(offre, index) in promotionStore.offresVehicules" :key="index">
                         <div
-                          class="card h-100"
-                          id="compagnie_card"
-                          style="
-                            padding: 6px;
-                            background: #a6a6a621;
-                            box-shadow: none;
-                            background: transparent;
-                          "
+                          class="card border-0"
+                          style="background: #f3f4f6; padding: 6px"
                         >
-                          <router-link
-                            :to="`/detail/${offre.companieInfos.uid}`"
+                          <div class="row" style="padding: 6px">
+                            <div class="col-md-12 d-flex">
+                              <img
+                                :src="
+                                offre.companieInfos.imageLogoUrl
+                                  ? offre.companieInfos.imageLogoUrl
+                                  : '/assets/img/avatars/1.png'
+                                  "
+                                alt="..."
+                                class="img-fluid"
+                                style="width: 32px; height: 32px; border-radius: 50%; margin-top: 0px; object-fit: contains; border: 1px solid #8b8b8b;"
+                              />
+                              <h6
+                                style="font-size: 12px; margin-left: 5px; margin-top: 10px"
+                              >
+                              {{ offre.companieInfos.raison_social }}
+                              </h6>
+                              <p style="font-size: 12px; margin-left: 5px; margin-top: 8px">
+                                <i class='bx bxs-map'></i>
+
+                                {{ offre.companieInfos.adresse }}
+                              </p>
+                            </div>
+                          </div>
+                          <div
+                            class="card h-100"
+                            id="compagnie_card"
                             style="
-                              border: 1px solid;
-                              border-radius: 5px;
-                              border-color: #a6a6a6;
+                              padding: 6px;
+                              background: #a6a6a621;
+                              box-shadow: none;
+                              background: transparent;
+                              margin-top: -14px;
                             "
                           >
-                            <img
-                              :src="offre.vehicule_image_url"
-                              class="card-img-top"
-                              alt="..."
+                            <router-link
+                              :to="`/detail/${offre.companieInfos.uid}`"
                               style="
-                                border-radius: 5px 5px 5px 5px;
-                                height: 215px !important;
-                                object-fit: cover;
+                                border: 1px solid;
+                                border-radius: 5px;
+                                border-color: #a6a6a6;
                               "
-                            />
-                          </router-link>
-                          <button class="btn btn-primary" id="badges">
-                            <s> {{ offre.ancien_montant }} FCFA </s>
-                          </button>
-                          <button class="btn btn-primary" id="badges0">{{ offre.montant }} FCFA</button>
-                          <button class="btn btn-primary" id="badges012">{{ offre.pourcentage }}%</button>
-                          <button class="btn btn-primary" id="badges0121">
-                            {{ offre.vehicule }} {{ offre.modele }}
-                          </button>
+                            >
+                              <img
+                                :src="offre.vehicule_image_url
+                                ? offre.vehicule_image_url
+                                  : '/assets/img/service/car.png'"
+                                class="card-img-top"
+                                alt="..."
+                                style="
+                                  border-radius: 5px 5px 5px 5px;
+                                  height: 215px !important;
+                                  object-fit: cover;
+                                "
+                              />
+                            </router-link>
+                            <button class="btn btn-primary" id="badges">
+                              <s> {{ offre.ancien_montant }} FCFA </s>
+                            </button>
+                            <button class="btn btn-primary" id="badges0">{{ offre.montant }} FCFA</button>
+                            <button class="btn btn-primary" id="badges012">{{ offre.pourcentage }}%</button>
+                            <button class="btn btn-primary" id="badges0121">
+                              {{ offre.vehicule }} {{ offre.modele }}
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-   
+  </div>
 </template>
 <style scoped>
 #badges012 {

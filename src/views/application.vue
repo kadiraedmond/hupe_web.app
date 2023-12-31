@@ -17,7 +17,7 @@ onMounted(() => {
 
     <section id="features" class="features" style="margin-top: 100px;">
       <div class="container">
-        <div class="row" style=" background: #3987FB; padding: 10px;
+        <div class="row" style=" background: #62bfc4; padding: 10px;
     border-radius: 10px; color: white;">
            <div class="col-md-12 text-center">
             <h1 style="font-size: 20px;" class="mb-3">Hupe clients</h1>
@@ -47,7 +47,7 @@ onMounted(() => {
            </div>
         </div>
 
-        <div class="row mt-4" style=" background: #219935; padding: 10px;
+        <div class="row mt-4" style=" background: #fdb7b9; padding: 10px;
     border-radius: 10px; color: white;">
            <div class="col-md-12 text-center">
             <h1 style="font-size: 20px;">Hupe scan</h1>
@@ -74,7 +74,7 @@ onMounted(() => {
             </div>
            </div>
          </div>
-        <div class="row mt-4" style=" background: #F77F00; padding: 10px;
+        <div class="row mt-4" style=" background: #bbded8; padding: 10px;
     border-radius: 10px; color: white;">
            <div class="col-md-12 text-center">
             <h1 style="font-size: 20px;">Hupe pro</h1>

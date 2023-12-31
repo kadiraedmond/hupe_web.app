@@ -996,7 +996,7 @@ document.addEventListener("DOMContentLoaded", function() {
     color: white;
     background-color: var(--bs-nav-tabs-link-active-bg);
     border-color: var(--bs-nav-tabs-link-active-border-color);
-    width: 255px !important;
+    width: 262px !important;
 }
 
 .accordion-button:not(.collapsed) {

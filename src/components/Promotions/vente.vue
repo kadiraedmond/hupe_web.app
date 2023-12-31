@@ -25,8 +25,8 @@ onBeforeMount(() => {
 </script>
 
 <template>
-              <div class="row row-cols-1 row-cols-md-3  g-2">
-                    <div class="col" v-for="(offre, index) in promotionStore.offresVehicules" :key="index">
+  <div class="row row-cols-1 row-cols-md-3  g-2">
+    <div class="col" v-for="(offre, index) in promotionStore.offresVehicules" :key="index">
                       <div
                         class="card border-0"
                         style="background: #f3f4f6; padding: 6px"
@@ -34,17 +34,21 @@ onBeforeMount(() => {
                         <div class="row" style="padding: 6px">
                           <div class="col-md-12 d-flex">
                             <img
-                              :src="offre.companieInfos.imageLogoUrl"
-                              class="img-fluid"
+                              :src="
+                               offre.companieInfos.imageLogoUrl
+                                ? offre.companieInfos.imageLogoUrl
+                                : '/assets/img/avatars/1.png'
+                                "
                               alt="..."
-                              style="width: 25px; height: 25px; border-radius: 50%; margin-top: 6px; object-fit: contains; border: 1px solid #8b8b8b;"
+                              class="img-fluid"
+                              style="width: 32px; height: 32px; border-radius: 50%; margin-top: 0px; object-fit: contains; border: 1px solid #8b8b8b;"
                             />
                             <h6
                               style="font-size: 12px; margin-left: 5px; margin-top: 10px"
                             >
                             {{ offre.companieInfos.raison_social }}
                             </h6>
-                            <p style="font-size: 12px; margin-left: 5px; margin-top: 6px">
+                            <p style="font-size: 12px; margin-left: 5px; margin-top: 8px">
                               <i class='bx bxs-map'></i>
 
                               {{ offre.companieInfos.adresse }}
@@ -59,6 +63,7 @@ onBeforeMount(() => {
                             background: #a6a6a621;
                             box-shadow: none;
                             background: transparent;
+                            margin-top: -14px;
                           "
                         >
                           <router-link
@@ -70,7 +75,9 @@ onBeforeMount(() => {
                             "
                           >
                             <img
-                              :src="offre.vehicule_image_url"
+                              :src="offre.vehicule_image_url
+                              ? offre.vehicule_image_url
+                                : '/assets/img/service/car.png'"
                               class="card-img-top"
                               alt="..."
                               style="
@@ -90,8 +97,8 @@ onBeforeMount(() => {
                           </button>
                         </div>
                       </div>
-                    </div>
-                  </div>
+    </div>
+  </div>
    
 </template>
 <style scoped>
