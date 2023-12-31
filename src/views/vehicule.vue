@@ -10,7 +10,8 @@ import { firestoreDb } from "@/firebase/firebase.js";
 
 const companieStore = useCompanieStore();
 const promotionStore = usePromotionStore()
- 
+
+const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
 
 onBeforeMount(() => {
   
@@ -24,6 +25,40 @@ onBeforeMount(() => {
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+const results = ref([])
+const searchTerm = ref('')
+
+const handleSearch = async () => {
+  results.value = []
+  
+  let popularCars = []
+
+  const miseEnAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+  const vehiculesEnAvantColRef = collection(miseEnAvantDocRef, 'vehicule_en_avant') 
+
+  const q = query(vehiculesEnAvantColRef, where('country', '==', `${companieStore.country}`)) 
+                
+  const snapshots = await getDocs(q)
+  for(let i = 0; i < snapshots.docs.length; i++) {
+      const programData = snapshots.docs[i].data()
+      const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+      const snapshot = await getDoc(companieDocRef)
+
+      let company = {}
+      if(snapshot.exists()) company = snapshot.data()
+      popularCars.push({ ...programData, companieInfos: company })
+
+  }
+  
+  popularCars.forEach(car => {
+    if(car.vehicule.toLowerCase().includes(searchTerm.value.toLowerCase()) || car.modele.toLowerCase().includes(searchTerm.value.toLowerCase())) {
+        results.value.push(car) 
+    }
+  })
+
+  promotionStore.popularCars = results.value
+}
 
 </script>
 
@@ -52,7 +87,7 @@ onMounted(() => {
           <div class="col-md-6">
             <div class="row" style="padding: 10px; border-radius: 5px;">
                 <div class="col-md-12">
-                  <form class="d-flex" role="search" @submit.prevent="handleSearch">
+                  <form @submit.prevent="handleSearch" class="d-flex" role="search">
                     <input
                       class="form-control me-2 text-white"
                       type="search"
@@ -71,114 +106,6 @@ onMounted(() => {
           </div>
         </div>
         
-        <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div
-            class="col"
-            v-for="(vehicule, index) in promotionStore.popularCars"
-            :key="index"
-          >
-            <router-link
-              :to="`/detail_vehicule_location/${vehicule.uid}`"
-              style="color: #000"
-            >
-              <div class="card h-100 border-0" id="card_compagnie">
-                <div class="row" style="margin: 0px">
-                  <div class="col-md-12">
-                    <div
-                      class="card h-100 mb-3 border-0"
-                      style="background: #f9f9f9;"
-                    >
-                      <div class="row g-1 d-flex mt-2">
-                        
-                        <div class="col-8 d-flex">
-                          <img
-                            :src="vehicule.companieInfos.imageLogoUrl"
-                            alt
-                            class="w-px-40 h-auto rounded-circle"
-                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                          />
-                          <div>
-                            <div class="card-body d-flex">
-                              <h5 class="card-title" style="font-size: 12px">
-                                {{ vehicule.companieInfos.raison_social }}
-                              </h5>
-                              <p class="card-text" style="font-size: 12px">
-                                <i
-                                  class="bx bx-map"
-                                  style="color: rgb(139 139 139); margin-left: 5px"
-                                ></i>
-                                {{ vehicule.companieInfos.adresse }}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-4 text-end">
-                          <button
-                            class="btn btn-primary"
-                            style="
-                              background: #219935;
-                              border-color: #219935;
-                              margin-top: 5px;
-                              font-size: 12px;
-                            "
-                          >
-                            {{ vehicule.montant }} FCFA
-                          </button>
-                        </div>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="card mb-3 mt-4"
-                  style="
-                    max-width: 540px;
-                    margin: 8px;
-                    margin-top: -10px !important;
-                    background: #f9f9f9;
-                  "
-                >
-                  <div class="row g-0" style="margin: 10px">
-                    <div class="col-4">
-                      <img
-                        :src="vehicule.vehicule_image_url"
-                        class="img-fluid h-100"
-                        alt="..."
-                        style="
-                          width: 150px;
-                          height: 160px !important;
-                          object-fit: cover;
-                        "
-                      />
-                    </div>
-                    
-                    <div class="col-8">
-                      <div class="card-body">
-                        <p class="card-text" style="font-size: 13px ; ">
-                          {{ vehicule.vehicule }} |{{  vehicule.annee }}
-                        </p>
-                        <p class="card-text" style="font-size: 13px">
-                          <strong style=" font-weight: 500;">Modéle | </strong> {{ vehicule.modele }}
-                        </p>
-                        <p class="card-text" style="font-size: 13px">
-                          <strong style=" font-weight: 500;">Moteur | </strong> {{ vehicule.moteur }}
-                        </p>
-                        <p class="card-text" style="font-size: 13px">
-                          <strong style=" font-weight: 500;">Immatriculation | </strong>
-                          {{ vehicule.serie_vehicule }}
-                        </p>
-                        
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </router-link>
-          </div>
-        </div> -->
 
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div
@@ -187,7 +114,7 @@ onMounted(() => {
             :key="index"
           >
             <router-link
-              :to="`/detail_vehicule_location/${vehicule.uid}`"
+              :to="`/detail_vehicule_location/${vehicule.companieInfos.uid}/${vehicule.uid}`"
               style="color: #000"
             >
               <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
@@ -241,10 +168,16 @@ onMounted(() => {
                         <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
                       </div>
                       <div class="carousel-item">
-                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                        <img :src="vehicule.vehicule_image_url2" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
                       </div>
                       <div class="carousel-item">
-                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                        <img :src="vehicule.vehicule_image_url3" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img :src="vehicule.vehicule_image_url4" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img :src="vehicule.vehicule_image_url5" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
                       </div>
                     </div>
                     <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleControls' + index" data-bs-slide="prev" id="btn1">
@@ -282,32 +215,32 @@ onMounted(() => {
 
 #badgesLogo {
   display: inline-block;
-    left: 9px;
-    width: 45px;
-    height: 45px;
-    /* padding: 1px 14px; */
-    position: absolute;
-    margin-top: 150px;
-    border-radius: 50%;
-    border: 1px solid #ffffff;
-    object-fit: cover;
+  left: 9px;
+  width: 45px;
+  height: 45px;
+  /* padding: 1px 14px; */
+  position: absolute;
+  margin-top: 150px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  object-fit: cover;
 }
 
 #search {
-    width: 491px !important;
-    height: 54px;
-    /* border-radius: 30px; */
-    font-size: 14px;
-    background-color: white;
-    border-color: #219935;
-    color: white !important;
-    border-radius: 10px;
+  width: 491px !important;
+  height: 54px;
+  /* border-radius: 30px; */
+  font-size: 14px;
+  background-color: white;
+  border-color: #219935;
+  color: black !important;
+  border-radius: 10px;
 }
 
 #icon_search {
-    margin-left: -51px;
-    font-size: 25px;
-    margin-top: 16px;
-    color: #019934;
+  margin-left: -51px;
+  font-size: 25px;
+  margin-top: 16px;
+  color: #019934;
 }
 </style>

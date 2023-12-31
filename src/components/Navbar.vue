@@ -282,7 +282,7 @@ const selectedValue = ref('');
                 }} 
               </span> <i class="bi bi-chevron-down"></i
             ></router-link>
-            <ul style="background: #219935">
+            <ul style="background: #219935; color: white">
               <li @click="goTo_location">
                 <router-link 
                   to="" 
@@ -355,43 +355,43 @@ const selectedValue = ref('');
 #h1_logo{
   /* background: white; */
   background: #219935;
-    padding: 4px;
-    border-radius: 5px;
-    height: 43px;
-    margin-top: 2px;
+  padding: 4px;
+  border-radius: 5px;
+  height: 43px;
+  margin-top: 2px;
 }
 
 #icon_search {
-    margin-left: -51px;
-    font-size: 19px;
-    margin-top: 11px;
-    color: #219935;
+  margin-left: -51px;
+  font-size: 19px;
+  margin-top: 11px;
+  color: #219935;
 }
 
 .form-select1 {
-    display: block;
-    width: 100%;
-    padding: .375rem 2.25rem .375rem .75rem;
-    -moz-padding-start: calc(0.75rem - 3px);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.5;
-    color: #219935;
-    background-color: white;
-    background-repeat: no-repeat;
-    background-position: right .75rem center;
-    background-size: 16px 12px;
-    border: 1px solid #219935;
-    border-radius: .375rem;
-    /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-color: #219935;
+  display: block;
+  width: 100%;
+  padding: .375rem 2.25rem .375rem .75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #219935;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #219935;
+  border-radius: .375rem;
+  /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-color: #219935;
 }
 
 input::placeholder {
-        color: #219935;
-        /* opacity: 0.5; */
-      }
+  color: #219935;
+  /* opacity: 0.5; */
+}
 </style>

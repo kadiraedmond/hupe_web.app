@@ -3,7 +3,7 @@ import { useUserStore } from "@/store/user.js";
 import { useAuthStore } from "@/store/auth.js";
 import { onBeforeMount, onMounted, ref } from "vue";
 
-import { addDoc, updateDoc, setDoc, getDoc, doc, collection, Timestamp } from 'firebase/firestore'
+import { addDoc, query, where, updateDoc, setDoc, getDoc, getDocs, doc, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from "vue3-toastify"
 
@@ -31,11 +31,8 @@ onBeforeMount(async () => {
   userStore.setUser(userId) 
   await reservationStore.setUserReservations(userId)
 
-  userStore.setUser(userId) 
-  await reservationStore.setUserReservations(userId)
-
   reservations.value = [] 
-  reservationStore.userReservations.forEach(reservation => {
+  reservationStore.userReservations.forEach(async reservation => {
     if(param === 'en-attente' && reservation.status === 'En attente') {
       reservations.value.push(reservation)
     }
@@ -53,7 +50,18 @@ onBeforeMount(async () => {
     }
     
     if(param === 'confirme' && reservation.status === 'Confirmé') {
-      reservations.value.push(reservation)
+
+      const documentID = `${reservation.companieInfos.uid}_${userId}`
+  
+      const conversationDocRef = doc(firestoreDb, 'conversations', documentID)
+
+      const messagesColRef = collection(conversationDocRef, 'messages')
+
+      const q = query(messagesColRef, where('lu', '==', false))
+
+      const snapshot = await getDocs(q)
+    
+      reservations.value.push({ ...reservation, unreadMessagesCount: snapshot.docs.length })
     }
     
     if(param === 'annule' && reservation.status === 'Annuler') {
@@ -806,10 +814,10 @@ const options = {
                               <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
                                 <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
                                   Message
-                                  <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    99+
+                                  <span v-if="reservation.unreadMessagesCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ reservation.unreadMessagesCount }}
                                     <span class="visually-hidden">unread messages</span>
-                                  </span> -->
+                                  </span>
                                 </button>
                               </router-link>
                               <!-- <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">

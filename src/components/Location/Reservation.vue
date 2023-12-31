@@ -12,67 +12,67 @@ const authStore = useAuthStore()
 let enAttente = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let valides = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let confirmees = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let annulees = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let reportees = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 let utilisees = reactive({
   totalNumber: 0,
   totalPrice: 0,
-});
+})
 
 const updateReservationsDashboard = () => {
   companieStore.companieLocations.forEach((location) => {
-    if(location.status == "En attente") {
-      enAttente.totalNumber++;
+    if(location.status === "En attente" || location.status === "En report") {
+      enAttente.totalNumber++
       enAttente.totalPrice += Number(location.montant) 
     } 
     
-    else if(location.status == "Validé") { 
-      valides.totalNumber++;
+    else if(location.status === "Validé") { 
+      valides.totalNumber++
       valides.totalPrice += Number(location.montant) 
     } 
     
-    else if(location.status == "Confirmé") { 
-      confirmees.totalNumber++;
+    else if(location.status === "Confirmé") { 
+      confirmees.totalNumber++
       confirmees.totalPrice += Number(location.montant) 
     } 
     
-    else if(location.status == "Annuler") { 
-      annulees.totalNumber++;
+    else if(location.status === "Annuler") { 
+      annulees.totalNumber++
       annulees.totalPrice += Number(location.montant) 
     } 
     
-    else if(location.status == "Reporté") { 
-      reportees.totalNumber++;
+    else if(location.status === "Reporté") { 
+      reportees.totalNumber++
       reportees.totalPrice += Number(location.montant) 
 
     } 
     
-    else if(location.status == "Utilisé") { 
-      utilisees.totalNumber++;
+    else if(location.status === "Utilisé") { 
+      utilisees.totalNumber++
       utilisees.totalPrice += Number(location.montant) 
 
     }
-  });
-};
+  })
+}
 const savedUser = JSON.parse(localStorage.getItem("user"))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = "qdo1Ig1tnMlmvFCxa6OE" || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = "qdo1Ig1tnMlmvFCxa6OE" || savedUser.uid || authStore.user.uid
 
 const elements_en_attente = ref([])
 const elements_valide = ref([])
@@ -105,25 +105,25 @@ onBeforeMount(async () => {
   updateReservationsDashboard() 
   
   companieStore.companieLocations.forEach(comp => {
-    if(comp.status == 'En attente') {
+    if(comp.status === 'En attente' || comp.status === 'En report') {
       elements_en_attente.value.push(comp)
-    } else if(comp.status == 'Validé') {
+    } else if(comp.status === 'Validé') {
       elements_valide.value.push(comp)
-    } else if(comp.status == 'Reporté') {
+    } else if(comp.status === 'Reporté') {
       elements_reporte.value.push(comp)
-    } else if(comp.status == 'Confirmé') {
+    } else if(comp.status === 'Confirmé') {
       elements_confirme.value.push(comp)
-    } else if(comp.status == 'Annuler') {
+    } else if(comp.status === 'Annuler') {
       elements_annule.value.push(comp)
-    } else if(comp.status == 'Utilisé') {
+    } else if(comp.status === 'Utilisé') {
       elements_utilise.value.push(comp)
     }
     
   })
-});
+})
 
 onMounted(() => {
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0)
 })
 
 const options = {
@@ -146,6 +146,16 @@ const valider = async (location) => {
       icon: "success"
     })
 
+
+    // Mise a jour du tableau de bord
+    elements_valide.value.push(location)
+    valides.totalNumber++
+    valides.totalPrice += Number(location.montant) 
+
+    elements_en_attente.value = elements_en_attente.value.filter(loc => loc.uid !== location.uid)
+
+    
+    // Notification du client par rapport a la validation
     const userDocRef = doc(firestoreDb, 'users', `${location.client_id}`)
     const snapshot = await getDoc(userDocRef)
     let user

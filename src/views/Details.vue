@@ -30,6 +30,26 @@ const getPolitiques = async () => {
   politiques.value = snapshots.docs[0].data()
 }
 
+const notation = ref(0)
+const getNotation = async () => {
+
+  const docRef = doc(firestoreDb, 'compagnies', `${companieId}`)
+
+  const notationColRef = collection(docRef, 'client_avis') 
+  
+  const snapshots = await getDocs(notationColRef) 
+
+  let totalEtoiles = 0 
+  if(snapshots.docs.length > 0) {
+    snapshots.docs.forEach(not_doc => { 
+        const notationData = not_doc.data() 
+        totalEtoiles += Number(notationData.nombre_etoile)
+    }) 
+
+    notation.value = Math.round((totalEtoiles / snapshots.docs.length) * 20) 
+  }
+}
+
 onBeforeMount(async () => {
   await companieStore.setCompanieById(companieId)
 
@@ -43,6 +63,8 @@ onBeforeMount(async () => {
   promotionStore.setCompaniePromotionCars(companieId) 
 
   getPolitiques()
+  
+  getNotation()
 })
 
 const name = ref('')
@@ -147,7 +169,7 @@ onMounted(() => {
                     <p class="card-text">
                       {{ companieStore.companie.description }}
                     </p>
-                    <button class="btn btn-primary" style=" width: 115px; background: rgb(33 153 53); border-radius: 20px; border-color: rgb(33 153 53);"><i class="bx bx-like" style="color: white"></i> 30%</button>
+                    <button class="btn btn-primary" style=" width: 115px; background: rgb(33 153 53); border-radius: 20px; border-color: rgb(33 153 53);"><i class="bx bx-like" style="color: white"></i> {{ notation }}%</button>
                   </div>
                 </div>
               </div>
@@ -721,7 +743,7 @@ onMounted(() => {
                              <div class="row">
                                <div class="col-md-12">
                                 <h6 id="h6">Présentation</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                                <p>{{ companieStore.companie.presentation }}</p>
                                </div>
                                                     
                              </div>
@@ -730,7 +752,7 @@ onMounted(() => {
                                
                                <div class="col-md-12">
                                 <h6 id="h6">Description</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                                <p>{{ companieStore.companie.description }}</p>
                                </div>
 
                                 

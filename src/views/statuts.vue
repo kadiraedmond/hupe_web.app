@@ -4,7 +4,7 @@ import { useAuthStore } from "@/store/auth.js";
 import { onBeforeMount, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-import { addDoc, updateDoc, collection, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore'
+import { addDoc, query, where, updateDoc, collection, doc, getDoc, getDocs, setDoc, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from "vue3-toastify"
 import Swal from 'sweetalert2'
@@ -35,7 +35,7 @@ onBeforeMount(async () => {
   userStore.setTotalAmount(userId)
 
   locations.value = [] 
-  locationStore.userLocations.forEach(location => {
+  locationStore.userLocations.forEach(async location => {
     if(param === 'en-attente' && location.status === 'En attente') {
       locations.value.push(location)
     }
@@ -53,7 +53,18 @@ onBeforeMount(async () => {
     }
     
     if(param === 'confirme' && location.status === 'Confirmé') {
-      locations.value.push(location)
+
+      const documentID = `${location.companieInfos.uid}_${userId}`
+  
+      const conversationDocRef = doc(firestoreDb, 'conversations', documentID)
+
+      const messagesColRef = collection(conversationDocRef, 'messages')
+
+      const q = query(messagesColRef, where('lu', '==', false))
+
+      const snapshot = await getDocs(q)
+      
+      locations.value.push({ ...location, unreadMessagesCount: snapshot.docs.length })
     }
     
     if(param === 'annule' && location.status === 'Annuler') {
@@ -911,10 +922,10 @@ const options = {
                                 <router-link :to="`/messagerie/${location.companieInfos.uid}`">
                                   <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
                                     Message
-                                    <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                      99+
+                                    <span v-if="location.unreadMessagesCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                      {{ location.unreadMessagesCount }}
                                       <span class="visually-hidden">unread messages</span>
-                                    </span> -->
+                                    </span>
                                   </button>
                                 </router-link>
                                 <!-- <router-link :to="`/messagerie/${location.companieInfos.uid}`">

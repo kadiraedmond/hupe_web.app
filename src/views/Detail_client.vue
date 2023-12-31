@@ -31,6 +31,27 @@ const getPolitiques = async () => {
 
 }
 
+
+const notation = ref(0)
+const getNotation = async () => {
+
+  const docRef = doc(firestoreDb, 'compagnies', `${companieId}`)
+
+  const notationColRef = collection(docRef, 'client_avis') 
+  
+  const snapshots = await getDocs(notationColRef) 
+
+  let totalEtoiles = 0 
+  if(snapshots.docs.length > 0) {
+    snapshots.docs.forEach(not_doc => { 
+        const notationData = not_doc.data() 
+        totalEtoiles += Number(notationData.nombre_etoile)
+    }) 
+
+    notation.value = Math.round((totalEtoiles / snapshots.docs.length) * 20) 
+  }
+}
+
 onBeforeMount(async () => {
   await companieStore.resetCompanieCars()
   await companieStore.setCompanieById(companieId)
@@ -44,6 +65,8 @@ onBeforeMount(async () => {
   promotionStore.setCompaniePromotionCars(companieId) 
 
   getPolitiques()
+
+  getNotation()
   
 })
 
@@ -95,62 +118,6 @@ const handleFileChange = () => {
 const locationColRef = collection(firestoreDb, 'location_vehicules')
 
 const isLoading = ref(false)
-
-// const reserver = async (car) => {
-//   isLoading.value = true
-
-//   const Data = {
-//     boite: car.boite,
-//     chauffeur: avecChauffeur.value === true ? 'Oui' : 'Non',
-//     client_id: user.uid || '',
-//     client_profil_url: user.imageUrl || '',
-//     compagnie_uid: companieId || companieStore.companie.uid,
-//     created_at: new Date(),
-//     date_retour: dateRetour.value,
-//     date_retrait: dateRetrait.value,
-//     enPromo: car.enPromo,
-//     heure_retrait: heureRetrait.value,
-//     identite_image_url: permis.value || '',
-//     interieurPays: interieurPays.value === true ? 'Oui' : 'Non',
-//     latitude: '',
-//     lieu_retrait: lieuRetrait.value,
-//     longitude: '',
-//     modele: car.modele,
-//     montant: car.montant,
-//     moteur: car.moteur,
-//     nom_client: name.value,
-//     number: '',
-//     payement: 'En attente',
-//     plaque_vehicule: car.serie_vehicule,
-//     status: 'En attente',
-//     telephone_client: user.telephone,
-//     ticket_id: uuidv4(),
-//     vehicule: car.vehicule,
-//     vehicule_image_url: car.vehicule_image_url,
-//   }
-
-//   try {
-//     const docRef = await addDoc(locationColRef, Data)
-
-//     if(docRef) {
-//       console.log('Document ajouté avec success')
-      
-//       isLoading.value = false
-
-//       document.querySelector('.btn-close').click()
-
-//       toast.success("Réservation effectuée avec succès", { 
-//         autoClose: 3500, 
-//         position: toast.POSITION.TOP_CENTER
-//       })
-//     }
-
-//     document.querySelector('#reservationForm').reset()
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
 </script>
 
 <template>
@@ -197,7 +164,7 @@ const isLoading = ref(false)
                     <p class="card-text">
                       {{ companieStore.companie.description }}
                     </p>
-                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> 30%</button>
+                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> {{ notation !== NaN ? notation : 0 }}%</button>
                     
                   </div>
                 </div>
@@ -307,20 +274,20 @@ const isLoading = ref(false)
                             <div class="row g-1">
                               <div class="col-md-12">
                                 <div class="row mb-2">
-                                  <div class="col-md-8">
+                                  <div class="col-md-9">
                                     <p class="card-text" style="font-size: 14px">
                                       <strong>{{ car.vehicule }} | {{ car.modele }} | {{ car.anne_vehicule }} </strong> 
                                     </p>
                                   </div>
 
-                                  <div class="col-md-4"> 
+                                  <div class="col-md-3"> 
                                       <button
                                       class="btn btn-primary"
                                       style="
                                         background-color: #219935;
                                         border-color: #219935;
                                         font-size: 14px;
-                                        margin-left: -29px;
+                                        margin-left: -44px;
                                         width: 104px;
                                         position: absolute;
                                         margin-top: -8px;
@@ -628,7 +595,7 @@ const isLoading = ref(false)
                              <div class="row">
                                <div class="col-md-12">
                                 <h6 id="h6">Présentation</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                                <p>{{ companieStore.companie.presentation }}</p>
                                </div>
                                                     
                              </div>
@@ -637,7 +604,7 @@ const isLoading = ref(false)
                                
                                <div class="col-md-12">
                                 <h6 id="h6">Description</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+                                <p>{{ companieStore.companie.description }}</p>
                                </div>
 
                                 <div class="card-body">

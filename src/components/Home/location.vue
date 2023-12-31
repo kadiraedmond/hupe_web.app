@@ -15,28 +15,39 @@ import { firestoreDb } from "@/firebase/firebase.js"
 
 const companieStore = useCompanieStore() 
 
+// const vipLocationCompanies = ref([])
+
 onBeforeMount(() => {
   companieStore.getAllCompanies
 
   companieStore.getLocationCompanies
+
+  // getNotation()
 }) 
 
-const notation = ref()
-const getNotation = async (uid) => {
-  const companieDocRef = doc(firestoreDb, 'compagnies', `${uid}`) 
-  const notationColRef = collection(companieDocRef, 'client_avis') 
-  
-  const snapshots = await getDocs(notationColRef) 
+// const getNotation = async () => {
+//   companieStore.vipLocationCompanies.forEach(async location_comp => {
 
-  let totalEtoiles = 0 
-  snapshots.docs.forEach(not_doc => { 
-      const notationData = not_doc.data() 
-      totalEtoiles += Number(notationData.nombre_etoile)
-  }) 
-  
-  const calc = Math.round((totalEtoiles / snapshots.docs.length) * 20) 
-  notation.value = calc
-}
+//     const docRef = doc(firestoreDb, 'compagnies', `${location_comp.uid}`)
+
+//     const notationColRef = collection(docRef, 'client_avis') 
+    
+//     const snapshots = await getDocs(notationColRef) 
+
+//     let totalEtoiles = 0 
+//     let notation = 0
+//     if(snapshots.docs.length > 0) {
+//       snapshots.docs.forEach(not_doc => { 
+//           const notationData = not_doc.data() 
+//           totalEtoiles += Number(notationData.nombre_etoile)
+//       }) 
+
+//       notation = Math.round((totalEtoiles / snapshots.docs.length) * 20) 
+//     }
+
+//     vipLocationCompanies.value.push({ ...location_comp, notation })
+//   })
+// }
 </script>
 <template>
   <!-- <div

@@ -1,7 +1,7 @@
 <script setup>
 import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
 
-import { useCompanieStore } from "@/store/companie.js";
+import { useCompanieStore } from "@/store/companie.js"
 
 import {
   collection,
@@ -10,16 +10,44 @@ import {
   where,
   getDoc,
   getDocs,
-} from "firebase/firestore";
-import { firestoreDb } from "@/firebase/firebase.js";
+} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
 
-const companieStore = useCompanieStore();
+const companieStore = useCompanieStore()
+
+// const vipTransportCompanies = ref([])
 
 onBeforeMount(() => {
-  companieStore.getAllCompanies;
+  companieStore.getAllCompanies
 
-  companieStore.getTransportCompanies;
-});
+  companieStore.getTransportCompanies
+
+  // getNotation()
+})
+
+// const getNotation = async () => {
+//   companieStore.vipTransportCompanies.forEach(async reserv_comp => {
+
+//     const docRef = doc(firestoreDb, 'compagnies', `${reserv_comp.uid}`)
+
+//     const notationColRef = collection(docRef, 'client_avis') 
+    
+//     const snapshots = await getDocs(notationColRef) 
+
+//     let totalEtoiles = 0 
+//     let notation = 0
+//     if(snapshots.docs.length > 0) {
+//       snapshots.docs.forEach(not_doc => { 
+//           const notationData = not_doc.data() 
+//           totalEtoiles += Number(notationData.nombre_etoile)
+//       }) 
+
+//       notation = Math.round((totalEtoiles / snapshots.docs.length) * 20) 
+//     }
+
+//     vipTransportCompanies.value.push({ ...reserv_comp, notation })
+//   })
+// }
 </script>
 <template>
   <!-- <div

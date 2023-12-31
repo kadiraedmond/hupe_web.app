@@ -468,7 +468,7 @@ const goTo_chat = async () => {
             :key="index"
           >
             <router-link
-              :to="`/detail_vehicule_location/${vehicule.uid}`"
+              :to="`/detail_vehicule_location/${vehicule.companieInfos.uid}/${vehicule.uid}`"
               style="color: #000"
             >
               <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
@@ -522,10 +522,16 @@ const goTo_chat = async () => {
                         <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
                       </div>
                       <div class="carousel-item">
-                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                        <img :src="vehicule.vehicule_image_url2" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
                       </div>
                       <div class="carousel-item">
-                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                        <img :src="vehicule.vehicule_image_url3" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img :src="vehicule.vehicule_image_url4" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img :src="vehicule.vehicule_image_url5" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
                       </div>
                     </div>
                     <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleControls' + index" data-bs-slide="prev" id="btn1">
@@ -781,7 +787,7 @@ const goTo_chat = async () => {
             v-for=" (popularDestination, index  ) in promotionStore.popularDestinations" :key="index"
           >
             <router-link
-            :to="`/detail_reservation_ticket/${popularDestination.uid}`"
+            :to="`/detail_reservation_ticket/${popularDestination.companieInfos.uid}/${popularDestination.uid}`"
               style="color: #000"
             >
               <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">

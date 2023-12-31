@@ -147,6 +147,15 @@ const valider = async (reservation) => {
       icon: "success"
     })
 
+    // Mise a jour du tableau de bord
+    elements_valide.value.push(reservation)
+    valides.totalNumber++
+    valides.totalPrice += Number(reservation.montant) 
+
+    elements_en_attente.value = elements_en_attente.value.filter(reserv => reserv.uid !== reservation.uid)
+
+    
+    // Notification du client par rapport a la validation
     const userDocRef = doc(firestoreDb, 'users', `${reservation.client_id}`)
     const snapshot = await getDoc(userDocRef)
     let user

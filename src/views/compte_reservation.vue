@@ -11,7 +11,10 @@ import Politique from "@/components/CompteReservation/Politique.vue"
 
 import { useCompanieStore } from '@/store/companie.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, onMounted } from "vue"
+import { onBeforeMount, ref, onMounted } from "vue"
+
+import { collection, doc, addDoc, getDocs, query, where } from 'firebase/firestore'
+import { firestoreDb } from '@/firebase/firebase.js'
 
 const companieStore = useCompanieStore()
 const authStore = useAuthStore()
@@ -22,11 +25,33 @@ const userId = savedUser.uid || authStore.user.uid
 // const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieById(userId)
+
+  getNotation()
 })
 
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+const notation = ref(0)
+const getNotation = async () => {
+
+  const docRef = doc(firestoreDb, 'compagnies', `${userId}`)
+
+  const notationColRef = collection(docRef, 'client_avis') 
+  
+  const snapshots = await getDocs(notationColRef) 
+
+  let totalEtoiles = 0 
+  if(snapshots.docs.length > 0) {
+    snapshots.docs.forEach(not_doc => { 
+        const notationData = not_doc.data() 
+        totalEtoiles += Number(notationData.nombre_etoile)
+    }) 
+
+    notation.value = Math.round((totalEtoiles / snapshots.docs.length) * 20) 
+  }
+}
 </script>
 
 <template>
@@ -65,7 +90,7 @@ onMounted(() => {
                     <p class="card-text">
                       {{ companieStore.companie.description }}
                     </p>
-                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> 30%</button>
+                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> {{ notation }}%</button>
                     
                   </div>
                 </div>
