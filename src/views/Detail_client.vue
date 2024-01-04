@@ -11,18 +11,20 @@ import { toast } from 'vue3-toastify'
 
 import { useAuthStore } from '@/store/auth.js'
 import { v4 as uuidv4 } from 'uuid'
+import { encryptParam, decryptParam } from '@/utils/hash.js'
 
 const route = useRoute()
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const companieId = route.params.id 
+const companieId = decryptParam(route.params.id) 
 
 const politiques = ref({}) 
+const politiqueColRef = collection(firestoreDb, 'politiques')
 
 const getPolitiques = async () => {
-  const q = query(firestoreDb, 'politiques', where('compagnie_uid', '==', `${companieId}`)) 
+  const q = query(politiqueColRef, where('compagnie_uid', '==', `${companieId}`)) 
   const snapshots = await getDocs(q) 
 
   if(snapshots.docs.length > 0) {
@@ -351,7 +353,7 @@ const isLoading = ref(false)
 
                                   
                                   <div class="col-6">
-                                    <router-link :to="`/detail_vehicule_location/${companieId}/${car.uid}`">
+                                    <router-link :to="`/detail_vehicule_location/${encryptParam(companieId)}/${encryptParam(car.uid)}`">
                                       <button
                                         type="button"
                                         class="btn btn-primary"
@@ -408,7 +410,7 @@ const isLoading = ref(false)
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-                <div  v-if="promotionStore.companiePromotionCars.length > 0">
+                <div v-if="promotionStore.companiePromotionCars.length > 0">
                   <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
                   <div class="col" v-for="(promoCar, i) in promotionStore.companiePromotionCars" :key="i">
                     
@@ -457,7 +459,7 @@ const isLoading = ref(false)
                         "
                       >
                         <router-link
-                          to="'/detail'"
+                          :to="`/detail_vehicule_location/${encryptParam(companieId)}/${encryptParam(promoCar.uid)}`"
                           style="
                             border: 1px solid;
                             border-radius: 5px;

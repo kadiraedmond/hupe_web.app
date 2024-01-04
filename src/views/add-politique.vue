@@ -1,4 +1,5 @@
 <script setup>
+import { encryptParam } from '@/utils/hash.js'
 $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',
         tabsize: 2,
@@ -50,7 +51,7 @@ $('#summernote').summernote({
             :key="index"
           >
             <router-link
-              :to="`/detail_vehicule_location/${vehicule.uid}`"
+              :to="`/detail_vehicule_location/${encryptParam(vehicule.uid)}`"
               style="color: #000"
             >
               <div class="card h-100 border-0" id="card_compagnie">

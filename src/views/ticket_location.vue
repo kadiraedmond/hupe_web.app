@@ -7,12 +7,14 @@ import { firestoreDb } from "@/firebase/firebase.js"
 import { useLocationStore } from '@/store/location.js'
 import { useRoute } from 'vue-router' 
 
+import { decryptParam } from '@/utils/hash.js'
+
 import QrcodeVue from 'qrcode.vue' 
 
 const route = useRoute()
 const locationStore = useLocationStore()
 
-const locationId = route.params.id
+const locationId = decryptParam(route.params.id)
 
 const location = ref({})
 const companie = ref({})

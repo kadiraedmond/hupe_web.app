@@ -12,6 +12,7 @@ import {
   getDocs,
 } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
+import { encryptParam } from '@/utils/hash.js'
 
 const companieStore = useCompanieStore()
 
@@ -142,10 +143,10 @@ onBeforeMount(() => {
     <div class="col"  v-for="(companie, index) in companieStore.vipTransportCompanies"
           :key="index > 6">
       <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-        <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+        <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
           <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
         </router-link>
-        <router-link :to="`/details/${companie.uid}`" id="router-link">
+        <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
           <div class="card-body">
             <div class="row">
               <div class="col-8">

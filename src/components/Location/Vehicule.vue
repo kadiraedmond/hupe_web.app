@@ -50,64 +50,71 @@ const image5 = ref()
 const isUploading = ref(false)
 
 const handleSubmit = async () => {
-  const docRef = doc(firestoreDb, 'compagnies', `${userId}`)
-  const collectionRef = collection(docRef, 'vehicules_programmer')
-
-  const data = {
-    uid: '', 
-    anne_vehicule: annee.value, 
-    avecchauffeurprix: prix_avec_chauffeur.value, 
-    boite: transmission.value, 
-    capitalprix: 0, 
-    compagnie_uid: userId, 
-    enAvant: false, 
-    enPromo: false, 
-    country: savedUser.country,
-    interieurpaysprix: prix_interieur.value, 
-    modele: modele.value, 
-    montant: prix_journalier.value, 
-    moteur: moteur.value, 
-    serie_vehicule: immatriculation.value, 
-    status: 'active', 
-    vehicule: marque.value, 
-    vehicule_image_url: image1.value, 
-    vehicule_image_url2: image2.value, 
-    vehicule_image_url3: image3.value, 
-    vehicule_image_url4: image4.value, 
-    vehicule_image_url5: image5.value, 
-    addedAt: Timestamp.now() 
-  }
-  const newDoc = await addDoc(collectionRef, data)
-
-  if(newDoc) {
-    console.log('Document ajouté')
-    try {
-      await updateDoc(newDoc, { uid: `${newDoc.id}` }) 
-      console.log('ID ajouté')
-
-      const newData = { ...data, uid: `${newDoc.id}` }
-      companieCars.value.push(newData)
-
-      // const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer')
-
-      // await setDoc(doc(vehiculeColRef, `${newDoc.id}`), newData)
-      
-    } catch (error) {
-      console.log(error)
-    }
-
-    await document.querySelector('.btn-close-a').click()
+  if(!image1.value || !image2.value || !image3.value || !image4.value || !image5.value) {
     Swal.fire({
-      title: "Succès",
-      text: "Votre véhicule a été ajouté",
-      icon: "success"
+      title: "Erreur",
+      text: "Prenez soin de renseigner tous les champs avant de soumettre",
+      icon: "error"
     })
-    toast.success("Votre véhicule a été ajouté", { 
-      autoClose: 3500, 
-      position: toast.POSITION.TOP_CENTER
-    })
+    return
   }
 
+  else {
+    const docRef = doc(firestoreDb, 'compagnies', `${userId}`)
+    const collectionRef = collection(docRef, 'vehicules_programmer')
+  
+    const data = {
+      uid: '', 
+      anne_vehicule: annee.value, 
+      avecchauffeurprix: prix_avec_chauffeur.value, 
+      boite: transmission.value, 
+      capitalprix: 0, 
+      compagnie_uid: userId, 
+      enAvant: false, 
+      enPromo: false, 
+      country: savedUser.country,
+      interieurpaysprix: prix_interieur.value, 
+      modele: modele.value, 
+      montant: prix_journalier.value, 
+      montant_promotion: 0, 
+      moteur: moteur.value, 
+      serie_vehicule: immatriculation.value, 
+      status: 'active', 
+      vehicule: marque.value, 
+      vehicule_image_url: image1.value, 
+      vehicule_image_url2: image2.value, 
+      vehicule_image_url3: image3.value, 
+      vehicule_image_url4: image4.value, 
+      vehicule_image_url5: image5.value, 
+      addedAt: Timestamp.now() 
+    }
+    const newDoc = await addDoc(collectionRef, data)
+  
+    if(newDoc) {
+      console.log('Document ajouté')
+      try {
+        await updateDoc(newDoc, { uid: `${newDoc.id}` }) 
+        console.log('ID ajouté')
+  
+        const newData = { ...data, uid: `${newDoc.id}` }
+        companieCars.value.push(newData)
+  
+        // const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer')
+  
+        // await setDoc(doc(vehiculeColRef, `${newDoc.id}`), newData)
+        
+        await document.querySelector('.btn-close-a').click()
+        Swal.fire({
+          title: "Succès",
+          text: "Votre véhicule a été ajouté",
+          icon: "success"
+        })
+      } catch (error) {
+        console.log(error)
+      }
+  
+    }
+  }
 }
 
 const handleFile1 = async (e) => {
@@ -265,7 +272,7 @@ const promote = async (car) => {
         } 
         
         else {
-          await updateDoc(docRef, { enPromo: true })
+          await updateDoc(docRef, { enPromo: true, montant_promotion: montant.value })
           
           const data = { 
             uid: car.uid, 
@@ -304,7 +311,7 @@ const promote = async (car) => {
       } 
 
       else if(car.enPromo === true) {
-        await updateDoc(docRef, { enPromo: false }) 
+        await updateDoc(docRef, { enPromo: false, montant_promotion: 0 }) 
 
         const carDocRef = doc(carInPromoColRef, `${car.uid}`) 
 

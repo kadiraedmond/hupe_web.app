@@ -199,14 +199,14 @@ const handleSubmit = async () => {
                 <label for="inputAddress2" class="form-label"
                   >Description</label
                 >
-                <textarea type="text" v-model="description" class="form-control" id="inputAddress2" required>
+                <textarea type="text" maxlength="50" v-model="description" class="form-control" id="inputAddress2" required>
                 </textarea>
               </div>
               <div class="col-12">
                 <label for="inputAddress2" class="form-label"
                   >Présentation</label
                 >
-                <textarea type="text" v-model="presentation" class="form-control" id="inputAddress2" required>
+                <textarea type="text" maxlength="50" v-model="presentation" class="form-control" id="inputAddress2" required>
                 </textarea>
               </div>
               <div class="col-12">

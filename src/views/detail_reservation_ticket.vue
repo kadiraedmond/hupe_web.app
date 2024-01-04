@@ -14,18 +14,19 @@ import { toast } from 'vue3-toastify'
 import { useAuthStore } from '@/store/auth.js'
 
 import { v4 as uuidv4 } from 'uuid'
+import { encryptParam, decryptParam } from '@/utils/hash.js'
 
 const route = useRoute()
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const programmeId = route.params.trajetId 
+const programmeId = decryptParam(route.params.trajetId) 
 
 const programmes = ref([]) 
 const autresProgrammes = ref([]) 
 
-const companieId = route.params.companieId
+const companieId = decryptParam(route.params.companieId)
 
 onBeforeMount(async () => {
   await promotionStore.setProgramme(companieId, programmeId) 
@@ -80,7 +81,7 @@ const reserver = async (programme) => {
     heure_depart: heureDepart.value, 
     lieu_depart: programme.lieu_depart,
     lieu_arrive: programme.destination,
-    montant: programme.montant,
+    montant: programme.enPromo === true ? programme.montant_promotion : programme.montant,
     nom_client: `${user.lastName} ${user.firstName}`,
     nombre_personne: nombrePersonnes.value,
     number: `T_${Date.now()}`, 
@@ -132,7 +133,7 @@ const reserver = async (programme) => {
       icon: "success"
     })
 
-    await router.push(`/notation/${companieId}`) 
+    await router.push(`/notation/${encryptParam(companieId)}`) 
     window.location.reload() 
   } catch (error) {
     console.log(error)
@@ -144,7 +145,7 @@ onMounted(() => {
 })
 
 const goToRelatedProgram = async (programUID) => {
-  await router.push(`/detail_reservation_ticket/${companieId}/${programUID}`)
+  await router.push(`/detail_reservation_ticket/${encryptParam(companieId)}/${encryptParam(programUID)}`)
   location.reload()
 }
 
@@ -269,7 +270,7 @@ const goToRelatedProgram = async (programUID) => {
                       <div class="card-body text-center">
                         <p class="card-title" style="font-weight: 600;">La valeur du trajet est estimée à</p>
                          
-                        <p class="card-text" style="font-size: 50px; font-weight: 500; color: #219935;"> {{ promotionStore.programme.montant }} FCFA</p>
+                        <p class="card-text" style="font-size: 50px; font-weight: 500; color: #219935;"> {{ promotionStore.programme.enPromo === true ? promotionStore.programme.montant_promotion : promotionStore.programme.montant }} FCFA</p>
                          
                       </div>
                     </div>
@@ -867,7 +868,7 @@ const goToRelatedProgram = async (programUID) => {
                         </div>
                         <div class="col-6">
                           <h6 style=" color: #219935 !important">
-                            {{ promotionStore.programme.montant }} FCFA
+                            {{ promotionStore.programme.enPromo === true ? promotionStore.programme.montant_promotion : promotionStore.programme.montant }} FCFA
                           </h6>
                         </div>
                       </div>
@@ -972,7 +973,7 @@ const goToRelatedProgram = async (programUID) => {
               id="badges0"
               style="left: 10px !important"
             >
-              {{ programme.montant }} FCFA
+              {{ programme.enPromo === true ? programme.montant_promotion : programme.montant }} FCFA
             </button>
 
             <div class="card-body">

@@ -15,7 +15,7 @@ import Compte from '@/components/compte_client/Compte.vue'
 import Post from '@/components/compte_client/Post.vue' 
 import Swal from 'sweetalert2'
 
-import { addDoc, collection, Timestamp } from 'firebase/firestore'
+import { addDoc, updateDoc, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from 'vue3-toastify'
 
@@ -39,6 +39,7 @@ const clientPublicationColRef = collection(firestoreDb, 'client_publication')
 
 const submitPost = async () => {
   const newData = {
+    uid: '',
     client_id: userId, 
     createdAt: Timestamp.now(),
     demande: post.value,
@@ -49,7 +50,8 @@ const submitPost = async () => {
   }
 
   try {
-    await addDoc(clientPublicationColRef, newData) 
+    const docRef = await addDoc(clientPublicationColRef, newData) 
+    await updateDoc(docRef, { uid: `${docRef.id}` })
 
     demandeStore.setPosts(userId)
 

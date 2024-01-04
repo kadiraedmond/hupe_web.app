@@ -4,10 +4,11 @@ import { useRoute } from 'vue-router'
 import { collection, query, doc, where, getDoc, getDocs, addDoc, Timestamp } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js" 
 import Swal from 'sweetalert2'
+import { decryptParam } from '@/utils/hash.js'
 
 const route = useRoute() 
 
-const companieId = route.params.id 
+const companieId = decryptParam(route.params.id) 
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 

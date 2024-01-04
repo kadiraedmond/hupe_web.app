@@ -10,21 +10,24 @@ import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from 'vue3-toastify'
 
 import { useAuthStore } from '@/store/auth.js'
+import { encryptParam } from '@/utils/hash.js'
 
 import { v4 as uuidv4 } from 'uuid'
+import { decryptParam } from '@/utils/hash.js'
 
 const route = useRoute()
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const companieId = route.params.id 
+const companieId = decryptParam(route.params.id) 
 
 const politiques = ref('') 
+const politiqueColRef = collection(firestoreDb, 'politiques')
 
 
 const getPolitiques = async () => {
-  const q = query(firestoreDb, 'politiques', where('compagnie_uid', '==', `${companieId}`)) 
+  const q = query(politiqueColRef, where('compagnie_uid', '==', `${companieId}`)) 
   const snapshots = await getDocs(q) 
 
   politiques.value = snapshots.docs[0].data()
@@ -60,7 +63,7 @@ onBeforeMount(async () => {
 
   companieStore.setCompanieCars(companieId)
   companieStore.setProgrammesVoyages(companieId)
-  promotionStore.setCompaniePromotionCars(companieId) 
+  promotionStore.setCompaniePromotionProgrammes(companieId) 
 
   getPolitiques()
   
@@ -321,7 +324,7 @@ onMounted(() => {
                           </div>
                           <div class="col-md-12">
                             <!-- Button trigger modal -->
-                            <router-link :to="`/detail_reservation_ticket/${companieId}/${programme.uid}`">
+                            <router-link :to="`/detail_reservation_ticket/${encryptParam(companieId)}/${encryptParam(programme.uid)}`">
                               <button
                                 type="button"
                                 class="btn btn-primary"
@@ -518,9 +521,9 @@ onMounted(() => {
                 aria-labelledby="promotion-tab"
                 tabindex="0"
               >
-              <div  v-if="promotionStore.companiePromotionCars.length > 0">
+              <div  v-if="promotionStore.companiePromotionProgrammes.length > 0">
                   <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
-                  <div class="col" v-for="(promoCar, i) in promotionStore.companiePromotionCars" :key="i">
+                  <div class="col" v-for="(promoProgram, i) in promotionStore.companiePromotionProgrammes" :key="i">
                     
                     <div
                       class="card border-0"
@@ -570,7 +573,7 @@ onMounted(() => {
                         "
                       >
                         <router-link
-                          to="'/detail'"
+                          :to="`/detail_reservation_ticket/${encryptParam(companieId)}/${encryptParam(promoProgram.uid)}`"
                           style="
                             border: 1px solid;
                             border-radius: 5px;
@@ -589,16 +592,16 @@ onMounted(() => {
                           />
                     </router-link>
                         <button class="btn btn-primary" id="badges">
-                          <s> {{ promoCar.ancien_montant }} FCFA </s>
+                          <s> {{ promoProgram.ancien_montant }} FCFA </s>
                         </button>
                         <button class="btn btn-primary" id="badges0">
-                          {{ promoCar.montant }} FCFA
+                          {{ promoProgram.montant }} FCFA
                         </button>
                         <button class="btn btn-primary" id="badges012">
-                          {{ promoCar.pourcentage }}%
+                          {{ promoProgram.pourcentage }}%
                         </button>
                         <button class="btn btn-primary" id="badges0121">
-                          {{ promoCar.vehicule }} {{ promoCar.modele }} {{ promoCar.anne_vehicule }}
+                          {{ promoProgram.lieu_depart }} - {{ promoProgram.destination }}
                         </button>
                       </div>
                     </div>

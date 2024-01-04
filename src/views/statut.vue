@@ -7,6 +7,8 @@ import { addDoc, query, where, updateDoc, setDoc, getDoc, getDocs, doc, collecti
 import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from "vue3-toastify"
 
+import { encryptParam } from '@/utils/hash.js'
+
 import { useReservationStore } from '@/store/reservation.js'
 
 import { useRoute } from 'vue-router'
@@ -415,7 +417,7 @@ const options = {
                             
                           <div class="row mb-2" v-if="reservation.status == 'Confirmé'" style=" margin-top: 0px; margin-bottom: 24px !important;">
                               <div class="col-6 text-start">
-                                <router-link :to="`/ticket_reservation/${reservation.uid}`">
+                                <router-link :to="`/ticket_reservation/${encryptParam(reservation.uid)}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="
@@ -632,7 +634,7 @@ const options = {
                                                   <div class="col-md-10">
                                                     <div class="row">
                                                       <div class="col-md-12 mb-3"> 
-                                                      <a :href="`/raison/reservation/${reservation.uid}`">
+                                                      <a :href="`/raison/reservation/${encryptParam(reservation.uid)}`">
                                                         <button
                                                           class="btn btn-primary w-100"
                                                           style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
@@ -811,7 +813,7 @@ const options = {
                               </a>
                             </div>
                             <div class="col-md-6">
-                              <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
+                              <router-link :to="`/messagerie/${encryptParam(reservation.companieInfos.uid)}`">
                                 <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
                                   Message
                                   <span v-if="reservation.unreadMessagesCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -835,7 +837,7 @@ const options = {
                           <div class="row" v-if="reservation.status == 'Annuler'">
                               
                             <div class="col-md-12 text-center">
-                              <router-link :to="`/detail_reservation_ticket/${reservation.trajet_id}`">
+                              <router-link :to="`/detail_reservation_ticket/${encryptParam(reservation.trajet_id)}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="background: #219935; border-color: #219935 ; font-size: 12px; "
@@ -850,7 +852,7 @@ const options = {
                           <div class="row" v-if="reservation.status == 'Utilisé'">
                               
                               <div class="col-md-12 text-center">
-                              <router-link :to="`/detail_reservation_ticket/${reservation.trajet_id}`">
+                              <router-link :to="`/detail_reservation_ticket/${encryptParam(reservation.trajet_id)}`">
                                     <button
                                     class="btn btn-primary w-75"
                                     style="background: #219935; border-color: #219935 ; font-size: 12px; "

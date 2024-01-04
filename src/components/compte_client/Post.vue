@@ -2,7 +2,12 @@
 import { useDemandeStore } from '@/store/demande.js'
 import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, onMounted } from 'vue'
+import { onBeforeMount, ref, onMounted } from 'vue'
+import { encryptParam } from '@/utils/hash.js'
+
+import { doc, deleteDoc, Timestamp } from 'firebase/firestore'
+import { firestoreDb } from '@/firebase/firebase.js'
+import Swal from 'sweetalert2'
 
 const demandeStore = useDemandeStore()
 const userStore = useUserStore()
@@ -12,8 +17,11 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
-onBeforeMount(() => {
-  demandeStore.setPosts(userId)
+const posts = ref([])
+onBeforeMount(async () => {
+  await demandeStore.setPosts(userId)
+
+  posts.value = demandeStore.posts.slice().reverse()
 })
 
 onMounted(() => {
@@ -27,11 +35,36 @@ const options = {
   minute: '2-digit', 
   second: '2-digit', 
 }
+
+const deletePost = async (postUID) => {
+  const docRef = doc(firestoreDb, 'client_publication', postUID)
+  const result = await Swal.fire({
+    title: 'Supprimer ce post ?',
+    showCancelButton: true,
+    confirmButtonText: 'Oui',
+    cancelButtonText: 'Non',
+  })
+      
+  if(result.isConfirmed) {
+    await deleteDoc(docRef)
+    
+    demandeStore.setPosts(userId)
+
+    posts.value = posts.value.filter(post => post.uid !== postUID)
+
+    Swal.fire({
+      title: "Succès",
+      text: "Votre post a bien été supprimé",
+      icon: "success"
+    }) 
+  }
+
+}
 </script>
 
 <template>
   <div class="row mt-5">
-    <div class="col-md-6 mb-3" v-for="(post, postIndex) in demandeStore.posts.slice().reverse()" :key="postIndex">
+    <div class="col-md-6 mb-3" v-for="(post, postIndex) in posts" :key="postIndex">
       <!-- Button trigger modal -->
       <button
         type="button"
@@ -62,6 +95,18 @@ const options = {
             <p class="text-black">
               {{ post.responses.length }} {{ post.responses.length === 0 ? 'réponses' : post.responses.length === 1 ? 'réponse' : 'réponses' }}
             </p>
+            <button
+              @click="deletePost(post.uid)"
+              class="btn btn-primary"
+              style="
+                  background: white;
+                  border-color: crimson;
+                  color: crimson;
+                  font-size: 12px; 
+              "
+              >
+                Supprimer
+            </button>
           </div>
         </div>
       </button>
@@ -101,8 +146,8 @@ const options = {
                           <div class="row g-1">
                             <div class="col-md-12 d-flex">
                               <router-link 
-                                :to="`/detail/${response.companyInfos.uid}`" 
-                                v-if="response.companyInfos.type_compagnie == 'Location'"
+                                :to="`/detail/${encryptParam(response.companyInfos.uid)}`" 
+                                v-if="response.companyInfos.type_compagnie === 'Location'"
                               >
                                 
                                 <div class="card-body">
@@ -124,8 +169,8 @@ const options = {
                               </router-link>
                               
                               <router-link 
-                                :to="`/details/${response.companyInfos.uid}`" 
-                                v-if="response.companyInfos.type_compagnie == 'Transport'"
+                                :to="`/details/${encryptParam(response.companyInfos.uid)}`" 
+                                v-if="response.companyInfos.type_compagnie === 'Transport'"
                               >
                                 <img
                                   :src="response.companyInfos.imageLogoUrl"

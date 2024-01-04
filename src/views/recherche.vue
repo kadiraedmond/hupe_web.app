@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, onBeforeMount, ref } from "vue"
 import { useSearchStore } from "@/store/search.js"
+import { encryptParam } from '@/utils/hash.js'
 
 const searchStore = useSearchStore()
 
@@ -193,7 +194,7 @@ onMounted(() => {
                             style="background: #f9f9f9; box-shadow: none"
                             
                             >
-                                <router-link :to="companie.type_compagnie ==='Location' ? `/detail/${companie.uid}` : companie.type_compagnie ==='Transport' ? `/details/${companie.uid}` : ``" style="color: #000">
+                                <router-link :to="companie.type_compagnie ==='Location' ? `/detail/${encryptParam(companie.uid)}` : companie.type_compagnie ==='Transport' ? `/details/${encryptParam(companie.uid)}` : ``" style="color: #000">
                                     <img
                                     :src="companie.imageCouvertureUrl"
                                     class="card-img-top"
@@ -258,7 +259,7 @@ onMounted(() => {
                             v-for="(vehicule, i) in searchStore.vehiculesResults" :key="i"
                         >
                             <router-link
-                            :to="`/detail_vehicule_location/${vehicule.uid}`"
+                            :to="`/detail_vehicule_location/${encryptParam(vehicule.uid)}`"
                             style="color: #000"
                             >
                                 <div class="card h-100 border-0" id="card_compagnie">
@@ -365,7 +366,7 @@ onMounted(() => {
                             v-for="(trajet, i) in searchStore.trajetsResults" :key="i"
                         >
                             <router-link
-                            :to="`/detail_reservation_ticket/${trajet.uid}`"
+                            :to="`/detail_reservation_ticket/${encryptParam(trajet.uid)}`"
                             style="color: #000"
                             >
                                 <div class="card h-100 border-0" id="card_compagnie">
@@ -528,7 +529,7 @@ onMounted(() => {
                             style="background: #f9f9f9; box-shadow: none"
                             
                             >
-                            <router-link :to="`/detail/${companie.uid}`" style="color: #000">
+                            <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="color: #000">
                                 <img
                                 :src="companie.imageCouvertureUrl"
                                 class="card-img-top"
@@ -650,7 +651,7 @@ onMounted(() => {
                     style="background: #f9f9f9; box-shadow: none"
                     
                     >
-                        <router-link :to="`/details/${companie.uid}`" style="color: #000">
+                        <router-link :to="`/details/${encryptParam(companie.uid)}`" style="color: #000">
                             <img
                             :src="companie.imageCouvertureUrl"
                             class="card-img-top"
@@ -1451,7 +1452,7 @@ onMounted(() => {
                             v-for="(vehicule, i) in searchStore.vehiculesResults" :key="i"
                         >
                             <router-link
-                            :to="`/detail_vehicule_location/${vehicule.uid}`"
+                            :to="`/detail_vehicule_location/${encryptParam(vehicule.uid)}`"
                             style="color: #000"
                             >
                                 <div class="card h-100 border-0" id="card_compagnie">
@@ -1623,7 +1624,7 @@ onMounted(() => {
                         v-for="(trajet, i) in searchStore.trajetsResults" :key="i"
                     >
                         <router-link
-                        :to="`/detail_reservation_ticket/${trajet.uid}`"
+                        :to="`/detail_reservation_ticket/${encryptParam(trajet.uid)}`"
                         style="color: #000"
                         >
                             <div class="card h-100 border-0" id="card_compagnie">
@@ -1801,7 +1802,7 @@ onMounted(() => {
                         
                     >
                         <router-link
-                        :to="`//detail_engin_location/`"
+                        :to="`/detail_engin_location/`"
                         style="color: #000"
                         >
                         <div class="card h-100 border-0" id="card_compagnie">

@@ -7,6 +7,7 @@ import { usePromotionStore } from "@/store/promotion.js"
 
 import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
+import { encryptParam } from '@/utils/hash.js'
 
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
@@ -82,8 +83,7 @@ const handleSearch = async () => {
      <!-- ======= Expertise et conseils en immobiliers Section ======= -->
     <section id="features" class="features mt-4">
       <div class="container">
-        <div class="row mb-4" style="margin-top: -51px;
-    margin-bottom: 33px !important;">
+        <div class="row mb-4" style="margin-top: -51px; margin-bottom: 33px !important;">
           <div class="col-md-3"></div>
           <div class="col-md-6">
             <div class="row" style="padding: 10px; border-radius: 5px;">
@@ -107,13 +107,13 @@ const handleSearch = async () => {
           </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div v-if="promotionStore.popularDestinations.length > 0" class="row row-cols-1 row-cols-md-4 g-4">
           <div
             class="col"
-            v-for=" (popularDestination, index  ) in promotionStore.popularDestinations" :key="index"
+            v-for=" (popularDestination, index) in promotionStore.popularDestinations" :key="index"
           >
             <router-link
-            :to="`/detail_reservation_ticket/${popularDestination.companieInfos.uid}/${popularDestination.uid}`"
+            :to="`/detail_reservation_ticket/${encryptParam(popularDestination.companieInfos.uid)}/${encryptParam(popularDestination.uid)}`"
               style="color: #000"
             >
               <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
@@ -174,14 +174,33 @@ const handleSearch = async () => {
                    <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 155px; width: 97%; margin-left: 4px;">
                       <div class="col-md-12 mt-2 ">
                         <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
-                /> {{ popularDestination.lieu_depart }} -
-                            {{ popularDestination.destination }}  </h5>
+                /> {{ popularDestination.lieu_depart }} - {{ popularDestination.destination }}  </h5>
                       </div>
                     </div>
                 </div>
                  
               </div>
             </router-link>
+          </div>
+        </div>
+
+        <div class="w-100" v-else>
+          <div class="row mt-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="card text-center border-0">
+                <div class="text-center">
+                  <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+                </div>
+                
+                <div class="card-body">
+                  <p class="card-text">Aucun résultat</p>
+                </div>
+              </div>
+            
+              
+            </div>
+            <div class="col-md-3"></div>
           </div>
         </div>
 
