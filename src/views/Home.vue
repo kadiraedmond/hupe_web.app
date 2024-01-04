@@ -20,6 +20,7 @@ import {
   getDocs,
 } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
+import { encryptParam } from '@/utils/hash.js'
 
 const companieStore = useCompanieStore()
 const slideStore = useSlide()
@@ -158,7 +159,7 @@ const goTo_chat = async () => {
                 :key="index"
                 :class="index === 0 ? 'carousel-item active' : 'carousel-item'"
               >
-                <router-link :to="`/detail/${slideImage.companieInfos.uid}`">
+                <router-link :to="`/detail/${encryptParam(slideImage.companieInfos.uid)}`">
                   <img
                     :src="slideImage.downloadURL"
                     class="d-block w-100"
@@ -468,7 +469,7 @@ const goTo_chat = async () => {
             :key="index"
           >
             <router-link
-              :to="`/detail_vehicule_location/${vehicule.companieInfos.uid}/${vehicule.uid}`"
+              :to="`/detail_vehicule_location/${encryptParam(vehicule.companieInfos.uid)}/${encryptParam(vehicule.uid)}`"
               style="color: #000"
             >
               <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
@@ -787,7 +788,7 @@ const goTo_chat = async () => {
             v-for=" (popularDestination, index  ) in promotionStore.popularDestinations" :key="index"
           >
             <router-link
-            :to="`/detail_reservation_ticket/${popularDestination.companieInfos.uid}/${popularDestination.uid}`"
+            :to="`/detail_reservation_ticket/${encryptParam(popularDestination.companieInfos.uid)}/${encryptParam(popularDestination.uid)}`"
               style="color: #000"
             >
               <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">

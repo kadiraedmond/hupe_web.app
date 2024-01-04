@@ -15,15 +15,16 @@ import { toast } from "vue3-toastify"
 
 import { useAuthStore } from "@/store/auth.js"
 import { v4 as uuidv4 } from "uuid"
+import { encryptParam, decryptParam } from '@/utils/hash.js'
 
 const route = useRoute()
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const carId = route.params.vehiculeId
+const carId = decryptParam(route.params.vehiculeId)
 
-const companieId = route.params.companieId
+const companieId = decryptParam(route.params.companieId)
 
 const vehicules = ref([]) 
 const autresVehicules = ref([])
@@ -192,7 +193,7 @@ const reserver = async (car) => {
       icon: "success"
     })
 
-    await router.push(`/notation/${companieId}`) 
+    await router.push(`/notation/${encryptParam(companieId)}`) 
     window.location.reload() 
   } catch (error) {
     console.log(error)
@@ -204,7 +205,7 @@ onMounted(() => {
 })
 
 const goToRelatedCar = async (carUID) => {
-  await router.push(`/detail_vehicule_location/${companieId}/${carUID}`)
+  await router.push(`/detail_vehicule_location/${encryptParam(companieId)}/${encryptParam(carUID)}`)
   location.reload()
 }
 </script>

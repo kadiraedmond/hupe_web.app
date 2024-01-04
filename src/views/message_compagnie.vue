@@ -7,6 +7,8 @@ import { useAuthStore } from '@/store/auth.js'
 import { addDoc, updateDoc, doc, getDocs, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 
+import { decryptParam } from '@/utils/hash.js'
+
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
@@ -19,7 +21,7 @@ const message = ref('')
 const messages = ref([])
 const receive_messages = ref([])
 
-const clientId = route.params.id
+const clientId = decryptParam(route.params.id)
 const userStore = useUserStore()
 
 const doc_id = `${userId}_${clientId}`
@@ -155,7 +157,7 @@ const options = {
                                 class="bx bx-check"
                                 style="font-size: 15px; color: #219935"
                               ></i>
-                              {{ new Intl.DateTimeFormat(undefined, options).format(other_message.sendAt) }}
+                              {{ new Intl.DateTimeFormat('fr-FR', options).format(other_message.sendAt.toDate()) }}
                           </div>
                         </div>
                       </div>
@@ -182,7 +184,7 @@ const options = {
                             {{ message.message }}
                           </div>
                           <div class="message-time text-end" style="font-size: 11px">
-                            {{ new Intl.DateTimeFormat(undefined, options).format(message.sendAt) }}
+                            {{ new Intl.DateTimeFormat('fr-FR', options).format(message.sendAt.toDate()) }}
                           </div>
                         </div>
                       </div> 

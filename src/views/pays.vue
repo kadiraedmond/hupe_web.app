@@ -5,6 +5,7 @@ import { useCompanieStore } from "@/store/companie.js";
 
 import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore";
 import { firestoreDb } from "@/firebase/firebase.js";
+import { encryptParam } from '@/utils/hash.js'
 
 const companieStore = useCompanieStore();
  
@@ -89,10 +90,10 @@ onMounted(() => {
                                       <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
                                             :key="index">
                                         <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                             <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" id="router-link">
                                             <div class="card-body">
                                               <div class="row">
                                                 <div class="col-8">
@@ -129,10 +130,10 @@ onMounted(() => {
                                       <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
                                             :key="index">
                                         <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                             <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" id="router-link">
                                             <div class="card-body">
                                               <div class="row">
                                                 <div class="col-8">
@@ -169,10 +170,10 @@ onMounted(() => {
                                       <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
                                             :key="index">
                                         <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                             <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" id="router-link">
                                             <div class="card-body">
                                               <div class="row">
                                                 <div class="col-8">
@@ -209,10 +210,10 @@ onMounted(() => {
                                       <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
                                             :key="index">
                                         <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                             <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" id="router-link">
                                             <div class="card-body">
                                               <div class="row">
                                                 <div class="col-8">
@@ -249,10 +250,10 @@ onMounted(() => {
                                       <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
                                             :key="index">
                                         <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                             <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" id="router-link">
                                             <div class="card-body">
                                               <div class="row">
                                                 <div class="col-8">
@@ -289,10 +290,10 @@ onMounted(() => {
                                       <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
                                             :key="index">
                                         <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                             <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" id="router-link">
                                             <div class="card-body">
                                               <div class="row">
                                                 <div class="col-8">
@@ -329,10 +330,10 @@ onMounted(() => {
                                       <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
                                             :key="index">
                                         <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                             <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" id="router-link">
                                             <div class="card-body">
                                               <div class="row">
                                                 <div class="col-8">
@@ -369,10 +370,10 @@ onMounted(() => {
                                       <div class="col"   v-for="(companie, index) in companieStore.locationCompanies"
                                             :key="index">
                                         <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                          <router-link :to="`/detail/${companie.uid}`" style="padding: 9px;">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                             <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                           </router-link>
-                                          <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                          <router-link :to="`/detail/${encryptParam(companie.uid)}`" id="router-link">
                                             <div class="card-body">
                                               <div class="row">
                                                 <div class="col-8">
@@ -437,10 +438,10 @@ onMounted(() => {
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
                                         <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
                                           <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                               <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                             </router-link>
-                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
                                               <div class="card-body">
                                                 <div class="row">
                                                   <div class="col-8">
@@ -476,10 +477,10 @@ onMounted(() => {
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
                                         <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
                                           <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                               <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                             </router-link>
-                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
                                               <div class="card-body">
                                                 <div class="row">
                                                   <div class="col-8">
@@ -515,10 +516,10 @@ onMounted(() => {
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
                                         <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
                                           <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                               <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                             </router-link>
-                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
                                               <div class="card-body">
                                                 <div class="row">
                                                   <div class="col-8">
@@ -554,10 +555,10 @@ onMounted(() => {
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
                                         <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
                                           <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                               <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                             </router-link>
-                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
                                               <div class="card-body">
                                                 <div class="row">
                                                   <div class="col-8">
@@ -593,10 +594,10 @@ onMounted(() => {
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
                                         <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
                                           <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                               <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                             </router-link>
-                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
                                               <div class="card-body">
                                                 <div class="row">
                                                   <div class="col-8">
@@ -632,10 +633,10 @@ onMounted(() => {
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
                                         <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
                                           <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                               <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                             </router-link>
-                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
                                               <div class="card-body">
                                                 <div class="row">
                                                   <div class="col-8">
@@ -671,10 +672,10 @@ onMounted(() => {
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
                                         <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
                                           <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                               <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                             </router-link>
-                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
                                               <div class="card-body">
                                                 <div class="row">
                                                   <div class="col-8">
@@ -710,10 +711,10 @@ onMounted(() => {
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
                                         <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
                                           <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
-                                            <router-link :to="`/details/${companie.uid}`" style="padding: 9px;">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
                                               <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                                             </router-link>
-                                            <router-link :to="`/details/${companie.uid}`" id="router-link">
+                                            <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
                                               <div class="card-body">
                                                 <div class="row">
                                                   <div class="col-8">

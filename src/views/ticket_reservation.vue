@@ -7,12 +7,14 @@ import { firestoreDb } from "@/firebase/firebase.js"
 import { useReservationStore } from '@/store/reservation.js'
 import { useRoute } from 'vue-router' 
 
+import { decryptParam } from '@/utils/hash.js'
+
 import QrcodeVue from 'qrcode.vue' 
 
 const route = useRoute()
 const reservationStore = useReservationStore()
 
-const reservationId = route.params.id
+const reservationId = decryptParam(route.params.id)
 
 const reservation = ref({})
 const companie = ref({})

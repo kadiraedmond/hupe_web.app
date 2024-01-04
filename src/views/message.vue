@@ -7,6 +7,8 @@ import { useAuthStore } from '@/store/auth.js'
 import { addDoc, updateDoc, doc, getDocs, collection, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 
+import { encryptParam, decryptParam } from '@/utils/hash.js'
+
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
@@ -19,7 +21,7 @@ const message = ref('')
 const messages = ref([])
 const receive_messages = ref([])
 
-const companieId = route.params.id
+const companieId = decryptParam(route.params.id)
 const companieStore = useCompanieStore()
 
 const doc_id = `${userId}_${companieId}`
@@ -104,7 +106,7 @@ const options = {
                   <div class="row g-0">
                     <div class="col-md-4">
                       <router-link 
-                      :to="`/detail/${companieStore.companie.uid}`" 
+                      :to="`/detail/${encryptParam(companieStore.companie.uid)}`" 
                       v-if="companieStore.companie.type_compagnie == 'Location'">
                         <img
                           :src="companieStore.companie.imageLogoUrl"
@@ -114,7 +116,7 @@ const options = {
                         />
                       </router-link>
                       <router-link 
-                      :to="`/details/${companieStore.companie.uid}`" 
+                      :to="`/details/${encryptParam(companieStore.companie.uid)}`" 
                       v-if="companieStore.companie.type_compagnie == 'Transport'">
                         <img
                           :src="companieStore.companie.imageLogoUrl"
@@ -127,7 +129,7 @@ const options = {
                     <div class="col-md-8">
                       <div class="card-body">
                         <router-link 
-                        :to="`/detail/${companieStore.companie.uid}`" 
+                        :to="`/detail/${encryptParam(companieStore.companie.uid)}`" 
                         v-if="companieStore.companie.type_compagnie == 'Location'" style="color: #000">
                           <h5 class="card-title" style="font-size: 14px">
                             {{ companieStore.companie.raison_social }}
@@ -137,7 +139,7 @@ const options = {
                           </p>
                         </router-link>
                         <router-link 
-                        :to="`/details/${companieStore.companie.uid}`" 
+                        :to="`/details/${encryptParam(companieStore.companie.uid)}`" 
                         v-if="companieStore.companie.type_compagnie == 'Transport'" style="color: #000">
                           <h5 class="card-title" style="font-size: 14px">
                             {{ companieStore.companie.raison_social }}
@@ -183,7 +185,7 @@ const options = {
                                 class="bx bx-check"
                                 style="font-size: 15px; color: #219935"
                               ></i>
-                              {{ new Intl.DateTimeFormat(undefined, options).format(other_message.sendAt) }}
+                              {{ new Intl.DateTimeFormat('fr-FR', options).format(other_message.sendAt.toDate()) }}
                           </div>
                         </div>
                       </div>
@@ -210,7 +212,7 @@ const options = {
                             {{ message.message }}
                           </div>
                           <div class="message-time text-end" style="font-size: 11px">
-                            {{ new Intl.DateTimeFormat(undefined, options).format(message.sendAt) }}
+                            {{ new Intl.DateTimeFormat('fr-FR', options).format(message.sendAt.toDate()) }}
                           </div>
                         </div>
                       </div>                      

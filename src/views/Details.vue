@@ -10,21 +10,24 @@ import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from 'vue3-toastify'
 
 import { useAuthStore } from '@/store/auth.js'
+import { encryptParam } from '@/utils/hash.js'
 
 import { v4 as uuidv4 } from 'uuid'
+import { decryptParam } from '@/utils/hash.js'
 
 const route = useRoute()
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const companieId = route.params.id 
+const companieId = decryptParam(route.params.id) 
 
 const politiques = ref('') 
+const politiqueColRef = collection(firestoreDb, 'politiques')
 
 
 const getPolitiques = async () => {
-  const q = query(firestoreDb, 'politiques', where('compagnie_uid', '==', `${companieId}`)) 
+  const q = query(politiqueColRef, where('compagnie_uid', '==', `${companieId}`)) 
   const snapshots = await getDocs(q) 
 
   politiques.value = snapshots.docs[0].data()
@@ -321,7 +324,7 @@ onMounted(() => {
                           </div>
                           <div class="col-md-12">
                             <!-- Button trigger modal -->
-                            <router-link :to="`/detail_reservation_ticket/${companieId}/${programme.uid}`">
+                            <router-link :to="`/detail_reservation_ticket/${encryptParam(companieId)}/${encryptParam(programme.uid)}`">
                               <button
                                 type="button"
                                 class="btn btn-primary"

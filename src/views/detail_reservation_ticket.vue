@@ -14,18 +14,19 @@ import { toast } from 'vue3-toastify'
 import { useAuthStore } from '@/store/auth.js'
 
 import { v4 as uuidv4 } from 'uuid'
+import { encryptParam, decryptParam } from '@/utils/hash.js'
 
 const route = useRoute()
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
 
 const authStore = useAuthStore()
-const programmeId = route.params.trajetId 
+const programmeId = decryptParam(route.params.trajetId) 
 
 const programmes = ref([]) 
 const autresProgrammes = ref([]) 
 
-const companieId = route.params.companieId
+const companieId = decryptParam(route.params.companieId)
 
 onBeforeMount(async () => {
   await promotionStore.setProgramme(companieId, programmeId) 
@@ -132,7 +133,7 @@ const reserver = async (programme) => {
       icon: "success"
     })
 
-    await router.push(`/notation/${companieId}`) 
+    await router.push(`/notation/${encryptParam(companieId)}`) 
     window.location.reload() 
   } catch (error) {
     console.log(error)
@@ -144,7 +145,7 @@ onMounted(() => {
 })
 
 const goToRelatedProgram = async (programUID) => {
-  await router.push(`/detail_reservation_ticket/${companieId}/${programUID}`)
+  await router.push(`/detail_reservation_ticket/${encryptParam(companieId)}/${encryptParam(programUID)}`)
   location.reload()
 }
 

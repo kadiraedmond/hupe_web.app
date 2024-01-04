@@ -5,13 +5,15 @@ import { useRoute } from 'vue-router'
 import { addDoc, updateDoc, collection, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js' 
 
+import { decryptParam } from '@/utils/hash.js'
+
 import Swal from 'sweetalert2' 
 
 import router from '@/router/router.js'
 
 const route = useRoute()
 
-const locationId = route.params.id
+const locationId = decryptParam(route.params.id)
 
 const refresh = ()=>{
   window.location.reload()

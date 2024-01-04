@@ -5,6 +5,7 @@ import { useCompanieStore } from "@/store/companie.js"
 
 import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
+import { encryptParam } from '@/utils/hash.js'
 
 const companieStore = useCompanieStore()
  
@@ -52,7 +53,7 @@ onMounted(() => {
               style="background: #f9f9f9; box-shadow: none"
               v-if="companie.offre == 'vip' && index < 4"
             >
-              <router-link :to="`/detail/${companie.uid}`">
+              <router-link :to="`/detail/${encryptParam(companie.uid)}`">
                 <img
                   :src="companie.imageLogoUrl"
                   class="card-img-top"
@@ -63,7 +64,7 @@ onMounted(() => {
               <img src="/assets/img/avatars/5.png" alt="" id="badgesLogo">
 
               <div class="card-body">
-                <router-link :to="`/detail/${companie.uid}`">
+                <router-link :to="`/detail/${encryptParam(companie.uid)}`">
                   <div class="row mt-2">
                     <div class="col-md-7">
                       <h5

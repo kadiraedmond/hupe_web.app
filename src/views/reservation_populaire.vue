@@ -7,6 +7,7 @@ import { usePromotionStore } from "@/store/promotion.js"
 
 import { collection, query, doc, where, getDoc, getDocs} from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
+import { encryptParam } from '@/utils/hash.js'
 
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
@@ -113,7 +114,7 @@ const handleSearch = async () => {
             v-for=" (popularDestination, index  ) in promotionStore.popularDestinations" :key="index"
           >
             <router-link
-            :to="`/detail_reservation_ticket/${popularDestination.companieInfos.uid}/${popularDestination.uid}`"
+            :to="`/detail_reservation_ticket/${encryptParam(popularDestination.companieInfos.uid)}/${encryptParam(popularDestination.uid)}`"
               style="color: #000"
             >
               <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
@@ -174,8 +175,7 @@ const handleSearch = async () => {
                    <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 155px; width: 97%; margin-left: 4px;">
                       <div class="col-md-12 mt-2 ">
                         <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
-                /> {{ popularDestination.lieu_depart }} -
-                            {{ popularDestination.destination }}  </h5>
+                /> {{ popularDestination.lieu_depart }} - {{ popularDestination.destination }}  </h5>
                       </div>
                     </div>
                 </div>

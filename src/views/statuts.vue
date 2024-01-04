@@ -9,6 +9,8 @@ import { firestoreDb } from '@/firebase/firebase.js'
 import { toast } from "vue3-toastify"
 import Swal from 'sweetalert2'
 
+import { encryptParam } from '@/utils/hash.js'
+
 import { useLocationStore } from '@/store/location.js'
 import { useRoute } from 'vue-router'
 
@@ -482,7 +484,7 @@ const options = {
 
                             <div class="row mb-2" v-if="location.status == 'Confirmé'" style=" margin-top: 0px; margin-bottom: 24px !important;">
                               <div class="col-6 text-start">
-                                <router-link :to="`/ticket_location/${location.uid}`">
+                                <router-link :to="`/ticket_location/${encryptParam(location.uid)}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="
@@ -730,7 +732,7 @@ const options = {
                                                   <div class="col-md-10">
                                                     <div class="row">
                                                       <div class="col-md-12 mb-3">
-                                                        <a :href="`/raison/location/${location.uid}`">
+                                                        <a :href="`/raison/location/${encryptParam(location.uid)}`">
                                                           <button
                                                           class="btn btn-primary w-100"
                                                           style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
@@ -919,7 +921,7 @@ const options = {
                                 </a>
                               </div>
                               <div class="col-6 text-end">
-                                <router-link :to="`/messagerie/${location.companieInfos.uid}`">
+                                <router-link :to="`/messagerie/${encryptParam(location.companieInfos.uid)}`">
                                   <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
                                     Message
                                     <span v-if="location.unreadMessagesCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -942,7 +944,7 @@ const options = {
                             <div class="row mb-2" v-if="location.status === 'Utilisé'" style="margin: 4px; margin-top: -15px;">
                                
                               <div class="col-12 text-center">
-                                <router-link :to="`/detail_vehicule_location/${location.vehicule_id}`">
+                                <router-link :to="`/detail_vehicule_location/${encryptParam(location.vehicule_id)}`">
                                   <button
                                   class="btn btn-primary w-75"
                                   style="background: #219935; border-color: #219935 ;font-size: 12px; "
@@ -956,7 +958,7 @@ const options = {
                             <div class="row mb-2" v-if="location.status === 'Annuler'" style="margin: 4px; margin-top: -15px;">
                                
                               <div class="col-12 text-center">
-                                 <router-link :to="`/detail_vehicule_location/${location.vehicule_id}`">
+                                 <router-link :to="`/detail_vehicule_location/${encryptParam(location.vehicule_id)}`">
                                    <button
                                    class="btn btn-primary w-75"
                                    style="background: #219935; border-color: #219935 ;font-size: 12px; "
