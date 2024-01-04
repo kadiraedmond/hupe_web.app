@@ -7,7 +7,7 @@ onMounted(() => {
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
-  <section id="breadcrumbs" class="breadcrumbs">
+  <!-- <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
 
         <ol>
@@ -16,9 +16,10 @@ onMounted(() => {
         </ol>
 
     </div>
-</section><!-- End Breadcrumbs -->
+</section> -->
+<!-- End Breadcrumbs -->
 
-<section id="portfolio-details" class="portfolio-details">
+<section id="portfolio-details" class="portfolio-details" style="margin-bottom: -165px; margin-top: 90px;">
     <div class="container">
         
           <div class="row g-5">
@@ -71,72 +72,156 @@ onMounted(() => {
               <div class="position-sticky" style="top: 0rem;">
                  
                 <div class="p-4" style="background:#f8f9fa">
-                  <h4 class="fst-italic mb-4">Articles récents</h4>
-                  <ol class="list-unstyled mb-0">
-                    
-                     
-                      <li>
-                        <div class="card mb-3 border-0"  style="background:#f8f9fa;border-radius: 5px;">
-                          <div class="row g-0">
-                            <div class="col-md-4">
-                              <img src="/assets/img/blog/1.jpg" class="img-fluid rounded-start w-75" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <routeur-link to="">
-                                  <h5 class="card-title" style="font-size: 14px; margin-top: -19px;">Comment Hupe Simplifie Vos Voyages Quotidiens</h5>
-                                </routeur-link>
-                                  <p style="font-size: 13px;"></p>
-                              </div>
+                  <h4 class="mb-4">Articles récents</h4>
+                  <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col">
+                      <div
+                        class="card h-100 border-0"
+                        style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                      >
+                        <img
+                          src="/assets/img/blog/1.jpg"
+                          class="card-img-top"
+                          alt="..."
+                          style="height: 193.13px !important;"
+                        />
+                        <div class="card-body">
+                          <div class="row" id="blog_row">
+                            <div class="col-md-12">
+                              <h5 class="card-title" id="blog_title">Comment Hupe Simplifie Vos Voyages Quotidiens</h5>
                             </div>
                           </div>
-                        </div>
-                      </li>
 
-                      <li>
-                        <div class="card mb-3 border-0"  style="background:#f8f9fa;border-radius: 5px;">
-                          <div class="row g-0">
-                            <div class="col-md-4">
-                              <img src="/assets/img/blog/2.jpg" class="img-fluid rounded-start w-75" alt="...">
+                          <div class="row mt-4">
+                            <div class="col-md-12">
+                              <h5 class="" style="font-size: 15px">
+                                <i
+                                  class="bx bxs-circle mr-2"
+                                  style="margin-right: 2px"
+                                ></i>
+                                8 mars 2023
+                              </h5>
                             </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <routeur-link to="">
-                                  <h5 class="card-title" style="font-size: 14px; margin-top: -19px;">Les Avantages de Louer un Véhicule avec Hupe</h5>
-                                </routeur-link>
-                                  <p style="font-size: 13px;"></p>
-                              </div>
+                          </div>
+
+                          <p class="card-text" style="font-size: 13px; text-align: justify;">
+                            Dans le tourbillon quotidien de la vie urbaine, chaque instant compte... 
+                          </p>
+                          <div class="row">
+                            <div class="col-md-12 text-center">
+                              <router-link to="/blog">
+                                <button
+                                class="btn"
+                                id="btn-blog"
+                              
+                              >
+                                Voir plus
+                              </button>
+                              </router-link>
+                              
                             </div>
                           </div>
                         </div>
-                      </li>
-                      <li>
-                        <div class="card mb-3 border-0"  style="background:#f8f9fa;border-radius: 5px;">
-                          <div class="row g-0">
-                            <div class="col-md-4">
-                              <img src="/assets/img/blog/3.jpg" class="img-fluid rounded-start w-75" alt="...">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div
+                        class="card h-100 border-0"
+                        style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2)"
+                      >
+                        <img
+                          src="/assets/img/blog/2.jpg"
+                          class="card-img-top h-50"
+                          alt="..."
+                          style="height: 193.13px !important;"
+                        />
+                        <div class="card-body">
+                          <div class="row" id="blog_row">
+                            <div class="col-md-12">
+                              <h5 class="card-title" id="blog_title">Les Avantages de Louer un Véhicule avec Hupe</h5>
                             </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <routeur-link to="">
-                                  <h5 class="card-title" style="font-size: 14px; margin-top: -19px;">Top 10 Destinations Incontournables à Explorer avec Hupe dans l'UEMOA</h5>
-                                </routeur-link>
-                                  <p style="font-size: 13px;"></p>
-                              </div>
+                          </div>
+
+                          <div class="row mt-4">
+                            <div class="col-md-12">
+                              <h5 class="" style="font-size: 15px">
+                                <i
+                                  class="bx bxs-circle mr-2"
+                                  style="margin-right: 2px"
+                                ></i>
+                                8 mars 2023
+                              </h5>
+                            </div>
+                          </div>
+
+                          <p class="card-text" style="font-size: 13px; text-align: justify;">
+                            Louer un véhicule avec Hupe va bien au-delà d'une simple transaction ...
+                          </p>
+                          <div class="row">
+                            <div class="col-md-12 text-center">
+                              <router-link to="/blog/article2">
+                                <button
+                                class="btn"
+                                id="btn-blog"
+                              >
+                                Voir plus
+                              </button>
+                              </router-link>
                             </div>
                           </div>
                         </div>
-                      </li>
-                      <hr>
-                  
-                     <li class="text-center">
-                      <routeur-link to="">
-                        <h5>Voir tous nos articles</h5>
-                      </routeur-link>
+                      </div>
+                    </div>
                      
-                     </li>
-           
-                  </ol>
+                    <div class="col">
+                      <div
+                        class="card h-100 border-0"
+                        style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); z-index: -1;"
+                      >
+                        <img
+                          src="/assets/img/blog/4.jpg"
+                          class="card-img-top"
+                          alt="..."
+                          style="height: 193.13px !important;"
+                        />
+                        <div class="card-body">
+                          <div class="row" id="blog_row">
+                            <div class="col-md-12">
+                              <h5 class="card-title" id="blog_title">L'Impact de Hupe sur l'Industrie de la Location ...</h5>
+                            </div>
+                          </div>
+
+                          <div class="row mt-4">
+                            <div class="col-md-12">
+                              <h5 class="" style="font-size: 15px">
+                                <i
+                                  class="bx bxs-circle mr-2"
+                                  style="margin-right: 2px"
+                                ></i>
+                                8 mars 2023
+                              </h5>
+                            </div>
+                          </div>
+
+                          <p class="card-text" style="font-size: 13px; text-align: justify;">
+                            L'évolution rapide de l'industrie de la location de véhicules a trouvé un nouveau ...
+                          </p>
+                          <div class="row">
+                            <div class="col-md-12 text-center">
+                              <router-link to="/blog/article4">
+                                <button
+                                class="btn"
+                                id="btn-blog"
+                              >
+                                Voir plus
+                              </button>
+                              </router-link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   
                 </div>
 
