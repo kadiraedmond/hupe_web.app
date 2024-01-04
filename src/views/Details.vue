@@ -63,7 +63,7 @@ onBeforeMount(async () => {
 
   companieStore.setCompanieCars(companieId)
   companieStore.setProgrammesVoyages(companieId)
-  promotionStore.setCompaniePromotionCars(companieId) 
+  promotionStore.setCompaniePromotionProgrammes(companieId) 
 
   getPolitiques()
   
@@ -521,9 +521,9 @@ onMounted(() => {
                 aria-labelledby="promotion-tab"
                 tabindex="0"
               >
-              <div  v-if="promotionStore.companiePromotionCars.length > 0">
+              <div  v-if="promotionStore.companiePromotionProgrammes.length > 0">
                   <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
-                  <div class="col" v-for="(promoCar, i) in promotionStore.companiePromotionCars" :key="i">
+                  <div class="col" v-for="(promoProgram, i) in promotionStore.companiePromotionProgrammes" :key="i">
                     
                     <div
                       class="card border-0"
@@ -573,7 +573,7 @@ onMounted(() => {
                         "
                       >
                         <router-link
-                          to="'/detail'"
+                          :to="`/detail_reservation_ticket/${encryptParam(companieId)}/${encryptParam(promoProgram.uid)}`"
                           style="
                             border: 1px solid;
                             border-radius: 5px;
@@ -592,16 +592,16 @@ onMounted(() => {
                           />
                     </router-link>
                         <button class="btn btn-primary" id="badges">
-                          <s> {{ promoCar.ancien_montant }} FCFA </s>
+                          <s> {{ promoProgram.ancien_montant }} FCFA </s>
                         </button>
                         <button class="btn btn-primary" id="badges0">
-                          {{ promoCar.montant }} FCFA
+                          {{ promoProgram.montant }} FCFA
                         </button>
                         <button class="btn btn-primary" id="badges012">
-                          {{ promoCar.pourcentage }}%
+                          {{ promoProgram.pourcentage }}%
                         </button>
                         <button class="btn btn-primary" id="badges0121">
-                          {{ promoCar.vehicule }} {{ promoCar.modele }} {{ promoCar.anne_vehicule }}
+                          {{ promoProgram.lieu_depart }} - {{ promoProgram.destination }}
                         </button>
                       </div>
                     </div>

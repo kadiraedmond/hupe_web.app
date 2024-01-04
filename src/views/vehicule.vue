@@ -72,17 +72,14 @@ const handleSearch = async () => {
           <ol>
             <li> <router-link to="/" style="color: #219935;" >Home</router-link></li>
             <li>Véhicules populaires</li>
-            <!-- <li>Toyota yaris 2022</li> -->
-
           </ol>
   
         </div>
-    </section><!-- End Breadcrumbs -->
-     <!-- ======= Expertise et conseils en immobiliers Section ======= -->
+      </section>
+
     <section id="features" class="features mt-4">
       <div class="container">
-        <div class="row mb-4" style="margin-top: -51px;
-    margin-bottom: 33px !important;">
+        <div class="row mb-4" style="margin-top: -51px; margin-bottom: 33px !important;">
           <div class="col-md-3"></div>
           <div class="col-md-6">
             <div class="row" style="padding: 10px; border-radius: 5px;">
@@ -107,7 +104,7 @@ const handleSearch = async () => {
         </div>
         
 
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div v-if="promotionStore.popularCars.length > 0" class="row row-cols-1 row-cols-md-4 g-4">
           <div
             class="col"
             v-for="(vehicule, index) in promotionStore.popularCars"
@@ -201,6 +198,26 @@ const handleSearch = async () => {
                  
               </div>
             </router-link>
+          </div>
+        </div>
+
+        <div class="w-100" v-else>
+          <div class="row mt-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="card text-center border-0">
+                <div class="text-center">
+                  <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+                </div>
+                
+                <div class="card-body">
+                  <p class="card-text">Aucun résultat</p>
+                </div>
+              </div>
+            
+              
+            </div>
+            <div class="col-md-3"></div>
           </div>
         </div>
       </div>

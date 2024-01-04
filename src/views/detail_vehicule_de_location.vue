@@ -132,7 +132,7 @@ const reserver = async (car) => {
     longitude: "",
     modele: car.modele, 
     annee_vehicule: car.anne_vehicule, 
-    montant: car.montant, 
+    montant: car.enPromo === true ? car.montant_promotion : car.montant, 
     avecchauffeurprix: car.avecchauffeurprix, 
     interieurpaysprix: car.interieurpaysprix, 
     moteur: car.moteur,
@@ -444,7 +444,7 @@ const goToRelatedCar = async (carUID) => {
                       <div class="card-body text-center">
                         <p class="card-title" style="font-weight: 600;">La valeur de la voiture est estimée à</p>
                          
-                        <p class="card-text" style="font-size: 50px; font-weight: 500; color: #219935;"> {{ promotionStore.vehicule.montant }} FCFA</p>
+                        <p class="card-text" style="font-size: 50px; font-weight: 500; color: #219935;"> {{ promotionStore.vehicule.enPromo === true ? promotionStore.vehicule.montant_promotion : promotionStore.vehicule.montant }} FCFA</p>
                          
                       </div>
                     </div>
@@ -857,7 +857,7 @@ const goToRelatedCar = async (carUID) => {
                         </div>
                         <div class="col-6">
                           <h6 style=" color: #219935 !important">
-                            {{ promotionStore.vehicule.montant }} FCFA
+                            {{ promotionStore.vehicule.enPromo === true ? promotionStore.vehicule.montant_promotion : promotionStore.vehicule.montant }} FCFA
                           </h6>
                         </div>
                       </div>
@@ -1018,7 +1018,7 @@ const goToRelatedCar = async (carUID) => {
                               font-size: 12px;
                             "
                           >
-                            {{ car.montant }} FCFA
+                            {{ car.enPromo === true ? car.montant_promotion : car.montant }} FCFA
                           </button>
                         </div>
                         

@@ -96,6 +96,9 @@ const handleSubmit = async () => {
   try {
     await updateDoc(docRef, data) 
     
+    
+    await location.reload()
+    
     Swal.fire({
       title: "Succès",
       text: "Informations misent à jour",

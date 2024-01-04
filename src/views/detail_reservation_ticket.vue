@@ -81,7 +81,7 @@ const reserver = async (programme) => {
     heure_depart: heureDepart.value, 
     lieu_depart: programme.lieu_depart,
     lieu_arrive: programme.destination,
-    montant: programme.montant,
+    montant: programme.enPromo === true ? programme.montant_promotion : programme.montant,
     nom_client: `${user.lastName} ${user.firstName}`,
     nombre_personne: nombrePersonnes.value,
     number: `T_${Date.now()}`, 
@@ -270,7 +270,7 @@ const goToRelatedProgram = async (programUID) => {
                       <div class="card-body text-center">
                         <p class="card-title" style="font-weight: 600;">La valeur du trajet est estimée à</p>
                          
-                        <p class="card-text" style="font-size: 50px; font-weight: 500; color: #219935;"> {{ promotionStore.programme.montant }} FCFA</p>
+                        <p class="card-text" style="font-size: 50px; font-weight: 500; color: #219935;"> {{ promotionStore.programme.enPromo === true ? promotionStore.programme.montant_promotion : promotionStore.programme.montant }} FCFA</p>
                          
                       </div>
                     </div>
@@ -868,7 +868,7 @@ const goToRelatedProgram = async (programUID) => {
                         </div>
                         <div class="col-6">
                           <h6 style=" color: #219935 !important">
-                            {{ promotionStore.programme.montant }} FCFA
+                            {{ promotionStore.programme.enPromo === true ? promotionStore.programme.montant_promotion : promotionStore.programme.montant }} FCFA
                           </h6>
                         </div>
                       </div>
@@ -973,7 +973,7 @@ const goToRelatedProgram = async (programUID) => {
               id="badges0"
               style="left: 10px !important"
             >
-              {{ programme.montant }} FCFA
+              {{ programme.enPromo === true ? programme.montant_promotion : programme.montant }} FCFA
             </button>
 
             <div class="card-body">

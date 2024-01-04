@@ -85,6 +85,8 @@ const handleSubmit = async () => {
     await updateDoc(userDocRef, data) 
     console.log('Document mis a jour') 
 
+    await location.reload()
+
     Swal.fire({
       title: "Succès",
       text: "Informations misent à jour",
@@ -207,6 +209,17 @@ const handleSubmit = async () => {
 
               <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Photo de profil</label>
+                <div class="col-md-4" style=" display: flex; justify-content: center; align-items: center">
+                  <img
+                    :src="userStore.user.imageUrl"
+                    alt
+                    class="w-px-40 h-auto rounded-circle"
+                    style="width: 150px;
+                          height: 150px !important;
+                          object-fit: cover;
+                          border: 2.8px solid rgb(232, 232, 232);"
+                  />
+                </div>
                 <div class="input-group has-validation">
                   <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
                    

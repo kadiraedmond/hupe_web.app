@@ -283,40 +283,43 @@ const selectedValue = ref('');
               </span> <i class="bi bi-chevron-down"></i
             ></router-link>
             <ul style="background: #219935; color: white">
-              <li @click="goTo_location">
+              <li @click="goTo_location" style="color: white">
                 <router-link 
                   to="" 
+                  style="color: white"
                   v-if="(savedUser && savedUser.type_compagnie == 'Location') 
                         || (user.raison_social && user.type_compagnie == 'Location') 
                         || (authStore.isConnected && authStore.isLocationCompany)"
                   >Compte location de vehicules</router-link
                 >
               </li>
-              <li @click="goTo_reservation">
+              <li @click="goTo_reservation" style="color: white">
                 <router-link to="" 
+                style="color: white"
                 v-if="(savedUser && savedUser.type_compagnie == 'Transport') 
                       || (user.raison_social && user.type_compagnie == 'Transport') 
                       || (authStore.isConnected && authStore.isReservationCompany)"
                   >Compte reservation de ticket de bus</router-link
                 >
               </li>
-              <li>
-                <router-link v-if="authStore.isConnected && authStore.isBigEnginsCompany || user.raison_social" to="/compte_gros_engin"
+              <li style="color: white">
+                <router-link style="color: white" v-if="authStore.isConnected && authStore.isBigEnginsCompany || user.raison_social" to="/compte_gros_engin"
                   >Compte location de gros engins</router-link
                 >
               </li>
-              <li>
-                <router-link v-if="authStore.isConnected && authStore.isCarsSellingCompany || user.raison_social" to="/compte_achat_engin">Compte vente d'engins </router-link>
+              <li style="color: white">
+                <router-link style="color: white" v-if="authStore.isConnected && authStore.isCarsSellingCompany || user.raison_social" to="/compte_achat_engin">Compte vente d'engins </router-link>
               </li>
-              <li @click="goTo_client">
+              <li @click="goTo_client" style="color: white">
                 <router-link 
+                  style="color: white"
                   v-if="(authStore.user.uid && !authStore.user.raison_social) 
                         || (savedUser && !savedUser.raison_social)" 
                   to="">
                   Mon compte 
                 </router-link>
               </li>
-              <li><router-link v-if="authStore.user.uid || savedUser" to="/" @click="logout">Déconnexion</router-link></li>
+              <li style="color: white"><router-link style="color: white" v-if="authStore.user.uid || savedUser" to="/" @click="logout">Déconnexion</router-link></li>
                
             </ul>
           </li>
@@ -338,6 +341,11 @@ const selectedValue = ref('');
 </template>
 
 <style scoped>
+.dropdown {
+  background: white;
+  color: white !important
+}
+
  #search{
   /* font-size: 15px; */
   width: 200px;

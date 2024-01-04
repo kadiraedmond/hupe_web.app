@@ -59,6 +59,7 @@ const addNewTrajet = async () => {
     jours_voyage: jours_de_voyage.value, 
     lieu_depart: lieu_depart.value, 
     montant: montant.value, 
+    montant_promotion: 0,
     nb_place: nombre_de_place.value, 
     status: 'active'
   }
@@ -262,7 +263,7 @@ const promote = async (trajet) => {
 
         else {
           
-          await updateDoc(docRef, { enPromo: true })
+          await updateDoc(docRef, { enPromo: true, montant_promotion: montant_promo.value })
           trajet.enPromo = true
           
           const data = {
@@ -271,10 +272,10 @@ const promote = async (trajet) => {
             compagnie_uid: userId, 
             country: companieStore.companie.country, 
             createdAt: Timestamp.now(), 
-            debut_promo: debut_promo.value, 
+            debut_promo: new Date(debut_promo.value), 
             destination: trajet.destination, 
             escale: trajet.escale, 
-            fin_promo: fin_promo.value, 
+            fin_promo: new Date(fin_promo.value), 
             heure_depart: trajet.heure_depart, 
             idTrack: uuidv4(), 
             country: savedUser.country,
@@ -298,7 +299,7 @@ const promote = async (trajet) => {
 
       else if(trajet.enPromo === true) { 
 
-        await updateDoc(docRef, { enPromo: false }) 
+        await updateDoc(docRef, { enPromo: false, montant_promotion: 0 }) 
         trajet.enPromo = false
 
         const trajetDocRef = doc(trajetInPromoColRef, `${trajet.uid}`) 

@@ -154,22 +154,22 @@ onUnmounted(() => unsubscribe())
                             <!-- <h3 style=" font-size: 20px; font-weight: 600;">Notifications</h3> -->
                             
                         </div>
-                        <div class="col-md-12 " style="background: rgb(249, 249, 249); padding: 24px; border-radius: 10px; margin-top: 22px;">
+                        <div class="col-md-12" style="background: rgb(249, 249, 249); padding: 24px; border-radius: 10px; margin-top: 22px;">
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="padding: 72px; margin-top: -149px;">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Toutes</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Non lues</button>
-                            </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Toutes</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Non lues</button>
+                                </li>
                             
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
-                                    
+                                    <div class="col-md-2"></div>
                                     <div v-if="notifications.length > 0">
-                                        <div class="col-md-12 mb-3" v-for="(notification, index) in notifications_desc" :key="index">
+                                        <div class="col-md-8 mb-3" v-for="(notification, index) in notifications_desc" :key="index">
                                             <div @click="readNotifications(notification)" class="card border-0 survol">
                                                 <div class="card-body">
                                                     <div class="row">
@@ -218,13 +218,14 @@ onUnmounted(() => unsubscribe())
                                             <div class="col-md-3"></div>
                                         </div>
                                     </div>
-                                                                    
+                                    <div class="col-md-2"></div>                         
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0" style="padding: 72px; margin-top: -107px;">
                                 <div class="row">
+                                    <div class="col-md-2"></div>
                                     <div v-if="noneReadNotifications.length > 0">
-                                        <div class="col-md-12 mb-3" v-for="(noneReadNotification, index) in noneReadNotifications_desc" :key="index">
+                                        <div class="col-md-8 mb-3" v-for="(noneReadNotification, index) in noneReadNotifications_desc" :key="index">
                                             <div @click="readNotifications(noneReadNotification)" class="card border-0 survol">
                                                 <div class="card-body">
                                                     <div class="row">
@@ -274,7 +275,7 @@ onUnmounted(() => unsubscribe())
                                             <div class="col-md-3"></div>
                                         </div>
                                     </div>
-                                     
+                                    <div class="col-md-2"></div>
                                 </div>
                             </div>
                         </div>

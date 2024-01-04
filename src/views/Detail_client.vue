@@ -410,7 +410,7 @@ const isLoading = ref(false)
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-                <div  v-if="promotionStore.companiePromotionCars.length > 0">
+                <div v-if="promotionStore.companiePromotionCars.length > 0">
                   <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
                   <div class="col" v-for="(promoCar, i) in promotionStore.companiePromotionCars" :key="i">
                     
@@ -459,7 +459,7 @@ const isLoading = ref(false)
                         "
                       >
                         <router-link
-                          to="'/detail'"
+                          :to="`/detail_vehicule_location/${encryptParam(companieId)}/${encryptParam(promoCar.uid)}`"
                           style="
                             border: 1px solid;
                             border-radius: 5px;
