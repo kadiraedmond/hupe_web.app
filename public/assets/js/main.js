@@ -233,6 +233,25 @@
   });
 
 
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.querySelector('.scroll-container');
+    const content = document.querySelector('.content');
+    const scrollLeftButton = document.querySelector('.scroll-left-button');
+    const scrollRightButton = document.querySelector('.scroll-right-button');
+  
+    let scrollAmount = 20; // Ajustez la quantité de défilement selon vos besoins
+  
+    scrollLeftButton.addEventListener('click', function() {
+      scrollContainer.scrollLeft -= scrollAmount;
+    });
+  
+    scrollRightButton.addEventListener('click', function() {
+      scrollContainer.scrollLeft += scrollAmount;
+    });
+  });
+  
+
+
 //   document.addEventListener("scroll", function() {
 //     var navbar = document.querySelector(".navbar");
 //     var stickyDiv = document.querySelector(".fixe");

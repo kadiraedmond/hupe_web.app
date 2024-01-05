@@ -15,10 +15,18 @@ const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
 
 onBeforeMount(() => {
   
-
   companieStore.getAllCompanies
 
   promotionStore.getPopularCars;
+
+})
+
+onBeforeMount(async () => {
+  
+  companieStore.getAllCompanies
+
+  await promotionStore.getPopularCars;
+  items.value = promotionStore.popularCars
 
 })
 
@@ -60,6 +68,30 @@ const handleSearch = async () => {
   promotionStore.popularCars = results.value
 }
 
+// Pagination
+
+const items = ref([])
+const itemsPerPage = ref(1)
+const currentPage = ref(1)
+
+const totalItems = computed(() => items.value.length)
+
+const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage.value))
+
+const currentItems = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value
+  const end = start + itemsPerPage.value
+  return items.value.slice(start, end)
+})
+
+const previousPage = () => {
+  currentPage.value = currentPage.value - 1
+}
+    
+const nextPage = () => {
+  currentPage.value = currentPage.value + 1
+}
+
 </script>
 
 <template>
@@ -84,17 +116,15 @@ const handleSearch = async () => {
           <div class="col-md-6">
             <div class="row" style="padding: 10px; border-radius: 5px;">
                 <div class="col-md-12">
-                  <form @submit.prevent="handleSearch" class="d-flex" role="search">
-                    <input
-                      class="form-control me-2 text-white"
-                      type="search"
-                      placeholder="Rechercher"
-                      v-model="searchTerm"
-                      aria-label="Search"
-                      id="search"
-                    />
-                    <i class="bx bx-search" type="submit" id="icon_search"></i>
-                    <!-- <button class="btn btn-outline-success" type="submit" style="margin-left: -90px;">Search</button> -->
+                   
+                  <form class="d-flex" role="search" @submit.prevent="handleSearch" id="search">
+                    <div class="input-group">
+                      <span class="input-group-text" style="background: white; border-color: #219935; color: #219935; width: 60px;">
+                        
+                        <i class="bi bi-search" style="margin-left: 10px; font-size: 20px;"></i>
+                      </span>
+                      <input type="search" class="form-control" placeholder="Recherche..." v-model="searchTerm" aria-label="Recherche" style="border-color: #219935;">
+                    </div>
                   </form>
 
                  
@@ -107,7 +137,7 @@ const handleSearch = async () => {
         <div v-if="promotionStore.popularCars.length > 0" class="row row-cols-1 row-cols-md-4 g-4">
           <div
             class="col"
-            v-for="(vehicule, index) in promotionStore.popularCars"
+            v-for="(vehicule, index) in currentItems"
             :key="index"
           >
             <router-link
@@ -220,6 +250,17 @@ const handleSearch = async () => {
             <div class="col-md-3"></div>
           </div>
         </div>
+        <div class="row mt-5">
+            <div class="col-2"></div>
+            <div class="col-8 d-flex justify-content-center">
+              <div class="pagination">
+                <button class="btn btn-primary" style="background-color: #219935; border-color: #219935;  width: 100px; height: 36px;" @click="previousPage" :disabled="currentPage === 1">Précédent</button>
+                <span class="m-3" style="margin-top: 7px !important;">{{ currentPage }} / {{ totalPages }}</span>
+                <button class="btn btn-primary" style="background-color: #219935; border-color: #219935; width: 100px; height: 36px;"  @click="nextPage" :disabled="currentPage === totalPages">Suivant</button>
+              </div>
+            </div>
+            <div class="col-2"></div>
+          </div>
       </div>
     </section>
 

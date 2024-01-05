@@ -12,9 +12,18 @@ const companieStore = useCompanieStore()
 
 const companiesColRef = collection(firestoreDb, "compagnies")
 
-onBeforeMount(() => {
+// onBeforeMount(() => {
+//   companieStore.getAllCompanies
+//   companieStore.getTransportCompanies
+// })
+
+onBeforeMount(async () => {
+  
   companieStore.getAllCompanies
-  companieStore.getTransportCompanies
+
+  await companieStore.getTransportCompanies
+  items.value = companieStore.transportCompanies
+
 })
 
 onMounted(() => {
@@ -46,6 +55,31 @@ const handleSearch = async () => {
   companieStore.transportCompanies = results.value
 }
 
+// Pagination
+
+const items = ref([])
+const itemsPerPage = ref(1)
+const currentPage = ref(1)
+
+const totalItems = computed(() => items.value.length)
+
+const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage.value))
+
+const currentItems = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value
+  const end = start + itemsPerPage.value
+  return items.value.slice(start, end)
+})
+
+const previousPage = () => {
+  currentPage.value = currentPage.value - 1
+}
+    
+const nextPage = () => {
+  currentPage.value = currentPage.value + 1
+}
+
+
 </script>
 <template>
   <main id="main">
@@ -74,7 +108,7 @@ const handleSearch = async () => {
         </div>
 
         <div v-if="companieStore.transportCompanies.length > 0" class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col"  v-for="(companie, index) in companieStore.transportCompanies" :key="index"> 
+          <div class="col"  v-for="(companie, index) in currentItems" :key="index"> 
             <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
               <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
                 <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
@@ -129,6 +163,17 @@ const handleSearch = async () => {
             </div>
             <div class="col-md-3"></div>
           </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-2"></div>
+          <div class="col-8 d-flex justify-content-center">
+            <div class="pagination">
+              <button class="btn btn-primary" style="background-color: #219935; border-color: #219935;  width: 100px; height: 36px;" @click="previousPage" :disabled="currentPage === 1">Précédent</button>
+              <span class="m-3" style="margin-top: 7px !important;">{{ currentPage }} / {{ totalPages }}</span>
+              <button class="btn btn-primary" style="background-color: #219935; border-color: #219935; width: 100px; height: 36px;"  @click="nextPage" :disabled="currentPage === totalPages">Suivant</button>
+            </div>
+          </div>
+          <div class="col-2"></div>
         </div>
 
       </div>
