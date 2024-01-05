@@ -3,14 +3,11 @@ import { collection, query, doc, where, getDoc, getDocs, and, or} from "firebase
 import { firestoreDb } from "@/firebase/firebase.js"
 
 const companiesColRef = collection(firestoreDb, "compagnies")
-const locationVehiculeColRef = collection(firestoreDb, "location_vehicules")
-const reservationColRef = collection(firestoreDb, "reservation") 
 const trajetsColRef = collection(firestoreDb, 'programme_des_voyages') 
 const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer') 
 
 export const useSearchStore = defineStore('searchStore', {
     state: () => ({
-       results: [], 
        companiesResults: [], 
        vehiculesResults: [], 
        trajetsResults: [], 
@@ -29,7 +26,11 @@ export const useSearchStore = defineStore('searchStore', {
                 companiesSnapshot.docs.forEach(doc => {
                     const companieData = doc.data() 
 
-                    if(companieData.raison_social.toLowerCase().includes(searchTerm.toLowerCase()) || companieData.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    if(companieData.raison_social.toLowerCase().includes(searchTerm.toLowerCase()) 
+                        || companieData.description.toLowerCase().includes(searchTerm.toLowerCase())
+                        || companieData.raison_social.toLowerCase() == searchTerm.toLowerCase() 
+                        || companieData.description.toLowerCase() == searchTerm.toLowerCase()
+                    ) {
                         this.companiesResults.push(companieData) 
                     }
                 })
@@ -41,7 +42,11 @@ export const useSearchStore = defineStore('searchStore', {
                 vehiculesSnapshots.docs.forEach(async snap_doc => {
                     const programData = snap_doc.data() 
 
-                    if(programData.vehicule.toLowerCase().includes(searchTerm.toLowerCase()) || programData.modele.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    if(programData.vehicule.toLowerCase().includes(searchTerm.toLowerCase()) 
+                        || programData.modele.toLowerCase().includes(searchTerm.toLowerCase()) 
+                        || programData.vehicule.toLowerCase() == searchTerm.toLowerCase() 
+                        || programData.modele.toLowerCase() == searchTerm.toLowerCase()
+                    ) {
                         const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
                         const snapshot = await getDoc(companieDocRef)
 
@@ -59,7 +64,11 @@ export const useSearchStore = defineStore('searchStore', {
                 trajetsSnapshots.docs.forEach(async snap_doc => {
                     const programData = snap_doc.data() 
 
-                    if(programData.lieu_depart.toLowerCase().includes(searchTerm.toLowerCase()) || programData.destination.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    if(programData.lieu_depart.toLowerCase().includes(searchTerm.toLowerCase()) 
+                        || programData.destination.toLowerCase().includes(searchTerm.toLowerCase()) 
+                        || programData.lieu_depart.toLowerCase() == searchTerm.toLowerCase() 
+                        || programData.destination.toLowerCase() == searchTerm.toLowerCase()
+                    ) {
                         const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
                         const snapshot = await getDoc(companieDocRef)
         
@@ -67,11 +76,7 @@ export const useSearchStore = defineStore('searchStore', {
                         if(snapshot.exists()) companie = snapshot.data()
                         this.trajetsResults.push({ ...programData, companieInfos: companie }) 
                     }
-                })  
-
-                this.results.push(this.companiesResults) 
-                this.results.push(this.vehiculesResults) 
-                this.results.push(this.trajetsResults) 
+                })
                 
                 } catch (error) {
                 console.log(error)

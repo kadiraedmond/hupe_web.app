@@ -54,12 +54,17 @@ const handleSearch = async () => {
   }
   
   popularDestinations.forEach(programme => {
-    if(programme.lieu_depart.toLowerCase().includes(searchTerm.value.toLowerCase()) || programme.destination.toLowerCase().includes(searchTerm.value.toLowerCase())) {
+    if(programme.lieu_depart.toLowerCase().includes(searchTerm.value.toLowerCase()) 
+      || programme.destination.toLowerCase().includes(searchTerm.value.toLowerCase()) 
+      || programme.lieu_depart.toLowerCase() == searchTerm.value.toLowerCase() 
+      || programme.destination.toLowerCase() == searchTerm.value.toLowerCase()
+    ) {
         results.value.push(programme) 
     }
   })
 
   promotionStore.popularDestinations = results.value
+  items.value = results.value
 }
 
 </script>

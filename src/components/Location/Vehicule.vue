@@ -99,9 +99,9 @@ const handleSubmit = async () => {
         const newData = { ...data, uid: `${newDoc.id}` }
         companieCars.value.push(newData)
   
-        // const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer')
+        const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer')
   
-        // await setDoc(doc(vehiculeColRef, `${newDoc.id}`), newData)
+        await setDoc(doc(vehiculeColRef, `${newDoc.id}`), newData)
         
         await document.querySelector('.btn-close-a').click()
         Swal.fire({

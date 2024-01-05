@@ -75,9 +75,9 @@ const addNewTrajet = async () => {
       const newData = { ...data, uid: `${addedDoc.id}` }
       trajets.value.push(newData)
 
-      // const programmeColRef = collection(firestoreDb, 'programme_des_voyages')
+      const programmeColRef = collection(firestoreDb, 'programme_des_voyages')
 
-      // await setDoc(doc(programmeColRef, `${addedDoc.id}`), newData)
+      await setDoc(doc(programmeColRef, `${addedDoc.id}`), newData)
     
     } catch (error) {
       console.log(error)

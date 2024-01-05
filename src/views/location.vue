@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, onMounted, computed, ref, reactive } from "vue";
+import { onBeforeMount, onMounted, computed, ref, watch, reactive } from "vue";
 
 import Pagination from "@/components/Pagination.vue";
 
@@ -51,18 +51,23 @@ const handleSearch = async () => {
   snapshot.docs.forEach(doc => {
     const companieData = doc.data() 
 
-    if(companieData.raison_social.toLowerCase().includes(searchTerm.value.toLowerCase()) || companieData.description.toLowerCase().includes(searchTerm.value.toLowerCase())) {
+    if(companieData.raison_social.toLowerCase().includes(searchTerm.value.toLowerCase()) 
+      || companieData.description.toLowerCase().includes(searchTerm.value.toLowerCase()) 
+      || companieData.raison_social.toLowerCase() == searchTerm.value.toLowerCase() 
+      || companieData.description.toLowerCase() == searchTerm.value.toLowerCase()
+    ) {
         results.value.push(companieData) 
     }
   })
 
   companieStore.locationCompanies = results.value
+  items.value = results.value
 }
 
 // Pagination
 
 const items = ref([])
-const itemsPerPage = ref(1)
+const itemsPerPage = ref(12)
 const currentPage = ref(1)
 
 const totalItems = computed(() => items.value.length)

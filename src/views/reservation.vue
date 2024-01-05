@@ -47,12 +47,17 @@ const handleSearch = async () => {
   snapshot.docs.forEach(doc => {
     const companieData = doc.data() 
 
-    if(companieData.raison_social.toLowerCase().includes(searchTerm.value.toLowerCase()) || companieData.description.toLowerCase().includes(searchTerm.value.toLowerCase())) {
+    if(companieData.raison_social.toLowerCase().includes(searchTerm.value.toLowerCase()) 
+      || companieData.description.toLowerCase().includes(searchTerm.value.toLowerCase()) 
+      || companieData.raison_social.toLowerCase() == searchTerm.value.toLowerCase() 
+      || companieData.description.toLowerCase() == searchTerm.value.toLowerCase() 
+    ) {
         results.value.push(companieData) 
     }
   })
 
   companieStore.transportCompanies = results.value
+  items.value = results.value
 }
 
 // Pagination

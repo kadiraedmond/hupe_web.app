@@ -60,12 +60,17 @@ const handleSearch = async () => {
   }
   
   popularCars.forEach(car => {
-    if(car.vehicule.toLowerCase().includes(searchTerm.value.toLowerCase()) || car.modele.toLowerCase().includes(searchTerm.value.toLowerCase())) {
-        results.value.push(car) 
+    if(car.vehicule.toLowerCase().includes(searchTerm.value.toLowerCase()) 
+      || car.modele.toLowerCase().includes(searchTerm.value.toLowerCase()) 
+      || car.vehicule.toLowerCase() == searchTerm.value.toLowerCase() 
+      || car.modele.toLowerCase() == searchTerm.value.toLowerCase()
+    ) {
+      results.value.push(car) 
     }
   })
 
   promotionStore.popularCars = results.value
+  items.value = results.value
 }
 
 // Pagination
