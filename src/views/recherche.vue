@@ -80,6 +80,7 @@ onMounted(() => {
                 Réservations de tickets
               </button>
             </li>
+
             <li class="nav-item" role="presentation">
               <button
                 class="nav-link"
@@ -220,8 +221,8 @@ onMounted(() => {
                             </div>
                         </div>  
                     </div>
-                     
-                    <div class="row mt-2 row-cols-1 row-cols-md-3 mb-4 g-4">
+
+                    <div class="row row-cols-1 row-cols-md-4 mt-4 g-4">
                         <div
                             class="col"
                             v-for="(vehicule, i) in searchStore.vehiculesResults" :key="i"
@@ -230,104 +231,93 @@ onMounted(() => {
                             :to="`/detail_vehicule_location/${encryptParam(vehicule.companieInfos.uid)}/${encryptParam(vehicule.uid)}`"
                             style="color: #000"
                             >
-                                <div class="card h-100 border-0" id="card_compagnie">
-                                    <div class="row" style="margin: 0px">
-                                    <div class="col-md-12">
-                                        <div
-                                        class="card mb-3 border-0"
-                                        style="background: #f9f9f9;"
-                                        >
-                                        <div class="row g-1 d-flex mt-2">
-                                            
-                                            <div class="col-8 d-flex">
-                                            <img
-                                                :src="vehicule.companieInfos.imageLogoUrl"
-                                                alt
-                                                class="w-px-40 h-auto rounded-circle"
-                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                            />
-                                            <div>
-                                                <div class="card-body d-flex">
-                                                <h5 class="card-title" style="font-size: 12px">
-                                                    {{ vehicule.companieInfos.raison_social }}
-                                                </h5>
-                                                <p class="card-text" style="font-size: 12px">
-                                                    <i
-                                                    class="bx bx-map"
-                                                    style="color: rgb(139 139 139); margin-left: 5px"
-                                                    ></i>
-                                                {{ vehicule.companieInfos.description }}  
-                                                </p>
-                                                </div>
-                                            </div>
-                                            </div>
-
-                                            <div class="col-4 text-end">
-                                            <button
-                                                class="btn btn-primary"
-                                                style="
-                                                background: #219935;
-                                                border-color: #219935;
-                                                margin-top: 5px;
-                                                font-size: 12px;
-                                                "
-                                            >
-                                            {{ vehicule.montant }} FCFA
-                                            </button>
-                                            </div>
-                                            
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
+                            <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
+                                <div class="row" style="margin: 0px">
+                                <div class="col-md-12">
                                     <div
-                                    class="card mb-3 mt-4"
-                                    style="
-                                        max-width: 540px;
-                                        margin: 8px;
-                                        margin-top: -10px !important;
-                                        background: #f9f9f9;
-                                    "
+                                    class="card h-100 mb-3 border-0"
+                                    style="background: #f9f9f9;"
                                     >
-                                    <div class="row g-0" style="margin: 10px">
-                                        <div class="col-4">
-                                        <img
-                                            :src="vehicule.vehicule_image_url"
-                                            class="img-fluid h-100"
-                                            alt="..."
-                                            style="
-                                            width: 150px;
-                                            object-fit: cover;
-                                            "
-                                        />
-                                        </div>
+                                    <div class="row g-1 d-flex mt-2">
                                         
-                                        <div class="col-8">
-                                        <div class="card-body">
-                                            <p class="card-text" style="font-size: 13px ; ">
-                                            {{ vehicule.vehicule }} | {{ vehicule.anne_vehicule }}
-                                            </p>
-                                            <p class="card-text" style="font-size: 13px">
-                                            <strong style=" font-weight: 500;">Modéle | </strong> {{ vehicule.modele }}
-                                            </p>
-                                            <p class="card-text" style="font-size: 13px">
-                                            <strong style=" font-weight: 500;">Moteur | </strong> {{ vehicule.moteur }}
-                                            </p>
-                                            <p class="card-text" style="font-size: 13px">
-                                            <strong style=" font-weight: 500;">Immatriculation | </strong>
-                                            {{ vehicule.serie_vehicule }}
-                                            </p>
-                                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                                        <div class="col-7 d-flex">
+                                        <img
+                                            :src="vehicule.companieInfos.imageLogoUrl"
+                                            alt
+                                            class="w-px-40 h-auto rounded-circle"
+                                            style="width: 40px; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
+                                        />
+                                        <div>
+                                            <div class="card-body d-flex">
+                                            <h5 class="card-title" style="font-size: 10px">
+                                                {{ vehicule.companieInfos.raison_social }}
+                                            </h5>
+                                            
+                                            </div>
                                         </div>
+                                        </div>
+
+                                        <div class="col-5 text-end">
+                                        <button
+                                            class="btn btn-primary"
+                                            style="
+                                            background: #219935;
+                                            border-color: #219935;
+                                            margin-top: 5px;
+                                            font-size: 12px;
+                                            "
+                                        >
+                                            {{ vehicule.montant }} FCFA
+                                        </button>
                                         </div>
                                         
                                     </div>
                                     </div>
                                 </div>
+                                </div>
+                                <div class="card border-0" style="margin: 8px; margin-top: -13px;">
+                                <div :id="'carouselExampleControls' + i" class="carousel slide"  data-ride="false"  data-interval="false">
+                                    <div class="carousel-inner">
+                                    <div class="carousel-item active ">
+                                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img :src="vehicule.vehicule_image_url2" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img :src="vehicule.vehicule_image_url3" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img :src="vehicule.vehicule_image_url4" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img :src="vehicule.vehicule_image_url5" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleControls' + i" data-bs-slide="prev" id="btn1">
+                                    <i class='bx bx-chevron-left' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExampleControls' + i" data-bs-slide="next" id="btn1">
+                                    <i class='bx bx-chevron-right' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
+                                    </button>
+                                </div>
+
+                                <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 182px; width: 97%; margin-left: 5px;">
+                                    <div class="col-md-12 mt-2">
+                                        <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
+                                /> {{ vehicule.vehicule }} {{ vehicule.modele }} {{  vehicule.annee }}  </h5>
+                                    </div>
+                                    </div>
+                                
+                                
+                                
+                                </div>
+                                
+                            </div>
                             </router-link>
                         </div>
-                    
                     </div>
+                    
                     <div class="row mt-2 row-cols-1 row-cols-md-2 mb-4 g-4">
                         <div
                             class="col"
@@ -487,74 +477,40 @@ onMounted(() => {
                 <div class="col-md-9">
                     
                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <div
-                            class="col"
-                            v-for="(companie, i) in locationCompanies" :key="i" 
-                        >
-                            <div
-                            class="card h-100"
-                            id="compagnie_card"
-                            style="background: #f9f9f9; box-shadow: none"
-                            
-                            >
-                            <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="color: #000">
-                                <img
-                                :src="companie.imageCouvertureUrl"
-                                class="card-img-top"
-                                alt="..."
-                                style="
-                                    border-radius: 10px 10px 0px 0px;
-                                    max-height: 174px;
-                                    object-fit: cover;
-                                "
-                                />
-                            </router-link>
-
-                            <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
-
-                            <div class="card-body">
-                                <router-link to="/detail" style="color: #000">
-                                <div class="row mt-2">
-                                    <div class="col-md-7">
-                                    <h5
-                                        class="card-title"
-                                        style="font-size: 15px; color: black"
-                                    >
-                                        {{ companie.raison_social }}
-                                    </h5>
+                        <div class="col" v-for="(companie, i) in locationCompanies" :key="i">
+                            <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                                <router-link :to="`/detail/${encryptParam(companie.uid)}`" style="padding: 9px;">
+                                <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
+                                </router-link>
+                                <router-link :to="`/detail/${companie.uid}`" id="router-link">
+                                <div class="card-body">
+                                    <div class="row">
+                                    <div class="col-8">
+                                        <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"> {{ companie.raison_social }}</h5>
                                     </div>
-                                    <div class="col-md-5 text-end">
-                                    <boutton
-                                        class="btn btn-primary"
-                                        style="
-                                        background: white;
-                                        border-color: white;
-                                        border-radius: 30px;
-                                        color: #219935;
-                                        margin-top: -9px;
-                                        "
-                                    >
-                                        <i class="bx bx-like" style="color: #219935"></i> 30%
-                                    </boutton>
+                                    <div class="col-4">
+                                        <p> <i class="bx bx-like" style="color: #219935;font-size: 14px;"></i> 30% </p>
                                     </div>
+
+                                    </div>
+
+                                    <div class="row" style="margin-top: -11px;">
+                                    <div class="col-8">
+                                        <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                            {{ companie.adresse }}</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                                    </div>
+
+                                    </div>
+                                
+                                    
                                 </div>
                                 </router-link>
-                                <div class="row">
-                                <div class="col-md-8">
-                                    <p class="card-text mt-2" style="font-size: 14px">
-                                    <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                    </p>
-                                </div>
-                                <div class="col-md-4 text-center mt-2">
-                                    <i
-                                    class="bx bx-car"
-                                    style="color: #8b8b8b; font-size: 21px"
-                                    ></i>
-                                </div>
+                                
                             </div>
-                        </div>
-                        </div>
-                    </div>
+                        </div>  
                     </div>
                 </div>
             </div>
@@ -609,74 +565,41 @@ onMounted(() => {
             <div class="col-md-9">
                 
                 <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div
-                    class="col"
-                     v-for="(companie, i) in transportCompanies" :key="i"
-                >
-                    <div
-                    class="card h-100"
-                    id="compagnie_card"
-                    style="background: #f9f9f9; box-shadow: none"
-                    
-                    >
-                        <router-link :to="`/details/${encryptParam(companie.uid)}`" style="color: #000">
-                            <img
-                            :src="companie.imageCouvertureUrl"
-                            class="card-img-top"
-                            alt="..."
-                            style="
-                                border-radius: 10px 10px 0px 0px;
-                                max-height: 174px;
-                                object-fit: cover;
-                            "
-                            />
+                    <div class="col"  v-for="(companie, index) in transportCompanies" :key="index">
+                    <div class="card h-100 border-0 " style="background-color: #f7f7f7; border-radius: 11px;">
+                        <router-link :to="`/details/${encryptParam(companie.uid)}`" style="padding: 9px;">
+                        <img :src="companie.imageCouvertureUrl" class="card-img-top" alt="..." style="border-radius: 11px; height: 225.02px;">
                         </router-link>
-
-                        <img :src="companie.imageLogoUrl" alt="" id="badgesLogo">
-
+                        <router-link :to="`/details/${encryptParam(companie.uid)}`" id="router-link">
                         <div class="card-body">
-                            <router-link to="/detail" style="color: #000">
-                            <div class="row mt-2">
-                                <div class="col-md-7">
-                                <h5
-                                    class="card-title"
-                                    style="font-size: 15px; color: black"
-                                >
-                                    {{ companie.raison_social }}
-                                </h5>
-                                </div>
-                                <div class="col-md-5 text-end">
-                                <boutton
-                                    class="btn btn-primary"
-                                    style="
-                                    background: white;
-                                    border-color: white;
-                                    border-radius: 30px;
-                                    color: #219935;
-                                    margin-top: -9px;
-                                    "
-                                >
-                                    <i class="bx bx-like" style="color: #219935"></i> 30%
-                                </boutton>
-                                </div>
-                            </div>
-                            </router-link>
                             <div class="row">
-                            <div class="col-md-8">
-                                <p class="card-text mt-2" style="font-size: 14px">
-                                <i class="bx bx-map" style="color: #8b8b8b"></i> {{ companie.adresse }}
-                                </p>
+                            <div class="col-8">
+                                <h5 class="card-title" style="font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important; "> {{ companie.raison_social }}</h5>
                             </div>
-                            <div class="col-md-4 text-center mt-2">
-                                <i
-                                class="bx bx-car"
-                                style="color: #8b8b8b; font-size: 21px"
-                                ></i>
+                            <div class="col-4">
+                                <p> <i class="bx bx-like" style="color: #219935; font-size: 14px;"></i> 30% </p>
                             </div>
+
                             </div>
+
+                            <div class="row" style="margin-top: -11px;">
+                            <div class="col-8">
+                                <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
+                                    {{ companie.adresse }}</p>
+                            </div>
+                            <div class="col-4">
+                                <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">
+                            </div>
+
+                            </div>
+                        
+                            
                         </div>
+                        </router-link>
+                        
                     </div>
-                </div>
+                    </div>  
+                
                 </div>
             </div>
         </div>
@@ -1414,116 +1337,124 @@ onMounted(() => {
                 </div>
 
                 <div class="col-md-9">
-                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                     
+                    <div v-if="searchStore.vehiculesResults.length > 0" class="row row-cols-1 row-cols-md-3 mt-4 g-4">
+                        
                         <div
                             class="col"
                             v-for="(vehicule, i) in searchStore.vehiculesResults" :key="i"
                         >
-                        
                             <router-link
                             :to="`/detail_vehicule_location/${encryptParam(vehicule.companieInfos.uid)}/${encryptParam(vehicule.uid)}`"
                             style="color: #000"
                             >
-                                <div class="card h-100 border-0" id="card_compagnie">
-                                    <div class="row" style="margin: 0px">
-                                    <div class="col-md-12">
-                                        <div
-                                        class="card mb-3 border-0"
-                                        style="background: #f9f9f9;"
-                                        >
-                                        <div class="row g-1 d-flex mt-2">
-                                            
-                                            <div class="col-8 d-flex">
-                                            <img
-                                                :src="vehicule.companieInfos.imageLogoUrl"
-                                                alt
-                                                class="w-px-40 h-auto rounded-circle"
-                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                            />
-                                            <div>
-                                                <div class="card-body d-flex">
-                                                <h5 class="card-title" style="font-size: 12px">
-                                                    {{ vehicule.companieInfos.raison_social }}
-                                                </h5>
-                                                <p class="card-text" style="font-size: 12px">
-                                                    <i
-                                                    class="bx bx-map"
-                                                    style="color: rgb(139 139 139); margin-left: 5px"
-                                                    ></i>
-                                                {{ vehicule.companieInfos.description }}  
-                                                </p>
-                                                </div>
-                                            </div>
-                                            </div>
-
-                                            <div class="col-4 text-end">
-                                            <button
-                                                class="btn btn-primary"
-                                                style="
-                                                background: #219935;
-                                                border-color: #219935;
-                                                margin-top: 5px;
-                                                font-size: 12px;
-                                                "
-                                            >
-                                            {{ vehicule.montant }} FCFA
-                                            </button>
-                                            </div>
-                                            
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
+                            <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
+                                <div class="row" style="margin: 0px">
+                                <div class="col-md-12">
                                     <div
-                                    class="card mb-3 mt-4"
-                                    style="
-                                        max-width: 540px;
-                                        margin: 8px;
-                                        margin-top: -10px !important;
-                                        background: #f9f9f9;
-                                    "
+                                    class="card h-100 mb-3 border-0"
+                                    style="background: #f9f9f9;"
                                     >
-                                    <div class="row g-0" style="margin: 10px">
-                                        <div class="col-4">
-                                        <img
-                                            :src="vehicule.vehicule_image_url"
-                                            class="img-fluid h-100"
-                                            alt="..."
-                                            style="
-                                            width: 150px;
-                                            object-fit: cover;
-                                            "
-                                        />
-                                        </div>
+                                    <div class="row g-1 d-flex mt-2">
                                         
-                                        <div class="col-8">
-                                        <div class="card-body">
-                                            <p class="card-text" style="font-size: 13px ; ">
-                                            {{ vehicule.vehicule }} | {{ vehicule.anne_vehicule }}
-                                            </p>
-                                            <p class="card-text" style="font-size: 13px">
-                                            <strong style=" font-weight: 500;">Modéle | </strong> {{ vehicule.modele }}
-                                            </p>
-                                            <p class="card-text" style="font-size: 13px">
-                                            <strong style=" font-weight: 500;">Moteur | </strong> {{ vehicule.moteur }}
-                                            </p>
-                                            <p class="card-text" style="font-size: 13px">
-                                            <strong style=" font-weight: 500;">Immatriculation | </strong>
-                                            {{ vehicule.serie_vehicule }}
-                                            </p>
-                                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                                        <div class="col-7 d-flex">
+                                        <img
+                                            :src="vehicule.companieInfos.imageLogoUrl"
+                                            alt
+                                            class="w-px-40 h-auto rounded-circle"
+                                            style="width: 40px; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
+                                        />
+                                        <div>
+                                            <div class="card-body d-flex">
+                                            <h5 class="card-title" style="font-size: 10px">
+                                                {{ vehicule.companieInfos.raison_social }}
+                                            </h5>
+                                            
+                                            </div>
                                         </div>
+                                        </div>
+
+                                        <div class="col-5 text-end">
+                                        <button
+                                            class="btn btn-primary"
+                                            style="
+                                            background: #219935;
+                                            border-color: #219935;
+                                            margin-top: 5px;
+                                            font-size: 12px;
+                                            "
+                                        >
+                                            {{ vehicule.montant }} FCFA
+                                        </button>
                                         </div>
                                         
                                     </div>
                                     </div>
                                 </div>
+                                </div>
+                                <div class="card border-0" style="margin: 8px; margin-top: -13px;">
+                                <div :id="'carouselExampleControls' + i" class="carousel slide"  data-ride="false"  data-interval="false">
+                                    <div class="carousel-inner">
+                                    <div class="carousel-item active ">
+                                        <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img :src="vehicule.vehicule_image_url2" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img :src="vehicule.vehicule_image_url3" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img :src="vehicule.vehicule_image_url4" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img :src="vehicule.vehicule_image_url5" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
+                                    </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleControls' + (i + 1)" data-bs-slide="prev" id="btn1">
+                                    <i class='bx bx-chevron-left' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExampleControls' + (i + 1)" data-bs-slide="next" id="btn1">
+                                    <i class='bx bx-chevron-right' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
+                                    </button>
+                                </div>
+
+                                <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 182px; width: 97%; margin-left: 5px;">
+                                    <div class="col-md-12 mt-2">
+                                        <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
+                                /> {{ vehicule.vehicule }} {{ vehicule.modele }} {{  vehicule.annee }}  </h5>
+                                    </div>
+                                    </div>
+                                
+                                
+                                
+                                </div>
+                                
+                            </div>
                             </router-link>
                         </div>
-                    
+                    </div>
+                    <div class="w-100" v-else>
+                        <div class="row mt-4">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                                <div class="card text-center border-0">
+                                    <div class="text-center">
+                                    <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+                                    </div>
+                                    
+                                    <div class="card-body">
+                                    <p class="card-text">Aucun résultat pour votre recherche.</p>
+                                    </div>
+                                </div>
+                            
+                            
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
                     </div>
                     
-                </div>
+                   </div>
             </div>
 
            
@@ -1587,7 +1518,7 @@ onMounted(() => {
             </div>
 
             <div class="col-md-9">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div v-if="searchStore.trajetsResults.length > 0" class="row row-cols-1 row-cols-md-2 g-4">
                     <div
                         class="col"
                         v-for="(trajet, i) in searchStore.trajetsResults" :key="i"
@@ -1694,6 +1625,26 @@ onMounted(() => {
                     </div>
                 
                 </div>
+
+                <div class="w-100" v-else>
+                <div class="row mt-4">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                    <div class="card text-center border-0">
+                        <div class="text-center">
+                        <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+                        </div>
+                        
+                        <div class="card-body">
+                        <p class="card-text">Aucun résultat pour votre recherche</p>
+                        </div>
+                    </div>
+                    
+                    
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                </div>
                 
             </div>
         </div>
@@ -1765,7 +1716,7 @@ onMounted(() => {
             </div>
 
             <div class="col-md-9">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
+                <!-- <div class="row row-cols-1 row-cols-md-2 g-4">
                     <div
                         class="col"
                         
@@ -1861,8 +1812,7 @@ onMounted(() => {
                                     <strong style=" font-weight: 500;">Immatriculation | </strong>
                                     BG 20250
                                     </p>
-                                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                                </div>
+                                 </div>
                                 </div>
                                 
                             </div>
@@ -1966,8 +1916,7 @@ onMounted(() => {
                                     <strong style=" font-weight: 500;">Immatriculation | </strong>
                                     BG 20250
                                     </p>
-                                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                                </div>
+                                 </div>
                                 </div>
                                 
                             </div>
@@ -1976,6 +1925,26 @@ onMounted(() => {
                         </router-link>
                     </div>
                 
+                </div> -->
+
+                <div class="w-100">
+                <div class="row mt-4">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                    <div class="card text-center border-0">
+                        <div class="text-center">
+                        <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+                        </div>
+                        
+                        <div class="card-body">
+                        <p class="card-text">Aucun résultat pour votre recherche</p>
+                        </div>
+                    </div>
+                    
+                    
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
                 </div>
                 
             </div>
