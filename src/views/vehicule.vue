@@ -76,7 +76,7 @@ const handleSearch = async () => {
 // Pagination
 
 const items = ref([])
-const itemsPerPage = ref(1)
+const itemsPerPage = ref(12)
 const currentPage = ref(1)
 
 const totalItems = computed(() => items.value.length)
@@ -103,7 +103,7 @@ const nextPage = () => {
   <main id="main">
 
      <!-- ======= Breadcrumbs ======= -->
-     <section id="breadcrumbs" class="breadcrumbs">
+     <!-- <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
           <ol>
@@ -112,9 +112,9 @@ const nextPage = () => {
           </ol>
   
         </div>
-      </section>
+      </section> -->
 
-    <section id="features" class="features mt-4">
+    <section id="features" class="features " style="margin-top: 90px;">
       <div class="container">
         <div class="row mb-4" style="margin-top: -51px; margin-bottom: 33px !important;">
           <div class="col-md-3"></div>

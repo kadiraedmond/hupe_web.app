@@ -63,7 +63,7 @@ const handleSearch = async () => {
 // Pagination
 
 const items = ref([])
-const itemsPerPage = ref(1)
+const itemsPerPage = ref(12)
 const currentPage = ref(1)
 
 const totalItems = computed(() => items.value.length)

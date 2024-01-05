@@ -318,7 +318,7 @@ onMounted(() => {
                         </div>
                     </div>
                     
-                    <div class="row mt-2 row-cols-1 row-cols-md-2 mb-4 g-4">
+                    <!-- <div class="row mt-2 row-cols-1 row-cols-md-2 mb-4 g-4">
                         <div
                             class="col"
                             v-for="(trajet, i) in searchStore.trajetsResults" :key="i"
@@ -414,8 +414,7 @@ onMounted(() => {
                                             <strong style=" font-weight: 500;">Jours du voyage | </strong>
                                             {{ trajet.jours_voyage }}
                                             </p>
-                                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                                        </div>
+                                         </div>
                                         </div>
                                         
                                     </div>
@@ -424,6 +423,84 @@ onMounted(() => {
                             </router-link>
                         </div>
                 
+                    </div> -->
+
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                        <div
+                            class="col"
+                            v-for=" (popularDestination, index  ) in searchStore.trajetsResults" :key="index"
+                        >
+                            <router-link
+                            :to="`/detail_reservation_ticket/${encryptParam(popularDestination.companieInfos.uid)}/${encryptParam(popularDestination.uid)}`"
+                            style="color: #000"
+                            >
+                            <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
+                                <div class="row" style="margin: 0px">
+                                <div class="col-md-12">
+                                    <div
+                                    class="card h-100 mb-3 border-0"
+                                    style="background: #f9f9f9;"
+                                    >
+                                    <div class="row g-1 d-flex mt-2">
+                                        
+                                        <div class="col-7 d-flex">
+                                        <img
+                                        :src="popularDestination.companieInfos.imageLogoUrl"
+                                            alt
+                                            class="w-px-40 h-auto rounded-circle"
+                                            style="width: 40px; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
+                                        />
+                                        <div>
+                                            <div class="card-body d-flex">
+                                            <h5 class="card-title" style="font-size: 10px">
+                                                {{
+                                                    popularDestination.companieInfos
+                                                    .raison_social
+                                                }}
+                                            </h5>
+                                            
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-5 text-end">
+                                        <button
+                                            class="btn btn-primary"
+                                            style="
+                                            background: #219935;
+                                            border-color: #219935;
+                                            margin-top: 5px;
+                                            font-size: 12px;
+                                            "
+                                        >
+                                        {{ popularDestination.montant }}  FCFA
+                                        </button>
+                                        </div>
+                                        
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="card border-0" style="margin: 8px; margin-top: -13px;">
+                                <img
+                                        src="/assets/img/rb.jpg"
+                                        class="img-fluid h-100"
+                                        alt="..."
+                                        style="object-fit: cover ; border-radius: 11px;height: 197px !important;"
+                                />
+
+                                <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 155px; width: 97%; margin-left: 4px;">
+                                    <div class="col-md-12 mt-2 ">
+                                        <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
+                                /> {{ popularDestination.lieu_depart }} -
+                                            {{ popularDestination.destination }}  </h5>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1518,113 +1595,84 @@ onMounted(() => {
             </div>
 
             <div class="col-md-9">
-                <div v-if="searchStore.trajetsResults.length > 0" class="row row-cols-1 row-cols-md-2 g-4">
+                <div v-if="searchStore.trajetsResults.length > 0" class="row row-cols-1 row-cols-md-3 g-4">
                     <div
-                        class="col"
-                        v-for="(trajet, i) in searchStore.trajetsResults" :key="i"
-                    >
-                        <router-link
-                        :to="`/detail_reservation_ticket/${encryptParam(trajet.companieInfos.uid)}/${encryptParam(trajet.uid)}`"
-                        style="color: #000"
+                            class="col"
+                            v-for=" (popularDestination, index  ) in searchStore.trajetsResults" :key="index"
                         >
-                            <div class="card h-100 border-0" id="card_compagnie">
+                            <router-link
+                            :to="`/detail_reservation_ticket/${encryptParam(popularDestination.companieInfos.uid)}/${encryptParam(popularDestination.uid)}`"
+                            style="color: #000"
+                            >
+                            <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
                                 <div class="row" style="margin: 0px">
-                                    <div class="col-md-12">
-                                        <div
-                                        class="card mb-3 border-0"
-                                        style="background: #f9f9f9;"
-                                        >
-                                        <div class="row g-1 d-flex mt-2">
+                                <div class="col-md-12">
+                                    <div
+                                    class="card h-100 mb-3 border-0"
+                                    style="background: #f9f9f9;"
+                                    >
+                                    <div class="row g-1 d-flex mt-2">
+                                        
+                                        <div class="col-7 d-flex">
+                                        <img
+                                        :src="popularDestination.companieInfos.imageLogoUrl"
+                                            alt
+                                            class="w-px-40 h-auto rounded-circle"
+                                            style="width: 40px; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
+                                        />
+                                        <div>
+                                            <div class="card-body d-flex">
+                                            <h5 class="card-title" style="font-size: 10px">
+                                                {{
+                                                    popularDestination.companieInfos
+                                                    .raison_social
+                                                }}
+                                            </h5>
                                             
-                                            <div class="col-8 d-flex">
-                                            <img
-                                                :src="trajet.companieInfos.imageLogoUrl"
-                                                alt
-                                                class="w-px-40 h-auto rounded-circle"
-                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                            />
-                                            <div>
-                                                <div class="card-body d-flex">
-                                                <h5 class="card-title" style="font-size: 12px">
-                                                    {{ trajet.companieInfos.raison_social }}
-                                                </h5>
-                                                <p class="card-text" style="font-size: 12px">
-                                                    <i
-                                                    class="bx bx-map"
-                                                    style="color: rgb(139 139 139); margin-left: 5px"
-                                                    ></i>
-                                                    {{ trajet.companieInfos.description }}  
-                                                </p>
-                                                </div>
                                             </div>
-                                            </div>
+                                        </div>
+                                        </div>
 
-                                            <div class="col-4 text-end">
-                                            <button
-                                                class="btn btn-primary"
-                                                style="
-                                                background: #219935;
-                                                border-color: #219935;
-                                                margin-top: 5px;
-                                                font-size: 12px;
-                                                "
-                                            >
-                                            {{ trajet.montant }} FCFA
-                                            </button>
-                                            </div>
-                                            
+                                        <div class="col-5 text-end">
+                                        <button
+                                            class="btn btn-primary"
+                                            style="
+                                            background: #219935;
+                                            border-color: #219935;
+                                            margin-top: 5px;
+                                            font-size: 12px;
+                                            "
+                                        >
+                                        {{ popularDestination.montant }}  FCFA
+                                        </button>
                                         </div>
-                                        </div>
+                                        
+                                    </div>
                                     </div>
                                 </div>
-                                <div
-                                class="card mb-3 mt-4"
-                                style="
-                                    max-width: 540px;
-                                    margin: 8px;
-                                    margin-top: -10px !important;
-                                    background: #f9f9f9;
-                                "
-                                >
-                                <div class="row g-0" style="margin: 10px">
-                                    <div class="col-4">
-                                    <img
+                                </div>
+                                <div class="card border-0" style="margin: 8px; margin-top: -13px;">
+                                <img
                                         src="/assets/img/rb.jpg"
                                         class="img-fluid h-100"
                                         alt="..."
-                                        style="
-                                        width: 150px;
-                                        object-fit: cover;
-                                        "
-                                    />
-                                    </div>
-                                    
-                                    <div class="col-8">
-                                    <div class="card-body">
-                                        <p class="card-text" style="font-size: 13px ; ">
-                                            Trajets | {{ trajet.lieu_depart }} - {{ trajet.destination }}
-                                        </p>
-                                        <p class="card-text" style="font-size: 13px">
-                                        <strong style=" font-weight: 500;">Escales | </strong> {{ trajet.escale }}
-                                        </p>
-                                        <p class="card-text" style="font-size: 13px">
-                                        <strong style=" font-weight: 500;">Convocation | </strong> {{ trajet.heure_convocation }}
-                                        </p>
-                                        <p class="card-text" style="font-size: 13px">
-                                        <strong style=" font-weight: 500;">Jours du voyage | </strong>
-                                        {{ trajet.jours_voyage }}
-                                        </p>
-                                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                                        style="object-fit: cover ; border-radius: 11px;height: 197px !important;"
+                                />
+
+                                <div class="row" style=" background: white; border-radius: 5px; position: absolute; margin-top: 155px; width: 97%; margin-left: 4px;">
+                                    <div class="col-md-12 mt-2 ">
+                                        <h5 class="card-title " style=" font-size: 14px;"> <img src="/assets/img/service/bus.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
+                                /> {{ popularDestination.lieu_depart }} -
+                                            {{ popularDestination.destination }}  </h5>
                                     </div>
                                     </div>
-                                    
                                 </div>
-                                </div>
+                                
                             </div>
-                        </router-link>
+                            </router-link>
                     </div>
-                
                 </div>
+                
 
                 <div class="w-100" v-else>
                 <div class="row mt-4">

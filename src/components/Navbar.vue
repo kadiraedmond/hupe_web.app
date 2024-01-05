@@ -196,9 +196,9 @@ const selectedValue = ref('');
               <option value="CI">Côte d'Ivoire</option>
               <option value="GN">Guinée Conakry</option>
               <option value="ML">Mali</option>
-              <option value="NE">🇦🇱 Niger</option>
+              <option value="NE">Niger</option>
               <option value="SN">Sénégal</option>
-              <option value="TG">🇹🇬 Togo</option>
+              <option value="TG">Togo</option>
             </select>
             <!-- <select v-model="selectedValue">
             <option v-for="option in options" :key="option.value" :value="option.value">
