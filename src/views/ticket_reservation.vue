@@ -121,7 +121,7 @@ const telecharger = () => {
                                     <p style=" font-size: 9px; font-weight: 700;">CONVOCATION |</p>
                                 </div>
                                 <div class="col-md-6 text-end">
-                                    <p style=" font-size: 9px;">{{ new Intl.DateTimeFormat(undefined, options).format(reservation.date_depart) }}</p>
+                                    <p style=" font-size: 9px;">{{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.date_depart.toDate()) }}</p>
                                 </div>
                             </div>
 
@@ -212,7 +212,7 @@ const telecharger = () => {
                                     <p style=" font-size: 7px; font-weight: 700;">CONVOCATION |</p>
                                 </div>
                                 <div class="col-md-6 text-end">
-                                    <p style=" font-size: 7px;">{{ new Intl.DateTimeFormat(undefined, options).format(reservation.date_depart) }}</p>
+                                    <p style=" font-size: 7px;">{{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.date_depart.toDate()) }}</p>
                                 </div>
                             </div>
 

@@ -43,6 +43,8 @@ const savePolitique = async () => {
     await updateDoc(docRef, { uid: `${docRef.id}` }) 
     Db_text.value = data.text
 
+    await location.reload()
+    
     Swal.fire({
       title: `Succès`, 
       text: 'Politique ajoutée', 

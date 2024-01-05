@@ -420,6 +420,8 @@ const star = async (car) => {
           await setDoc(doc(carEn_avantColRef, `${car.uid}`), { ...car, enAvant: true })
       
           console.log('Document ajouté') 
+
+          await location.reload()
   
           Swal.fire({
             title: "Succès",
@@ -436,6 +438,8 @@ const star = async (car) => {
           const carDocRef = doc(carEn_avantColRef, `${car.uid}`) 
 
           await deleteDoc(carDocRef) 
+
+          await location.reload()
 
           Swal.fire({
             title: "Succès",

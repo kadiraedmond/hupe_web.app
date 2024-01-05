@@ -192,6 +192,8 @@ const star = async (trajet) => {
           await setDoc(doc(trajetEn_avantColRef, `${trajet.uid}`), { ...trajet, enAvant: true })
       
           console.log('Document ajouté') 
+
+          await location.reload()
       
           Swal.fire({
             title: "Succès",
@@ -210,6 +212,8 @@ const star = async (trajet) => {
           const trajetDocRef = doc(trajetEn_avantColRef, `${trajet.uid}`) 
 
           await deleteDoc(trajetDocRef) 
+
+          await location.reload()
 
           Swal.fire({
             title: "Succès",
@@ -288,6 +292,9 @@ const promote = async (trajet) => {
           promotionStore.setCompaniePromotionProgrammes(userId)
         
           console.log('Document ajouté')
+          
+          await location.reload()
+
           Swal.fire({
             title: "Succès",
             text: "Votre Programme de voyage a été mis en promotion",
@@ -306,6 +313,8 @@ const promote = async (trajet) => {
 
         await deleteDoc(trajetDocRef) 
         promotionStore.setCompaniePromotionProgrammes(userId)
+
+        await location.reload()
 
         Swal.fire({
           title: "Succès",

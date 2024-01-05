@@ -55,6 +55,8 @@ const submitPost = async () => {
 
     demandeStore.setPosts(userId)
 
+    await location.reload()
+
     Swal.fire({
       title: "Succès",
       text: "Publication effectuée avec succès",

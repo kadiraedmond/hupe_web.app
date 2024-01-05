@@ -187,6 +187,8 @@ const reserver = async (car) => {
     document.querySelector("#reservationForm").reset() 
     document.querySelector('.btn-close').click()
 
+    await location.reload()
+
     Swal.fire({
       title: "Succès",
       text: "Réservation effectuée avec succès",

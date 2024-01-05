@@ -2,7 +2,8 @@
 import { useCompanieStore } from '@/store/companie.js'
 import { usePromotionStore } from '@/store/promotion.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, onMounted } from "vue";
+import { onBeforeMount, onMounted } from "vue"
+import { encryptParam } from '@/utils/hash.js'
 
 const companieStore = useCompanieStore()
 const promotionStore = usePromotionStore()
@@ -61,7 +62,7 @@ onMounted(() => {
             "
           >
             <router-link
-              to="/detail"
+              :to="`/detail_reservation_ticket/${encryptParam(companieStore.companie.uid)}/${encryptParam(promotionProgramme.uid)}`"
               style="border: 1px solid; border-radius: 5px; border-color: #a6a6a6"
             >
               <img
