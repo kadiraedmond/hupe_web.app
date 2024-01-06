@@ -15,7 +15,7 @@ const authStore = useAuthStore()
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid 
+// const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid 
 
 const nom = ref('')
 const prenom = ref('')
@@ -104,95 +104,6 @@ const handleSubmit = async () => {
     <div class="col-md-12">
       <div class="card h-100" id="card_compagnie">
         <div class="card-body">
-          <!-- <div class="row">
-            <div class="col-md-12">
-              <p><strong>Nom |</strong> {{ userStore.user.lastName }}</p>
-
-              <p><strong> Prénoms |</strong>  {{ userStore.user.firstName }}</p>
-            </div>
-
-            <div
-              class="row row-cols-1 row-cols-md-4 mb-4 g-4"
-              style="margin-top: -5px"
-            >
-              <div class="col">
-                <div class="card h-100 text-center border-0">
-                  <div class="row mt-4" style="justify-content: center">
-                    <img
-                      src="/assets/img/icone/mail.png"
-                      class="img-fluid"
-                      alt="..."
-                      style="width: 64px"
-                    />
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title" style="font-size: 14px">
-                      {{ userStore.user.email }}
-                    </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 text-center border-0">
-                  <div class="row mt-4" style="justify-content: center">
-                    <img
-                      src="/assets/img/icone/web.png"
-                      class="img-fluid"
-                      alt="..."
-                      style="width: 64px"
-                    />
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title" style="font-size: 14px">
-                      
-                    </h5>
-                    <h5 class="card-title" style="font-size: 14px">
-                      {{ userStore.user.telephone }}
-                    </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 text-center border-0">
-                  <div class="row mt-4" style="justify-content: center">
-                    <img
-                      src="/assets/img/icone/maps.png"
-                      class="img-fluid"
-                      alt="..."
-                      style="width: 64px"
-                    />
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title" style="font-size: 14px">
-                      {{ userStore.user.addresse }}
-                    </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 text-center border-0">
-                  <div class="row mt-4" style="justify-content: center">
-                    <img
-                      src="/assets/img/icone/location.png"
-                      class="img-fluid"
-                      alt="..."
-                      style="width: 64px"
-                    />
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title" style="font-size: 14px">
-                      {{ userStore.user.country }}
-                    </h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
           <div class="row">
             <div class="col-md-12">
             <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
@@ -209,39 +120,49 @@ const handleSubmit = async () => {
 
               <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Photo de profil</label>
-                <div class="col-md-4" style=" display: flex; justify-content: center; align-items: center">
-                  <img
-                    :src="userStore.user.imageUrl"
-                    alt
-                    class="w-px-40 h-auto rounded-circle"
-                    style="width: 150px;
-                          height: 150px !important;
-                          object-fit: cover;
-                          border: 2.8px solid rgb(232, 232, 232);"
-                  />
-                </div>
+                
                 <div class="input-group has-validation">
                   <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
                    
                 </div>
+                <div class="col-md-12" style=" display: flex; justify-content: center; align-items: center">
+                  <img
+                    :src="userStore.user.imageUrl"
+                    alt
+                    class="h-auto"
+                    style="width: 533px;
+                          /* height: 165px !important; */
+                          object-fit: cover;
+                          border: 2.8px solid rgb(232, 232, 232);"
+                  />
+                </div>
               </div>
 
               <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Date de naissance </label>
-                <input type="date" class="form-control" id="validationCustom01" v-model="date_nais" >
+                <div class="row">
+                  <div class="col-md-12 mt-2">
+                    <label for="validationCustom01" class="form-label">Date de naissance </label>
+                    <input type="date" class="form-control" id="validationCustom01" v-model="date_nais" >
+                  </div> 
+
+                  <div class="col-md-12 mt-2">
+                    <label for="validationCustom01" class="form-label">Profession</label>
+                    <input type="text" class="form-control" id="validationCustom01" v-model="profess" >
+                    
+                  </div>
+
+                  <div class="col-md-12 mt-2">
+                    <label for="validationCustom02" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="validationCustom02" v-model="mail" >
+                    
+                  </div>
+                </div>
+                
                 
               </div>
 
-              <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Profession</label>
-                <input type="text" class="form-control" id="validationCustom01" v-model="profess" >
-                
-              </div>
-              <div class="col-md-6">
-                <label for="validationCustom02" class="form-label">Email</label>
-                <input type="email" class="form-control" id="validationCustom02" v-model="mail" >
-                 
-              </div>
+              
+             
               <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Téléphone</label>
                 <div class="input-group has-validation">

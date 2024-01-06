@@ -26,7 +26,7 @@ const locationStore = useLocationStore()
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+// const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid
 
 const locations = ref([])
 onBeforeMount(async () => { 
@@ -401,7 +401,7 @@ const options = {
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+    <!-- <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
           <ol>
@@ -410,10 +410,11 @@ const options = {
           </ol>
   
         </div>
-      </section><!-- End Breadcrumbs -->
+      </section> -->
+      <!-- End Breadcrumbs -->
   
       <!-- ======= Portfolio Details Section ======= -->
-      <section id="portfolio-details" class="portfolio-details">
+      <section id="portfolio-details" class="portfolio-details" style="margin-top: 50px;">
           <div class="container">
   
               <div class="row  g-4 mt-4">
@@ -439,17 +440,17 @@ const options = {
                             style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
                           />
                           <div>
-                            <div class="card-body" style="margin-top: -10px;">
+                            <div class="card-body">
                               <h5 class="card-title" style="font-size: 12px">
                                 {{ location.companieInfos.raison_social }}
                               </h5>
-                              <p class="card-text" style="font-size: 12px">
+                              <!-- <p class="card-text" style="font-size: 12px">
                                 <i
                                   class="bx bx-map"
                                   style="color: rgb(139 139 139); margin-left: 2px"
                                 ></i>
                                 {{ location.companieInfos.adresse }}
-                              </p>
+                              </p> -->
                             </div>
                           </div>
                         </div>
@@ -576,15 +577,17 @@ const options = {
                                 </div>     
                             </div>
                             <br /> 
-                            <p
+                           
+                            <div class="row" style="margin-top: 10px;">
+                              <div class="col-6">
+                                <p
                             class="card-text"
                             style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
                             >
                             <strong>{{ location.vehicule }} | {{ location.modele }} | {{ location.annee }} </strong> 
                             <!-- <strong> Santafe 2022 </strong> -->
                             </p>
-                            <br />
-                            <div class="row" style="margin-top: 10px;">
+                              </div>
                               <div class="col-6">
                                 <p
                                 class="card-text"
@@ -594,9 +597,7 @@ const options = {
                                 </p>
 
                               </div>
-                              <div class="col-6">
-                                
-                              </div>
+                              
                             </div>
 
                             <div class="row" style="margin-top: 32px;">
@@ -643,7 +644,7 @@ const options = {
                         </div>
                         </div>
                         
-                        <div class="col-md-12">
+                        <div class="col-md-12 mt-2">
                           <div class="card-body">
                             <p
                             class="card-text"

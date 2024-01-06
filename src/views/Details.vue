@@ -521,6 +521,7 @@ onMounted(() => {
                 aria-labelledby="promotion-tab"
                 tabindex="0"
               >
+
               <div  v-if="promotionStore.companiePromotionProgrammes.length > 0">
                   <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
                   <div class="col" v-for="(promoProgram, i) in promotionStore.companiePromotionProgrammes" :key="i">
@@ -530,34 +531,30 @@ onMounted(() => {
                       style="background: #f3f4f6; padding: 6px"
                     >
                       <div class="row" style="padding: 6px">
-                        <div class="col-md-12 d-flex">
+                        <div class="col-md-12 d-flex"  style="margin-top: -11px;">
                           <img
                           :src="companieStore.companie.imageLogoUrl"
                             class="img-fluid"
                             alt="..."
-                            style="width: 25px; height: 25px; margin-top: 6px"
+                            style="width: 40px; height: 40px; border-radius: 50%; margin-top: 6px; object-fit: contains; border: 1px solid #8b8b8b;"
                           />
                           <h6
-                            style="
-                              font-size: 12px;
+                          style="
+                              font-size: 15px;
                               margin-left: 5px;
-                              margin-top: 10px;
+                              margin-top: 16px;
                             "
                           >
                           {{ companieStore.companie.raison_social }}
                           </h6>
                           <p
-                            style="
-                              font-size: 12px;
+                          style="
+                              font-size: 15px;
                               margin-left: 5px;
-                              margin-top: 6px;
+                              margin-top: 14px;
                             "
                           >
-                            <img
-                              src="/assets/img/icone/map.png"
-                              class="img-fluid"
-                              alt="..."
-                            />
+                          <i class='bx bxs-map'></i>
                             {{ companieStore.companie.adresse }}
                           </p>
                         </div>
@@ -570,6 +567,7 @@ onMounted(() => {
                           background: #a6a6a621;
                           box-shadow: none;
                           background: transparent;
+                          margin-top: -10px;
                         "
                       >
                         <router-link
@@ -581,7 +579,7 @@ onMounted(() => {
                           "
                         >
                           <img
-                            src="/assets/img/car3.jpg"
+                            src="/assets/img/rb.jpg"
                             class="card-img-top"
                             alt="..."
                             style="

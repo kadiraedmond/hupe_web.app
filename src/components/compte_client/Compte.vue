@@ -12,7 +12,7 @@ import Swal from 'sweetalert2'
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid 
+// const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid 
 
 onBeforeMount(() => {
   userStore.setUser(userId)
@@ -185,7 +185,7 @@ const recharge = async () => {
                     <div class="modal-body text-end">
                       <div class="row">
                         <div class="col-md-12 text-center">
-                          <img src="/assets/img/recharge.jpg" alt="" class="img-fluid w-75">
+                          <img src="/assets/img/recharge.png" alt="" class="img-fluid w-75">
                         </div>
                         <div class="col-md-12">
                           <form @submit.prevent="recharge" class="row g-3 needs-validation" novalidate>

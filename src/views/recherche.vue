@@ -22,8 +22,27 @@ onBeforeMount(() => {
 })
 
 onMounted(() => {
-  window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
+
+    // carrousel
+    
+    const carousel = document.querySelector('.carousel')
+    const firstListItem = document.querySelectorAll('li')[0]
+    const arrowIcons = document.querySelectorAll('.wrapper i')
+    
+    
+    let firstListItemWidth = firstListItem.clientWidth + 18
+    
+    arrowIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            // console.log(icon)
+            carousel.scrollLeft += icon.id == 'left' ? -firstListItemWidth : firstListItemWidth
+        })
+    })
 })
+
+
+
 </script>
 <template>
   <!-- ======= Breadcrumbs ======= -->
@@ -36,139 +55,145 @@ onMounted(() => {
             class="nav nav-pills mb-3"
             id="pills-tab"
             role="tablist"
-            style="flex-wrap: nowrap; overflow-x: auto"
+             
           >
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link active mb-3"
-                id="pills-home-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-home"
-                type="button"
-                role="tab"
-                aria-controls="pills-home"
-                aria-selected="true"
-              >
-                Résultats
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="pills-location-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-location"
-                type="button"
-                role="tab"
-                aria-controls="pills-location"
-                aria-selected="false"
-              >
-                Locations de véhicules
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="pills-reservation-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-reservation"
-                type="button"
-                role="tab"
-                aria-controls="pills-reservation"
-                aria-selected="false"
-              >
-                Réservations de tickets
-              </button>
-            </li>
+          <div class="wrapper">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+            <div class="carousel d-flex">
+                <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link active mb-3"
+                    id="pills-home-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-home"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-home"
+                    aria-selected="true"
+                >
+                    Résultats
+                </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="pills-location-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-location"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-location"
+                    aria-selected="false"
+                >
+                    Locations de véhicules
+                </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="pills-reservation-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-reservation"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-reservation"
+                    aria-selected="false"
+                >
+                    Réservations de tickets
+                </button>
+                </li>
 
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="pills-location2-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-location2"
-                type="button"
-                role="tab"
-                aria-controls="pills-location2"
-                aria-selected="false"
-              >
-                Locations de gros engins
-              </button>
-            </li>
+                <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="pills-location2-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-location2"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-location2"
+                    aria-selected="false"
+                >
+                    Locations de gros engins
+                </button>
+                </li>
 
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="pills-achat-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-achat"
-                type="button"
-                role="tab"
-                aria-controls="pills-achat"
-                aria-selected="false"
-              >
-                Achats de véhicules
-              </button>
-            </li>
+                <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="pills-achat-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-achat"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-achat"
+                    aria-selected="false"
+                >
+                    Achats de véhicules
+                </button>
+                </li>
 
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="pills-vl-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-vl"
-                type="button"
-                role="tab"
-                aria-controls="pills-vl"
-                aria-selected="false"
-              >
-                Véhicules en location
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="pills-trajet-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-trajet"
-                type="button"
-                role="tab"
-                aria-controls="pills-trajet"
-                aria-selected="false"
-              >
-                Trajets
-              </button>
-            </li>
+                <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="pills-vl-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-vl"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-vl"
+                    aria-selected="false"
+                >
+                    Véhicules en location
+                </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="pills-trajet-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-trajet"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-trajet"
+                    aria-selected="false"
+                >
+                    Trajets
+                </button>
+                </li>
 
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="pills-engin-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-engin"
-                type="button"
-                role="tab"
-                aria-controls="pills-engin"
-                aria-selected="false"
-              >
-                Gros engins en location
-              </button>
-            </li>
+                <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="pills-engin-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-engin"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-engin"
+                    aria-selected="false"
+                >
+                    Gros engins en location
+                </button>
+                </li>
 
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="pills-disabled-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-disabled"
-                type="button"
-                role="tab"
-                aria-controls="pills-disabled"
-                aria-selected="false"
-              >
-                Véhicules en vente
-              </button>
-            </li>
+                <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="pills-disabled-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#pills-disabled"
+                    type="button"
+                    role="tab"
+                    aria-controls="pills-disabled"
+                    aria-selected="false"
+                >
+                    Véhicules en vente
+                </button>
+                </li>
+            </div>
+            <i id="right" class="fa-solid fa-angle-right"></i>
+          </div>
           </ul>
         </div>
       </div>
@@ -2052,5 +2077,91 @@ onMounted(() => {
  #router-link{
    color: black !important;
  }
+
+
+  
+
+.wrapper .carousel {
+    /* white-space: nowrap; */
+    display: inline-block;
+    font-size: 0;
+    cursor: pointer;
+    overflow: hidden;
+    scroll-behavior: smooth;
+
+}
+
+ 
+
+.carousel img {
+    height: 150px;
+    object-fit: cover;
+    margin-left: 14px;
+    width: calc(100% / 8);
+    /* width: 150px; */
+    /* overflow: hidden; */
+}
+
+.carousel img:first-child {
+    margin-left: 0px;
+}
+
+.wrapper {
+    white-space: nowrap;
+    max-width: 1077px;
+    position: relative;
+    margin-left: 19px;
+}
+
+.wrapper i {
+    top: 50%;
+    height: 46px;
+    width: 46px;
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 46px;
+    color:#FFF;
+    background: rgba(238, 238, 238, 0.8);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.wrapper i:hover {
+    background: rgba(238, 238, 238, 1);
+}
+
+.wrapper i:first-child {
+    left: -23px;
+}
+
+#right{
+    margin-top: -9px;
+    color: #219935;
+}
+
+#left{
+    margin-top: -9px;
+    color: #219935;
+}
+
+.wrapper i:last-child {
+    right: -23px;
+}
+
+@media only screen and (max-width: 900px) {
+    .carousel img {
+        width: calc(100% / 2);
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .carousel img {
+        width: 100%;
+    }
+}
+
+
  
 </style>

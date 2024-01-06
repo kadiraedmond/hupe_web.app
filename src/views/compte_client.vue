@@ -26,7 +26,7 @@ const demandeStore = useDemandeStore()
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+// const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   userStore.setUser(userId) 
 })
@@ -530,10 +530,10 @@ onMounted(() => {
 }
 
 #img_couv{
-  height: 250px;
+  /* height: 250px; */
     /* object-fit: cover; */
-  object-fit: fill;
-  image-rendering: -webkit-optimize-contrast;
+  /* object-fit: fill;
+  image-rendering: -webkit-optimize-contrast; */
   border-radius: 10px;
 }
 </style>
