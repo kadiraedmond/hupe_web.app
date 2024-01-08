@@ -36,6 +36,7 @@ onMounted(() => {
 const marque = ref('')
 const modele = ref('')
 const immatriculation = ref('')
+const transmission = ref('')
 const annee = ref('')
 const moteur = ref('')
 const prix_journalier = ref()
@@ -829,7 +830,7 @@ const handleInterieurPaysPrix = (e) => {
     </div>
   </div>
   <div class="row mt-4" v-if="companieCars.length > 0">
-    <div class="col-md-6" v-for="(car, index) in companieCars" :key="index">
+    <div class="col-md-6" v-for="(car, i) in companieCars" :key="i">
       <div class="card mb-3" style="max-width: 540px">
         <div class="row g-0">
           <div class="col-md-4">
@@ -897,7 +898,7 @@ const handleInterieurPaysPrix = (e) => {
                         type="button"
                         class="btn btn-primary"
                         data-bs-toggle="modal"
-                        data-bs-target="#exampleModale"
+                        :data-bs-target="'#exampleModale' + i"
                         style="
                           background-color: #219935;
                           border-color: #219935;
@@ -913,7 +914,7 @@ const handleInterieurPaysPrix = (e) => {
                       <!-- Modal -->
                       <div
                         class="modal fade"
-                        id="exampleModale"
+                        :id="'exampleModale' + i"
                         tabindex="-1"
                         aria-labelledby="exampleModalLabele"
                         aria-hidden="true"

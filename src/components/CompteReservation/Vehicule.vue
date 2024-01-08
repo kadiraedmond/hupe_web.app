@@ -571,7 +571,7 @@ const remove = async (trajet) => {
   </div>
   <div class="row mt-4">
     <div v-if="trajets.length > 0" class="row">
-      <div class="col-md-4" v-for="(trajet, index) in trajets" :key="index">
+      <div class="col-md-4" v-for="(trajet, i) in trajets" :key="i">
         <div class="card h-100" style="max-width: 540px">
           <div class="card-body">
             <div class="row">
@@ -620,7 +620,7 @@ const remove = async (trajet) => {
                     type="button"
                     class="btn btn-primary"
                     data-bs-toggle="modal"
-                    data-bs-target="#exampleModal4"
+                    :data-bs-target="'#exampleModal4' + i"
                     style="
                       background-color: #219935;
                       border-color: #219935;
@@ -636,7 +636,7 @@ const remove = async (trajet) => {
                   <!-- Modal -->
                   <div
                     class="modal fade"
-                    id="exampleModal4"
+                    :id="'exampleModal4' + i"
                     tabindex="-1"
                     aria-labelledby="exampleModalLabel"
                     aria-hidden="true"
