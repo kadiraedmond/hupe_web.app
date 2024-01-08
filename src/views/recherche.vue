@@ -1495,7 +1495,7 @@ onMounted(() => {
                                 </div>
                                 </div>
                                 <div class="card border-0" style="margin: 8px; margin-top: -13px;">
-                                <div :id="'carouselExampleControls' + i" class="carousel slide"  data-ride="false"  data-interval="false">
+                                <div :id="'carouselExampleControlsIcon' + i" class="carousel slide"  data-ride="false"  data-interval="false">
                                     <div class="carousel-inner">
                                     <div class="carousel-item active ">
                                         <img :src="vehicule.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
@@ -1513,10 +1513,10 @@ onMounted(() => {
                                         <img :src="vehicule.vehicule_image_url5" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px; height: 225.02px;">
                                     </div>
                                     </div>
-                                    <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleControls' + (i + 1)" data-bs-slide="prev" id="btn1">
+                                    <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleControlsIcon' + i" data-bs-slide="prev" id="btn1">
                                     <i class='bx bx-chevron-left' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
                                     </button>
-                                    <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExampleControls' + (i + 1)" data-bs-slide="next" id="btn1">
+                                    <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExampleControlsIcon' + i" data-bs-slide="next" id="btn1">
                                     <i class='bx bx-chevron-right' style="font-size: 23px; background: radial-gradient(black, transparent); border-radius: 50%;"></i>
                                     </button>
                                 </div>
