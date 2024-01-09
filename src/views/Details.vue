@@ -205,7 +205,7 @@ onMounted(() => {
                   aria-selected="true"
                   style="border-radius: 5px 0px 0px 0px !important;"
                 >
-                  Programmes
+                  Trajet
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -234,7 +234,7 @@ onMounted(() => {
                   aria-controls="disabled-tab-pane"
                   aria-selected="false"
                 >
-                  Tarifs
+                 Programmes
                 </button>
               </li>
               <li class="nav-item" role="presentation">

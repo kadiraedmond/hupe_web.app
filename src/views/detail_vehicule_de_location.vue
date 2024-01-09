@@ -439,7 +439,7 @@ const goToRelatedCar = async (carUID) => {
                     </div>
                   </div>
 
-                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Prix</h5>
+                  <!-- <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Prix</h5>
 
                   <div class="col-md-12 mt-3">
                     <div class="card">
@@ -500,7 +500,7 @@ const goToRelatedCar = async (carUID) => {
                           </button>
                         </router-link>
 
-                        <!-- Modal -->
+                        
                           <div
                             class="modal fade"
                             id="exampleModal"
@@ -834,6 +834,22 @@ const goToRelatedCar = async (carUID) => {
                               </div>
                             </div>
                           </div>
+                  </div> -->
+
+                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Partenaire</h5>
+                  <div class="card mb-3 mt-4" style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="..." class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h4 class="card-title">NomCompagnie</h4>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content </p>
+                           
+                        </div>
+                      </div>
+                    </div>
                   </div>
                    
                 </div>

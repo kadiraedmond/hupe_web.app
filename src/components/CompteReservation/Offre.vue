@@ -13,7 +13,7 @@ const companieStore = useCompanieStore()
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
-// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 const companie = ref({})
 onBeforeMount(async () => {
   await companieStore.setCompanieById(userId) 
@@ -68,7 +68,7 @@ const changeProfilHandler = async () => {
       <div class="row">
         <div class="col-md-6">
           <p>
-            <strong> Profile actuel | </strong>
+            <strong> Profile actuel  </strong> <br>
             <b style="color: #219935">{{ companie.offre }}</b>
           </p>
 
@@ -142,11 +142,11 @@ const changeProfilHandler = async () => {
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <p><strong>Changer de Profile </strong></p>
+        <div class="col-md-6" style="margin-top: 45px;">
+          <p> </p>
           <div
             class="card mb-4 rounded-1 shadow-sm border-primary"
-            style="border-color: #219935 !important ;   height: 88%;"
+            style="border-color: #219935 !important ;   height: 95%;"
           >
             <div
               class="card-header py-3 text-bg-primary border-primary"
