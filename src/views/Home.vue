@@ -183,7 +183,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-6">
             <div class="section-title">
-              <h2>Que voulez-vous faire ?</h2>
+              <h2 class="text-uppercase">Que voulez-vous faire ?</h2>
             </div>
           </div>
         </div>
@@ -305,7 +305,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Compagnies de locations populaires</h2>
+              <h2 class="text-uppercase">Compagnies de locations populaires</h2>
               <p id="section-p">
                 Explorez les compagnies de location les plus appréciées par les
                 voyageurs du monde entier. Faites confiance à l'expérience et à
@@ -951,7 +951,7 @@ const goTo_chat = async () => {
             </div>
           </div>
           <div class="col-4 text-end">
-            <router-link to="/ vente-vehicule">
+            <router-link to="/">
               <boutton
                 class="btn btn-primary" id="btn-end"
                 

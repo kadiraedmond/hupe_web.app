@@ -19,6 +19,7 @@ export const usePromotionStore = defineStore('promotionStore', {
     state: () => ({ 
         country: '', 
         offresVehicules: [],
+        offresProgrammes: [],
         popularDestinations: [],
         popularCars: [],
         vehicule: {},
@@ -47,6 +48,30 @@ export const usePromotionStore = defineStore('promotionStore', {
                     if(snapshot.exists()) company = snapshot.data()
                     this.offresVehicules.push({ ...programData, companieInfos: company })
 
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async getPromotionProgrammes() {
+            try {
+                
+                const { data } = await axios.get(API_URL)
+
+                this.country = data.country 
+                
+                const q = query(programmeEnPromoColRef, where('country', '==', `${this.country}`)) 
+
+                const snapshots = await getDocs(q)
+                for(let i = 0; i < snapshots.docs.length; i++) {
+                    const programData = snapshots.docs[i].data()
+                    const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                    const snapshot = await getDoc(companieDocRef)
+    
+                    let company = {}
+                    if(snapshot.exists()) company = snapshot.data()
+                    this.offresProgrammes.push({ ...programData, companieInfos: company })
+                    
                 }
             } catch (error) {
                 console.log(error)

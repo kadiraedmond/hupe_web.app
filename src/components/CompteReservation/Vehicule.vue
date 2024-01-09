@@ -142,16 +142,36 @@ const update = async (trajet) => {
 
   await updateDoc(docRef, data) 
 
+  // Mise a jour de la copie
   const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
 
   await updateDoc(trajetDocRef, data)
 
+  const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+  // si le vehicule est en promotion
+  if(trajet.enPromo === true) {
+    const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+    const trajetEnPromoColRef = collection(promotionDocRef, 'programme_en_promo')
+    const trajetDocRef = doc(trajetEnPromoColRef, `${trajet.uid}`)
+
+    await updateDoc(trajetDocRef, data)
+  }
+  // Si le vehicule est en avant
+  if(trajet.enAvant === true) {
+    const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+    const vehiculeEnAvantColRef = collection(enAvantDocRef, 'programme_en_avant')
+    const trajetDocRef = doc(vehiculeEnAvantColRef, `${trajet.uid}`)
+    
+    await updateDoc(trajetDocRef, data)
+  }
 
   Swal.fire({
     title: "Succès",
     text: "Votre trajet a été mis à jour",
     icon: "success"
   }) 
+
+
 }
 
 const star = async (trajet) => {
@@ -193,6 +213,20 @@ const star = async (trajet) => {
       
           console.log('Document ajouté') 
 
+          // Mise a jour de la copie
+          const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+          await updateDoc(trajetDocRef, { enAvant: true }) 
+
+          const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+          // si le vehicule est en promotion
+          if(trajet.enPromo === true) {
+            const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+            const trajetEnPromoColRef = collection(promotionDocRef, 'programme_en_promo')
+            const trajetDocRef = doc(trajetEnPromoColRef, `${trajet.uid}`)
+
+            await updateDoc(trajetDocRef, { enAvant: true })
+          }
+
           await location.reload()
       
           Swal.fire({
@@ -212,6 +246,20 @@ const star = async (trajet) => {
           const trajetDocRef = doc(trajetEn_avantColRef, `${trajet.uid}`) 
 
           await deleteDoc(trajetDocRef) 
+
+          // Mise a jour de la copie
+          const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+          await updateDoc(trajetDocRef, { enAvant: false }) 
+
+          const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+          // si le vehicule est en promotion
+          if(trajet.enPromo === true) {
+            const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+            const trajetEnPromoColRef = collection(promotionDocRef, 'programme_en_promo')
+            const trajetDocRef = doc(trajetEnPromoColRef, `${trajet.uid}`)
+
+            await updateDoc(trajetDocRef, { enAvant: false })
+          }
 
           await location.reload()
 
@@ -292,6 +340,20 @@ const promote = async (trajet) => {
           promotionStore.setCompaniePromotionProgrammes(userId)
         
           console.log('Document ajouté')
+
+          // Mise a jour de la copie
+          const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+          await updateDoc(trajetDocRef, { enPromo: true, montant_promotion: montant_promo.value }) 
+
+          const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+          // Si le vehicule est en avant
+          if(trajet.enAvant === true) {
+            const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+            const vehiculeEnAvantColRef = collection(enAvantDocRef, 'programme_en_avant')
+            const trajetDocRef = doc(vehiculeEnAvantColRef, `${trajet.uid}`)
+            
+            await updateDoc(trajetDocRef, { enPromo: true, montant_promotion: montant_promo.value })
+          }
           
           await location.reload()
 
@@ -313,6 +375,20 @@ const promote = async (trajet) => {
 
         await deleteDoc(trajetDocRef) 
         promotionStore.setCompaniePromotionProgrammes(userId)
+
+        // Mise a jour de la copie
+        const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+        await updateDoc(trajetDocRef, { enPromo: false, montant_promotion: 0 }) 
+
+        const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+        // Si le vehicule est en avant
+        if(trajet.enAvant === true) {
+          const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+          const vehiculeEnAvantColRef = collection(enAvantDocRef, 'programme_en_avant')
+          const trajetDocRef = doc(vehiculeEnAvantColRef, `${trajet.uid}`)
+          
+          await updateDoc(trajetDocRef, { enPromo: false, montant_promotion: 0 })
+        }
 
         await location.reload()
 
@@ -352,23 +428,65 @@ const unlock = async (trajet) => {
       trajet.status = 'active'
       await updateDoc(docRef, { status: 'active' })
     
-      console.log('Programme dévérouillé')
       Swal.fire({
         title: "Succès",
         text: "Programme dévérouillé",
         icon: "success"
       })
+
+      // Mise a jour de la copie
+      const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+      await updateDoc(trajetDocRef, { status: 'active' }) 
+
+      const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+      // si le vehicule est en promotion
+      if(trajet.enPromo === true) {
+        const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+        const trajetEnPromoColRef = collection(promotionDocRef, 'programme_en_promo')
+        const trajetDocRef = doc(trajetEnPromoColRef, `${trajet.uid}`)
+
+        await updateDoc(trajetDocRef, { status: 'active' })
+      }
+      // Si le vehicule est en avant
+      if(trajet.enAvant === true) {
+        const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+        const vehiculeEnAvantColRef = collection(enAvantDocRef, 'programme_en_avant')
+        const trajetDocRef = doc(vehiculeEnAvantColRef, `${trajet.uid}`)
+        
+        await updateDoc(trajetDocRef, { status: 'active' })
+      }
       
     } else if(trajet.status === 'active') {
       trajet.status = 'desactive'
       await updateDoc(docRef, { status: 'desactive' })
     
-      console.log('Programme Vérouillé')
       Swal.fire({
         title: "Succès",
         text: "Programme Vérouillé",
         icon: "success"
       }) 
+
+      // Mise a jour de la copie
+      const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+      await updateDoc(trajetDocRef, { status: 'desactive' }) 
+
+      const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+      // si le vehicule est en promotion
+      if(trajet.enPromo === true) {
+        const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+        const trajetEnPromoColRef = collection(promotionDocRef, 'programme_en_promo')
+        const trajetDocRef = doc(trajetEnPromoColRef, `${trajet.uid}`)
+
+        await updateDoc(trajetDocRef, { status: 'desactive' })
+      }
+      // Si le vehicule est en avant
+      if(trajet.enAvant === true) {
+        const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+        const vehiculeEnAvantColRef = collection(enAvantDocRef, 'programme_en_avant')
+        const trajetDocRef = doc(vehiculeEnAvantColRef, `${trajet.uid}`)
+        
+        await updateDoc(trajetDocRef, { status: 'desactive' })
+      }
     }
     
   } catch (error) {

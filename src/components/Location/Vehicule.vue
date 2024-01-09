@@ -307,7 +307,22 @@ const promote = async (car) => {
             title: "Succès",
             text: "Votre véhicule a été mis en promotion",
             icon: "success"
-          })                 
+          })  
+          
+          // Mise a jour de la copie
+          const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`)
+          await updateDoc(vehiculeDocRef, { enPromo: true, montant_promotion: montant.value }) 
+
+          const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+          
+          // Si le vehicule est en avant
+          if(car.enAvant === true) {
+            const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+            const vehiculeEnAvantColRef = collection(enAvantDocRef, 'vehicule_en_avant')
+            const carDocRef = doc(vehiculeEnAvantColRef, `${car.uid}`)
+            
+            await updateDoc(carDocRef, { enPromo: true, montant_promotion: montant.value })
+          }
         }
       } 
 
@@ -327,6 +342,21 @@ const promote = async (car) => {
           text: "Votre véhicule n'est plus en promotion",
           icon: "success"
         }) 
+
+        // Mise a jour de la copie
+        const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`)
+        await updateDoc(vehiculeDocRef, { enPromo: false, montant_promotion: 0 }) 
+
+        const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+        
+        // Si le vehicule est en avant
+        if(car.enAvant === true) {
+          const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+          const vehiculeEnAvantColRef = collection(enAvantDocRef, 'vehicule_en_avant')
+          const carDocRef = doc(vehiculeEnAvantColRef, `${car.uid}`)
+          
+          await updateDoc(carDocRef, { enPromo: false, montant_promotion: 0 })
+        }
       } 
 
       document.querySelector('btn-close').click() 
@@ -354,7 +384,7 @@ const unlock = async (car) => {
   const docRef = doc(vehiculesColRef, `${car.uid}`) 
 
   try {
-    if(car.status == 'desactive') {
+    if(car.status === 'desactive') {
       await updateDoc(docRef, { status: 'active' }) 
       car.status = 'active' 
     
@@ -364,8 +394,30 @@ const unlock = async (car) => {
         text: "Véhicule dévérrouillé",
         icon: "success"
       }) 
+
+      // Mise a jour de la copie
+      const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`)
+      await updateDoc(vehiculeDocRef, { status: 'active' }) 
+
+      const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+      // si le vehicule est en promotion
+      if(car.enPromo === true) {
+        const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+        const vehiculeEnPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
+        const carDocRef = doc(vehiculeEnPromoColRef, `${car.uid}`)
+
+        await updateDoc(carDocRef, { status: 'active' })
+      }
+      // Si le vehicule est en avant
+      if(car.enAvant === true) {
+        const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+        const vehiculeEnAvantColRef = collection(enAvantDocRef, 'vehicule_en_avant')
+        const carDocRef = doc(vehiculeEnAvantColRef, `${car.uid}`)
+        
+        await updateDoc(carDocRef, { status: 'active' })
+      }
   
-    } else if(car.status == 'active') {
+    } else if(car.status === 'active') {
       await updateDoc(docRef, { status: 'desactive' }) 
       car.status = 'desactive' 
     
@@ -376,6 +428,28 @@ const unlock = async (car) => {
         text: "Véhicule Vérrouillé",
         icon: "success"
       }) 
+
+      // Mise a jour de la copie
+      const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`)
+      await updateDoc(vehiculeDocRef, { status: 'desactive' })
+
+      const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+      // si le vehicule est en promotion
+      if(car.enPromo === true) {
+        const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+        const vehiculeEnPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
+        const carDocRef = doc(vehiculeEnPromoColRef, `${car.uid}`)
+
+        await updateDoc(carDocRef, { status: 'desactive' })
+      }
+      // Si le vehicule est en avant
+      if(car.enAvant === true) {
+        const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+        const vehiculeEnAvantColRef = collection(enAvantDocRef, 'vehicule_en_avant')
+        const careDocRef = doc(vehiculeEnAvantColRef, `${car.uid}`)
+        
+        await updateDoc(careDocRef, { status: 'desactive' })
+      }
     }
     
   } catch (error) {
@@ -429,6 +503,20 @@ const star = async (car) => {
             text: "Votre véhicule a été mis en avant",
             icon: "success"
           })
+
+          // Mise a jour de la copie
+          const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`)
+          await updateDoc(vehiculeDocRef, { enAvant: true })
+
+          const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+          // si le vehicule est en promotion
+          if(car.enPromo === true) {
+            const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+            const vehiculeEnPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
+            const carDocRef = doc(vehiculeEnPromoColRef, `${car.uid}`)
+
+            await updateDoc(carDocRef, { enAvant: true })
+          }
   
         } 
         
@@ -447,6 +535,20 @@ const star = async (car) => {
             text: "Votre véhicule n'est plus en avant",
             icon: "success"
           })
+
+          // Mise a jour de la copie
+          const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`)
+          await updateDoc(vehiculeDocRef, { enAvant: false })
+
+          const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+          // si le vehicule est en promotion
+          if(car.enPromo === true) {
+            const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+            const vehiculeEnPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
+            const carDocRef = doc(vehiculeEnPromoColRef, `${car.uid}`)
+
+            await updateDoc(carDocRef, { enAvant: false })
+          }
         }
 
       }
@@ -492,9 +594,29 @@ const remove = async (car) => {
       icon: "success"
     }) 
 
+    // Suppression de la copie
     const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`) 
 
     await deleteDoc(vehiculeDocRef)
+
+    const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+    // si le vehicule est en promotion
+    if(car.enPromo === true) {
+      const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+      const vehiculeEnPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
+      const carDocRef = doc(vehiculeEnPromoColRef, `${car.uid}`)
+
+      await deleteDoc(carDocRef)
+    }
+    // Si le vehicule est en avant
+    if(car.enAvant === true) {
+      const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+      const vehiculeEnAvantColRef = collection(enAvantDocRef, 'vehicule_en_avant')
+      const carDocRef = doc(vehiculeEnAvantColRef, `${car.uid}`)
+      
+      await deleteDoc(carDocRef)
+    }
+
     
   } else if (SwlResult.dismiss === Swal.DismissReason.cancel) {
     // 
@@ -552,6 +674,28 @@ const update = async (car) => {
   await updateDoc(docRef, data)
   
   document.querySelector('.btn-close-m').click()
+
+  // Mise a jour de la copie
+  const vehiculeDocRef = doc(firestoreDb, 'vehicules_programmer', `${car.uid}`)
+  await updateDoc(vehiculeDocRef, data) 
+
+  const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
+  // si le vehicule est en promotion
+  if(car.enPromo === true) {
+    const promotionDocRef = doc(vipCompaniesColRef, 'promotion')
+    const vehiculeEnPromoColRef = collection(promotionDocRef, 'vehicule_en_promo')
+    const carDocRef = doc(vehiculeEnPromoColRef, `${car.uid}`)
+
+    await updateDoc(carDocRef, data)
+  }
+  // Si le vehicule est en avant
+  if(car.enAvant === true) {
+    const enAvantDocRef = doc(vipCompaniesColRef, 'mise_en_avant')
+    const vehiculeEnAvantColRef = collection(enAvantDocRef, 'vehicule_en_avant')
+    const carDocRef = doc(vehiculeEnAvantColRef, `${car.uid}`)
+    
+    await updateDoc(carDocRef, data)
+  }
   
   await location.reload()
 
