@@ -14,7 +14,7 @@ const authStore = useAuthStore()
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
-// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid 
+// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid 
 
 const raison_social = ref('') 
 const responsable = ref('') 
@@ -114,14 +114,14 @@ const handleSubmit = async () => {
 <template>
   <div class="row mt-5">
     <div class="col-md-12">
-      <div class="card h-100" id="card_compagnie">
+      <div class="card h-100 border-0">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
               <p><strong>Raison sociale |</strong> {{ companieStore.companie.raison_social }}</p>
 
               <p><strong> Responsable |</strong>  {{ companieStore.companie.responsable }}</p>
-            </div>
+            </div> -->
 
             <!-- <div
               class="row row-cols-1 row-cols-md-4 mb-4 g-4"
@@ -206,14 +206,15 @@ const handleSubmit = async () => {
           </div>
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 card h-100" id="card_compagnie" style="padding: 20px;">
               <form @submit.prevent="handleSubmit" class="row g-3 needs-validation" novalidate>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustom01" class="form-label">Raison sociale </label>
                 <input type="text" class="form-control" id="validationCustom01" v-model="raison_social" >
                 
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustom02" class="form-label">Responsable</label>
                 <input type="text" class="form-control" id="validationCustom02" v-model="responsable" >
                  
@@ -221,30 +222,30 @@ const handleSubmit = async () => {
 
               
 
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustom01" class="form-label">Description </label>
                 <input type="text" class="form-control" id="validationCustom01" v-model="description" >
                 
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustom01" class="form-label">Présentation </label>
                 <input type="text" class="form-control" id="validationCustom01" v-model="presentation" >
                 
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustom02" class="form-label">Email</label>
                 <input type="email" class="form-control" id="validationCustom02" v-model="mail" >
                  
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Téléphone</label>
                 <div class="input-group has-validation">
                   <input v-model="phone" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
                    
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Pays</label>
                 <div class="input-group has-validation">
                   <!-- <input v-model="pays" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">  -->
@@ -261,7 +262,7 @@ const handleSubmit = async () => {
                 </div>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Adresse</label>
                 <div class="input-group has-validation">
                   <input v-model="lieu" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
@@ -269,7 +270,7 @@ const handleSubmit = async () => {
                 </div>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Image de couverture</label>
                 <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
                   <img :src="companieStore.companie.imageCouvertureUrl" style="width: 100%" />
@@ -280,7 +281,7 @@ const handleSubmit = async () => {
                 </div>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Logo</label>
                 <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
                   <img :src="companieStore.companie.imageLogoUrl" style="width: 100%" />
@@ -296,6 +297,7 @@ const handleSubmit = async () => {
               </div>
             </form>
             </div>
+            <div class="col-md-2"></div>
           </div>
 
 

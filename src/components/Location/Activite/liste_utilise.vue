@@ -73,8 +73,8 @@ const updateReservationsDashboard = () => {
 };
 const savedUser = JSON.parse(localStorage.getItem("user"))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = "YYiQmKBenyUzKzyxIEO1vHxfEPb2" || savedUser.uid || authStore.user.uid
 
 const elements_en_attente = ref([])
 const elements_valide = ref([])
@@ -223,7 +223,7 @@ const exportToExcel = () => {
   
           <ol>
             <li> <router-link to="/" style="color: #219935;" >Activité</router-link></li>
-            <li>En attente</li>
+            <li>Utilisée</li>
           </ol>
   
         </div>
@@ -310,7 +310,7 @@ const exportToExcel = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="(location, index) in elements_en_attente" :key="index">
+                        <tr v-for="(location, index) in elements_utilise" :key="index">
                            
                           <td>{{ location.uid }}</td>
                           <td>{{ location.nom_client }}</td>

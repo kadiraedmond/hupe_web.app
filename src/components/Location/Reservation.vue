@@ -977,7 +977,7 @@ const valider = async (location) => {
                   <button class="nav-link active" id="pills-home-tab2" data-bs-toggle="pill" data-bs-target="#pills-home2" type="button" role="tab" aria-controls="pills-home2" aria-selected="true">  Vue grille <i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <router-link to="/liste-location">
+                  <router-link to="/location-valide">
                     <button class="nav-link"> Vue liste  <i class='bx bx-list-ul'></i> </button>
                   </router-link>
                 </li>
@@ -1368,7 +1368,7 @@ const valider = async (location) => {
                     <button class="nav-link active" id="pills-home-tab3" data-bs-toggle="pill" data-bs-target="#pills-home3" type="button" role="tab" aria-controls="pills-home3" aria-selected="true">  Vue grille <i class='bx bxs-dashboard'></i> </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <router-link to="/liste-location">
+                    <router-link to="/location-confirme">
                     <button class="nav-link"> Vue liste  <i class='bx bx-list-ul'></i> </button>
                   </router-link>
                   </li>
@@ -1777,7 +1777,7 @@ const valider = async (location) => {
                   <button class="nav-link active" id="pills-home-tab4" data-bs-toggle="pill" data-bs-target="#pills-home4" type="button" role="tab" aria-controls="pills-home4" aria-selected="true">  Vue grille <i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <router-link to="/liste-location">
+                  <router-link to="/location-annule">
                     <button class="nav-link"> Vue liste  <i class='bx bx-list-ul'></i> </button>
                   </router-link>
                 </li>
@@ -2168,7 +2168,7 @@ const valider = async (location) => {
                   <button class="nav-link active" id="pills-home-tab5" data-bs-toggle="pill" data-bs-target="#pills-home5" type="button" role="tab" aria-controls="pills-home5" aria-selected="true">   Vue grille<i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <router-link to="/liste-location">
+                  <router-link to="/location-reporte">
                     <button class="nav-link"> Vue liste  <i class='bx bx-list-ul'></i> </button>
                   </router-link>
                 </li>
@@ -2559,8 +2559,8 @@ const valider = async (location) => {
                   <button class="nav-link active" id="pills-home-tab6" data-bs-toggle="pill" data-bs-target="#pills-home6" type="button" role="tab" aria-controls="pills-home6" aria-selected="true">   Vue grille<i class='bx bxs-dashboard'></i> </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <router-link to="/liste-location">
-                    <button class="nav-link"> Vue liste  <i class='bx bx-list-ul'></i> </button>
+                  <router-link to="/location-utilise">
+                     <button class="nav-link"> Vue liste  <i class='bx bx-list-ul'></i> </button>
                   </router-link>
                 </li>
               </div>

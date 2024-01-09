@@ -167,18 +167,34 @@ onMounted(() => {
                   @submit.prevent="handleSubmit(demande)"
                 >
                   <div class="col-md-12">
-                    <p>
-                      client | {{ demande.userInfos.lastName }}
-                      {{ demande.userInfos.firstName }}
-                    </p>
-                    <p>Adresse | {{ demande.userInfos.addresse }}</p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p>
+                          <strong>client</strong> <br> {{ demande.userInfos.lastName }}
+                          {{ demande.userInfos.firstName }}
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                         <strong>Adresse</strong> <br> {{ demande.userInfos.addresse }}
+                        </p>
+                      </div>
+                      <div class="col-md-12">
+                        <p> <strong>Objet</strong>  <br> {{ demande.objet }}</p>
+                      </div>
+                      <div class="col-md-12">
+                        <p> <strong> Demande </strong>  <br> {{ demande.demande }}</p>
+                      </div>
+                    </div>
+                    
+                    
                     <!-- <p>Contact | {{ demande.userInfos.telephone }}</p> -->
-                    <p>Objet | {{ demande.objet }}</p>
-                    <p>Demande | {{ demande.demande }}</p>
+                    
+                   
                   </div>
                   <div class="col-md-12">
                     <label for="inputEmail4" class="form-label"
-                      >Entrez votre reponse
+                      > <strong> Entrez votre reponse </strong>
                     </label>
                     <textarea
                       class="form-control"

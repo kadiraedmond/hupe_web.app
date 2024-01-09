@@ -59,6 +59,20 @@ const VenteP = () => import('@/views/vente_populaire.vue')
 const InfosClient = () => import('@/views/information_client.vue')
 const ConditionConnexion = () => import('@/views/condition-connexion.vue')
 const VueListe = () =>  import('@/views/liste_location.vue')
+
+const VueListeValide = () =>  import('@/components/Location/Activite/liste_valide.vue')
+const VueListeUtilise = () =>  import('@/components/Location/Activite/liste_utilise.vue')
+const VueListeAnnule = () =>  import('@/components/Location/Activite/liste_annule.vue')
+const VueListeReporte = () =>  import('@/components/Location/Activite/liste_reporte.vue')
+const VueListeConfirme = () =>  import('@/components/Location/Activite/liste_confirme.vue')
+
+const VueListesValide = () =>  import('@/components/CompteReservation/Activite/liste_valide.vue')
+const VueListesUtilise = () =>  import('@/components/CompteReservation/Activite/liste_utilise.vue')
+const VueListesAnnule = () =>  import('@/components/CompteReservation/Activite/liste_annule.vue')
+const VueListesReporte = () =>  import('@/components/CompteReservation/Activite/liste_reporte.vue')
+const VueListesConfirme = () =>  import('@/components/CompteReservation/Activite/liste_confirme.vue')
+ 
+
 const VueListes = () =>  import('@/views/liste_reservation.vue')
 const Etape = () => import('@/views/etape.vue')
 
@@ -481,11 +495,83 @@ const routes = [
   },
 
   {
+    path: '/location-annule',
+    name: 'VueListeAnnule',
+    component: VueListeAnnule,
+    
+  },
+
+  {
+    path: '/location-valide',
+    name: 'VueListeValide',
+    component: VueListeValide,
+    
+  },
+
+  {
+    path: '/location-utilise',
+    name: 'VueListeUtilise',
+    component: VueListeUtilise,
+    
+  },
+
+  {
+    path: '/location-reporte',
+    name: 'VueListeReporte',
+    component: VueListeReporte,
+    
+  },
+
+  {
+    path: '/location-confirme',
+    name: 'VueListeConfirme',
+    component: VueListeConfirme,
+    
+  },
+
+
+  {
     path: '/liste-reservation',
     name: 'VueListes',
     component: VueListes,
     
   },
+
+  {
+    path: '/reservation-annule',
+    name: 'VueListesAnnule',
+    component: VueListesAnnule,
+    
+  },
+
+  {
+    path: '/reservation-valide',
+    name: 'VueListesValide',
+    component: VueListesValide,
+    
+  },
+
+  {
+    path: '/reservation-utilise',
+    name: 'VueListesUtilise',
+    component: VueListesUtilise,
+    
+  },
+
+  {
+    path: '/reservation-reporte',
+    name: 'VueListesReporte',
+    component: VueListesReporte,
+    
+  },
+
+  {
+    path: '/reservation-confirme',
+    name: 'VueListesConfirme',
+    component: VueListesConfirme,
+    
+  },
+
 
   {
     path: '/type-utilisateur',

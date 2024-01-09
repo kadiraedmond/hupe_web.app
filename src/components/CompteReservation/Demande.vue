@@ -14,7 +14,7 @@ const companieStore = useCompanieStore()
 const usersColRef = collection(firestoreDb, 'users')
 
 const userId = savedUser.uid || authStore.user.uid
-// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 
 const userInformations = ref({})
 
@@ -153,11 +153,25 @@ onMounted(() => {
               <div class="modal-body">
                 <form class="row g-3" @submit.prevent="handleSubmit(demande)">
                   <div class="col-md-12">
-                    <p>client | {{ demande.userInfos.lastName }} {{ demande.userInfos.firstName }} </p>
-                    <p>Adresse | {{ demande.userInfos.addresse }}</p>
-                    <!-- <p>Contact | {{ demande.userInfos.telephone }}</p> -->
-                    <p>Objet | {{ demande.objet }}</p>
-                    <p>Demande | {{ demande.demande }}</p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p>
+                          <strong>client</strong> <br> {{ demande.userInfos.lastName }}
+                          {{ demande.userInfos.firstName }}
+                        </p>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                         <strong>Adresse</strong> <br> {{ demande.userInfos.addresse }}
+                        </p>
+                      </div>
+                      <div class="col-md-12">
+                        <p> <strong>Objet</strong>  <br> {{ demande.objet }}</p>
+                      </div>
+                      <div class="col-md-12">
+                        <p> <strong> Demande </strong>  <br> {{ demande.demande }}</p>
+                      </div>
+                    </div>
                   </div>
                   <div class="col-md-12">
                     <label for="inputEmail4" class="form-label"

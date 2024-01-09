@@ -22,7 +22,7 @@ const authStore = useAuthStore()
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
 const userId = savedUser.uid || authStore.user.uid
-// const userId = 'f3Xb6K3Dv9SHof3CkkRbF8hE6Gl1' || savedUser.uid || authStore.user.uid
+// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieById(userId)
 
@@ -90,7 +90,7 @@ const getNotation = async () => {
                     <p class="card-text">
                       {{ companieStore.companie.description }}
                     </p>
-                    <button class="btn btn-primary" style=" width: 115px; background: #5b5656; border-radius: 20px; border-color: #464040;"><i class="bx bx-like" style="color: white"></i> {{ notation }}%</button>
+                    <button class="btn btn-primary" style=" width: 115px; background: rgb(33 153 53) !important; border-radius: 20px; border-color: rgb(33 153 53) !important;"><i class="bx bx-like" style="color: white"></i> {{ notation }}%</button>
                     
                   </div>
                 </div>
