@@ -69,7 +69,7 @@ const changeProfilHandler = async () => {
         <div class="col-md-6">
           <p>
             <strong> Profile actuel  </strong> <br>
-            <b style="color: #219935">{{ companie.offre }}</b>
+            <b style="color: #219935" class="text-uppercase">{{ companie.offre }}</b>
           </p>
 
           <div
@@ -84,7 +84,7 @@ const changeProfilHandler = async () => {
               
               "
             >
-              <h4 class="my-0 fw-normal text-center">Vip</h4>
+              <h4 class="my-0 fw-normal text-center text-uppercase">Vip</h4>
             </div>
             <div class="card-body">
               <ul class="list-unstyled mt-3 mb-4">
@@ -155,7 +155,7 @@ const changeProfilHandler = async () => {
                 border-color: #219935 !important;
               "
             >
-              <h4 class="my-0 fw-normal text-center">Basique</h4>
+              <h4 class="my-0 fw-normal text-center text-uppercase">Basique</h4>
             </div>
             <div class="card-body">
               <ul class="list-unstyled mt-3 mb-4">

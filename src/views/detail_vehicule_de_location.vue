@@ -838,18 +838,20 @@ const goToRelatedCar = async (carUID) => {
 
                   <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Partenaire</h5>
                   <div class="card mb-3 mt-4" style="max-width: 540px;">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="..." class="img-fluid rounded-start" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h4 class="card-title">NomCompagnie</h4>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content </p>
-                           
+                      <div class="row g-0">
+                        <div class="col-md-4">
+                        <router-link :to="`/detail/${encryptParam(companieStore.companie.uid)}`">
+                          <img :src="companieStore.companie.imageLogoUrl" class="img-fluid rounded-start" alt="...">
+                        </router-link>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h4 class="card-title">{{ companieStore.companie.raison_social }}</h4>
+                            <p class="card-text">{{ companieStore.companie.description }} </p>
+                            
+                          </div>
                         </div>
                       </div>
-                    </div>
                   </div>
                    
                 </div>
@@ -973,7 +975,7 @@ const goToRelatedCar = async (carUID) => {
         <div class="col-12">
           <div class="section-title">
             <h2 style="font-size: 22px; color: black">
-              Recommandé par ce partenaire
+              Véhicules de la même compagnie
             </h2>
           </div>
         </div>
