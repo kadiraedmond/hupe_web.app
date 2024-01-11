@@ -42,18 +42,21 @@ export const useSearchStore = defineStore('searchStore', {
                 vehiculesSnapshots.docs.forEach(async snap_doc => {
                     const programData = snap_doc.data() 
 
-                    if(programData.vehicule.toLowerCase().includes(searchTerm.toLowerCase()) 
-                        || programData.modele.toLowerCase().includes(searchTerm.toLowerCase()) 
-                        || programData.vehicule.toLowerCase() == searchTerm.toLowerCase() 
-                        || programData.modele.toLowerCase() == searchTerm.toLowerCase()
-                    ) {
-                        const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
-                        const snapshot = await getDoc(companieDocRef)
-
-                        let companie = {}
-                        if(snapshot.exists()) companie = snapshot.data()
-                        this.vehiculesResults.push({ ...programData, companieInfos: companie })
+                    if(programData.status === 'active') {
+                        if(programData.vehicule.toLowerCase().includes(searchTerm.toLowerCase()) 
+                            || programData.modele.toLowerCase().includes(searchTerm.toLowerCase()) 
+                            || programData.vehicule.toLowerCase() == searchTerm.toLowerCase() 
+                            || programData.modele.toLowerCase() == searchTerm.toLowerCase()
+                        ) {
+                            const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                            const snapshot = await getDoc(companieDocRef)
+    
+                            let companie = {}
+                            if(snapshot.exists()) companie = snapshot.data()
+                            this.vehiculesResults.push({ ...programData, companieInfos: companie })
+                        }
                     }
+
     
                 })  
                 
@@ -64,18 +67,21 @@ export const useSearchStore = defineStore('searchStore', {
                 trajetsSnapshots.docs.forEach(async snap_doc => {
                     const programData = snap_doc.data() 
 
-                    if(programData.lieu_depart.toLowerCase().includes(searchTerm.toLowerCase()) 
-                        || programData.destination.toLowerCase().includes(searchTerm.toLowerCase()) 
-                        || programData.lieu_depart.toLowerCase() == searchTerm.toLowerCase() 
-                        || programData.destination.toLowerCase() == searchTerm.toLowerCase()
-                    ) {
-                        const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
-                        const snapshot = await getDoc(companieDocRef)
-        
-                        let companie = {}
-                        if(snapshot.exists()) companie = snapshot.data()
-                        this.trajetsResults.push({ ...programData, companieInfos: companie }) 
+                    if(programData.status === 'active') {
+                        if(programData.lieu_depart.toLowerCase().includes(searchTerm.toLowerCase()) 
+                            || programData.destination.toLowerCase().includes(searchTerm.toLowerCase()) 
+                            || programData.lieu_depart.toLowerCase() == searchTerm.toLowerCase() 
+                            || programData.destination.toLowerCase() == searchTerm.toLowerCase()
+                        ) {
+                            const companieDocRef = doc(firestoreDb, 'compagnies', `${programData.compagnie_uid}`)
+                            const snapshot = await getDoc(companieDocRef)
+            
+                            let companie = {}
+                            if(snapshot.exists()) companie = snapshot.data()
+                            this.trajetsResults.push({ ...programData, companieInfos: companie }) 
+                        }
                     }
+
                 })
                 
                 } catch (error) {

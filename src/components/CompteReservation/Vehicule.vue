@@ -248,8 +248,8 @@ const star = async (trajet) => {
           await deleteDoc(trajetDocRef) 
 
           // Mise a jour de la copie
-          const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
-          await updateDoc(trajetDocRef, { enAvant: false }) 
+          const trajetCopyDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+          await updateDoc(trajetCopyDocRef, { enAvant: false }) 
 
           const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
           // si le vehicule est en promotion

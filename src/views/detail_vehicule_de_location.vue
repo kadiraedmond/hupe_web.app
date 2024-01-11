@@ -840,15 +840,14 @@ const goToRelatedCar = async (carUID) => {
                   <div class="card mb-3 mt-4" style="max-width: 540px;">
                       <div class="row g-0">
                         <div class="col-md-4">
-                        <router-link :to="`/detail/${encryptParam(companieStore.companie.uid)}`">
-                          <img :src="companieStore.companie.imageLogoUrl" class="img-fluid rounded-start" alt="...">
-                        </router-link>
+                          <router-link :to="`/detail/${encryptParam(companieStore.companie.uid)}`">
+                            <img :src="companieStore.companie.imageLogoUrl" class="img-fluid rounded-start" alt="...">
+                          </router-link>
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
                             <h4 class="card-title">{{ companieStore.companie.raison_social }}</h4>
                             <p class="card-text">{{ companieStore.companie.description }} </p>
-                            
                           </div>
                         </div>
                       </div>

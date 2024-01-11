@@ -1,17 +1,17 @@
 <script setup>
-import { onMounted, onBeforeMount, ref } from "vue"
+import { onMounted, computed, onBeforeMount, ref } from "vue"
 import { useSearchStore } from "@/store/search.js"
 import { encryptParam } from '@/utils/hash.js'
 
+import { collection, query, doc, where, getDoc, getDocs, and, or} from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
+
 const searchStore = useSearchStore()
 
-const results = ref([]) 
 const locationCompanies = ref([]) 
 const transportCompanies = ref([]) 
 
 onBeforeMount(() => {
-  results.value = searchStore.results 
-
   searchStore.companiesResults.forEach(comp => {
     if(comp.type_compagnie === 'Location') {
         locationCompanies.value.push(comp) 
@@ -41,7 +41,48 @@ onMounted(() => {
     })
 })
 
+const raison_social = ref('')
+const inPromotion = ref()
+const country = ref('')
 
+const companiesColRef = collection(firestoreDb, "compagnies")
+
+const handleLocationCompaniesFilter = async () => {
+    const q = query(companiesColRef, 
+        where('status', '==', 'active'), 
+        where('type_compagnie', '==', 'Location'), 
+        where('raison_social', '==', raison_social.value), 
+        where('country', '==', country.value)
+    )
+
+    const snapshot = await getDocs(q)
+    
+    let results = []
+
+    snapshot.docs.forEach(doc => results.push(doc.data()))
+
+    locationCompanies.value = results
+
+    console.log(locationCompanies.value)
+}
+const handleReservationCompaniesFilter = async () => {
+    const q = query(companiesColRef, 
+        where('status', '==', 'active'), 
+        where('type_compagnie', '==', 'Transport'), 
+        where('raison_social', '==', raison_social.value), 
+        where('country', '==', country.value)
+    )
+
+    const snapshot = await getDocs(q)
+    
+    let results = []
+
+    snapshot.docs.forEach(doc => results.push(doc.data()))
+
+    transportCompanies.value = results
+
+    console.log(transportCompanies.value)
+}
 
 </script>
 <template>
@@ -543,32 +584,52 @@ onMounted(() => {
 
             <div class="row">
                 <div class="col-md-3">
-                    <form class="row g-3 needs-validation" method="post" action="">
+                    <form @submit.prevent="handleLocationCompaniesFilter" class="row g-3 needs-validation" method="post" action="">
                         
                         <div class="col-md-12">
                         
-                        <select id="defaultSelect" name="type" class="form-select" placeholder="type">
-                            <option v-for="(companie, i) in locationCompanies" :key="i">{{ companie.raison_social }}</option> 
-                        </select>
+                            Compagnie
+                            <select v-model="raison_social" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                                <option 
+                                    v-for="(companie, i) in locationCompanies" 
+                                    :key="i" 
+                                    :value="companie.raison_social"
+                                >
+                                    {{ companie.raison_social }}
+                                </option> 
+                            </select>
                         
                         </div>
                         <div class="col-md-12">
                         
-                        <input type="text" name="Ville" class="form-control" id="validationCustom02" placeholder="Ville">
-                        
+                            <!-- <input v-model="country" type="text" name="Ville" class="form-control" id="validationCustom02" placeholder="Ville"> -->
+                            Pays
+                            <select v-model="country" id="defaultSelect" name="type" class="form-select" placeholder="Pays">
+                                <option value="BJ">Bénin</option>
+                                <option value="BF">Burkina Faso</option>
+                                <option value="CI">Côte d'Ivoire</option>
+                                <option value="GN">Guinée Conakry</option>
+                                <option value="ML">Mali</option>
+                                <option value="NE">Niger</option>
+                                <option value="SN">Sénégal</option>
+                                <option value="TG">Togo</option>
+                            </select>
                         </div>
                         <div class="col-md-12">
                         
-                            <input type="text" name="promotion" class="form-control" id="validationCustomUsername" placeholder="En promotion" aria-describedby="inputGroupPrepend">
-                            
+                            <!-- <input type="text" name="promotion" class="form-control" id="validationCustomUsername" placeholder="En promotion" aria-describedby="inputGroupPrepend"> -->
+                            <!-- En Promotion
+                            <select v-model="inPromotion" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                                <option value="true">Oui</option> 
+                                <option value="false">Non</option> 
+                            </select> -->
                         </div>
                     
                         <div class="col-12">
                         <div class="row g-1">
                             <div class="col-md-6">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(33 153 53); border-color: rgb(33 153 53);">Valider</button>
-                            </div>
-                            
+                                <button class="btn btn-primary" type="submit" style="background: rgb(33 153 53); border-color: rgb(33 153 53);">Valider</button>
+                            </div> 
                         </div>
                         
                         </div>
@@ -631,25 +692,42 @@ onMounted(() => {
 
         <div class="row">
             <div class="col-md-3">
-                <form class="row g-3 needs-validation" method="post" action="">
+                <form @submit.prevent="handleReservationCompaniesFilter" class="row g-3 needs-validation" method="post" action="">
                     
                     <div class="col-md-12">
-                      
-                      <select id="defaultSelect" name="type" class="form-select" placeholder="type">
-                        <option v-for="(companie, i) in transportCompanies" :key="i">{{ companie.raison_social }} </option>
+                      Compagnie
+                      <select v-model="raison_social" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                        <option 
+                            v-for="(companie, i) in transportCompanies" 
+                            :key="i" 
+                            :value="companie.raison_social"
+                        >
+                        {{ companie.raison_social }}
+                        </option>
                       </select>
                       
                     </div>
                     <div class="col-md-12">
                        
-                      <input type="text" name="Ville" class="form-control" id="validationCustom02" placeholder="Ville">
+                        <!-- <input type="text" name="Ville" class="form-control" id="validationCustom02" placeholder="Ville"> -->
+                        Pays
+                        <select v-model="country" id="defaultSelect" name="type" class="form-select" placeholder="Pays">
+                            <option value="BJ">Bénin</option>
+                            <option value="BF">Burkina Faso</option>
+                            <option value="CI">Côte d'Ivoire</option>
+                            <option value="GN">Guinée Conakry</option>
+                            <option value="ML">Mali</option>
+                            <option value="NE">Niger</option>
+                            <option value="SN">Sénégal</option>
+                            <option value="TG">Togo</option>
+                        </select>
                     
                     </div>
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                       
                         <input type="text" name="promotion" class="form-control" id="validationCustomUsername" placeholder="En promotion" aria-describedby="inputGroupPrepend">
                          
-                    </div>
+                    </div> -->
                    
                     <div class="col-12">
                       <div class="row g-1">
