@@ -139,7 +139,7 @@ const nextPage = () => {
                   <div class="row" style="margin-top: -11px;">
                     <div class="col-8">
                       <p class="card-text" style="margin-top: 10px; color: #8b8b8b; font-size: 14px;"><i class="bx bx-map" style="color: #8b8b8b"></i>
-                            {{ companie.adresse }}</p>
+                        {{ companie.adresse.length > 15 ? companie.adresse.slice(0, 15) + '...' : companie.adresse }}</p>
                     </div>
                     <div class="col-4">
                       <img :src="companie.imageLogoUrl" alt="" id="badgesLogo1">

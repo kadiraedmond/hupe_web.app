@@ -347,9 +347,9 @@ const goToRelatedCar = async (carUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-md-8 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                          <img src="/assets/img/detail/marque.png" alt="" class="img-fluid">
-                        </button>
+                        
+                          <img src="/assets/img/detail/marque.svg" alt="" class="img-fluid" id="ImIcone">
+                        
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Marque</h5>
                         <p style="margin-top: -6px; font-size: 14px">{{ promotionStore.vehicule.vehicule }}</p>
@@ -362,9 +362,9 @@ const goToRelatedCar = async (carUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-md-8 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                          <img src="/assets/img/detail/modele.png" alt="" class="img-fluid">
-                        </button>
+                         
+                          <img src="/assets/img/detail/modele.svg" alt="" class="img-fluid" id="ImIcone">
+                        
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Modéle</h5>
                           <p style="margin-top: -6px; font-size: 14px">
@@ -378,9 +378,9 @@ const goToRelatedCar = async (carUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-md-8 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                          <img src="/assets/img/detail/annee.png" alt="" class="img-fluid">
-                        </button>
+                        
+                          <img src="/assets/img/detail/annee.svg" alt="" class="img-fluid" id="ImIcone">
+                         
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Année</h5>
                           <p style="margin-top: -6px; font-size: 14px">{{ promotionStore.vehicule.anne_vehicule }}</p>
@@ -393,9 +393,9 @@ const goToRelatedCar = async (carUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-md-8 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                          <img src="/assets/img/detail/ima.png" alt="" class="img-fluid">
-                        </button>
+                         
+                          <img src="/assets/img/detail/ima.svg" alt="" class="img-fluid" id="ImIcone">
+                        
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Immatriculation</h5>
                           <p style="margin-top: -6px; font-size: 14px">
@@ -409,9 +409,9 @@ const goToRelatedCar = async (carUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-md-8 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                          <img src="/assets/img/detail/trans.png" alt="" class="img-fluid">
-                        </button>
+                         
+                          <img src="/assets/img/detail/trans.svg" alt="" class="img-fluid" id="ImIcone">
+                        
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Transmission</h5>
                           <p style="margin-top: -6px; font-size: 14px">
@@ -425,9 +425,9 @@ const goToRelatedCar = async (carUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-md-8 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                          <img src="/assets/img/detail/moteur.png" alt="" class="img-fluid">
-                        </button>
+                        
+                          <img src="/assets/img/moteur.svg" alt="" class="img-fluid" id="ImIcone">
+                        
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Moteur</h5>
                           <p style="margin-top: -6px; font-size: 14px">
@@ -836,18 +836,22 @@ const goToRelatedCar = async (carUID) => {
                           </div>
                   </div> -->
 
-                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Partenaire</h5>
-                  <div class="card mb-3 mt-4" style="max-width: 540px;">
+                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Compagnie</h5>
+                  <div class="card mb-3 mt-4 border-0" style="max-width: 540px;">
                       <div class="row g-0">
-                        <div class="col-md-4">
-                          <router-link :to="`/detail/${encryptParam(companieStore.companie.uid)}`">
-                            <img :src="companieStore.companie.imageLogoUrl" class="img-fluid rounded-start" alt="...">
-                          </router-link>
+                        <div class="col-md-2">
+                        <router-link :to="`/detail/${encryptParam(companieStore.companie.uid)}`">
+                          <img :src="companieStore.companie.imageLogoUrl" class="img-fluid" alt="..." style="width: 96px; height: 96px; border: 2px solid; object-fit: cover;">
+                        </router-link>
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
-                            <h4 class="card-title">{{ companieStore.companie.raison_social }}</h4>
-                            <p class="card-text">{{ companieStore.companie.description }} </p>
+                            <h4 class="card-title" style="font-size: 18px; font-weight: 600; margin-top: -17px;">{{ companieStore.companie.raison_social }}</h4>
+                            <p class="card-text" style="font-size">{{ companieStore.companie.description }} </p>
+                            <p class="card-text" font-size> <i class='bx bx-map'></i> {{ companieStore.companie.adresse }} </p>
+                           
+                            <!-- <button class="btn btn-primary" style=" width: 115px; background: #219935 !important; border-radius: 20px; border-color: #219935 !important;"><i class="bx bx-like" style="color: white"></i> {{ notation !== NaN ? notation : 0 }}%</button>
+                             -->
                           </div>
                         </div>
                       </div>
@@ -1095,9 +1099,9 @@ const goToRelatedCar = async (carUID) => {
   border-radius: 50%;
   color: black;
   background: white;
-  border-color: #8b8b8b;
-  width: 60px;
-  height: 60px;
+  border-color: white;
+  width: 100px;
+  height: 100px;
 }
 
 #space-left{
@@ -1134,5 +1138,10 @@ const goToRelatedCar = async (carUID) => {
     border-color: #219935;
     color: black;
     border-radius: 5px !important;
+}
+
+#ImIcone{
+  width: 60px;
+  margin-top: -8px;
 }
 </style>

@@ -175,9 +175,9 @@ const goToRelatedProgram = async (programUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-12 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                          <img src="/assets/img/detail/1.png" alt="" class="img-fluid">
-                        </button>
+                        <!-- <button class="btn btn-primary" id="btn_circle"> -->
+                          <img src="/assets/img/detail/1.svg" alt="" class="img-fluid" id="ImIcone">
+                        <!-- </button> -->
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Trajet</h5>
                           <p style="margin-top: -6px; font-size: 14px">{{ promotionStore.programme.lieu_depart }} - {{ promotionStore.programme.destination }}</p>
@@ -189,9 +189,9 @@ const goToRelatedProgram = async (programUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-12 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                           <img src="/assets/img/detail/2.png" alt="" class="img-fluid">
-                        </button>
+                         
+                           <img src="/assets/img/detail/2.svg" alt="" class="img-fluid" id="ImIcone">
+                        
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Escale</h5>
                         <p style="margin-top: -6px; font-size: 14px">
@@ -205,9 +205,9 @@ const goToRelatedProgram = async (programUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-12 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                          <img src="/assets/img/detail/3.png" alt="" class="img-fluid">
-                        </button>
+                        
+                          <img src="/assets/img/detail/3.svg" alt="" class="img-fluid" id="ImIcone">
+                         
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Heure de départ</h5>
                         <p style="margin-top: -6px; font-size: 14px">{{ promotionStore.programme.heure_depart }}</p>
@@ -219,9 +219,9 @@ const goToRelatedProgram = async (programUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-12 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                           <img src="/assets/img/detail/3.png" alt="" class="img-fluid">
-                        </button>
+                         
+                           <img src="/assets/img/detail/3.svg" alt="" class="img-fluid" id="ImIcone">
+                        
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Convocation</h5>
                         <p style="margin-top: -6px; font-size: 14px">
@@ -235,9 +235,9 @@ const goToRelatedProgram = async (programUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-12 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                           <img src="/assets/img/detail/4.png" alt="" class="img-fluid">
-                        </button>
+                        
+                           <img src="/assets/img/detail/4.svg" alt="" class="img-fluid" id="ImIcone">
+                        
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Jours du voyage</h5>
                           <p style="margin-top: -6px; font-size: 14px">
@@ -251,9 +251,9 @@ const goToRelatedProgram = async (programUID) => {
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-12 d-flex">
-                        <button class="btn btn-primary" id="btn_circle">
-                           <img src="/assets/img/detail/5.png" alt="" class="img-fluid">
-                        </button>
+                         
+                           <img src="/assets/img/detail/5.svg" alt="" class="img-fluid" id="ImIcone">
+                        
                         <div id="space-left">
                           <h5 style="font-size: 18px; font-weight: 600;">Nombres de place</h5>
                         <p style="margin-top: -6px; font-size: 14px">
@@ -265,9 +265,9 @@ const goToRelatedProgram = async (programUID) => {
                     </div>
                   </div>
 
-                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Prix</h5>
+                  <!-- <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Prix</h5> -->
 
-                  <div class="col-md-12 mt-3">
+                  <!-- <div class="col-md-12 mt-3">
                     <div class="card">
                       <div class="card-body text-center">
                         <p class="card-title" style="font-weight: 600;">La valeur du trajet est estimée à</p>
@@ -308,7 +308,7 @@ const goToRelatedProgram = async (programUID) => {
                           </button>
                         </router-link>
 
-                        <!-- Modal -->
+                       
                         <div
                           class="modal fade"
                           id="exampleModal"
@@ -464,7 +464,30 @@ const goToRelatedProgram = async (programUID) => {
                             </div>
                           </div>
                         </div>
+                  </div> -->
+
+                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Compagnie</h5>
+                  <div class="card mb-3 mt-4 border-0" style="max-width: 540px;">
+                      <div class="row g-0">
+                        <div class="col-md-2">
+                        <router-link :to="`/detail/${encryptParam(companieStore.companie.uid)}`">
+                          <img :src="companieStore.companie.imageLogoUrl" class="img-fluid" alt="..." style="width: 96px; height: 96px; border: 2px solid; object-fit: cover;">
+                        </router-link>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h4 class="card-title" style="font-size: 18px; font-weight: 600; margin-top: -17px;">{{ companieStore.companie.raison_social }}</h4>
+                            <p class="card-text" style="font-size">{{ companieStore.companie.description }} </p>
+                            <p class="card-text" font-size> <i class='bx bx-map'></i> {{ companieStore.companie.adresse }} </p>
+                           
+                            <!-- <button class="btn btn-primary" style=" width: 115px; background: #219935 !important; border-radius: 20px; border-color: #219935 !important;"><i class="bx bx-like" style="color: white"></i> {{ notation !== NaN ? notation : 0 }}%</button>
+                             -->
+                          </div>
+                        </div>
                       </div>
+                  </div>
+
+                  
                    
                   <!-- <div class="row mt-4">
                       
@@ -1006,12 +1029,17 @@ const goToRelatedProgram = async (programUID) => {
   border-radius: 50%;
   color: black;
   background: white;
-  border-color: #8b8b8b;
-  width: 60px;
-  height: 60px;
+  border-color: white;
+  width: 100px;
+  height: 100px;
 }
 #space-left{
   margin-left: 12px;
   margin-top: 10px;
+}
+
+#ImIcone{
+  width: 60px;
+  margin-top: -8px;
 }
 </style>

@@ -11,6 +11,11 @@ const searchStore = useSearchStore()
 const locationCompanies = ref([]) 
 const transportCompanies = ref([]) 
 
+const locationCompaniesCopy = ref([])
+const transportCompaniesCopy = ref([])
+
+const vehiculesResults = ref([])
+
 onBeforeMount(() => {
   searchStore.companiesResults.forEach(comp => {
     if(comp.type_compagnie === 'Location') {
@@ -19,6 +24,11 @@ onBeforeMount(() => {
         transportCompanies.value.push(comp)
     }
   }) 
+
+  locationCompaniesCopy.value = locationCompanies.value
+  transportCompaniesCopy.value = transportCompanies.value
+
+  vehiculesResults.value = searchStore.vehiculesResults
 })
 
 onMounted(() => {
@@ -82,6 +92,16 @@ const handleReservationCompaniesFilter = async () => {
     transportCompanies.value = results
 
     console.log(transportCompanies.value)
+}
+
+
+const marque = ref('')
+const model = ref('')
+const transmission = ref('')
+const price = ref('')
+const motor = ref('')
+const handleSearchCars = async () => {
+    // 
 }
 
 </script>
@@ -591,7 +611,7 @@ const handleReservationCompaniesFilter = async () => {
                             Compagnie
                             <select v-model="raison_social" id="defaultSelect" name="type" class="form-select" placeholder="type">
                                 <option 
-                                    v-for="(companie, i) in locationCompanies" 
+                                    v-for="(companie, i) in locationCompaniesCopy" 
                                     :key="i" 
                                     :value="companie.raison_social"
                                 >
@@ -698,7 +718,7 @@ const handleReservationCompaniesFilter = async () => {
                       Compagnie
                       <select v-model="raison_social" id="defaultSelect" name="type" class="form-select" placeholder="type">
                         <option 
-                            v-for="(companie, i) in transportCompanies" 
+                            v-for="(companie, i) in transportCompaniesCopy" 
                             :key="i" 
                             :value="companie.raison_social"
                         >
@@ -1467,39 +1487,47 @@ const handleReservationCompaniesFilter = async () => {
 
             <div class="row">
                 <div class="col-md-3">
-                    <form class="row g-3 needs-validation" method="post" action="">
+                    <form @submit.prevent="handleSearchCars" class="row g-3 needs-validation" method="post" action="">
                         
                         <div class="col-md-12">
                         
-                            <select id="defaultSelect" name="type" class="form-select" placeholder="type">
-                                <option v-for="(vehicule, i) in searchStore.vehiculesResults" :key="i">{{ vehicule.vehicule }} </option> 
+                            Marque
+                            <select v-model="marque" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                                <option v-for="(vehicule, i) in vehiculesResults" :key="i">{{ vehicule.vehicule }} </option> 
                             </select>
                             
                             </div>
 
                             <div class="col-md-12">
                             
-                            <select id="defaultSelect" name="type" class="form-select" placeholder="type">
-                                <option v-for="(vehicule, i) in searchStore.vehiculesResults" :key="i">{{ vehicule.modele }}</option> 
+                            Modèle
+                            <select v-model="model" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                                <option v-for="(vehicule, i) in vehiculesResults" :key="i">{{ vehicule.modele }}</option> 
                             </select>
                             
                             </div>
                             <div class="col-md-12">
                             
-                            <input type="text" name="Transmission" class="form-control" id="validationCustom02" placeholder="Transmission">
+                            <!-- <input type="text" name="Transmission" class="form-control" id="validationCustom02" placeholder="Transmission"> -->
+                            Transmission
+                            <select v-model="transmission" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                                <option value="Manuelle">Manuelle</option> 
+                                <option value="Automatique">Automatique</option> 
+                            </select>
                             
                             </div>
                             <div class="col-md-12">
                             
-                            <select id="defaultSelect" name="type" class="form-select" placeholder="type">
-                                <option v-for="(vehicule, i) in searchStore.vehiculesResults" :key="i">{{ vehicule.montant }} </option>
+                            Prix
+                            <select v-model="price" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                                <option v-for="(vehicule, i) in vehiculesResults" :key="i">{{ vehicule.montant }} </option>
                             </select>
                         
                         </div>
 
                         <div class="col-md-12">
                         
-                            <input type="text" name="Moteur" class="form-control" id="validationCustomUsername" placeholder=" moteur" aria-describedby="inputGroupPrepend">
+                            <input v-model="motor" type="text" name="Moteur" class="form-control" id="validationCustomUsername" placeholder=" moteur" aria-describedby="inputGroupPrepend">
                             
                         </div>
                     
