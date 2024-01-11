@@ -149,7 +149,7 @@ const handleSubmit = async () => {
                      
                     </div>
                     <div class="col-md-6 text-end">
-                      <button
+                      <!-- <button
                         type="submit"
                         class="btn btn-primary"
                         style="
@@ -159,7 +159,95 @@ const handleSubmit = async () => {
                         "
                       >
                         Terminer  <i class='bx bx-check'></i> 
+                      </button> -->
+
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="
+                          background-color: #219935;
+                          border-color: #219935;
+                          width: 60%;
+                        ">
+                       Terminer  <i class='bx bx-check'></i>
                       </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header" style="border: none;">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="padding: 25px;">
+                              <div class="row no-gutters mt-4" style="margin-top: -20px !important;">
+                                <!-- <div class="col-md-3" style="width: 30% !important;"></div> -->
+                                <div class="col-md-12" style="text-align: justify; border: 1px solid #efefef; border-radius: 5px;">
+                                  <div class="row" style="    padding: 10px;">
+                                      <div class="col-md-12 text-center">
+                                          <img src="/assets/img/favicon.png" alt=""   class="img-fluid"  style="margin-top: -6px ; width: 50px;"
+                                      />
+                                      </div>
+                                      <div class="col-md-12 text-center">
+                                          <h3 class="mt-5 mb-4" style="font-size: 18px;">Politiques de confidentialité et Termes & Conditions d'utilisation </h3>
+
+                                      </div>
+                                      <div class="col-md-12" style="font-size: 14px;">
+                                          <p data-aos=" -up">
+                                              Pour créer un compte Google, vous devez accepter les <router-link to='/legales' >  Termes & Conditions d'utilisation </router-link> ci-dessous. 
+                                              
+                                          </p>
+
+                                          <p data-aos=" -up">
+                                              De plus, lorsque vous créez un compte, nous traitons vos informations comme décrit dans nos <router-link to='/legales' >Politiques de confidentialité</router-link> ,
+                                          </p>
+                                      </div>
+                                      <div class="col-md-12 mb-4" style="font-size: 14px;">
+                                          <p data-aos=" -up"> Les informations que nous collectons Nous pouvons collecter les types de données suivants : </p>
+                                          <ul>
+                                              <li>Informations personnelles telles que votre nom, adresse, numéro de téléphone, adresse e-mail, et informations de paiement.</li>
+                                              <li>Informations sur les véhicules loués ou achetés, les réservations de tickets de bus et les transactions effectuées sur la plateforme. </li>
+                                              <li>Données de localisation lorsque cela est nécessaire pour fournir nos services. </li>
+                                          </ul>
+                                            
+                                          <p data-aos=" -up">Comment nous collectons les données Nous pouvons collecter des données de différentes manières, notamment lorsque vous créez un compte, effectuez une réservation, utilisez notre application, communiquez avec notre service client, ou interagissez avec notre site web. <br>
+                                          Nous utilisons vos données personnelles pour :  </p>
+                                          <ul>
+                                              <li>Fournir les services que vous demandez, tels que la location de véhicules, la réservation de tickets de bus, etc. </li>
+                                              <li>Améliorer et personnaliser votre expérience sur notre plateforme. </li>
+                                              <li>Communiquer avec vous, notamment pour vous envoyer des confirmations de réservation, des mises à jour de compte, et des informations sur nos services.</li>
+                                              <li> Respecter nos obligations légales et réglementaires.</li>
+                                          </ul>
+                                      </div>
+                                      <div class="col-md-12">
+                                          <div class="row">
+                                              <div class="col-md-6">
+                                                  <router-link to=''>
+                                                      <button class="btn btn-primary" id="btn-left" style="    background: white; color: #219935; border-color: #219935;" > Annuler</button>
+                                                  </router-link>
+                                                  
+                                              </div>
+                                              <div class="col-md-6 text-end">
+                                                  
+                                                  <button class="btn btn-primary" type="submit" style="background-color: #219935 ; border-color: #219935;" :disabled="isUploading"> J'accepte</button>
+                                                  
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                
+                                  
+                                    
+                                </div>
+                                <!-- <div class="col-md-3" style="width: 30% !important;"></div> -->
+                            </div>
+                            </div>
+                            <!-- <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                            </div> -->
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 

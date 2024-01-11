@@ -23,12 +23,17 @@ import VueTelInput from 'vue-tel-input'
 import 'vue-tel-input/vue-tel-input.css'
 import VOtpInput from "vue3-otp-input"
 import 'vue3-toastify/dist/index.css'
+// import "@ckeditor/ckeditor5-build-classic/build/ckeditor.js"
+// import "@ckeditor/ckeditor5-vue/dist/ckeditor.js"
+
 
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import router from './router/router' 
+import router from './router/router'
+// import CKEditor from '@ckeditor/ckeditor5-vue'
+ 
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -48,7 +53,7 @@ const globalOptions = {
     }
 }
 
-
+// app.use( CKEditor )
 app.use(router) 
 app.use(pinia)
 app.use(VueTelInput, globalOptions)

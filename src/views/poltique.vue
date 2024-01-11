@@ -1,24 +1,35 @@
-<script setup>
-import VueSummernote from 'vue-summernote';
-import 'summernote/dist/summernote.css';
+<script>
+import {ref , watch} from'vue'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {component as CKEditor} from '@ckeditor/ckeditor5-vue';
+const props = defineProps({
+  modelValue:String
+})
 
-const content = ref('');
-const options = ref({
-  height: 300,
-  // Autres options Summernote ici
-});
+const emit = defineEmits(['update:modelValue'])
+const editorData = ref(props.modelValue || '')
+const editorConfig = ref({
+  toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+    } )
 
-const saveContent = () => {
-  console.log('Contenu enregistré :', content.value);
-};
+  watch(editorData, () => {
+    emit('update:modelValue', editorData.value)
+
+  })
+
 </script>
 
 <template>
   <div>
-    <vue-summernote v-model="content" :options="options"></vue-summernote>
-    <button @click="saveContent">Enregistrer</button>
+    <CKEditor :editor="ClassicEditor" v-model="editorData" :config="editorConfig"/>
   </div>
 </template>
-<style>
-</style>
+
 

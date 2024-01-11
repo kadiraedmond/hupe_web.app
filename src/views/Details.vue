@@ -283,7 +283,7 @@ onMounted(() => {
                       <div class="card-body">
                         <div class="row">
 
-                          <div class="col-md-6 mt-2">
+                          <div class="col-md-6 mt-2 mb-2">
                             <button
                               class="btn btn-primary mb-2"
                               style="
@@ -296,22 +296,23 @@ onMounted(() => {
                             </button>
                           </div>
                           
-                          <div class="col-md-6"> 
+                          <div class="col-md-6 mt-2 mb-2"> 
+                            <p style="font-size: 13px;"><strong>Départ - Arrivé </strong> <br> {{ programme.lieu_depart }} - {{ programme.destination }}</p>
                           </div>
                           
-                          <div class="col-md-6 mt-2">
+                          <!-- <div class="col-md-6 mt-2">
                             <p style="font-size: 13px;"><strong>Lieu de départ </strong> <br> {{ programme.lieu_depart }}</p>
                           </div>
 
                           <div class="col-md-6 mt-2">
                             <p style="font-size: 13px;"><strong>Destinations </strong> <br> {{ programme.destination }}</p>
-                          </div>
+                          </div> -->
 
-                          <div class="col-md-6 mt-2" style="margin-top: -9px !important;">
+                          <div class="col-md-6 mt-4" style="margin-top: -9px !important;">
                             <p style="font-size: 13px;"><strong> Heure de départ </strong> <br> {{ programme.heure_depart }}</p>
                           </div>
 
-                          <div class="col-md-6 mt-2" style="margin-top: -9px !important;">
+                          <div class="col-md-6 mt-4" style="margin-top: -9px !important;">
                             <p style="font-size: 13px;"><strong>Convocation </strong> <br> {{ programme.heure_convocation }}</p>
                           </div>
 
@@ -322,12 +323,12 @@ onMounted(() => {
                           <div class="col-md-6 mt-3" style="margin-top: -9px !important;">
                             <p style="font-size: 13px;"><strong>Jours de voyage</strong> <br> {{ programme.jours_voyage }}</p>
                           </div>
-                          <div class="col-md-12">
+                          <div class="col-md-12 text-center">
                             <!-- Button trigger modal -->
                             <router-link :to="`/detail_reservation_ticket/${encryptParam(companieId)}/${encryptParam(programme.uid)}`">
                               <button
                                 type="button"
-                                class="btn btn-primary"
+                                class="btn btn-primary w-50"
                                 style="
                                   background-color: #219935;
                                   border-color: #219935;
