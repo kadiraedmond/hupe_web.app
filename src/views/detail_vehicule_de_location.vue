@@ -439,403 +439,6 @@ const goToRelatedCar = async (carUID) => {
                     </div>
                   </div>
 
-                  <!-- <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Prix</h5>
-
-                  <div class="col-md-12 mt-3">
-                    <div class="card">
-                      <div class="card-body text-center">
-                        <p class="card-title" style="font-weight: 600;">La valeur de la voiture est estimée à</p>
-                         
-                        <p class="card-text" style="font-size: 50px; font-weight: 500; color: #219935;"> {{ promotionStore.vehicule.enPromo === true ? promotionStore.vehicule.montant_promotion : promotionStore.vehicule.montant }} FCFA</p>
-                         
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12 mt-3">
-                    <p class="" style="font-size: 14px">Options chauffeur</p>
-                    <div class="card">
-                      <div class="card-body">
-                        <p class="" style="font-size: 14px ; margin-bottom: -5px;">{{ promotionStore.vehicule.avecchauffeurprix }} FCFA</p>
-                         
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12 mt-3">
-                    <p class="" style="font-size: 14px">Option Intérieur</p>
-                    <div class="card">
-                      <div class="card-body">
-                        <p class="" style="font-size: 14px ; margin-bottom: -5px;"> {{ promotionStore.vehicule.interieurpaysprix }} FCFA</p>
-                         
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12 text-center">
-                        <router-link v-if="!user.uid" to="/connexion-client">
-                          <button
-                            class="btn btn-primary w-100"
-                            style="
-                              background: #219935;
-                              border-color: #219935;
-                              margin-top: 20px;
-                            "
-                          >
-                          Commencer la réservation
-                          </button>
-                        </router-link>
-                        <router-link v-if="user.uid && !user.raison_social" to="">
-                          <button
-                            class="btn btn-primary w-100"
-                            style="
-                              background: #219935;
-                              border-color: #219935;
-                              margin-top: 20px;
-                            "
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                          >
-                          Commencer la réservation
-                          </button>
-                        </router-link>
-
-                        
-                          <div
-                            class="modal fade"
-                            id="exampleModal"
-                            tabindex="-1"
-                            aria-labelledby="exampleModalLabel"
-                            aria-hidden="true"
-                          >
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div
-                                  class="modal-header"
-                                  style="background: #219935"
-                                >
-                                  <h1
-                                    class="modal-title text-white fs-5"
-                                    id="exampleModalLabel"
-                                    style="font-size: 17px !important"
-                                  >
-                                    Réservation de véhicule
-                                  </h1>
-                                  <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                  ></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form
-                                    class="row g-3 needs-validation"
-                                    novalidate
-                                    @submit.prevent="reserver(promotionStore.vehicule)"
-                                    id="reservationForm"
-                                  >
-                                    <div class="col-md-12">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Nom & prénoms</label
-                                      >
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        :value="`${user.lastName} ${user.firstName}`"
-                                        required 
-                                        disabled 
-                                      />
-                                    </div>
-
-                                    <div class="col-md-12">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Téléphone</label
-                                      >
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        :value="user.telephone"
-                                        required
-                                        disabled
-                                      />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Marque</label
-                                      >
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        :value="promotionStore.vehicule.vehicule"
-                                        required
-                                        disabled
-                                      />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Immatriculation</label
-                                      >
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        :value="promotionStore.vehicule.serie_vehicule"
-                                        required
-                                        disabled
-                                      />
-                                    </div>
-
-                                    <div class="col-md-12">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Modèle</label
-                                      >
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        :value="promotionStore.vehicule.modele"
-                                        required
-                                        disabled
-                                      />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Moteur</label
-                                      >
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        :value="promotionStore.vehicule.moteur"
-                                        required
-                                        disabled
-                                      />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Transmission</label
-                                      >
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        :value="promotionStore.vehicule.boite"
-                                        required
-                                        disabled
-                                      />
-                                    </div>
-
-                                    <div class="col-md-6 d-flex justify-content-between">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        >Avec chauffeur</label
-                                      >
-                                      <div class="form-check">
-                                        <input
-                                          class="form-check-input"
-                                          type="checkbox"
-                                          name="gridRadios"
-                                          id="gridRadios2"
-                                          value="Oui"
-                                          @click="toggleChauffeur(1)"
-                                          v-model="avecChauffeur"
-                                          :checked="avecChauffeur"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div class="col-md-6 d-flex justify-content-between">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        >Sans chauffeur</label
-                                      >
-                                      <div class="form-check">
-                                        <input
-                                          class="form-check-input"
-                                          type="checkbox"
-                                          name="gridRadios"
-                                          id="gridRadios1"
-                                          value="Non"
-                                          @click="toggleChauffeur(2)"
-                                          v-model="sansChauffeur"
-                                          :checked="sansChauffeur"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div class="col-md-6 d-flex justify-content-between">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        >Capital du pays</label
-                                      >
-                                      <div class="form-check">
-                                        <input
-                                          class="form-check-input"
-                                          type="checkbox"
-                                          name="gridRadios"
-                                          id="gridRadios4"
-                                          value="Non"
-                                          @click="togglePays(3)"
-                                          v-model="capitalPays"
-                                          :checked="capitalPays"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div class="col-md-6 d-flex justify-content-between">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        >Intérieur du pays</label
-                                      >
-                                      <div class="form-check">
-                                        <input
-                                          class="form-check-input"
-                                          type="checkbox"
-                                          name="gridRadios"
-                                          id="gridRadios5"
-                                          value="Oui"
-                                          @click="togglePays(4)"
-                                          v-model="interieurPays"
-                                          :checked="interieurPays"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Date de Retrait</label
-                                      >
-                                      <input
-                                        type="date"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        v-model="dateRetrait"
-                                        required
-                                      />
-                                    </div>
-                                    <div class="col-md-6">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Heure de Retrait</label
-                                      >
-                                      <input
-                                        type="time"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        v-model="heureRetrait"
-                                        required
-                                      />
-                                    </div>
-                                    <div class="col-md-12">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Lieu du Retrait</label
-                                      >
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        v-model="lieuRetrait"
-                                        required
-                                      />
-                                    </div>
-
-                                    <div class="col-md-12">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Date de retour</label
-                                      >
-                                      <input
-                                        type="date"
-                                        class="form-control"
-                                        id="validationCustom01"
-                                        v-model="dateRetour"
-                                        required
-                                      />
-                                    </div>
-
-                                    <Loader 
-                                      style="position: absolute; left: 35%; top: 15%"
-                                      v-if="isLoading" 
-                                    />
-
-                                    <div class="col-md-12">
-                                      <label
-                                        for="validationCustom01"
-                                        class="form-label"
-                                        style="float: left"
-                                        >Permis de conduire</label
-                                      >
-                                      <input
-                                        type="file"
-                                        class="form-control"
-                                        id="fileInput"
-                                        @change="handleFileChange"
-                                        required
-                                      />
-                                    </div>
-
-                                    <div class="col-12 text-center">
-                                      <button
-                                        class="btn btn-primary"
-                                        type="submit"
-                                        style="
-                                          background: #219935;
-                                          border-color: #219935;
-                                        "
-                                      >
-                                        Réserver
-                                      </button>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                  </div> -->
-
                   <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Compagnie</h5>
                   <div class="card mb-3 mt-4 border-0" style="max-width: 540px;">
                       <div class="row g-0">
@@ -958,6 +561,341 @@ const goToRelatedCar = async (carUID) => {
                             Réserver
                           </button>
                         </router-link>
+
+                        <!-- Modal -->
+                        <div
+                          class="modal fade"
+                          id="exampleModal"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div
+                                class="modal-header"
+                                style="background: #219935"
+                              >
+                                <h1
+                                  class="modal-title text-white fs-5"
+                                  id="exampleModalLabel"
+                                  style="font-size: 17px !important"
+                                >
+                                  Réservation de véhicule
+                                </h1>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                <form
+                                  class="row g-3 needs-validation"
+                                  novalidate
+                                  @submit.prevent="reserver(promotionStore.vehicule)"
+                                  id="reservationForm"
+                                >
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Nom & prénoms</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="`${user.lastName} ${user.firstName}`"
+                                      required 
+                                      disabled 
+                                    />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Téléphone</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="user.telephone"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Marque</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.vehicule"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Immatriculation</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.serie_vehicule"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Modèle</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.modele"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Moteur</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.moteur"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Transmission</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      :value="promotionStore.vehicule.boite"
+                                      required
+                                      disabled
+                                    />
+                                  </div>
+
+                                  <div class="col-md-6 d-flex justify-content-between">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      >Avec chauffeur</label
+                                    >
+                                    <div class="form-check">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="gridRadios"
+                                        id="gridRadios2"
+                                        value="Oui"
+                                        @click="toggleChauffeur(1)"
+                                        v-model="avecChauffeur"
+                                        :checked="avecChauffeur"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-6 d-flex justify-content-between">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      >Sans chauffeur</label
+                                    >
+                                    <div class="form-check">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="gridRadios"
+                                        id="gridRadios1"
+                                        value="Non"
+                                        @click="toggleChauffeur(2)"
+                                        v-model="sansChauffeur"
+                                        :checked="sansChauffeur"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-6 d-flex justify-content-between">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      >Capital du pays</label
+                                    >
+                                    <div class="form-check">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="gridRadios"
+                                        id="gridRadios4"
+                                        value="Non"
+                                        @click="togglePays(3)"
+                                        v-model="capitalPays"
+                                        :checked="capitalPays"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-6 d-flex justify-content-between">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      >Intérieur du pays</label
+                                    >
+                                    <div class="form-check">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="gridRadios"
+                                        id="gridRadios5"
+                                        value="Oui"
+                                        @click="togglePays(4)"
+                                        v-model="interieurPays"
+                                        :checked="interieurPays"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Date de Retrait</label
+                                    >
+                                    <input
+                                      type="date"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="dateRetrait"
+                                      required
+                                    />
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Heure de Retrait</label
+                                    >
+                                    <input
+                                      type="time"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="heureRetrait"
+                                      required
+                                    />
+                                  </div>
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Lieu du Retrait</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="lieuRetrait"
+                                      required
+                                    />
+                                  </div>
+
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Date de retour</label
+                                    >
+                                    <input
+                                      type="date"
+                                      class="form-control"
+                                      id="validationCustom01"
+                                      v-model="dateRetour"
+                                      required
+                                    />
+                                  </div>
+
+                                  <Loader 
+                                    style="position: absolute; left: 35%; top: 15%"
+                                    v-if="isLoading" 
+                                  />
+
+                                  <div class="col-md-12">
+                                    <label
+                                      for="validationCustom01"
+                                      class="form-label"
+                                      style="float: left"
+                                      >Permis de conduire</label
+                                    >
+                                    <input
+                                      type="file"
+                                      class="form-control"
+                                      id="fileInput"
+                                      @change="handleFileChange"
+                                      required
+                                    />
+                                  </div>
+
+                                  <div class="col-12 text-center">
+                                    <button
+                                      class="btn btn-primary"
+                                      type="submit"
+                                      style="
+                                        background: #219935;
+                                        border-color: #219935;
+                                      "
+                                    >
+                                      Réserver
+                                    </button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
              
@@ -991,100 +929,36 @@ const goToRelatedCar = async (carUID) => {
             id="compagnie_card"
             style="background: #f3f4f6; box-shadow: none"
           >
-            <router-link to="" @click="goToRelatedCar(car.uid)">
+            <router-link @click="goToRelatedCar(car.uid)" to=""> 
               <img
                 :src="car.vehicule_image_url"
                 class="card-img-top"
                 alt="..."
-                style="border-radius: 10px 10px 0px 0px;  height: 179px; object-fit: cover;"
+                style="border-radius: 10px 10px 0px 0px; height: 150px"
               />
             </router-link>
-            
-            <router-link
-              to=""
-              style="color: #000"
-              @click="goToRelatedCar(car.uid)"
+            <button
+              class="btn btn-primary"
+              id="badges0"
+              style="left: 10px !important"
             >
-              <div class="card h-100 border-0" id="card_compagnie" style="box-shadow: none;">
-                <div class="row" style="margin: 0px">
-                  <div class="col-md-12">
-                    <div
-                      class="card h-100 mb-3 border-0"
-                      style="background: #f9f9f9;"
-                    >
-                      <div class="row g-1 d-flex mt-2">
-                        
-                        <div class="col-6 d-flex">
-                          <img
-                            :src="car.companieInfos.imageLogoUrl"
-                            alt
-                            class="w-px-40 h-auto rounded-circle"
-                            style="width: 50px; height: 50px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
-                          />
-                          <div>
-                            <div class="card-body d-flex">
-                              <h5 class="card-title" style="font-size: 12px">
-                                {{ car.companieInfos.raison_social }}
-                              </h5>
-                              
-                            </div>
-                          </div>
-                        </div>
+              {{ car.enPromo === true ? car.montant_promotion : car.montant }} FCFA
+            </button>
 
-                        <div class="col-6 text-end">
-                          <button
-                            class="btn btn-primary"
-                            style="
-                              background: #219935;
-                              border-color: #219935;
-                              margin-top: 5px;
-                              font-size: 12px;
-                            "
-                          >
-                            {{ car.enPromo === true ? car.montant_promotion : car.montant }} FCFA
-                          </button>
-                        </div>
-                        
-                      </div>
-                    </div>
+            <div class="card-body">
+              <router-link to="/details_vente_engin">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h5
+                      class="card-title"
+                      style="font-size: 15px; color: black"
+                    >
+                      {{ car.vehicule }} - {{ car.modele }} - {{ car.anne_vehicule }}
+                    </h5>
                   </div>
                 </div>
-                <div class="card border-0" style="margin: 8px; margin-top: -13px;">
-                  <div :id="'carouselExampleControls' + index" class="carousel slide"  data-ride="false"  data-interval="false">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active ">
-                        <img :src="car.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px;">
-                      </div>
-                      <div class="carousel-item">
-                        <img :src="car.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px;">
-                      </div>
-                      <div class="carousel-item">
-                        <img :src="car.vehicule_image_url" class="d-block w-100" alt="..." style="height: 264px !important; border-radius: 10px;">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleControls' + index" data-bs-slide="prev">
-                      <i class='bx bx-chevron-left' style="font-size: 34px;"></i>
-                    </button>
-                    <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExampleControls' + index" data-bs-slide="next">
-                      <i class='bx bx-chevron-right' style="font-size: 34px;"></i>
-                    </button>
-                  </div>
-                
-                  <div class="card-body" style="background-color:#f9f9f9;">
-                    <div class="row" style=" background: white; border-radius: 5px;">
-                      <div class="col-md-12 mt-2 mb-2">
-                        <h5 class="card-title " style=" font-size: 15px;"> <img src="/assets/img/service/car.png" class="img-fluid w-25" alt="..." style="margin-top: -5px; width: 24px !important;"
-                />   {{ car.vehicule }}  {{ car.modele }} {{ car.anne_vehicule }}</h5>
-                      </div>
-                    </div>
-                  
-                  
-                    
-                  </div>
-                </div>
-                
-              </div>
-            </router-link>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>

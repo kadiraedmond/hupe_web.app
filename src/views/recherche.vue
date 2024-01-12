@@ -15,6 +15,7 @@ const locationCompaniesCopy = ref([])
 const transportCompaniesCopy = ref([])
 
 const vehiculesResults = ref([])
+const trajetsResults = ref([])
 
 onBeforeMount(() => {
   searchStore.companiesResults.forEach(comp => {
@@ -29,6 +30,7 @@ onBeforeMount(() => {
   transportCompaniesCopy.value = transportCompanies.value
 
   vehiculesResults.value = searchStore.vehiculesResults
+  trajetsResults.value = searchStore.trajetsResults
 })
 
 onMounted(() => {
@@ -51,6 +53,8 @@ onMounted(() => {
     })
 })
 
+
+// Filtre de compagnies de location
 const raison_social = ref('')
 const inPromotion = ref()
 const country = ref('')
@@ -61,8 +65,8 @@ const handleLocationCompaniesFilter = async () => {
     const q = query(companiesColRef, 
         where('status', '==', 'active'), 
         where('type_compagnie', '==', 'Location'), 
-        where('raison_social', '==', raison_social.value), 
-        where('country', '==', country.value)
+        raison_social.value && where('raison_social', '==', raison_social.value), 
+        country.value && where('country', '==', country.value)
     )
 
     const snapshot = await getDocs(q)
@@ -75,12 +79,15 @@ const handleLocationCompaniesFilter = async () => {
 
     console.log(locationCompanies.value)
 }
+
+
+// Filtre de compagnies de transport
 const handleReservationCompaniesFilter = async () => {
     const q = query(companiesColRef, 
         where('status', '==', 'active'), 
         where('type_compagnie', '==', 'Transport'), 
-        where('raison_social', '==', raison_social.value), 
-        where('country', '==', country.value)
+        raison_social.value && where('raison_social', '==', raison_social.value), 
+        country.value && where('country', '==', country.value)
     )
 
     const snapshot = await getDocs(q)
@@ -91,17 +98,67 @@ const handleReservationCompaniesFilter = async () => {
 
     transportCompanies.value = results
 
-    console.log(transportCompanies.value)
+    // console.log(transportCompanies.value)
 }
 
 
+// Filtre de véhicules
 const marque = ref('')
 const model = ref('')
 const transmission = ref('')
-const price = ref('')
+const price = ref()
 const motor = ref('')
+
+const vehiculeColRef = collection(firestoreDb, 'vehicules_programmer')
+
 const handleSearchCars = async () => {
-    // 
+    const q = query(vehiculeColRef, 
+        where('status', '==', 'active'), 
+        marque.value && where('vehicule', '==', marque.value), 
+        model.value && where('modele', '==', model.value), 
+        transmission.value && where('boite', '==', transmission.value), 
+        price.value && where('montant', '==', price.value), 
+        motor.value && where('moteur', '==', motor.value), 
+    )
+
+    const snapshot = await getDocs(q)
+
+    let results = []
+
+    snapshot.docs.forEach(doc => results.push(doc.data()))
+
+    searchStore.vehiculesResults = results
+
+    console.log(searchStore.vehiculesResults)
+}
+
+
+// Filtre de trajets
+const lieu_depart = ref('')
+const destination = ref('')
+const date = ref()
+const prix = ref()
+
+const trajetsColRef = collection(firestoreDb, 'programme_des_voyages') 
+
+const handleSearchTrajets = async () => {
+    const q = query(trajetsColRef, 
+        where('status', '==', 'active'), 
+        lieu_depart.value && where('lieu_depart', '==', lieu_depart.value), 
+        destination.value && where('destination', '==', destination.value), 
+        date.value && where('date_depart', '==', new Date(date.value)), 
+        prix.value && where('montant', '==', prix.value)
+    )
+
+    const snapshot = await getDocs(q)
+
+    let results = []
+
+    snapshot.docs.forEach(doc => results.push(doc.data()))
+
+    searchStore.trajetsResults = results
+
+    console.log(searchStore.trajetsResults)
 }
 
 </script>
@@ -1527,7 +1584,14 @@ const handleSearchCars = async () => {
 
                         <div class="col-md-12">
                         
-                            <input v-model="motor" type="text" name="Moteur" class="form-control" id="validationCustomUsername" placeholder=" moteur" aria-describedby="inputGroupPrepend">
+                            <!-- <input v-model="motor" type="text" name="Moteur" class="form-control" id="validationCustomUsername" placeholder=" moteur" aria-describedby="inputGroupPrepend"> -->
+                            Moteur
+                            <select v-model="motor" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                                <option value="Electrique">Electrique </option>
+                                <option value="Essence">Essence </option>
+                                <option value="Diesel">Diesel  </option>
+                                <option value="Hybride">Hybride </option>
+                            </select>
                             
                         </div>
                     
@@ -1680,31 +1744,31 @@ const handleSearchCars = async () => {
 
         <div class="row">
             <div class="col-md-3">
-                <form class="row g-3 needs-validation" method="post" action="">
+                <form @submit.prevent="handleSearchTrajets" class="row g-3 needs-validation" method="post" action="">
                     
                     <div class="col-md-12">
-                      
-                      <select id="defaultSelect" name="type" class="form-select" placeholder="type">
-                        <option v-for="(trajet, i) in searchStore.trajetsResults" :key="i">{{ trajet.lieu_depart }} </option> 
+                      Lieu de départ
+                      <select v-model="lieu_depart" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                        <option v-for="(trajet, i) in trajetsResults" :key="i">{{ trajet.lieu_depart }} </option> 
                       </select>
                       
                     </div>
 
                     <div class="col-md-12">
-                      
-                      <select id="defaultSelect" name="type" class="form-select" placeholder="type">
-                        <option v-for="(trajet, i) in searchStore.trajetsResults" :key="i">{{ trajet.destination }}</option> 
+                      Lieu d'arrivée
+                      <select v-model="destination" id="defaultSelect" name="type" class="form-select" placeholder="type">
+                        <option v-for="(trajet, i) in trajetsResults" :key="i">{{ trajet.destination }}</option> 
                       </select>
                       
                     </div>
                     <div class="col-md-12">
-                       
-                      <input type="date" name="Transmission" class="form-control" id="validationCustom02" placeholder="Transmission">
+                      Date
+                      <input v-model="date" type="date" name="Transmission" class="form-control" id="validationCustom02" placeholder="Transmission">
                     
                     </div>
                     <div class="col-md-12">
-                      
-                      <select id="defaultSelect" name="type" class="form-select" placeholder="type">
+                      Prix
+                      <select v-model="prix" id="defaultSelect" name="type" class="form-select" placeholder="type">
                         <option v-for="(trajet, i) in searchStore.trajetsResults" :key="i">{{ trajet.montant }} </option> 
                       </select>
                       

@@ -41,6 +41,7 @@ const heure_convocation = ref()
 const escales_a_faire = ref('')
 const nombre_de_place = ref()
 const jours_de_voyage = ref('')
+const date_depart = ref()
 
 const addNewTrajet = async () => {
   const companieDocRef = doc(firestoreDb, 'compagnies', `${userId}`)
@@ -54,14 +55,16 @@ const addNewTrajet = async () => {
     destination: destination.value,
     country: savedUser.country,
     escale: escales_a_faire.value, 
-    heure_convocation: heure_convocation.value, 
+    heure_convocation: heure_convocation.value,
+    date_depart: new Date(date_depart.value), 
     heure_depart: heure_depart.value, 
     jours_voyage: jours_de_voyage.value, 
     lieu_depart: lieu_depart.value, 
     montant: montant.value, 
     montant_promotion: 0,
     nb_place: nombre_de_place.value, 
-    status: 'active'
+    status: 'active',
+    addedAt: Timestamp.now()
   }
 
   const addedDoc = await addDoc(companieSubColRef, data)
@@ -377,8 +380,8 @@ const promote = async (trajet) => {
         promotionStore.setCompaniePromotionProgrammes(userId)
 
         // Mise a jour de la copie
-        const trajetDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
-        await updateDoc(trajetDocRef, { enPromo: false, montant_promotion: 0 }) 
+        const trajetCopyDocRef = doc(firestoreDb, 'programme_des_voyages', `${trajet.uid}`)
+        await updateDoc(trajetCopyDocRef, { enPromo: false, montant_promotion: 0 }) 
 
         const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
         // Si le vehicule est en avant
@@ -654,6 +657,19 @@ const remove = async (trajet) => {
                     class="form-control"
                     id="validationCustom01"
                     v-model="jours_de_voyage"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="validationCustom01" class="form-label"
+                    >Date de départ</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="validationCustom01"
+                    v-model="date_depart"
                     required
                   />
                 </div>
