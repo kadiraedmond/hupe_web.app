@@ -232,7 +232,7 @@ const handleSelect = (selectedCountry) => {
           </button>
           <ul class="dropdown-menu">
             <li v-for="(value, index) in collected_country" :key="index">
-              <a class="dropdown-item" @click="handleSelect(value)" style="text-align: start;">
+              <a class="dropdown-item text-start" @click="handleSelect(value)" style="cursor: pointer; color: black">
                 <img :src="getCountryFlagImage(value)" alt="Country Flag" class="country-flag"> {{ getCountryLabel(value) }}
               </a>
             </li>

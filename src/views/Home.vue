@@ -21,6 +21,7 @@ import {
 } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js"
 import { encryptParam } from '@/utils/hash.js'
+import Typewriter from 'typewriter-effect/dist/core'
 
 const companieStore = useCompanieStore()
 const slideStore = useSlide()
@@ -69,6 +70,9 @@ onMounted(() => {
 
   const slideNext = () => {
     let slideImages = document.querySelectorAll('.slides img')
+    slideImages[counter].classList.remove('prev2')
+    slideImages[counter].classList.remove('prev1')
+
     slideImages[counter].classList.remove('next2')
     slideImages[counter].classList.add('next1')
     
@@ -79,21 +83,68 @@ onMounted(() => {
       counter++
     }
 
+    slideImages[counter].classList.remove('prev2')
+    slideImages[counter].classList.remove('prev1')
+
     slideImages[counter].classList.remove('next1')
     slideImages[counter].classList.add('next2')
 
-  }
-	// Auto sliding
-  setInterval(() => {
-    slideNext()
     indicators()
-  }, 3500)
+  }
+  const slidePrev = () => {
+    let slideImages = document.querySelectorAll('.slides img')
+    slideImages[counter].classList.remove('next2')
+    slideImages[counter].classList.remove('next1')
+
+    slideImages[counter].classList.remove('prev2')
+    slideImages[counter].classList.add('prev1')
+    
+    if(counter === 0){
+      counter = slideImages.length - 1
+    }
+    else {
+      counter--
+    }
+
+    slideImages[counter].classList.remove('next2')
+    slideImages[counter].classList.remove('next1')
+
+    slideImages[counter].classList.remove('prev1')
+    slideImages[counter].classList.add('prev2')
+
+    indicators()
+  }
+
+  // Auto slideing
+  let deletInterval
+	const autoSliding = () => {
+		deletInterval = setInterval(timer, 3500)
+		function timer() {
+			slideNext()
+			indicators()
+		}
+	}
+	autoSliding()
+
+  const container = document.querySelector('.slide-container')
+	container.addEventListener('mouseover', () => {
+		clearInterval(deletInterval)
+	})
+
+	// Resume sliding when mouse is out
+	container.addEventListener('mouseout', autoSliding)
+
+  let next = document.querySelector('.next')
+  next.addEventListener('click', slideNext)
+
+  let prev = document.querySelector('.prev')
+  prev.addEventListener('click', slidePrev)
 
   // Add and remove active class from the indicators
   const indicators = () => {
     let dots = document.querySelectorAll('.dot')
     for(let i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(' active', '');
+      dots[i].className = dots[i].className.replace(' active', '')
     }
 
     if(dots[counter]) {
@@ -101,7 +152,6 @@ onMounted(() => {
     }
   }
 })
-import Typewriter from 'typewriter-effect/dist/core'
 
 onMounted(() => {
   new Typewriter('#typewriter', {
@@ -209,12 +259,16 @@ onMounted(() => {
             />
           </div>
 
+          <div class="buttons">
+            <span class="next">&#10095;</span>
+            <span class="prev">&#10094;</span>
+          </div>
+
           <div class="dotsContainer">
             <div 
               v-for="(slideImage, i) in slideStore.slideImages"
               :class="i === 0 ? 'dot active' : 'dot'" 
-              :attr='i' 
-              @click="switchImage()"
+              :attr='i'
             ></div>
           </div>
 
@@ -1697,12 +1751,12 @@ body, html {
   width: 100%;
   height: calc(100% - 0px);
   position: relative;
+  border-radius: 5px;
   overflow: hidden;
 }
 .slide-container .slides img{
   width: 100%;
   height: 100%;
-  border-radius: 5px;
   position: absolute;
   object-fit: cover;
   cursor: pointer;
@@ -1721,16 +1775,22 @@ body, html {
 .slide-container .slides img.next2 {
   animation: next2 0.5s ease-in forwards;
 }
+.slide-container .slides img.prev1 {
+  animation: prev1 0.5s ease-in forwards;
+}
+.slide-container .slides img.prev2 {
+  animation: prev2 0.5s ease-in forwards;
+}
 span.next, span.prev{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  padding: 14px;
+  padding: 8px 20px;
   color: #eee;
   font-size: 24px;
   font-weight: bold;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 50%;
   user-select: none;
   cursor: pointer;
   z-index: 1;
@@ -1744,7 +1804,7 @@ span.prev{
 span.next:hover, span.prev:hover{
   background-color: #eee;
   opacity: 0.8;
-  color: #000;
+  color: #219935;
 } 
 .dotsContainer{
   position: absolute;
@@ -1778,6 +1838,22 @@ span.next:hover, span.prev:hover{
 @keyframes next2{
   from{
     left: 100%
+  }
+  to{
+    left: 0%;
+  }
+}
+@keyframes prev1{
+  from{
+    left: 0%
+  }
+  to{
+    left: 100%;
+  }
+}
+@keyframes prev2{
+  from{
+    left: -100%
   }
   to{
     left: 0%;
