@@ -121,13 +121,13 @@ onBeforeMount(async () => {
 
 })
 
-const handleSelect = () => {
-  console.log(country.value)
-  localisationStore.setCompaniesByLocalisation(country.value)
-  companieStore.setCountry(country.value) 
-  slideStore.setCountry(country.value) 
-  promotionStore.setCountry(country.value) 
-}
+// const handleSelect = () => {
+//   console.log(country.value)
+//   localisationStore.setCompaniesByLocalisation(country.value)
+//   companieStore.setCountry(country.value) 
+//   slideStore.setCountry(country.value) 
+//   promotionStore.setCountry(country.value) 
+// }
 
 const logout = async () => {
   try {
@@ -170,6 +170,43 @@ const selectedValue = ref('');
 // ] 
 
 
+const getCountryLabel = (value) => {
+  switch (value) {
+    case 'BJ': return 'Bénin';
+    case 'BF': return 'Burkina';
+    case 'CI': return 'Côte d\'Ivoire';
+    case 'GN': return 'Guinée';
+    case 'ML': return 'Mali';
+    case 'NE': return 'Niger';
+    case 'SN': return 'Sénégal';
+    case 'TG': return 'Togo';
+    default: return '';
+  }
+};
+
+const getCountryFlagImage = (value) => {
+  // Vous pouvez ajouter des chemins d'accès aux images pour chaque pays ici
+  switch (value) {
+    case 'BJ': return '/assets/img/logo/benin.png';
+    case 'BF': return '/assets/img/logo/burkina.png';
+    case 'CI': return '/assets/img/logo/ci.png';
+    case 'GN': return '/assets/img/logo/guine.png';
+    case 'ML': return '/assets/img/logo/mali.png';
+    case 'NE': return '/assets/img/logo/niger.png';
+    case 'SN': return '/assets/img/logo/senegal.png';
+    case 'TG': return '/assets/img/logo/togo.png';
+    default: return '';
+  }
+};
+
+const handleSelect = (selectedCountry) => {
+  country.value = selectedCountry;
+  localisationStore.setCompaniesByLocalisation(selectedCountry);
+  companieStore.setCountry(selectedCountry);
+  slideStore.setCountry(selectedCountry);
+  promotionStore.setCountry(selectedCountry);
+};
+
 </script>
 
 <template>
@@ -188,26 +225,19 @@ const selectedValue = ref('');
         /></router-link>
       </h1>
       <nav id="navbar" class="navbar">
-        <ul >
-          <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
-            <select v-model="country" @change="handleSelect" class="form-select1" style="padding: 8.6px ; width: 114px;" id="validationCustom04" required>
-              <option value="BJ" selected>Bénin</option>
-              <option value="BF"><a> <i class="bx bx-category" id="icon_menu"></i> Burkina Faso</a></option>
-              <option value="CI">Côte d'Ivoire</option>
-              <option value="GN">Guinée Conakry</option>
-              <option value="ML">Mali</option>
-              <option value="NE">Niger</option>
-              <option value="SN">Sénégal</option>
-              <option value="TG">Togo</option>
-            </select>
-            <!-- <select v-model="selectedValue">
-            <option v-for="option in options" :key="option.value" :value="option.value">
-              <img :src="option.imageUrl" alt="Country Flag" width="20" height="20">
-              {{ option.label }}
-            </option>
-          </select> -->
-          </li>
-        </ul>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style=" background: white; border-color: #219935; color: #219935; width: 115%;">
+            <img :src="getCountryFlagImage(country)" alt="Country Flag" class="country-flag"> {{ getCountryLabel(country) }}
+
+          </button>
+          <ul class="dropdown-menu">
+            <li v-for="(value, index) in collected_country" :key="index">
+              <a class="dropdown-item" @click="handleSelect(value)" style="text-align: start;">
+                <img :src="getCountryFlagImage(value)" alt="Country Flag" class="country-flag"> {{ getCountryLabel(value) }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </nav>
       <!-- .navbar -->
 

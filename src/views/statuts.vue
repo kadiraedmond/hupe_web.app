@@ -788,7 +788,7 @@ const options = {
                                       <div class="modal-content" style="width: 87%;">
                                         <div class="modal-header text-white" style="background: #219935">
                                           <h1 class="modal-title fs-5" id="exampleModalLabel">Détails du paiement</h1>
-                                          <button type="button" class="btn-close-payer" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          <button type="button" class="btn btn" data-bs-dismiss="modal" aria-label="Close" style="height: 20px; margin-top: -26px;    color: white;"> <i class='bx bx-x' style="font-size: 32px;"></i> </button>
                                         </div>
                                         <div class="modal-body">
                                           <div class="row">

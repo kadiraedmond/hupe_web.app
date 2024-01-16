@@ -564,7 +564,7 @@ const options = {
                                 </div>
                             </div>
 
-                            <div class="row" v-if="reservation.status == 'Validé'">
+                            <div class="row mt-3" v-if="reservation.status == 'Validé'">
                             
 
                               <div class="col-md-6">
@@ -676,7 +676,7 @@ const options = {
                                         <div class="modal-content" style="width: 87%;">
                                           <div class="modal-header" style="background-color: #219935 ; color: white">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Details pour le paiement</h1>
-                                            <button type="button" class="btn-close-payer" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn btn" data-bs-dismiss="modal" aria-label="Close" style="height: 20px; margin-top: -26px;    color: white;"> <i class='bx bx-x' style="font-size: 32px;"></i> </button>
                                           </div>
                                           <div class="modal-body">
                                             <div class="row">
@@ -690,31 +690,66 @@ const options = {
                                                 <h5 style="font-size: 16px;color: black;">Compagnie {{ reservation.companieInfos.raison_social }} </h5>
                                               </div>
                                               <div class="col-md-12">
-                                                <div class="row">
-                                                  <div class="col-6"></div>
+                                                <div class="row mt-2">
                                                   <div class="col-6">
-                                                    <p style="margin-top: -15px; font-size: 14px;">Trajet | {{ reservation.lieu_depart }} - {{ reservation.destination }}</p>
+                                                    <p style="font-size: 14px;"> <strong> Trajet</strong> <br> {{ reservation.lieu_depart }} - {{ reservation.destination }}</p>
+                                                  </div>
+                                                  <div class="col-6">
+                                                    <p style=" font-size: 14px;"><strong> Escale </strong> <br> {{ reservation.escale }} </p>
                                                   </div>
                                                 </div>
-                                                <p style=" font-size: 14px;">  Place à réserver <strong>{{ reservation.nombre_personne }} </strong> |</p>
+
+                                                <div class="row mt-2">
+                                                  <div class="col-6">
+                                                    <p style="font-size: 14px;"> <strong>Départ</strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.date_depart.toDate()) }} à {{ reservation.heure_depart }}  </p>
+                                                  </div>
+                                                  <div class="col-6">
+                                                    <p style="font-size: 14px;"> <strong> Convocation </strong> <br> {{ reservation.heure_convocation }}  </p>
+                                                  </div>
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                  <div class="col-12">
+                                                    <p style=" font-size: 14px;">  Place à réserver <strong>{{ reservation.nombre_personne }} </strong> |</p>
+                                                  </div>
+                                                </div>
+                                               
                                                 
-                                                <p style="margin-top: -15px; font-size: 14px;"> chauffeur | <strong>{{ reservation.chauffeur }} </strong> </p>
-                                                <p style="margin-top: -15px; font-size: 14px;">  Escale | <strong>{{ reservation.escale }} </strong></p>
-                                                <p style="margin-top: -15px; font-size: 14px;"> Départ | <strong>{{ reservation.date_depart }} </strong> |  <strong>{{ reservation.heure_depart }}</strong> </p>
-                                                <p style="margin-top: -15px; font-size: 14px;"> Convocation | <strong>{{ reservation.heure_convocation }} </strong> </p>
                                               </div>
-                                              <hr>
+                                             
                                               <div class="col-md-12">
-                                                <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ reservation.nom_client }} </strong> </p>
-                                                <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ reservation.solde }} </strong> </p>
+                                                <hr>
+                                                <!-- <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ reservation.nom_client }} </strong> </p> -->
+                                                <div class="row">
+                                                  <div class="col-6">
+                                                    <p style="font-size: 14px;"> Solde  <strong>{{ reservation.solde }} </strong> </p>
+                                                  </div>
+                                                  <div class="col-6">
+                                                    <p style="font-size: 14px;"> {{ reservation.solde }}</p>
+                                                  </div>
+                                                </div>
+                                                <hr style="margin-top: -4px;">
+                                                
                                               </div>
 
-                                              <hr>
-                                              <div class="col-md-12">
-                                                <p style=" font-size: 14px;"> Prix de reservation | <strong>{{ reservation.montant }} </strong> </p>
-                                                <p style="margin-top: -15px; font-size: 14px;"> Total | <strong>{{ reservation.montant }} </strong><strong>{{ reservation.montant }} </strong> </p>
+                                              <div class="row">
+                                                  <div class="col-6">
+                                                    <p style="font-size: 14px;"> <strong>Prix de reservation </strong>  </p>
+                                                  </div>
+                                                  <div class="col-6">
+                                                    <p style="font-size: 14px;">{{ reservation.montant }}</p>
+                                                  </div>
                                               </div>
 
+                                              <div class="row">
+                                                  <div class="col-6">
+                                                    <p style="font-size: 14px;"> <strong>Total</strong>  </p>
+                                                  </div>
+                                                  <div class="col-6">
+                                                    <p style="font-size: 14px;">{{ reservation.montant }}</p>
+                                                  </div>
+                                              </div>
+ 
                                               <div class="col-md-12 text-center">
                                                 <button class="btn btn-primary"  @click="payer(reservation)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
                                               </div>
