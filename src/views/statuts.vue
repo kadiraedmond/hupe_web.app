@@ -25,8 +25,8 @@ const locationStore = useLocationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid
 
 const locations = ref([])
 onBeforeMount(async () => { 
@@ -432,22 +432,28 @@ const options = {
                     >
                       <div class="row g-1 d-flex mt-1">
                         
-                          <div class="col-6 d-flex">
-                            <img
-                              :src="location.companieInfos.imageLogoUrl"
-                                alt
-                                class="w-px-40 h-auto"
-                                style="width: 40px !important; height: 40px !important; border: 1px solid rgb(214, 214, 214); border-radius: 50%;"
-                            />
+                        <div class="col-6 d-flex">
+                          <img
+                            src="/assets/img/avatars/1.png"
+                            alt
+                            class="w-px-40 h-auto rounded-circle"
+                            style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                          />
                           <div>
                             <div class="card-body">
                               <h5 class="card-title" style="font-size: 12px">
                                 {{ location.companieInfos.raison_social }}
                               </h5>
-                               
+                              <!-- <p class="card-text" style="font-size: 12px">
+                                <i
+                                  class="bx bx-map"
+                                  style="color: rgb(139 139 139); margin-left: 2px"
+                                ></i>
+                                {{ location.companieInfos.adresse }}
+                              </p> -->
                             </div>
                           </div>
-                          </div>
+                        </div>
                        
 
                         <div class="col-6 text-end">
@@ -575,12 +581,12 @@ const options = {
                             <div class="row" style="margin-top: 10px;">
                               <div class="col-6">
                                 <p
-                                  class="card-text"
-                                  style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                  >
-                                   <strong> Véhicule </strong> <br> {{ location.vehicule }} | {{ location.modele }} | {{ location.vehicule_annee}}
-                                   
-                                </p>
+                            class="card-text"
+                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                            >
+                            <strong>{{ location.vehicule }} | {{ location.modele }} | {{ location.annee }} </strong> 
+                            <!-- <strong> Santafe 2022 </strong> -->
+                            </p>
                               </div>
                               <div class="col-6">
                                 <p
@@ -640,34 +646,27 @@ const options = {
                         
                         <div class="col-md-12 mt-2">
                           <div class="card-body">
-                            <div class="row">
-                              <div class="col-6">
-                                <p
-                                  class="card-text"
-                                  style="
-                                      font-size: 13px;
-                                      margin-top: -41px;
-                                      margin-bottom: -8px;
-                                  "
-                                  >
-                                  <strong>Retrait</strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}  |
-                                  {{ location.heure_retrait }}
-                                </p>
-                              </div>
-
-                              <div class="col-6">
-                                <p
-                                class="card-text"
-                                style="font-size: 13px; margin-top: -41px; margin-bottom: -8px"
-                                >
-                                <strong>Retour</strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
-                                </p>  
-                              </div>
-                            </div>
-                           
+                            <p
+                            class="card-text"
+                            style="
+                                font-size: 13px;
+                                margin-top: -41px;
+                                margin-bottom: -8px;
+                            "
+                            >
+                            Retrait | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }} </strong> |
+                            <strong>{{ location.heure_retrait }}</strong>
+                            </p>
 
                             <br />
-                             
+                            <p
+                            class="card-text"
+                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                            >
+                            Retour | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }} </strong>
+                            </p>
+                            <br />
+
                             <p
                             class="card-text"
                             style="font-size: 13px; margin-top: -7px; margin-bottom: -11px"
@@ -706,10 +705,10 @@ const options = {
                                       <div class="modal-header">
                                           <h1 class="modal-title fs-5" id="exampleModalLabel10">
                                             <img
-                                            :src="location.companieInfos.imageLogoUrl"
+                                              src="/assets/img/avatars/1.png"
                                               alt
-                                              class="w-px-40 h-auto"
-                                              style="width: 40px !important; height: 40px !important; border: 1px solid rgb(214, 214, 214); border-radius: 50%;"
+                                              class="w-px-40 h-auto rounded-circle"
+                                              style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
                                             />
                                           </h1>
                                           <button
@@ -802,115 +801,29 @@ const options = {
                                               <h5 style="font-size: 16px;color: black;">Compagnie : {{ location.companieInfos.raison_social }} </h5>
                                             </div>
                                             <div class="col-md-12">
-                                              <p style=" font-size: 14px;"> <strong> {{ location.vehicule }} {{ location.modele }} {{ location.annee_vehicule }} </strong> </p>
-                                              <div class="row mt-4">
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> <strong>Moteur</strong> <br> {{ location.moteur }} </p>
-                                                </div>
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> <strong>Transmission</strong> <br> {{ location.boite }} </p>
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"><strong>Immatriculation </strong> <br> {{ location.plaque_vehicule }} </p>
-                                                </div>
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"><strong>Année </strong> <br> {{ location.annee_vehicule }} </p>
-
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> chauffeur <strong> <br> {{ location.chauffeur }} </strong> </p>
-                                                </div>
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> Intérieur <strong> <br> {{ location.interieurPays }} </strong> </p>
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;">Retrait <strong> <br>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
-                                                </div>
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> Retour  <strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }} </strong> </p>
-
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                 
-                                                <div class="col-12">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> <strong>Nombre de jours de location</strong> <br> {{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</p>
-
-                                                </div>
-                                              </div>
-                                              
-                                              
-                                              
+                                              <p style=" font-size: 14px;"> {{ location.marque }} {{ location.modele }} {{ location.annee }}</p>
+                                              <p style="margin-top: -15px; font-size: 14px;">{{ location.moteur }} | {{ location.boite }} | {{ location.plaque_vehicule }} </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> chauffeur | <strong>{{ location.chauffeur }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Intérieur | <strong>{{ location.interieurPays }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;">Retrait | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Retour | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Nombre de jours de location | <strong> {{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</strong></p>
                                             </div>
-                                            
+                                            <hr>
                                             <div class="col-md-12">
-                                              <hr>
-                                              <div class="row mt-2">
-                                                <div class="col-md-6 mt-2">
-                                                  <p style="margin-top: -15px; font-size: 14px;"><strong> Solde </strong> <br> </p>
-                                                </div>
-                                                <div class="col-md-6 mt-2">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> {{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} </p>
-                                                </div>
-                                              </div>
-                                              <hr style="margin-top: -8px;">
-                                              <!-- <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ savedUser.lastName }} {{ savedUser.firstName }} </strong> </p> -->
-                                             
+                                              <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ savedUser.lastName }} {{ savedUser.firstName }} </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} FCFA </strong> </p>
                                             </div>
 
-                                           
+                                            <hr>
                                             <div class="col-md-12">
-                                              <div class="row mt-2">
-                                                <div class="col-md-6">
-                                                  <p style=" font-size: 14px;"><strong> Prix de location </strong> <br></p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <p style=" font-size: 14px;"> {{ location.montant }} FCFA </p>
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                <div class="col-md-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> <strong> Intérieur du pays </strong> </p>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;">
-                                                    {{ location.interieurPays === 'Oui' ? location.interieurpaysprix : 0 }} FCFA 
-                                                  </p>
-                                                </div>
-                                              </div>
-
-                                              <div class="row mt-2">
-                                                <div class="col-md-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"><strong>Chauffeur  </strong> </p>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;">{{ location.chauffeur === 'Oui' ? location.avecchauffeurprix : 0 }} FCFA</p>
-                                                </div>
-                                              </div>
-                                              <hr style="margin-top: -4px;">
-                                              <div class="row mt-2">
-                                                <div class="col-md-6">
-                                                  <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
-                                                  <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
-                                                  <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
-                                                  <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.avecchauffeurprix) + Number(location.montant) }} FCFA  </p>
-                                                  <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.interieurpaysprix) + Number(location.montant) }} FCFA  </p>
-                                                  <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.montant) }} FCFA  </p>
-                                                  <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.avecchauffeurprix) + Number(location.interieurpaysprix) + Number(location.montant) }} FCFA  </p>
-                                                </div>
-                                              </div>
-                                             
+                                              <p style=" font-size: 14px;"> Prix de location | <strong>{{ location.montant }} FCFA </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Intérieur du pays | <strong>{{ location.interieurPays === 'Oui' ? location.interieurpaysprix : 0 }} FCFA </strong> </p>
+                                              <p style="margin-top: -15px; font-size: 14px;"> Chauffeur | <strong>{{ location.chauffeur === 'Oui' ? location.avecchauffeurprix : 0 }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.avecchauffeurprix) + Number(location.montant) }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.interieurpaysprix) + Number(location.montant) }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.montant) }} FCFA </strong> </p>
+                                              <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> Total | <strong> {{ Number(location.avecchauffeurprix) + Number(location.interieurpaysprix) + Number(location.montant) }} FCFA </strong> </p>
                                             </div>
 
                                             <div class="col-md-12 text-center">
