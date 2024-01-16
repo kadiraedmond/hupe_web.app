@@ -663,7 +663,7 @@ const remove = async (trajet) => {
 
                 <div class="col-md-12">
                   <label for="validationCustom01" class="form-label"
-                    >Date de départ</label
+                    >Date de début de ce trajet</label
                   >
                   <input
                     type="date"

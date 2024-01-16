@@ -130,8 +130,8 @@ const handleSubmit = async () => {
                     :src="userStore.user.imageUrl"
                     alt
                     class="h-auto"
-                    style="width: 533px;
-                          /* height: 165px !important; */
+                    style="width: 100%;
+                          height: 165px !important;
                           object-fit: cover;
                           border: 2.8px solid rgb(232, 232, 232);"
                   />
