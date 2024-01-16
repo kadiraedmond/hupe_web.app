@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, onMounted, computed, ref, reactive } from "vue"
+import { onBeforeMount, onMounted, watch, computed, ref, reactive } from "vue"
 
 import Vehicule from "@/components/Home/location.vue"
 import Reservation from "@/components/Home/reservation.vue"
@@ -47,28 +47,6 @@ onBeforeMount(() => {
 
 onMounted(() => {
   window.scrollTo(0, 0)
-
-  const text = document.querySelector(".sec-text");
-  const textLoad = () => {
-    setTimeout(() => {
-      text.textContent = "Vous cherchiez à louer une voiture pour une escapade, "
-    }, 4000)
-    setTimeout(() => {
-      text.textContent = "Vous cherchiez à acheter la voiture de vos rêves, "
-    }, 8000)
-    setTimeout(() => {
-      text.textContent = "Vous cherchiez à trouver des gros engins pour vos projets,   "
-    }, 12000)
-    setTimeout(() => {
-      text.textContent = "Vous cherchiez à réserver des billets de bus pour vos voyages,  "
-    }, 16000)
-    setTimeout(() => {
-      text.textContent = "Hupe pour simplifier chaque étape de votre parcours. "
-    }, 20000)
-  }
-
-  textLoad()
-  setInterval(textLoad, 24000)
 }) 
 
 const goTo_chat = async () => {
@@ -79,6 +57,66 @@ const goTo_chat = async () => {
     router.push('/connexion')
   }
 }
+
+
+// New carousel
+const goToCompanyPage = (slide) => {
+  router.push(`/detail/${encryptParam(slide.companieInfos.uid)}`)
+}
+
+onMounted(() => {
+	let counter = 0
+
+  const slideNext = () => {
+    let slideImages = document.querySelectorAll('.slides img')
+    slideImages[counter].classList.remove('next2')
+    slideImages[counter].classList.add('next1')
+    
+    if(counter >= slideImages.length - 1) {
+      counter = 0
+    }
+    else {
+      counter++
+    }
+
+    slideImages[counter].classList.remove('next1')
+    slideImages[counter].classList.add('next2')
+
+  }
+	// Auto sliding
+  setInterval(() => {
+    slideNext()
+    indicators()
+  }, 3500)
+
+  // Add and remove active class from the indicators
+  const indicators = () => {
+    let dots = document.querySelectorAll('.dot')
+    for(let i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(' active', '');
+    }
+
+    if(dots[counter]) {
+      dots[counter].className += ' active'
+    }
+  }
+})
+import Typewriter from 'typewriter-effect/dist/core'
+
+onMounted(() => {
+  new Typewriter('#typewriter', {
+    strings: [
+      'Que vous cherchiez à louer une voiture pour une escapade, ',
+      'Que vous cherchiez à acheter la voiture de vos rêves, ',
+      'Que vous cherchiez à trouver des gros engins pour vos projets, ',
+      'Que vous cherchiez à réserver des billets de bus pour vos voyages, ',
+      'Hupe est là pour simplifier chaque étape de votre parcours.'
+    ],
+    autoStart: true,
+    loop: true
+  })
+})
+
 </script>
 
 <template>
@@ -87,6 +125,7 @@ const goTo_chat = async () => {
     <div @click="goTo_chat" style="position: fixed; bottom: 2%; right: 2%; background: #219935; border-radius: 50%; cursor: pointer">
       <i class="fa-solid fa-message" style="color: white; font-size: 2rem; padding: 17px"></i>
     </div>
+
     
     <div class="container-fluid"  id="background">
       <div class="row g-3" style="padding: 93px !important">
@@ -101,38 +140,23 @@ const goTo_chat = async () => {
             src="/assets/img/accueil-car.png"
             style="width: 260px; height: 188px; object-fit: cover; float: left"
           />
-          <div class="wrapper text-start" style="margin-top: 5rem" >
-            <span class="text first-text text-black"
-              >Quand la mobilité devient un jeu d'enfant !
-            </span>
-            <br />
-            <!-- <span class="text" style="font-size: 1rem ;color: black;">
-              Notre application vous ouvre les portes d'un monde de possibilités
-              pour répondre à tous vos besoins de déplacement.
-            </span>  -->
-            <br />
-            <span class="text sec-text" style="font-size: 1.1rem ;background: #219935;color: white;">
-              Que vous cherchiez à louer une voiture pour une escapade, 
-            </span> 
-            <br />
-            <!-- <span class="text" style="font-size: 1rem; background: #219935;color: white;">
-              Nous sommes là pour simplifier chaque étape de votre parcours.
-            </span> -->
-          </div>
-          <!-- <p class="text-white text-start" style="margin-top: 3.8%; font-size: 0.86rem">
-            Découvrez notre sélection de véhicules de qualité à des tarifs
-            imbattables. Que ce soit pour un voyage d'affaires ou des vacances
-            en famille, trouvez la voiture parfaite pour votre escapade.
-            Réservez en ligne, choisissez votre destination, et préparez-vous à
-            prendre la route.
-          </p> -->
+          <h2 
+            style="font-size: 1.68rem; font-weight: bold"
+            class="text-start text-black"
+            >Quand la mobilité devient un jeu d'enfant !
+          </h2>
+          <div 
+            style="font-size: 2rem; font-weight: bold; margin-top: 1rem; color: #fa8538" 
+            class="text-start" 
+            id="typewriter"
+          ></div>
         </div>
         <div
           class="col-lg-6 col-md-6 border-2"
           id="heros_left_section"
           style="background: transparent !important"
         >
-         <keep-alive>
+        <!-- <keep-alive>
           <div
             id="carouselExampleSlidesOnly"
             class="carousel slide"
@@ -140,19 +164,19 @@ const goTo_chat = async () => {
             data-bs-interval="3000"
             style="height: 400px"
           >
-          <div class="carousel-indicators">
-              <button
-                  v-for="(slide, index) in slideStore.slideImages"
-                  :key="index"
-                  type="button"
-                  :data-bs-target="carouselExampleIndicators"
-                  :data-bs-slide-to="index"
-                  :class="{ 'active': index === 0 }"
-                  aria-current="true"
-                  :aria-label="`Slide ${index + 1}`"
-                  id="carousel-indicators"
-              ></button>
-          </div>
+            <div class="carousel-indicators">
+                <button
+                    v-for="(slide, index) in slideStore.slideImages"
+                    :key="index"
+                    type="button"
+                    :data-bs-target="carouselExampleIndicators"
+                    :data-bs-slide-to="index"
+                    :class="{ 'active': index === 0 }"
+                    aria-current="true"
+                    :aria-label="`Slide ${index + 1}`"
+                    id="carousel-indicators"
+                ></button>
+            </div>
             <div class="carousel-inner overflow-hidden">
               <div
                 v-for="(slideImage, index) in slideStore.slideImages"
@@ -170,7 +194,31 @@ const goTo_chat = async () => {
               </div>
             </div>
           </div>
-        </keep-alive>
+        </keep-alive> -->
+
+        <!-- New carousel -->
+        <div class="slide-container">
+	
+          <div class="slides">
+            <img 
+              v-for="(slideImage, i) in slideStore.slideImages"
+              :key="i"
+              :src="slideImage.downloadURL" 
+              :class="i === 0 ? 'active' : ''"
+              @click="goToCompanyPage(slideImage)" 
+            />
+          </div>
+
+          <div class="dotsContainer">
+            <div 
+              v-for="(slideImage, i) in slideStore.slideImages"
+              :class="i === 0 ? 'dot active' : 'dot'" 
+              :attr='i' 
+              @click="switchImage()"
+            ></div>
+          </div>
+
+        </div>
         </div>
       </div>
     </div>
@@ -311,6 +359,7 @@ const goTo_chat = async () => {
                 voyageurs du monde entier. Faites confiance à l'expérience et à
                 la qualité.
               </p>
+              <!-- <span class="typeWriter" data-checkVisible="true"  data-speed="2" data-text='["foo", "example"]'></span> -->
             </div>
           </div>
           <div class="col-4 text-end">
@@ -334,7 +383,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Véhicules populaires</h2>
+              <h2 class="text-uppercase">Véhicules populaires</h2>
               <p id="section-p">
                 Découvrez les véhicules les plus prisés pour votre prochain
                 voyage. Confort, style et fiabilité, nous avons tout ce dont
@@ -568,7 +617,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Compagnies de transport populaires</h2>
+              <h2 class="text-uppercase">Compagnies de transport populaires</h2>
               <p id="section-p">
                 Simplifiez votre trajet en choisissant parmi les compagnies de
                 transport les plus populaires. Voyagez en toute tranquillité
@@ -598,7 +647,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Destinations populaires</h2>
+              <h2 class="text-uppercase">Destinations populaires</h2>
               <p id="section-p">
                 Explorez les destinations les plus en vogue du moment. Trouvez
                 l'inspiration pour votre prochain voyage et vivez des
@@ -706,7 +755,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Compagnies de location de gros engins populaires</h2>
+              <h2 class="text-uppercase">Compagnies de location de gros engins populaires</h2>
               <p id="section-p">
                 Simplifiez votre trajet en choisissant parmi les compagnies de
                 transport les plus populaires. Voyagez en toute tranquillité
@@ -807,7 +856,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Gros engins populaires</h2>
+              <h2 class="text-uppercase">Gros engins populaires</h2>
               <p id="section-p">
                 Découvrez les véhicules les plus prisés pour votre prochain
                 voyage. Confort, style et fiabilité, nous avons tout ce dont
@@ -942,7 +991,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Compagnies de vente de véhicule populaires</h2>
+              <h2 class="text-uppercase">Compagnies de vente de véhicules populaires</h2>
               <p id="section-p">
                 Simplifiez votre trajet en choisissant parmi les compagnies de
                 transport les plus populaires. Voyagez en toute tranquillité
@@ -1042,7 +1091,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Ventes populaires</h2>
+              <h2 class="text-uppercase">Ventes populaires</h2>
               <p id="section-p">
                 Découvrez les véhicules les plus prisés pour votre prochain
                 voyage. Confort, style et fiabilité, nous avons tout ce dont
@@ -1177,7 +1226,7 @@ const goTo_chat = async () => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2>Actualités</h2>
+              <h2 class="text-uppercase">Actualités</h2>
               <p id="section-p">
                 Restez a jour avec les dernières nouvelles du monde du voyage .
                 Les informations les plus récentes sur les destinations, les
@@ -1463,31 +1512,6 @@ const goTo_chat = async () => {
 </template>
 
 <style scoped>
-
-.wrapper {
-  overflow: hidden;
-  overflow-wrap: break-word;
-}
-.wrapper .text {
-  position: relative;
-  color: #cad1f8;
-  font-size: 24px;
-  font-weight: 600;
-}
-.wrapper .text.first-text {
-  color: #fff;
-}
-.text.sec-text:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #62bfc4;
-  border-left: 2.6px solid #cad1f8;
-  animation: animate 8s steps(17) infinite alternate;
-} 
 @keyframes animate {
   0% {
     background-color: #62bfc4; 
@@ -1655,5 +1679,109 @@ body, html {
   display: block;
 }
 
+
+/* New carousel */
+.slide-container{
+  position: relative;
+  width: 105%;
+  height: 350px;
+  /* border: 3px solid #ede6d6; */
+  /* box-shadow: 0 0 8px 2px rgba(0,0,0,0.2); */
+}
+.slides {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slide-container .slides{
+  width: 100%;
+  height: calc(100% - 0px);
+  position: relative;
+  overflow: hidden;
+}
+.slide-container .slides img{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  position: absolute;
+  object-fit: cover;
+  cursor: pointer;
+  top: 0;
+}
+.slide-container .slides img:not(.active){
+  left: 100%;
+}
+.slide-container .slides img.active {
+  left: 0;
+}
+
+.slide-container .slides img.next1 {
+  animation: next1 0.5s ease-in forwards;
+}
+.slide-container .slides img.next2 {
+  animation: next2 0.5s ease-in forwards;
+}
+span.next, span.prev{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 14px;
+  color: #eee;
+  font-size: 24px;
+  font-weight: bold;
+  transition: 0.5s;
+  border-radius: 3px;
+  user-select: none;
+  cursor: pointer;
+  z-index: 1;
+}
+span.next{
+  right: 20px;
+}
+span.prev{
+  left: 20px;
+}
+span.next:hover, span.prev:hover{
+  background-color: #eee;
+  opacity: 0.8;
+  color: #000;
+} 
+.dotsContainer{
+  position: absolute;
+  bottom: 5px;
+  z-index: 3;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dotsContainer .dot{
+  width: 15px;
+  height: 15px;
+  margin: 0px 2px;
+  border: 2.6px solid #EEE;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.6s ease;
+}
+.dotsContainer .active {
+  background-color: #219935;
+}
+
+@keyframes next1{
+  from{
+    left: 0%
+  }
+  to{
+    left: -100%;
+  }
+}
+@keyframes next2{
+  from{
+    left: 100%
+  }
+  to{
+    left: 0%;
+  }
+}
 
 </style>

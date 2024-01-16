@@ -303,7 +303,7 @@ const options = {
                      ------------------------------------------------------------ -->
                     <div class="row" v-for="(message, i) in receive_messages" :key="i">
                       <div class="col-md-6">
-                        <div class="message-time" style=" font-size: 11px;"> <i class='bx bx-check' style=" font-size: 15px; color: #219935;"></i>{{ new Intl.DateTimeFormat(undefined, options).format(message.dateSend) }}</div>
+                        <div class="message-time" style=" font-size: 11px;"> <i class='bx bx-check' style=" font-size: 15px; color: #219935;"></i>{{ new Intl.DateTimeFormat('fr-FR', options).format(message.dateSend.toDate()) }}</div>
                         <div class="outgoing" style="background: white; padding: 10px; border-radius: 20px 20px 20px 0;">
                           <div class="message-text" style=" font-size: 14px;">{{ message.message }}</div>
                           
@@ -323,7 +323,7 @@ const options = {
                          
                       </div>
                       <div class="col-md-6">
-                        <div class="message-time" style=" font-size: 11px;"> {{ new Intl.DateTimeFormat(undefined, options).format(message.dateSend) }}</div>
+                        <div class="message-time" style=" font-size: 11px;"> {{ new Intl.DateTimeFormat('fr-FR', options).format(message.dateSend.toDate()) }}</div>
                         <div class="'incoming" style="background: #DEEEE4; padding: 10px; border-radius: 20px 20px 0;">
                           <div class="message-text" style=" font-size: 14px;">{{ message.message }}</div>
                      
