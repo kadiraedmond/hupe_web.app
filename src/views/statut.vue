@@ -24,8 +24,8 @@ const reservationStore = useReservationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'MIKsd9oIvxP860LDUMm9XNpvwzV2' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid
 
 const reservations = ref([])
 onBeforeMount(async () => {
@@ -335,7 +335,7 @@ const options = {
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+    <!-- <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
           <ol>
@@ -344,10 +344,11 @@ const options = {
           </ol>
   
         </div>
-      </section><!-- End Breadcrumbs -->
+      </section> -->
+      <!-- End Breadcrumbs -->
   
       <!-- ======= Portfolio Details Section ======= -->
-        <section id="portfolio-details" class="portfolio-details">
+        <section id="portfolio-details" class="portfolio-details" style="margin-top: 90px;">
             <div class="container">
   
               <div class="row no-gutters g-4 mt-4">
@@ -367,23 +368,17 @@ const options = {
                                 
                                 <div class="col-6 d-flex">
                                 <img
-                                    src="/assets/img/avatars/1.png"
+                                :src="reservation.companieInfos.imageLogoUrl"
                                     alt
-                                    class="w-px-40 h-auto rounded-circle"
-                                    style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                    class="w-px-40 h-auto"
+                                    style="width: 40px !important; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
                                 />
                                 <div>
-                                    <div class="card-body" style="margin-top: -10px;">
-                                    <h5 class="card-title" style="font-size: 12px">
-                                        {{ reservation.companieInfos.raison_social }}
-                                    </h5>
-                                    <p class="card-text" style="font-size: 12px">
-                                        <i
-                                        class="bx bx-map"
-                                        style="color: rgb(139 139 139); margin-left: 2px"
-                                        ></i>
-                                     {{ reservation.companieInfos.adresse }}
-                                    </p>
+                                    <div class="card-body" style="margin-top: -5px;">
+                                      <h5 class="card-title" style="font-size: 12px">
+                                          {{ reservation.companieInfos.raison_social }}
+                                      </h5>
+                                     
                                     </div>
                                 </div>
                                 </div>
@@ -510,349 +505,333 @@ const options = {
 
                             </div>
 
-                            <br />
-
-                            <p
-                              class="card-text"
-                              style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                              >
-                              Place à réserver | <strong>{{ reservation.nombre_personne }} </strong> 
-                              <!-- <strong> Santafe 2022 </strong> -->
-                            </p>
-
-                            <br />
-
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
-                            >
-                              Trajet | {{ reservation.lieu_depart }} - {{ reservation.destination }}
-                            </p>
-
-                            <br />
-
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -8px; margin-bottom: -8px"
-                            >
-                            Escale | <strong>{{ reservation.escale }} </strong>
-                            </p>
-                         
-                            <br />
-                          </div>
-                        </div>
-                        <!-- <div class="col-md-6">
-                        <img
-                            src="/assets/img/car2.jpg"
-                            class="img-fluid rounded-start h-100"
-                            alt="..."
-                            style="height: 85% !important"
-                        />
-                        </div> -->
-                        <div class="col-md-12">
-                        <div class="card-body">
-                            <p
-                            class="card-text"
-                            style="
-                                font-size: 13px;
-                                margin-top: -41px;
-                                margin-bottom: -8px;
-                            "
-                            >
-                            Départ | <strong>{{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.date_depart.toDate()) }} </strong> |
-                            <strong>{{ reservation.heure_depart }}</strong>
-                            </p>
-
-                        <br />
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                            >
-                            Convocation | <strong>{{ reservation.heure_convocation }} </strong>
-                            </p>
-                        <br />
-
-                            
-
-                            
-                          <div class="row" v-if="reservation.status == 'Validé'">
-                           
-
-                            <div class="col-md-6">
-                                <button
-                                class="btn btn-primary"
-                                style="
-                                    background: white;
-                                    border-color: crimson;
-                                    color: crimson;
-                                    font-size: 12px; 
-                                "
-                                data-bs-toggle="modal"
-                                data-bs-target="#annulModal10"
+                            <div class="row mt-2">
+                              <div class="col-6">
+                                <p
+                                  class="card-text"
+                                  style="font-size: 13px;"
+                                  >
+                                   <strong> Trajet </strong> <br>{{ reservation.lieu_depart }} - {{ reservation.destination }}
+                                  </p>
+                              </div>
+                              <div class="col-6">
+                                <p
+                                class="card-text"
+                                style="font-size: 13px;"
                                 >
-                                Annuler
-                                </button>
-
-                                 Modal
-                                <div
-                                class="modal fade"
-                                id="annulModal10"
-                                tabindex="-1"
-                                aria-labelledby="exampleModalLabel10"
-                                aria-hidden="true"
-                                >
-                                   <div class="modal-dialog">
-                                    <div class="modal-content" style="width: 75% !important">
-                                      <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                                            <img
-                                              src="/assets/img/avatars/1.png"
-                                              alt
-                                              class="w-px-40 h-auto rounded-circle"
-                                              style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
-                                            />
-                                          </h1>
-                                          <button
-                                          type="button"
-                                          class="btn-close"
-                                          data-bs-dismiss="modal"
-                                          aria-label="Close"
-                                          ></button>
-                                      </div>
-
-                                      <div class="modal-body">
-                                        <div class="row">
-                                            
-                                          <div class="col-md-12 text-center">
-                                            <div class="row">
-                                              <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
-                                                <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
-                                              </div>
-                                              <div class="col-12">
-                                                <div class="row">
-                                                  <div class="col-md-1"></div>
-                                                  <div class="col-md-10">
-                                                    <div class="row">
-                                                      <div class="col-md-12 mb-3"> 
-                                                      <a :href="`/raison/reservation/${encryptParam(reservation.uid)}`">
-                                                        <button
-                                                          class="btn btn-primary w-100"
-                                                          style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
-                                                          
-                                                          >
-                                                          Annuler quand même
-                                                          </button> 
-                                                        </a>
-                                                          
-
-                                                          
-                                                      </div>
-                                                      
-
-                                                      <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
-                                                        <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
-                                                      </div>
-
-                                                      <div class="col-md-12 mb-3"> 
-                                                        <a :href="`tel:${reservation.companieInfos.telephone}`">
-                                                          <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
-                                                        </a>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                  <div class="col-md-1"></div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            
-                                          </div>
-                                          
-                                          
-                                        </div>
-                                      </div>
-
-                                    </div>
-                                  </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                              <!-- Button trigger modal -->
-                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: #219935; border-color: #219935 ;font-size: 12px;">
-                                    Procéder au paiement
-                                  </button>
-
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content" style="width: 87%;">
-                                        <div class="modal-header" style="background-color: #219935 ; color: white">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Details pour le paiement</h1>
-                                          <button type="button" class="btn-close-payer" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <div class="row">
-                                            <div class="col-md-12 mb-4">
-                                              <div class="card">
-                                                <img src="" class="card-img-top" alt="..." style="    height: 215px; object-fit: cover;">
-                                                
-                                              </div>
-                                            </div>
-                                            <div class="col-md-12 text-center">
-                                              <h5 style="font-size: 16px;color: black;">Compagnie {{ reservation.companieInfos.raison_social }} </h5>
-                                            </div>
-                                            <div class="col-md-12">
-                                              <p style=" font-size: 14px;">  Place à réserver <strong>{{ reservation.nombre_personne }} </strong> |</p>
-                                              <p style="margin-top: -15px; font-size: 14px;">Trajet | {{ reservation.lieu_depart }} - {{ reservation.destination }}</p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> chauffeur | <strong>{{ reservation.chauffeur }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;">  Escale | <strong>{{ reservation.escale }} </strong></p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Départ | <strong>{{ reservation.date_depart }} </strong> |  <strong>{{ reservation.heure_depart }}</strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Convocation | <strong>{{ reservation.heure_convocation }} </strong> </p>
-                                             </div>
-                                            <hr>
-                                            <div class="col-md-12">
-                                              <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ reservation.nom_client }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ reservation.solde }} </strong> </p>
-                                            </div>
-
-                                            <hr>
-                                            <div class="col-md-12">
-                                              <p style=" font-size: 14px;"> Prix de reservation | <strong>{{ reservation.montant }} </strong> </p>
-                                              <p style="margin-top: -15px; font-size: 14px;"> Total | <strong>{{ reservation.montant }} </strong><strong>{{ reservation.montant }} </strong> </p>
-                                            </div>
-
-                                            <div class="col-md-12 text-center">
-                                              <button class="btn btn-primary"  @click="payer(reservation)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        
-                                      </div>
-                                    </div>
-                                  </div>
-                                <!-- <button
-                                class="btn btn-primary"
-                                style="background: #219935; border-color: #219935 ;font-size: 12px;"
-                                @click="payer(reservation)"
-                                >
-                                Procéder au paiement
-                                </button> -->
-                            </div> 
-
-
-                          </div> 
-
-                          <!-- <div class="col-md-6">
-                            <button
-                            class="btn btn-primary w-75"
-                            style="
-                                background: white;
-                                border-color: crimson;
-                                color: crimson;
-                                font-size: 12px; 
-                            "
-                            data-bs-toggle="modal"
-                            data-bs-target="#annulModal10"
-                            >
-                            Annuler
-                            </button>
-
-                              
-                            <div
-                            class="modal fade"
-                            id="annulModal10"
-                            tabindex="-1"
-                            aria-labelledby="exampleModalLabel10"
-                            aria-hidden="true"
-                            >
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div style="background: #219935" class="modal-header">
-                                    <h1 class="modal-title text-white fs-5" id="exampleModalLabel10">
-                                      Donnez la raison de l'annulation
-                                    </h1>
-                                    <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                    ></button>
-                                  </div>
-                                  
-                                  <div>
-                                    <select v-model="option" class="w-100 mb-2">
-                                      <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du Véhicule</option>
-                                      <option value="J'ai changé d'avis">J'ai changé d'avis</option>
-                                      <option value="J'ai une autre option">J'ai une autre option</option>
-                                      <option value="Autre">Autre</option>
-                                    </select>
-                                    <div class="mb-2">
-                                      <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
-                                    </div>
-                                  </div>
-                                  <button @click="annul(reservation)" class="btn btn-primary">Enregistrer</button>
-                                </div>
+                                <strong> Escale </strong>  <br>{{ reservation.escale }}
+                                </p>
                               </div>
                             </div>
-                          </div>  -->
 
-                          <div class="row" v-if="reservation.status == 'Confirmé'">
-                            <div class="col-md-6">
-                              <a :href="`tel:${reservation.companieInfos.telephone}`">
-                                <button
-                                class="btn btn-primary w-75"
+                          </div>
+                        </div>
+                         
+                        <div class="col-md-12">
+                          <div class="card-body" style="margin-top: -30px;">
+                            <div class="row mt-2">
+                              <div class="col-6">
+                                  <p
+                                class="card-text"
                                 style="
-                                    background: white;
-                                    border-color: #219935;
-                                    color: #219935;
-                                    font-size: 12px; 
+                                    font-size: 13px;
                                 "
                                 >
-                                Appel
-                                </button> 
-                              </a>
+                                <strong> Départ</strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(reservation.date_depart.toDate()) }} à 
+                                {{ reservation.heure_depart }}
+                                </p>
+                              </div>
+                              <div class="col-6">
+                                <p
+                                  class="card-text"
+                                  style="font-size: 13px;"
+                                  >
+                                  <strong> Convocation </strong> <br> {{ reservation.heure_convocation }}
+                                  </p>
+                              </div>
+                          
                             </div>
-                            <div class="col-md-6">
-                              <router-link :to="`/messagerie/${encryptParam(reservation.companieInfos.uid)}`">
-                                <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
-                                  Message
-                                  <span v-if="reservation.unreadMessagesCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {{ reservation.unreadMessagesCount }}
-                                    <span class="visually-hidden">unread messages</span>
-                                  </span>
-                                </button>
-                              </router-link>
-                              <!-- <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
+
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                  <p
+                                    class="card-text"
+                                    style="font-size: 13px;"
+                                    >
+                                    <strong> Place à réserver</strong>  <br> {{ reservation.nombre_personne }} 
+                                    
+                                  </p>
+                                </div>
+                            </div>
+
+                            <div class="row" v-if="reservation.status == 'Validé'">
+                            
+
+                              <div class="col-md-6">
+                                  <button
+                                  class="btn btn-primary"
+                                  style="
+                                      background: white;
+                                      border-color: crimson;
+                                      color: crimson;
+                                      font-size: 12px; 
+                                  "
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#annulModal10"
+                                  >
+                                  Annuler
+                                  </button>
+
+                                  <div
+                                  class="modal fade"
+                                  id="annulModal10"
+                                  tabindex="-1"
+                                  aria-labelledby="exampleModalLabel10"
+                                  aria-hidden="true"
+                                  >
+                                    <div class="modal-dialog">
+                                      <div class="modal-content" style="width: 75% !important">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                                              <img
+                                                src="/assets/img/avatars/1.png"
+                                                alt
+                                                class="w-px-40 h-auto rounded-circle"
+                                                style="max-width: 50px; max-height: 50px ; border: 1px solid rgb(214, 214, 214);"
+                                              />
+                                            </h1>
+                                            <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                            ></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                          <div class="row">
+                                              
+                                            <div class="col-md-12 text-center">
+                                              <div class="row">
+                                                <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
+                                                  <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
+                                                </div>
+                                                <div class="col-12">
+                                                  <div class="row">
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-10">
+                                                      <div class="row">
+                                                        <div class="col-md-12 mb-3"> 
+                                                        <a :href="`/raison/reservation/${encryptParam(reservation.uid)}`">
+                                                          <button
+                                                            class="btn btn-primary w-100"
+                                                            style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
+                                                            
+                                                            >
+                                                            Annuler quand même
+                                                            </button> 
+                                                          </a>
+                                                            
+
+                                                            
+                                                        </div>
+                                                        
+
+                                                        <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
+                                                          <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-3"> 
+                                                          <a :href="`tel:${reservation.companieInfos.telephone}`">
+                                                            <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
+                                                          </a>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              
+                                            </div>
+                                            
+                                            
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: #219935; border-color: #219935 ;font-size: 12px;">
+                                      Procéder au paiement
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content" style="width: 87%;">
+                                          <div class="modal-header" style="background-color: #219935 ; color: white">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Details pour le paiement</h1>
+                                            <button type="button" class="btn-close-payer" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div class="row">
+                                              <div class="col-md-12 mb-4">
+                                                <div class="card">
+                                                  <img src="/assets/img/rb.jpg" class="card-img-top" alt="..." style="    height: 215px; object-fit: cover;">
+                                                  
+                                                </div>
+                                              </div>
+                                              <div class="col-md-12 text-center">
+                                                <h5 style="font-size: 16px;color: black;">Compagnie {{ reservation.companieInfos.raison_social }} </h5>
+                                              </div>
+                                              <div class="col-md-12">
+                                                <div class="row">
+                                                  <div class="col-6"></div>
+                                                  <div class="col-6">
+                                                    <p style="margin-top: -15px; font-size: 14px;">Trajet | {{ reservation.lieu_depart }} - {{ reservation.destination }}</p>
+                                                  </div>
+                                                </div>
+                                                <p style=" font-size: 14px;">  Place à réserver <strong>{{ reservation.nombre_personne }} </strong> |</p>
+                                                
+                                                <p style="margin-top: -15px; font-size: 14px;"> chauffeur | <strong>{{ reservation.chauffeur }} </strong> </p>
+                                                <p style="margin-top: -15px; font-size: 14px;">  Escale | <strong>{{ reservation.escale }} </strong></p>
+                                                <p style="margin-top: -15px; font-size: 14px;"> Départ | <strong>{{ reservation.date_depart }} </strong> |  <strong>{{ reservation.heure_depart }}</strong> </p>
+                                                <p style="margin-top: -15px; font-size: 14px;"> Convocation | <strong>{{ reservation.heure_convocation }} </strong> </p>
+                                              </div>
+                                              <hr>
+                                              <div class="col-md-12">
+                                                <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ reservation.nom_client }} </strong> </p>
+                                                <p style="margin-top: -15px; font-size: 14px;"> Solde | <strong>{{ reservation.solde }} </strong> </p>
+                                              </div>
+
+                                              <hr>
+                                              <div class="col-md-12">
+                                                <p style=" font-size: 14px;"> Prix de reservation | <strong>{{ reservation.montant }} </strong> </p>
+                                                <p style="margin-top: -15px; font-size: 14px;"> Total | <strong>{{ reservation.montant }} </strong><strong>{{ reservation.montant }} </strong> </p>
+                                              </div>
+
+                                              <div class="col-md-12 text-center">
+                                                <button class="btn btn-primary"  @click="payer(reservation)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                  <!-- <button
+                                  class="btn btn-primary"
+                                  style="background: #219935; border-color: #219935 ;font-size: 12px;"
+                                  @click="payer(reservation)"
+                                  >
+                                  Procéder au paiement
+                                  </button> -->
+                              </div> 
+
+
+                            </div> 
+
+                            <!-- <div class="col-md-6">
+                              <button
+                              class="btn btn-primary w-75"
+                              style="
+                                  background: white;
+                                  border-color: crimson;
+                                  color: crimson;
+                                  font-size: 12px; 
+                              "
+                              data-bs-toggle="modal"
+                              data-bs-target="#annulModal10"
+                              >
+                              Annuler
+                              </button>
+
+                                
+                              <div
+                              class="modal fade"
+                              id="annulModal10"
+                              tabindex="-1"
+                              aria-labelledby="exampleModalLabel10"
+                              aria-hidden="true"
+                              >
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div style="background: #219935" class="modal-header">
+                                      <h1 class="modal-title text-white fs-5" id="exampleModalLabel10">
+                                        Donnez la raison de l'annulation
+                                      </h1>
+                                      <button
+                                      type="button"
+                                      class="btn-close"
+                                      data-bs-dismiss="modal"
+                                      aria-label="Close"
+                                      ></button>
+                                    </div>
+                                    
+                                    <div>
+                                      <select v-model="option" class="w-100 mb-2">
+                                        <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du Véhicule</option>
+                                        <option value="J'ai changé d'avis">J'ai changé d'avis</option>
+                                        <option value="J'ai une autre option">J'ai une autre option</option>
+                                        <option value="Autre">Autre</option>
+                                      </select>
+                                      <div class="mb-2">
+                                        <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
+                                      </div>
+                                    </div>
+                                    <button @click="annul(reservation)" class="btn btn-primary">Enregistrer</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>  -->
+
+                            <div class="row" v-if="reservation.status == 'Confirmé'">
+                              <div class="col-md-6">
+                                <a :href="`tel:${reservation.companieInfos.telephone}`">
                                   <button
                                   class="btn btn-primary w-75"
-                                  style="background: #219935; border-color: #219935 ; font-size: 12px; "
+                                  style="
+                                      background: white;
+                                      border-color: #219935;
+                                      color: #219935;
+                                      font-size: 12px; 
+                                  "
                                   >
-                                      Message
+                                  Appel
+                                  </button> 
+                                </a>
+                              </div>
+                              <div class="col-md-6">
+                                <router-link :to="`/messagerie/${encryptParam(reservation.companieInfos.uid)}`">
+                                  <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
+                                    Message
+                                    <span v-if="reservation.unreadMessagesCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                      {{ reservation.unreadMessagesCount }}
+                                      <span class="visually-hidden">unread messages</span>
+                                    </span>
                                   </button>
-                              </router-link> -->
-                            </div>
-                            
-                          </div>
-
-                          <div class="row" v-if="reservation.status == 'Annuler'">
+                                </router-link>
+                                <!-- <router-link :to="`/messagerie/${reservation.companieInfos.uid}`">
+                                    <button
+                                    class="btn btn-primary w-75"
+                                    style="background: #219935; border-color: #219935 ; font-size: 12px; "
+                                    >
+                                        Message
+                                    </button>
+                                </router-link> -->
+                              </div>
                               
-                            <div class="col-md-12 text-center">
-                              <router-link :to="`/detail_reservation_ticket/${encryptParam(reservation.trajet_id)}`">
-                                  <button
-                                  class="btn btn-primary w-75"
-                                  style="background: #219935; border-color: #219935 ; font-size: 12px; "
-                                  >
-                                      Commander à nouveau
-                                  </button>
-                              </router-link>
                             </div>
-                            
-                          </div>
 
-                          <div class="row" v-if="reservation.status == 'Utilisé'">
-                              
+                            <div class="row" v-if="reservation.status == 'Annuler'">
+                                
                               <div class="col-md-12 text-center">
-                              <router-link :to="`/detail_reservation_ticket/${encryptParam(reservation.trajet_id)}`">
+                                <router-link :to="`/detail_reservation_ticket/${encryptParam(reservation.trajet_id)}`">
                                     <button
                                     class="btn btn-primary w-75"
                                     style="background: #219935; border-color: #219935 ; font-size: 12px; "
@@ -861,12 +840,27 @@ const options = {
                                     </button>
                                 </router-link>
                               </div>
-                            
+                              
+                            </div>
+
+                            <div class="row" v-if="reservation.status == 'Utilisé'">
+                                
+                                <div class="col-md-12 text-center">
+                                <router-link :to="`/detail_reservation_ticket/${encryptParam(reservation.trajet_id)}`">
+                                      <button
+                                      class="btn btn-primary w-75"
+                                      style="background: #219935; border-color: #219935 ; font-size: 12px; "
+                                      >
+                                          Commander à nouveau
+                                      </button>
+                                  </router-link>
+                                </div>
+                              
+                            </div>
+
+                              
+
                           </div>
-
-                            
-
-                        </div>
                         </div>
                     </div>
                     </div>
