@@ -22,6 +22,7 @@ import {
 import { firestoreDb } from "@/firebase/firebase.js"
 import { encryptParam } from '@/utils/hash.js'
 import Typewriter from 'typewriter-effect/dist/core'
+import { useI18n } from 'vue-i18n'
 
 const companieStore = useCompanieStore()
 const slideStore = useSlide()
@@ -30,6 +31,8 @@ const promotionStore = usePromotionStore()
 const localisationStore = useLocalisationStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
+
+const { t } = useI18n()
 
 onBeforeMount(() => {
   slideStore.getSlideImages
@@ -156,11 +159,11 @@ onMounted(() => {
 onMounted(() => {
   new Typewriter('#typewriter', {
     strings: [
-      'Que vous cherchiez à louer une voiture pour une escapade, ',
-      'Que vous cherchiez à acheter la voiture de vos rêves, ',
-      'Que vous cherchiez à trouver des gros engins pour vos projets, ',
-      'Que vous cherchiez à réserver des billets de bus pour vos voyages, ',
-      'Hupe est là pour simplifier chaque étape de votre parcours.'
+      `${t('typed_text1')}, `,
+      `${t('typed_text2')}, `,
+      `${t('typed_text3')}, `,
+      `${t('typed_text4')}, `,
+      `${t('typed_text5')}.`
     ],
     autoStart: true,
     loop: true
@@ -191,12 +194,12 @@ onMounted(() => {
             style="width: 260px; height: 188px; object-fit: cover; float: left"
           />
           <h2 
-            style="font-size: 1.68rem; font-weight: bold"
+            style="font-size: 1.8rem; font-weight: bold"
             class="text-start text-black"
-            >Quand la mobilité devient un jeu d'enfant !
+            >{{ t('section1_text1') }}
           </h2>
           <div 
-            style="font-size: 2rem; font-weight: bold; margin-top: 1rem; color: #fa8538" 
+            style="font-size: 1.4rem; font-weight: bold; margin-top: 0.5rem; color: #354058" 
             class="text-start" 
             id="typewriter"
           ></div>
@@ -285,7 +288,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-6">
             <div class="section-title">
-              <h2 class="text-uppercase">Que voulez-vous faire ?</h2>
+              <h2 class="text-uppercase">{{ t('section2_title') }}</h2>
             </div>
           </div>
         </div>
@@ -308,12 +311,12 @@ onMounted(() => {
               <div class="card-body" style="background: #62bfc4 ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/location" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
-                    Louer un véhicule
+                    {{ t('title1') }}
                   </h5>
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Découvrez le confort, la flexibilité et l'aventure avec Hupe.
+                  {{ t('text1') }}.
                 </p>
               </div>
             </div>
@@ -334,12 +337,12 @@ onMounted(() => {
               <div class="card-body" style="background: #bbded8 ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
-                    Réserver un ticket de bus
+                    {{ t('title2') }}
                   </h5>
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                  Embarquez pour l'aventure avec nos réservations de bus.
+                  {{ t('text2') }}.
                 </p>
               </div>
             </div>
@@ -361,12 +364,12 @@ onMounted(() => {
               <div class="card-body" style="background: #f8e4dd ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/location_gros_engin" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
-                    Louer un gros engin
+                    {{ t('title3') }}
                   </h5>
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                 Des engins puissants pour des résultats exceptionnels.
+                 {{ t('text3') }}.
                 </p>
               </div>
             </div>
@@ -387,12 +390,12 @@ onMounted(() => {
               <div class="card-body" style="background: #fdb7b9 ; border-radius: 0px 0px 5px 5px;">
                 <router-link to="/reservation" class="mt-4" id="a">
                   <h5 class="card-title text-white" style="font-size: 17px; font-weight: bold">
-                    Acheter un véhicule
+                    {{ t('title4') }}
                   </h5>
                 </router-link>
 
                 <p class="card-text text-black" style="font-size: 14px">
-                 Le plaisir de conduire débute avec la sélection Hupe.
+                 {{ t('text4') }}.
                 </p>
               </div>
             </div>
@@ -407,11 +410,9 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">Compagnies de locations populaires</h2>
+              <h2 class="text-uppercase">{{ t('section3_title') }}</h2>
               <p id="section-p">
-                Explorez les compagnies de location les plus appréciées par les
-                voyageurs du monde entier. Faites confiance à l'expérience et à
-                la qualité.
+                {{ t('popular_text1') }}.
               </p>
               <!-- <span class="typeWriter" data-checkVisible="true"  data-speed="2" data-text='["foo", "example"]'></span> -->
             </div>
@@ -421,7 +422,7 @@ onMounted(() => {
               <boutton
                 class="btn btn-primary" id="btn-end"
               >
-                Voir plus</boutton
+                {{ t('see_much') }}</boutton
               >
             </router-link>
           </div>
@@ -437,11 +438,9 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">Véhicules populaires</h2>
+              <h2 class="text-uppercase">{{ t('section4_title') }}</h2>
               <p id="section-p">
-                Découvrez les véhicules les plus prisés pour votre prochain
-                voyage. Confort, style et fiabilité, nous avons tout ce dont
-                vous avez besoin.
+                {{ t('popular_text2') }}.
               </p>
             </div>
           </div>
@@ -450,7 +449,7 @@ onMounted(() => {
               <boutton
                 class="btn btn-primary" id="btn-end"
               >
-                Voir plus</boutton
+                {{ t('see_much') }}</boutton
               >
             </router-link>
           </div>
@@ -671,11 +670,9 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">Compagnies de transport populaires</h2>
+              <h2 class="text-uppercase">{{ t('section5_title') }}</h2>
               <p id="section-p">
-                Simplifiez votre trajet en choisissant parmi les compagnies de
-                transport les plus populaires. Voyagez en toute tranquillité
-                avec nos partenaires de confiance.
+                {{ t('popular_text3') }}.
               </p>
             </div>
           </div>
@@ -685,7 +682,7 @@ onMounted(() => {
                 class="btn btn-primary" id="btn-end"
                  
               >
-                Voir plus</boutton
+                {{ t('see_much') }}</boutton
               >
             </router-link>
           </div>
@@ -701,11 +698,9 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">Destinations populaires</h2>
+              <h2 class="text-uppercase">{{ t('section6_title') }}</h2>
               <p id="section-p">
-                Explorez les destinations les plus en vogue du moment. Trouvez
-                l'inspiration pour votre prochain voyage et vivez des
-                expériences inoubliables.
+                {{ t('popular_text4') }}.
               </p>
             </div>
           </div>
@@ -715,7 +710,7 @@ onMounted(() => {
                 class="btn btn-primary"
                id="btn-end"
               >
-                Voir plus</boutton
+                {{ t('see_much') }}</boutton
               >
             </router-link>
           </div>
@@ -809,11 +804,9 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">Compagnies de location de gros engins populaires</h2>
+              <h2 class="text-uppercase">{{ t('section7_title') }}</h2>
               <p id="section-p">
-                Simplifiez votre trajet en choisissant parmi les compagnies de
-                transport les plus populaires. Voyagez en toute tranquillité
-                avec nos partenaires de confiance.
+                {{ t('popular_text5') }}.
               </p>
             </div>
           </div>
@@ -823,7 +816,7 @@ onMounted(() => {
                 class="btn btn-primary"
                id="btn-end"
               >
-                Voir plus</boutton
+                {{ t('see_much') }}</boutton
               >
             </router-link>
           </div>
@@ -910,11 +903,9 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">Gros engins populaires</h2>
+              <h2 class="text-uppercase">{{ t('section8_title') }}</h2>
               <p id="section-p">
-                Découvrez les véhicules les plus prisés pour votre prochain
-                voyage. Confort, style et fiabilité, nous avons tout ce dont
-                vous avez besoin.
+                {{ t('popular_text6') }}.
               </p>
             </div>
           </div>
@@ -923,7 +914,7 @@ onMounted(() => {
               <boutton
                 class="btn btn-primary" id="btn-end"
               >
-                Voir plus</boutton
+                {{ t('see_much') }}</boutton
               >
             </router-link>
           </div>
@@ -1045,11 +1036,9 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">Compagnies de vente de véhicules populaires</h2>
+              <h2 class="text-uppercase">{{ t('section9_title') }}</h2>
               <p id="section-p">
-                Simplifiez votre trajet en choisissant parmi les compagnies de
-                transport les plus populaires. Voyagez en toute tranquillité
-                avec nos partenaires de confiance.
+                {{ t('popular_text7') }}.
               </p>
             </div>
           </div>
@@ -1059,7 +1048,7 @@ onMounted(() => {
                 class="btn btn-primary" id="btn-end"
                 
               >
-                Voir plus</boutton
+                {{ t('see_much') }}</boutton
               >
             </router-link>
           </div>
@@ -1145,11 +1134,9 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">Ventes populaires</h2>
+              <h2 class="text-uppercase">{{ t('section10_title') }}</h2>
               <p id="section-p">
-                Découvrez les véhicules les plus prisés pour votre prochain
-                voyage. Confort, style et fiabilité, nous avons tout ce dont
-                vous avez besoin.
+                {{ t('popular_text8') }}.
               </p>
             </div>
           </div>
@@ -1158,7 +1145,7 @@ onMounted(() => {
               <boutton
                 class="btn btn-primary" id="btn-end"
               >
-                Voir plus</boutton
+                {{ t('see_much') }}</boutton
               >
             </router-link>
           </div>
@@ -1280,11 +1267,9 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">Actualités</h2>
+              <h2 class="text-uppercase">{{ t('section11_title') }}</h2>
               <p id="section-p">
-                Restez a jour avec les dernières nouvelles du monde du voyage .
-                Les informations les plus récentes sur les destinations, les
-                promotion et plus encore
+                {{ t('popular_text9') }}
               </p>
             </div>
           </div>
@@ -1294,7 +1279,7 @@ onMounted(() => {
                 class="btn btn-primary" id="btn-end"
                 
               >
-                Voir plus</boutton
+                {{ t('see_much') }}</boutton
               >
             </router-link>
           </div>
@@ -1315,7 +1300,7 @@ onMounted(() => {
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">Comment Hupe Simplifie Vos Voyages Quotidiens</h5>
+                    <h5 class="card-title" id="blog_title">{{ t('card_title1') }}</h5>
                   </div>
                 </div>
 
@@ -1326,13 +1311,13 @@ onMounted(() => {
                         class="bx bxs-circle mr-2"
                         style="margin-right: 2px"
                       ></i>
-                      8 mars 2023
+                      {{ t('card_date') }}
                     </h5>
                   </div>
                 </div>
 
                 <p class="card-text" style="font-size: 13px; text-align: justify;">
-                  Dans le tourbillon quotidien de la vie urbaine, chaque instant compte... 
+                  {{ t('card_text1') }}... 
                 </p>
                 <div class="row">
                   <div class="col-md-12 text-center">
@@ -1342,7 +1327,7 @@ onMounted(() => {
                       id="btn-blog"
                      
                     >
-                      Voir plus
+                      {{ t('see_much') }}
                     </button>
                     </router-link>
                     
@@ -1365,7 +1350,7 @@ onMounted(() => {
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">Les Avantages de Louer un Véhicule avec Hupe</h5>
+                    <h5 class="card-title" id="blog_title">{{ t('card_title2') }}</h5>
                   </div>
                 </div>
 
@@ -1376,13 +1361,13 @@ onMounted(() => {
                         class="bx bxs-circle mr-2"
                         style="margin-right: 2px"
                       ></i>
-                      8 mars 2023
+                      {{ t('card_date') }}
                     </h5>
                   </div>
                 </div>
 
                 <p class="card-text" style="font-size: 13px; text-align: justify;">
-                  Louer un véhicule avec Hupe va bien au-delà d'une simple transaction ...
+                  {{ t('card_text2') }}...
                 </p>
                 <div class="row">
                   <div class="col-md-12 text-center">
@@ -1391,7 +1376,7 @@ onMounted(() => {
                       class="btn"
                        id="btn-blog"
                     >
-                      Voir plus
+                      {{ t('see_much') }}
                     </button>
                     </router-link>
                   </div>
@@ -1413,7 +1398,7 @@ onMounted(() => {
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">Top 10 Destinations Incontournables à Explorer ...</h5>
+                    <h5 class="card-title" id="blog_title">{{ t('card_title3') }}...</h5>
                   </div>
                 </div>
 
@@ -1424,13 +1409,13 @@ onMounted(() => {
                         class="bx bxs-circle mr-2"
                         style="margin-right: 2px"
                       ></i>
-                      8 mars 2023
+                      {{ t('card_date') }}
                     </h5>
                   </div>
                 </div>
 
                 <p class="card-text" style="font-size: 13px; text-align: justify;">
-                  À travers les huit joyaux de l'UEMOA, Hupe vous invite à découvrir ...
+                  {{ t('card_text3') }}...
                 </p>
                 <div class="row">
                   <div class="col-md-12 text-center">
@@ -1439,7 +1424,7 @@ onMounted(() => {
                       class="btn"
                       id="btn-blog"
                     >
-                      Voir plus
+                      {{ t('see_much') }}
                     </button>
                     </router-link>
                   </div>
@@ -1461,7 +1446,7 @@ onMounted(() => {
               <div class="card-body">
                 <div class="row" id="blog_row">
                   <div class="col-md-12">
-                    <h5 class="card-title" id="blog_title">L'Impact de Hupe sur l'Industrie de la Location ...</h5>
+                    <h5 class="card-title" id="blog_title">{{ t('card_title4') }}...</h5>
                   </div>
                 </div>
 
@@ -1472,13 +1457,13 @@ onMounted(() => {
                         class="bx bxs-circle mr-2"
                         style="margin-right: 2px"
                       ></i>
-                      8 mars 2023
+                      {{ t('card_date') }}
                     </h5>
                   </div>
                 </div>
 
                 <p class="card-text" style="font-size: 13px; text-align: justify;">
-                  L'évolution rapide de l'industrie de la location de véhicules a trouvé un nouveau ...
+                  {{ t('card_text4') }}...
                 </p>
                 <div class="row">
                   <div class="col-md-12 text-center">
@@ -1487,7 +1472,7 @@ onMounted(() => {
                       class="btn"
                        id="btn-blog"
                     >
-                      Voir plus
+                      {{ t('see_much') }}
                     </button>
                     </router-link>
                   </div>
@@ -1505,10 +1490,9 @@ onMounted(() => {
         <div class="row mt-5">
           <div class="col-12">
             <div class="section-title text-center">
-                  <h2>Inscrivez vous à notre Newsletter</h2>
+                  <h2>{{ t('newsletter_title') }}</h2>
                   <p id="section-p">
-                    Veuillez renseignez votre adresse mail, pour etre au courant de
-                    toutes nos nouveautés
+                    {{ t('newsletter_text') }}
                   </p>
                 </div>
           </div>
@@ -1524,8 +1508,7 @@ onMounted(() => {
                 
                 <form
                   class="d-flex"
-                  action=""
-                  method="POST"
+                  @submit.prevent=""
                   enctype="multipart/form-data"
                 >
                   <div
@@ -1535,7 +1518,7 @@ onMounted(() => {
                     <input
                       type="text"
                       class="form-control form-control-lg input py-3"
-                      placeholder="Adresse email"
+                      :placeholder="t('newsletter_placeholder')"
                       name="email"
                       id="input_newsletter"
                     />
@@ -1547,8 +1530,9 @@ onMounted(() => {
                         border-radius: 0px 50px 50px 0px;
                         width: 133px;
                       "
+                      type="submit"
                     >
-                      Envoyer
+                      {{ t('newsletter_submit') }}
                     </button>
                   </div>
                 </form>

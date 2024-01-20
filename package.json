@@ -26,6 +26,7 @@
     "uuid": "^9.0.1",
     "vue": "^3.3.10",
     "vue-flag-icon": "^2.1.0",
+    "vue-i18n": "^9.9.0",
     "vue-i18next": "^0.9.4",
     "vue-otp-input": "^1.0.0",
     "vue-router": "^4.2.4",

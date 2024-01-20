@@ -32,6 +32,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router/router'
+import i18n from "./translations/i18n"
 // import CKEditor from '@ckeditor/ckeditor5-vue'
  
 
@@ -57,5 +58,6 @@ const globalOptions = {
 app.use(router) 
 app.use(pinia)
 app.use(VueTelInput, globalOptions)
+app.use(i18n)
 
 app.component('v-otp-input', VOtpInput).mount('#app')

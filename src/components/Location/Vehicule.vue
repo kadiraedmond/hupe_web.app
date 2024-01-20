@@ -20,9 +20,9 @@ const isLoading = ref(false)
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'qdo1Ig1tnMlmvFCxa6OE'
-// const userId = 'qdo1Ig1tnMlmvFCxa6OE' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'qdo1Ig1tnMlmvFCxa6OE'
+
 onBeforeMount(async () => {
   isLoading.value = true
   await companieStore.setCompanieCars2(userId) // authStore.user.uid

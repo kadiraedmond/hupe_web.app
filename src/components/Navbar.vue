@@ -17,6 +17,15 @@ import { onMounted, onBeforeMount, ref, watch } from 'vue'
 import { firestoreDb } from "@/firebase/firebase.js"
 import { updateDoc, doc, getDocs, query, where, collection, onSnapshot, getDoc } from "firebase/firestore"
 
+import { useI18n } from 'vue-i18n'
+import i18n from '@/translations/i18n.js'
+
+const selectedLanguage = ref('fr')
+const { t } = useI18n()
+
+const changeLanguage = () => {
+  i18n.global.locale = selectedLanguage.value
+}
 const authStore = useAuthStore()
 const localisationStore = useLocalisationStore()
 const companieStore = useCompanieStore()
@@ -247,7 +256,7 @@ const handleSelect = (selectedCountry) => {
           
           <i class="bi bi-search"></i>
         </span>
-        <input type="search" class="form-control" placeholder="Recherche..." v-model="searchTerm" aria-label="Recherche" style="border-color: #219935;">
+        <input type="search" class="form-control" :placeholder="t('search') + '...'" v-model="searchTerm" aria-label="Recherche" style="border-color: #219935;">
       </div>
       <!-- <button class="btn btn-primary" type="submit">Rechercher</button> -->
     </form>
@@ -269,7 +278,7 @@ const handleSelect = (selectedCountry) => {
         <ul>
           <li>
             <router-link @click="home" to="" class="nav-link scrollto " :class="{ active: $route.path === '/' }"
-              ><i class="bx bx-home" id="icon_menu"></i> Accueil</router-link
+              ><i class="bx bx-home" id="icon_menu"></i> {{ t('home') }}</router-link
             >
           </li>
           
@@ -281,7 +290,7 @@ const handleSelect = (selectedCountry) => {
           </li>
           <li>
             <router-link class="nav-link scrollto" to="/service_client" :class="{ active: $route.path === '/service_client' }"
-              ><i class="bx bx-help-circle" id="icon_menu"></i> Aide
+              ><i class="bx bx-help-circle" id="icon_menu"></i> {{ t('help') }}
             </router-link>
           </li>
           <li>
@@ -290,9 +299,9 @@ const handleSelect = (selectedCountry) => {
             </router-link>
           </li>
           <li style="margin-left: 30px; font-size: 14px; font-weight: 600">
-            <select class="form-select1 px-3" style="padding: 8px" id="validationCustom04" required>
-              <option selected value="">Francais</option>
-              <option>Anglais</option>
+            <select v-model="selectedLanguage" @change="changeLanguage" class="form-select1 px-3" style="padding: 8px" id="validationCustom04" required>
+              <option selected value="fr">Francais</option>
+              <option value="en">Anglais</option>
             </select>
           </li>
 
@@ -346,10 +355,10 @@ const handleSelect = (selectedCountry) => {
                   v-if="(authStore.user.uid && !authStore.user.raison_social) 
                         || (savedUser && !savedUser.raison_social)" 
                   to="">
-                  Mon compte 
+                  {{ t('my_account') }}
                 </router-link>
               </li>
-              <li style="color: white"><router-link style="color: white" v-if="authStore.user.uid || savedUser" to="/" @click="logout">Déconnexion</router-link></li>
+              <li style="color: white"><router-link style="color: white" v-if="authStore.user.uid || savedUser" to="/" @click="logout">{{ t('logout') }}</router-link></li>
                
             </ul>
           </li>
