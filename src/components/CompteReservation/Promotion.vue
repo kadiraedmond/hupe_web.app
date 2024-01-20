@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4 g-4">
     <div v-if="promotionStore.companiePromotionProgrammes.length > 0">
       <div class="col" v-for="(promotionProgramme, index) in promotionStore.companiePromotionProgrammes" :key="index">
         <div class="card border-0" style="background: #f3f4f6; padding: 6px">
@@ -110,4 +110,10 @@ onMounted(() => {
         
   </div>
 </template>
-<style></style>
+<style scoped>
+  @media (max-width: 984px) {
+  #badges012 {
+    left: 75%;
+  }
+}
+</style>

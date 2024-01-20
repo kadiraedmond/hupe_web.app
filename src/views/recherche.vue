@@ -177,7 +177,7 @@ const handleSearchTrajets = async () => {
           >
           <div class="wrapper">
             <i id="left" class="fa-solid fa-angle-left"></i>
-            <div class="carousel d-flex">
+            <div class="carousel d-flex" style="padding:13px">
                 <li class="nav-item" role="presentation">
                 <button
                     class="nav-link active mb-3"
@@ -2277,11 +2277,12 @@ const handleSearchTrajets = async () => {
 }
 
 .wrapper {
-    white-space: nowrap;
-    max-width: 1077px;
-    position: relative;
-    margin-left: 19px;
+    white-space: nowrap  ;
+    max-width: 1077px ;
+    position: relative ;
+    margin-left: 19px ;
 }
+
 
 .wrapper i {
     top: 50%;
@@ -2309,11 +2310,15 @@ const handleSearchTrajets = async () => {
 #right{
     margin-top: -9px;
     color: #219935;
+    /* z-index: 1000; */
+    background: white;
 }
 
 #left{
     margin-top: -9px;
     color: #219935;
+    /* z-index: 1000; */
+    background: white;
 }
 
 .wrapper i:last-child {

@@ -16,6 +16,27 @@
 
   }
 
+  
+
+  /* page recherche  */
+
+  @media (min-width: 320px) {
+    .wrapper{
+      max-width: 96% !important;
+  }
+  }
+
+
+  /* page compte client  */
+
+  /* @media (max-width: 320px) {
+    #logo3{
+      width: 100px !important;
+      height: 100px !important;
+      border-radius: 50% !important;
+  }
+  } */
+
   /* start heros  */
 @media (max-width: 768px) {
      
@@ -44,7 +65,7 @@
       border-radius: 10px;
       line-height: 24px;
       border: none;
-      /* top: 10px; */
+      
       left: 21%;
       z-index: 1;
       bottom: 10px;

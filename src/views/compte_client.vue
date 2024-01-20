@@ -83,79 +83,58 @@ onMounted(() => {
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: -21px ; padding: 122px;" 
+      style="margin-top: 70px"
     >
-      <img
-        src="/assets/img/clt1.jpg"
-        alt=""
-        class="img-fluid w-100"
-        id="img_couv"
-      />
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-12">
+            <img
+            src="/assets/img/clt1.jpg"
+              alt=""
+              class="img-fluid w-100"
+              id="img_couv"
+            />
+          </div>
+        </div>
+      </div>
     </section>
     <!-- End Portfolio Details Section -->
 
-    <section id="faq" class="faq" style="margin-top: -140px">
+    <section id="faq" class="faq" style="margin-top: -70px">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-5">
-            <div class="card mb-3 border-0" style="max-width: 540px">
+          <div class="col-md-6">
+            <div class="card mb-3 border-0">
               <div class="row g-0">
-                <div class="col-md-4" style=" display: flex; justify-content: center; align-items: center">
+                <div class="col-4">
                   <img
-                    :src="userStore.user.imageUrl"
+                  :src="userStore.user.imageUrl"
                     alt
                     class="w-px-40 h-auto rounded-circle"
-                    style="width: 150px;
-                          height: 150px !important;
-                          object-fit: cover;
-                          border: 2.8px solid rgb(232, 232, 232);"
+                    style="
+                      width: 150px;
+                      height: 150px !important;
+                      object-fit: cover;
+                      border: 2.8px solid #e8e8e8;
+                    "
                   />
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
+                <div class="col-8">
+                  <div class="card-body" id="card_espace">
                     <h5 class="card-title">
                       {{ userStore.user.lastName }}
                       {{ userStore.user.firstName }}
                     </h5>
-                    <p class="card-text">{{ userStore.user.profession }}</p>
+                    <p class="card-text">
+                      {{ userStore.user.profession }}
+                    </p>
+                    
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="col-md-8">
-            <div class="row g-2" style="margin-top: 55px;">
-             
-              <div class="col-md-3">
-                <router-link to="/location">
-                  <button class="btn btn-primary"> Louer un véhicule</button>
-                </router-link>
-               
-              </div>
-              <div class="col-md-3">
-                <router-link to="/location">
-                  <button class="btn btn-primary">Reserver un ticket</button>
-                </router-link>
-               
-              </div>
-              <div class="col-md-3">
-                <router-link to="/location">
-                  <button class="btn btn-primary">Louer un gros engin</button>
-                </router-link>
-               
-              </div>
-
-               <div class="col-md-3">
-                <router-link to="/location">
-                  <button class="btn btn-primary"> Acheter un engin</button>
-                </router-link>
-               
-              </div>
-
-            </div>
-          </div> -->
         </div>
-       
       </div>
     </section>
      
@@ -518,22 +497,29 @@ onMounted(() => {
 <style scoped>
 
 .nav-tabs .nav-link {
-    /* margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); */
-    /* background: 0 0; */
-    /* border: var(--bs-nav-tabs-border-width) solid transparent; */
-    /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
-    /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
     margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
     border: var(--bs-nav-tabs-border-width) solid transparent;
-    /* border-color: #219935; */
     border-radius: 0px !important;
 }
 
-#img_couv{
-  /* height: 250px; */
-    /* object-fit: cover; */
-  /* object-fit: fill;
-  image-rendering: -webkit-optimize-contrast; */
+#img_couv {
+  height: 250px;
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
   border-radius: 10px;
+  border: 1px solid #219935;
+  object-position: 50% 75% !important;
+}
+
+#card_espace{
+    margin-left: -38px;
+  }
+
+@media (max-width: 984px) {
+  #card_espace{
+    margin-left: 50px;
+    /* width: 260px; */
+  }
+  
 }
 </style>

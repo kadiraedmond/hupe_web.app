@@ -136,29 +136,36 @@ onMounted(() => {
 
 <template>
   <main id="main">
-    <!-- ======= Portfolio Details Section ======= -->
+    <!-- ======= start imageCouverture ======= -->
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: -21px ; padding: 122px;" 
+      style="margin-top: 70px ;" 
     >
-      <img
-        :src="companieStore.companie.imageCouvertureUrl"
-        alt=""
-        class="img-fluid w-100"
-        
-        id="img_couv"
-      />
-    </section>
-    <!-- End Portfolio Details Section -->
+      <div class="container">
+        <div class="row g-4"></div>
+          <div class="col-12">
+            <img
+              :src="companieStore.companie.imageCouvertureUrl"
+              alt=""
+              class="img-fluid w-100"
+              
+              id="img_couv"
+            />
+          </div>
+      </div>
 
-    <section id="faq" class="faq" style="margin-top: -140px">
+     
+    </section>
+    <!-- ======= End imageCouverture ======= -->
+
+    <section id="faq" class="faq" style="margin-top: -70px">
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-5">
-            <div class="card mb-3 border-0" style="max-width: 540px">
+          <div class="col-md-7">
+            <div class="card mb-3 border-0">
               <div class="row g-0">
-                <div class="col-md-4">
+                <div class="col-4">
                   <img
                     :src="companieStore.companie.imageLogoUrl"
                     alt
@@ -166,8 +173,8 @@ onMounted(() => {
                     style="width: 150px; height: 150px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
                   />
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
+                <div class="col-8">
+                  <div class="card-body" id="card_espace">
                     <h5 class="card-title">{{ companieStore.companie.raison_social }}</h5>
                     <p class="card-text">
                       {{ companieStore.companie.description }}
@@ -181,9 +188,9 @@ onMounted(() => {
         </div>
       </div>
     </section>
-    <!-- End Frequently Asked Questions Section -->
+    <!-- End profils -->
 
-    <!-- ======= Portfolio Details Section ======= -->
+     <!-- ======= start meunu ======= -->
     <section
       id="portfolio-details"
       class="portfolio-details"
@@ -278,12 +285,12 @@ onMounted(() => {
               >
                <div v-if="companieStore.programmeVoyages.length > 0">
                 <div class="row mt-4">
-                  <div class="col-md-4 mb-4" v-for="(programme, i) in companieStore.programmeVoyages" :key="i">
+                  <div class=" col-lg-4 col-sm-6 mb-4" v-for="(programme, i) in companieStore.programmeVoyages" :key="i">
                     <div class="card h-100" id="card_compagnie">
                       <div class="card-body">
                         <div class="row">
 
-                          <div class="col-md-6 mt-2 mb-2">
+                          <div class="col-6 mt-2 mb-2">
                             <button
                               class="btn btn-primary mb-2"
                               style="
@@ -296,7 +303,7 @@ onMounted(() => {
                             </button>
                           </div>
                           
-                          <div class="col-md-6 mt-2 mb-2"> 
+                          <div class="col-6 mt-2 mb-2"> 
                             <p style="font-size: 13px;"><strong>Départ - Arrivé </strong> <br> {{ programme.lieu_depart }} - {{ programme.destination }}</p>
                           </div>
                           
@@ -308,22 +315,22 @@ onMounted(() => {
                             <p style="font-size: 13px;"><strong>Destinations </strong> <br> {{ programme.destination }}</p>
                           </div> -->
 
-                          <div class="col-md-6 mt-4" style="margin-top: -9px !important;">
+                          <div class="col-6 mt-4" style="margin-top: -9px !important;">
                             <p style="font-size: 13px;"><strong> Heure de départ </strong> <br> {{ programme.heure_depart }}</p>
                           </div>
 
-                          <div class="col-md-6 mt-4" style="margin-top: -9px !important;">
+                          <div class="col-6 mt-4" style="margin-top: -9px !important;">
                             <p style="font-size: 13px;"><strong>Convocation </strong> <br> {{ programme.heure_convocation }}</p>
                           </div>
 
-                          <div class="col-md-6 mt-3" style="margin-top: -9px !important;">
+                          <div class="col-6 mt-3" style="margin-top: -9px !important;">
                             <p style="font-size: 13px;"><strong>Escale  </strong> <br> {{ programme.escale }}</p>
                           </div>
 
-                          <div class="col-md-6 mt-3" style="margin-top: -9px !important;">
+                          <div class="col-6 mt-3" style="margin-top: -9px !important;">
                             <p style="font-size: 13px;"><strong>Jours de voyage</strong> <br> {{ programme.jours_voyage }}</p>
                           </div>
-                          <div class="col-md-12 text-center">
+                          <div class="col-12 text-center">
                             <!-- Button trigger modal -->
                             <router-link :to="`/detail_reservation_ticket/${encryptParam(companieId)}/${encryptParam(programme.uid)}`">
                               <button
@@ -523,8 +530,8 @@ onMounted(() => {
                 tabindex="0"
               >
 
-              <div  v-if="promotionStore.companiePromotionProgrammes.length > 0">
-                  <div class="row row-cols-1 row-cols-md-3 mt-4 g-4">
+                <div  v-if="promotionStore.companiePromotionProgrammes.length > 0">
+                  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4 g-4">
                   <div class="col" v-for="(promoProgram, i) in promotionStore.companiePromotionProgrammes" :key="i">
                     
                     <div
@@ -605,7 +612,7 @@ onMounted(() => {
                       </div>
                     </div>
                   </div>
-                </div>
+                  </div>
                 </div>
                 <div class="w-100" v-else>
                   <div class="row mt-4">
@@ -674,12 +681,33 @@ onMounted(() => {
                   <div class="col-md-12">
                     <div class="card h-100"  >
                       <div class="card-body">
+                        <div  v-if="politiques.length > 0">
                         <p>
                           {{ politiques.text }}
                         </p>
-
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                       </div>
+
+                        <div class="w-100" v-else>
+                          <div class="row mt-4">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                              <div class="card text-center border-0">
+                                <div class="text-center">
+                                  <img src="/assets/img/icone/promo.png" alt="" class="img-fluid w-50">
+                                </div>
+                                
+                                <div class="card-body">
+                                  <p class="card-text">Aucune politique disponible.</p>
+                                </div>
+                              </div>
+                            
+                              
+                            </div>
+                            <div class="col-md-3"></div>
+                          </div>
+                        </div> 
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -771,27 +799,20 @@ onMounted(() => {
         </div>
       </div>
     </section>
-    <!-- End Portfolio Details Section -->
+    <!-- End menu -->
   </main>
   <!-- End #main -->
 </template>
 <style scoped>
   .nav-tabs .nav-link {
-      /* margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); */
-      /* background: 0 0; */
-      /* border: var(--bs-nav-tabs-border-width) solid transparent; */
-      /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
-      /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
       margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
       border: var(--bs-nav-tabs-border-width) solid transparent;
-      /* border-color: #219935; */
       border-radius: 0px !important;
   }
 
   #img_couv{
   height: 250px;
-    object-fit: cover;
-  /* object-fit: fill; */
+  object-fit: cover;
   image-rendering: -webkit-optimize-contrast;
   border-radius: 10px;
   border: 1px solid #219935;
@@ -802,6 +823,22 @@ onMounted(() => {
   font-size: 14px;
   font-weight: 600;
   color: #21993599;
+}
+
+#card_espace{
+    margin-left: -38px;
+  }
+
+@media (max-width: 984px) {
+  #card_espace{
+    margin-left: 50px;
+    /* width: 260px; */
+  }
+
+  #badges012 {
+    left: 75%;
+}
+  
 }
 
 </style>

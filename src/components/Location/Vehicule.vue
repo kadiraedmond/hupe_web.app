@@ -20,8 +20,8 @@ const isLoading = ref(false)
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'qdo1Ig1tnMlmvFCxa6OE'
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'qdo1Ig1tnMlmvFCxa6OE'
 // const userId = 'qdo1Ig1tnMlmvFCxa6OE' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   isLoading.value = true
@@ -974,7 +974,7 @@ const handleInterieurPaysPrix = (e) => {
     </div>
   </div>
   <div class="row mt-4" v-if="companieCars.length > 0">
-    <div class="col-md-6" v-for="(car, i) in companieCars" :key="i">
+    <div class="col-md-12 col-lg-6" v-for="(car, i) in companieCars" :key="i">
       <div class="card mb-3" style="max-width: 540px">
         <div class="row g-0">
           <div class="col-md-4">
@@ -988,25 +988,25 @@ const handleInterieurPaysPrix = (e) => {
           <div class="col-md-8">
             <div class="card-body">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-6">
                   <p class="card-text" style=""><strong>{{ car.vehicule }} | {{ car.modele }} |  {{ car.anne_vehicule }}   </strong></p>
                 </div>
-                <div class="col-md-6 text-end">
+                <div class="col-6 text-end">
                   <button
                     class="btn btn-primary"
-                    style="background-color: #219935; border-color: #219935;"
+                   id="btn_location_montant"
                   >
                     {{ car.montant }} FCFA
                   </button>
                 </div>
                  
-                <div class="col-md-6 mt-3">
+                <div class="col-6 mt-3">
                   <p class="card-text" style="">
                     <strong>Moteur </strong> <br> {{ car.moteur }}
                   </p>
                 </div>
 
-                <div class="col-md-6 mt-3">
+                <div class="col-6 mt-3">
                   <p class="card-text" style="  margin-left: 40px;">
                     <strong>Transmission</strong> <br> {{ car.vehicule.boite}}
                   </p>
@@ -1028,7 +1028,7 @@ const handleInterieurPaysPrix = (e) => {
                    </p>
                 </div>
   
-                <div class="col-md-6 mt-2">
+                <div class="col-6 mt-2">
                   <p class="card-text" style="">
                     <strong>Immatriculation </strong> {{ car.serie_vehicule }}
                   </p>
@@ -1351,7 +1351,7 @@ const handleInterieurPaysPrix = (e) => {
                       >
                         <div class="modal-dialog">
                           <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header text-white" style="background: #219935;">
                               <h1
                                 class="modal-title fs-5"
                                 id="exampleModalLabel"
@@ -1360,7 +1360,7 @@ const handleInterieurPaysPrix = (e) => {
                               </h1>
                               <button
                                 type="button"
-                                class="btn-close"
+                                class="btn-close text-white"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
                               ></button>
@@ -1517,4 +1517,16 @@ const handleInterieurPaysPrix = (e) => {
       </div>
   </div>
 </template>
-<style></style>
+<style scoped>
+  #btn_location_montant{
+    background-color: #219935;
+     border-color: #219935;
+  }
+
+
+  @media (max-width: 425px) {
+    #btn_location_montant{
+    margin-top: -6px;
+  }
+}
+</style>
