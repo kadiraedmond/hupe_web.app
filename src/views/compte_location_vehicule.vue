@@ -60,30 +60,32 @@ const getNotation = async () => {
     <section
       id="portfolio-details"
       class="portfolio-details"
-      style="margin-top: -21px ; padding: 122px;" 
+      style="margin-top: 70px ;" 
     >
-      <div class="card text-bg-dark">
-          <img :src="companieStore.companie.imageCouvertureUrl" class="card-img" alt="..."  id="img_couv">
-            <div class="card-img-overlay">
-                                
+      <div class="container">
+          <div class="row g-4">
+            <div class="col-12">
+              <img
+                :src="companieStore.companie.imageCouvertureUrl"
+                alt=""
+                class="img-fluid w-100"
+              id="img_couv"
+              /> 
+            </div>
           </div>
       </div>
-      <!-- <img
-        :src="companieStore.companie.imageCouvertureUrl"
-        alt=""
-        class="img-fluid w-100"
-       id="img_couv"
-      /> -->
+      
+      
     </section>
     <!-- End Portfolio Details Section -->
 
-    <section id="faq" class="faq" style="margin-top: -140px"> 
+    <section id="faq" class="faq" style="margin-top: -70px"> 
       <div class="container">
         <div class="row g-4">
-          <div class="col-md-5">
+          <div class="col-md-6">
             <div class="card mb-3 border-0">
               <div class="row g-0">
-                <div class="col-md-4">
+                <div class="col-4">
                   <img
                     :src="companieStore.companie.imageLogoUrl"
                     alt
@@ -91,8 +93,8 @@ const getNotation = async () => {
                     style="width: 150px; height: 150px !important; object-fit: cover;  border: 2.8px solid #E8E8E8"
                   />
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
+                <div class="col-8">
+                  <div class="card-body" id="card_espace">
                     <h5 class="card-title">{{ companieStore.companie.raison_social }}</h5>
                     <p class="card-text">
                       {{ companieStore.companie.description }}
@@ -350,22 +352,30 @@ const getNotation = async () => {
 <style scoped>
 
 .nav-tabs .nav-link {
-    /* margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); */
-    /* background: 0 0; */
-    /* border: var(--bs-nav-tabs-border-width) solid transparent; */
-    /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
-    /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
     margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
     border: var(--bs-nav-tabs-border-width) solid transparent;
-    /*border-color: #219935;*/
     border-radius: 0px !important;
 }
 
-#img_couv{
+#img_couv {
   height: 250px;
-    /* object-fit: cover; */
-  object-fit: fill;
+  object-fit: cover;
   image-rendering: -webkit-optimize-contrast;
   border-radius: 10px;
+  border: 1px solid #219935;
+  object-position: 50% 75% !important;
+}
+
+#card_espace {
+  margin-left: -38px;
+}
+
+@media (max-width: 984px) {
+ 
+
+  #card_espace {
+    margin-left: 50px;
+ 
+  }
 }
 </style>

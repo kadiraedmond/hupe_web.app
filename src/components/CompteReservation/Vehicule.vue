@@ -710,6 +710,9 @@ const remove = async (trajet) => {
           <div class="card-body">
             <div class="row">
               <div class="col-6 mt-2">
+                <p><strong>Trajet</strong> <br> {{ trajet.lieu_depart }} -  {{ trajet.destination }}</p>
+              </div>
+              <div class="col-6 mt-2">
                 <button
                   class="btn btn-primary mb-2"
                   style="background-color: #219935; border-color: #219935"
@@ -717,16 +720,7 @@ const remove = async (trajet) => {
                   {{ trajet.montant }} FCFA
                 </button>
               </div>
-              <div class="col-6 mt-2"></div>
-
-              <div class="col-6 mt-2">
-                <p><strong>Lieu de départ</strong> <br> {{ trajet.lieu_depart }}</p>
-              </div>
-
-              <div class="col-6 mt-2">
-                <p><strong>Destinations </strong> <br> {{ trajet.destination }}</p>
-              </div>
-
+             
               <div class="col-6" style="margin-top:-5px">
                 <p><strong> Heure de départ </strong> <br> {{ trajet.heure_depart }}</p>
               </div>
