@@ -94,6 +94,8 @@ const country = ref()
 
 const searchTerm = ref('')
 
+const showCountryList = ref(true)
+
 const handleSearch = async () => { 
   await searchStore.search(searchTerm.value) 
   location.pathname !== '/recherche' && router.push('/recherche') 
@@ -118,6 +120,8 @@ onBeforeMount(async () => {
       companieStore.setCountry('CI') 
       slideStore.setCountry('CI') 
       promotionStore.setCountry('CI') 
+
+      // showCountryList = true;
     } 
 
     // Swal.fire({
@@ -236,7 +240,7 @@ const handleSelect = (selectedCountry) => {
       <nav id="navbar" class="navbar">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style=" background: white; border-color: #219935; color: #219935; width: 115%;">
-            <img :src="getCountryFlagImage(country)" alt="Country Flag" class="country-flag"> {{ getCountryLabel(country) }}
+            <img :src="getCountryFlagImage(country)" alt="choisire un pays" class="country-flag"> {{ getCountryLabel(country) }}
 
           </button>
           <ul class="dropdown-menu">
@@ -249,6 +253,51 @@ const handleSelect = (selectedCountry) => {
         </div>
       </nav>
       <!-- .navbar -->
+       <!-- Button trigger modal -->
+      <div v-if="showCountryList">
+       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal0111">
+          Launch demo modal
+       </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal0111" tabindex="10" aria-labelledby="exampleModalLabel0111" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel0111">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="card">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p>Votre pays ne propose pas de compagnies. Sélectionnez un autre pays dans la zone en haut à gauche de l'écran pour voir des compagnies</p>
+                  </div>
+                  <div class="col-2"></div>
+                  <div class="col-8 mt-2">
+                    <ul style="list-style: none;">
+                      <div class="row">
+                        <div class="col-12 mb-3" v-for="(value, index) in collected_country" :key="index">
+                          <li>
+                            <a class="dropdown-item text-start" @click="handleSelect(value)" style="cursor: pointer; color: black">
+                              <img :src="getCountryFlagImage(value)" alt="Country Flag" class="country-flag"> {{ getCountryLabel(value) }}
+                            </a>
+                          </li>
+                        </div>
+                      </div>
+                      
+                    </ul>
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+                
+              </div>
+            </div>
+             
+          </div>
+        </div>
+      </div>
+     </div>
 
       <form class="d-flex" role="search" @submit.prevent="handleSearch" id="search">
       <div class="input-group">
@@ -260,6 +309,8 @@ const handleSelect = (selectedCountry) => {
       </div>
       <!-- <button class="btn btn-primary" type="submit">Rechercher</button> -->
     </form>
+
+     
       <!-- <form class="d-flex" role="search" @submit.prevent="handleSearch">
         <input
           class="form-control me-2"
@@ -441,4 +492,5 @@ input::placeholder {
   color: #219935;
   /* opacity: 0.5; */
 }
+
 </style>

@@ -2155,3 +2155,13 @@ border-color: #219935 !important;
   background-color: var(--bs-nav-tabs-link-active-bg);
   border-color: var(--bs-nav-tabs-link-active-border-color);
 }
+
+.modal-backdrop.show {
+  /* opacity: var(--bs-backdrop-opacity); */
+  display: none;
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+  display: none;
+}

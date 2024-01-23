@@ -5,6 +5,7 @@ import Reservation from "@/components/CompteReservation/Reservation.vue"
 import Demande from "@/components/CompteReservation/Demande.vue"
 import Offres from "@/components/CompteReservation/Offre.vue"
 import Collaborateur from "@/components/CompteReservation/Collaborateur.vue"
+import Programme from "@/components/CompteReservation/Programme.vue"
 import Apropos from "@/components/CompteReservation/Apropos.vue"
 import Compte from "@/components/CompteReservation/Compte.vue"
 import Politique from "@/components/CompteReservation/Politique.vue"
@@ -21,8 +22,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   companieStore.setCompanieById(userId)
 
@@ -125,6 +126,11 @@ const getNotation = async () => {
                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
                   type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Promotions</button>
               </li>
+
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="program-tab" data-bs-toggle="tab" data-bs-target="#program-tab-pane"
+                  type="button" role="tab" aria-controls="program-tab-pane" aria-selected="false">Programmes</button>
+              </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
                   type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Activités</button>
@@ -166,6 +172,9 @@ const getNotation = async () => {
               </div>
               <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <Promotion />
+              </div>
+              <div class="tab-pane fade" id="program-tab-pane" role="tabpanel" aria-labelledby="program-tab" tabindex="0">
+                <Programme />
               </div>
               <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
                 <Reservation/>

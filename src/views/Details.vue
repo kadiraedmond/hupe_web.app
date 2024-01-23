@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { useCompanieStore } from '@/store/companie.js'
 import { usePromotionStore } from '@/store/promotion.js'
 import Loader from '@/components/Loader.vue'
+import Programme from "@/components/CompteReservation/Programme-client.vue"
 
 import { collection, doc, addDoc, getDocs, query, where } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
@@ -642,32 +643,7 @@ onMounted(() => {
                 aria-labelledby="disabled-tab"
                 tabindex="0"
               >
-                <div class="row mt-5">
-                  <div class="col-md-12">
-                    <div class="card h-100" id="card_compagnie">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <p class="card-text">
-                              <strong>Location Hyundai Santa fe 2022 </strong>
-                            </p>
-                          </div>
-                          <div class="col-md-6 text-end">
-                            <button
-                              class="btn btn-primary"
-                              style="background: #219935; border-color: #219935"
-                            >
-                              5000 FCFA
-                            </button>
-                          </div>
-                        </div>
-                        <hr />
-
-                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <Programme />
               </div>
 
               <div
