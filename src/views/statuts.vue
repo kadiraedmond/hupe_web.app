@@ -417,551 +417,300 @@ const options = {
       <section id="portfolio-details" class="portfolio-details" style="margin-top: 50px;">
           <div class="container">
   
-              <div class="row  g-4 mt-4">
-                <div class="col-md-4 mb-4" v-for="(location, index) in locations" :key="index">
-                <div
-                    class="card h-100 border-0 "
-                    id="card_compagnie"
-                    style="   background: none; padding: 6px;"
-                >
-                <div class="row" style="margin: 0px">
-                  <div class="col-md-12">
-                    <div
-                      class="card  border-0"
-                      style="background: white;"
-                    >
-                      <div class="row g-1 d-flex mt-1">
-                        
-                          <div class="col-6 d-flex">
-                            <img
-                              :src="location.companieInfos.imageLogoUrl"
-                                alt
-                                class="w-px-40 h-auto"
-                                style="width: 40px !important; height: 40px !important; border: 1px solid rgb(214, 214, 214); border-radius: 50%;"
-                            />
-                          <div>
-                            <div class="card-body">
-                              <h5 class="card-title" style="font-size: 12px">
-                                {{ location.companieInfos.raison_social }}
-                              </h5>
-                               
-                            </div>
+            <div v-if="locations.length > 0" class="row g-4 mt-4">
+              <div class="col-md-4 mb-4" v-for="(location, index) in locations" :key="index">
+              <div
+                  class="card h-100 border-0 "
+                  id="card_compagnie"
+                  style="   background: none; padding: 6px;"
+              >
+              <div class="row" style="margin: 0px">
+                <div class="col-md-12">
+                  <div
+                    class="card  border-0"
+                    style="background: white;"
+                  >
+                    <div class="row g-1 d-flex mt-1">
+                      
+                        <div class="col-6 d-flex">
+                          <img
+                            :src="location.companieInfos.imageLogoUrl"
+                              alt
+                              class="w-px-40 h-auto"
+                              style="width: 40px !important; height: 40px !important; border: 1px solid rgb(214, 214, 214); border-radius: 50%;"
+                          />
+                        <div>
+                          <div class="card-body">
+                            <h5 class="card-title" style="font-size: 12px">
+                              {{ location.companieInfos.raison_social }}
+                            </h5>
+                              
                           </div>
-                          </div>
-                       
-
-                        <div class="col-6 text-end">
-                            <strong style="color: #219935 ;font-size: 12px; margin-right: 10px; font-weight: 500;"> {{ location.status }} </strong>
-                          <button
-                            class="btn btn-primary"
-                            style="
-                              background: #219935;
-                              border-color: #219935;
-                              margin-top: 5px;
-                              font-size: 12px;
-                            "
-                          >
-                          {{ location.montant }} FCFA
-                          </button>
                         </div>
-                        
+                        </div>
+                      
+
+                      <div class="col-6 text-end">
+                          <strong style="color: #219935 ;font-size: 12px; margin-right: 10px; font-weight: 500;"> {{ location.status }} </strong>
+                        <button
+                          class="btn btn-primary"
+                          style="
+                            background: #219935;
+                            border-color: #219935;
+                            margin-top: 5px;
+                            font-size: 12px;
+                          "
+                        >
+                        {{ location.montant }} FCFA
+                        </button>
                       </div>
+                      
                     </div>
                   </div>
                 </div>
-                    <div
-                    class="card h-100"
-                    
-                    >
-                    <div class="row g-0" style="margin: -2px">
-                        <div class="col-md-12">
-                        <div class="card-body">
+              </div>
+                  <div
+                  class="card h-100"
+                  
+                  >
+                  <div class="row g-0" style="margin: -2px">
+                      <div class="col-md-12">
+                      <div class="card-body">
 
-                            <div class="row mb-2" v-if="location.status == 'Confirmé'" style=" margin-top: 0px; margin-bottom: 24px !important;">
-                              <div class="col-6 text-start">
-                                <router-link :to="`/ticket_location/${encryptParam(location.uid)}`">
-                                  <button
-                                  class="btn btn-primary w-75"
-                                  style="
-                                      color: white;
-                                      border-color: #219935;
-                                      background: #219935;
-                                      font-size: 12px; 
-                                  "
-                                  >
-                                  <i class='bx bxs-download'></i>
-                                  </button>
-                                </router-link>
-                              </div>
-                              <div class="col-6 text-end">
-                                <!-- Button trigger modal -->
-                                  <button type="button" class="btn btn-primary" style="background: #219935; border-color: #219935 ;font-size: 12px; " data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Reporter
-                                  </button>
-
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog text-start">
-                                      <div class="modal-content">
-                                        <div class="modal-header" style="background-color:#219935 !important; color: white ">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Demande de report</h1>
-                                          <button type="button" class="btn-close-reporter" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <div class="row">
-                                            <div class="col-md-12 text-center">
-                                              <p>Pour reporter votre ticket , veuillez séléctionner une nouvelle date</p>
-                                            </div>
-                                            <div class="col-md-12">
-                                            <form @submit.prevent="reporter(location)" class="row g-3 needs-validation" novalidate>
-                                              <div class="col-md-12">
-                                                <label for="validationCustom01" class="form-label">Date de retrait</label>
-                                                <input type="date" class="form-control" id="validationCustom01" v-model="date_retrait" required>
-                                                <div class="valid-feedback">
-                                                  Looks good!
-                                                </div>
-                                              </div>
-                                              <div class="col-md-12">
-                                                <label for="validationCustom02" class="form-label">Date de retour</label>
-                                                <input type="date" class="form-control" id="validationCustom02" v-model="date_retour" required>
-                                                <div class="valid-feedback">
-                                                  Looks good!
-                                                </div>
-                                              </div>
-                                              
-                                              <div class="col-12 text-center">
-                                                <button class="btn btn-primary" type="submit" style="background-color:#219935; border-color :#219935">Confirmer</button>
-                                              </div>
-                                            </form>
-                                            </div>
-                                          </div>
-                                        </div>
-                                         
-                                      </div>
-                                    </div>
-                                  </div>
-                                 
-                              </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-6">
-                                    <p
-                                    class="card-text"
-                                    style="
-                                        background: #efefef;
-                                        padding: 4px;
-                                        border-radius: 5px;
-                                        font-size: 12px;
-                                        margin-top: -15px;
-                                    "
-                                    >
-                                    {{ new Intl.DateTimeFormat('fr-FR', options).format(location.created_at.toDate()) }} <br />
-                                     
-                                    </p>
-                                </div> 
-                                <div class="col-6" >
-                                  <p
-                                  class="card-text"
-                                  style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                  >
-                                  N° |
-                                  <strong style="color: #219935"> {{ location.number }} </strong>
-                                  </p>
-                               
-                                </div>     
-                            </div>
-                            <br /> 
-                           
-                            <div class="row" style="margin-top: 10px;">
-                              <div class="col-6">
-                                <p
-                                  class="card-text"
-                                  style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                  >
-                                   <strong> Véhicule </strong> <br> {{ location.vehicule }} | {{ location.modele }} | {{ location.vehicule_annee}}
-                                   
-                                </p>
-                              </div>
-                              <div class="col-6">
-                                <p
-                                class="card-text"
-                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                >
-                                <strong> Moteur </strong> <br>   {{ location.moteur }} 
-                                </p>
-
-                              </div>
-                              
-                            </div>
-
-                            <div class="row" style="margin-top: 32px;">
-                              <div class="col-6">
-                                <p
-                                class="card-text"
-                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                >
-                                <strong> Immatriculation </strong> <br>  {{ location.plaque_vehicule }}
-                                </p>
-
-                              </div>
-                              <div class="col-6">
-                                <p
-                                class="card-text"
-                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                >
-                                <strong> Transmission</strong> <br> {{ location.boite }} 
-                                </p>
-                              </div>
-                            </div>
-                            
-                            <br />
-                            <div class="row" style="margin-top: 10px;">
-                              <div class="col-6">
-                                <p
-                                class="card-text"
-                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                >
-                                <strong> chauffeur </strong> <br>   {{ location.chauffeur }}  
-                                </p>
-
-                              </div>
-                              <div class="col-6">
-                                <p
-                                class="card-text"
-                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
-                                >
-                                <strong>Intérieur</strong> <br> {{ location.interieurPays }}  
-                                </p>
-                              </div>
-                            </div>
-                            <br />
-                        </div>
-                        </div>
-                        
-                        <div class="col-md-12 mt-2">
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-6">
-                                <p
-                                  class="card-text"
-                                  style="
-                                      font-size: 13px;
-                                      margin-top: -41px;
-                                      margin-bottom: -8px;
-                                  "
-                                  >
-                                  <strong>Retrait</strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}  |
-                                  {{ location.heure_retrait }}
-                                </p>
-                              </div>
-
-                              <div class="col-6">
-                                <p
-                                class="card-text"
-                                style="font-size: 13px; margin-top: -41px; margin-bottom: -8px"
-                                >
-                                <strong>Retour</strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
-                                </p>  
-                              </div>
-                            </div>
-                           
-
-                            <br />
-                             
-                            <p
-                            class="card-text"
-                            style="font-size: 13px; margin-top: -7px; margin-bottom: -11px"
-                            >
-                            Nombres de jours de location | <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</strong>
-                            </p>
-                            <br />
-
-                            <div class="row" v-if="location.status === 'Validé'">
-                              
-                              <div class="col-md-6">
+                          <div class="row mb-2" v-if="location.status == 'Confirmé'" style=" margin-top: 0px; margin-bottom: 24px !important;">
+                            <div class="col-6 text-start">
+                              <router-link :to="`/ticket_location/${encryptParam(location.uid)}`">
                                 <button
-                                  class="btn btn-primary"
-                                  style="
-                                      background: white;
-                                      border-color: crimson;
-                                      color: crimson;
-                                      font-size: 12px; 
-                                  "
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#annulModal10"
-                                  >
-                                  Annuler
+                                class="btn btn-primary w-75"
+                                style="
+                                    color: white;
+                                    border-color: #219935;
+                                    background: #219935;
+                                    font-size: 12px; 
+                                "
+                                >
+                                <i class='bx bxs-download'></i>
+                                </button>
+                              </router-link>
+                            </div>
+                            <div class="col-6 text-end">
+                              <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" style="background: #219935; border-color: #219935 ;font-size: 12px; " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  Reporter
                                 </button>
 
                                 <!-- Modal -->
-                                <div
-                                  class="modal fade"
-                                  id="annulModal10"
-                                  tabindex="-1"
-                                  aria-labelledby="exampleModalLabel10"
-                                  aria-hidden="true"
-                                  >
-                                  <div class="modal-dialog">
-                                    <div class="modal-content" style="width: 75% !important">
-                                      <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel10">
-                                            <img
-                                            :src="location.companieInfos.imageLogoUrl"
-                                              alt
-                                              class="w-px-40 h-auto"
-                                              style="width: 40px !important; height: 40px !important; border: 1px solid rgb(214, 214, 214); border-radius: 50%;"
-                                            />
-                                          </h1>
-                                          <button
-                                          type="button"
-                                          class="btn-close"
-                                          data-bs-dismiss="modal"
-                                          aria-label="Close"
-                                          ></button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog text-start">
+                                    <div class="modal-content">
+                                      <div class="modal-header" style="background-color:#219935 !important; color: white ">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Demande de report</h1>
+                                        <button type="button" class="btn-close-reporter" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
-
                                       <div class="modal-body">
                                         <div class="row">
-                                          
                                           <div class="col-md-12 text-center">
-                                            <div class="row">
-                                              <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
-                                                <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
+                                            <p>Pour reporter votre ticket , veuillez séléctionner une nouvelle date</p>
+                                          </div>
+                                          <div class="col-md-12">
+                                          <form @submit.prevent="reporter(location)" class="row g-3 needs-validation" novalidate>
+                                            <div class="col-md-12">
+                                              <label for="validationCustom01" class="form-label">Date de retrait</label>
+                                              <input type="date" class="form-control" id="validationCustom01" v-model="date_retrait" required>
+                                              <div class="valid-feedback">
+                                                Looks good!
                                               </div>
-                                              <div class="col-12">
-                                                <div class="row">
-                                                  <div class="col-md-1"></div>
-                                                  <div class="col-md-10">
-                                                    <div class="row">
-                                                      <div class="col-md-12 mb-3">
-                                                        <a :href="`/raison/location/${encryptParam(location.uid)}`">
-                                                          <button
-                                                          class="btn btn-primary w-100"
-                                                          style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
-                                                        
-                                                          >
-                                                          Annuler quand même
-                                                          </button>
-                                                        </a>
-                                                          
-
-                                                          
-                                                      </div>
-                                                      
-
-                                                      <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
-                                                        <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
-                                                      </div>
-
-                                                      <div class="col-md-12 mb-3"> 
-                                                        <a :href="`tel:${location.companieInfos.telephone}`">
-                                                          <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
-                                                        </a>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                  <div class="col-md-1"></div>
-                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                              <label for="validationCustom02" class="form-label">Date de retour</label>
+                                              <input type="date" class="form-control" id="validationCustom02" v-model="date_retour" required>
+                                              <div class="valid-feedback">
+                                                Looks good!
                                               </div>
                                             </div>
                                             
+                                            <div class="col-12 text-center">
+                                              <button class="btn btn-primary" type="submit" style="background-color:#219935; border-color :#219935">Confirmer</button>
+                                            </div>
+                                          </form>
                                           </div>
-                                          
                                         </div>
                                       </div>
-
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <!-- Procéder au payement -->
-                              <div class="col-md-6">
-                                <!-- Button trigger modal -->
-                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: #219935; border-color: #219935 ;font-size: 12px;">
-                                    Procéder au paiement
-                                  </button>
-
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content" style="width: 87%;">
-                                        <div class="modal-header text-white" style="background: #219935">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Détails du paiement</h1>
-                                          <button type="button" class="btn btn" data-bs-dismiss="modal" aria-label="Close" style="height: 20px; margin-top: -26px;    color: white;"> <i class='bx bx-x' style="font-size: 32px;"></i> </button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <div class="row">
-                                            <div class="col-md-12 mb-4">
-                                              <div class="card">
-                                                <img :src="location.vehicule_image_url" class="card-img-top" alt="..." style="    height: 215px; object-fit: cover;">
-                                                
-                                              </div>
-                                            </div>
-                                            <div class="col-md-12 text-center">
-                                              <h5 style="font-size: 16px;color: black;">Compagnie : {{ location.companieInfos.raison_social }} </h5>
-                                            </div>
-                                            <div class="col-md-12">
-                                              <p style=" font-size: 14px;"> <strong> {{ location.vehicule }} {{ location.modele }} {{ location.annee_vehicule }} </strong> </p>
-                                              <div class="row mt-4">
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> <strong>Moteur</strong> <br> {{ location.moteur }} </p>
-                                                </div>
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> <strong>Transmission</strong> <br> {{ location.boite }} </p>
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"><strong>Immatriculation </strong> <br> {{ location.plaque_vehicule }} </p>
-                                                </div>
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"><strong>Année </strong> <br> {{ location.annee_vehicule }} </p>
-
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> chauffeur <strong> <br> {{ location.chauffeur }} </strong> </p>
-                                                </div>
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> Intérieur <strong> <br> {{ location.interieurPays }} </strong> </p>
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;">Retrait <strong> <br>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
-                                                </div>
-                                                <div class="col-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> Retour  <strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }} </strong> </p>
-
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                 
-                                                <div class="col-12">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> <strong>Nombre de jours de location</strong> <br> {{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</p>
-
-                                                </div>
-                                              </div>
-                                              
-                                              
-                                              
-                                            </div>
-                                            
-                                            <div class="col-md-12">
-                                              <hr>
-                                              <div class="row mt-2">
-                                                <div class="col-md-6 mt-2">
-                                                  <p style="margin-top: -15px; font-size: 14px;"><strong> Solde </strong> <br> </p>
-                                                </div>
-                                                <div class="col-md-6 mt-2">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> {{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} </p>
-                                                </div>
-                                              </div>
-                                              <hr style="margin-top: -8px;">
-                                              <!-- <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ savedUser.lastName }} {{ savedUser.firstName }} </strong> </p> -->
-                                             
-                                            </div>
-
-                                           
-                                            <div class="col-md-12">
-                                              <div class="row mt-2">
-                                                <div class="col-md-6">
-                                                  <p style=" font-size: 14px;"><strong> Prix de location </strong> <br></p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <p style=" font-size: 14px;"> {{ location.montant }} FCFA </p>
-                                                </div>
-                                              </div>
-                                              <div class="row mt-2">
-                                                <div class="col-md-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"> <strong> Intérieur du pays </strong> </p>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;">
-                                                    {{ location.interieurPays === 'Oui' ? location.interieurpaysprix : 0 }} FCFA 
-                                                  </p>
-                                                </div>
-                                              </div>
-
-                                              <div class="row mt-2">
-                                                <div class="col-md-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;"><strong>Chauffeur  </strong> </p>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <p style="margin-top: -15px; font-size: 14px;">{{ location.chauffeur === 'Oui' ? location.avecchauffeurprix : 0 }} FCFA</p>
-                                                </div>
-                                              </div>
-                                              <hr style="margin-top: -4px;">
-                                              <div class="row mt-2">
-                                                <div class="col-md-6">
-                                                  <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
-                                                  <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
-                                                  <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
-                                                  <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.avecchauffeurprix) + Number(location.montant) }} FCFA  </p>
-                                                  <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.interieurpaysprix) + Number(location.montant) }} FCFA  </p>
-                                                  <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.montant) }} FCFA  </p>
-                                                  <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.avecchauffeurprix) + Number(location.interieurpaysprix) + Number(location.montant) }} FCFA  </p>
-                                                </div>
-                                              </div>
-                                             
-                                            </div>
-
-                                            <div class="col-md-12 text-center">
-                                              <button class="btn btn-primary" @click="payer(location)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
-                                            </div>
-                                          </div>
-                                        </div>
                                         
-                                      </div>
                                     </div>
                                   </div>
-                                  <!-- <button
-                                  class="btn btn-primary"
-                                  style="background: #219935; border-color: #219935 ;font-size: 12px;"
-                                  @click="payer(location)"
-                                  >
-                                  Procéder au paiement
-                                  </button> -->
                                 </div>
-                              </div>
+                                
+                            </div>
+                          </div>
+                          <div class="row mt-2">
+                              <div class="col-6">
+                                  <p
+                                  class="card-text"
+                                  style="
+                                      background: #efefef;
+                                      padding: 4px;
+                                      border-radius: 5px;
+                                      font-size: 12px;
+                                      margin-top: -15px;
+                                  "
+                                  >
+                                  {{ new Intl.DateTimeFormat('fr-FR', options).format(location.created_at.toDate()) }} <br />
+                                    
+                                  </p>
+                              </div> 
+                              <div class="col-6" >
+                                <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                N° |
+                                <strong style="color: #219935"> {{ location.number }} </strong>
+                                </p>
                               
+                              </div>     
+                          </div>
+                          <br /> 
+                          
+                          <div class="row" style="margin-top: 10px;">
+                            <div class="col-6">
+                              <p
+                                class="card-text"
+                                style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                                >
+                                  <strong> Véhicule </strong> <br> {{ location.vehicule }} | {{ location.modele }} | {{ location.vehicule_annee}}
+                                  
+                              </p>
+                            </div>
+                            <div class="col-6">
+                              <p
+                              class="card-text"
+                              style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                              >
+                              <strong> Moteur </strong> <br>   {{ location.moteur }} 
+                              </p>
+
+                            </div>
+                            
+                          </div>
+
+                          <div class="row" style="margin-top: 32px;">
+                            <div class="col-6">
+                              <p
+                              class="card-text"
+                              style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                              >
+                              <strong> Immatriculation </strong> <br>  {{ location.plaque_vehicule }}
+                              </p>
+
+                            </div>
+                            <div class="col-6">
+                              <p
+                              class="card-text"
+                              style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                              >
+                              <strong> Transmission</strong> <br> {{ location.boite }} 
+                              </p>
+                            </div>
+                          </div>
+                          
+                          <br />
+                          <div class="row" style="margin-top: 10px;">
+                            <div class="col-6">
+                              <p
+                              class="card-text"
+                              style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                              >
+                              <strong> chauffeur </strong> <br>   {{ location.chauffeur }}  
+                              </p>
+
+                            </div>
+                            <div class="col-6">
+                              <p
+                              class="card-text"
+                              style="font-size: 13px; margin-top: -11px; margin-bottom: -11px"
+                              >
+                              <strong>Intérieur</strong> <br> {{ location.interieurPays }}  
+                              </p>
+                            </div>
+                          </div>
+                          <br />
+                      </div>
+                      </div>
+                      
+                      <div class="col-md-12 mt-2">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-6">
+                              <p
+                                class="card-text"
+                                style="
+                                    font-size: 13px;
+                                    margin-top: -41px;
+                                    margin-bottom: -8px;
+                                "
+                                >
+                                <strong>Retrait</strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }}  |
+                                {{ location.heure_retrait }}
+                              </p>
                             </div>
 
-                            <!-- <div class="col-md-6">
-                                  <button
-                                  class="btn btn-primary w-75"
-                                  style="
-                                      background: white;
-                                      border-color: crimson;
-                                      color: crimson;
-                                      font-size: 12px; 
-                                  "
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#annulModal10"
-                                  >
-                                  Annuler
-                                  </button>
+                            <div class="col-6">
+                              <p
+                              class="card-text"
+                              style="font-size: 13px; margin-top: -41px; margin-bottom: -8px"
+                              >
+                              <strong>Retour</strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }}
+                              </p>  
+                            </div>
+                          </div>
+                          
 
-                                
-                                  <div
-                                  class="modal fade"
-                                  id="annulModal10"
-                                  tabindex="-1"
-                                  aria-labelledby="exampleModalLabel10"
-                                  aria-hidden="true"
-                                  >
-                                  <div class="modal-dialog">
-                                    <div class="modal-content">
-                                      <div style="background: #219935" class="modal-header">
-                                        <h1 class="modal-title text-white fs-5" id="exampleModalLabel10">
-                                          Donnez la raison de l'annulation
+                          <br />
+                            
+                          <p
+                          class="card-text"
+                          style="font-size: 13px; margin-top: -7px; margin-bottom: -11px"
+                          >
+                          Nombres de jours de location | <strong>{{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</strong>
+                          </p>
+                          <br />
+
+                          <div class="row" v-if="location.status === 'Validé'">
+                            
+                            <div class="col-md-6">
+                              <button
+                                class="btn btn-primary"
+                                style="
+                                    background: white;
+                                    border-color: crimson;
+                                    color: crimson;
+                                    font-size: 12px; 
+                                "
+                                data-bs-toggle="modal"
+                                data-bs-target="#annulModal10"
+                                >
+                                Annuler
+                              </button>
+
+                              <!-- Modal -->
+                              <div
+                                class="modal fade"
+                                id="annulModal10"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel10"
+                                aria-hidden="true"
+                                >
+                                <div class="modal-dialog">
+                                  <div class="modal-content" style="width: 75% !important">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel10">
+                                          <img
+                                          :src="location.companieInfos.imageLogoUrl"
+                                            alt
+                                            class="w-px-40 h-auto"
+                                            style="width: 40px !important; height: 40px !important; border: 1px solid rgb(214, 214, 214); border-radius: 50%;"
+                                          />
                                         </h1>
                                         <button
                                         type="button"
@@ -969,69 +718,334 @@ const options = {
                                         data-bs-dismiss="modal"
                                         aria-label="Close"
                                         ></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="row">
+                                        
+                                        <div class="col-md-12 text-center">
+                                          <div class="row">
+                                            <div class="col-12" style=" padding: 18px;margin-top: -13px; color: black;">
+                                              <p>La compagnie à valider votre commande et est en attente de votre paiement</p>
+                                            </div>
+                                            <div class="col-12">
+                                              <div class="row">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-10">
+                                                  <div class="row">
+                                                    <div class="col-md-12 mb-3">
+                                                      <a :href="`/raison/location/${encryptParam(location.uid)}`">
+                                                        <button
+                                                        class="btn btn-primary w-100"
+                                                        style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px"
+                                                      
+                                                        >
+                                                        Annuler quand même
+                                                        </button>
+                                                      </a>
+                                                        
+
+                                                        
+                                                    </div>
+                                                    
+
+                                                    <div class="col-md-12 mb-3" data-bs-dismiss="modal" aria-label="Close">
+                                                      <button class="btn btn-primary w-100" style="background:#D9D9D9; border-color: #D9D9D9 ; color: black; border-radius: 10px">Attendre</button>
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3"> 
+                                                      <a :href="`tel:${location.companieInfos.telephone}`">
+                                                        <button class="btn btn-primary w-100" style="background:red; border-color: red ; border-radius: 10px">Appeler la compagnie</button>
+                                                      </a>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-1"></div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                        
                                       </div>
-                                      
-                                      <div>
-                                        <select v-model="option" class="w-100 mb-2">
-                                          <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du Véhicule</option>
-                                          <option value="J'ai changé d'avis">J'ai changé d'avis</option>
-                                          <option value="J'ai une autre option">J'ai une autre option</option>
-                                          <option value="Autre">Autre</option>
-                                        </select>
-                                        <div class="mb-2">
-                                          <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Procéder au payement -->
+                            <div class="col-md-6">
+                              <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: #219935; border-color: #219935 ;font-size: 12px;">
+                                  Procéder au paiement
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content" style="width: 87%;">
+                                      <div class="modal-header text-white" style="background: #219935">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Détails du paiement</h1>
+                                        <button type="button" class="btn btn" data-bs-dismiss="modal" aria-label="Close" style="height: 20px; margin-top: -26px;    color: white;"> <i class='bx bx-x' style="font-size: 32px;"></i> </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class="row">
+                                          <div class="col-md-12 mb-4">
+                                            <div class="card">
+                                              <img :src="location.vehicule_image_url" class="card-img-top" alt="..." style="    height: 215px; object-fit: cover;">
+                                              
+                                            </div>
+                                          </div>
+                                          <div class="col-md-12 text-center">
+                                            <h5 style="font-size: 16px;color: black;">Compagnie : {{ location.companieInfos.raison_social }} </h5>
+                                          </div>
+                                          <div class="col-md-12">
+                                            <p style=" font-size: 14px;"> <strong> {{ location.vehicule }} {{ location.modele }} {{ location.annee_vehicule }} </strong> </p>
+                                            <div class="row mt-4">
+                                              <div class="col-6">
+                                                <p style="margin-top: -15px; font-size: 14px;"> <strong>Moteur</strong> <br> {{ location.moteur }} </p>
+                                              </div>
+                                              <div class="col-6">
+                                                <p style="margin-top: -15px; font-size: 14px;"> <strong>Transmission</strong> <br> {{ location.boite }} </p>
+                                              </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                              <div class="col-6">
+                                                <p style="margin-top: -15px; font-size: 14px;"><strong>Immatriculation </strong> <br> {{ location.plaque_vehicule }} </p>
+                                              </div>
+                                              <div class="col-6">
+                                                <p style="margin-top: -15px; font-size: 14px;"><strong>Année </strong> <br> {{ location.annee_vehicule }} </p>
+
+                                              </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                              <div class="col-6">
+                                                <p style="margin-top: -15px; font-size: 14px;"> chauffeur <strong> <br> {{ location.chauffeur }} </strong> </p>
+                                              </div>
+                                              <div class="col-6">
+                                                <p style="margin-top: -15px; font-size: 14px;"> Intérieur <strong> <br> {{ location.interieurPays }} </strong> </p>
+                                              </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                              <div class="col-6">
+                                                <p style="margin-top: -15px; font-size: 14px;">Retrait <strong> <br>{{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retrait.toDate()) }} </strong> | <strong>{{ location.heure_retrait }}</strong> </p>
+                                              </div>
+                                              <div class="col-6">
+                                                <p style="margin-top: -15px; font-size: 14px;"> Retour  <strong> <br> {{ new Intl.DateTimeFormat('fr-FR', options).format(location.date_retour.toDate()) }} </strong> </p>
+
+                                              </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                
+                                              <div class="col-12">
+                                                <p style="margin-top: -15px; font-size: 14px;"> <strong>Nombre de jours de location</strong> <br> {{ Math.round((location.date_retour - location.date_retrait) / (24 * 60 * 60)) }}</p>
+
+                                              </div>
+                                            </div>
+                                            
+                                            
+                                            
+                                          </div>
+                                          
+                                          <div class="col-md-12">
+                                            <hr>
+                                            <div class="row mt-2">
+                                              <div class="col-md-6 mt-2">
+                                                <p style="margin-top: -15px; font-size: 14px;"><strong> Solde </strong> <br> </p>
+                                              </div>
+                                              <div class="col-md-6 mt-2">
+                                                <p style="margin-top: -15px; font-size: 14px;"> {{ userStore.totalAmount.solde ? userStore.totalAmount.solde : 0 }} </p>
+                                              </div>
+                                            </div>
+                                            <hr style="margin-top: -8px;">
+                                            <!-- <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ savedUser.lastName }} {{ savedUser.firstName }} </strong> </p> -->
+                                            
+                                          </div>
+
+                                          
+                                          <div class="col-md-12">
+                                            <div class="row mt-2">
+                                              <div class="col-md-6">
+                                                <p style=" font-size: 14px;"><strong> Prix de location </strong> <br></p>
+                                              </div>
+                                              <div class="col-md-6">
+                                                <p style=" font-size: 14px;"> {{ location.montant }} FCFA </p>
+                                              </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                              <div class="col-md-6">
+                                                <p style="margin-top: -15px; font-size: 14px;"> <strong> Intérieur du pays </strong> </p>
+
+                                              </div>
+                                              <div class="col-md-6">
+                                                <p style="margin-top: -15px; font-size: 14px;">
+                                                  {{ location.interieurPays === 'Oui' ? location.interieurpaysprix : 0 }} FCFA 
+                                                </p>
+                                              </div>
+                                            </div>
+
+                                            <div class="row mt-2">
+                                              <div class="col-md-6">
+                                                <p style="margin-top: -15px; font-size: 14px;"><strong>Chauffeur  </strong> </p>
+
+                                              </div>
+                                              <div class="col-md-6">
+                                                <p style="margin-top: -15px; font-size: 14px;">{{ location.chauffeur === 'Oui' ? location.avecchauffeurprix : 0 }} FCFA</p>
+                                              </div>
+                                            </div>
+                                            <hr style="margin-top: -4px;">
+                                            <div class="row mt-2">
+                                              <div class="col-md-6">
+                                                <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
+                                                <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
+                                                <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
+                                                <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"><strong> Total</strong> </p>
+                                              </div>
+                                              <div class="col-md-6">
+                                                <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.avecchauffeurprix) + Number(location.montant) }} FCFA  </p>
+                                                <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.interieurpaysprix) + Number(location.montant) }} FCFA  </p>
+                                                <p v-if="location.chauffeur === 'Non' && location.interieurPays === 'Non'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.montant) }} FCFA  </p>
+                                                <p v-if="location.chauffeur === 'Oui' && location.interieurPays === 'Oui'" style="margin-top: -15px; font-size: 14px;"> {{ Number(location.avecchauffeurprix) + Number(location.interieurpaysprix) + Number(location.montant) }} FCFA  </p>
+                                              </div>
+                                            </div>
+                                            
+                                          </div>
+
+                                          <div class="col-md-12 text-center">
+                                            <button class="btn btn-primary" @click="payer(location)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
+                                          </div>
                                         </div>
                                       </div>
-                                      <button @click="annul(location)" class="btn btn-primary">Enregistrer</button>
+                                      
                                     </div>
                                   </div>
                                 </div>
-                            </div>  -->
-
-                            <div class="row" v-if="location.status === 'En attente'">
-                              <!--  -->
-                            </div>
-
-                            <div class="row mb-2" v-if="location.status === 'Confirmé'" style="margin: 4px; margin-top: -15px;">
-                              <div class="col-6 text-start"> 
-                                <a :href="`tel:${location.companieInfos.telephone}`">
-                                  <button
-                                  class="btn btn-primary w-75"
-                                  style="
-                                      background: white;
-                                      border-color: #219935;
-                                      color: #219935;
-                                      font-size: 12px; 
-                                  "
-                                  >
-                                  Appel
-                                  </button> 
-                                </a>
+                                <!-- <button
+                                class="btn btn-primary"
+                                style="background: #219935; border-color: #219935 ;font-size: 12px;"
+                                @click="payer(location)"
+                                >
+                                Procéder au paiement
+                                </button> -->
                               </div>
-                              <div class="col-6 text-end">
-                                <router-link :to="`/messagerie/${encryptParam(location.companieInfos.uid)}`">
-                                  <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
-                                    Message
-                                    <span v-if="location.unreadMessagesCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                      {{ location.unreadMessagesCount }}
-                                      <span class="visually-hidden">unread messages</span>
-                                    </span>
-                                  </button>
-                                </router-link>
-                                <!-- <router-link :to="`/messagerie/${location.companieInfos.uid}`">
-                                  <button
-                                  class="btn btn-primary w-75"
-                                  style="background: #219935; border-color: #219935 ;font-size: 12px; "
-                                  >
+                            </div>
+                            
+                          </div>
+
+                          <!-- <div class="col-md-6">
+                                <button
+                                class="btn btn-primary w-75"
+                                style="
+                                    background: white;
+                                    border-color: crimson;
+                                    color: crimson;
+                                    font-size: 12px; 
+                                "
+                                data-bs-toggle="modal"
+                                data-bs-target="#annulModal10"
+                                >
+                                Annuler
+                                </button>
+
+                              
+                                <div
+                                class="modal fade"
+                                id="annulModal10"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel10"
+                                aria-hidden="true"
+                                >
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div style="background: #219935" class="modal-header">
+                                      <h1 class="modal-title text-white fs-5" id="exampleModalLabel10">
+                                        Donnez la raison de l'annulation
+                                      </h1>
+                                      <button
+                                      type="button"
+                                      class="btn-close"
+                                      data-bs-dismiss="modal"
+                                      aria-label="Close"
+                                      ></button>
+                                    </div>
+                                    
+                                    <div>
+                                      <select v-model="option" class="w-100 mb-2">
+                                        <option value="Je n'ai plus besoin du ticket" selected>Je n'ai plus besoin du Véhicule</option>
+                                        <option value="J'ai changé d'avis">J'ai changé d'avis</option>
+                                        <option value="J'ai une autre option">J'ai une autre option</option>
+                                        <option value="Autre">Autre</option>
+                                      </select>
+                                      <div class="mb-2">
+                                        <textarea v-model="autre_raison" class="w-100" cols="30" rows="10" />
+                                      </div>
+                                    </div>
+                                    <button @click="annul(location)" class="btn btn-primary">Enregistrer</button>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>  -->
+
+                          <div class="row" v-if="location.status === 'En attente'">
+                            <!--  -->
+                          </div>
+
+                          <div class="row mb-2" v-if="location.status === 'Confirmé'" style="margin: 4px; margin-top: -15px;">
+                            <div class="col-6 text-start"> 
+                              <a :href="`tel:${location.companieInfos.telephone}`">
+                                <button
+                                class="btn btn-primary w-75"
+                                style="
+                                    background: white;
+                                    border-color: #219935;
+                                    color: #219935;
+                                    font-size: 12px; 
+                                "
+                                >
+                                Appel
+                                </button> 
+                              </a>
+                            </div>
+                            <div class="col-6 text-end">
+                              <router-link :to="`/messagerie/${encryptParam(location.companieInfos.uid)}`">
+                                <button type="button" class="btn btn-primary position-relative" style="background: #219935; border-color: #219935 ; font-size: 12px; ">
                                   Message
-                                  </button>
-                                </router-link> -->
-                              </div>
+                                  <span v-if="location.unreadMessagesCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ location.unreadMessagesCount }}
+                                    <span class="visually-hidden">unread messages</span>
+                                  </span>
+                                </button>
+                              </router-link>
+                              <!-- <router-link :to="`/messagerie/${location.companieInfos.uid}`">
+                                <button
+                                class="btn btn-primary w-75"
+                                style="background: #219935; border-color: #219935 ;font-size: 12px; "
+                                >
+                                Message
+                                </button>
+                              </router-link> -->
                             </div>
+                          </div>
 
-                            <div class="row mb-2" v-if="location.status === 'Utilisé'" style="margin: 4px; margin-top: -15px;">
-                               
-                              <div class="col-12 text-center">
+                          <div class="row mb-2" v-if="location.status === 'Utilisé'" style="margin: 4px; margin-top: -15px;">
+                              
+                            <div class="col-12 text-center">
+                              <router-link :to="`/detail_vehicule_location/${encryptParam(location.vehicule_id)}`">
+                                <button
+                                class="btn btn-primary w-75"
+                                style="background: #219935; border-color: #219935 ;font-size: 12px; "
+                                >
+                                Commander à nouveau
+                                </button>
+                              </router-link>
+                            </div>
+                          </div>
+
+                          <div class="row mb-2" v-if="location.status === 'Annuler'" style="margin: 4px; margin-top: -15px;">
+                              
+                            <div class="col-12 text-center">
                                 <router-link :to="`/detail_vehicule_location/${encryptParam(location.vehicule_id)}`">
                                   <button
                                   class="btn btn-primary w-75"
@@ -1040,28 +1054,31 @@ const options = {
                                   Commander à nouveau
                                   </button>
                                 </router-link>
-                              </div>
-                            </div>
-
-                            <div class="row mb-2" v-if="location.status === 'Annuler'" style="margin: 4px; margin-top: -15px;">
-                               
-                              <div class="col-12 text-center">
-                                 <router-link :to="`/detail_vehicule_location/${encryptParam(location.vehicule_id)}`">
-                                   <button
-                                   class="btn btn-primary w-75"
-                                   style="background: #219935; border-color: #219935 ;font-size: 12px; "
-                                   >
-                                   Commander à nouveau
-                                   </button>
-                                 </router-link>
-                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                </div>  
+                  </div>
+              </div>  
+            </div>
+
+            <div class="w-100" v-else>
+              <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    
+                    <div class="text-center">
+                      <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+                    </div>
+                    
+                    <div class="card-body text-center">
+                      <p class="card-text">Aucune location disponible</p>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
               </div>
+            </div>
 
               
   

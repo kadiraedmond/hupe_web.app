@@ -1,8 +1,11 @@
 <script setup>
 
 import { useRoute } from "vue-router"
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
+
+const { t } = useI18n()
 
 route.params.activeTab || 'home-tab'
 const lien = route.params.activeTab
@@ -27,39 +30,39 @@ const lien = route.params.activeTab
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
 
       <div class="col footer-links">
-        <h4>Informations</h4>
+        <h4>{{ t('news') }}</h4>
         <ul>
-          <li><router-link to="/informations">Foire aux questions</router-link></li>
-          <li><router-link to="/informations">Qui sommes nous</router-link></li>
-          <li><router-link to="/informations">Comment ça marche</router-link></li>
+          <li><router-link to="/informations">{{ t('faq') }}</router-link></li>
+          <li><router-link to="/informations">{{ t('who_we_are') }}</router-link></li>
+          <li><router-link to="/informations">{{ t('ccm') }}</router-link></li>
           
           <!-- <li><router-link :to="`/informations/${`profile-tab`}`"> Blog</router-link></li> -->
           <!-- <li><router-link :to="{ name: 'Informations', params: { activeTab: 'profile-tab' } }"> Blog</router-link></li> -->
           <li><router-link to="/informations">Blog</router-link></li>
-          <li><router-link to="/informations">Accessibilité</router-link></li>
+          <li><router-link to="/informations">{{ t('accessibility') }}</router-link></li>
         </ul>
       </div>
 
       <div class="col footer-links">
-        <h4>Services clients </h4>
+        <h4>{{ t('client_services') }} </h4>
         <ul>
           <li><router-link to="/service_client">Support</router-link></li>
-          <li><router-link to="/service_client">Aide</router-link></li>
+          <li><router-link to="/service_client">{{ t('help') }}</router-link></li>
           <li><router-link to="/service_client">Contact</router-link></li>
-          <li><router-link to="/service_client">Condition de partenariat </router-link></li>
+          <li><router-link to="/service_client">{{ t('partener_conditions') }} </router-link></li>
         </ul>
       </div>
 
       <div class="col footer-links">
-        <h4>Liens utiles </h4>
+        <h4>{{ t('utils_links') }} </h4>
         <ul>
-          <li> <router-link to="/services">Location de véhicules </router-link></li>
-          <li> <router-link to="/services">Réservations de tickets de bus  </router-link></li>
-          <li> <router-link to="/services">Location de gros en engin </router-link></li>
-          <li> <router-link to="/services">Vente de véhicule </router-link></li>
-          <li> <router-link to="/partenaire_par_pays">Partenaires par pays  </router-link></li> 
-          <li> <router-link to="/pour_partenaire">Pour les partenaires </router-link></li>
-          <li> <router-link to="/pour_client">Pour les clients </router-link></li>
+          <li> <router-link to="/services">{{ t('vehicles_location') }} </router-link></li>
+          <li> <router-link to="/services">{{ t('ticket_reservation') }}  </router-link></li>
+          <li> <router-link to="/services">{{ t('big_engins_location') }} </router-link></li>
+          <li> <router-link to="/services">{{ t('vehicles_sale') }} </router-link></li>
+          <li> <router-link to="/partenaire_par_pays">{{ t('countries_parteners') }}  </router-link></li> 
+          <li> <router-link to="/pour_partenaire">{{ t('for_parteners') }} </router-link></li>
+          <li> <router-link to="/pour_client">{{ t('for_clients') }} </router-link></li>
          
 
         </ul>
@@ -67,18 +70,18 @@ const lien = route.params.activeTab
 
 
       <div class="col footer-links">
-        <h4>Légales</h4>
+        <h4>{{ t('legal') }}</h4>
         <ul>
 
-          <li><router-link to="/legales">Politiques de confidentialité</router-link></li>
-          <li><router-link to="/legales">Politiques de sécurité </router-link></li>
-          <li><router-link to="/legales">Termes et conditions </router-link></li>
-          <li><router-link to="/legales">Droit d’auteur </router-link></li>
+          <li><router-link to="/legales">{{ t('privacy_policy') }}</router-link></li>
+          <li><router-link to="/legales">{{ t('security_policy') }} </router-link></li>
+          <li><router-link to="/legales">{{ t('terms_conditions') }} </router-link></li>
+          <li><router-link to="/legales">{{ t('copyright') }} </router-link></li>
         </ul>
       </div>
 
       <div class="col footer-links">
-        <h4>Retrouvez-nous sur</h4>
+        <h4>{{ t('find_us_on') }}</h4>
         <div class="social-links text-md-right pt-0 pt-md-0">
           <a href="https://twitter.com/Hupeafrica" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="https://www.facebook.com/profile.php?id=100088080067301" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -89,17 +92,17 @@ const lien = route.params.activeTab
       </div>
 
       <div class="col footer-links">
-        <h4>Modes de paiement</h4>
+        <h4>{{ t('payment_modes') }}</h4>
         <ul>
           <li><a href="#"> Mobile money </a></li>
-          <li> <a href="#">Carte bancaire</a></li>
+          <li> <a href="#">{{ t('bank_card') }}</a></li>
           <li> <a href="#"> CinetPay</a></li>
           <li> <a href="#"></a></li>
         </ul>
       </div>
 
       <div class="col footer-links">
-        <h4>Applications mobiles </h4>
+        <h4>{{ t('mobile_apps') }} </h4>
         <ul>
           <li> <router-link to="/application">Hupe</router-link></li>
           <li> <router-link to="/application">Hupe pro</router-link></li>

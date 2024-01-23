@@ -25,50 +25,50 @@ const demandeStore = useDemandeStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid
 onBeforeMount(() => {
   userStore.setUser(userId) 
 })
 
-const service = ref('')
-const object = ref('')
-const post = ref('')
+// const service = ref('')
+// const object = ref('')
+// const post = ref('')
 
-const clientPublicationColRef = collection(firestoreDb, 'client_publication')
+// const clientPublicationColRef = collection(firestoreDb, 'client_publication')
 
-const submitPost = async () => {
-  const newData = {
-    uid: '',
-    client_id: userId, 
-    createdAt: Timestamp.now(),
-    demande: post.value,
-    lecteurs: [],
-    objet: object.value,
-    service: service.value,
-    status: 'En attente'
-  }
+// const submitPost = async () => {
+//   const newData = {
+//     uid: '',
+//     client_id: userId, 
+//     createdAt: Timestamp.now(),
+//     demande: post.value,
+//     lecteurs: [],
+//     objet: object.value,
+//     service: service.value,
+//     status: 'En attente'
+//   }
 
-  try {
-    const docRef = await addDoc(clientPublicationColRef, newData) 
-    await updateDoc(docRef, { uid: `${docRef.id}` })
+//   try {
+//     const docRef = await addDoc(clientPublicationColRef, newData) 
+//     await updateDoc(docRef, { uid: `${docRef.id}` })
 
-    demandeStore.setPosts(userId)
+//     demandeStore.setPosts(userId)
 
-    await location.reload()
+//     await location.reload()
 
-    Swal.fire({
-      title: "Succès",
-      text: "Publication effectuée avec succès",
-      icon: "success"
-    }) 
-  } catch (error) {
-    console.log(error)
-  }
+//     Swal.fire({
+//       title: "Succès",
+//       text: "Publication effectuée avec succès",
+//       icon: "success"
+//     }) 
+//   } catch (error) {
+//     console.log(error)
+//   }
 
-  document.querySelector('#postForm').reset()
-  document.querySelector('.btn-close').click() 
-}
+//   document.querySelector('#postForm').reset()
+//   document.querySelector('.btn-close').click() 
+// }
 
 
 onMounted(() => {
@@ -270,10 +270,10 @@ onMounted(() => {
                 aria-labelledby="profile-tab"
                 tabindex="0"
               >
-                <div class="row mt-4">
+                <!-- <div class="row mt-4">
                   <div class="col-md-6"></div>
                   <div class="col-md-6 text-end">
-                    <!-- Button trigger modal -->
+                    Button trigger modal
                     <button
                       type="button"
                       class="btn btn-primary"
@@ -289,7 +289,7 @@ onMounted(() => {
                       Ajouter
                     </button>
 
-                    <!-- Modal -->
+                    Modal
                     <div
                       class="modal fade"
                       id="exampleModal"
@@ -390,7 +390,7 @@ onMounted(() => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <Post />
               </div>
               <div

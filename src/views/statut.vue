@@ -351,61 +351,61 @@ const options = {
         <section id="portfolio-details" class="portfolio-details" style="margin-top: 90px;">
             <div class="container">
   
-              <div class="row no-gutters g-4 mt-4">
+              <div v-if="reservations.length > 0" class="row no-gutters g-4 mt-4">
                 <div class="col-md-4 mb-4" v-for="(reservation, index) in reservations" :key="index">
                 <div
-                    class="card h-100 border-0"
-                    id="card_compagnie"
-                    style=" background: none ;padding: 6px;"
+                  class="card h-100 border-0"
+                  id="card_compagnie"
+                  style=" background: none ;padding: 6px;"
                 >
-                        <div class="row" style="margin: 0px">
-                        <div class="col-md-12">
-                            <div
-                            class="card  border-0"
-                            style="background: white;"
-                            >
-                            <div class="row g-1 d-flex mt-1">
-                                
-                                <div class="col-6 d-flex">
-                                <img
-                                :src="reservation.companieInfos.imageLogoUrl"
-                                    alt
-                                    class="w-px-40 h-auto"
-                                    style="width: 40px !important; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
-                                />
-                                <div>
-                                    <div class="card-body" style="margin-top: -5px;">
-                                      <h5 class="card-title" style="font-size: 12px">
-                                          {{ reservation.companieInfos.raison_social }}
-                                      </h5>
-                                     
-                                    </div>
-                                </div>
-                                </div>
+                  <div class="row" style="margin: 0px">
+                    <div class="col-md-12">
+                        <div
+                        class="card  border-0"
+                        style="background: white;"
+                        >
+                        <div class="row g-1 d-flex mt-1">
                             
-
-                                <div class="col-6 text-end">
-                                    <strong style="color: #219935 ;font-size: 12px; margin-right: 10px; font-weight: 500;"> {{ reservation.status }} </strong>
-                                <button
-                                    class="btn btn-primary"
-                                    style="
-                                    background: #219935;
-                                    border-color: #219935;
-                                    margin-top: 5px;
-                                    font-size: 10px;
-                                    "
-                                >
-                                {{ reservation.montant }} FCFA
-                                </button>
-                                </div>
+                            <div class="col-6 d-flex">
+                            <img
+                            :src="reservation.companieInfos.imageLogoUrl"
+                                alt
+                                class="w-px-40 h-auto"
+                                style="width: 40px !important; height: 40px !important ; border: 1px solid rgb(214, 214, 214); border-radius: 50% !important;"
+                            />
+                            <div>
+                                <div class="card-body" style="margin-top: -5px;">
+                                  <h5 class="card-title" style="font-size: 12px">
+                                      {{ reservation.companieInfos.raison_social }}
+                                  </h5>
                                 
+                                </div>
                             </div>
                             </div>
+                        
+
+                            <div class="col-6 text-end">
+                                <strong style="color: #219935 ;font-size: 12px; margin-right: 10px; font-weight: 500;"> {{ reservation.status }} </strong>
+                            <button
+                                class="btn btn-primary"
+                                style="
+                                background: #219935;
+                                border-color: #219935;
+                                margin-top: 5px;
+                                font-size: 10px;
+                                "
+                            >
+                            {{ reservation.montant }} FCFA
+                            </button>
+                            </div>
+                            
                         </div>
                         </div>
-                    <div
-                    class="card h-100"
-                    >
+                    </div>
+                  </div>
+                  <div
+                  class="card h-100"
+                  >
                     <div class="row g-0" style="margin: -2px">
                         <div class="col-md-12">
                         <div class="card-body">
@@ -469,11 +469,11 @@ const options = {
                                             </div>
                                           </div>
                                         </div>
-                                         
+                                        
                                       </div>
                                     </div>
                                   </div>
-                                 
+                                
                               </div>
                             </div>
                           
@@ -511,7 +511,7 @@ const options = {
                                   class="card-text"
                                   style="font-size: 13px;"
                                   >
-                                   <strong> Trajet </strong> <br>{{ reservation.lieu_depart }} - {{ reservation.destination }}
+                                  <strong> Trajet </strong> <br>{{ reservation.lieu_depart }} - {{ reservation.destination }}
                                   </p>
                               </div>
                               <div class="col-6">
@@ -526,7 +526,7 @@ const options = {
 
                           </div>
                         </div>
-                         
+                        
                         <div class="col-md-12">
                           <div class="card-body" style="margin-top: -30px;">
                             <div class="row mt-2">
@@ -713,10 +713,10 @@ const options = {
                                                     <p style=" font-size: 14px;">  Place à réserver <strong>{{ reservation.nombre_personne }} </strong> |</p>
                                                   </div>
                                                 </div>
-                                               
+                                              
                                                 
                                               </div>
-                                             
+                                            
                                               <div class="col-md-12">
                                                 <hr>
                                                 <!-- <p style="font-size: 14px;"> Nom & prénoms | <strong>{{ reservation.nom_client }} </strong> </p> -->
@@ -749,7 +749,7 @@ const options = {
                                                     <p style="font-size: 14px;">{{ reservation.montant }}</p>
                                                   </div>
                                               </div>
- 
+
                                               <div class="col-md-12 text-center">
                                                 <button class="btn btn-primary"  @click="payer(reservation)" style="background-color:#219935 ; border-color: #219935">Payer maintenant</button>
                                               </div>
@@ -898,12 +898,26 @@ const options = {
                           </div>
                         </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="reservations.length === 0" class="w-100">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <div class="text-center">
+                      <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
                     </div>
+                    
+                    <div class="card-body text-center">
+                      <p class="card-text">Aucune réservation disponible</p>
+                    </div>
+                  </div>
+                  <div class="col-md-3"></div>
                 </div>
               </div>
             </div>
-
-              
   
           </div>
       </section>

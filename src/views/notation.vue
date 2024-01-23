@@ -89,7 +89,7 @@ const sendNotations = async () => {
 </script>
 <template>
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+      <!-- <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
   
           <ol>
@@ -98,10 +98,11 @@ const sendNotations = async () => {
           </ol>
   
         </div>
-      </section><!-- End Breadcrumbs -->
+      </section> -->
+      <!-- End Breadcrumbs -->
   
       <!-- ======= Portfolio Details Section ======= -->
-      <section id="portfolio-details" class="portfolio-details">
+      <section style="margin-top: 90px;" id="portfolio-details" class="portfolio-details">
           <div class="container">
   
             <div class="row no-gutters mt-4">

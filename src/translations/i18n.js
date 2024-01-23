@@ -72,7 +72,30 @@ const messages = {
 
         // Footer
         news: 'Informations',
-        faq: ''
+        faq: 'Foire aux questions',
+        who_we_are: 'Qui sommes-nous ?',
+        ccm: 'Comment ça marche',
+        accessibility: 'Accessibilité',
+        help: 'Aide',
+        client_services: 'Services clients',
+        partener_conditions: 'Conditions de partenariat',
+        utils_links: 'Liens utiles',
+        vehicles_location: 'Location de véhicules',
+        ticket_reservation: 'Réservations de tickets de bus',
+        big_engins_location: 'Location de gros en engins',
+        vehicles_sale: 'Vente de véhicule',
+        countries_parteners: 'Partenaires par pays',
+        for_parteners: 'Pour les partenaires',
+        for_clients: 'Pour les clients',
+        legal: 'Légales',
+        privacy_policy: 'Politiques de confidentialité',
+        security_policy: 'Politiques de sécurité',
+        terms_conditions: 'Termes et conditions',
+        copyright: 'Droit d’auteur',
+        payment_modes: 'Modes de paiement',
+        bank_card: 'Carte bancaire',
+        find_us_on: 'Retrouvez-nous sur',
+        mobile_apps: 'Applications mobiles'
     },
     en: {
         greeting: 'Hello!',
@@ -141,7 +164,34 @@ const messages = {
         newsletter_title: 'Subscribe to our Newsletter',
         newsletter_text: 'Please enter your email address to keep up to date with all our news',
         newsletter_placeholder: 'Email address',
-        newsletter_submit: 'Send'
+        newsletter_submit: 'Send',
+
+        // Footer
+        news: 'News',
+        faq: 'Frequently Asked Questions',
+        who_we_are: 'Who we are',
+        ccm: 'How it works',
+        accessibility: 'Accessibility',
+        help: 'Help',
+        client_services: 'Customer Services',
+        partener_conditions: 'Partnership conditions',
+        utils_links: 'Useful links',
+        vehicles_location: 'Car Rental',
+        ticket_reservation: 'Bus Ticket Reservations',
+        big_engins_location: 'Wholesale Machinery Rental',
+        vehicles_sale: 'Vehicle Sale',
+        countries_parteners: 'Partners by country',
+        for_parteners: 'For Partners',
+        for_clients: 'For Customers',
+        legal: 'Legal',
+        privacy_policy: 'Privacy Policies',
+        security_policy: 'Security Policies',
+        terms_conditions: 'Terms & Conditions',
+        copyright: 'Copyright',
+        payment_modes: 'Payment Methods',
+        bank_card: 'Bank card',
+        find_us_on: 'Find us on',
+        mobile_apps: 'Mobile Apps'
     }
 }
 

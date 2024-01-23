@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 
 import router from '@/router/router.js' 
 
-import { collection, doc, addDoc, updateDoc, Timestamp } from "firebase/firestore"
+import { collection, doc, addDoc, getDoc, updateDoc, Timestamp } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 import { toast } from "vue3-toastify"
 
@@ -153,6 +153,13 @@ const reserver = async (car) => {
     const docRef = await addDoc(locationColRef, Data)
 
     console.log("Document ajouté avec success") 
+    document.querySelector('#closeLocation').click()
+
+    Swal.fire({
+      title: "Succès",
+      text: "Réservation effectuée avec succès",
+      icon: "success"
+    })
 
     await updateDoc(docRef, { uid: `${docRef.id}` })
 
@@ -163,13 +170,8 @@ const reserver = async (car) => {
 
     const differenceEnJours = Math.round((Data.date_retour - Data.date_retrait) / (24 * 60 * 60))
 
-    const userDocRef = doc(firestoreDb, 'users', `${car.client_id}`)
-    const snapshot = await getDoc(userDocRef)
-    let user
-    if(snapshot.exists()) user = snapshot.data()
-
-    const formatedDateRetrait = new Intl.DateTimeFormat(undefined, options).format(Data.date_retrait)
-    const formatedDateRetour = new Intl.DateTimeFormat(undefined, options).format(Data.date_retour)
+    const formatedDateRetrait = new Intl.DateTimeFormat('fr-FR', options).format((new Date(dateRetour.value)))
+    const formatedDateRetour = new Intl.DateTimeFormat('fr-FR', options).format(new Date(dateRetrait.value))
     
     const comp_notif = {
       uid: '', 
@@ -185,15 +187,6 @@ const reserver = async (car) => {
     await updateDoc(comp_docRef, { uid: `${comp_docRef.id}` }) 
 
     document.querySelector("#reservationForm").reset() 
-    document.querySelector('.btn-close').click()
-
-    await location.reload()
-
-    Swal.fire({
-      title: "Succès",
-      text: "Réservation effectuée avec succès",
-      icon: "success"
-    })
 
     await router.push(`/notation/${encryptParam(companieId)}`) 
     window.location.reload() 
@@ -584,8 +577,9 @@ const goToRelatedCar = async (carUID) => {
                                   Réservation de véhicule
                                 </h1>
                                 <button
+                                  id="closeLocation"
                                   type="button"
-                                  class="btn-close"
+                                  class="btn-close-vehicule"
                                   data-bs-dismiss="modal"
                                   aria-label="Close"
                                 ></button>
@@ -859,7 +853,7 @@ const goToRelatedCar = async (carUID) => {
                                   </div>
 
                                   <Loader 
-                                    style="position: absolute; left: 35%; top: 15%"
+                                    style="position: absolute; top: 35%"
                                     v-if="isLoading" 
                                   />
 

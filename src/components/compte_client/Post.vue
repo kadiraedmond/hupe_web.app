@@ -2,10 +2,10 @@
 import { useDemandeStore } from '@/store/demande.js'
 import { useUserStore } from '@/store/user.js'
 import { useAuthStore } from '@/store/auth.js'
-import { onBeforeMount, ref, onMounted } from 'vue'
+import { onBeforeMount, ref, computed, onMounted } from 'vue'
 import { encryptParam } from '@/utils/hash.js'
 
-import { doc, deleteDoc, Timestamp } from 'firebase/firestore'
+import { doc, addDoc, updateDoc, collection, deleteDoc, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js'
 import Swal from 'sweetalert2'
 
@@ -18,10 +18,11 @@ const savedUser = JSON.parse(localStorage.getItem('user'))
 const userId = savedUser.uid || authStore.user.uid
 // const userId = 'Pxr3ZohT9Y6vOztEeNhf' || savedUser.uid || authStore.user.uid
 const posts = ref([])
+const ordonedPosts = computed(() => posts.value.slice().reverse())
 onBeforeMount(async () => {
   await demandeStore.setPosts(userId)
 
-  posts.value = demandeStore.posts.slice().reverse()
+  posts.value = demandeStore.posts
 })
 
 onMounted(() => {
@@ -60,11 +61,173 @@ const deletePost = async (postUID) => {
   }
 
 }
+
+const service = ref('')
+const object = ref('')
+const post = ref('')
+
+const clientPublicationColRef = collection(firestoreDb, 'client_publication')
+
+const submitPost = async () => {
+  const newData = {
+    uid: '',
+    client_id: userId, 
+    createdAt: Timestamp.now(),
+    demande: post.value,
+    lecteurs: [],
+    objet: object.value,
+    service: service.value,
+    status: 'En attente'
+  }
+
+  try {
+    const docRef = await addDoc(clientPublicationColRef, newData) 
+    await updateDoc(docRef, { uid: `${docRef.id}` })
+
+    demandeStore.setPosts(userId)
+
+    posts.value.push({ ...newData, uid: `${docRef.id}` })
+
+    await location.reload()
+
+    Swal.fire({
+      title: "Succès",
+      text: "Publication effectuée avec succès",
+      icon: "success"
+    }) 
+  } catch (error) {
+    console.log(error)
+  }
+
+  document.querySelector('#postForm').reset()
+  document.querySelector('.btn-close').click() 
+}
 </script>
 
 <template>
+  <div class="row mt-4">
+    <div class="col-md-6"></div>
+    <div class="col-md-6 text-end">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        style="background-color: #219935; border-color: #219935"
+      >
+        <img
+          src="/assets/img/icone/plus.png"
+          class="img-fluid"
+          alt="..."
+        />
+        Ajouter
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: #219935 ; color: white;">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Faire une publication
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form
+                id="postForm"
+                class="row g-3 needs-validation text-start"
+                novalidate
+                @submit.prevent="submitPost"
+              >
+                <div class="col-md-12">
+                  <label
+                    for="validationDefault04"
+                    class="form-label"
+                    >Sélectionner un service</label
+                  >
+                  <select
+                    class="form-select"
+                    id="validationDefault04"
+                    v-model="service"
+                    required
+                  >
+                    <option selected value="Location de véhicules">
+                      Location de véhicules
+                    </option>
+                    <option value="Réservation de tickets de bus">
+                      Réservation de tickets de bus
+                    </option>
+                    <option value="Location de gros engins">
+                      Location de gros engins
+                    </option>
+                    <option value="Vente d'engins">Vente d'engins</option>
+                  </select>
+                </div>
+                <div class="col-md-12">
+                  <label
+                    for="validationCustom02"
+                    class="form-label"
+                    >Objet</label
+                  >
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    id="validationCustom02"
+                    v-model="object"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="col-md-12">
+                  <label
+                    for="validationCustom02"
+                    class="form-label"
+                    >Entrez votre demande</label
+                  >
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    id="validationCustom02"
+                    v-model="post"
+                    required
+                    style="height: 130px"
+                  ></textarea>
+                </div>
+
+                <div class="col-12 text-center">
+                  <button
+                    class="btn btn-primary"
+                    style="
+                      background-color: #219935;
+                      border-color: #219935;
+                    "
+                    type="submit"
+                  >
+                    Envoyer
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row mt-5">
-    <div class="col-md-6 mb-3" v-for="(post, postIndex) in posts" :key="postIndex">
+    <div v-if="posts.length > 0" class="col-md-6 mb-3" v-for="(post, postIndex) in ordonedPosts" :key="postIndex">
       <!-- Button trigger modal -->
       <button
         type="button"
@@ -213,6 +376,23 @@ const deletePost = async (postUID) => {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="w-100" v-else>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            
+            <div class="text-center">
+              <img src="/assets/img/icone/col.png" alt="" class="img-fluid w-50">
+            </div>
+            
+            <div class="card-body text-center">
+              <p class="card-text">Aucun Post à afficher</p>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
       </div>
     </div>
   </div>

@@ -5,6 +5,8 @@ import { useCompanieStore } from '@/store/companie.js'
 import { usePromotionStore } from '@/store/promotion.js'
 import Loader from '@/components/Loader.vue' 
 
+import Swal from 'sweetalert2' 
+
 import router from '@/router/router.js' 
 
 import { collection, doc, getDoc, addDoc, updateDoc, Timestamp } from 'firebase/firestore'
@@ -98,18 +100,21 @@ const reserver = async (programme) => {
 
     console.log('Document ajouté avec success')
 
+    document.querySelector('#closeReservation').click()
+
+    Swal.fire({
+      title: "Succès",
+      text: "Réservation effectuée avec succès",
+      icon: "success"
+    })
+
     await updateDoc(docRef, { uid: `${docRef.id}` })
 
     isLoading.value = false
 
     const notificationColRef = collection(firestoreDb, 'notifications')
 
-    const userDocRef = doc(firestoreDb, 'users', `${Data.client_id}`)
-    const snapshot = await getDoc(userDocRef)
-    let user
-    if(snapshot.exists()) user = snapshot.data()
-
-    const formatedDateDepart = new Intl.DateTimeFormat(undefined, options).format(Data.date_depart)
+    const formatedDateDepart = new Intl.DateTimeFormat('fr-FR', options).format((new Date(dateDepart.value)))
     
     const comp_notif = {
       uid: '', 
@@ -125,15 +130,6 @@ const reserver = async (programme) => {
     await updateDoc(comp_docRef, { uid: `${comp_docRef.id}` }) 
 
     document.querySelector('#reservationForm').reset() 
-    document.querySelector('.btn-close').click()
-
-    await location.reload()
-
-    Swal.fire({
-      title: "Succès",
-      text: "Réservation effectuée avec succès",
-      icon: "success"
-    })
 
     await router.push(`/notation/${encryptParam(companieId)}`) 
     window.location.reload() 
@@ -391,8 +387,9 @@ const goToRelatedProgram = async (programUID) => {
                                     Réservation de ticket
                                 </h1>
                                 <button
+                                    id="closeReservation"
                                     type="button"
-                                    class="btn-close"
+                                    class="btn-close-reservation"
                                     data-bs-dismiss="modal"
                                     aria-label="Close"
                                 ></button>
@@ -487,7 +484,7 @@ const goToRelatedProgram = async (programUID) => {
                                   </div>
 
                                   <Loader 
-                                    style="position: absolute; left: 35%; top: 15%"
+                                    style="position: absolute; top: 35%"
                                     v-if="isLoading" 
                                   />
 
