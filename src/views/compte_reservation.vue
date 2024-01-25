@@ -5,6 +5,7 @@ import Reservation from "@/components/CompteReservation/Reservation.vue"
 import Demande from "@/components/CompteReservation/Demande.vue"
 import Offres from "@/components/CompteReservation/Offre.vue"
 import Collaborateur from "@/components/CompteReservation/Collaborateur.vue"
+import Horaire from "@/components/CompteReservation/Horaire.vue"
 import Programme from "@/components/CompteReservation/Programme.vue"
 import Apropos from "@/components/CompteReservation/Apropos.vue"
 import Compte from "@/components/CompteReservation/Compte.vue"
@@ -128,6 +129,10 @@ const getNotation = async () => {
               </li>
 
               <li class="nav-item" role="presentation">
+                <button class="nav-link" id="horaire-tab" data-bs-toggle="tab" data-bs-target="#horaire-tab-pane"
+                  type="button" role="tab" aria-controls="horaire-tab-pane" aria-selected="false">Horaires</button>
+              </li>
+              <li class="nav-item" role="presentation">
                 <button class="nav-link" id="program-tab" data-bs-toggle="tab" data-bs-target="#program-tab-pane"
                   type="button" role="tab" aria-controls="program-tab-pane" aria-selected="false">Programmes</button>
               </li>
@@ -172,6 +177,9 @@ const getNotation = async () => {
               </div>
               <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <Promotion />
+              </div>
+              <div class="tab-pane fade" id="horaire-tab-pane" role="tabpanel" aria-labelledby="horaire-tab" tabindex="0">
+                <Horaire />
               </div>
               <div class="tab-pane fade" id="program-tab-pane" role="tabpanel" aria-labelledby="program-tab" tabindex="0">
                 <Programme />

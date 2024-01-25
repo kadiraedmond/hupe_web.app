@@ -112,35 +112,19 @@ onBeforeMount(async () => {
     country.value = data.country 
 
     if(!collected_country.includes(data.country)) {
-      Swal.fire({
-        text: `Votre pays ne propose pas de compagnies. Sélectionnez un autre pays dans la zone en haut à gauche de l'écran pour voir des compagnies`, 
-        icon: "info"
-      }) 
+
+      document.querySelector('#selectCountryBtn').click()
 
       companieStore.setCountry('CI') 
       slideStore.setCountry('CI') 
       promotionStore.setCountry('CI') 
 
-      // showCountryList = true;
     } 
-
-    // Swal.fire({
-    //   title: `Votre localisation est : \n ${data.city} - ${data.country}`, 
-    //   icon: "info"
-    // })
   } catch (error) {
     console.error('Erreur lors de la récupération des informations de localisation :', error);
   }
 
 })
-
-// const handleSelect = () => {
-//   console.log(country.value)
-//   localisationStore.setCompaniesByLocalisation(country.value)
-//   companieStore.setCountry(country.value) 
-//   slideStore.setCountry(country.value) 
-//   promotionStore.setCountry(country.value) 
-// }
 
 const logout = async () => {
   try {
@@ -218,6 +202,8 @@ const handleSelect = (selectedCountry) => {
   companieStore.setCountry(selectedCountry);
   slideStore.setCountry(selectedCountry);
   promotionStore.setCountry(selectedCountry);
+
+  document.querySelector('#closeSelectCountryModal').click()
 };
 
 </script>
@@ -255,7 +241,7 @@ const handleSelect = (selectedCountry) => {
       <!-- .navbar -->
        <!-- Button trigger modal -->
       <div v-if="showCountryList">
-       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal0111">
+       <button style="display: none" id="selectCountryBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal0111">
           Launch demo modal
        </button>
 
@@ -263,15 +249,15 @@ const handleSelect = (selectedCountry) => {
       <div class="modal fade" id="exampleModal0111" tabindex="10" aria-labelledby="exampleModalLabel0111" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel0111">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div style="background: #219935" class="modal-header text-white">
+              <h1 class="modal-title fs-5" id="exampleModalLabel0111">Sélectionnez un pays</h1>
+              <button type="button" id="closeSelectCountryModal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="card">
                 <div class="row">
-                  <div class="col-12 text-center">
-                    <p>Votre pays ne propose pas de compagnies. Sélectionnez un autre pays dans la zone en haut à gauche de l'écran pour voir des compagnies</p>
+                  <div class="col-12 text-center px-3 pt-2">
+                    <p>Votre pays ne propose pas de compagnies. Sélectionnez un pays dans la liste ci-dessous :</p>
                   </div>
                   <div class="col-2"></div>
                   <div class="col-8 mt-2">
@@ -279,8 +265,13 @@ const handleSelect = (selectedCountry) => {
                       <div class="row">
                         <div class="col-12 mb-3" v-for="(value, index) in collected_country" :key="index">
                           <li>
-                            <a class="dropdown-item text-start" @click="handleSelect(value)" style="cursor: pointer; color: black">
-                              <img :src="getCountryFlagImage(value)" alt="Country Flag" class="country-flag"> {{ getCountryLabel(value) }}
+                            <a class="dropdown-item text-start" id="selectCountryItem" @click="handleSelect(value)" style="cursor: pointer; color: black; border-radius: 5px; padding: 2px 8px">
+                              <div style="display: flex; justify-content: space-between; align-items: center">
+                                <img :src="getCountryFlagImage(value)" alt="Country Flag" class="country-flag"> 
+                                <h5 style="margin-top: 12px; font-size: 17px">
+                                  {{ getCountryLabel(value) }}
+                                </h5>
+                              </div>
                             </a>
                           </li>
                         </div>
@@ -380,7 +371,7 @@ const handleSelect = (selectedCountry) => {
                   v-if="(savedUser && savedUser.type_compagnie == 'Location') 
                         || (user.raison_social && user.type_compagnie == 'Location') 
                         || (authStore.isConnected && authStore.isLocationCompany)"
-                  >Compte location de vehicules</router-link
+                  >Compte location de véhicules</router-link
                 >
               </li>
               <li @click="goTo_reservation" style="color: white">
@@ -389,7 +380,7 @@ const handleSelect = (selectedCountry) => {
                 v-if="(savedUser && savedUser.type_compagnie == 'Transport') 
                       || (user.raison_social && user.type_compagnie == 'Transport') 
                       || (authStore.isConnected && authStore.isReservationCompany)"
-                  >Compte reservation de ticket de bus</router-link
+                  >Compte réservation de tickets de bus</router-link
                 >
               </li>
               <li style="color: white">
@@ -491,6 +482,11 @@ const handleSelect = (selectedCountry) => {
 input::placeholder {
   color: #219935;
   /* opacity: 0.5; */
+}
+
+#selectCountryItem:hover {
+  background: #68c1c5;
+  color: white !important;
 }
 
 </style>

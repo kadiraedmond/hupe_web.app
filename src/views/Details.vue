@@ -213,7 +213,7 @@ onMounted(() => {
                   aria-selected="true"
                   style="border-radius: 5px 0px 0px 0px !important;"
                 >
-                  Trajet
+                  Trajets
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -227,7 +227,7 @@ onMounted(() => {
                   aria-controls="promotion-tab-pane"
                   aria-selected="false"
                 >
-                  Promotion
+                  Promotions
                 </button>
               </li>
 
@@ -325,7 +325,7 @@ onMounted(() => {
                           </div>
 
                           <div class="col-6 mt-3" style="margin-top: -9px !important;">
-                            <p style="font-size: 13px;"><strong>Escale  </strong> <br> {{ programme.escale }}</p>
+                            <p style="font-size: 13px;"><strong>Escales  </strong> <br> {{ programme.escale }}</p>
                           </div>
 
                           <div class="col-6 mt-3" style="margin-top: -9px !important;">

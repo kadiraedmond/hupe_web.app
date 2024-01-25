@@ -1,76 +1,3 @@
-<script setup>
-import { onBeforeMount, onMounted, ref } from "vue"
-import { collection, query, setDoc, doc, Timestamp, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
-import { firestoreDb, storage } from "@/firebase/firebase.js"
-
-import Swal from 'sweetalert2'
-
-const savedUser = JSON.parse(localStorage.getItem('user'))
-
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
-
-const programColRef = collection(firestoreDb, 'programmes')
-
-const programs = ref([])
-
-onBeforeMount(async () => {
-    const q = query(programColRef, where('compagnie_uid', '==', userId))
-    const snapshot = await getDocs(q)
-    snapshot.docs.forEach(doc => programs.value.push(doc.data()))
-})
-
-
-const lieu_depart = ref('')
-const destination = ref('')
-const montant = ref()
-const heure_depart = ref()
-const heure_convocation = ref()
-const escales_a_faire = ref('')
-const jour_du_voyage = ref('')
-
-const addNewProgram = async () => {
-
-  const data = {
-    uid: '', 
-    compagnie_uid: userId, 
-    destination: destination.value,
-    country: savedUser.country,
-    escales: escales_a_faire.value, 
-    heure_convocation: heure_convocation.value,
-    heure_depart: heure_depart.value, 
-    jour_voyage: jour_du_voyage.value, 
-    lieu_depart: lieu_depart.value, 
-    montant: montant.value, 
-    createdAt: Timestamp.now()
-  }
-
-  const addedDoc = await addDoc(programColRef, data)
-
-  if(addedDoc) {
-    console.log('Document ajouté')
-    try {
-      await updateDoc(addedDoc, { uid: `${addedDoc.id}` })
-      console.log('ID ajouté')
-
-      const newData = { ...data, uid: `${addedDoc.id}` }
-      programs.value.push(newData)
-    
-    } catch (error) {
-      console.log(error)
-    }
-    document.querySelector('.btn-close-program').click() 
-    Swal.fire({
-      title: "Succès",
-      text: "Programme ajouté",
-      icon: "success"
-    })
-  } 
-}
-
-const exportToExcel = () => {}
-
-</script>
 <template>
     
     <!-- ======= Portfolio Details Section ======= -->
@@ -81,16 +8,13 @@ const exportToExcel = () => {}
             <div class="col-md-12">
             <div class="row">
             
-                <div class="col-6 text-start">
-                <button @click="exportToExcel" class="btn btn-primary" style="background-color:#219935 ; border-color:#219935"><i class='bx bxs-file-export'></i> Exporter</button>
-                </div>
-                <div class="col-md-6 text-end">
+                <div class="col-md-12 text-end">
                 <!-- Button trigger modal -->
                 <button
                     type="button"
                     class="btn btn-primary"
                     data-bs-toggle="modal"
-                    data-bs-target="#exampleModal5"
+                    data-bs-target="#exampleModal5Horaire"
                     style="background-color: #219935; border-color: #219935"
                 >
                     <img
@@ -104,16 +28,16 @@ const exportToExcel = () => {}
                 <!-- Modal -->
                 <div
                     class="modal fade"
-                    id="exampleModal5"
+                    id="exampleModal5Horaire"
                     tabindex="-1"
-                    aria-labelledby="exampleModalLabel5"
+                    aria-labelledby="exampleModal5Horaire"
                     aria-hidden="true"
                 >
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color: #219935; color : white">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel5">
-                                Ajouter un programme
+                            <h1 class="modal-title fs-5" id="exampleModal5Horaire">
+                                Définir les horaires
                             </h1>
                             <button
                                 type="button"
@@ -125,23 +49,8 @@ const exportToExcel = () => {}
                             <div class="modal-body">
                                 <form @submit.prevent="addNewProgram" class="row g-3 needs-validation text-start" novalidate>
                                     <div class="col-md-12">
-                                        <label for="validationCustom01" class="form-label"
-                                            >Jours</label
-                                        >
-                                        <select v-model="jour_du_voyage" class="form-select" aria-label="Default select example">
-                                            <option selected>....</option>
-                                            <option value="Lundi">Lundi</option>
-                                            <option value="Mardi">Mardi</option>
-                                            <option value="Mercredi">Mercredi</option>
-                                            <option value="Jeudi">Jeudi</option>
-                                            <option value="Vendredi">Vendredi</option>
-                                            <option value="Samedi">Samedi</option>
-                                            <option value="Dimanche">Dimanche</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
                                         <label for="validationCustom02" class="form-label"
-                                            >Heure de convocation</label
+                                            >Heure N° 1</label
                                         >
                                         <input
                                             type="time"
@@ -151,63 +60,49 @@ const exportToExcel = () => {}
                                             required
                                         />
                                     </div>
-                                    
                                     <div class="col-md-12">
                                         <label for="validationCustom02" class="form-label"
-                                            >Heure de départ</label
+                                            >Heure N° 2</label
                                         >
                                         <input
                                             type="time"
                                             class="form-control"
                                             id="validationCustom02"
-                                            v-model="heure_depart"
-                                        />
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <label for="validationCustom02" class="form-label"
-                                            >Lieu de départ</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="validationCustom02"
-                                            v-model="lieu_depart"
+                                            v-model="heure_convocation"
+                                            required
                                         />
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationCustom02" class="form-label"
-                                            >Destination</label
+                                            >Heure N° 3</label
                                         >
                                         <input
-                                            type="text"
+                                            type="time"
                                             class="form-control"
                                             id="validationCustom02"
-                                            v-model="destination"
+                                            v-model="heure_convocation"
                                         />
                                     </div>
-
                                     <div class="col-md-12">
                                         <label for="validationCustom02" class="form-label"
-                                            >Escales</label
+                                            >Heure N° 4</label
                                         >
                                         <input
-                                            type="text"
+                                            type="time"
                                             class="form-control"
                                             id="validationCustom02"
-                                            v-model="escales_a_faire"
+                                            v-model="heure_convocation"
                                         />
                                     </div>
-
                                     <div class="col-md-12">
                                         <label for="validationCustom02" class="form-label"
-                                            >Prix</label
+                                            >Heure N° 5</label
                                         >
                                         <input
-                                            type="text"
+                                            type="time"
                                             class="form-control"
                                             id="validationCustom02"
-                                            v-model="montant"
+                                            v-model="heure_convocation"
                                         />
                                     </div>
                                 
@@ -234,12 +129,11 @@ const exportToExcel = () => {}
                 <thead>
                     <tr>
                         
-                    <th scope="col">N°</th>
-                    <th scope="col">Heure de convocation </th>
-                    <th scope="col">Heure de depart</th>
-                    <th scope="col">Trajet </th>
-                    <th scope="col">Escales </th>
-                    <th scope="col">Prix</th>
+                    <th scope="col">Heure N° 1</th>
+                    <th scope="col">Heure N° 2 </th>
+                    <th scope="col">Heure N° 3</th>
+                    <th scope="col">Heure N° 4 </th>
+                    <th scope="col">Heure N° 5 </th>
                     <th scope="col">Actions</th>
                     
                     
@@ -248,7 +142,6 @@ const exportToExcel = () => {}
                 <tbody>
                     <tr v-for="(program, i) in programs" :key="i">
                         
-                    <td>{{ i + 1 }}</td>
                     <td>{{ program.heure_convocation }}</td>
                     <td> {{ program.heure_depart }}</td>
                     <td> {{ program.lieu_depart }} - {{ program.destination }}</td>
@@ -270,6 +163,3 @@ const exportToExcel = () => {}
     </section>
     <!-- End Portfolio Details Section -->
 </template>
-
-<style>
-</style>

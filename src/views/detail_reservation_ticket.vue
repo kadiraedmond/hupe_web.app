@@ -90,7 +90,9 @@ const reserver = async (programme) => {
     payement: 'En attente',
     status: 'En attente',
     telephone_client: user.telephone,
-    ticket_id: uuidv4()
+    ticket_id: uuidv4(),
+    is_scanned: false,
+    scanner_id: ''
   }
 
   if(Data)  isLoading.value = true
@@ -189,7 +191,7 @@ const goToRelatedProgram = async (programUID) => {
                            <img src="/assets/img/detail/2.svg" alt="" class="img-fluid" id="ImIcone">
                         
                         <div id="space-left">
-                          <h5 style="font-size: 18px; font-weight: 600;">Escale</h5>
+                          <h5 style="font-size: 18px; font-weight: 600;">Escales</h5>
                         <p style="margin-top: -6px; font-size: 14px">
                           {{ promotionStore.programme.escale }}
                         </p>

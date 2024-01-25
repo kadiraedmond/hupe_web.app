@@ -62,7 +62,7 @@ const dateRetrait = ref()
 const heureRetrait = ref()
 const lieuRetrait = ref('')
 const dateRetour = ref()
-const permis = ref()
+const permis = ref('')
 
 const toggleChauffeur = (num) => {
   if (num == 1) {
@@ -143,6 +143,8 @@ const reserver = async (car) => {
     status: "En attente",
     telephone_client: user.telephone,
     ticket_id: uuidv4(),
+    is_scanned: false,
+    scanner_id: '',
     vehicule: car.vehicule,
     vehicule_image_url: car.vehicule_image_url,
   }
@@ -336,7 +338,7 @@ const goToRelatedCar = async (carUID) => {
             <div class="col-md-12">
               <div class="row">
                 <div class="row">
-                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Caracteristique</h5>
+                  <h5 class="mt-4" style="font-size: 22px; font-weight: 600;">Caractéristiques</h5>
                   <div class="col-6 mt-3">
                     <div class="row g-0">
                       <div class="col-md-8 d-flex">
@@ -359,7 +361,7 @@ const goToRelatedCar = async (carUID) => {
                           <img src="/assets/img/detail/modele.svg" alt="" class="img-fluid" id="ImIcone">
                         
                         <div id="space-left">
-                          <h5 style="font-size: 18px; font-weight: 600;">Modéle</h5>
+                          <h5 style="font-size: 18px; font-weight: 600;">Modèle</h5>
                           <p style="margin-top: -6px; font-size: 14px">
                             {{ promotionStore.vehicule.modele }}
                           </p>
