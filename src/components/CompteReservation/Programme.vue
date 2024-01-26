@@ -7,8 +7,8 @@ import Swal from 'sweetalert2'
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 
 const programColRef = collection(firestoreDb, 'programmes')
 
@@ -235,6 +235,7 @@ const exportToExcel = () => {}
                     <tr>
                         
                         <th scope="col">N°</th>
+                        <th scope="col">Jours</th>
                         <th scope="col">Heure de convocation </th>
                         <th scope="col">Heure de depart</th>
                         <th scope="col">Trajet </th>
@@ -248,18 +249,167 @@ const exportToExcel = () => {}
                     <tr v-for="(program, i) in programs" :key="i">
                         
                     <td>{{ i + 1 }}</td>
+                    <td>{{ program.jour_voyage }}</td>
                     <td>{{ program.heure_convocation }}</td>
                     <td> {{ program.heure_depart }}</td>
                     <td> {{ program.lieu_depart }} - {{ program.destination }}</td>
                     <td>{{ program.escales }} </td>
                     <td> {{ program.montant }}</td>
                         
-                    <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px; background: #219935 !important; border-color: #219935;">Voir plus</div></td>    
+                    <td>
+                        <div class="dropdown dropend position-static">
+                            <button class="btn btn-secondary " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent; border-color: transparent; color: black;">
+                                <i class='bx bx-dots-vertical-rounded'></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal51">  
+                                    Modifier
+                                </button>
+                            </li>
+                                
+                            <li>
+                                <button type="button" class="btn">  
+                                    Supprimer
+                                </button>
+                            </li>
+                            
+                            </ul>
+                        </div>
+                        <!-- <button class="btn btn-primary"> Modifier</button>
+                        <button class="btn btn-primary"> Supprimer</button> -->
+                    </td>     
 
                     </tr>
                     
                 </tbody>
             </table>
+            </div>
+
+            <!-- Modal  de modification -->
+            <div
+                class="modal fade"
+                id="exampleModal51"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel51"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: #219935; color : white">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel51">
+                            Modifier un programme
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close-program text-white"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                        </div>
+                        <div class="modal-body">
+                            <form @submit.prevent="addNewProgram" class="row g-3 needs-validation text-start" novalidate>
+                                <div class="col-md-12">
+                                    <label for="validationCustom01" class="form-label"
+                                        >Jours</label
+                                    >
+                                    <select v-model="jour_du_voyage" class="form-select" aria-label="Default select example">
+                                        <option selected>....</option>
+                                        <option value="Lundi">Lundi</option>
+                                        <option value="Mardi">Mardi</option>
+                                        <option value="Mercredi">Mercredi</option>
+                                        <option value="Jeudi">Jeudi</option>
+                                        <option value="Vendredi">Vendredi</option>
+                                        <option value="Samedi">Samedi</option>
+                                        <option value="Dimanche">Dimanche</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="validationCustom02" class="form-label"
+                                        >Heure de convocation</label
+                                    >
+                                    <input
+                                        type="time"
+                                        class="form-control"
+                                        id="validationCustom02"
+                                        v-model="heure_convocation"
+                                        required
+                                    />
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label for="validationCustom02" class="form-label"
+                                        >Heure de départ</label
+                                    >
+                                    <input
+                                        type="time"
+                                        class="form-control"
+                                        id="validationCustom02"
+                                        v-model="heure_depart"
+                                    />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="validationCustom02" class="form-label"
+                                        >Lieu de départ</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="validationCustom02"
+                                        v-model="lieu_depart"
+                                    />
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="validationCustom02" class="form-label"
+                                        >Destination</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="validationCustom02"
+                                        v-model="destination"
+                                    />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="validationCustom02" class="form-label"
+                                        >Escales</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="validationCustom02"
+                                        v-model="escales_a_faire"
+                                    />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="validationCustom02" class="form-label"
+                                        >Prix</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="validationCustom02"
+                                        v-model="montant"
+                                    />
+                                </div>
+                            
+                                <div class="col-12 text-center">
+                                    <button
+                                        class="btn btn-primary"
+                                        style="background-color: #219935; border-color: #219935"
+                                        type="submit"
+                                    >
+                                        Enregistrer
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             </div>

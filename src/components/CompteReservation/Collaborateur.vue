@@ -14,8 +14,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   await scannerStore.setCompanyScanners(userId)
 
@@ -268,12 +268,16 @@ const deleteScanner = async (UID) => {
             <p class="card-text" style="margin-top: -17px;">
               <small class="text-muted">{{ scanner.address }}</small>
             </p>
-            <div class="row">
-              <div class="col-md-12 text-end">
-                <button @click="deleteScanner(scanner.uid)" class="btn btn-primary" id="btn_sup">Supprimer</button>
-              </div>
-            </div>
+           
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button @click="deleteScanner(scanner.uid)" class="btn btn-primary" id="btn_sup">Supprimer</button>
+        </div>
+        <div class="col-md-6 text-end">
+          <button @click="deleteScanner(scanner.uid)" class="btn btn-primary" id="btn_sups">Consulter</button>
         </div>
       </div>
     </div>
@@ -303,6 +307,12 @@ const deleteScanner = async (UID) => {
     background: white;
     border-color: red;
     color: red;
+    height: 34px;
+  }
+
+  #btn_sups{
+    background: #219935;
+    border-color: #219935;
     height: 34px;
   }
 </style>
