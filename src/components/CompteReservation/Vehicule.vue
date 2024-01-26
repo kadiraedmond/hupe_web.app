@@ -27,7 +27,21 @@ onBeforeMount(async () => {
   companieStore.setCompanieById(userId)
 
   trajets.value = reservationStore.trajets
+
+  getPrograms()
 })
+
+const programs = ref([])
+const selectedProgram = ref({})
+const immatriculation = ref('')
+
+const programColRef = collection(firestoreDb, 'programmes')
+
+const getPrograms = async () => {
+  const q = query(programColRef, where('compagnie_uid', '==', userId))
+  const snapshot = await getDocs(q)
+  snapshot.docs.forEach(doc => programs.value.push(doc.data()))
+}
 
 onMounted(() => {
   window.scrollTo(0, 0)
@@ -52,16 +66,16 @@ const addNewTrajet = async () => {
     compagnie_uid: userId, 
     enAvant: false, 
     enPromo: false, 
-    destination: destination.value,
+    destination: selectedProgram.destination,
     country: savedUser.country,
-    escale: escales_a_faire.value, 
-    heure_convocation: heure_convocation.value,
-    date_depart: new Date(date_depart.value), 
-    heure_depart: heure_depart.value, 
-    jours_voyage: jours_de_voyage.value, 
-    lieu_depart: lieu_depart.value, 
-    montant: montant.value, 
+    escale: selectedProgram.escales, 
+    heure_convocation: selectedProgram.heure_convocation,
+    heure_depart: selectedProgram.heure_depart, 
+    jours_voyage: selectedProgram.jour_voyage, 
+    lieu_depart: selectedProgram.lieu_depart, 
+    montant: selectedProgram.montant, 
     montant_promotion: 0,
+    immatriculation: immatriculation.value,
     nb_place: nombre_de_place.value, 
     status: 'active',
     addedAt: Timestamp.now()
@@ -573,7 +587,7 @@ const remove = async (trajet) => {
             </div>
             <div class="modal-body">
               <form @submit.prevent="addNewTrajet" class="row g-3 needs-validation text-start" novalidate>
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                   <label for="validationCustom01" class="form-label"
                     >Lieu de départ
                   </label>
@@ -659,9 +673,9 @@ const remove = async (trajet) => {
                     v-model="jours_de_voyage"
                     required
                   />
-                </div>
+                </div> -->
 
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                   <label for="validationCustom01" class="form-label"
                     >Date de début de ce trajet</label
                   >
@@ -672,8 +686,30 @@ const remove = async (trajet) => {
                     v-model="date_depart"
                     required
                   />
+                </div> -->
+
+                <div class="col-md-12">
+                  <label for="validationCustomUsername" class="form-label">Programme</label>
+                  <div class="input-group has-validation">
+                    <!-- <input v-model="pays" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">  -->
+                    <select v-model="selectedProgram" class="form-select1" style="background: #E8E8E8; color: black" id="validationCustom04" required>
+                      <option v-for="(item, i) in programs" :key="i" :value="item" selected>{{ item.lieu_depart }} - {{ item.destination }} ({{ item.heure_convocation }}) </option>
+                    </select>
+                  </div>
                 </div>
 
+                <div class="col-md-12">
+                  <label for="validationCustom01" class="form-label"
+                    >Immatriculation du véhicule de transport</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationCustom01"
+                    v-model="immatriculation"
+                    required
+                  />
+                </div>
                 <div class="col-md-12">
                   <label for="validationCustom01" class="form-label"
                     >Nombre de places</label

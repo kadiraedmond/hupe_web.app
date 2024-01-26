@@ -11,6 +11,7 @@ const route = useRoute()
 const companieId = decryptParam(route.params.id)
 
 const programColRef = collection(firestoreDb, 'programmes')
+const horaireColRef = collection(firestoreDb, 'horaires')
 
 const programsLundi = ref([])
 const programsMardi = ref([])
@@ -20,6 +21,8 @@ const programsVendredi = ref([])
 const programsSamedi = ref([])
 const programsDimanche = ref([])
 
+const horaire = ref([])
+
 onBeforeMount(() => {
     getLundiPrograms()
     getMardiPrograms()
@@ -28,7 +31,15 @@ onBeforeMount(() => {
     getVendrediPrograms()
     getSamediPrograms()
     getDimanchePrograms()
+
+    getHoraire()
 })
+
+const getHoraire = async () => {
+    const q = query(horaireColRef, where('compagnie_uid', '==', companieId))
+    const snapshot = await getDocs(q)
+    snapshot.docs.forEach(doc => horaire.value.push(doc.data()))
+}
 
 const getLundiPrograms = async () => {
     const q = query(programColRef, where('compagnie_uid', '==', companieId), where('jour_voyage', '==', 'Lundi'))
@@ -89,13 +100,14 @@ const exportToExcel = () => {}
                 <div class="table">
                   <table class="table table-bordered">
                     <thead>
-                      <tr style="background: #219935; color: white;">
+                      <tr v-for="(item, i) in horaire" :key="i" style="background: #219935; color: white;">
                          
                         <th scope="col">Jours</th>
-                        <th scope="col">06H00 </th>
-                        <th scope="col">08H00</th>
-                        <th scope="col">10H00</th>
-                        <th scope="col">12H00 </th>
+                        <th scope="col">{{ item.heure1 }} </th>
+                        <th scope="col">{{ item.heure2 }}</th>
+                        <th scope="col">{{ item.heure3 }}</th>
+                        <th scope="col">{{ item.heure4 }} </th>
+                        <th scope="col">{{ item.heure5 }} </th>
              
                       </tr>
                     </thead>

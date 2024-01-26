@@ -234,14 +234,13 @@ const exportToExcel = () => {}
                 <thead>
                     <tr>
                         
-                    <th scope="col">N°</th>
-                    <th scope="col">Heure de convocation </th>
-                    <th scope="col">Heure de depart</th>
-                    <th scope="col">Trajet </th>
-                    <th scope="col">Escales </th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Actions</th>
-                    
+                        <th scope="col">N°</th>
+                        <th scope="col">Heure de convocation </th>
+                        <th scope="col">Heure de depart</th>
+                        <th scope="col">Trajet </th>
+                        <th scope="col">Escales </th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Actions</th>
                     
                     </tr>
                 </thead>

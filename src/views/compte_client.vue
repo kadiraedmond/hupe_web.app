@@ -137,7 +137,7 @@ onMounted(() => {
                   aria-controls="profile-tab-pane"
                   aria-selected="false"
                 >
-                  Post
+                  Posts
                 </button>
               </li>
               <li class="nav-item" role="presentation">

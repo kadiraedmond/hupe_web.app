@@ -1,3 +1,76 @@
+<script setup>
+import { ref, onBeforeMount } from 'vue'
+import { collection, query, setDoc, doc, Timestamp, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
+import { firestoreDb, storage } from "@/firebase/firebase.js"
+
+import Swal from 'sweetalert2'
+
+const heure_1 = ref('')
+const heure_2 = ref('')
+const heure_3 = ref('')
+const heure_4 = ref('')
+const heure_5 = ref('')
+
+const horaire = ref([])
+
+const alreadyExists = ref(false)
+
+const horaireColRef = collection(firestoreDb, 'horaires')
+
+const savedUser = JSON.parse(localStorage.getItem('user'))
+
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
+
+onBeforeMount(async () => {
+    const q = query(horaireColRef, where('compagnie_uid', '==', userId))
+    const snapshot = await getDocs(q)
+
+    if(snapshot.docs.length > 0) {
+        alreadyExists.value = true
+        
+        snapshot.docs.forEach(doc => horaire.value.push(doc.data()))
+    }
+})
+
+
+const handleSubmit = async () => {
+    if(alreadyExists.value === true) {
+        document.querySelector('.btn-close-horaire').click()
+
+        Swal.fire({
+            title: "Erreur",
+            text: "Une horaire existe déjà",
+            icon: "error"
+        })
+    }
+
+    else {
+        const data = {
+            uid: '',
+            compagnie_uid: userId,
+            heure1: heure_1.value,
+            heure2: heure_2.value,
+            heure3: heure_3.value,
+            heure4: heure_4.value,
+            heure5: heure_5.value,
+            createdAt: Timestamp.now()
+        }
+        
+        const docRef = await addDoc(horaireColRef, data)
+        await updateDoc(docRef, { uid: docRef.id })
+        horaire.value.push({ ...data, uid: docRef.id })
+        alreadyExists.value = true
+
+        document.querySelector('.btn-close-horaire').click()
+        Swal.fire({
+            title: "Succès",
+            text: "Horaire ajouté",
+            icon: "success"
+        })
+    }
+}
+</script>
 <template>
     
     <!-- ======= Portfolio Details Section ======= -->
@@ -41,13 +114,13 @@
                             </h1>
                             <button
                                 type="button"
-                                class="btn-close-program text-white"
+                                class="btn-close-horaire text-white"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
                             ></button>
                             </div>
                             <div class="modal-body">
-                                <form @submit.prevent="addNewProgram" class="row g-3 needs-validation text-start" novalidate>
+                                <form @submit.prevent="handleSubmit" class="row g-3 needs-validation text-start" novalidate>
                                     <div class="col-md-12">
                                         <label for="validationCustom02" class="form-label"
                                             >Heure N° 1</label
@@ -56,7 +129,7 @@
                                             type="time"
                                             class="form-control"
                                             id="validationCustom02"
-                                            v-model="heure_convocation"
+                                            v-model="heure_1"
                                             required
                                         />
                                     </div>
@@ -68,7 +141,7 @@
                                             type="time"
                                             class="form-control"
                                             id="validationCustom02"
-                                            v-model="heure_convocation"
+                                            v-model="heure_2"
                                             required
                                         />
                                     </div>
@@ -80,7 +153,7 @@
                                             type="time"
                                             class="form-control"
                                             id="validationCustom02"
-                                            v-model="heure_convocation"
+                                            v-model="heure_3"
                                         />
                                     </div>
                                     <div class="col-md-12">
@@ -91,7 +164,7 @@
                                             type="time"
                                             class="form-control"
                                             id="validationCustom02"
-                                            v-model="heure_convocation"
+                                            v-model="heure_4"
                                         />
                                     </div>
                                     <div class="col-md-12">
@@ -102,19 +175,20 @@
                                             type="time"
                                             class="form-control"
                                             id="validationCustom02"
-                                            v-model="heure_convocation"
+                                            v-model="heure_5"
                                         />
                                     </div>
                                 
                                     <div class="col-12 text-center">
                                         <button
+                                            type="submit"
                                             class="btn btn-primary"
                                             style="background-color: #219935; border-color: #219935"
-                                            type="submit"
                                         >
                                             Enregistrer
                                         </button>
                                     </div>
+                                    
                                 </form>
                             </div>
                         </div>
@@ -140,15 +214,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(program, i) in programs" :key="i">
+                    <tr v-for="(item, i) in horaire" :key="i">
                         
-                    <td>{{ program.heure_convocation }}</td>
-                    <td> {{ program.heure_depart }}</td>
-                    <td> {{ program.lieu_depart }} - {{ program.destination }}</td>
-                    <td>{{ program.escales }} </td>
-                    <td> {{ program.montant }}</td>
-                        
-                    <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px; background: #219935 !important; border-color: #219935;">Voir plus</div></td>    
+                        <td>{{ item.heure1 }}</td>
+                        <td> {{ item.heure2 }}</td>
+                        <td> {{ item.heure3 }}</td>
+                        <td>{{ item.heure4 }} </td>
+                        <td> {{ item.heure5 }}</td>
+                            
+                        <td> <div class="btn btn-primary" style="border-radius: 30px ; font-size: 12px; background: #219935 !important; border-color: #219935;">Voir plus</div></td>    
 
                     </tr>
                     

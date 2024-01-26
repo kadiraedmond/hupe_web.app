@@ -136,7 +136,7 @@ const handleSearchCars = async () => {
 // Filtre de trajets
 const lieu_depart = ref('')
 const destination = ref('')
-const date = ref()
+const selectedDay = ref('')
 const prix = ref()
 
 const trajetsColRef = collection(firestoreDb, 'programme_des_voyages') 
@@ -146,7 +146,7 @@ const handleSearchTrajets = async () => {
         where('status', '==', 'active'), 
         lieu_depart.value && where('lieu_depart', '==', lieu_depart.value), 
         destination.value && where('destination', '==', destination.value), 
-        date.value && where('date_depart', '==', new Date(date.value)), 
+        selectedDay.value && where('jours_voyage', '==', selectedDay.value), 
         prix.value && where('montant', '==', prix.value)
     )
 
@@ -1762,9 +1762,16 @@ const handleSearchTrajets = async () => {
                       
                     </div>
                     <div class="col-md-12">
-                      Date
-                      <input v-model="date" type="date" name="Transmission" class="form-control" id="validationCustom02" placeholder="Transmission">
-                    
+                        Jour
+                        <select v-model="selectedDay" class="form-select1" style="background: #E8E8E8; color: black" id="validationCustom04" required>
+                            <option value="Lundi" selected>Lundi</option>
+                            <option value="Mardi">Mardi</option>
+                            <option value="Mercredi">Mercredi</option>
+                            <option value="Jeudi">Jeudi</option>
+                            <option value="Vendredi">Vendredi</option>
+                            <option value="Samedi">Samedi</option>
+                            <option value="Dimanche">Dimanche</option>
+                        </select>
                     </div>
                     <div class="col-md-12">
                       Prix
