@@ -19,8 +19,8 @@ const horaireColRef = collection(firestoreDb, 'horaires')
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 
 onBeforeMount(async () => {
     const q = query(horaireColRef, where('compagnie_uid', '==', userId))
@@ -30,6 +30,12 @@ onBeforeMount(async () => {
         alreadyExists.value = true
         
         snapshot.docs.forEach(doc => horaire.value.push(doc.data()))
+        
+        heure_1.value = horaire.value[0].heure1
+        heure_2.value = horaire.value[0].heure2
+        heure_3.value = horaire.value[0].heure3
+        heure_4.value = horaire.value[0].heure4
+        heure_5.value = horaire.value[0].heure5
     }
 })
 
@@ -68,7 +74,76 @@ const handleSubmit = async () => {
             text: "Horaire ajouté",
             icon: "success"
         })
+
+        horaire_1.value = ''
+        horaire_2.value = ''
+        horaire_3.value = ''
+        horaire_4.value = ''
+        horaire_5.value = ''
     }
+}
+
+const handleUpdate = async () => {
+    const q = query(horaireColRef, where('compagnie_uid', '==', userId))
+    const snapshot = await getDocs(q)
+
+    const docRef = snapshot.docs[0].ref
+
+    const data = {
+        heure1: heure_1.value,
+        heure2: heure_2.value,
+        heure3: heure_3.value,
+        heure4: heure_4.value,
+        heure5: heure_5.value,
+    }
+    
+    await updateDoc(docRef, data)
+    const updateQuery = query(horaireColRef, where('compagnie_uid', '==', userId))
+    const snapshots = await getDocs(updateQuery)
+    horaire.value = []
+    snapshots.docs.forEach(doc => horaire.value.push(doc.data()))
+    
+    document.querySelector('#updateHoraire').click()
+
+    Swal.fire({
+        title: "Succès",
+        text: "Horaire mise à jour",
+        icon: "success"
+    })
+}
+
+const deleteHoraire = async () => {
+    const q = query(horaireColRef, where('compagnie_uid', '==', userId))
+    const snapshot = await getDocs(q)
+
+    const docRef = snapshot.docs[0].ref
+
+    const result = await Swal.fire({
+      title: 'Supprimer cet Horaire ?',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+    })
+
+    if(result.isConfirmed) {
+        await deleteDoc(docRef)
+        horaire.value = []
+    
+        Swal.fire({
+            title: "Succès",
+            text: "Horaire supprimé",
+            icon: "success"
+        })
+
+        alreadyExists.value = false
+    
+        horaire_1.value = ''
+        horaire_2.value = ''
+        horaire_3.value = ''
+        horaire_4.value = ''
+        horaire_5.value = ''
+    }
+
 }
 </script>
 <template>
@@ -228,18 +303,18 @@ const handleSubmit = async () => {
                                             <i class='bx bx-dots-vertical-rounded'></i>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal5Horaires">  
-                                                Modifier
-                                            </button>
-                                        </li>
-                                         
-                                        <li>
-                                            <button type="button" class="btn">  
-                                                Supprimer
-                                            </button>
-                                        </li>
+                                            <li>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal5Horaires">  
+                                                    Modifier
+                                                </button>
+                                            </li>
+                                            
+                                            <li>
+                                                <button @click="deleteHoraire" type="button" class="btn">  
+                                                    Supprimer
+                                                </button>
+                                            </li>
                                         
                                         </ul>
                                     </div>
@@ -269,6 +344,7 @@ const handleSubmit = async () => {
                                    Modifier les horaires
                                 </h1>
                                 <button
+                                    id="updateHoraire"
                                     type="button"
                                     class="btn-close-horaire text-white"
                                     data-bs-dismiss="modal"
@@ -276,7 +352,7 @@ const handleSubmit = async () => {
                                 ></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form @submit.prevent="handleSubmit" class="row g-3 needs-validation text-start" novalidate>
+                                    <form @submit.prevent="handleUpdate" class="row g-3 needs-validation text-start" novalidate>
                                         <div class="col-md-12">
                                             <label for="validationCustom02" class="form-label"
                                                 >Heure N° 1</label

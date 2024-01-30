@@ -9,13 +9,15 @@ import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 import Swal from 'sweetalert2'
 
+import { encryptParam } from '@/utils/hash.js'
+
 const scannerStore = useScannerStore()
 const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-const userId = savedUser.uid || authStore.user.uid
-// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
+// const userId = savedUser.uid || authStore.user.uid
+const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 onBeforeMount(async () => {
   await scannerStore.setCompanyScanners(userId)
 
@@ -273,12 +275,14 @@ const deleteScanner = async (UID) => {
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
           <button @click="deleteScanner(scanner.uid)" class="btn btn-primary" id="btn_sup">Supprimer</button>
         </div>
-        <div class="col-md-6 text-end">
-          <button @click="deleteScanner(scanner.uid)" class="btn btn-primary" id="btn_sups">Consulter</button>
-        </div>
+        <router-link :to="`/collaborateur/${encryptParam(scanner.uid)}/activites`" class="col-md-4 text-end">
+          <button class="btn btn-primary" id="btn_sups">Consulter</button>
+        </router-link>
       </div>
     </div>
   </div>

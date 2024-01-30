@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, onBeforeMount, ref } from 'vue' 
 import { useRoute } from 'vue-router' 
-import { collection, query, doc, where, getDoc, getDocs, addDoc, Timestamp } from "firebase/firestore"
+import { collection, query, doc, where, getDoc, getDocs, addDoc, updateDoc, Timestamp } from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js" 
 import Swal from 'sweetalert2'
 import { decryptParam } from '@/utils/hash.js'
@@ -63,26 +63,41 @@ const sendNotations = async () => {
 
   const notationsColRef = collection(docRef, 'client_avis') 
 
-  const data = {
-    client_telephone: savedUser.telephone, 
-    commentaire: commentaires.value, 
-    createdAt: Timestamp.now(), 
-    nombre_etoile: totalStars 
-  } 
+  const q = query(notationsColRef, where('client_uid', '==', savedUser.uid))
+  const snapshot = await getDocs(q)
 
-  try {
-    await addDoc(notationsColRef, data) 
-
+  if(snapshot.docs.length > 0) {
     Swal.fire({
-      title: "Succès",
-      text: "Votre notation a été envoyée",
-      icon: "success"
+      title: "Erreur",
+      text: "Vous aviez déjà noté cette compagnie",
+      icon: "error"
     }) 
+  } else {
+    const data = {
+      uid: '',
+      client_telephone: savedUser.telephone, 
+      client_uid: savedUser.uid,
+      commentaire: commentaires.value, 
+      createdAt: Timestamp.now(), 
+      nombre_etoile: totalStars 
+    } 
+  
+    try {
+      const newDoc = await addDoc(notationsColRef, data) 
+      await updateDoc(newDoc, { uid: newDoc.id })
+  
+      Swal.fire({
+        title: "Succès",
+        text: "Votre notation a été envoyée",
+        icon: "success"
+      }) 
+  
+      commentaires.value = ''
+    } catch (error) {
+      console.log(error) 
+    } 
+  }
 
-    commentaires.value = ''
-  } catch (error) {
-    console.log(error) 
-  } 
   totalStars = 0
 } 
 
