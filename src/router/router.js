@@ -71,6 +71,7 @@ const VueListesUtilise = () =>  import('@/components/CompteReservation/Activite/
 const VueListesAnnule = () =>  import('@/components/CompteReservation/Activite/liste_annule.vue')
 const VueListesReporte = () =>  import('@/components/CompteReservation/Activite/liste_reporte.vue')
 const VueListesConfirme = () =>  import('@/components/CompteReservation/Activite/liste_confirme.vue')
+const Collaborateur = () =>  import('@/components/CompteReservation/detail-collaborateur.vue')
  
 
 const VueListes = () =>  import('@/views/liste_reservation.vue')
@@ -569,6 +570,13 @@ const routes = [
     path: '/reservation-confirme',
     name: 'VueListesConfirme',
     component: VueListesConfirme,
+    
+  },
+
+  {
+    path: '/collaborateur',
+    name: 'Collaborateur',
+    component: Collaborateur,
     
   },
 
