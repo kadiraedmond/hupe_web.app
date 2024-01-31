@@ -276,13 +276,16 @@ const deleteScanner = async (UID) => {
       </div>
       <div class="row">
         <div class="col-md-4">
+          <button class="btn btn-primary" id="btn_sups">Activer</button>
         </div>
         <div class="col-md-4">
           <button @click="deleteScanner(scanner.uid)" class="btn btn-primary" id="btn_sup">Supprimer</button>
         </div>
-        <router-link :to="`/collaborateur/${encryptParam(scanner.uid)}/activites`" class="col-md-4 text-end">
-          <button class="btn btn-primary" id="btn_sups">Consulter</button>
-        </router-link>
+        <div class="col-md-4">
+          <router-link :to="`/collaborateur/${encryptParam(scanner.uid)}/activites`" class="col-md-4 text-end">
+            <button class="btn btn-primary" id="btn_sups">Consulter</button>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
