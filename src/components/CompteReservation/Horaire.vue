@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, onMounted } from 'vue'
 import { collection, query, setDoc, doc, Timestamp, where, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import { firestoreDb, storage } from "@/firebase/firebase.js"
 
@@ -145,6 +145,10 @@ const deleteHoraire = async () => {
     }
 
 }
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 </script>
 <template>
     

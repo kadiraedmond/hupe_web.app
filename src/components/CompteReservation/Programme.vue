@@ -166,6 +166,9 @@ const deleteProgram = async (UID) => {
 
 const exportToExcel = () => {}
 
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 </script>
 <template>
     

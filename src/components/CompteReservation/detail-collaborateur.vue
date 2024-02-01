@@ -33,6 +33,10 @@ onBeforeMount(async () => {
   tickets.value.forEach(ticket => total.value += Number(ticket.montant))
 })
 
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
 
 </script>
 
@@ -68,7 +72,7 @@ onBeforeMount(async () => {
               <div class="row g-0">
                 <div class="col-4">
                   <img
-                  src="/assets/img/avatars/1.png"
+                    :src="scanner.image_url !== '' ? scanner.image_url : '/assets/img/avatars/1.png'"
                     alt
                     class="w-px-40 h-auto rounded-circle"
                     style="
