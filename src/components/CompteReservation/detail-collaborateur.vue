@@ -1,4 +1,38 @@
 <script setup>
+import { useRoute } from "vue-router"
+import { onBeforeMount, onMounted, ref } from "vue"
+
+import { collection, doc, addDoc, getDoc, getDocs, query, where, updateDoc, Timestamp } from "firebase/firestore"
+import { firestoreDb } from "@/firebase/firebase.js"
+
+import { decryptParam } from '@/utils/hash.js'
+
+const route = useRoute()
+
+const scannerId = decryptParam(route.params.scannerId)
+
+const scannerColRef = collection(firestoreDb, 'scanneur')
+const reservationColRef = collection(firestoreDb, 'reservation')
+const scanner = ref({})
+
+const tickets = ref([])
+
+const total = ref(0)
+
+onBeforeMount(async () => {
+  const docRef = doc(scannerColRef, scannerId)
+  const snapshot = await getDoc(docRef)
+  scanner.value = snapshot.data()
+
+  // Recherche des tickets scannés
+  const q = query(reservationColRef, where('scanner_id', '==', scanner.value.uid), where('is_scanned', '==', true))
+  const snapshots = await getDocs(q)
+  snapshots.docs.forEach(doc => tickets.value.push(doc.data()))
+
+  // calcul du montant total de tickets scannés
+  tickets.value.forEach(ticket => total.value += Number(ticket.montant))
+})
+
 
 </script>
 
@@ -48,21 +82,12 @@
                 <div class="col-8">
                   <div class="card-body" id="card_espace">
                     <p class="card-text">
-                        <strong>  JHON Doe </strong>
+                        <strong>  {{ scanner.lastName }} {{ scanner.firstName }} </strong>
                     </p>
-                    <p class="card-text" style="margin-top: -11px !important;">
-                      <strong> id ticket  | </strong> loren ipsun dalor
-                    </p> 
                     
                     <p class="card-text" style="margin-top: -11px !important;">
-                        +000 00 00 00 00
-                    </p>
-
-                    <p class="card-text" style="margin-top: -11px !important;">
-                       loren ipsun dalor
-                    </p>
-
-                    
+                        {{ scanner.telephone }}
+                    </p>                  
                     
                   </div>
                 </div>
@@ -70,7 +95,7 @@
             </div>
           </div>
           <div class="col-md-6 text-end">
-            <button class="btn btn-primary" style="background-color: #219935; border-color: #219935;"> Total : 50000</button>
+            <button class="btn btn-primary" style="background-color: #219935; border-color: #219935;"> Total : {{ total }}</button>
           </div>
         </div>
       </div>
@@ -87,7 +112,7 @@
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-12">
-            <h5>Tickets scanner</h5>
+            <h5>Scanneur de tickets</h5>
           </div>
           <div class="col-lg-12">
             <div class="table-responsive">
@@ -98,8 +123,7 @@
                         <th scope="col">N°</th>
                         <th scope="col">N° ticket</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Prénoms</th>
+                        <th scope="col">Nom & Prénoms</th>
                         <th scope="col">Télephone</th>
                          
                       
@@ -107,14 +131,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="(reservation, index) in elements_annule" :key="index">
+                      <tr v-for="(ticket, i) in tickets" :key="i">
                          
-                        <td>loren</td>
-                        <td>loren</td>
-                        <td>loren</td>
-                        <td>loren</td>
-                        <td>loren</td>
-                        <td>loren</td>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ ticket.number }}</td>
+                        <td>{{ new Intl.DateTimeFormat('fr-FR').format(ticket.scan_date.toDate()) }}</td>
+                        <td>{{ ticket.nom_client }}</td>
+                        <td>{{ ticket.telephone_client }}</td>
                          
                       </tr>
                     

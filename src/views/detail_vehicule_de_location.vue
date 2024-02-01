@@ -145,6 +145,7 @@ const reserver = async (car) => {
     ticket_id: uuidv4(),
     is_scanned: false,
     scanner_id: '',
+    scan_date: null,
     vehicule: car.vehicule,
     vehicule_image_url: car.vehicule_image_url,
   }

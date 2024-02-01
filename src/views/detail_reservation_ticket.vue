@@ -92,7 +92,8 @@ const reserver = async (programme) => {
     telephone_client: user.telephone,
     ticket_id: uuidv4(),
     is_scanned: false,
-    scanner_id: ''
+    scanner_id: '',
+    scan_date: null
   }
 
   if(Data)  isLoading.value = true
