@@ -9,6 +9,8 @@ import { ref as fireRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 import Swal from 'sweetalert2'
 
+import { encryptParam } from '@/utils/hash.js'
+
 const scannerStore = useScannerStore()
 const authStore = useAuthStore()
 
@@ -66,6 +68,7 @@ const handleSubmit = async () => {
     telephone: trimPhoneNum,
     image_url: profilePicture.value,
     address: adresse.value,
+    scanner_type: 'Location',
     compagnieUID: userId,
     createdAt: Timestamp.now()
   }
@@ -115,6 +118,44 @@ const deleteScanner = async (UID) => {
       console.log(error)
     }
   }
+}
+
+const active_or_desactive = async (scanner) => {
+  const docRef = doc(firestoreDb, 'scanneur', scanner.uid)
+
+  if(scanner.isActive === true) {
+    const result = await Swal.fire({
+      text: `Voulez-vous vraiment désactiver le compte de ${scanner.lastName} ${scanner.firstName} ?`,
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+    })
+
+    if(result.isConfirmed) {
+      await updateDoc(docRef, { isActive: !scanner.isActive })
+
+      Swal.fire({
+        title: "Succès",
+        text: `Collaborateur ${scanner.lastName} ${scanner.firstName} désactivé`,
+        icon: "success"
+      })
+
+      scanner.isActive = !scanner.isActive
+    }
+  }
+
+  else if(scanner.isActive === false) {
+    await updateDoc(docRef, { isActive: !scanner.isActive })
+
+    Swal.fire({
+      title: "Succès",
+      text: `Collaborateur ${scanner.lastName} ${scanner.firstName} activé`,
+      icon: "success"
+    })
+
+    scanner.isActive = !scanner.isActive
+  }
+
 }
 </script>
 
@@ -263,7 +304,12 @@ const deleteScanner = async (UID) => {
         <div class="col-8">
           <div class="card-body">
             <!-- <h5 class="card-title">{{ scanner.nom }} {{ scanner.prenom }}</h5> -->
-            <h5 class="card-title" style="font-weight: 600; margin-top: -4px;">{{ scanner.lastName }} {{ scanner.firstName }}</h5>
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="card-title" style="font-weight: 600; margin-top: -4px;">{{ scanner.lastName }} {{ scanner.firstName }}</h5>
+              <p :style="scanner.isActive === true ? 'color: #219935' : 'color: red'">
+                {{ scanner.isActive === true ? 'Activé' : 'Désactivé' }}
+              </p>
+            </div>
             <p class="card-text">{{ scanner.telephone }}</p>
             <p class="card-text" style="margin-top: -17px;">
               <small class="text-muted">{{ scanner.address }}</small>
@@ -273,7 +319,11 @@ const deleteScanner = async (UID) => {
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
+        <div 
+          v-if="scanner.isActive === true" 
+          @click="active_or_desactive(scanner)" 
+          class="col-md-4"
+        >
           <button 
             class="btn btn-danger" 
             id="btn_sups" 
@@ -282,7 +332,11 @@ const deleteScanner = async (UID) => {
             Désactiver
           </button>
         </div>
-        <div class="col-md-4">
+        <div 
+          v-if="scanner.isActive === false"
+          @click="active_or_desactive(scanner)"
+          class="col-md-4"
+        >
           <button 
             class="btn btn-primary" 
             id="btn_sups"
@@ -295,7 +349,7 @@ const deleteScanner = async (UID) => {
         </div>
 
         <div class="col-md-4">
-          <router-link to="/collaborateurs/" class="col-md-4 text-end">
+          <router-link :to="`/location/collaborateur/${encryptParam(scanner.uid)}/activites`" class="col-md-4 text-end">
             <button class="btn btn-primary" id="btn_sups">Consulter</button>
           </router-link>
         </div>

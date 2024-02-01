@@ -73,7 +73,7 @@ onMounted(() => {
                 <div class="col-4">
                   <img
                     :src="scanner.image_url !== '' ? scanner.image_url : '/assets/img/avatars/1.png'"
-                    alt
+                    alt="profil_picture"
                     class="w-px-40 h-auto rounded-circle"
                     style="
                       width: 150px;
@@ -127,8 +127,8 @@ onMounted(() => {
                         <th scope="col">N°</th>
                         <th scope="col">N° ticket</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Nom & Prénoms</th>
-                        <th scope="col">Télephone</th>
+                        <th scope="col">Nom et Prénoms</th>
+                        <th scope="col">Téléphone</th>
                          
                       
                         

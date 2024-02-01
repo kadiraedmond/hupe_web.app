@@ -582,7 +582,7 @@ const routes = [
   },
 
   {
-    path: '/collaborateurs',
+    path: '/location/collaborateur/:scannerId/activites',
     name: 'Collaborateurs',
     component: Collaborateurs,
     

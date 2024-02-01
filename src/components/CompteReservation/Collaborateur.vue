@@ -68,6 +68,7 @@ const handleSubmit = async () => {
     telephone: trimPhoneNum,
     image_url: profilePicture.value,
     address: adresse.value,
+    scanner_type: 'Transport',
     compagnieUID: userId,
     createdAt: Timestamp.now()
   }

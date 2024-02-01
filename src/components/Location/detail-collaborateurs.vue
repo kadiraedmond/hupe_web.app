@@ -9,7 +9,30 @@ import { decryptParam } from '@/utils/hash.js'
 
 const route = useRoute()
 
- 
+const scannerId = decryptParam(route.params.scannerId)
+
+const scannerColRef = collection(firestoreDb, 'scanneur')
+const locationColRef = collection(firestoreDb, 'location_vehicules')
+const scanner = ref({})
+
+const tickets = ref([])
+
+const total = ref(0)
+
+onBeforeMount(async () => {
+  const docRef = doc(scannerColRef, scannerId)
+  const snapshot = await getDoc(docRef)
+  scanner.value = snapshot.data()
+
+  // Recherche des tickets scannés
+  const q = query(locationColRef, where('scanner_id', '==', scanner.value.uid), where('is_scanned', '==', true))
+  const snapshots = await getDocs(q)
+  snapshots.docs.forEach(doc => tickets.value.push(doc.data()))
+
+  // calcul du montant total de tickets scannés
+  tickets.value.forEach(ticket => total.value += Number(ticket.montant))
+})
+
 onMounted(() => {
   window.scrollTo(0, 0)
 })
@@ -49,8 +72,8 @@ onMounted(() => {
               <div class="row g-0">
                 <div class="col-4">
                   <img
-                    src="/assets/img/avatars/1.png"
-                    alt
+                    :src="scanner.image_url !== '' ? scanner.image_url : '/assets/img/avatars/1.png'"
+                    alt="profil_picture"
                     class="w-px-40 h-auto rounded-circle"
                     style="
                       width: 150px;
@@ -63,11 +86,11 @@ onMounted(() => {
                 <div class="col-8">
                   <div class="card-body" id="card_espace">
                     <p class="card-text">
-                        <strong>  JHON DOE </strong>
+                        <strong>  {{ scanner.lastName }} {{ scanner.firstName }} </strong>
                     </p>
                     
                     <p class="card-text" style="margin-top: -11px !important;">
-                        +000 00 00 00 00
+                      {{ scanner.telephone }}
                     </p>                  
                     
                   </div>
@@ -76,7 +99,7 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-md-6 text-end">
-            <button class="btn btn-primary" style="background-color: #219935; border-color: #219935;"> Total : 5000</button>
+            <button class="btn btn-primary" style="background-color: #219935; border-color: #219935;"> Total : {{ total }}</button>
           </div>
         </div>
       </div>
@@ -104,21 +127,21 @@ onMounted(() => {
                         <th scope="col">N°</th>
                         <th scope="col">N° ticket</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Nom & Prénoms</th>
-                        <th scope="col">Télephone</th>
+                        <th scope="col">Nom et Prénoms</th>
+                        <th scope="col">Téléphone</th>
                          
                       
                         
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr v-for="(ticket, i) in tickets" :key="i">
                          
-                        <td>loren</td>
-                        <td>loren</td>
-                        <td>loren</td>
-                        <td>loren</td>
-                        <td>loren</td>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ ticket.number }}</td>
+                        <td>{{ new Intl.DateTimeFormat('fr-FR').format(ticket.scan_date.toDate()) }}</td>
+                        <td>{{ ticket.nom_client }}</td>
+                        <td>{{ ticket.telephone_client }}</td>
                          
                       </tr>
                     
