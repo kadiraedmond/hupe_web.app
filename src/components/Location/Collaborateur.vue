@@ -268,12 +268,36 @@ const deleteScanner = async (UID) => {
             <p class="card-text" style="margin-top: -17px;">
               <small class="text-muted">{{ scanner.address }}</small>
             </p>
-            <div class="row">
-              <div class="col-md-12 text-end">
-                <button @click="deleteScanner(scanner.uid)" class="btn btn-primary" id="btn_sup">Supprimer</button>
-              </div>
-            </div>
+            
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <button 
+            class="btn btn-danger" 
+            id="btn_sups" 
+            style="background: red; border: red"
+          >
+            Désactiver
+          </button>
+        </div>
+        <div class="col-md-4">
+          <button 
+            class="btn btn-primary" 
+            id="btn_sups"
+          >
+            Activer
+          </button>
+        </div>
+        <div class="col-md-4 text-end">
+          <button @click="deleteScanner(scanner.uid)" class="btn btn-primary" id="btn_sup">Supprimer</button>
+        </div>
+
+        <div class="col-md-4">
+          <router-link to="/collaborateurs/" class="col-md-4 text-end">
+            <button class="btn btn-primary" id="btn_sups">Consulter</button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -297,10 +321,16 @@ const deleteScanner = async (UID) => {
 </div>
 </template>
 <style scoped>
-  #btn_sup{
+   #btn_sup{
     background: white;
     border-color: red;
     color: red;
+    height: 34px;
+  }
+
+  #btn_sups{
+    background: #219935;
+    border-color: #219935;
     height: 34px;
   }
 </style>

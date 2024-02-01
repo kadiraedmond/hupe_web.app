@@ -19,8 +19,8 @@ const horaireColRef = collection(firestoreDb, 'horaires')
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 
 onBeforeMount(async () => {
     const q = query(horaireColRef, where('compagnie_uid', '==', userId))

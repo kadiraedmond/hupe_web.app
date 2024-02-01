@@ -19,8 +19,8 @@ const authStore = useAuthStore()
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 const trajets = ref([])
 onBeforeMount(async () => {
   await reservationStore.setTrajets(userId)

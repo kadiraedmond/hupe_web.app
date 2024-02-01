@@ -72,6 +72,7 @@ const VueListesAnnule = () =>  import('@/components/CompteReservation/Activite/l
 const VueListesReporte = () =>  import('@/components/CompteReservation/Activite/liste_reporte.vue')
 const VueListesConfirme = () =>  import('@/components/CompteReservation/Activite/liste_confirme.vue')
 const Collaborateur = () =>  import('@/components/CompteReservation/detail-collaborateur.vue')
+const Collaborateurs = () =>  import('@/components/Location/detail-collaborateurs.vue')
  
 
 const VueListes = () =>  import('@/views/liste_reservation.vue')
@@ -577,6 +578,13 @@ const routes = [
     path: '/collaborateur/:scannerId/activites',
     name: 'Collaborateur',
     component: Collaborateur,
+    
+  },
+
+  {
+    path: '/collaborateurs',
+    name: 'Collaborateurs',
+    component: Collaborateurs,
     
   },
 

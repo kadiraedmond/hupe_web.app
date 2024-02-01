@@ -7,8 +7,8 @@ import Swal from 'sweetalert2'
 
 const savedUser = JSON.parse(localStorage.getItem('user'))
 
-// const userId = savedUser.uid || authStore.user.uid
-const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
+const userId = savedUser.uid || authStore.user.uid
+// const userId = 'eZSPjwcD94CINnFyEJNp' || savedUser.uid || authStore.user.uid
 
 const programColRef = collection(firestoreDb, 'programmes')
 
