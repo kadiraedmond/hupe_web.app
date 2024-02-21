@@ -277,7 +277,7 @@ const handleSubmit = async () => {
                 <div class="col-md-12">
                   <label for="validationCustomUsername" class="form-label">Image de couverture</label>
                   <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
-                    <img :src="companieStore.companie.imageCouvertureUrl" style="width: 100%" />
+                    <img :src="companieStore.companie.imageCouvertureUrl" style="width: 100%; object-fit: cover;" />
                   </div>
                   <div class="input-group has-validation">
                     <input v-on:change="uploadPicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
@@ -288,7 +288,7 @@ const handleSubmit = async () => {
                 <div class="col-md-12">
                   <label for="validationCustomUsername" class="form-label">Logo</label>
                   <div class="mb-2" style="max-width: 100%; max-height: 170px; display: flex; justify-content: center; border: 2px solid #E8E8E8">
-                    <img :src="companieStore.companie.imageLogoUrl" style="width: 100%" />
+                    <img :src="companieStore.companie.imageLogoUrl" style="width: 100%; object-fit: cover;" />
                   </div>
                   <div class="input-group has-validation">
                     <input v-on:change="uploadProfilePicture" type="file" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
