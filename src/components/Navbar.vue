@@ -25,6 +25,7 @@ const { t } = useI18n()
 
 const changeLanguage = () => {
   i18n.global.locale = selectedLanguage.value
+  toggleMobileNav()
 }
 const authStore = useAuthStore()
 const localisationStore = useLocalisationStore()
@@ -152,11 +153,7 @@ const goTo_reservation = async () => {
   window.location.reload() 
 }
 
-const home = async () => {
-  await router.push('/') 
-  await new Promise(resolve => setTimeout(resolve, 1));
-  window.location.reload() 
-}
+ 
 
 
 const selectedValue = ref('');
@@ -420,27 +417,27 @@ router.afterEach(handleRouterLinkClick);
         <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
         <i class="bi" :class="['mobile-nav-toggle', isMobileNavOpen ? 'bi-x' : 'bi-list']" @click="toggleMobileNav"></i>
        
-        <nav id="navbarm" :class="{ 'navbar navbar-mobile': isMobileNavOpen }">
+        <nav id="navbarm" class="navbar navbar-mobile" v-if="isMobileNavOpen">
           <ul>
             <li>
-              <router-link @click="home" to="" class="nav-link scrollto " :class="{ active: $route.path === '/' }"
+              <router-link @click="toggleMobileNav"  to="/" class="nav-link scrollto " :class="{ active: $route.path === '/' }"
                 ><i class="bx bx-home" id="icon_menu"></i> {{ t('home') }}</router-link
               >
             </li>
             
             <li>
-              <router-link to="/services" class="nav-link scrollto" :class="{ active: $route.path === '/services' }"
+              <router-link @click="toggleMobileNav" to="/services" class="nav-link scrollto" :class="{ active: $route.path === '/services' }"
                 ><i class="bx bx-category" id="icon_menu"></i>
                 Services</router-link
               >
             </li>
             <li>
-              <router-link class="nav-link scrollto" to="/service_client" :class="{ active: $route.path === '/service_client' }"
+              <router-link class="nav-link scrollto" @click="toggleMobileNav" to="/service_client" :class="{ active: $route.path === '/service_client' }"
                 ><i class="bx bx-help-circle" id="icon_menu"></i> {{ t('help') }}
               </router-link>
             </li>
             <li>
-              <router-link class="nav-link scrollto" to="/promotion" :class="{ active: $route.path === '/promotion' }"
+              <router-link class="nav-link scrollto" @click="toggleMobileNav" to="/promotion" :class="{ active: $route.path === '/promotion' }"
                 ><i class="bx bxs-megaphone" id="icon_menu"></i> Promotions
               </router-link>
             </li>
@@ -452,7 +449,7 @@ router.afterEach(handleRouterLinkClick);
             </li>
 
             <li>
-              <router-link v-if="!authStore.user.uid && !savedUser" to="/type-utilisateur" class="nav-link scrollto" :class="{ active: $route.path === '/connexion' }"
+              <router-link v-if="!authStore.user.uid && !savedUser" @click="toggleMobileNav" to="/type-utilisateur" class="nav-link scrollto" :class="{ active: $route.path === '/connexion' }"
                 ><i class="bx bx-user" id="icon_menu"></i> Connexion
               </router-link>
             </li>
@@ -518,7 +515,7 @@ router.afterEach(handleRouterLinkClick);
             </li>
 
           </ul>
-      </nav>
+        </nav>
       </nav>
       
       <!-- .navbar -->

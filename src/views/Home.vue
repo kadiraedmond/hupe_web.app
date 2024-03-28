@@ -187,7 +187,7 @@ onMounted(() => {
     <div class="container-fluid"  id="background">
       <div class="row g-3" style="padding: 93px !important">
         <div
-          class="col-lg-6 col-md-6 border-2"
+          class="col-lg-6 col-md-6 border-2" id="section1-car"
           style="
             display: flex;
             flex-direction: column;
@@ -290,7 +290,7 @@ onMounted(() => {
     <section id="features" class="features" style="margin-top: -60px">
       <div class="container">
         <div class="row">
-          <div class="col-6">
+          <div class="col-12">
             <div class="section-title">
               <h2 class="text-uppercase">{{ t('section2_title') }}</h2>
             </div>
@@ -414,7 +414,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">{{ t('section3_title') }}</h2>
+              <h2 class="text-uppercase" id="title-section">{{ t('section3_title') }}</h2>
               <p id="section-p">
                 {{ t('popular_text1') }}.
               </p>
@@ -442,7 +442,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">{{ t('section4_title') }}</h2>
+              <h2 class="text-uppercase" id="title-section">{{ t('section4_title') }}</h2>
               <p id="section-p">
                 {{ t('popular_text2') }}.
               </p>
@@ -565,7 +565,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">{{ t('section5_title') }}</h2>
+              <h2 class="text-uppercase" id="title-section">{{ t('section5_title') }}</h2>
               <p id="section-p">
                 {{ t('popular_text3') }}.
               </p>
@@ -593,7 +593,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">{{ t('section6_title') }}</h2>
+              <h2 class="text-uppercase" id="title-section">{{ t('section6_title') }}</h2>
               <p id="section-p">
                 {{ t('popular_text4') }}.
               </p>
@@ -699,7 +699,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">{{ t('section7_title') }}</h2>
+              <h2 class="text-uppercase" id="title-section">{{ t('section7_title') }}</h2>
               <p id="section-p">
                 {{ t('popular_text5') }}.
               </p>
@@ -728,7 +728,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">{{ t('section8_title') }}</h2>
+              <h2 class="text-uppercase" id="title-section">{{ t('section8_title') }}</h2>
               <p id="section-p">
                 {{ t('popular_text6') }}.
               </p>
@@ -756,7 +756,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">{{ t('section9_title') }}</h2>
+              <h2 class="text-uppercase" id="title-section">{{ t('section9_title') }}</h2>
               <p id="section-p">
                 {{ t('popular_text7') }}.
               </p>
@@ -786,7 +786,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">{{ t('section10_title') }}</h2>
+              <h2 class="text-uppercase" id="title-section" >{{ t('section10_title') }}</h2>
               <p id="section-p">
                 {{ t('popular_text8') }}.
               </p>
@@ -814,7 +814,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-8">
             <div class="section-title">
-              <h2 class="text-uppercase">{{ t('section11_title') }}</h2>
+              <h2 class="text-uppercase" >{{ t('section11_title') }}</h2>
               <p id="section-p">
                 {{ t('popular_text9') }}
               </p>
