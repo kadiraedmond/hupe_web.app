@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
 import { collection, doc, query, where, getDoc, getDocs } from 'firebase/firestore'
 import { firestoreDb } from '@/firebase/firebase.js' 
-import axios from 'axios'
-
+ 
 const vipCompaniesColRef = collection(firestoreDb, 'compagnies_offre_vip')
 
 const promotionDocRef = doc(vipCompaniesColRef, 'promotion')

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { collection, doc, getDoc, query, where, getDocs} from "firebase/firestore"
 import { firestoreDb } from "@/firebase/firebase.js" 
-import axios from 'axios'
+ 
 
 const imageSlideColRef = collection(firestoreDb, "slideAcceuilImages") 
 
