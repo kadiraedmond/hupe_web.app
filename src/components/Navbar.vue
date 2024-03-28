@@ -8,7 +8,6 @@ import { useCompanieStore } from '@/store/companie.js'
 import { useSlide } from '@/store/slideImages.js' 
 import { usePromotionStore } from '@/store/promotion.js' 
 import { useNotificationStore } from '@/store/notification.js' 
-import axios from 'axios'
 import router from '@/router/router.js'
 import Swal from 'sweetalert2'
 
